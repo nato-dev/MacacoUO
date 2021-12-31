@@ -103,7 +103,7 @@ namespace Server.Spells.Sixth
                             field.Add(new InternalItem(itemID, point, Caster, Caster.Map, duration));
                     }, i);
                 }
-       
+
             }
 
 
@@ -130,8 +130,6 @@ namespace Server.Spells.Sixth
 
                 if (Deleted)
                     return;
-
-                t
 
                 m_Caster = caster;
 
@@ -180,7 +178,7 @@ namespace Server.Spells.Sixth
 
                 int version = reader.ReadInt();
 
-                switch ( version )
+                switch (version)
                 {
                     case 0:
                         {
@@ -197,13 +195,8 @@ namespace Server.Spells.Sixth
 
             public override bool OnMoveOver(Mobile m)
             {
-                if (Visible && m_Caster != null && (!Core.AOS || m != m_Caster) && m_Caster.CanBeHarmful(m, false))
+                if (Visible && m_Caster != null && m_Caster.CanBeHarmful(m, false))
                 {
-                    if (m_Caster == m)
-                    {
-                        return true;
-                    }
-
                     if (SpellHelper.CanRevealCaster(m))
                         m_Caster.RevealingAction();
 
@@ -235,7 +228,7 @@ namespace Server.Spells.Sixth
                         ((BaseCreature)m).OnHarmfulSpell(m_Caster);
                 }
 
-                return true;
+          return true;
             }
 
             private class InternalTimer : Timer
@@ -273,7 +266,7 @@ namespace Server.Spells.Sixth
                     m_Owner.Target((IPoint3D)o, true);
                 }
             }
-
+  == 
             protected override void OnTargetFinish(Mobile from)
             {
                 m_Owner.FinishSequence();
