@@ -266,7 +266,7 @@ namespace Server.Spells.Sixth
                     m_Owner.Target((IPoint3D)o, true);
                 }
             }
-  == 
+
             protected override void OnTargetFinish(Mobile from)
             {
                 m_Owner.FinishSequence();
