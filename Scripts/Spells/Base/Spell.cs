@@ -1070,7 +1070,7 @@ namespace Server.Spells
                 }
             }
 
-            if (m_Caster.Spell is Spell && ((Spell)m_Caster.Spell).State == SpellState.Sequencing)
+            if (!Shard.POL_STYLE && m_Caster.Spell is Spell && ((Spell)m_Caster.Spell).State == SpellState.Sequencing)
             {
                 ((Spell)m_Caster.Spell).Disturb(DisturbType.NewCast);
             }

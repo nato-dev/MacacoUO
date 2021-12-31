@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "fC6D2022prq4J9oFltLvGbP8tBH9SSMuPAmQIC04S2jHq3b5lAyT+hKFDNoP65Js7F/sfUnAKP2bLboW44JbeA==",
+  "dgSpecHash": "NcN3meyIAc3G5iCLMgRcMJOO6zThI4f12wp5ApnSjo+ZkmV7RoLwaqXbOItUOmLaeOhcLfwYe6FAsS3uK74DgA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\ScriptsFronteira\\ScriptsFronteira.csproj",
+  "projectFilePath": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\ScriptsFronteira\\ScriptsFronteira.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\gabri\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+    "C:\\Users\\WINDOWS\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\WINDOWS\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
   ],
   "logs": []
 }

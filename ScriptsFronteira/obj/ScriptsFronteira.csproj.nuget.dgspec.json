@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\ScriptsFronteira\\ScriptsFronteira.csproj": {}
+    "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\ScriptsFronteira\\ScriptsFronteira.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\ScriptsFronteira\\ScriptsFronteira.csproj": {
+    "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\ScriptsFronteira\\ScriptsFronteira.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\ScriptsFronteira\\ScriptsFronteira.csproj",
+        "projectUniqueName": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\ScriptsFronteira\\ScriptsFronteira.csproj",
         "projectName": "ScriptsFronteira",
-        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\ScriptsFronteira\\ScriptsFronteira.csproj",
-        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\ScriptsFronteira\\obj\\",
+        "projectPath": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\ScriptsFronteira\\ScriptsFronteira.csproj",
+        "packagesPath": "C:\\Users\\WINDOWS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\ScriptsFronteira\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\WINDOWS\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -31,8 +28,8 @@
           "netstandard2.0": {
             "targetAlias": "netstandard2.0",
             "projectReferences": {
-              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj": {
-                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj"
+              "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Scripts\\Scripts.csproj": {
+                "projectPath": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Scripts\\Scripts.csproj"
               }
             }
           }
@@ -64,34 +61,39 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj": {
+    "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Scripts\\Scripts.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj",
+        "projectUniqueName": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Scripts\\Scripts.csproj",
         "projectName": "Scripts",
-        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj",
+        "projectPath": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Scripts\\Scripts.csproj",
         "frameworks": {
-          "net451": {
+          "net48": {
             "projectReferences": {
-              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
-                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj"
+              "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Server\\Server.csproj": {
+                "projectPath": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Server\\Server.csproj"
               }
             }
           }
         }
       },
       "frameworks": {
-        "net451": {}
+        "net48": {}
       }
     },
-    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
+    "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Server\\Server.csproj": {
       "restore": {
-        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj",
+        "projectUniqueName": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj"
+        "projectPath": "C:\\Users\\WINDOWS\\Desktop\\Desenvolvimento Gabriel\\MacacoUO\\Server\\Server.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
       },
       "frameworks": {
         "net48": {}

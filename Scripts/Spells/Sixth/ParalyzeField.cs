@@ -131,6 +131,8 @@ namespace Server.Spells.Sixth
                 if (Deleted)
                     return;
 
+                t
+
                 m_Caster = caster;
 
                 m_Timer = new InternalTimer(this, duration);
