@@ -156,6 +156,9 @@ namespace Server.Mobiles
                 return;
             }
 
+            if (objetivoAtual == PassoTutorial.NADA)
+                return;
+
             var obj = Guia.Objetivos[objetivoAtual];
 
             if (ValidaChegouNoLugar(obj))

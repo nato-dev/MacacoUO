@@ -1,3 +1,4 @@
+using CustomsFramework;
 using Server.Fronteira.Tutorial.WispGuia;
 using Server.Gumps;
 using Server.Misc;
@@ -30,6 +31,17 @@ namespace Server.Fronteira
             {
                 return;
             }
+
+            if (Shard.WHITELIST)
+            {
+                if (pm.IsStaff() || pm.Name.StartsWith("Tester"))
+                    return;
+
+                pm.SendGump(new GumpWhitelist());
+                pm.Frozen = true;
+            }
+            else if (pm.Frozen)
+                pm.Frozen = false;
 
             if (CharacterCreation.Novos.Contains(e.Mobile))
             {
