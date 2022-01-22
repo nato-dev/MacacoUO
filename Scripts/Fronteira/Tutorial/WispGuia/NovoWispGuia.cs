@@ -95,10 +95,10 @@ namespace Server.Mobiles
             {
                 this.DebugSay("Avancando objetivo para " + proximo);
                 SetCooldown("pensa", TimeSpan.FromSeconds(5));
-                this.Passo = (int)PassoTutorial.NADA;
+                Jogador.PassoWispGuia = (int)PassoTutorial.NADA;
                 Timer.DelayCall(TimeSpan.FromSeconds(3), () =>
                 {
-                    this.Passo = (int)proximo;
+                    Jogador.PassoWispGuia = (int)proximo;
                     var objProximo = Guia.Objetivos[proximo];
                     if (objProximo.FraseIniciar != null)
                     {
@@ -108,7 +108,7 @@ namespace Server.Mobiles
                 });
             } else if(proximo == PassoTutorial.FIM)
             {
-                this.Passo = (int)PassoTutorial.FIM;
+                Jogador.PassoWispGuia = (int)PassoTutorial.FIM;
             }
         }
 
@@ -130,7 +130,7 @@ namespace Server.Mobiles
             }
 
             this.DebugSay("Fazendo algo");
-            var objetivoAtual = (PassoTutorial)this.Passo;
+            var objetivoAtual = (PassoTutorial)Jogador.PassoWispGuia;
 
             if (objetivoAtual == PassoTutorial.FIM)
             {
@@ -191,10 +191,7 @@ namespace Server.Mobiles
 
         public override void OnThink()
         {
-            if(Passo == (int)PassoTutorial.NADA)
-            {
-                this.Passo = (int)PassoTutorial.PEGAR_CAVALO;
-            }
+          
             if (Jogador == null)
             {
                 if (ControlMaster != null && ControlMaster is PlayerMobile)
@@ -214,8 +211,17 @@ namespace Server.Mobiles
                 }
             }
 
+            if (Jogador == null)
+                return;
+
+
             if (IsCooldown("pensa"))
                 return;
+
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.NADA)
+            {
+                Jogador.PassoWispGuia = (int)PassoTutorial.PEGAR_CAVALO;
+            }
 
             var dist = this.GetDistance(Jogador);
             if (dist > 20)
@@ -245,41 +251,39 @@ namespace Server.Mobiles
 
         public override void AbreBanco()
         {
-            if (Passo == (int)PassoTutorial.IR_BANCO)
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.IR_BANCO)
                 Completa(Guia.Objetivos[PassoTutorial.IR_BANCO]);
         }
 
         public override void QuestNoob()
         {
-            if (Passo == (int)PassoTutorial.PEGAR_QUEST)
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.PEGAR_QUEST)
                 Completa(Guia.Objetivos[PassoTutorial.PEGAR_QUEST]);
         }
 
         public override void EntregaSapato()
         {
-            if (Passo == (int)PassoTutorial.VOLTAR_QUEST)
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.VOLTAR_QUEST)
                 Completa(Guia.Objetivos[PassoTutorial.VOLTAR_QUEST]);
         }
 
         public override void MataMerda()
         {
-            if (Passo == (int)PassoTutorial.BIXO_ESGOTO)
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.BIXO_ESGOTO)
                 Completa(Guia.Objetivos[PassoTutorial.BIXO_ESGOTO]);
         }
 
         public override void FalaJill()
         {
-            if (Passo == (int)PassoTutorial.JILL)
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.JILL)
                 Completa(Guia.Objetivos[PassoTutorial.JILL]);
         }
 
         public override void MataMago()
         {
-            if (Passo == (int)PassoTutorial.MATAR_MAGO)
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.MATAR_MAGO)
                 Completa(Guia.Objetivos[PassoTutorial.MATAR_MAGO]);
         }
-
-
 
         public NovoWispGuia(Serial serial)
             : base(serial)

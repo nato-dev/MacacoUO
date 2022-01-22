@@ -56,9 +56,6 @@ namespace Server.Mobiles
 
         public PlayerMobile Jogador { get; set; }
 
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int Passo { get; set; }
-
         [Constructable]
         public WispGuia(PlayerMobile player)
             : base(AIType.AI_Animal, FightMode.Aggressor, 10, 1, 0.05, 0.05)
@@ -165,7 +162,7 @@ namespace Server.Mobiles
 
         public void VerificaLocal()
         {
-            if (Passo == PEGAR_CAVALO && Coxeiro.GetDistance(Jogador.Location) < 6)
+            if (Jogador.PassoWispGuia == PEGAR_CAVALO && Coxeiro.GetDistance(Jogador.Location) < 6)
             {
                 Fala("Tome aqui, um cavalo !");
                 Fala("Clique duas vezes no cavalo para montar !");
@@ -177,9 +174,9 @@ namespace Server.Mobiles
                 var c = new Horse();
                 c.SetControlMaster(Jogador);
                 c.MoveToWorld(this.Location, this.Map);
-                Passo = FERREIRO;
+                Jogador.PassoWispGuia = FERREIRO;
             }
-            if (Passo == QUEST_TAMER && Coxeiro.GetDistance(Jogador.Location) < 6)
+            if (Jogador.PassoWispGuia == QUEST_TAMER && Coxeiro.GetDistance(Jogador.Location) < 6)
             {
                 Fala("Muito bom, agora basta pegar a quest do treinador de animais");
                 Fala("Complete a quest do treinador de animais para aprender como funciona !");
@@ -188,9 +185,9 @@ namespace Server.Mobiles
                     Jogador.QuestArrow.Stop();
                     Jogador.QuestArrow = null;
                 }
-                Passo = FALANDO;
+                Jogador.PassoWispGuia = FALANDO;
             }
-            if (Passo == GUARDAR_BANCO && Banco.GetDistance(Jogador.Location) < 6)
+            if (Jogador.PassoWispGuia == GUARDAR_BANCO && Banco.GetDistance(Jogador.Location) < 6)
             {
                 Fala("Guarde seu loot e vamos para a proxima aventura !!");
                 if (Jogador.QuestArrow != null)
@@ -198,58 +195,58 @@ namespace Server.Mobiles
                     Jogador.QuestArrow.Stop();
                     Jogador.QuestArrow = null;
                 }
-                Passo = PEGAR_MAGE;
+                Jogador.PassoWispGuia = PEGAR_MAGE;
             }
-            if (Passo == SAIPROT && Ank.GetDistance(Jogador.Location) < 10)
+            if (Jogador.PassoWispGuia == SAIPROT && Ank.GetDistance(Jogador.Location) < 10)
             {
                 Fala("Eu lembro daqui !!! Existe um monstro seboso nesse lugar que come items !");
                 Fala("Ei, que tal mata-lo ?? Quem sabe poderemos achar algo que ele comeu !");
-                Passo = TESOURO;
+                Jogador.PassoWispGuia = TESOURO;
                 if (Jogador.QuestArrow != null)
                 {
                     Jogador.QuestArrow.Stop();
                     Jogador.QuestArrow = null;
                 }
             }
-            else if (Passo == FERREIRO && Ferreiro.GetDistance(Jogador.Location) < 6)
+            else if (Jogador.PassoWispGuia == FERREIRO && Ferreiro.GetDistance(Jogador.Location) < 6)
             {
                 Fala("Digite 'Comprar' perto do NPC para comprar items. Tome algumas moedas aqui.");
                 Jogador.Backpack.DropItem(new Gold(500));
                 Jogador.PlaySound(0x2E6);
                 Fala("Se voce tiver skills de trabalho, pode falar 'trabalho' para trabalhar pro NPC ou 'recompensas'.");
-                Passo = 2;
+                Jogador.PassoWispGuia = 2;
                 if (Jogador.QuestArrow != null)
                 {
                     Jogador.QuestArrow.Stop();
                     Jogador.QuestArrow = null;
                 }
 
-                SetCooldown("passo", TimeSpan.FromSeconds(10));
+                SetCooldown("Jogador.PassoWispGuia", TimeSpan.FromSeconds(10));
             }
-            else if (Passo == MINE && Mina.GetDistance(Jogador.Location) < 6)
+            else if (Jogador.PassoWispGuia == MINE && Mina.GetDistance(Jogador.Location) < 6)
             {
                 Fala("Abra seu paperdoll e sua mochila, depois arraste sua picareta para sua mao.");
                 Fala("Voce pode clicar 2x na picareta e depois 2x no chao para minerar !!");
                 Fala("Vamos la, pegue alguns minerios de ferro !!");
-                Passo = GETORE;
+                Jogador.PassoWispGuia = GETORE;
                 if (Jogador.QuestArrow != null)
                 {
                     Jogador.QuestArrow.Stop();
                     Jogador.QuestArrow = null;
                 }
-                SetCooldown("passo", TimeSpan.FromSeconds(20));
+                SetCooldown("Jogador.PassoWispGuia", TimeSpan.FromSeconds(20));
             }
-            else if (Passo == ALAVANCA && Alavanca.GetDistance(Jogador.Location) < 6)
+            else if (Jogador.PassoWispGuia == ALAVANCA && Alavanca.GetDistance(Jogador.Location) < 6)
             {
                 Fala("Acho que eh esta alavanca que o zeh estava se referindo !!.");
                 Fala("Que exitante !");
-                Passo = SAIPROT;
+                Jogador.PassoWispGuia = SAIPROT;
                 if (Jogador.QuestArrow != null)
                 {
                     Jogador.QuestArrow.Stop();
                     Jogador.QuestArrow = null;
                 }
-                SetCooldown("passo", TimeSpan.FromSeconds(20));
+                SetCooldown("Jogador.PassoWispGuia", TimeSpan.FromSeconds(20));
             }
         }
 
@@ -312,27 +309,27 @@ namespace Server.Mobiles
                 }
             }
 
-            if (!IsCooldown("passo"))
+            if (!IsCooldown("Jogador.PassoWispGuia"))
             {
-                SetCooldown("passo", TimeSpan.FromSeconds(30));
-                if (Passo == PEGAR_CAVALO)
+                SetCooldown("Jogador.PassoWispGuia", TimeSpan.FromSeconds(30));
+                if (Jogador.PassoWispGuia == PEGAR_CAVALO)
                 {
                     Fala("Ei, o que acha de conseguir um cavalo ? Siga a seta no canto do mapa, eu arrumo um pra voce !");
                     Jogador.QuestArrow = new QuestArrow(Jogador, Coxeiro);
                     Jogador.QuestArrow.Update();
                 }
-                if (Passo == FERREIRO)
+                if (Jogador.PassoWispGuia == FERREIRO)
                 {
                     Fala("Agora, vamos aprender a comprar equipamento !");
                     Fala("Siga ate o NPC Ferreiro ! Veja a setinha novamente no canto da sua tela !");
                     Jogador.QuestArrow = new QuestArrow(Jogador, Ferreiro);
                     Jogador.QuestArrow.Update();
                 }
-                else if (Passo == GETORE)
+                else if (Jogador.PassoWispGuia == GETORE)
                 {
                     Fala("Voce pode clicar 2x na picareta e depois 2x no chao para minerar !!");
                 }
-                else if (Passo == TESOURO)
+                else if (Jogador.PassoWispGuia == TESOURO)
                 {
                     if (Jogador.Region == null || Jogador.Region.Name == null || !Jogador.Region.Name.Contains("Endium"))
                     {
@@ -343,28 +340,28 @@ namespace Server.Mobiles
                         Fala("Existe um monstro por aqui, um monstro seboso devorador de pessoas...");
                     }
                 }
-                else if (Passo == GETORE)
+                else if (Jogador.PassoWispGuia == GETORE)
                 {
                     Fala("Vamos explorar, quem sabe nao achamos algo legal !");
                 }
-                if (Passo == TEMPLATE)
+                if (Jogador.PassoWispGuia == TEMPLATE)
                 {
                     if (Jogador.Profession == StarterKits.MERC)
                     {
                         Fala("Agora, vamos aprender a minerar ! Que tal ir a mina ?");
-                        Passo = MINE;
+                        Jogador.PassoWispGuia = MINE;
                         Jogador.QuestArrow = new QuestArrow(Jogador, Mina);
                         Jogador.QuestArrow.Update();
                     }
                     else
                     {
-                        Passo = BANCO;
+                        Jogador.PassoWispGuia = BANCO;
                     }
                     //Jogador.QuestArrow = new QuestArrow(Jogador, Ferreiro);
                     //Jogador.QuestArrow.Update();
                 }
 
-                if (Passo == BANCO)
+                if (Jogador.PassoWispGuia == BANCO)
                 {
                     Fala("Vamos ao banco agora. La voce guarda todo seu dinheiro.");
                     Fala("Va perto do banco e fale 'banco' para abrir sua caixa bancaria.");
@@ -374,7 +371,7 @@ namespace Server.Mobiles
                     //Jogador.QuestArrow.Update();
                 }
 
-                if (Passo == SMELT)
+                if (Jogador.PassoWispGuia == SMELT)
                 {
                     Fala("Va proximo de uma forja e clique 2x nos minerios para fundi-los em barras.");
                     Fala("Quando voce tiver skill em mineracao 60 ou mais ira encontrar outros tipos de minerios, hihi.");
@@ -387,11 +384,11 @@ namespace Server.Mobiles
                     }
                 }
 
-                if (Passo == QUEST)
+                if (Jogador.PassoWispGuia == QUEST)
                 {
                     if (QuestHelper.HasCompleted(Jogador, typeof(SapatoLindoQ)))
                     {
-                        Passo = ALAVANCA;
+                        Jogador.PassoWispGuia = ALAVANCA;
                         return;
                     }
 
@@ -401,11 +398,11 @@ namespace Server.Mobiles
                     Jogador.QuestArrow.Update();
                 }
 
-                if (Passo == QUEST_MATOU)
+                if (Jogador.PassoWispGuia == QUEST_MATOU)
                 {
                     if (QuestHelper.HasCompleted(Jogador, typeof(SapatoLindoQ)))
                     {
-                        Passo = ALAVANCA;
+                        Jogador.PassoWispGuia = ALAVANCA;
                         return;
                     }
 
@@ -423,47 +420,47 @@ namespace Server.Mobiles
                     }
                 }
 
-                if (Passo == QUEST_FIM)
+                if (Jogador.PassoWispGuia == QUEST_FIM)
                 {
                     if (QuestHelper.HasCompleted(Jogador, typeof(SapatoLindoQ)))
                     {
-                        Passo = ALAVANCA;
+                        Jogador.PassoWispGuia = ALAVANCA;
                         return;
                     }
 
                     Fala("Volte a cidade e arraste o sapato que voce pegou no mago para o ze para pegar a recompensa !");
                 }
 
-                else if (Passo == MACE)
+                else if (Jogador.PassoWispGuia == MACE)
                 {
                     Fala("Encontre uma bigorna e use seu martelo de ferreiro para fazer algo !");
                     Jogador.QuestArrow = new QuestArrow(Jogador, Bigorna);
                     Jogador.QuestArrow.Update();
                 }
-                else if (Passo == GUARDAR_BANCO)
+                else if (Jogador.PassoWispGuia == GUARDAR_BANCO)
                 {
                     Fala("Vamos ao banco da cidade guardar o loot ?");
                 }
-                else if (Passo == PLANT)
+                else if (Jogador.PassoWispGuia == PLANT)
                 {
                     Fala("Plante as sementes que lhe dei !");
                     Fala("Voce planta clicando 2x na semente depois 2x em um gramado");
                 }
-                else if (Passo == SELL)
+                else if (Jogador.PassoWispGuia == SELL)
                 {
                     Fala("Vamos ao ferreiro vender o que voce criou !");
                     Fala("Digite 'vender' para o ferreiro para vender o item !");
                     Jogador.QuestArrow = new QuestArrow(Jogador, Ferreiro);
                     Jogador.QuestArrow.Update();
                 }
-                else if (Passo == QUEST_TAMER)
+                else if (Jogador.PassoWispGuia == QUEST_TAMER)
                 {
                     Fala("Agora que voce sabe os basicos de combate, que tal aprimorar suas habilidades de domador ?");
                     Fala("Va ate o treinador de animais e pegue a missao dele !");
                     Jogador.QuestArrow = new QuestArrow(Jogador, Coxeiro);
                     Jogador.QuestArrow.Update();
                 }
-                else if (Passo == ALAVANCA)
+                else if (Jogador.PassoWispGuia == ALAVANCA)
                 {
                     if (Jogador.Region == null || !(Jogador.Region is DungeonGuardedRegion))
                     {
@@ -481,14 +478,14 @@ namespace Server.Mobiles
                         Jogador.QuestArrow.Update();
                     }
                 }
-                else if (Passo == PEGAR_MAGE)
+                else if (Jogador.PassoWispGuia == PEGAR_MAGE)
                 {
                     if (Jogador.Skills.Magery.Value >= 45)
                     {
                         if (Jogador.Profession == StarterKits.TAMER)
-                            Passo = QUEST_TAMER;
+                            Jogador.PassoWispGuia = QUEST_TAMER;
                         else
-                            Passo = MATAR_ORC;
+                            Jogador.PassoWispGuia = MATAR_ORC;
                     }
                     else
                     {
@@ -499,7 +496,7 @@ namespace Server.Mobiles
                     }
                 }
 
-                if (Passo == MATAR_ORC)
+                if (Jogador.PassoWispGuia == MATAR_ORC)
                 {
                     if (Jogador.Region != null && Jogador.Region is DungeonRegion)
                     {
@@ -514,7 +511,7 @@ namespace Server.Mobiles
                         Jogador.QuestArrow.Update();
                     }
                 }
-                else if (Passo == TAILOR)
+                else if (Jogador.PassoWispGuia == TAILOR)
                 {
                     Fala("Use os algodoes perto da roda de tecer, depois os fios perto da maquina de tecer para fabricar tecido.");
                     Fala("Depois use um kit de costura para criar algo");
@@ -522,7 +519,7 @@ namespace Server.Mobiles
                     Jogador.QuestArrow.Update();
                 }
 
-                if (Passo == FALANDO || Passo == PEGAR_QUEST_EXODO)
+                if (Jogador.PassoWispGuia == FALANDO || Jogador.PassoWispGuia == PEGAR_QUEST_EXODO)
                 {
                     if (!IsCooldown("falachata"))
                     {
@@ -541,7 +538,7 @@ namespace Server.Mobiles
                             case 9: Fala("Fale com a NPC JILL no centro da cidade para pegar uma quest epica!"); break;
                         }
                     }
-                    if (Passo == PEGAR_QUEST_EXODO && !IsCooldown("fala2"))
+                    if (Jogador.PassoWispGuia == PEGAR_QUEST_EXODO && !IsCooldown("fala2"))
                     {
                         SetCooldown("fala2", TimeSpan.FromMinutes(1));
                         Fala("E se quiser uma aventura de verdade, fale com a Jill no centro da cidade de Rhodes");
@@ -553,20 +550,20 @@ namespace Server.Mobiles
         public void Planta()
         {
             return;
-            if (Passo != PLANT)
+            if (Jogador.PassoWispGuia != PLANT)
                 return;
             Fala("Otimo ! Isso pode demorar entre 1 e 2 horas para crescer...");
             Fala("Voce pode usar o algodao no alfaiate para criar tecido, tome alguns algodoes, e vamos la !");
             Fala("So nao se esqueca de sua planta !");
             Jogador.AddToBackpack(new Cotton(30));
-            Passo = TAILOR;
+            Jogador.PassoWispGuia = TAILOR;
 
         }
 
         public void Vende()
         {
             return;
-            if (Passo != SELL)
+            if (Jogador.PassoWispGuia != SELL)
                 return;
 
             Fala("Assim voce pode conseguir um dinheirinho...");
@@ -574,7 +571,7 @@ namespace Server.Mobiles
             Fala("Tome aqui algumas sementes para voce plantar.");
             Jogador.AddToBackpack(new CottonSeeds());
             Jogador.AddToBackpack(new CottonSeeds());
-            Passo = PLANT;
+            Jogador.PassoWispGuia = PLANT;
             if (Jogador.QuestArrow != null)
             {
                 Jogador.QuestArrow.Stop();
@@ -585,10 +582,10 @@ namespace Server.Mobiles
         public void CraftaBS()
         {
             return;
-            if (Passo != MACE)
+            if (Jogador.PassoWispGuia != MACE)
                 return;
 
-            Passo = SELL;
+            Jogador.PassoWispGuia = SELL;
             Fala("Otimo, agora devemos ir ao NPC Ferreiro vender isso !");
             Jogador.QuestArrow = new QuestArrow(Jogador, Ferreiro);
             Jogador.QuestArrow.Update();
@@ -597,9 +594,9 @@ namespace Server.Mobiles
         public void Minera()
         {
             return;
-            if (Passo != GETORE)
+            if (Jogador.PassoWispGuia != GETORE)
                 return;
-            Passo = SMELT;
+            Jogador.PassoWispGuia = SMELT;
             if (Jogador.QuestArrow != null)
             {
                 Jogador.QuestArrow.Stop();
@@ -610,10 +607,10 @@ namespace Server.Mobiles
         public void Tailora()
         {
             return;
-            if (Passo != TAILOR)
+            if (Jogador.PassoWispGuia != TAILOR)
                 return;
             Fala("Muito bom ! Voce ja sabe as bases de como trabalhar ! Agora so focar em ganhar dinheiro !!");
-            Passo = FALANDO;
+            Jogador.PassoWispGuia = FALANDO;
             if (Jogador.QuestArrow != null)
             {
                 Jogador.QuestArrow.Stop();
@@ -624,11 +621,11 @@ namespace Server.Mobiles
         public void Smelta()
         {
             return;
-            if (Passo != SMELT)
+            if (Jogador.PassoWispGuia != SMELT)
                 return;
             Fala("Ui, que fogaum, hi hi");
             Fala("Como voce eh inexperiente, talvez perca um pouco do minerio. Agora encontre uma bigorna e faca uma maca de ferro.");
-            Passo = MACE;
+            Jogador.PassoWispGuia = MACE;
             if (Jogador.QuestArrow != null)
             {
                 Jogador.QuestArrow.Stop();
@@ -639,9 +636,9 @@ namespace Server.Mobiles
         public virtual void FalaJill()
         {
             return;
-            if (Passo != PEGAR_QUEST_EXODO)
+            if (Jogador.PassoWispGuia != PEGAR_QUEST_EXODO)
                 return;
-            Passo = FALANDO;
+            Jogador.PassoWispGuia = FALANDO;
             Fala("Acho que nessa aventura voce vai precisar de pelo menos +2 pessoas ! Hihi");
             if (Jogador.QuestArrow != null)
             {
@@ -653,13 +650,13 @@ namespace Server.Mobiles
         public virtual void AbreBanco()
         {
             return;
-            if (Passo == BANCO)
+            if (Jogador.PassoWispGuia == BANCO)
             {
                 Fala("muito bem ! Voce pode transformar seu dinheiro em cheques falando 'cheque <valor>' e voltar o cheque a dinheiro depois.");
                 Fala("Mas deixe isso pra depois, vamos para um pouco de adrenalina !");
                 Jogador.Backpack.DropItem(new Gold(500));
                 Jogador.PlaySound(0x2E6);
-                Passo = QUEST;
+                Jogador.PassoWispGuia = QUEST;
                 if (Jogador.QuestArrow != null)
                 {
                     Jogador.QuestArrow.Stop();
@@ -671,23 +668,23 @@ namespace Server.Mobiles
         public virtual void MataMerda()
         {
             return;
-            if (Passo == TESOURO)
+            if (Jogador.PassoWispGuia == TESOURO)
             {
                 Fala("Muito bom !!!! Voce eh muito bom !!!!");
                 Fala("Veja o que pode encontrar nesse corpo e vamos a cidade para guardar no banco !!");
-                Passo = GUARDAR_BANCO;
+                Jogador.PassoWispGuia = GUARDAR_BANCO;
             }
         }
 
         public virtual void MataOrc()
         {
             return;
-            if (Passo == MATAR_ORC)
+            if (Jogador.PassoWispGuia == MATAR_ORC)
             {
                 Fala("Uau voce conseguiu matar um ! Se treinar podera ficar muito forte !");
                 Fala("Mas se quiser um desafio de verdade, fale com a Jill no centro da codade de Rhodes, hihi");
 
-                Passo = PEGAR_QUEST_EXODO;
+                Jogador.PassoWispGuia = PEGAR_QUEST_EXODO;
 
                 Jogador.QuestArrow = new QuestArrow(Jogador, Jill);
                 Jogador.QuestArrow.Update();
@@ -697,31 +694,31 @@ namespace Server.Mobiles
         public virtual void EntregaSapato()
         {
             return;
-            if (Passo == QUEST_FIM)
+            if (Jogador.PassoWispGuia == QUEST_FIM)
             {
                 Fala("Voce e muito bom ! Tome mais algumas moedas de ouro, talvez va precisar. Lembre-se de coloca-las no Banco !!");
                 Fala("Parece que o ze te deu uma dica de algo secreto...");
                 Jogador.Backpack.DropItem(new Gold(500));
                 Jogador.PlaySound(0x2E6);
-                Passo = ALAVANCA;
+                Jogador.PassoWispGuia = ALAVANCA;
             }
         }
 
         public virtual void MataMago()
         {
             return;
-            if (Passo == QUEST_MATOU)
+            if (Jogador.PassoWispGuia == QUEST_MATOU)
             {
                 Fala("Muito bom ! Parece que os sapatos do ze estavam com esse mago !");
                 Fala("Volte a cidade e arraste o sapato para o ze para pegar a recompensa !");
-                Passo = 5;
+                Jogador.PassoWispGuia = 5;
             }
         }
 
         public virtual void QuestNoob()
         {
             return;
-            if (Passo == QUEST)
+            if (Jogador.PassoWispGuia == QUEST)
             {
                 Fala("Muito bom, vamos a dungeon agora, a entrada e logo na caverna acima !!! ");
                 if (Jogador.QuestArrow != null)
@@ -729,14 +726,14 @@ namespace Server.Mobiles
                     Jogador.QuestArrow.Stop();
                     Jogador.QuestArrow = null;
                 }
-                Passo = QUEST_MATOU;
+                Jogador.PassoWispGuia = QUEST_MATOU;
             }
         }
 
         public void TrocaTemplate(int template)
         {
             return;
-            if (Passo == TEMPLATE)
+            if (Jogador.PassoWispGuia == TEMPLATE)
             {
                 if (template == 1)
                 {
@@ -748,8 +745,8 @@ namespace Server.Mobiles
                     Jogador.PlaySound(som);
                     espada.Quality = ItemQuality.Exceptional;
                     Jogador.EquipItem(espada);
-                    Passo = BANCO;
-                    SetCooldown("passo", TimeSpan.FromSeconds(60));
+                    Jogador.PassoWispGuia = BANCO;
+                    SetCooldown("Jogador.PassoWispGuia", TimeSpan.FromSeconds(60));
                 }
                 else
                 {
@@ -763,7 +760,7 @@ namespace Server.Mobiles
         {
             SetCooldown("pensa", TimeSpan.FromMilliseconds(1));
             SetCooldown("fala", TimeSpan.FromMilliseconds(1));
-            SetCooldown("passo", TimeSpan.FromMilliseconds(1));
+            SetCooldown("Jogador.PassoWispGuia", TimeSpan.FromMilliseconds(1));
             SetCooldown("falachata", TimeSpan.FromMilliseconds(1));
         }
 
@@ -777,14 +774,14 @@ namespace Server.Mobiles
         {
             base.Serialize(writer);
             writer.Write(0);
-            writer.Write(Passo);
+            writer.Write(Jogador.PassoWispGuia);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             var version = reader.ReadInt();
-            Passo = reader.ReadInt();
+            Jogador.PassoWispGuia = reader.ReadInt();
             var master = GetMaster();
             if (master != null && master is PlayerMobile)
             {

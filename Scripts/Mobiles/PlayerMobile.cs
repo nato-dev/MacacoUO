@@ -144,6 +144,9 @@ namespace Server.Mobiles
         [CommandProperty(AccessLevel.GameMaster)]
         public byte Nivel { get; set; }
 
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int PassoWispGuia { get; set; }
+
         private ElementoPvM _e;
 
         [CommandProperty(AccessLevel.GameMaster)]
@@ -5479,6 +5482,9 @@ namespace Server.Mobiles
     
             switch (version)
             {
+                case 53:
+                    PassoWispGuia = reader.ReadInt();
+                    goto case 52;
                 case 52:
                     DungeonsCompletas = DungeonsCompletasSerializer.Deserialize(reader);
                     goto case 51;
@@ -5986,7 +5992,8 @@ namespace Server.Mobiles
             CheckKillDecay();
             CheckAtrophies(this);
             base.Serialize(writer);
-            writer.Write(52); // version
+            writer.Write(53); // version
+            writer.Write(PassoWispGuia);
             DungeonsCompletasSerializer.Serialize(this, writer);
             Elementos.Serialize(writer);
             writer.Write(PontosTalento);

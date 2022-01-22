@@ -1,4 +1,5 @@
 using Server.Commands;
+using Server.Fronteira.Tutorial.WispGuia;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
@@ -72,7 +73,8 @@ namespace Server.Ziden.Tutorial
 
             if (player.Wisp == null && player.Young && !player.RP)
             {
-                Cria(player);
+                if(player.PassoWispGuia != (int)PassoTutorial.FIM)
+                    Cria(player);
             }
         }
 
