@@ -127,7 +127,6 @@ namespace Server.Fronteira.Elementos
             return _exps[elemento];
         }
 
-
         public double GetBonus(ElementoPvM elemento)
         {
             return BonusPorNivel(_niveis[elemento]);

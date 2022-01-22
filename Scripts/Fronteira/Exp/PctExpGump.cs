@@ -1,12 +1,13 @@
 using Server.Commands;
 using Server.Mobiles;
 using Server.Network;
+using System;
 
 namespace Server.Gumps
 {
     public class PctExpGump : Gump
     {
-        public PctExpGump(PlayerMobile caller, int pct, string text) : base(0, 0)
+        public PctExpGump(PlayerMobile caller, double pct, string text) : base(0, 0)
         {
             this.Closable = true;
             this.Disposable = true;
@@ -17,7 +18,7 @@ namespace Server.Gumps
             AddBackground(10, 40, 220, 54, 9200);
           
 
-            AddHtml(20, 45, 200, 25, text + " " + pct, true, false);
+            AddHtml(20, 45, 200, 25, text + " " + String.Format("{0:0.00}", pct), true, false);
             AddImageTiled(20, 72, 110, 12, 2053);
             AddImageTiled(20, 72, (int)pct, 12, 2054);
         }

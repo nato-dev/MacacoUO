@@ -220,7 +220,7 @@ namespace Server.Misc
                     gc = 0.05;
             } else
             {
-                if (craft)
+                if (craft || skillDifficulty == SkillInfo.COMBAT)
                     gc /= 2;
 
                 if (gc < 0.0025)
@@ -235,6 +235,11 @@ namespace Server.Misc
                 {
                     if (gc < 0.006)
                         gc = 0.006;
+                }
+                if (skillDifficulty == SkillInfo.COMBAT)
+                {
+                    if (gc < 0.002)
+                        gc = 0.002;
                 }
             }
 
@@ -275,17 +280,20 @@ namespace Server.Misc
             if (Shard.RP && ExpGumpRP.UpComXP.Contains(skill.SkillName))
                 return success;
 
+            var dificuldade = skill.Info.GainFactor;
+
+
             work = Work.Any(s => s == skill.SkillName);
             var craft = Craft.Any(s => s == skill.SkillName);
 
             var gcBonus = 0.0;
 
-            var dificuldade = skill.Info.GainFactor;
+          
             if (!from.Player)
             {
                 if (dificuldade < 0.5)
                     dificuldade = 0.5;
-            }
+            } 
 
             var gc = GetExp(skill.Value, dificuldade, work, craft, false, gcBonus) * mult;
 

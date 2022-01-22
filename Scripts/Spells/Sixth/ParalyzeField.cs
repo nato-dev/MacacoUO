@@ -84,7 +84,7 @@ namespace Server.Spells.Sixth
                 Field field = new Field();
 
                 if (SpellHelper.CheckField(pnt, Caster.Map))
-                    field.Add(new InternalItem(itemID, pnt, Caster, Caster.Map, duration));
+                    AddField(field, new InternalItem(itemID, pnt, Caster, Caster.Map, duration));
 
                 for (int i = 1; i <= 2; ++i)
                 {
@@ -94,13 +94,13 @@ namespace Server.Spells.Sixth
                         SpellHelper.AdjustField(ref point, Caster.Map, 16, false);
 
                         if (SpellHelper.CheckField(point, Caster.Map))
-                            field.Add(new InternalItem(itemID, point, Caster, Caster.Map, duration));
+                            AddField(field, new InternalItem(itemID, point, Caster, Caster.Map, duration));
 
                         point = new Point3D(eastToWest ? pnt.X + -index : pnt.X, eastToWest ? pnt.Y : pnt.Y + -index, pnt.Z);
                         SpellHelper.AdjustField(ref point, Caster.Map, 16, false);
 
                         if (SpellHelper.CheckField(point, Caster.Map))
-                            field.Add(new InternalItem(itemID, point, Caster, Caster.Map, duration));
+                            AddField(field, new InternalItem(itemID, point, Caster, Caster.Map, duration));
                     }, i);
                 }
 
@@ -108,6 +108,18 @@ namespace Server.Spells.Sixth
 
 
             FinishSequence();
+        }
+
+        private void AddField(Field field, InternalItem i)
+        {
+            field.Add(i);
+            var mobs = i.GetEntitiesInRange(i.Map, 0);
+            foreach(var mob in mobs)
+            {
+                var m = mob as Mobile;
+                if(m!=null)
+                    i.OnMoveOver(m);
+            }
         }
 
         [DispellableField]
@@ -195,7 +207,7 @@ namespace Server.Spells.Sixth
 
             public override bool OnMoveOver(Mobile m)
             {
-                if (Visible && m_Caster != null && m_Caster.CanBeHarmful(m, false))
+                if (Visible && m_Caster != null && (m_Caster == m || m_Caster.CanBeHarmful(m, false)))
                 {
                     if (SpellHelper.CanRevealCaster(m))
                         m_Caster.RevealingAction();
@@ -204,31 +216,24 @@ namespace Server.Spells.Sixth
 
                     double duration;
 
-                    if (Core.AOS)
-                    {
-                        duration = 2.0 + ((int)(m_Caster.Skills[SkillName.EvalInt].Value / 10) - (int)(m.Skills[SkillName.MagicResist].Value / 10));
+                    duration = 2.0 + ((int)(m_Caster.Skills[SkillName.EvalInt].Value / 10) - (int)(m.Skills[SkillName.MagicResist].Value / 10));
 
-                        if (!m.Player)
-                            duration *= 3.0;
+                    if (!m.Player)
+                        duration *= 2;
 
-                        if (duration < 0.0)
-                            duration = 0.0;
-                    }
-                    else
-                    {
-                        duration = 4.0 + (m_Caster.Skills[SkillName.Magery].Value * 0.1);
-                    }
+                    if (duration < 0.0)
+                        duration = 0.0;
 
                     m.Paralyze(TimeSpan.FromSeconds(duration));
 
                     m.PlaySound(0x204);
                     m.FixedEffect(0x376A, 10, 16);
-					
+
                     if (m is BaseCreature)
                         ((BaseCreature)m).OnHarmfulSpell(m_Caster);
                 }
 
-          return true;
+                return true;
             }
 
             private class InternalTimer : Timer
@@ -261,7 +266,7 @@ namespace Server.Spells.Sixth
             {
                 if (o is IPoint3D)
                     m_Owner.Target((IPoint3D)o, false);
-                else if(o is PlayerMobile && o==from)
+                else if (o is PlayerMobile && o == from)
                 {
                     m_Owner.Target((IPoint3D)o, true);
                 }
