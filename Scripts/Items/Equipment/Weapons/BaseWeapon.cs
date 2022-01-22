@@ -4340,7 +4340,7 @@ namespace Server.Items
 
                 modifiers += lumberValue;
 
-                if (lumberValue >= 100.0)
+                if (attacker.Skills[SkillName.Lumberjacking].Value >= 100.0)
                 {
                     modifiers += 0.1;
                 }
