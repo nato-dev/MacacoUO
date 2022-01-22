@@ -1525,6 +1525,10 @@ namespace Server.Mobiles
             }
         }
 
+
+        [CommandProperty(AccessLevel.Administrator)]
+        public int PropMaxWeigt { get { return MaxWeight; } set { } }
+
         private int m_LastGlobalLight = -1, m_LastPersonalLight = -1;
 
         public override void OnNetStateChanged()
@@ -7024,6 +7028,11 @@ namespace Server.Mobiles
 
         public override void OnSkillChange(SkillName skill, double oldBase)
         {
+            if(skill == SkillName.Camping)
+            {
+                Delta(MobileDelta.Weight);
+            }
+
             if (Young)
             {
                 if (SkillsTotal >= 5500 && (!Core.AOS && Skills[skill].Base >= 80.0))

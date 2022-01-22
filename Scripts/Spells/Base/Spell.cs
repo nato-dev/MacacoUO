@@ -436,9 +436,16 @@ namespace Server.Spells
                     return true;
                 }
 
-                // Nao da disturb quando equipa
-                if (!Shard.POL_STYLE)
+                if(Caster.Skills.Focus.Value < 90)
+                {
                     Disturb(DisturbType.EquipRequest);
+                    if (Caster.IsCooldown("dicasp"))
+                    {
+                        Caster.SetCooldown("dicasp");
+                        Caster.SendMessage(78, "Voce ira perder o foco de magias se equipar armas durante o cast. Aguarde o cast terminar para nao perder o foco ou upe a skill Focus");
+                    }
+                }
+               
             }
 
             return true;
