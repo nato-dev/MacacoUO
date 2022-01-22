@@ -66,7 +66,7 @@ namespace Server.Spells.Third
 
                     if (CheckResisted((Mobile)m))
                     {
-                        damage *= 0.7;
+                        damage *= Shard.POL_STYLE ? 0.5 : 0.7;
 
                         ((Mobile)m).SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                     }

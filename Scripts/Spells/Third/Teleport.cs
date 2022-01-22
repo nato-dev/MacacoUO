@@ -235,6 +235,14 @@ namespace Server.Spells.Third
 
         public override bool PunishSpellMovementIfRepeated { get { return Shard.POL_STYLE; } }
 
+        public override TimeSpan GetCastDelay()
+        {
+            if (Shard.POL_STYLE && Caster.Player)
+                return TimeSpan.FromSeconds(2.5);
+            else
+                return base.GetCastDelay();
+        }
+
         public class InternalTarget : Target
         {
             private readonly TeleportSpell m_Owner;
