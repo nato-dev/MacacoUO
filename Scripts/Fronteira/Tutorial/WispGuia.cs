@@ -773,15 +773,13 @@ namespace Server.Mobiles
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write(0);
-            writer.Write(Jogador.PassoWispGuia);
+            writer.Write(1);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             var version = reader.ReadInt();
-            Jogador.PassoWispGuia = reader.ReadInt();
             var master = GetMaster();
             if (master != null && master is PlayerMobile)
             {

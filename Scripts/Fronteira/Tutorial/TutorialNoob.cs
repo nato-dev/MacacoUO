@@ -71,7 +71,7 @@ namespace Server.Ziden.Tutorial
             if (player.RP)
                 return;
 
-            if (player.Wisp == null && player.Young && !player.RP)
+            if ((player.Wisp == null || player.Wisp.Deleted) && player.Young && !player.RP)
             {
                 if(player.PassoWispGuia != (int)PassoTutorial.FIM)
                     Cria(player);
