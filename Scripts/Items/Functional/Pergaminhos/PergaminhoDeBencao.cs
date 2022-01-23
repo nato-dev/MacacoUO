@@ -36,7 +36,7 @@ namespace Server.Items.Functional.Pergaminhos
 
         public override void OnDoubleClick(Mobile from)
         {
-            from.SendMessage("Escolha um item para abencoar");
+            from.SendMessage("Escolha uma roupa ou runebook para abencoar");
             from.Target = new InternalTarget(from, this);
         }
 

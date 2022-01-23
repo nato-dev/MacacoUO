@@ -13,7 +13,6 @@ using System;
 
 namespace Server.Ziden.Kills
 {
-
     public class PontoTaming : PointsSystem
     {
         public override TextDefinition Name { get { return "Ponto Taming"; } }
