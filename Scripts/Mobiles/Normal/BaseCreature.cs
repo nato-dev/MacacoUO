@@ -5827,6 +5827,9 @@ namespace Server.Mobiles
 
         public void SetSkill(SkillName name, double min, double max)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             int minFixed = (int)(min * 10);
             int maxFixed = (int)(max * 10);
 
@@ -6304,6 +6307,9 @@ namespace Server.Mobiles
 
         public void PackItem(Item item)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             if (Summoned || item == null)
             {
                 if (item != null)

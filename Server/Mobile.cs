@@ -8506,6 +8506,9 @@ namespace Server
         /// </summary>
         public int GetStatOffset(StatType type)
         {
+            if (Mobile.BypassInit)
+                return 0;
+
             int offset = 0;
 
             for (int i = 0; i < m_StatMods.Count; ++i)
@@ -8832,10 +8835,11 @@ namespace Server
         [CommandProperty(AccessLevel.GameMaster)]
         public int Hits
         {
+           
             get { return m_Hits; }
             set
             {
-                if (m_Deleted)
+                if (m_Deleted || BypassInit)
                 {
                     return;
                 }
@@ -10871,6 +10875,9 @@ namespace Server
 
         public Item FindItemOnLayer(Layer layer)
         {
+            if (Mobile.BypassInit)
+                return null;
+
             var eq = m_Items;
             int count = eq.Count;
 

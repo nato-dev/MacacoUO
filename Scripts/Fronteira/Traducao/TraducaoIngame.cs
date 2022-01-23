@@ -86,7 +86,9 @@ namespace Server.Ziden.Traducao
             {
                 BaseCreature.BypassInit = true;
                 Mobile.BypassInit = true;
+         
                 var bc = (Mobile)Activator.CreateInstance(t);
+                Shard.Debug("Criando instancia fake" + t.Name+" name "+bc.Name);
                 BaseCreature.BypassInit = false;
                 Mobile.BypassInit = false;
                 if (bc.Name != null)
@@ -100,11 +102,13 @@ namespace Server.Ziden.Traducao
                     MobTrans[t] = bc.Name;
                     return bc.Name;
                 }
+                Shard.Debug("Nome final " + bc.Name);
                 IgnoreMobs.Add(t);
                 return t.Name;
             }
             catch (Exception e)
             {
+                throw e;
                 return t.Name;
             }
             finally

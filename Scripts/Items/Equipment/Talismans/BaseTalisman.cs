@@ -1380,7 +1380,7 @@ namespace Server.Items
         public static Type[] Killers { get { return m_Killers; } }
         private static readonly Type[] m_Killers = new Type[]
         {
-            typeof(OrcBomber), typeof(OrcBrute), typeof(Sewerrat), typeof(Rat), typeof(GiantRat),
+            typeof(OrcBomber), typeof(OrcBrute), typeof(Orc), typeof(Rat), typeof(GiantRat),
             typeof(Ratman), typeof(RatmanArcher), typeof(GiantSpider), typeof(FrostSpider), typeof(GiantBlackWidow),
             typeof(DreadSpider), typeof(SilverSerpent), typeof(DeepSeaSerpent), typeof(GiantSerpent), typeof(Snake),
             typeof(IceSnake), typeof(IceSerpent), typeof(LavaSerpent), typeof(LavaSnake), typeof(Yamandon),
