@@ -47,25 +47,32 @@ namespace Server.Engines.Quests
         }
 
         public Combinacao[] Possiveis = new Combinacao[] {
-            new Combinacao(typeof(FrostSpider), 300),
-            new Combinacao(typeof(LavaLizard), 300),
-            new Combinacao(typeof(FireElemental), 300),
-            new Combinacao(typeof(WaterElemental), 300),
-            new Combinacao(typeof(Daemon), 200),
-            new Combinacao(typeof(Gargoyle), 200),
-            new Combinacao(typeof(Lich), 150),
-            new Combinacao(typeof(Dragon), 50),
+            new Combinacao("Aranha do Gelo", typeof(FrostSpider), 300),
+            new Combinacao("Lagarto de Fogo", typeof(LavaLizard), 300),
+            new Combinacao("Elemental do Fogo", typeof(FireElemental), 300),
+            new Combinacao("Elemental da Agua", typeof(WaterElemental), 300),
+            new Combinacao("Elemental do Fogo", typeof(Daemon), 200),
+            new Combinacao("Elemental do Fogo", typeof(Gargoyle), 200),
+            new Combinacao("Elemental do Fogo", typeof(Lich), 150),
+            new Combinacao("Elemental do Fogo", typeof(Dragon), 50),
         };
 
         public class Combinacao
         {
-            public Combinacao(Type t, int q)
+            public Combinacao(String n, Type t, int q)
             {
                 Monstro = t;
                 qtd = q;
+                this.n = n;
             }
             public Type Monstro;
             public int qtd;
+            public String n;
+
+            public BaseObjective GetObj()
+            {
+                return new SlayObjective(Monstro, n, qtd);
+            }
         }
 
         public int DiaAtual;
@@ -83,11 +90,11 @@ namespace Server.Engines.Quests
                 var r = new List<Combinacao>(Possiveis);
                 var random = r[Utility.Random(r.Count)];
                 r.Remove(random);
-                Objs.Add(random);
+                //Objs.Add(random);
 
                 random = r[Utility.Random(r.Count)];
                 r.Remove(random);
-                Objs.Add(random);
+                //Objs.Add(random);
 
             }
 
@@ -120,7 +127,7 @@ namespace Server.Engines.Quests
     }
 
     //// AQUI EH A CLASSE DO NPC Q VAI DAR A QUETS ///   
-    public class FazendeiroDoido : MondainQuester
+    public class QuestGiverNoob : MondainQuester
     {
         /// AQUI REGISTRA QUAL QUEST ELE VAI DAR 
         public override Type[] Quests
@@ -135,7 +142,7 @@ namespace Server.Engines.Quests
 
 
         [Constructable]
-        public FazendeiroDoido()
+        public QuestGiverNoob()
             : base("Helton", "O Fazendeiro Hermitao")
         {
             this.SetSkill(SkillName.Anatomy, 120.0, 120.0);
@@ -146,7 +153,7 @@ namespace Server.Engines.Quests
             this.SetSkill(SkillName.Focus, 120.0, 120.0);
         }
 
-        public FazendeiroDoido(Serial serial)
+        public QuestGiverNoob(Serial serial)
             : base(serial)
         {
         }
