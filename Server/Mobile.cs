@@ -539,6 +539,8 @@ namespace Server
     public class Mobile : IEntity, IHued, IComparable<Mobile>, ISerializable, ISpawnable, IDamageable
     {
 
+        public static bool BypassInit = false;
+
         public bool HitPronto = false;
         public Timer hitTimer;
 
@@ -11444,6 +11446,9 @@ namespace Server
 
         public Mobile()
         {
+            if (BypassInit)
+                return;
+
             m_Region = Map.Internal.DefaultRegion;
             m_Serial = Serial.NewMobile;
 

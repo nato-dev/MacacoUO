@@ -4,8 +4,6 @@ using Server.Targeting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Ziden.Traducao
 {
@@ -71,8 +69,50 @@ namespace Server.Ziden.Traducao
             */
         }
 
+        public static Dictionary<Type, string> MobTrans = new Dictionary<Type, string>();
         public static Dictionary<Type, string> ItemTrans = new Dictionary<Type, string>();
         public static HashSet<Type> Ignore = new HashSet<Type>();
+        public static HashSet<Type> IgnoreMobs = new HashSet<Type>();
+
+        public static string GetNomeMonstro(Type t)
+        {
+            if (MobTrans.ContainsKey(t))
+                return MobTrans[t];
+
+            if (IgnoreMobs.Contains(t))
+                return t.Name;
+
+            try
+            {
+                BaseCreature.BypassInit = true;
+                Mobile.BypassInit = true;
+                var bc = (Mobile)Activator.CreateInstance(t);
+                BaseCreature.BypassInit = false;
+                Mobile.BypassInit = false;
+                if (bc.Name != null)
+                {
+                    MobTrans[t] = bc.Name;
+                    return bc.Name;
+                }
+                EventSink.InvokeMobileCreated(new MobileCreatedEventArgs(bc));
+                if (bc.Name != null)
+                {
+                    MobTrans[t] = bc.Name;
+                    return bc.Name;
+                }
+                IgnoreMobs.Add(t);
+                return t.Name;
+            }
+            catch (Exception e)
+            {
+                return t.Name;
+            }
+            finally
+            {
+                BaseCreature.BypassInit = false;
+                Mobile.BypassInit = false;
+            }
+        }
 
         public static String GetNome(Type type)
         {

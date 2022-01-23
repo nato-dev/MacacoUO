@@ -211,6 +211,8 @@ namespace Server.Mobiles
 
     public class BaseCreature : Mobile, IHonorTarget, IEngravable
     {
+        public static bool BypassInit = false;
+
         public override bool SendGump(Gump g)
         {
             SendMessage("Nao pode fazer isto agora");
@@ -2865,6 +2867,9 @@ namespace Server.Mobiles
         public BaseCreature(
             AIType ai, FightMode mode, int iRangePerception, int iRangeFight, double dActiveSpeed, double dPassiveSpeed)
         {
+            if (BypassInit)
+                return;
+
             PhysicalDamage = 100;
 
             CanMove = true;
