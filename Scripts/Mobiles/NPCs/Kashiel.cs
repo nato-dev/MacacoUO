@@ -5,13 +5,16 @@ using Server.Mobiles;
 namespace Server.Engines.Quests
 {
     public class ShotAnArrowIntoTheAirQuest : BaseQuest
-    { 
+    {
+        public override bool DoneOnce { get { return true; } }
+
         public ShotAnArrowIntoTheAirQuest()
             : base()
-        { 
+        {
+
             this.AddObjective(new SlayObjective(typeof(Sheep), "sheep", 10));
 						
-            this.AddReward(new BaseReward(typeof(TrinketBag), 1072341)); // A bag of trinkets.
+            this.AddReward(new BaseReward(typeof(BagOfReagents), 1072341)); // A bag of trinkets.
         }
 
         /*  I Shot an Arrow Into the Air... */

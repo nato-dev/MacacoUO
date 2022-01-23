@@ -298,13 +298,15 @@ namespace Server.Engines.Quests
     }
 
     public class FineFeastQuest : BaseQuest
-    { 
+    {
+        public override bool DoneOnce { get { return true; } }
+
         public FineFeastQuest()
             : base()
         { 
             this.AddObjective(new SlayObjective(typeof(Sheep), "sheep", 10));
 			
-            this.AddReward(new BaseReward(typeof(SmallTrinketBag), 1072268));
+            this.AddReward(new BaseReward(typeof(BagOfReagents), 1072268));
         }
 
         /* A Fine Feast. */

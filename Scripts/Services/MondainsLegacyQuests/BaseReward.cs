@@ -65,6 +65,7 @@ namespace Server.Engines.Quests
 
 		private static void ApplyMods(Item item)
 		{
+            
 			if (item != null)
 			{
 				if (Core.SA && RandomItemGenerator.Enabled)
@@ -75,14 +76,14 @@ namespace Server.Engines.Quests
 				{
 					int attributeCount = Utility.RandomMinMax(1, 5);
 					if(item is BaseJewel)
-						BaseRunicTool.ApplyAttributesTo((BaseJewel)item, false, 0, attributeCount, 10, 100);
+                        RunicReforging.GenerateRandomItem(item, 0, 0, 0, item.Map);
 					else if (item is BaseWeapon)
-						BaseRunicTool.ApplyAttributesTo((BaseWeapon)item, false, 0, attributeCount, 10, 100);
-					else if (item is BaseRanged)
-						BaseRunicTool.ApplyAttributesTo((BaseRanged)item, false, 0, attributeCount, 10, 100);
-					else if (item is BaseArmor)
-						BaseRunicTool.ApplyAttributesTo((BaseArmor)item, false, 0, attributeCount, 10, 100);
-				}
+                        RunicReforging.GenerateRandomItem(item, 0, 0, 0, item.Map);
+                    else if (item is BaseRanged)
+                        RunicReforging.GenerateRandomItem(item, 0, 0, 0, item.Map);
+                    else if (item is BaseArmor)
+                        RunicReforging.GenerateRandomItem(item, 0, 0, 0, item.Map);
+                }
 			}
 		}
 
