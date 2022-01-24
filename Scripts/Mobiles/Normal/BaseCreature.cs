@@ -5796,6 +5796,9 @@ namespace Server.Mobiles
 
         public void SetSkill(SkillName name, double val)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             Skills[name].BaseFixedPoint = (int)(val * 10);
 
             if (Skills[name].Base > Skills[name].Cap)
@@ -6299,6 +6302,7 @@ namespace Server.Mobiles
             }
         }
 
+
         public void PackNoLootItem(Item item)
         {
             item.Movable = false;
@@ -6307,6 +6311,8 @@ namespace Server.Mobiles
 
         public void PackItem(Item item)
         {
+
+
             if (BaseCreature.BypassInit)
                 return;
 
