@@ -8423,6 +8423,9 @@ namespace Server.Mobiles
 
         public virtual void OnThink()
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             long tc = Core.TickCount;
 
             if (Combatant != null && HasAura && tc >= m_NextAura)
