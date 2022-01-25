@@ -211,7 +211,7 @@ namespace Server.Mobiles
 
     public class BaseCreature : Mobile, IHonorTarget, IEngravable
     {
-        public static bool BypassInit = false;
+        public static bool BypassConstructor = false;
 
         public override bool SendGump(Gump g)
         {
@@ -2867,7 +2867,7 @@ namespace Server.Mobiles
         public BaseCreature(
             AIType ai, FightMode mode, int iRangePerception, int iRangeFight, double dActiveSpeed, double dPassiveSpeed)
         {
-            if (BypassInit)
+            if (BypassConstructor)
                 return;
 
             PhysicalDamage = 100;
@@ -5796,7 +5796,7 @@ namespace Server.Mobiles
 
         public void SetSkill(SkillName name, double val)
         {
-            if (BaseCreature.BypassInit)
+            if (BaseCreature.BypassConstructor)
                 return;
 
             Skills[name].BaseFixedPoint = (int)(val * 10);
@@ -5830,7 +5830,7 @@ namespace Server.Mobiles
 
         public void SetSkill(SkillName name, double min, double max)
         {
-            if (BaseCreature.BypassInit)
+            if (BaseCreature.BypassConstructor)
                 return;
 
             int minFixed = (int)(min * 10);
@@ -6313,7 +6313,7 @@ namespace Server.Mobiles
         {
 
 
-            if (BaseCreature.BypassInit)
+            if (BaseCreature.BypassConstructor)
                 return;
 
             if (Summoned || item == null)
@@ -8423,7 +8423,7 @@ namespace Server.Mobiles
 
         public virtual void OnThink()
         {
-            if (BaseCreature.BypassInit)
+            if (BaseCreature.BypassConstructor)
                 return;
 
             long tc = Core.TickCount;

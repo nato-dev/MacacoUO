@@ -84,12 +84,12 @@ namespace Server.Ziden.Traducao
 
             try
             {
-                BaseCreature.BypassInit = true;
+                BaseCreature.BypassConstructor = true;
                 Mobile.BypassInit = true;
          
                 var bc = (Mobile)Activator.CreateInstance(t);
                 Shard.Debug("Criando instancia fake" + t.Name+" name "+bc.Name);
-                BaseCreature.BypassInit = false;
+                BaseCreature.BypassConstructor = false;
                 Mobile.BypassInit = false;
                 if (bc.Name != null)
                 {
@@ -113,7 +113,7 @@ namespace Server.Ziden.Traducao
             }
             finally
             {
-                BaseCreature.BypassInit = false;
+                BaseCreature.BypassConstructor = false;
                 Mobile.BypassInit = false;
             }
         }
