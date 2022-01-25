@@ -8857,6 +8857,13 @@ namespace Server
                         m_HitsTimer.Stop();
                     }
 
+                    if(m_Aggressors==null)
+                    {
+                        Shard.Debug("Mob bugado: ", this);
+                        this.Delete();
+                        return;
+                    }
+
                     for (int i = 0; i < m_Aggressors.Count; i++) //reset reports on full HP
                     {
                         m_Aggressors[i].CanReportMurder = false;
