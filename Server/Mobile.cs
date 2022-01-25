@@ -1363,6 +1363,9 @@ namespace Server
 
         private void CheckAggrExpire()
         {
+            if (m_Aggressors == null)
+                return;
+
             for (int i = m_Aggressors.Count - 1; i >= 0; --i)
             {
                 if (i >= m_Aggressors.Count)
@@ -4108,6 +4111,7 @@ namespace Server
         ///     Overridable. Invoked after the mobile is deleted. When overriden, be sure to call the base method.
         /// </summary>
         public virtual void OnAfterDelete()
+
         {
             StopAggrExpire();
 
