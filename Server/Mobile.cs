@@ -8506,7 +8506,7 @@ namespace Server
         /// </summary>
         public int GetStatOffset(StatType type)
         {
-            if (Mobile.BypassInit)
+            if (Mobile.BypassInit || m_StatMods == null)
                 return 0;
 
             int offset = 0;
