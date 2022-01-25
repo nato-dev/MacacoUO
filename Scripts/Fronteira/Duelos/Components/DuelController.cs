@@ -280,21 +280,7 @@ namespace Server.Dueling
 
         private static void DrawPercent( int percent )
         {
-            int oldX = Console.CursorLeft;
-            int oldY = Console.CursorTop;
-            int totalblocks = 20;
-            int blocks = percent / 5;
-            int remainingblocks = totalblocks - blocks;
-            Console.Write( "[" );
 
-            for( int i = 0; i < blocks; i++ )
-                DrawBlock( percent );
-
-            for( int i = 0; i < remainingblocks; i++ )
-                Console.Write( "=" );
-
-            Console.Write( "]{0}%", percent );
-            Console.SetCursorPosition( oldX, oldY );
         }
 
         private static void DrawBlock( int percent )
