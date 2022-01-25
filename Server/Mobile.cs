@@ -3991,9 +3991,9 @@ namespace Server
                 m_NetState.CancelAllTrades();
             }
 
+            Shard.Debug("Deleting Mobile ", this);
             if (m_NetState != null)
             {
-                Shard.Debug("Mobile deleted ", this);
                 m_NetState.Dispose();
             }
 
@@ -4008,17 +4008,24 @@ namespace Server
 
             OnDelete();
 
-            for (int i = m_Items.Count - 1; i >= 0; --i)
+            if(m_Items != null)
             {
-                if (i < m_Items.Count)
+                for (int i = m_Items.Count - 1; i >= 0; --i)
                 {
-                    m_Items[i].OnParentDeleted(this);
+                    if (i < m_Items.Count)
+                    {
+                        m_Items[i].OnParentDeleted(this);
+                    }
                 }
             }
 
-            for (int i = 0; i < m_Stabled.Count; i++)
+            if(m_Stabled != null)
             {
-                m_Stabled[i].Delete();
+                for (int i = 0; i < m_Stabled.Count; i++)
+                {
+                    m_Stabled[i].Delete();
+                }
+
             }
 
             SendRemovePacket();
@@ -11441,6 +11448,9 @@ namespace Server
 
         public Mobile(Serial serial)
         {
+            if (BypassInit)
+                return;
+
             m_Region = Map.Internal.DefaultRegion;
             m_Serial = serial;
             m_Aggressors = new List<AggressorInfo>();
