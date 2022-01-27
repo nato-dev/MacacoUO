@@ -143,9 +143,9 @@ namespace Server.Gumps
                     {
                         if (Shard.SPHERE_STYLE)
                         {
-                            from.Str = 100;
-                            from.Dex = 100;
-                            from.Int = 100;
+                            from.Str = 50;
+                            from.Dex = 50;
+                            from.Int = 50;
                         }
                         else
                         {

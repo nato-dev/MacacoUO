@@ -129,6 +129,12 @@ namespace Server.Items
                     if (r)
                         return;
 
+                    if(from.Skills[SkillName.Herding].Value < toPlant.GetMinSkill())
+                    {
+                        from.SendMessage("Voce precisa de mais herding para plantar isto");
+                        return;
+                    }
+
                     if (from.CheckSkillMult(SkillName.Herding, toPlant.GetMinSkill(), toPlant.GetMaxSkill() + 15))
                     {
                         from.Emote("* plantando *");

@@ -178,7 +178,7 @@ namespace Server.SkillHandlers
                         } 
                         if (item == null)
                         {
-                            var gold = Utility.Random(40) + 10;
+                            var gold = Utility.Random(15) + 6;
                             item = new Gold(gold);
                         }
                         m_From.AddToBackpack(item);
