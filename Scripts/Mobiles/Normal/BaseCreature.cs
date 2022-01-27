@@ -3008,9 +3008,11 @@ namespace Server.Mobiles
                         PackItem(new TalismanElemental());
 
                     SetHits(Hits * 3);
+                    SetDamage(m_DamageMin + 8, m_DamageMax + 8);
                 } else if(StuckMenu.IsInSecondAgeArea(this))
                 {
-                    SetHits(Hits * 2);
+                    SetHits((int)(Hits * 2));
+                    SetDamage(m_DamageMin + 4, m_DamageMax + 4);
                 }
             });
         }

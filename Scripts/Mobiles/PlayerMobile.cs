@@ -4260,7 +4260,7 @@ namespace Server.Mobiles
 
                 if (c != null)
                 {
-                    c.Slip(from == null || !from.Player, false, amount);
+                    c.Slip(from == null || !from.Player, amount);
                 }
             }
 
