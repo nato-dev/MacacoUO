@@ -129,6 +129,7 @@
     <Compile Include="Fronteira\Comandos\GenCamps.cs" />
     <Compile Include="Fronteira\Comandos\ListaComandos.cs" />
     <Compile Include="Fronteira\Comandos\FixVendors.cs" />
+    <Compile Include="Fronteira\Comandos\WipeTudo.cs" />
     <Compile Include="Fronteira\Exp\PctExpGump.cs" />
     <Compile Include="Fronteira\Exp\SkillExpGump.cs" />
     <Compile Include="Fronteira\Factions\Core\Election.cs" />
@@ -477,7 +478,7 @@
     <Compile Include="Fronteira\RP\GumpCharRP.cs" />
     <Compile Include="Fronteira\RP\GumpLore.cs" />
     <Compile Include="Fronteira\RP\ItemRP.cs" />
-    <Compile Include="Fronteira\RP\LockRP.cs" />
+    <Compile Include="Fronteira\RP\GumpWhitelist.cs" />
     <Compile Include="Fronteira\RP\ObjetoFicha.cs" />
     <Compile Include="Fronteira\RP\Patentes.cs" />
     <Compile Include="Fronteira\RP\TeleporterRP.cs" />
@@ -496,6 +497,7 @@
     <Compile Include="Fronteira\Tutorial\WispGuia\Guia.cs" />
     <Compile Include="Fronteira\Tutorial\WispGuia\NovoWispGuia.cs" />
     <Compile Include="Fronteira\Tutorial\WispGump.cs" />
+    <Compile Include="Fronteira\Weeklies\QuestNewbie.cs" />
     <Compile Include="Fronteira\XML\XmlSiege\BaseSiegeProjectile.cs" />
     <Compile Include="Fronteira\XML\XmlSiege\BaseSiegeWeapon.cs" />
     <Compile Include="Fronteira\XML\XmlSiege\HandSiegeAttack.cs" />
@@ -14904,7 +14906,7 @@
     <Folder Include="Fronteira\Cooking\Foods\Protein Foods\Seafood\Canned Fish\" />
     <Folder Include="Fronteira\Eleicoes\" />
     <Folder Include="Fronteira\Leilao\Modified\" />
-    <Folder Include="Fronteira\Weeklies\" />
+    <Folder Include="Fronteira\NewFolder1\" />
     <Folder Include="Items\Functional\Herding\" />
     <Folder Include="VitaNex\Items\Tools\" />
   </ItemGroup>

@@ -128,9 +128,9 @@ namespace Server.Mobiles
             if (anexou)
             {
                 OverheadMessage("* anexou bandagem *");
-                var cura = (int)(this.HitsMax * BandHealPct);
-                this.Hits += cura;
-                DamageNumbers.ShowDamage(-cura, this, this, 0);
+
+                this.Hits += 20;
+                DamageNumbers.ShowDamage(-20, this, this, 0);
                 this.PlaySound(0x57);
             }
         }
