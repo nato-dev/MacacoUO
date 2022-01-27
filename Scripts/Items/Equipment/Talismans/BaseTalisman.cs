@@ -802,10 +802,10 @@ namespace Server.Items
             }
 
             if (m_Killer != null && !m_Killer.IsEmpty && m_Killer.Amount > 0)
-                list.Add("Dano a " + Trads.GetNomeMonstro(m_Killer.Type) + " +" + m_Killer.Amount + "%"); // ~1_NAME~ Killer: +~2_val~%
+                list.Add("Dano vs " + Trads.GetNomeMonstro(m_Killer.Type) + " +" + m_Killer.Amount + "%"); // ~1_NAME~ Killer: +~2_val~%
 
             if (m_Protection != null && !m_Protection.IsEmpty && m_Protection.Amount > 0)
-                list.Add("Resist a " + Trads.GetNomeMonstro(m_Protection.Type) + " +" + m_Protection.Amount + "%");
+                list.Add("Resist vs " + Trads.GetNomeMonstro(m_Protection.Type) + " +" + m_Protection.Amount + "%");
 
             if (m_ExceptionalBonus != 0)
                 list.Add(1072395, "#{0}\t{1}", GetSkillLabel(), m_ExceptionalBonus); // ~1_NAME~ Exceptional Bonus: ~2_val~%

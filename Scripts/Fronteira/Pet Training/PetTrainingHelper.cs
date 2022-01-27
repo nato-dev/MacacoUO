@@ -192,6 +192,7 @@ namespace Server.Mobiles
 
         public static AbilityProfile GetAbilityProfile(BaseCreature bc, bool create = false)
         {
+
             var profile = bc.AbilityProfile;
 
             if (profile == null && create)

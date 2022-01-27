@@ -1,4 +1,5 @@
 using System;
+using Server.Mobiles;
 using Server.Targeting;
 
 namespace Server.Items
@@ -70,6 +71,29 @@ namespace Server.Items
             if (item.Locked)
             {
                 from.PlaySound(0x241);
+
+                if(from.Hidden)
+                {
+                    foreach (var m in from.FindMobilesInRange(from.Map, 20))
+                    {
+                        var bc = m as BaseCreature;
+                        if (bc == null)
+                            continue;
+
+                        if(m.Skills.DetectHidden.Value > 50 || bc.IsSmart)
+                        {
+                            if(m.Map.LineOfSight(m, from))
+                            {
+                                from.RevealingAction();
+                                from.SendMessage("Voce foi descoberto");
+                                m.Combatant = from;
+                                m.OverheadMessage("!");
+                                return;
+                            }
+                        }
+                    }
+                }
+               
 
                 Timer.DelayCall(TimeSpan.FromMilliseconds(200.0), EndLockpick, new object[] { item, from });
             }

@@ -6984,7 +6984,7 @@ namespace Server
 
         public void AddItem(Item item)
         {
-            if (item == null || item.Deleted)
+            if (item == null || item.Deleted || Mobile.BypassInit)
             {
                 return;
             }

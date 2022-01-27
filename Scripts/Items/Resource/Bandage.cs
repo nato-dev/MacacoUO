@@ -254,10 +254,14 @@ namespace Server.Items
         public TimeSpan delay;
         public Corpse corpse;
 
-        public void Slip(bool pvm = false)
+        public void Slip(bool pvm = false, int dano = 0)
         {
             ++m_Slips;
-            if (Shard.SPHERE_STYLE && pvm)
+            if (pvm)
+                ++m_Slips;
+            if (dano > 15)
+                ++m_Slips;
+            if(dano > 35)
                 ++m_Slips;
             m_Healer.SendMessage("Seus dedos escorregam [- "+m_Slips*SLIP_MULT+" cura]"); // Your fingers slip!
         }

@@ -238,7 +238,7 @@ namespace Server.Spells.Third
         public override TimeSpan GetCastDelay()
         {
             if (Shard.POL_STYLE && Caster.Player)
-                return TimeSpan.FromSeconds(2.5);
+                return TimeSpan.FromSeconds(2);
             else
                 return base.GetCastDelay();
         }

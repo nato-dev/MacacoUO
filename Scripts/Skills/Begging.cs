@@ -176,10 +176,9 @@ namespace Server.SkillHandlers
                                 }
                             }
                         } 
-
                         if (item == null)
                         {
-                            var gold = Utility.Random(90) + 20;
+                            var gold = Utility.Random(40) + 10;
                             item = new Gold(gold);
                         }
                         m_From.AddToBackpack(item);

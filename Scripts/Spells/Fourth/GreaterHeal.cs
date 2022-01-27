@@ -53,11 +53,12 @@ namespace Server.Spells.Fourth
 
         public override TimeSpan GetCastDelay()
         {
-            if (Shard.SPHERE_STYLE)
+            if (Shard.SPHERE_STYLE && Caster.Player)
                 return TimeSpan.FromSeconds(3);
-            else
+            if (Shard.POL_STYLE && Caster.Player)
+                return TimeSpan.FromSeconds(3);
+            else 
                 return base.GetCastDelay();
-
         }
 
         public void Target(Mobile m)

@@ -155,7 +155,7 @@ namespace Server.Menus.Questions
             }
         }
 
-        private static bool IsInSecondAgeArea(Mobile m)
+        public static bool IsInSecondAgeArea(Mobile m)
         {
             if (m.Map != Map.Trammel && m.Map != Map.Felucca)
                 return false;

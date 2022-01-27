@@ -30,8 +30,10 @@ namespace Server.Spells.First
 
         public override TimeSpan GetCastDelay()
         {
-            if (Shard.SPHERE_STYLE)
+            if (Shard.SPHERE_STYLE && Caster.Player)
                 return TimeSpan.FromSeconds(1.5);
+            else if (Shard.POL_STYLE && Caster.Player)
+                return TimeSpan.FromSeconds(0.8);
             else
                 return base.GetCastDelay();
         }
@@ -68,7 +70,6 @@ namespace Server.Spells.First
                 // SpellHelper.Turn(this.Caster, m);
 
                 int toHeal;
-
 
                 toHeal = (int)(this.Caster.Skills[SkillName.Magery].Value * 0.05);
 

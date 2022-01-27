@@ -17,6 +17,7 @@ using Server.Fronteira.Elementos;
 using Server.Fronteira.Quests;
 using Server.Gumps;
 using Server.Items;
+using Server.Menus.Questions;
 using Server.Misc;
 using Server.Multis;
 using Server.Network;
@@ -166,7 +167,7 @@ namespace Server.Mobiles
 
         public DamageStore(Mobile m, int damage)
         {
-            m_Mobile = m;
+            m_Mobile = m; 
             m_Damage = damage;
         }
 
@@ -679,46 +680,73 @@ namespace Server.Mobiles
 
         public void SetMagicalAbility(MagicalAbility ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).AddAbility(ability, false);
         }
 
         public void SetSpecialAbility(SpecialAbility ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).AddAbility(ability, false);
         }
 
         public void SetAreaEffect(AreaEffect ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).AddAbility(ability, false);
         }
 
         public void SetWeaponAbility(WeaponAbility ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).AddAbility(ability, false);
         }
 
         public void RemoveMagicalAbility(MagicalAbility ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).RemoveAbility(ability);
         }
 
         public void RemoveSpecialAbility(SpecialAbility ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).RemoveAbility(ability);
         }
 
         public void RemoveAreaEffect(AreaEffect ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).RemoveAbility(ability);
         }
 
         public void RemoveWeaponAbility(WeaponAbility ability)
         {
+            if (BaseCreature.BypassInit)
+                return;
+
             PetTrainingHelper.GetAbilityProfile(this, true).RemoveAbility(ability);
         }
 
         public bool HasAbility(object o)
         {
+            if (BaseCreature.BypassInit)
+                return false;
+
             return PetTrainingHelper.GetAbilityProfile(this, true).HasAbility(o);
         }
 
@@ -2459,7 +2487,7 @@ namespace Server.Mobiles
 
                 if (c != null)
                 {
-                    c.Slip();
+                    c.Slip(false, amount);
                 }
             }
 
@@ -2516,29 +2544,35 @@ namespace Server.Mobiles
 
         #region Alter[...]Damage From/To
         public virtual void AlterDamageScalarFrom(Mobile caster, ref double scalar)
-        { }
+        {
+
+
+        }
 
         public virtual void AlterDamageScalarTo(Mobile target, ref double scalar)
-        { }
+        {
+
+        }
 
         public virtual void AlterSpellDamageFrom(Mobile from, ref int damage, ElementoPvM elemento)
         {
             if (m_TempDamageAbsorb > 0 && VialofArmorEssence.UnderInfluence(this))
                 damage -= damage / m_TempDamageAbsorb;
 
-            /*
-            if (elemento.ForteContra(this.Elemento))
+            if(TalismanElemental.Tem(from))
             {
-                damage = (int)(damage * 1.2);
-                if (Shard.DebugEnabled) Shard.Debug("Recebido dano de elemento mais forte", this);
+                if (elemento.ForteContra(this.Elemento))
+                {
+                    damage = (int)(damage * 1.2);
+                    if (Shard.DebugEnabled) Shard.Debug("Recebido dano de elemento mais forte", this);
+                }
+
+                if (elemento.FracoContra(this.Elemento))
+                {
+                    damage = (int)(damage * 0.85);
+                    if (Shard.DebugEnabled) Shard.Debug("Recebido dano de elemento mais fraco", this);
+                }
             }
-               
-            if (elemento.FracoContra(this.Elemento))
-            {
-                damage = (int)(damage * 0.85);
-                if (Shard.DebugEnabled) Shard.Debug("Recebido dano de elemento mais fraco", this);
-            }
-            */
         }
 
         public virtual void AlterSpellDamageTo(Mobile to, ref int damage, ElementoPvM elemento)
@@ -2550,6 +2584,17 @@ namespace Server.Mobiles
             if (this is BaseHire)
             {
                 damage = (int)(damage * 0.75);
+            }
+            if(TalismanElemental.Tem(to))
+            {
+                if (to.Elemento.ForteContra(this.Elemento))
+                {
+                    damage = (int)(damage * 1.5);
+                }
+                else if (to.Elemento.FracoContra(this.Elemento))
+                {
+                    damage = (int)(damage * 0.9);
+                }
             }
         }
 
@@ -2581,12 +2626,12 @@ namespace Server.Mobiles
                 if (from.Elemento.ForteContra(this.Elemento))
                 {
                     Shard.Debug("Forte contra elemento", from);
-                    damage = (int)(damage * 1.2);
+                    damage = (int)(damage * (TalismanElemental.Tem(from) ? 2 : 1.2));
                 }
                 else if (from.Elemento.FracoContra(this.Elemento))
                 {
                     Shard.Debug("Fraco contra elemento", from);
-                    damage = (int)(damage * 0.7);
+                    damage = (int)(damage * (TalismanElemental.Tem(from) ? 0.3 : 0.7));
                 }
 
             }
@@ -2608,7 +2653,10 @@ namespace Server.Mobiles
                         to.SendMessage(78, "Este monstro causa mais dano a voce pois o elemento dele eh forte contra o seu");
                     }
                     EfeitosElementos.Effect(to, this.Elemento);
-                    damage = (int)(damage * 1.3);
+                    damage = (int)(damage * (TalismanElemental.Tem(to) ? 2 : 1.3));
+                } else if(this.Elemento.FracoContra(to.Elemento) && TalismanElemental.Tem(to))
+                {
+                    damage = (int)(damage * 0.85);
                 }
             }
         }
@@ -2950,6 +2998,20 @@ namespace Server.Mobiles
             {
                 if (!Deleted && Alive)
                     Tamavel.RegistraBixo(this);
+
+                if(this.Map == Map.Ilshenar)
+                { 
+                    if (IsParagon || Utility.Random(1000) == 1)
+                        PackItem(Loot.RandomTalisman());
+
+                    if (IsParagon && Utility.Random(5) == 1)
+                        PackItem(new TalismanElemental());
+
+                    SetHits(Hits * 3);
+                } else if(StuckMenu.IsInSecondAgeArea(this))
+                {
+                    SetHits(Hits * 2);
+                }
             });
         }
 

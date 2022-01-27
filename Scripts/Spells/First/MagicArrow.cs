@@ -38,6 +38,7 @@ namespace Server.Spells.First
             }
         }
 
+     
         public override Type[] DelayDamageFamily { get { return new Type[] { typeof(Server.Spells.Mysticism.NetherBoltSpell) }; } }
         public override void OnCast()
         {
@@ -79,7 +80,7 @@ namespace Server.Spells.First
 
                     if (CheckResisted((Mobile)target))
                     {
-                        damage = 1;
+                        damage = 2;
 
                         ((Mobile)target).SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                     }
