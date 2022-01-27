@@ -759,7 +759,6 @@ namespace Server
                 {
                     if(basetype.IsAssignableFrom(t))
                     {
-                        Shard.Debug(t.Name);
                         types.Add(t);
                     }
                 }

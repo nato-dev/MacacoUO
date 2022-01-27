@@ -55,6 +55,10 @@ namespace Server.Gumps
                         from.Wisp.Delete();
                         from.Wisp = null;
                         from.SendMessage("Sua Fada foi embora resmungando...");
+                        if(from.Profession==0)
+                        {
+                            from.SendGump(new NonRPClassGump());
+                        }
                         break;
                     }
                 case (int)Buttons.Conversar:
