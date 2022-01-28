@@ -109,7 +109,6 @@ namespace Server.Ziden.Traducao
             }
             catch (Exception e)
             {
-                throw e;
                 return t.Name;
             }
             finally
