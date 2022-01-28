@@ -8,6 +8,8 @@ namespace Server.Mobiles
     [CorpseName("an evil mage corpse")]
     public class MagoPodre : BaseCreature
     {
+
+        public override bool CanBeParagon { get { return false; } }
         [Constructable]
         public MagoPodre()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
@@ -20,7 +22,7 @@ namespace Server.Mobiles
             SetDex(15, 50);
             SetInt(20, 30);
 
-            SetHits(80, 80);
+            SetHits(60, 80);
 
             SetDamage(2, 8);
 

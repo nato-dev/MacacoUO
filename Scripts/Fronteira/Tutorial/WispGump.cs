@@ -23,9 +23,9 @@ namespace Server.Gumps
             AddPage(0);
             AddBackground(127, 124, 351, 203, 9200);
             AddHtml(201, 174, 200, 23, @"Remover sua Fada Guia", (bool)false, (bool)false);
-            AddHtml(201, 202, 198, 70, @"Voce nao ira completar as quests de iniciante. (Nao Recomendado)", (bool)false, (bool)false);
+            AddHtml(201, 202, 198, 70, @"Voce perdera todos bonus de novato. (Nao Recomendado)", (bool)false, (bool)false);
             AddItem(415, 211, 8448);
-            AddHtml(139, 134, 327, 23, @"<CENTER>Fada Guia Ultima Fronteira</CENTER>", (bool)true, (bool)false);
+            AddHtml(139, 134, 327, 23, @"<CENTER>Fada Guia Dragonic Age</CENTER>", (bool)true, (bool)false);
             AddHtml(203, 291, 200, 23, @"Conversar", (bool)false, (bool)false);
             AddHtml(419, 192, 41, 24, @"Oi oi", (bool)true, (bool)false);
             AddButton(175, 176, 1896, 1896, (int)Buttons.Remover, GumpButtonType.Reply, 0);

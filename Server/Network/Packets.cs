@@ -3628,11 +3628,17 @@ m_Stream.Write( (int) renderMode );
 
             if (type >= 4)
             {
-                m_Stream.Write((short)m.FireResistance); // Fire
-                m_Stream.Write((short)m.ColdResistance); // Cold
-                m_Stream.Write((short)m.PoisonResistance); // Poison
-                m_Stream.Write((short)m.EnergyResistance); // Energy
-                m_Stream.Write((short)m.Luck); // Luck
+                m_Stream.Write((short)0); // Fire
+                m_Stream.Write((short)0); // Cold
+                m_Stream.Write((short)0); // Poison
+                m_Stream.Write((short)0); // Energy
+                m_Stream.Write((short)0); // Luck
+
+                //m_Stream.Write((short)m.FireResistance); // Fire
+               // m_Stream.Write((short)m.ColdResistance); // Cold
+               // m_Stream.Write((short)m.PoisonResistance); // Poison
+               // m_Stream.Write((short)m.EnergyResistance); // Energy
+               // m_Stream.Write((short)m.Luck); // Luck
 
                 IWeapon weapon = m.Weapon;
 
@@ -3745,11 +3751,18 @@ m_Stream.Write( (int) renderMode );
 
                 if (type >= 4)
                 {
-                    m_Stream.Write((short)beheld.FireResistance); // Fire
-                    m_Stream.Write((short)beheld.ColdResistance); // Cold
-                    m_Stream.Write((short)beheld.PoisonResistance); // Poison
-                    m_Stream.Write((short)beheld.EnergyResistance); // Energy
-                    m_Stream.Write((short)beheld.Luck); // Luck
+
+                    m_Stream.Write((short)0); // Fire
+                    m_Stream.Write((short)0); // Cold
+                    m_Stream.Write((short)0); // Poison
+                    m_Stream.Write((short)0); // Energy
+                    m_Stream.Write((short)0); // Luck
+
+                    //m_Stream.Write((short)beheld.FireResistance); // Fire
+                    //m_Stream.Write((short)beheld.ColdResistance); // Cold
+                    //m_Stream.Write((short)beheld.PoisonResistance); // Poison
+                    //m_Stream.Write((short)beheld.EnergyResistance); // Energy
+                    //m_Stream.Write((short)beheld.Luck); // Luck
 
                     IWeapon weapon = beheld.Weapon;
 

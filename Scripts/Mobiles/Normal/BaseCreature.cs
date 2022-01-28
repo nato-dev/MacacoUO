@@ -36,6 +36,7 @@ using Server.Spells.SkillMasteries;
 using Server.Spells.Spellweaving;
 using Server.Targeting;
 using Server.Ziden.Items;
+using Server.Ziden.Traducao;
 #endregion
 
 namespace Server.Mobiles
@@ -2589,11 +2590,11 @@ namespace Server.Mobiles
             {
                 if (to.Elemento.ForteContra(this.Elemento))
                 {
-                    damage = (int)(damage * 1.5);
+                    damage = (int)(damage * 0.9);
                 }
                 else if (to.Elemento.FracoContra(this.Elemento))
                 {
-                    damage = (int)(damage * 0.9);
+                    damage = (int)(damage * 1.5);
                 }
             }
         }
@@ -3009,7 +3010,7 @@ namespace Server.Mobiles
 
                     SetHits(Hits * 3);
                     SetDamage(m_DamageMin + 8, m_DamageMax + 8);
-                } else if(StuckMenu.IsInSecondAgeArea(this))
+                } else if(this.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(this))
                 {
                     SetHits((int)(Hits * 2));
                     SetDamage(m_DamageMin + 4, m_DamageMax + 4);
@@ -6037,10 +6038,25 @@ namespace Server.Mobiles
 
             if (m_Paragon)
             {
+                if(Utility.RandomBool())
+                {
+                    var talisman = new BaseTalisman(BaseTalisman.GetRandomItemID());
+                    if (Utility.RandomBool())
+                    {
+                        talisman.SetProtection(this.GetType(), this.Name, 1 + Utility.Random(19));
+                    }
+                    if (Utility.RandomBool())
+                    {
+                        talisman.SetKiller(this.GetType(), this.Name, 1 + Utility.Random(34));
+                    }
+                    talisman.Name = "Talisman Paragon de " + this.Name == null ? this.GetType().Name : this.Name;
+                    talisman.Hue = Paragon.Hue;
+                    PackItem(talisman);
+                }
+
                 Shard.Debug("Paragon spawnando", this);
                 if (Fame < 1250)
                 {
-
                     AddLoot(LootPack.Meager, 1);
                 }
                 else if (Fame < 2500)

@@ -488,6 +488,9 @@ namespace Server.Items
             for (int i = Utility.Random(1, 3); i > 1; i--)
                 DropItem(Loot.RandomWand());
 
+            if(Utility.RandomBool())
+                DropItem(Loot.RandomTalisman());
+
             // Magical ArmorOrWeapon
             for (int i = Utility.Random(1, 3); i > 1; i--)
             {
@@ -607,6 +610,7 @@ namespace Server.Items
           
             }
 
+            DropItem(Loot.RandomTalisman());
             AddLoot(new BagOfReagents());
             AddLoot(new BagOfNecroReagents());
             AddLoot(new BagOfReagents());
