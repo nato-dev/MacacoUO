@@ -168,7 +168,7 @@ namespace Server.Mobiles
 
         public DamageStore(Mobile m, int damage)
         {
-            m_Mobile = m; 
+            m_Mobile = m;
             m_Damage = damage;
         }
 
@@ -2560,7 +2560,7 @@ namespace Server.Mobiles
             if (m_TempDamageAbsorb > 0 && VialofArmorEssence.UnderInfluence(this))
                 damage -= damage / m_TempDamageAbsorb;
 
-            if(TalismanElemental.Tem(from))
+            if (TalismanElemental.Tem(from))
             {
                 if (elemento.ForteContra(this.Elemento))
                 {
@@ -2586,7 +2586,7 @@ namespace Server.Mobiles
             {
                 damage = (int)(damage * 0.75);
             }
-            if(TalismanElemental.Tem(to))
+            if (TalismanElemental.Tem(to))
             {
                 if (to.Elemento.ForteContra(this.Elemento))
                 {
@@ -2655,7 +2655,8 @@ namespace Server.Mobiles
                     }
                     EfeitosElementos.Effect(to, this.Elemento);
                     damage = (int)(damage * (TalismanElemental.Tem(to) ? 2 : 1.3));
-                } else if(this.Elemento.FracoContra(to.Elemento) && TalismanElemental.Tem(to))
+                }
+                else if (this.Elemento.FracoContra(to.Elemento) && TalismanElemental.Tem(to))
                 {
                     damage = (int)(damage * 0.85);
                 }
@@ -3000,8 +3001,8 @@ namespace Server.Mobiles
                 if (!Deleted && Alive)
                     Tamavel.RegistraBixo(this);
 
-                if(this.Map == Map.Ilshenar && !(this.Region is DungeonGuardedRegion))
-                { 
+                if (this.Map == Map.Ilshenar && !(this.Region is DungeonGuardedRegion))
+                {
                     if (IsParagon || Utility.Random(1000) == 1)
                         PackItem(Loot.RandomTalisman());
 
@@ -3010,7 +3011,8 @@ namespace Server.Mobiles
 
                     SetHits(Hits * 3);
                     SetDamage(m_DamageMin + 8, m_DamageMax + 8);
-                } else if(this.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(this))
+                }
+                else if (this.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(this))
                 {
                     SetHits((int)(Hits * 2));
                     SetDamage(m_DamageMin + 4, m_DamageMax + 4);
@@ -6038,18 +6040,15 @@ namespace Server.Mobiles
 
             if (m_Paragon)
             {
-                if(Utility.Random(5)==1)
+                if (Utility.Random(5) == 1)
                 {
                     var talisman = new BaseTalisman(BaseTalisman.GetRandomItemID());
-                    if (Utility.RandomBool())
-                    {
-                        talisman.SetProtection(this.GetType(), this.Name, 1 + Utility.Random(19));
-                    }
+                    talisman.SetProtection(this.GetType(), this.Name, 1 + Utility.Random(19));
                     if (Utility.RandomBool())
                     {
                         talisman.SetKiller(this.GetType(), this.Name, 1 + Utility.Random(34));
                     }
-                    talisman.Name = "Talisman Paragon de " + this.Name == null ? this.GetType().Name : this.Name;
+                    talisman.Name = "Talisman Paragon de " + (this.Name == null ? this.GetType().Name : this.Name);
                     talisman.Hue = Paragon.Hue;
                     PackItem(talisman);
                 }
