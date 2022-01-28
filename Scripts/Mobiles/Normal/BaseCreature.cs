@@ -3000,7 +3000,7 @@ namespace Server.Mobiles
                 if (!Deleted && Alive)
                     Tamavel.RegistraBixo(this);
 
-                if(this.Map == Map.Ilshenar)
+                if(this.Map == Map.Ilshenar && !(this.Region is DungeonGuardedRegion))
                 { 
                     if (IsParagon || Utility.Random(1000) == 1)
                         PackItem(Loot.RandomTalisman());
@@ -6038,7 +6038,7 @@ namespace Server.Mobiles
 
             if (m_Paragon)
             {
-                if(Utility.RandomBool())
+                if(Utility.Random(5)==1)
                 {
                     var talisman = new BaseTalisman(BaseTalisman.GetRandomItemID());
                     if (Utility.RandomBool())
