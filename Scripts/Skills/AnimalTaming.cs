@@ -35,6 +35,13 @@ namespace Server.SkillHandlers
 
         public static TimeSpan OnUse(Mobile m)
         {
+
+            if(!m.IsCooldown("dicatame"))
+            {
+                m.SetCooldown("dicatame", TimeSpan.FromHours(1));
+                m.SendMessage(78, "Voce pode subir sua habilidade de taming mais rapido falando 'trabalho' para o npc treinador");
+            }
+
             m.RevealingAction(false);
 
             if (!DisableMessage)
