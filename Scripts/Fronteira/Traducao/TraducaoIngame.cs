@@ -91,6 +91,7 @@ namespace Server.Ziden.Traducao
                 Shard.Debug("Criando instancia fake" + t.Name+" name "+bc.Name);
                 BaseCreature.BypassConstructor = false;
                 Mobile.BypassInit = false;
+                bc.m_Deleted = true;
                 if (bc.Name != null)
                 {
                     MobTrans[t] = bc.Name;

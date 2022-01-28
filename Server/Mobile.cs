@@ -3940,9 +3940,9 @@ namespace Server
         [CommandProperty(AccessLevel.Counselor, AccessLevel.Administrator)]
         public IAccount Account { get; set; }
 
-        private bool m_Deleted;
+        public bool m_Deleted;
 
-        public bool Deleted { get { return m_Deleted; } }
+        public bool Deleted { get { return m_Deleted; }  }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int VirtualArmor
