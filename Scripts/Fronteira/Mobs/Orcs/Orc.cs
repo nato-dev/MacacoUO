@@ -15,6 +15,9 @@ namespace Server.Mobiles
         {
             this.Name = "orc";
 
+            if (BaseCreature.BypassInit)
+                return;
+
             // olha a gambiarra... eh pq o bixo ainda nao tem backpack aqui :S
             Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
             {
