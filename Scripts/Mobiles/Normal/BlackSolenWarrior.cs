@@ -140,7 +140,8 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.Rich);
-            this.AddLoot(LootPack.Gems, Utility.RandomMinMax(1, 4));
+            if(Utility.RandomBool())
+                this.AddLoot(LootPack.Gems, 1);
         }
 
         public override bool IsEnemy(Mobile m)
