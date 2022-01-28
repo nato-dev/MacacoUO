@@ -383,7 +383,7 @@ namespace Server.Mobiles
 
         public int FollowRange { get; set; }
 
-        public virtual bool CanBeParagon { get { return true; } }
+        public virtual bool CanBeParagon { get { return !(this.Region is DungeonProtectedRegion); } }
 
         /* Do not serialize this till the code is finalized */
 

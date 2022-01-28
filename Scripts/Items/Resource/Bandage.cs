@@ -257,8 +257,8 @@ namespace Server.Items
         public void Slip(bool pvm = false, int dano = 0)
         {
             ++m_Slips;
-            if (pvm)
-                ++m_Slips;
+            //if (pvm)
+            //    ++m_Slips;
             if (dano > 15)
                 ++m_Slips;
             if(dano > 35)
