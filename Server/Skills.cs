@@ -622,7 +622,7 @@ namespace Server
 
         public static double HARD = Shard.SPHERE_STYLE ? 10 : 0.1f;
         public static double MEDIUM = Shard.SPHERE_STYLE ? 10 : 0.5f;
-        public static double EASY = Shard.SPHERE_STYLE ? 10 : 0.9f;
+        public static double EASY = Shard.SPHERE_STYLE ? 10 : 1.5f;
         public static double COMBAT = Shard.SPHERE_STYLE ? 10 : 0.11;
 
         private static SkillInfo[] m_Table = new SkillInfo[58]

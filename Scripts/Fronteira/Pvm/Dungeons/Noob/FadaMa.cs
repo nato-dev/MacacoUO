@@ -8,6 +8,9 @@ namespace Server.Mobiles
     [CorpseName("a wisp corpse")]
     public class FadaMa : BaseCreature
     {
+
+        public override bool CanBeParagon { get { return false; } }
+
         [Constructable]
         public FadaMa()
             : base(AIType.AI_Runner, FightMode.Aggressor, 10, 1, 0.1, 0.1)
