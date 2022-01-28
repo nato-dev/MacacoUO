@@ -205,6 +205,10 @@ namespace Server.Misc
             var gc = GC_INICIAL + (gcBonus * 4);
             Shard.Debug("GC INICIAL: " + gc);
 
+            if(skillDifficulty==SkillInfo.HARD)
+            {
+                gc -= 0.05;
+            }
             var ratio = 1.00001 - (skill / 100);
             gc *= ratio * (ratio * 4);
             
@@ -220,7 +224,7 @@ namespace Server.Misc
                     gc /= 2;
 
                 if (skillDifficulty == SkillInfo.COMBAT)
-                    gc /= 3;
+                    gc /= 2;
 
                 if (gc < 0.0025)
                     gc = 0.0025;

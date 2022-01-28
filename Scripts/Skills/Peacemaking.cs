@@ -200,7 +200,7 @@ namespace Server.SkillHandlers
                         else if (targ is BaseCreature && ((BaseCreature)targ).BardPacified)
                         {
                             var dif = (((BaseCreature)targ).BardEndTime - DateTime.Now).TotalSeconds;
-                            from.SendLocalizedMessage("A criatura ja esta calma por mais "+dif+" segundos"); // That creature is already being calmed.
+                            from.SendLocalizedMessage("A criatura ja esta calma por mais "+((int)dif)+" segundos"); // That creature is already being calmed.
                             m_SetSkillTime = true;
                         }
                         else if (from.Player && !BaseInstrument.CheckMusicianship(from))
