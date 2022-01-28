@@ -6096,6 +6096,9 @@ namespace Server.Mobiles
 
         public virtual void AddLoot(LootPack pack)
         {
+            if (pack == null)
+                return;
+
             if (Summoned)
             {
                 return;
