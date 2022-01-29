@@ -130,6 +130,8 @@
     <Compile Include="Fronteira\Comandos\ListaComandos.cs" />
     <Compile Include="Fronteira\Comandos\FixVendors.cs" />
     <Compile Include="Fronteira\Comandos\WipeTudo.cs" />
+    <Compile Include="Fronteira\Cooking\CookingLoader.cs" />
+    <Compile Include="Fronteira\Cooking\PlantaRandom.cs" />
     <Compile Include="Fronteira\Exp\PctExpGump.cs" />
     <Compile Include="Fronteira\Exp\SkillExpGump.cs" />
     <Compile Include="Fronteira\Factions\Core\Election.cs" />
@@ -223,6 +225,7 @@
     <Compile Include="Fronteira\Factions\Mobiles\Vendors\FactionReagentVendor.cs" />
     <Compile Include="Fronteira\Guia\AcampamentosGump.cs" />
     <Compile Include="Fronteira\Guia\DungeonsGump.cs" />
+    <Compile Include="Fronteira\Items\TalismanElemental.cs" />
     <Compile Include="Fronteira\Mobs\VendorWS.cs" />
     <Compile Include="Fronteira\PaidBankChest.cs" />
     <Compile Include="Fronteira\Camping\Acampamento.cs" />

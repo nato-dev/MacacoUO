@@ -204,7 +204,6 @@ namespace Server.Misc
             // Formuleta simplona de up
             var gc = GC_INICIAL + (gcBonus * 4);
             Shard.Debug("GC INICIAL: " + gc);
-
             if(skillDifficulty==SkillInfo.HARD)
             {
                 gc -= 0.05;
@@ -221,7 +220,7 @@ namespace Server.Misc
             } else
             {
                 if (craft)
-                    gc /= 2;
+                    gc /= 10;
 
                 if (skillDifficulty == SkillInfo.COMBAT)
                     gc /= 2;
