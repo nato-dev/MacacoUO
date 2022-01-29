@@ -55,8 +55,8 @@ namespace Server.Gumps
             AddHtml(235, 164, 124, 19, @"Mago", (bool)false, (bool)false);
             AddHtml(352, 165, 124, 19, @"Mercador", (bool)false, (bool)false);
 
-            if (newCharacter)
-                AddHtml(450, 166, 124, 19, @"Manter Skills", (bool)false, (bool)false);
+            //if (newCharacter)
+            //    AddHtml(450, 166, 124, 19, @"Manter Skills", (bool)false, (bool)false);
 
             var desc = "Selecione uma template de skills iniciais.";
 

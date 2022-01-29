@@ -1,6 +1,7 @@
 using System;
 using Server.Engines.CannedEvil;
 using Server.Items;
+using Server.Regions;
 
 namespace Server.Mobiles
 {
@@ -143,6 +144,9 @@ namespace Server.Mobiles
             //    return false;
 
             if (bc is BaseChampion || bc is Harrower || bc is BaseVendor || bc is BaseEscortable || bc is Clone || bc.IsParagon)
+                return false;
+
+            if (bc.Region is DungeonProtectedRegion)
                 return false;
 
             if (bc.IsChampionSpawn)
