@@ -700,13 +700,13 @@ namespace Server.Items
                 if (m_HealingBonus != 0)
                     healing += m_HealingBonus;
 
-                double chance = ((healing + 10.0) / 100.0) - (m_Slips * 0.02);
-
+                double chance = ((healing + 30.0) / 100.0) - (m_Slips * 0.02);
+                var toHeal = GetToHeal();
                 if (chance > Utility.RandomDouble())
                 {
                     healerNumber = "Voce terminou de aplicar as bandagens"; // You finish applying the bandages.
 
-                    var toHeal = GetToHeal();
+                  
 
                     #region City Loyalty
                     if (Server.Engines.CityLoyalty.CityLoyaltySystem.HasTradeDeal(m_Healer, Server.Engines.CityLoyalty.TradeDeal.GuildOfHealers))

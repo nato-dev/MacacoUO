@@ -1,5 +1,6 @@
 using Server.Commands;
 using Server.Fronteira.Tutorial.WispGuia;
+using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
@@ -75,6 +76,9 @@ namespace Server.Ziden.Tutorial
             {
                 if(player.PassoWispGuia != (int)PassoTutorial.FIM)
                     Cria(player);
+            } else if(!player.Young && player.Profession==0)
+            {
+                player.SendGump(new NonRPClassGump());
             }
         }
 
