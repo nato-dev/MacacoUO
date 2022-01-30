@@ -17,7 +17,7 @@ namespace Server.Mobiles
         public MudPie()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.2)
         {
-            Name = "lamoso";
+            Name = "resto elemental";
             Body = 779;
             BaseSoundID = 422;
 
@@ -44,8 +44,8 @@ namespace Server.Mobiles
             SetSkill(SkillName.Tactics, 65, 85);
             SetSkill(SkillName.Wrestling, 65, 85);
 
-            Fame = 1500;
-            Karma = -1500;
+            Fame = 2000;
+            Karma = -2000;
 
             PackReg(1, 2);
             PackGem(1, 2);
@@ -193,7 +193,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            if (0.15 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
+            if (Region.Find(c.Location, c.Map).IsPartOf("Shame"))
                 c.DropItem(new CristalElemental());
         }
 
@@ -418,7 +418,7 @@ namespace Server.Mobiles
             Name = "grande elemental da terra";
             Hue = 1143;
 
-            SetHits(500, 600);
+            SetHits(200, 300);
 
             SetDamageType(ResistanceType.Physical, 100);
 
