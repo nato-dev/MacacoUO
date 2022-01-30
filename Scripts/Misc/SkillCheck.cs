@@ -240,8 +240,8 @@ namespace Server.Misc
                 }
                 if (skillDifficulty == SkillInfo.COMBAT)
                 {
-                    if (gc < 0.001)
-                        gc = 0.001;
+                    if (gc < 0.003)
+                        gc = 0.003;
                 }
             }
 
