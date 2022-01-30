@@ -63,7 +63,7 @@ namespace Server.Multis
                     return;
                 }
                 discobertas.Add(nomeCamp);
-                m.CampfireLocations = string.Join(":", discobertas);
+                m.CampfireLocations = string.Join(";", discobertas);
                 m.Emote("Local de Camping Descoberto: " + nomeCamp);
                 m.SendMessage(78, "Clique duas vezes em uma fogueira segura para se teleportar a este acampamento");
                 m.SendMessage("Acampamentos Descobertos: " +qtd+"/" + Points.Count);
