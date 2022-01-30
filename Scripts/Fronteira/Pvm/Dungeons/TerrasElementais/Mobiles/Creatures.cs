@@ -44,8 +44,8 @@ namespace Server.Mobiles
             SetSkill(SkillName.Tactics, 65, 85);
             SetSkill(SkillName.Wrestling, 65, 85);
 
-            Fame = 500;
-            Karma = -500;
+            Fame = 1500;
+            Karma = -1500;
 
             PackReg(1, 2);
             PackGem(1, 2);

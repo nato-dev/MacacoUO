@@ -212,7 +212,7 @@ namespace Server.Gumps
                             {
                                 dupe.Hue = hue;
                             }
-                            if (dupe is IQuality)
+                            if (dupe is IQuality && dupe is BaseWeapon)
                             {
                                 ((IQuality)dupe).Quality = ItemQuality.Low;
                             }

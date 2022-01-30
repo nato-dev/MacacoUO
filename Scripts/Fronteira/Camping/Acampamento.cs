@@ -50,7 +50,6 @@ namespace Server.Multis
                     foreach (var invalida in discobertas.Where(c => !Points.ContainsKey(c)))
                     {
                         invalidas.Add(invalida);
-                       
                     }
                 }
               
