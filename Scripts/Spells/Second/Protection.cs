@@ -138,46 +138,26 @@ namespace Server.Spells.Second
                 {
                     this.Caster.SendLocalizedMessage(1005559); // This spell is already in effect.
                 }
-                else if (!this.Caster.CanBeginAction(typeof(DefensiveSpell)))
+                else if (!this.Caster.CanBeginAction(typeof(ArchProtectionSpell)))
                 {
                     this.Caster.SendLocalizedMessage(1005385); // The spell will not adhere to you at this time.
                 }
                 else if (this.CheckSequence())
                 {
-                    if (this.Caster.BeginAction(typeof(DefensiveSpell)))
+                    if (this.Caster.BeginAction(typeof(ArchProtectionSpell)))
                     {
-                        double value = (int)(this.Caster.Skills[SkillName.Magery].Value + this.Caster.Skills[SkillName.Meditation].Value + this.Caster.Skills[SkillName.Inscribe].Value);
+                        int value = (int)(this.Caster.Skills[SkillName.Magery].Value + this.Caster.Skills[SkillName.Meditation].Value + this.Caster.Skills[SkillName.Inscribe].Value);
 
+                        value /= 30;
 
-                        if (value < 0)
-                            value = 0;
-
-                        //if(!Shard.POL_STYLE)
-                        //{
-                        value /= 4;
+                        if (value < 1)
+                            value = 1;
+                   
                         CastDisturbProtection.Add(this.Caster, value);
-                        this.Caster.VirtualArmorMod -= 10;
-
-                        Caster.SendMessage("Voce tem uma aura de protecao que diminui sua armadura porem faz voce mais resistente a disturb quando levar dano");
-
-                        /*
-                        } else
-                        {
-                            value /= 30;
-                            if (this.Caster.BeginAction(typeof(ArchProtectionSpell)))
-                            {
-                                var v = (int)value;
-                                this.Caster.VirtualArmorMod += v;
-                                ArchProtectionSpell.AddEntry(this.Caster, v);
-                                string args = String.Format("{0}\t{1}", 0, 0);
-                                BuffInfo.AddBuff(this.Caster, new BuffInfo(BuffIcon.Protection, 1075816, args.ToString()));
-                            } else
-                            {
-                                this.Caster.SendLocalizedMessage(1005559); // This spell is already in effect.
-                            }
-                        }
-                        */
-
+                        this.Caster.VirtualArmorMod += value;
+                        ArchProtectionSpell.AddEntry(this.Caster, value);
+                        BuffInfo.AddBuff(this.Caster, new BuffInfo(BuffIcon.Protection, 1075816, String.Format("{0}\t{1}", 0, 0).ToString()));
+                        Caster.SendMessage("Voce sente uma armadura lhe protegendo");
                         new InternalTimer(this.Caster).Start();
 
                         this.Caster.FixedParticles(0x375A, 9, 20, 5016, EffectLayer.Waist);
@@ -219,22 +199,9 @@ namespace Server.Spells.Second
 
             protected override void OnTick()
             {
-                /*
-                if (Shard.POL_STYLE)
-                {
-                    ArchProtectionSpell.RemoveEntry(this.m_Caster);
-                    BuffInfo.RemoveBuff(this.m_Caster, BuffIcon.Protection);
-                    DefensiveSpell.Nullify(this.m_Caster);
-                }
-                else
-                {
-                    ProtectionSpell.CastDisturbProtection.Remove(this.m_Caster);
-                    DefensiveSpell.Nullify(this.m_Caster);
-                }
-                */
-                ProtectionSpell.CastDisturbProtection.Remove(this.m_Caster);
+                ArchProtectionSpell.RemoveEntry(this.m_Caster);
+                BuffInfo.RemoveBuff(this.m_Caster, BuffIcon.Protection);
                 DefensiveSpell.Nullify(this.m_Caster);
-                this.m_Caster.VirtualArmorMod += 10;
             }
         }
     }

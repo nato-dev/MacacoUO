@@ -155,9 +155,7 @@ namespace Server.Mobiles
             if (bc.Region is ChampionSpawnRegion)
                 return false;
 
-            int fame = bc.Fame;
-
-            return (0.01 > Utility.RandomDouble());
+            return (0.02 > Utility.RandomDouble());
         }
 
         public static bool CheckArtifactChance(Mobile m, BaseCreature bc)
