@@ -157,12 +157,7 @@ namespace Server.Mobiles
 
             int fame = bc.Fame;
 
-            if (fame > 32000)
-                fame = 32000;
-
-            double chance = 1 / Math.Round(20.0 - (fame / 3200));
-
-            return (chance > Utility.RandomDouble());
+            return (0.01 > Utility.RandomDouble());
         }
 
         public static bool CheckArtifactChance(Mobile m, BaseCreature bc)
