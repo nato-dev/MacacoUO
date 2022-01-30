@@ -1,4 +1,6 @@
+using Server.Menus.Questions;
 using Server.Mobiles;
+using Server.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,7 +26,6 @@ namespace Server.Fronteira.Quests
                 if (lista == l100) return Randomiza(l90);
                 if (lista == l120) return Randomiza(l100);
             }
-            Shard.Debug("Randomizando Tamavel");
             return lista.ElementAt(Utility.Random(lista.Count));
         }
 
@@ -68,7 +69,7 @@ namespace Server.Fronteira.Quests
         // registra tds possiveis bixos q tem no shard
         public static void RegistraBixo(BaseCreature bc)
         {
-            if (bc == null || (bc.Map != Map.Felucca && bc.Map != Map.Trammel))
+            if (bc == null || bc.Map != Map.Trammel)
                 return;
 
             if (bc.ControlMaster != null)
@@ -79,9 +80,9 @@ namespace Server.Fronteira.Quests
 
             if (bc != null && bc.Tamable)
             {
-                if (bc.MinTameSkill < 50)
+                if (bc.MinTameSkill <= 50 && !(bc.Region is DungeonRegion) && !StuckMenu.IsInSecondAgeArea(bc))
                     l50.Add(new Tamavel(bc));
-                else if (bc.MinTameSkill < 70)
+                else if (bc.MinTameSkill < 70 && !(bc.Region is DungeonRegion) && !StuckMenu.IsInSecondAgeArea(bc))
                     l70.Add(new Tamavel(bc));
                 else if (bc.MinTameSkill < 80)
                     l80.Add(new Tamavel(bc));
