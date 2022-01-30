@@ -81,7 +81,7 @@ namespace Server.SkillHandlers
                     {
                         if (trg.Hidden && src != trg)
                         {
-                            double ss = srcSkill + Utility.Random(21) - 10;
+                            double ss = srcSkill + Utility.Random(29) - 10;
                             double ts = trg.Skills[SkillName.Hiding].Value + Utility.Random(21) - 10;
                             double shadow = Server.Spells.SkillMasteries.ShadowSpell.GetDifficultyFactor(trg);
 

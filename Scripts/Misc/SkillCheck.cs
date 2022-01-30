@@ -525,7 +525,7 @@ namespace Server.Misc
                 QuestHelper.CheckSkill((PlayerMobile)from, skill);
             #endregion
 
-            if (Shard.EXP)
+            if (Shard.EXP && Utility.RandomBool())
                 return;
 
             if (skill.Lock == SkillLock.Up &&
