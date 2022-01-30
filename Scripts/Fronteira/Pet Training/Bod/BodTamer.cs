@@ -25,7 +25,7 @@ namespace Server.Engines.BulkOrders
 
         public int Pontos { get; set; }
 
-        public override int Lifespan { get { return 60 * 60 * 60 * 24 * 5; } }
+        public override int Lifespan { get { return 60 * 60 * 24 * 5; } }
         public override bool UseSeconds { get { return false; } }
 
         public BodTamer(Tamavel tamavel, int quantidade)

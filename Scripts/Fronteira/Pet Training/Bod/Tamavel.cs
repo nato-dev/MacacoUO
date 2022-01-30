@@ -41,29 +41,19 @@ namespace Server.Fronteira.Quests
             else if (skill > 90)
                 if (Utility.RandomDouble() < 0.35)
                     return new Tuple<Tamavel, int>(Randomiza(l80), 8);
-                else if (Utility.RandomBool())
-                    return new Tuple<Tamavel, int>(Randomiza(l100), 3);
                 else
                     return new Tuple<Tamavel, int>(Randomiza(l90), 3);
             else if (skill > 80)
                 if (Utility.RandomDouble() < 0.35)
                     return new Tuple<Tamavel, int>(Randomiza(l70), 8);
-                else if (Utility.RandomBool())
-                    return new Tuple<Tamavel, int>(Randomiza(l90), 3);
                 else
                     return new Tuple<Tamavel, int>(Randomiza(l80), 4);
-            else if (skill > 70)
+            else if (skill >= 70)
                 if (Utility.RandomDouble() < 0.35)
                     return new Tuple<Tamavel, int>(Randomiza(l50), 15);
-                else if (Utility.RandomBool())
-                    return new Tuple<Tamavel, int>(Randomiza(l80), 4);
                 else
                     return new Tuple<Tamavel, int>(Randomiza(l70), 5);
-            else if (Utility.RandomBool())
-                return new Tuple<Tamavel, int>(Randomiza(l70), 5);
-            else
-                return new Tuple<Tamavel, int>(Randomiza(l50), 5);
-
+            return new Tuple<Tamavel, int>(Randomiza(l50), 5);
         }
 
         // registra tds possiveis bixos q tem no shard
