@@ -73,8 +73,7 @@ namespace Server.SkillHandlers
 
                 if(cristais <= 0)
                 {
-                    from.SendMessage("Voce nao pode desencantar isto");
-                    return;
+                    cristais = 1;
                 }
 
                 from.CloseGump(typeof(DisenchantConfirm));
