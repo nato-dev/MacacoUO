@@ -834,6 +834,11 @@ namespace Server
                         }
                         if (item is TintaMagica)
                         {
+                            if (Utility.RandomBool())
+                            {
+                                item.Delete();
+                                return null;
+                            }
                             ((TintaMagica)item).Slayer = SlayerGroup.GetLootSlayerType(from.GetType());
                             item.InvalidateProperties();
                         }
