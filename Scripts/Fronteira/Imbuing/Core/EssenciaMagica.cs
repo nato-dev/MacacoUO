@@ -49,22 +49,24 @@ namespace Server.Ziden
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
-            list.Add("Combine 100 Essencias para criar uma Pedra Magica");
+            list.Add("Combine Essencias para criar uma Pedra Magica");
         }
 
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
 
-            if (this.Amount < 100)
+            var custo = 100;
+            if (!Imbuing.CheckSoulForge(from, 2))
             {
-                from.SendMessage("Voce precisa de 100 essencias do mesmo tipo para criar uma pedra magica");
+                from.SendMessage("Por estar longe de uma forja das almas voce precisa do dobro de material");
+                custo *= 2;
                 return;
             }
 
-            if (!Imbuing.CheckSoulForge(from, 2))
+            if (this.Amount < custo)
             {
-                from.SendMessage("Voce precisa estar perto de uma forja da alma para isto");
+                from.SendMessage("Voce precisa de "+custo+ " essencias do mesmo tipo para criar uma pedra magica");
                 return;
             }
 
@@ -93,7 +95,7 @@ namespace Server.Ziden
 
             Effects.SendTargetParticles(from, 0x375A, 35, 90, 0x00, 0x00, 9502, (EffectLayer)255, 0x100);
 
-            this.Consume(100);
+            this.Consume(custo);
             from.PlaceInBackpack(new PedraMagica());
             from.SendMessage("Voce transformou as essencias em um po magico e guardou em uma garrafa");
             //from.CheckSkillMult(SkillName.TasteID, 0, 80);
