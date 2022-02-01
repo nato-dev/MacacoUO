@@ -340,7 +340,7 @@ namespace Server.Items
           {
                 new PMEntry(new Point3D(4111, 439, 5), "1. Deceit"),
                 new PMEntry(new Point3D(1021, 1431, 0), "2. Caverna Orc"),
-                new PMEntry(new Point3D(514, 1561, 5), "3. Shame"),
+              
                 //new PMEntry(new Point3D(5237, 3866, 45), "4. Delucia"),
           }, cost: 100);
 
@@ -356,6 +356,7 @@ namespace Server.Items
               new PMEntry(new Point3D(1298, 1081, 5), "4. Despise"),
               new PMEntry(new Point3D(2043, 227, 14), "5. Wrong"),
               new PMEntry(new Point3D(1176, 2637, 5), "6. Destard"),
+              new PMEntry(new Point3D(514, 1561, 5), "7. Shame"),
              //    new PMEntry(new Point3D(2494, 927, 0), "1. Covetous"),
           }, cost: 500);
 

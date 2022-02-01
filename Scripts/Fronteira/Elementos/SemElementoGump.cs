@@ -59,7 +59,7 @@ namespace Server.Gumps
                         }
                         if (!sender.Mobile.Backpack.HasItem<CristalElemental>(100, true))
                         {
-                            from.SendMessage("Voce precisa de 100 Pedras Elementais na mochila e 100000 Moedas de Ouro no banco. Encontre as pedras em Shame.");
+                            from.SendMessage("Voce precisa de 100 Pedras Elementais na mochila e 20000 Moedas de Ouro no banco. Encontre as pedras em Shame.");
                             return;
                         }
                           
@@ -68,7 +68,12 @@ namespace Server.Gumps
                             from.SendMessage("Voce precisa de 20000 Moedas de Ouro no banco.");
                             return;
                         }
-                        from.Backpack.ConsumeTotal(new System.Type[] { typeof(CristalElemental), typeof(Gold) }, new int[] { 100, 100000 });
+                        var res = from.Backpack.ConsumeTotal(new System.Type[] { typeof(CristalElemental), typeof(Gold) }, new int[] { 100, 20000 });
+                        if(res < 2)
+                        {
+                            from.SendMessage("Voce precisa de 100 Pedras Elementais na mochila e 20000 Moedas de Ouro no banco. Encontre as pedras em Shame.");
+                            return;
+                        }
                         ((PlayerMobile)from).Nivel = 2;
 
                         Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
