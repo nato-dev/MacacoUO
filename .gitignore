@@ -43,6 +43,7 @@
 *.csproj.user
 *.DotSettings.user
 *.ini
+*_Ultima.dll
 
 !/Data/*
 !/bin/rosyln/*
