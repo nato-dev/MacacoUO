@@ -62,7 +62,7 @@ namespace Server.Misc
             const double A = 0.000863316841;
             const double B = 0.00000425531915;
 
-            double chance = A * Math.Pow(10, B * vapoints) * 0.25;
+            double chance = A * Math.Pow(10, B * vapoints) * 0.05;
 
             double roll = Utility.RandomDouble();
 

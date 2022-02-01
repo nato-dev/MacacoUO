@@ -68,12 +68,7 @@ namespace Server.Gumps
                             from.SendMessage("Voce precisa de 20000 Moedas de Ouro no banco.");
                             return;
                         }
-                        var res = from.Backpack.ConsumeTotal(new System.Type[] { typeof(CristalElemental), typeof(Gold) }, new int[] { 100, 20000 });
-                        if(res < 2)
-                        {
-                            from.SendMessage("Voce precisa de 100 Pedras Elementais na mochila e 20000 Moedas de Ouro no banco. Encontre as pedras em Shame.");
-                            return;
-                        }
+                        from.Backpack.ConsumeTotal(new System.Type[] { typeof(CristalElemental) }, new int[] { 100 });
                         ((PlayerMobile)from).Nivel = 2;
 
                         Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
@@ -87,11 +82,12 @@ namespace Server.Gumps
 
                         from.SendMessage("Voce agora pode canalizar energia elemental em seu corpo.");
                         from.SendMessage("Equipe armaduras elementais para ativar o elemento em seu corpo.");
-                        from.SendMessage("Fabrique armaduras elementais usando pedras preciosas.");
-                        foreach(var pl in NetState.GetOnlinePlayerMobiles())
+                        from.SendMessage("Fabrique armaduras elementais usando pedras preciosas e Imbuing. Voce ganhou duas pedras preciosas.");
+                        from.Backpack.DropItem(new Amber());
+                        from.Backpack.DropItem(new Sapphire());
+                        foreach (var pl in NetState.GetOnlinePlayerMobiles())
                         {
-                            if (pl != from)
-                                pl.SendMessage(2, from.Name + " acaba de destravar o potencial dos elementos PvM");
+                            pl.SendMessage(2, from.Name + " acaba de destravar o potencial dos elementos PvM");
                         }
                         from.PlaceInBackpack(new Amber());
                         from.SendGump(new ElementosGump(from));
