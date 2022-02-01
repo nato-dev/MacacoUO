@@ -282,6 +282,10 @@ namespace Server.Misc
             if (Shard.RP && ExpGumpRP.UpComXP.Contains(skill.SkillName))
                 return success;
 
+            // monstros nao tamados nao upam skill
+            if (from is BaseCreature && ((BaseCreature)from).GetMaster() == null)
+                return success;
+
             var dificuldade = skill.Info.GainFactor;
 
 
