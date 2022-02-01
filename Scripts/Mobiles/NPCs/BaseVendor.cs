@@ -99,8 +99,8 @@ namespace Server.Mobiles
                     }
                 }
                 var selecionado = ensina[opt];
-                from.Skills[selecionado].Base = 50;
-                this.SayTo(from, "Deixe-me lhe ensinar como se faz");
+                this.Teach(selecionado, from, 500, true);
+                //from.Skills[selecionado].Base = 50;
 
             }, 3708, 0, ensina.Select(e => e.ToString()).ToArray()));
         }

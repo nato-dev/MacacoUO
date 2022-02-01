@@ -1,4 +1,5 @@
 using System;
+using Server.Items;
 using Server.Mobiles;
 
 namespace Server.ContextMenus
@@ -24,7 +25,16 @@ namespace Server.ContextMenus
             if (!this.m_From.CheckAlive())
                 return;
 
-            this.m_Mobile.Teach(this.m_Skill, this.m_From, 0, false);
+            if (!Banker.Withdraw(this.m_From, 500))
+            {
+                if (!this.m_From.Backpack.ConsumeTotal(typeof(Gold), 500))
+                {
+                    this.m_From.SendMessage("Voce precisa de 500 moedas para isto");
+                    return;
+                }
+            }
+
+            this.m_Mobile.Teach(this.m_Skill, this.m_From, 500, true);
         }
     }
 }

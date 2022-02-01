@@ -139,6 +139,7 @@ namespace Server.Misc
 
             var bc = attacker as BaseCreature;
             var targPlayer = damageable as PlayerMobile;
+            var attackerPlayer = attacker as PlayerMobile;
 
             if (attacker != null && !attacker.Player && !(bc != null && bc.GetMaster() != null && bc.GetMaster().IsPlayer()))
             {
@@ -156,19 +157,30 @@ namespace Server.Misc
             }
 
             // PVPs
-            if (attacker.Player && targPlayer != null)
+            if (attackerPlayer != null && targPlayer != null)
             {
                 var targ = targPlayer;
                 if(targ.Young)
                 {
                     return false;
-                }
+                } 
 
                 if (targ.RP != attacker.RP && ProtecaoRP(targ))
                 {
                     attacker.SendMessage("Voce nao pode atacar um jogador com o modo de jogo RP difetente do seu.");
                     return false;
-                } 
+                }
+
+                if (attackerPlayer.Young)
+                {
+                    attackerPlayer.Young = false;
+                    attackerPlayer.SendMessage(38, "Voce perdeu seu status de novato por atacar outro jogador");
+                    if (attackerPlayer.Wisp != null)
+                    {
+                        attackerPlayer.Wisp.Delete();
+                        attackerPlayer.Wisp = null;
+                    }
+                }
             }
 
             if(attacker.Player && defender is BaseCreature)

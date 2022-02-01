@@ -5090,7 +5090,7 @@ namespace Server.Mobiles
                 case TeachResult.SkillNotRaisable:
                     {
                         // Make sure this skill is marked to raise. If you are near the skill cap (700 points) you may need to lose some points in another skill first.
-                        m.SendMessage(38, "Tenha certeza que a skill esta marcada para subir");
+                        m.SendMessage(38, "Tenha certeza que a skill esta marcada para subir, e se seu cap estiver cheio que alguma skill esta marcada para descer");
                         break;
                     }
                 case TeachResult.Success:
