@@ -47,8 +47,8 @@ namespace Server.Items
                     m_Map = m.Map;
 
                 Point3D loc = PointDest;
-                m.MoveToWorld(loc, m_Map);
                 BaseCreature.TeleportPets(m, loc, m_Map);
+                m.MoveToWorld(loc, m_Map);
                 if (Mensagem == null)
                     m.SendMessage("Voce entrou no tunel");
                 else
