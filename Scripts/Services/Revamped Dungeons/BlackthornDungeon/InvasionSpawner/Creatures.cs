@@ -509,7 +509,7 @@ namespace Server.Engines.Blackthorn
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich, 2);
+            this.AddLoot(LootPack.LV6, 2);
         }
 
         public Invader(Serial serial)
@@ -603,8 +603,8 @@ namespace Server.Engines.Blackthorn
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich, 2);
-            this.AddLoot(LootPack.SuperBoss, 1);
+            this.AddLoot(LootPack.LV6, 2);
+            this.AddLoot(LootPack.LV7, 1);
         }
 
         public InvaderCaptain(Serial serial)

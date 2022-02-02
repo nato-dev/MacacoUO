@@ -39,7 +39,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average, 3);
+            AddLoot(LootPack.LV3, 3);
             AddLoot(LootPack.Gems, 3);
         }
 

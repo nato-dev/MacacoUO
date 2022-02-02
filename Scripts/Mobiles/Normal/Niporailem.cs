@@ -66,7 +66,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 6);
+            AddLoot(LootPack.LV5, 6);
             AddLoot(LootPack.Gems, 6);
         }
 

@@ -98,8 +98,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average);
-            AddLoot(LootPack.Meager);
+            AddLoot(LootPack.LV3);
+            AddLoot(LootPack.LV2);
             AddLoot(LootPack.MedScrolls, 2);
         }
 

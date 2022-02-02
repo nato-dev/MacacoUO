@@ -86,7 +86,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 8);
+            AddLoot(LootPack.LV5, 8);
         }
 
         public override void Serialize(GenericWriter writer)

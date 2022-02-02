@@ -639,7 +639,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 8);
+            AddLoot(LootPack.LV7, 8);
         }
 
         public Charydbis(Serial serial)
@@ -724,7 +724,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 1);
+            AddLoot(LootPack.LV5, 1);
         }
 
         public override void Delete()

@@ -93,8 +93,8 @@ namespace Server.Mobiles
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.FilthyRich );
-			AddLoot( LootPack.Rich );
+			AddLoot( LootPack.LV5 );
+			AddLoot( LootPack.LV4 );
 			AddLoot( LootPack.Gems, 2 );
 		}
 

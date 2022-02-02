@@ -149,7 +149,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 4);
+            AddLoot(LootPack.LV5, 4);
             AddLoot(LootPack.Gems, 4);
         }
 

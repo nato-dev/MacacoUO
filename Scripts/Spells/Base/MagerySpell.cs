@@ -167,10 +167,6 @@ namespace Server.Spells
             if (!Shard.POL_STYLE)
             {
                 double value = GetResistSkill(target);
-                if(target.Player && !Caster.Player)
-                {
-                    value += (int)(value * (target.GetBonusElemento(ElementoPvM.Agua) + target.GetBonusElemento(ElementoPvM.Luz) + target.GetBonusElemento(ElementoPvM.Escuridao) + target.GetBonusElemento(ElementoPvM.Gelo)));
-                }
                 double firstPercent = value / 5.0;
                 double secondPercent = value - (((Caster.Skills[CastSkill].Value - 20.0) / 5.0) + (1 + (int)circle) * 5.0);
                 return (firstPercent > secondPercent ? firstPercent : secondPercent) / 2.0; // Seems should be about half of what stratics says.

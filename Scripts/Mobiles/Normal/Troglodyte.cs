@@ -59,7 +59,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich);  // Need to verify
+            this.AddLoot(LootPack.LV4);  // Need to verify
         }
 
         public override void Serialize(GenericWriter writer)

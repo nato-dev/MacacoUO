@@ -81,7 +81,7 @@ namespace Server.Items
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 4);
+            this.AddLoot(LootPack.LV4, 4);
         }
 
         public virtual void OnResourceChanged()

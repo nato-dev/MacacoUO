@@ -120,7 +120,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 2);
+            AddLoot(LootPack.LV7, 2);
         }
 
         public void PickRandomName()

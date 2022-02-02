@@ -54,7 +54,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 2);
+            this.AddLoot(LootPack.LV5, 2);
             AddLoot( LootPack.Parrot );
             AddLoot(LootPack.MedScrolls);
             AddLoot(LootPack.HighScrolls);

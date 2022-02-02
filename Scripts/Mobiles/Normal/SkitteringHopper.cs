@@ -55,7 +55,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV2);
         }
 
         public override void Serialize(GenericWriter writer)

@@ -55,7 +55,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average, 4);
+            AddLoot(LootPack.LV3, 4);
         }
 
         public override void OnDamage(int amount, Mobile from, bool willKill)

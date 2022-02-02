@@ -51,7 +51,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average, 3);
+            this.AddLoot(LootPack.LV3, 3);
         }
 
         public override void OnAfterTame(Mobile tamer)

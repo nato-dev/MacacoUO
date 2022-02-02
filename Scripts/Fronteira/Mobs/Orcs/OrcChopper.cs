@@ -129,7 +129,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager, 2);
+            AddLoot(LootPack.LV2, 2);
         }
 
         public override bool IsEnemy(Mobile m)

@@ -69,8 +69,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager);
-            AddLoot(LootPack.Average);
+            AddLoot(LootPack.LV2);
+            AddLoot(LootPack.LV3);
         }
 
         public override int GetAngerSound()

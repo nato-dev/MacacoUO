@@ -149,8 +149,8 @@ namespace Server.Mobiles
 
             for (int i = 0; i < 2; i++)
             {
-                LootPack.FilthyRich.Generate(this, rm.Backpack, true, LootPack.GetLuckChanceForKiller(this));
-                LootPack.FilthyRich.Generate(this, rm.Backpack, false, LootPack.GetLuckChanceForKiller(this));
+                LootPack.LV5.Generate(this, rm.Backpack, true, LootPack.GetLuckChanceForKiller(this));
+                LootPack.LV5.Generate(this, rm.Backpack, false, LootPack.GetLuckChanceForKiller(this));
             }
 
             Effects.PlaySound(this, this.Map, this.GetDeathSound());

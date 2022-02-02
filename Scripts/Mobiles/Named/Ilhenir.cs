@@ -161,8 +161,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.UltraRich, 4);
-            AddLoot(LootPack.FilthyRich);
+            AddLoot(LootPack.LV6, 4);
+            AddLoot(LootPack.LV5);
         }
 
         public override void OnDeath(Container c)

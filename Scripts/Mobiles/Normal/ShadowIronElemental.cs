@@ -93,7 +93,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average);
+            this.AddLoot(LootPack.LV3);
             this.AddLoot(LootPack.Gems, 2);
         }
 
@@ -227,7 +227,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average);
+            this.AddLoot(LootPack.LV3);
             this.AddLoot(LootPack.Gems, 2);
         }
 

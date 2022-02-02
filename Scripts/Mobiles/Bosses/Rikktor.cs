@@ -127,7 +127,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.UltraRich, 4);
+            AddLoot(LootPack.LV6, 4);
         }
 
         public override void OnGaveMeleeAttack(Mobile defender)

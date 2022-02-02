@@ -7,6 +7,8 @@ namespace Server.Mobiles
     [CorpseName("a plague beast corpse")]
     public class PlagueBeast : BaseCreature, IDevourer
     {
+        public override bool ReduceSpeedWithDamage { get { return false; } }
+
         private int m_DevourTotal;
         private int m_DevourGoal;
         private bool m_HasMetalChest = false;
@@ -90,8 +92,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich);
-            this.AddLoot(LootPack.Gems, Utility.Random(1, 3));
+            this.AddLoot(LootPack.LV6);
+            this.AddLoot(LootPack.Gems, 1);
         }
 
         public override void OnGaveMeleeAttack(Mobile defender)

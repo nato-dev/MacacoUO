@@ -110,8 +110,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 1);
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV4, 1);
+            this.AddLoot(LootPack.LV2);
         }
 
         public override void OnDeath(Container c)

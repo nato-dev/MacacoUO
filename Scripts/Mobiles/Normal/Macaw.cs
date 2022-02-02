@@ -61,7 +61,7 @@ namespace Server.Items
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 2);
+            AddLoot(LootPack.LV5, 2);
         }
 
         protected override void OnLocationChange(Point3D oldLocation)

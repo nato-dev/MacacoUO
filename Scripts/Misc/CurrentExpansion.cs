@@ -27,7 +27,7 @@ namespace Server
 			ObjectPropertyList.Enabled = true;
             PacketHandlers.SingleClickProps = false;
 
-            Mobile.InsuranceEnabled = Core.AOS && !Siege.SiegeShard;
+            Mobile.InsuranceEnabled = true;
 			Mobile.VisibleDamageType = VisibleDamageType.None;
 			Mobile.GuildClickMessage = !Core.AOS;
 			Mobile.AsciiClickMessage = !Core.AOS;

@@ -70,8 +70,8 @@ using Server.Engines.VoidPool;
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.UltraRich, 1);
-            AddLoot(LootPack.SuperBoss, 1);
+            AddLoot(LootPack.LV6, 1);
+            AddLoot(LootPack.LV7, 1);
         }
 
         private void AddAndEquip(Item item, int hue = 0)

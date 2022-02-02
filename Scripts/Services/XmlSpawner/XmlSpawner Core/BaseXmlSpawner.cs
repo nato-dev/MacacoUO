@@ -7255,31 +7255,31 @@ namespace Server.Mobiles
 
 										if (loottype.ToLower() == "poor")
 										{
-											lootpack = LootPack.Poor;
+											lootpack = LootPack.LV1;
 										}
 										else if (loottype.ToLower() == "meager")
 										{
-											lootpack = LootPack.Meager;
+											lootpack = LootPack.LV2;
 										}
 										else if (loottype.ToLower() == "average")
 										{
-											lootpack = LootPack.Average;
+											lootpack = LootPack.LV3;
 										}
 										else if (loottype.ToLower() == "rich")
 										{
-											lootpack = LootPack.Rich;
+											lootpack = LootPack.LV4;
 										}
 										else if (loottype.ToLower() == "filthyrich")
 										{
-											lootpack = LootPack.FilthyRich;
+											lootpack = LootPack.LV5;
 										}
 										else if (loottype.ToLower() == "ultrarich")
 										{
-											lootpack = LootPack.UltraRich;
+											lootpack = LootPack.LV6;
 										}
 										else if (loottype.ToLower() == "superboss")
 										{
-											lootpack = LootPack.SuperBoss;
+											lootpack = LootPack.LV7;
 										}
 										else
 										{

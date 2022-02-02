@@ -81,7 +81,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich);
+            this.AddLoot(LootPack.LV4);
         }
 
         public void AddArcane(Item item)

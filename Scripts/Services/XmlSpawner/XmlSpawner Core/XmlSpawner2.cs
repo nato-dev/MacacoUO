@@ -9321,7 +9321,7 @@ public static void _TraceEnd(int index)
 								if (m is BaseCreature)
 								{
 									BaseCreature c = (BaseCreature)m;
-									c.RangeHome = m_HomeRange;
+									c.RangeHome = Math.Max(m_SpawnRange, m_HomeRange);
 									c.CurrentWayPoint = m_WayPoint;
 
 									if (m_Team > 0)

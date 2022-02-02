@@ -115,7 +115,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich);
+            AddLoot(LootPack.LV5);
             AddLoot(LootPack.MedScrolls, 2);
             // TODO: Daemon bone ...
         }

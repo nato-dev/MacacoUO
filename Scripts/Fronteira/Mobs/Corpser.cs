@@ -22,7 +22,7 @@ namespace Server.Mobiles
             this.SetHits(94, 108);
             this.SetMana(0);
 
-            this.SetDamage(3, 15);
+            this.SetDamage(3, 10);
             this.SetDamageType(ResistanceType.Physical, 60);
             this.SetDamageType(ResistanceType.Poison, 40);
 
@@ -33,7 +33,7 @@ namespace Server.Mobiles
 
             this.SetSkill(SkillName.MagicResist, 15.1, 20.0);
             this.SetSkill(SkillName.Tactics, 45.1, 60.0);
-            this.SetSkill(SkillName.Wrestling, 75.1, 90.0);
+            this.SetSkill(SkillName.Wrestling, 55.1, 65.0);
 
             this.Fame = 1000;
             this.Karma = -1000;
@@ -175,7 +175,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Meager, 2);
+            this.AddLoot(LootPack.LV2, 2);
         }
 
         public override void Serialize(GenericWriter writer)
@@ -360,7 +360,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Meager, 2);
+            this.AddLoot(LootPack.LV2, 2);
         }
 
         public override void Serialize(GenericWriter writer)

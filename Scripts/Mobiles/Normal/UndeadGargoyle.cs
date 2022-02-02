@@ -71,7 +71,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average);
+            AddLoot(LootPack.LV3);
             AddLoot(LootPack.MedScrolls);
             AddLoot(LootPack.Gems, Utility.RandomMinMax(1, 4));
         }

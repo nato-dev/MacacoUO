@@ -24,7 +24,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager);
+            AddLoot(LootPack.LV2);
         }
 		
 		public DazzledHarpy(Serial serial) : base(serial)
@@ -72,7 +72,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager);
+            AddLoot(LootPack.LV2);
         }
 
 		public VampireMongbat(Serial serial) : base(serial)
@@ -117,7 +117,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager);
+            AddLoot(LootPack.LV2);
         }
 
 		public HeadlessMiner(Serial serial) : base(serial)
@@ -164,7 +164,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager, 2);
+            AddLoot(LootPack.LV2, 2);
         }
 
 		public StrangeGazer(Serial serial) : base(serial)

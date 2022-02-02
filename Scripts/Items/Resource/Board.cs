@@ -120,7 +120,13 @@ namespace Server.Items
 		{
 		}
 
-		[Constructable]
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Baixa qualidade");
+        }
+
+        [Constructable]
 		public Board(int amount)
 			: base(CraftResource.Cedro, amount)
 		{
@@ -164,7 +170,13 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
-            from.SendMessage("Madeira muito boa para construir barcos");
+            from.SendMessage("Madeira muito boa para construir barcos e baus");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Boa para barcos e baus");
         }
 
         public HeartwoodBoard(Serial serial)
@@ -205,6 +217,12 @@ namespace Server.Items
         {
             base.OnDoubleClick(from);
             from.SendMessage("Madeira muito boa para instrumentos e arcos");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Boa para instrumentos e arcos");
         }
 
         public BloodwoodBoard(Serial serial)
@@ -252,6 +270,12 @@ namespace Server.Items
             from.SendMessage("Madeira clara, conhecida por fabricar cajados de qualidade magnifica.");
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Boa para cajados");
+        }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
@@ -284,7 +308,13 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
-            from.SendMessage("Madeira boa pra tudo.");
+            from.SendMessage("Madeira decente pra tudo.");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Boa pra tudo.");
         }
 
         public OakBoard(Serial serial)
@@ -318,7 +348,13 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
-            from.SendMessage("Madeira boa pra tudo.");
+            from.SendMessage("Madeira decente pra tudo.");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Boa pra tudo.");
         }
 
         [Constructable]
@@ -359,6 +395,12 @@ namespace Server.Items
         {
             base.OnDoubleClick(from);
             from.SendMessage("Madeira muito boa para instrumentos e moveis");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Boa para instrumentos e moveis");
         }
 
         [Constructable]

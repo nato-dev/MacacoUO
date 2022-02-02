@@ -172,8 +172,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich);
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV5);
+            this.AddLoot(LootPack.LV2);
         }       
 
         public override void Serialize(GenericWriter writer) 

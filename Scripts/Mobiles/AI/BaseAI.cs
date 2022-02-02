@@ -2736,7 +2736,7 @@ namespace Server.Mobiles
             return false;
         }
 
-        protected PathFollower m_Path;
+        public PathFollower m_Path;
 
         public virtual void OnTeleported()
         {

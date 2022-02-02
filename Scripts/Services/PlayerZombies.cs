@@ -289,7 +289,7 @@ namespace Server.Engines.Events
                     break;
             }
 
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV2);
         }
 
         public override void OnDelete()

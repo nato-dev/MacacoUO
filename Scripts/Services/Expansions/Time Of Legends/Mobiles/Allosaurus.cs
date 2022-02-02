@@ -53,9 +53,9 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             if (IsChampionSpawn)
-                AddLoot(LootPack.FilthyRich, 3);
+                AddLoot(LootPack.LV5, 3);
             else
-                AddLoot(LootPack.UltraRich, 3);
+                AddLoot(LootPack.LV6, 3);
         }
 
         public override int GetIdleSound()

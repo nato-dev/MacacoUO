@@ -202,7 +202,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average, 3);
+            AddLoot(LootPack.LV3, 3);
         }
 
         public override void OnDeath(Container c)

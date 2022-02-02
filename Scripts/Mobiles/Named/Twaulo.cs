@@ -142,8 +142,8 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich, 2);
-            this.AddLoot(LootPack.Average);
+            this.AddLoot(LootPack.LV6, 2);
+            this.AddLoot(LootPack.LV3);
             this.AddLoot(LootPack.Gems);
         }
 

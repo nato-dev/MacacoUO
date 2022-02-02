@@ -66,7 +66,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 5);
+            AddLoot(LootPack.LV7, 5);
         }	
 
         public override void OnThink()
@@ -667,7 +667,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 5);
+            AddLoot(LootPack.LV7, 5);
         }	
 
         public override void Delete()

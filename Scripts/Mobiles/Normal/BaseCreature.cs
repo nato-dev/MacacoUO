@@ -354,7 +354,7 @@ namespace Server.Mobiles
 
         private string m_CorpseNameOverride;
 
-        private int m_FailedReturnHome; /* return to home failure counter */
+        private int _stepsToHome; /* return to home failure counter */
 
         private bool m_IsChampionSpawn;
 
@@ -6056,25 +6056,25 @@ namespace Server.Mobiles
                 Shard.Debug("Paragon spawnando", this);
                 if (Fame < 1250)
                 {
-                    AddLoot(LootPack.Meager, 1);
+                    AddLoot(LootPack.LV2, 1);
                 }
                 else if (Fame < 2500)
                 {
 
-                    AddLoot(LootPack.Average, 1);
+                    AddLoot(LootPack.LV3, 1);
                 }
                 else if (Fame < 5000)
                 {
 
-                    AddLoot(LootPack.Rich, 1);
+                    AddLoot(LootPack.LV4, 1);
                 }
                 else if (Fame < 10000)
                 {
-                    AddLoot(LootPack.FilthyRich, 1);
+                    AddLoot(LootPack.LV5, 1);
                 }
                 else
                 {
-                    AddLoot(LootPack.UltraRich, 1);
+                    AddLoot(LootPack.LV6, 1);
                 }
             }
 
@@ -7278,18 +7278,23 @@ namespace Server.Mobiles
                     }
                     */
 
-                    var list = GetLootingRights();
+                    var looters = GetLootingRights();
+                    var partyItems = new List<Item>();
                     var titles = new List<Mobile>();
                     var fame = new List<int>();
                     var karma = new List<int>();
+
+                    foreach (var i in this.Corpse.Items)
+                        if (i.PartyLoot)
+                            partyItems.Add(i);
 
                     bool givenFactionKill = false;
                     bool givenToTKill = false;
                     bool givenVASKill = false;
 
-                    for (int i = 0; i < list.Count; ++i)
+                    for (int i = 0; i < looters.Count; ++i)
                     {
-                        DamageStore ds = list[i];
+                        DamageStore ds = looters[i];
 
                         if (!ds.m_HasRight)
                         {
@@ -7303,6 +7308,15 @@ namespace Server.Mobiles
                                 ds.m_Mobile.SetCooldown("golh", TimeSpan.FromMinutes(20));
                                 ds.m_Mobile.SendMessage(78, "Monstros estao dando bonus de ouro pois o servidor esta com bonus de Gold Hour");
                             }
+                        }
+
+                        if (partyItems.Count > 0)
+                        {
+                            foreach (var item in partyItems)
+                            {
+                                ds.m_Mobile.PlaceInBackpack(Dupe.DupeItem(item));
+                            }
+                            ds.m_Mobile.SendMessage("Voce ganhou items em sua mochila por matar este monstro");
                         }
 
                         if (GivesFameAndKarmaAward)
@@ -7358,7 +7372,7 @@ namespace Server.Mobiles
 
                         // TODO: Move this to XmlQuest.cs OnKilledBy Event Handler
                         if (HumilityVirtue.IsInHunt(ds.m_Mobile) && Karma < 0)
-                            HumilityVirtue.RegisterKill(ds.m_Mobile, this, list.Count);
+                            HumilityVirtue.RegisterKill(ds.m_Mobile, this, looters.Count);
 
                         // TODO: Move this to XmlQuest.cs OnKilledBy Event Handler
                         XmlQuest.RegisterKill(this, ds.m_Mobile);
@@ -7405,6 +7419,9 @@ namespace Server.Mobiles
                             }
                         }
                     }
+
+                    foreach (var i in partyItems)
+                        i.Delete();
 
                     for (int i = 0; i < titles.Count; ++i)
                     {
@@ -8502,6 +8519,7 @@ namespace Server.Mobiles
         }
         #endregion
 
+        private PathFollower homePath = null;
 
         public virtual void OnThink()
         {
@@ -8551,23 +8569,50 @@ namespace Server.Mobiles
                 m_NextRummageTime = tc + (int)TimeSpan.FromMinutes(delay).TotalMilliseconds;
             }
 
-            if (ReturnsToHome && IsSpawnerBound() && !InRange(Home, RangeHome))
+        
+            if (IsSpawnerBound() && !InRange(Home, RangeHome))
             {
-                if ((Combatant == null) && (Warmode == false) && Utility.RandomDouble() < .10) /* some throttling */
+                if(homePath != null)
                 {
-                    m_FailedReturnHome = !Move(GetDirectionTo(Home.X, Home.Y)) ? m_FailedReturnHome + 1 : 0;
-
-                    if (m_FailedReturnHome > 5)
+                    if(Combatant != null || Warmode)
                     {
-                        SetLocation(Home, true);
+                        homePath = null;
+                    } else
+                    {
+                        if (!homePath.Follow(true, 1))
+                        {
+                            homePath = null;
+                        }
+                    } 
+                }
 
-                        m_FailedReturnHome = 0;
+                if ((Combatant == null) && (Warmode == false) && !IsCooldown("volta"))
+                {
+                    SetCooldown("volta", TimeSpan.FromSeconds(1));
+
+                    if (homePath == null)
+                    {
+                        homePath = new PathFollower(this, this.Home);
+                        homePath.Mover = this.AIObject.DoMoveImpl;
                     }
+
+                    /*
+                    Move(GetDirectionTo(Home.X, Home.Y));
+                    _stepsToHome++;
+                    if (_stepsToHome == RangeHome * 5)
+                    {
+                        _stepsToHome = 0;
+                        Effects.SendLocationParticles(EffectItem.Create(this.Location, this.Map, EffectItem.DefaultDuration), 0x3728, 10, 10, 2023);
+                        SetLocation(Home, true);
+                        _stepsToHome = 0;
+                    }
+                    */
+
                 }
             }
             else
             {
-                m_FailedReturnHome = 0;
+                _stepsToHome = 0;
             }
 
             Mobile combatant = Combatant as Mobile;
@@ -8952,7 +8997,7 @@ namespace Server.Mobiles
                 {
                     if (!Controlled && !Summoned)
                     {
-                        if (Spawner != null && Spawner is Spawner && ((Spawner as Spawner).Map) == Map)
+                        if (Spawner != null && Spawner is XmlSpawner && ((Spawner as XmlSpawner).Map) == Map)
                         {
                             return true;
                         }

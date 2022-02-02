@@ -102,7 +102,7 @@ namespace Server.Ziden.Mobs.Goblins
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Rich);
+            AddLoot(LootPack.LV4);
             AddPackedLoot(LootPack.AverageProvisions, typeof(Backpack));
         }
 

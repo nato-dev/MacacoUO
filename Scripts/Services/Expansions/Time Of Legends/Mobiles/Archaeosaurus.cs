@@ -50,7 +50,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 2);
+            AddLoot(LootPack.LV5, 2);
         }
 
         public override int Meat { get { return 1; } }

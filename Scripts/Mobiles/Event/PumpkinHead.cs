@@ -110,7 +110,7 @@ namespace Server.Mobiles
             }
 
             this.PackItem(new WrappedCandy());
-            this.AddLoot(LootPack.UltraRich, 2);
+            this.AddLoot(LootPack.LV6, 2);
         }
 
         public virtual void Lifted_Callback(Mobile from)

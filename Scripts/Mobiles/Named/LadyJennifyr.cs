@@ -72,7 +72,7 @@ namespace Server.Mobiles
         }*/
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich, 3);
+            this.AddLoot(LootPack.LV6, 3);
         }
 
         public override void OnGaveMeleeAttack(Mobile defender)

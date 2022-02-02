@@ -66,7 +66,7 @@ namespace Server.Mobiles
 		
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.UltraRich, 3 );
+			AddLoot( LootPack.LV6, 3 );
 		}
 
 		public override void Serialize( GenericWriter writer )

@@ -141,7 +141,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddPackedLoot(LootPack.MeagerProvisions, typeof(Bag));
-            this.AddLoot(LootPack.Average, 1+Utility.Random(0, 1));
+            this.AddLoot(LootPack.LV3, 1+Utility.Random(0, 1));
         }
 
         public override bool IsEnemy(Mobile m)

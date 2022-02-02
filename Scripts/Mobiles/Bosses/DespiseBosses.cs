@@ -226,7 +226,7 @@ namespace Server.Engines.Despise
 		
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.SuperBoss, 3);
+			AddLoot( LootPack.LV7, 3);
 		}
 	
 		public AdrianTheGloriousLord(Serial serial) : base(serial)
@@ -309,7 +309,7 @@ namespace Server.Engines.Despise
 		
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.SuperBoss, 3);
+			AddLoot( LootPack.LV7, 3);
 		}
 
         public AndrosTheDreadLord(Serial serial)
@@ -379,7 +379,7 @@ namespace Server.Engines.Despise
 
 		public override void GenerateLoot()
 		{
-			AddLoot( LootPack.FilthyRich, 3);
+			AddLoot( LootPack.LV5, 3);
 		}
 
         public override bool OnBeforeDeath()
@@ -458,7 +458,7 @@ namespace Server.Engines.Despise
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 3);
+            AddLoot(LootPack.LV5, 3);
         }
 
         public override bool OnBeforeDeath()

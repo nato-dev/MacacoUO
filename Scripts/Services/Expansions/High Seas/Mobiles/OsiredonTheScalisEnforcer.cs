@@ -256,7 +256,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 5);
+            AddLoot(LootPack.LV7, 5);
         }
 
         public Osiredon(Serial serial)
@@ -346,7 +346,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 1);
+            AddLoot(LootPack.LV5, 1);
         }
 
         public ParasiticEel(Serial serial)

@@ -1,5 +1,8 @@
 using System;
 using Server.Items;
+using Server.Spells.Fifth;
+using Server.Spells.Fourth;
+using Server.Spells.Third;
 
 namespace Server.Mobiles
 {
@@ -115,7 +118,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV2);
         }
 
         public override void Serialize(GenericWriter writer)

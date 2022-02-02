@@ -68,7 +68,7 @@ namespace Server.Misc.Custom
             var infoNivel = BankLevels.Niveis[nivel];
 
             m.BankBox.MaxItems = infoNivel.Items;
-            m.BankBox.PesoMax = infoNivel.Stones;
+            m.BankBox.PesoMaximoOverride = infoNivel.Stones;
 
             var items = m.BankBox.TotalItems + "/" + infoNivel.Items;
             var peso = m.BankBox.TotalWeight + "/" + infoNivel.Stones;

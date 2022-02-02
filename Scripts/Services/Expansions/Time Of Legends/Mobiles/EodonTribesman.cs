@@ -397,7 +397,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Rich, 2);
+            AddLoot(LootPack.LV4, 2);
         }
 
 		public TribeWarrior(Serial serial) : base(serial)
@@ -729,7 +729,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 2);
+            AddLoot(LootPack.LV5, 2);
         }
 
 		public TribeChieftan(Serial serial) : base(serial)

@@ -485,7 +485,7 @@ namespace Server.Engines.Harvest
                                     if (.33 > Utility.RandomDouble())
                                     {
                                         chest = new SOSChest(0xA30A);
-                                        chest.MaxItems = 210;
+                                        chest.MaxItems = 500;
                                     }
                                     else
                                     {
@@ -493,7 +493,7 @@ namespace Server.Engines.Harvest
                                         {
                                             Hue = 0x481
                                         };
-                                        chest.MaxItems = 210;
+                                        chest.MaxItems = 300;
                                     }
                                     break;
                             }

@@ -72,7 +72,7 @@ namespace Server.Fronteira.Mobs
         {
             //if(Utility.RandomDouble() < 0.05)
             //    PackItem(new EscamaMagica());
-            AddLoot(LootPack.FilthyRich);
+            AddLoot(LootPack.LV5);
             AddLoot(LootPack.Gems, 2);
         }
 

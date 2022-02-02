@@ -76,7 +76,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 1);
+            this.AddLoot(LootPack.LV5, 1);
         }
 
         public override int GetIdleSound()

@@ -61,7 +61,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 10);
+            AddLoot(LootPack.LV5, 10);
         }
 
         public override int GetDeathSound()

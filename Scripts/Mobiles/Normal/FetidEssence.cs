@@ -71,7 +71,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot() // Need to verify
         {
-            AddLoot(LootPack.FilthyRich);
+            AddLoot(LootPack.LV5);
         }
 
         public override int GetAngerSound()

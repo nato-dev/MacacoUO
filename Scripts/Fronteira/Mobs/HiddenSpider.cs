@@ -154,7 +154,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             PackItem(new SpidersSilk(8));
-            AddLoot(LootPack.Rich);
+            AddLoot(LootPack.LV4);
         }
 
         public override void OnDeath(Container c)

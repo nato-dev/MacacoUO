@@ -50,8 +50,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.SuperBoss);
-            this.AddLoot(LootPack.UltraRich);
+            this.AddLoot(LootPack.LV7);
+            this.AddLoot(LootPack.LV6);
         }
 
         public override Poison PoisonImmune { get { return Poison.Parasitic; } }

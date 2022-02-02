@@ -101,7 +101,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average);
+            AddLoot(LootPack.LV3);
             this.AddPackedLoot(LootPack.MeagerProvisions, typeof(Backpack));
         }
 

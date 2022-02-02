@@ -73,7 +73,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Poor);
+            AddLoot(LootPack.LV1);
             AddLoot(LootPack.Gems);
         }
         public override void OnDeath(Container c)

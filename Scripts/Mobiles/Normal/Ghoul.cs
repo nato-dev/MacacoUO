@@ -70,7 +70,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV2);
             if(Utility.RandomDouble() < 0.2)
                 this.PackItem(Loot.RandomWeapon());
         }

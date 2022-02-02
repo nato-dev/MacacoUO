@@ -44,8 +44,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average);
-            this.AddLoot(LootPack.Rich);
+            this.AddLoot(LootPack.LV3);
+            this.AddLoot(LootPack.LV4);
             this.m_FieldActive = this.CanUseField;
         }
 

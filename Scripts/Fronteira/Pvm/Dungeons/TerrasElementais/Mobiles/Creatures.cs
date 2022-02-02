@@ -76,7 +76,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average, 1);
+            this.AddLoot(LootPack.LV3, 1);
         }
 
         public MudPie(Serial serial)
@@ -199,7 +199,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 2);
+            this.AddLoot(LootPack.LV5, 2);
         }
 
         public StoneElemental(Serial serial)
@@ -307,7 +307,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 2);
+            this.AddLoot(LootPack.LV4, 2);
         }
 
         public CaveTroll(Serial serial)
@@ -387,7 +387,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 2);
+            this.AddLoot(LootPack.LV4, 2);
         }
 
         public ClayGolem(Serial serial)
@@ -448,7 +448,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 1);
+            this.AddLoot(LootPack.LV4, 1);
         }
 
         public override bool CanDoRage { get { return Hits < (HitsMax / 3); } }
@@ -516,7 +516,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 2);
+            this.AddLoot(LootPack.LV4, 2);
         }
 
         public override bool CanDoRage { get { return Hits < (HitsMax / 3); } }
@@ -586,7 +586,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 1);
+            this.AddLoot(LootPack.LV4, 1);
         }
 
         public GreaterAirElemental(Serial serial)
@@ -659,7 +659,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 2);
+            this.AddLoot(LootPack.LV4, 2);
             if(Utility.RandomDouble() < 0.1)
                 this.AddItem(new FireHorn());
         }
@@ -758,7 +758,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 1);
+            this.AddLoot(LootPack.LV4, 1);
         }
 
         public LesserFlameElemental(Serial serial)
@@ -839,7 +839,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 2);
+            this.AddLoot(LootPack.LV4, 2);
         }
 
         public LesserWindElemental(Serial serial)
@@ -923,7 +923,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 3);
+            this.AddLoot(LootPack.LV4, 3);
         }
 
         public EternalGazer(Serial serial)
@@ -1081,7 +1081,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.UltraRich, 2);
+            AddLoot(LootPack.LV6, 2);
             AddLoot(LootPack.HighScrolls, Utility.RandomMinMax(5, 20));
         }
 
@@ -1236,7 +1236,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 1);
+            this.AddLoot(LootPack.LV5, 1);
         }
 
         public CrazedMage(Serial serial)
@@ -1381,7 +1381,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 1);
+            this.AddLoot(LootPack.LV4, 1);
         }
 
         public CorruptedMage(Serial serial)
@@ -1452,7 +1452,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 2);
+            this.AddLoot(LootPack.LV4, 2);
         }
 
         public VileMage(Serial serial)
@@ -1606,7 +1606,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 2);
+            this.AddLoot(LootPack.LV5, 2);
         }
 
         public ChaosVortex(Serial serial)
@@ -1749,7 +1749,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich, 2);
+            this.AddLoot(LootPack.LV6, 2);
         }
 
         public UnboundEnergyVortex(Serial serial)
@@ -1836,7 +1836,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 2);
+            this.AddLoot(LootPack.LV5, 2);
             this.AddLoot(LootPack.HighScrolls, Utility.RandomMinMax(1, 8));
         }
 
@@ -1893,7 +1893,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 1);
+            this.AddLoot(LootPack.LV4, 1);
         }
 
         public override void OnDeath(Container c)
@@ -1958,7 +1958,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich, 1);
+            this.AddLoot(LootPack.LV6, 1);
         }
 
         public override void OnDeath(Container c)
@@ -2020,7 +2020,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.UltraRich, 1);
+            this.AddLoot(LootPack.LV6, 1);
         }
 
         public override void OnDeath(Container c)
@@ -2083,7 +2083,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 1);
+            this.AddLoot(LootPack.LV4, 1);
         }
 
         public ShameEarthElemental(Serial serial)

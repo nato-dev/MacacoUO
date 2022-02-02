@@ -126,7 +126,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average);
+            this.AddLoot(LootPack.LV3);
             this.AddLoot(LootPack.Potions);
             AddPackedLoot(LootPack.AverageProvisions, typeof(Bag));
         }
@@ -213,7 +213,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average);
+            this.AddLoot(LootPack.LV3);
             this.AddLoot(LootPack.Potions);
             AddPackedLoot(LootPack.MeagerProvisions, typeof(Bag));
         }

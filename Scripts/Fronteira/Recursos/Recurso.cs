@@ -263,6 +263,7 @@ namespace Server.Fronteira.Recursos
 
                 if (toolWithUses.UsesRemaining < 1)
                 {
+                
                     tool.Delete();
                     from.SendMessage("Sua ferramenta quebrou");
                 }

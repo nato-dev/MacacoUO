@@ -166,7 +166,7 @@ using Server.Items;
 		public override void GenerateLoot()
         {
 			if(!VoidSpawn)
-				AddLoot(LootPack.Rich, Math.Max(1, Stage / 2));
+				AddLoot(LootPack.LV4, Math.Max(1, Stage / 2));
         }
 		
 		public virtual void SetPower()

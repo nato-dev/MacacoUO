@@ -70,7 +70,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.Gems, 5);
-            this.AddLoot(LootPack.UltraRich, 1);
+            this.AddLoot(LootPack.LV6, 1);
             AddLoot( LootPack.Parrot );
             AddLoot(LootPack.HighScrolls, 2);
             AddLoot(LootPack.MedScrolls);

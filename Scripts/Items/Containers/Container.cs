@@ -118,6 +118,20 @@ namespace Server.Items
             DropItem(dropped);
         }
 
+        public override int PesoMaximo
+        {
+            get
+            {
+                if (this is IResource)
+                {
+                    var mat = ((IResource)this).Resource;
+                    if (mat == CraftResource.Eucalipto)
+                        return base.PesoMaximo * 2;
+                }
+                return base.PesoMaximo;
+            }
+        }
+
         public override bool TryDropItem(Mobile from, Item dropped, bool sendFullMessage)
         {
             if (!CheckHold(from, dropped, sendFullMessage, !CheckStack(from, dropped)))
@@ -329,22 +343,22 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-			writer.Write(1000); // Version
-			writer.Write(m_EngravedText);
+            writer.Write(1000); // Version
+            writer.Write(m_EngravedText);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
 
-			int version = reader.PeekInt();
-			switch(version)
-			{
-				case 1000:
-					reader.ReadInt();
-					m_EngravedText = reader.ReadString();
-					break;
-			}
+            int version = reader.PeekInt();
+            switch (version)
+            {
+                case 1000:
+                    reader.ReadInt();
+                    m_EngravedText = reader.ReadString();
+                    break;
+            }
         }
     }
 
@@ -834,25 +848,16 @@ namespace Server.Items
 
         public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
         {
-            Type resourceType = typeRes;
-            if (resourceType == null) resourceType = craftItem.Resources.GetAt(0).ItemType;
-
-            if (Shard.DebugEnabled)
+            CraftResource thisResource = CraftResources.GetFromType(typeRes);
+            Shard.Debug(thisResource.ToString());
+            if(thisResource == CraftResource.Eucalipto)
             {
-                Shard.Debug("TYPERES: " + typeRes.Name);
-                var ct = craftItem.Resources.Count - 1;
-                while (ct >= 0)
+                this.MaxItems += 50;
+                if(from.Skills.Carpentry.Value >= 100)
                 {
-                    var res = craftItem.Resources.GetAt(ct);
-                    Shard.Debug("ItemType: " + res.ItemType.Name);
-                    Shard.Debug("NameString" + res.NameString);
-                    //var search = res.SearchFor(baseType);
-                    ct--;
+                    this.MaxItems += 50;
                 }
-                Shard.Debug("Resource: " + resourceType.Name);
-                Shard.Debug("QTD: " + craftItem.Resources.Count);
             }
-
             return quality;
         }
     }
@@ -1123,6 +1128,8 @@ namespace Server.Items
             : base(id)
         {
         }
+
+        public override int PesoMaximo { get { return DefaultMaxWeight * 4; } }
 
         public void OnFlip(Mobile m)
         {

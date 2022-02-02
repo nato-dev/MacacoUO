@@ -57,8 +57,8 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich);
-            this.AddLoot(LootPack.Average);
+            this.AddLoot(LootPack.LV4);
+            this.AddLoot(LootPack.LV3);
             this.AddLoot(LootPack.Gems);
 
             if (0.02 > Utility.RandomDouble())

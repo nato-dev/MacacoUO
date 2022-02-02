@@ -85,7 +85,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager, 5);
+            AddLoot(LootPack.LV2, 5);
             // TODO: weapon
         }
 

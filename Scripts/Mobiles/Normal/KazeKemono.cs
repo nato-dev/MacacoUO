@@ -63,7 +63,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Rich, 3);
+            AddLoot(LootPack.LV4, 3);
         }
 
         

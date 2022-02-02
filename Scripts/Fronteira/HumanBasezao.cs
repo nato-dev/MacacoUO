@@ -69,7 +69,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddPackedLoot(LootPack.MeagerProvisions, typeof(Bag));
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV2);
         }
 
         public override void Serialize(GenericWriter writer)

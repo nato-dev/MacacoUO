@@ -64,7 +64,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot() // -- Need to verify
         {
-            this.AddLoot(LootPack.FilthyRich);
+            this.AddLoot(LootPack.LV5);
         }
 
         public override void OnDamage(int amount, Mobile from, bool willKill)

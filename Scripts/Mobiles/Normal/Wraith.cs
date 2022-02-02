@@ -1,5 +1,8 @@
 using System;
 using Server.Items;
+using Server.Spells;
+using Server.Spells.Fifth;
+using Server.Spells.Fourth;
 
 namespace Server.Mobiles
 {
@@ -44,11 +47,25 @@ namespace Server.Mobiles
             this.PackReg(10);
         }
 
+        public override Spell ChooseSpell()
+        {
+            var alvo = Combatant as Mobile;
+            if (alvo != null)
+            {
+                if (!CurseSpell.UnderEffect(alvo))
+                    return new CurseSpell(this, null);
+                if (!alvo.Paralyzed)
+                    return new ParalyzeSpell(this, null);
+            }
+            return new MindBlastSpell(this, null);
+        }
+
         public Wraith(Serial serial)
             : base(serial)
         {
         }
 
+        /*
         public override void OnTarget(Mobile m)
         {
             base.OnTarget(m);
@@ -63,6 +80,7 @@ namespace Server.Mobiles
                 }
             }
         }
+        */
 
         public class FreezeTimer : Timer
         {
@@ -116,7 +134,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Meager);
+            this.AddLoot(LootPack.LV2);
         }
 
         public override void Serialize(GenericWriter writer)

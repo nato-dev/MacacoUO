@@ -61,7 +61,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 8);
+            AddLoot(LootPack.LV7, 8);
             AddLoot(LootPack.Parrot, 1);
         }
 

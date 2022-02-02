@@ -58,7 +58,7 @@ namespace Server.Engines.Shadowguard
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 3);
+            this.AddLoot(LootPack.LV4, 3);
         }
 
         public override bool AlwaysMurderer { get { return true; } }
@@ -102,7 +102,7 @@ namespace Server.Engines.Shadowguard
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 3);
+            this.AddLoot(LootPack.LV5, 3);
         }
 
         public ShantyThePirate(Serial serial) : base(serial)
@@ -269,7 +269,7 @@ namespace Server.Engines.Shadowguard
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 3);
+            this.AddLoot(LootPack.LV4, 3);
         }
 
         public VileTreefellow(Serial serial) : base(serial)
@@ -379,7 +379,7 @@ namespace Server.Engines.Shadowguard
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 3);
+            this.AddLoot(LootPack.LV4, 3);
         }
 
         public EnsorcelledArmor(Serial serial) : base(serial)
@@ -435,7 +435,7 @@ namespace Server.Engines.Shadowguard
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich, 3);
+            this.AddLoot(LootPack.LV4, 3);
         }
 
         public VileDrake(Serial serial) : base(serial)
@@ -546,7 +546,7 @@ namespace Server.Engines.Shadowguard
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 3);
+            this.AddLoot(LootPack.LV5, 3);
             AddLoot(LootPack.Gems, 8);
         }
 

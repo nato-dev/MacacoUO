@@ -65,7 +65,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager);
+            AddLoot(LootPack.LV2);
             PackItem(Loot.RandomWeapon());
         }
 

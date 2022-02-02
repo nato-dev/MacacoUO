@@ -79,7 +79,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich, 4);
+            this.AddLoot(LootPack.LV5, 4);
             AddLoot( LootPack.Parrot );
             this.AddLoot(LootPack.Gems);
             this.AddLoot(LootPack.HighScrolls, 2);

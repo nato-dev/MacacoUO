@@ -148,8 +148,11 @@ namespace Server.Items
             }
         }
 
-
-        public int PesoMax = 0;
+        public virtual int PesoMaximo { get {
+                return DefaultMaxWeight;
+            }
+        }
+        public int PesoMaximoOverride = 0;
 
         [CommandProperty(AccessLevel.GameMaster)]
         public virtual int MaxWeight
@@ -162,9 +165,9 @@ namespace Server.Items
                 }
                 else
                 {
-                    if (PesoMax == 0)
-                        PesoMax = DefaultMaxWeight;
-                    return PesoMax;
+                    if (PesoMaximoOverride != 0)
+                        return PesoMaximoOverride;
+                    return PesoMaximo;
                 }
             }
         }

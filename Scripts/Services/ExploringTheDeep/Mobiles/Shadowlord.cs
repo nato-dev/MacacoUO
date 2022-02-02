@@ -158,8 +158,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.SuperBoss, 4);
-            this.AddLoot(LootPack.FilthyRich);
+            this.AddLoot(LootPack.LV7, 4);
+            this.AddLoot(LootPack.LV5);
         }
 
         public override void CheckReflect(Mobile caster, ref bool reflect)

@@ -191,8 +191,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 2);
-            AddLoot(LootPack.Meager);
+            AddLoot(LootPack.LV7, 2);
+            AddLoot(LootPack.LV2);
         }
 
         public void Morph()

@@ -93,7 +93,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             //this.AddLoot(LootPack.NewRandom(230, 400, 2, 300, 550, 75));
-            AddLoot(LootPack.Rich, 1);
+            AddLoot(LootPack.LV4, 1);
         }
 
         public override void OnCarve(Mobile from, Corpse corpse, Item with)

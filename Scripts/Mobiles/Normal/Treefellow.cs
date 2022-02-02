@@ -80,7 +80,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average);
+            AddLoot(LootPack.LV3);
         }
 
         public override void Serialize(GenericWriter writer)

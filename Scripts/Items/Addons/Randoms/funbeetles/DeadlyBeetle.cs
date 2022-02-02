@@ -39,7 +39,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Average, 5);
+            AddLoot(LootPack.LV3, 5);
         }
 
         public override void OnGotMeleeAttack(Mobile attacker)

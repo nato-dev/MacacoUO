@@ -12,7 +12,7 @@ namespace Server
         private readonly IPoint3D m_Goal;
         private MovementPath m_Path;
         private int m_Index;
-        private Point3D m_Next, m_LastGoalLoc;
+        public Point3D m_Next, m_LastGoalLoc;
         private DateTime m_LastPathTime;
         private MoveMethod m_Mover;
         public PathFollower(Mobile from, IPoint3D goal)

@@ -77,7 +77,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 4);
+            AddLoot(LootPack.LV7, 4);
         }
 
         public override void OnDeath(Container c)

@@ -103,7 +103,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Average);
+            this.AddLoot(LootPack.LV3);
             if(Utility.RandomDouble() < 0.4)
             {
                 this.AddLoot(LootPack.MedScrolls);

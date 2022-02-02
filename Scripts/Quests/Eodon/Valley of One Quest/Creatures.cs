@@ -253,7 +253,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 2);
+            AddLoot(LootPack.LV7, 2);
         }
 
         public TRex(Serial serial)
@@ -357,7 +357,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.SuperBoss, 2);
+            AddLoot(LootPack.LV7, 2);
         }
 
         public override bool AutoDispel { get { return true; } }
@@ -684,7 +684,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Rich, 3);
+            AddLoot(LootPack.LV4, 3);
         }
 
         public Trapper(Serial serial)
@@ -723,7 +723,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Rich, 3);
+            AddLoot(LootPack.LV4, 3);
         }
 
         public Poacher(Serial serial)
@@ -796,7 +796,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich, 3);
+            AddLoot(LootPack.LV5, 3);
             AddLoot(LootPack.Gems, 2);
             AddLoot(LootPack.MedScrolls);
         }

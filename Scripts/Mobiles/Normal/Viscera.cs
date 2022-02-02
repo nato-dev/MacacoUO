@@ -54,7 +54,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.FilthyRich);
+            AddLoot(LootPack.LV5);
             AddLoot(LootPack.Gems, Utility.Random(1, 3));
         }
 

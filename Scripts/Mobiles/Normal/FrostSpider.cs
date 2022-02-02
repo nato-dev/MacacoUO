@@ -72,8 +72,8 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Meager);
-            AddLoot(LootPack.Poor);
+            AddLoot(LootPack.LV2);
+            AddLoot(LootPack.LV1);
         }
 
         public override void OnThink()

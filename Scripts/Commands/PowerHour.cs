@@ -23,9 +23,7 @@ namespace Server.Commands
         public static void Initialize()
         {
             CommandSystem.Register("powerhour", AccessLevel.Administrator, OnAction);
-
             EventSink.Login += OnLogin;
-
             Inicial();
 
         }
@@ -45,7 +43,7 @@ namespace Server.Commands
         public static void Inicial()
         {
             var dateNow = DateTime.Now;
-            var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 18, 0, 0);
+            var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 20, 0, 0);
             TimeSpan ts;
             if (date > dateNow)
                 ts = date - dateNow;

@@ -9,7 +9,7 @@ namespace Server.Mobiles
         public ElderGazer()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "an elder gazer";
+            this.Name = "magolho anciao";
             this.Body = 22;
             this.BaseSoundID = 377;
 
@@ -57,7 +57,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.FilthyRich);
+            this.AddLoot(LootPack.LV5);
         }
 
         public override void Serialize(GenericWriter writer)

@@ -71,7 +71,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.Rich);  // Need to verify
+            AddLoot(LootPack.LV4);  // Need to verify
         }
 
         public override void Serialize(GenericWriter writer)

@@ -47,7 +47,7 @@ namespace Server.Mobiles
 		
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.Rich);            
+            this.AddLoot(LootPack.LV4);            
         }
 
         public ExodusJuggernaut(Serial serial): base(serial)
