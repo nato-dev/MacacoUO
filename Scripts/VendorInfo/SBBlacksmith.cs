@@ -134,7 +134,7 @@ namespace Server.Mobiles
 
                 //Add(new GenericBuyInfo("Manual de Craft Vidros (Alchemy)", typeof(GlassblowingBook), 20000, 30, 0xFF4, 0));
                 Add(new GenericBuyInfo("Manual Minerar Areia (Mining)", typeof(SandMiningBook), 20000, 30, 0xFF4, 0));
-
+                this.Add(new GenericBuyInfo(typeof(FemaleLeatherChest), 31, 20, 0x1c06, 0));
                 //Add(new GenericBuyInfo("1154005", typeof(MalleableAlloy), 50, 500, 7139, 2949, true));
             }
         }
@@ -250,6 +250,7 @@ namespace Server.Mobiles
                 this.Add(typeof(Scimitar), 18);
                 this.Add(typeof(ThinLongsword), 13);
                 this.Add(typeof(VikingSword), 27);
+                this.Add(typeof(FemaleLeatherChest), 27);
             }
         }
     }
