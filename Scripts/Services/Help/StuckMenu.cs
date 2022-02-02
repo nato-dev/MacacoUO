@@ -52,7 +52,7 @@ namespace Server.Menus.Questions
                 new Point3D(738, 3486, -19)
             }, Map.TerMur),
             */
-            new StuckMenuEntry("Rhodes", new Point3D[]
+            new StuckMenuEntry("Haven", new Point3D[]
             {
               CharacterCreation.HAVEN,
 

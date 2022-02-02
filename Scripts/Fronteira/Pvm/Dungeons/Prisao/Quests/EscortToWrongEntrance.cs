@@ -8,7 +8,7 @@ namespace Server.Engines.Quests
         public EscortToWrongEntrance()
             : base()
         {
-            this.AddObjective(new EscortObjective("Rhodes"));
+            this.AddObjective(new EscortObjective("Wrong"));
             this.AddReward(new BaseReward("Compaixao"));
             this.AddReward(new BaseReward(typeof(Gold), 1000, "1000 Moedas de Ouro"));
         }

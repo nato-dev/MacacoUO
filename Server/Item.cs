@@ -6319,6 +6319,7 @@ namespace Server
             }
         }
 
+        [CommandProperty(AccessLevel.GameMaster)]
         public bool Insured
         {
             get { return GetFlag(ImplFlag.Insured); }

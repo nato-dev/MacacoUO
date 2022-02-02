@@ -59,7 +59,7 @@ namespace Server.Items
 
     public class RightingWrongRewardTitleDeed : BaseRewardTitleDeed
     {
-        public override TextDefinition Title { get { return new TextDefinition("Guarda de Rhodes"); } } // Warden of Wrong
+        public override TextDefinition Title { get { return new TextDefinition("Guarda de Wrong"); } } // Warden of Wrong
 
         [Constructable]
         public RightingWrongRewardTitleDeed()
