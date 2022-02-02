@@ -235,13 +235,13 @@ namespace Server.Fronteira.Armory
                 if(item.Amount > i.qtd)
                 {
                     var dupe = Mobile.LiftItemDupe(item, i.qtd);
-                    item = dupe;
-                }
+                } 
                 from.PlaceInBackpack(item);
                 if (item.Layer != Layer.Invalid && from is PlayerMobile)
                 {
                     ((PlayerMobile)from).SmoothForceEquip(item);
                 }
+                from.OverheadMessage("* pegou no armario *");
             }
             from.SendMessage("Voce pegou um set");
         }

@@ -4167,6 +4167,8 @@ namespace Server.Mobiles
                     return true;
                 }
             }
+            if (this.Region is GuardedRegion)
+                return true;
 
             return base.CheckShove(shoved);
         }

@@ -68,14 +68,13 @@ namespace Server.Gumps
             var y = 0;
             var ct = 0;
 
-
             if (camper.CampfireLocations == "")
             {
                 AddHtml(120, 126 + y, 272, 25, "Nenhum acampamento", (bool)true, (bool)false);
                 return;
             }
 
-            for (var xx = pageAtual * 10; xx < 10; xx++)
+            for (var xx = pageAtual * 7; xx < 7; xx++)
             {
                 if (xx < campsLiberados.Count)
                 {

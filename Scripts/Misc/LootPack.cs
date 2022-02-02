@@ -500,7 +500,7 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 20.00, 1, 1, 10, 20),
                     new LootPackEntry(false, OldMagicItems, 2.00, 1, 1, 30, 90),
                     new LootPackEntry(false, OldMagicItems, 0.50, 1, 1, 40, 100),
-                    new LootPackEntry(false, GemItems, 20.00, 1, 1, 1, 100),
+                    new LootPackEntry(false, GemItems, 10.00, 1, 1, 1, 100),
                 });
 
         public static readonly LootPack OldRich =
@@ -511,8 +511,7 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 50.00, 1, 1, 60, 100),
                     new LootPackEntry(false, OldMagicItems, 10.00, 1, 1, 65, 100),
                     new LootPackEntry(false, OldMagicItems, 1.00, 1, 1, 70, 100),
-                     new LootPackEntry(false, GemItems, 100.00, 1, 1, 1, 100),
-                      new LootPackEntry(false, GemItems, 50.00, 1, 1, 1, 100),
+                    new LootPackEntry(false, GemItems, 20, 1, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 0.01, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.01, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.01, 1,1,60,100),
@@ -527,7 +526,7 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 33.00, 1, 1, 60, 100),
                     new LootPackEntry(false, OldMagicItems, 20.00, 1, 1, 70, 100),
                     new LootPackEntry(false, OldMagicItems, 5.00, 1, 1, 80, 100),
-                    new LootPackEntry(false, GemItems, 100.00, 3, 1, 1, 100),
+                    new LootPackEntry(false, GemItems, 100, 3, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 0.1, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.1, 1,1,60,100),
                 });
@@ -543,7 +542,7 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 50, 100),
                     new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 60, 100),
                     new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 60, 100),
-                     new LootPackEntry(false, GemItems, 100.00, 10, 1, 1, 100),
+                     new LootPackEntry(false, GemItems, 50.00, 10, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 0.5, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.5, 1,1,60,100),
                 });
