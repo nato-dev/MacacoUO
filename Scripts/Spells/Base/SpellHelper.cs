@@ -895,7 +895,7 @@ namespace Server.Spells
             {
                 if (caster != null)
                     SendInvalidMessage(caster, type);
-
+                Shard.Debug("Invalid");
                 return false;
             }
 

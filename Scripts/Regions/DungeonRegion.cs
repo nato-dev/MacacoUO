@@ -127,6 +127,10 @@ namespace Server.Regions
 
         public override bool CheckTravel(Mobile traveller, Point3D p, TravelCheckType type)
         {
+            if(Shard.DebugEnabled)
+            {
+                Shard.Debug("Travel type: " + type.ToString());
+            }
             if (type == TravelCheckType.GateTo || type == TravelCheckType.RecallTo || type==TravelCheckType.Mark)
                 return false;
             return true;

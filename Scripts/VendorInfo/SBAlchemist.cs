@@ -50,8 +50,8 @@ namespace Server.Mobiles
 
                 SBMage.BuyReagents(this);
 
-                Add(new GenericBuyInfo(typeof(RecipeScroll), 100000, 10, 0x2831, 0, new object[] { (int)AlchemyRecipes.AntiParalize }));
-                Add(new GenericBuyInfo(typeof(RecipeScroll), 100000, 10, 0x2831, 0, new object[] { (int)AlchemyRecipes.Encolhimento }));
+                Add(new GenericBuyInfo(typeof(RecipeScroll), 50000, 10, 0x2831, 0, new object[] { (int)AlchemyRecipes.AntiParalize }));
+                Add(new GenericBuyInfo(typeof(RecipeScroll), 10000, 10, 0x2831, 0, new object[] { (int)AlchemyRecipes.Encolhimento }));
 
                 Add(new GenericBuyInfo(typeof(Bottle), 5, 100, 0xF0E, 0, true)); 
                 //Add(new GenericBuyInfo(typeof(HeatingStand), 2, 100, 0x1849, 0));

@@ -190,7 +190,7 @@ namespace Server.Engines.Craft
             }
 
             // Enhancement
-            index = AddCraft(typeof(PocaoShrink), 1116349, "Pocao do Encolhimento", 80, 100, typeof(ExecutionersCap), "Cogumelo do Executador", 3, "Voce nao tem cogumelo do executador");
+            index = AddCraft(typeof(PocaoShrink), 1116349, "Pocao do Encolhimento", 60, 80, typeof(ExecutionersCap), "Cogumelo do Executador", 3, "Voce nao tem cogumelo do executador");
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
             AddRecipe(index, (int)AlchemyRecipes.Encolhimento);
 
