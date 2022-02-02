@@ -2279,7 +2279,7 @@ namespace Server.Items
 
             double chance = Utility.RandomDouble();
 
-            Shard.Debug("Absorb Chance: " + chance + " em dano " + damage);
+            Shard.Debug("Absorb Random: " + chance + " em dano " + damage);
 
             Item armorItem;
 
@@ -2424,8 +2424,15 @@ namespace Server.Items
 
                 if (defender is PlayerMobile)
                 {
-                    scalar *= 3;
+                    if (attacker is BaseCreature)
+                    {
+                        scalar *= 2.5;
+                    } else
+                    {
+                        scalar *= 3;
+                    }
                 }
+               
 
                 int from = (int)(virtualArmor * scalar) / 2;
                 int to = (int)(virtualArmor * scalar);
