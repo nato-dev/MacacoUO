@@ -342,6 +342,7 @@ namespace Server.Items
             : base(0xA4F)
         {
             this.Weight = 1.0;
+            Name = "Armario";
         }
 
         public Armario(Serial serial)
@@ -433,6 +434,7 @@ namespace Server.Items
             : base(0xA4D)
         {
             this.Weight = 1.0;
+            Name = "Armario Elegante";
         }
 
         public ArmarioBonito(Serial serial)

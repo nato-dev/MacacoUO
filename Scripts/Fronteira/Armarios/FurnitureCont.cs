@@ -85,7 +85,7 @@ namespace Server.Items
 
             if (m_Resource > CraftResource.Ferro)
             {
-                list.Add(1114057, "#{0}", CraftResources.GetLocalizationNumber(m_Resource)); // ~1_val~
+                list.Add("Feito de "+ m_Resource.ToString()); // ~1_val~
             }
         }
 

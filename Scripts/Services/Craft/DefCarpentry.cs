@@ -354,9 +354,8 @@ namespace Server.Engines.Craft
             AddCraft(typeof(LargeCrate), 1044292, 1044311, 47.3, 72.3, typeof(Board), 1044041, 18, 1044351);
             AddCraft(typeof(WoodenChest), 1044292, 1023650, 73.6, 98.6, typeof(Board), 1044041, 20, 1044351);
             AddCraft(typeof(EmptyBookcase), 1044292, 1022718, 31.5, 56.5, typeof(Board), 1044041, 25, 1044351);
-            AddCraft(typeof(FancyArmoire), 1044292, 1044312, 84.2, 109.2, typeof(Board), 1044041, 35, 1044351);
-            AddCraft(typeof(Armoire), 1044292, 1022643, 84.2, 109.2, typeof(Board), 1044041, 35, 1044351);
-
+            AddCraft(typeof(ArmarioBonito), 1044292, "Armario Elegante de Equips", 70, 130, typeof(Board), 1044041, 50, 1044351);
+            AddCraft(typeof(Armario), 1044292, "Armario de Equips", 60, 100, typeof(Board), 1044041, 35, 1044351);
 
             index = AddCraft(typeof(PlainWoodenChest), 1044292, 1030251, 90.0, 115.0, typeof(Board), 1044041, 30, 1044351);
 
