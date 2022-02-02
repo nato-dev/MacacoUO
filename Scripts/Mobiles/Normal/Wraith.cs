@@ -2,7 +2,9 @@ using System;
 using Server.Items;
 using Server.Spells;
 using Server.Spells.Fifth;
+using Server.Spells.First;
 using Server.Spells.Fourth;
+using Server.Spells.Second;
 
 namespace Server.Mobiles
 {
@@ -22,12 +24,12 @@ namespace Server.Mobiles
             this.SetDex(76, 95);
             this.SetInt(36, 60);
 
-            this.SetHits(46, 60);
+            this.SetHits(56, 80);
 
             this.SetDamage(7, 11);
 
-            this.SetDamageType(ResistanceType.Physical, 50);
-            this.SetDamageType(ResistanceType.Cold, 50);
+            this.SetDamageType(ResistanceType.Physical, 45);
+            this.SetDamageType(ResistanceType.Cold, 55);
 
             this.SetResistance(ResistanceType.Physical, 25, 30);
             this.SetResistance(ResistanceType.Cold, 15, 25);
@@ -35,29 +37,21 @@ namespace Server.Mobiles
 
             this.SetSkill(SkillName.EvalInt, 55.1, 70.0);
             this.SetSkill(SkillName.Magery, 55.1, 70.0);
-            this.SetSkill(SkillName.MagicResist, 55.1, 70.0);
+            this.SetSkill(SkillName.MagicResist, 10, 20);
             this.SetSkill(SkillName.Tactics, 45.1, 60.0);
             this.SetSkill(SkillName.Wrestling, 45.1, 55.0);
 
-            this.Fame = 4000;
-            this.Karma = -4000;
+            this.Fame = 4500;
+            this.Karma = -4500;
 
-            this.VirtualArmor = 28;
+            this.VirtualArmor = 65;
 
             this.PackReg(10);
         }
 
         public override Spell ChooseSpell()
         {
-            var alvo = Combatant as Mobile;
-            if (alvo != null)
-            {
-                if (!CurseSpell.UnderEffect(alvo))
-                    return new CurseSpell(this, null);
-                if (!alvo.Paralyzed)
-                    return new ParalyzeSpell(this, null);
-            }
-            return new MindBlastSpell(this, null);
+            return new HarmSpell(this, null);
         }
 
         public Wraith(Serial serial)

@@ -212,6 +212,8 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new HunterAchievement(1027, 3000, 0x2602, false, null, 1, "Formigas Guerreiras Vermelhas", "Mate 50 Formigas Guerreiras Vermelhas", 50, typeof(RedSolenWarrior), typeof(SacolaDeOuro3000)));
             Achievements.Add(new HunterAchievement(1028, 3000, 0x2602, false, null, 1, "Formigas Guerreiras Pretas", "Mate 50 Formigas Guerreiras Pretas", 50, typeof(BlackSolenWarrior), typeof(SacolaDeOuro3000)));
             Achievements.Add(new HunterAchievement(1029, 3000, 0x2602, false, null, 5, "Plantas Carnivoras", "Mate 5 Plantas Carnivoras", 5, typeof(Corpser), typeof(SacolaDeOuro3000)));
+            Achievements.Add(new HunterAchievement(1030, 3000, 0x258B, false, null, 1, "Numero da Besta", "Mate um Capeta", 5, typeof(CrystalDaemon), typeof(SacolaDeOuro3000)));
+            Achievements.Add(new HunterAchievement(1030, 3000, 0x258B, false, null, 20, "Domador do Tinhoso", "Mate 20 Capetas", 200, typeof(CrystalDaemon), typeof(SorcererHat)));
 
             // SKILLS
             // BS

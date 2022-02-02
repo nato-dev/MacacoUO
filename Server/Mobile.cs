@@ -3769,6 +3769,8 @@ namespace Server
             {
                 return true;
             }
+            if (shoved.Player && Shard.POL_STYLE)
+                return true;
           
             if (!m_Pushing)
             {
@@ -7283,7 +7285,7 @@ namespace Server
         public Skills Skills { get { return m_Skills; } set { } }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool IgnoreMobiles
+        public virtual bool IgnoreMobiles
         {
             get { return m_IgnoreMobiles; }
             set

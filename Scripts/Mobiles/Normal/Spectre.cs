@@ -1,7 +1,10 @@
 using System;
 using Server.Items;
+using Server.Spells;
 using Server.Spells.Fifth;
 using Server.Spells.Fourth;
+using Server.Spells.Second;
+using Server.Spells.Seventh;
 using Server.Spells.Third;
 
 namespace Server.Mobiles
@@ -24,7 +27,7 @@ namespace Server.Mobiles
 
             this.SetHits(46, 60);
 
-            this.SetDamage(3, 11);
+            this.SetDamage(3, 5);
 
             this.SetDamageType(ResistanceType.Physical, 50);
             this.SetDamageType(ResistanceType.Cold, 50);
@@ -34,7 +37,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Poison, 10, 20);
 
             this.SetSkill(SkillName.EvalInt, 55.1, 70.0);
-            this.SetSkill(SkillName.Magery, 35, 50);
+            this.SetSkill(SkillName.Magery, 100, 100);
             this.SetSkill(SkillName.MagicResist, 55.1, 70.0);
             this.SetSkill(SkillName.Tactics, 45.1, 60.0);
             this.SetSkill(SkillName.Wrestling, 45.1, 55.0);
@@ -52,19 +55,21 @@ namespace Server.Mobiles
         {
         }
 
-        public override void OnTarget(Mobile m)
+        public override Spell ChooseSpell()
         {
-            base.OnTarget(m);
-            if (m != FocusMob && m != null && m is PlayerMobile)
+            var alvo = Combatant as Mobile;
+            if (alvo != null)
             {
-                var player = (PlayerMobile)m;
-                if (!player.IsCooldown("specfreeze"))
+                if(alvo is BaseCreature)
                 {
-                    player.SetCooldown("specfreeze", TimeSpan.FromSeconds(40));
-                    PublicOverheadMessage(Network.MessageType.Regular, 0, false, "* conjurando uma magia *");
-                    new FreezeTimer(this, m).Start();
+                    if(!alvo.Poisoned)
+                        return new PoisonSpell(this, null);
+                    return new FlameStrikeSpell(this, null);
                 }
+                if(alvo.Mana > 10)
+                    return new ManaDrainSpell(this, null);
             }
+            return new HarmSpell(this, null);
         }
 
         public class FreezeTimer : Timer

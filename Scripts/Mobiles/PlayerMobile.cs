@@ -4766,8 +4766,8 @@ namespace Server.Mobiles
                 }
             }
         }
-        //FE: Fim do Evento
 
+        //FE: Fim do Evento
         public override void OnDeath(Container c)
         {
             if (NetState != null && NetState.IsEnhancedClient)

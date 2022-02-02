@@ -2426,7 +2426,7 @@ namespace Server.Items
                 {
                     if (attacker is BaseCreature)
                     {
-                        scalar *= 2.5;
+                        scalar *= 2;
                     } else
                     {
                         scalar *= 3;

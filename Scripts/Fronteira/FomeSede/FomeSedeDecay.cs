@@ -56,6 +56,9 @@ namespace Server.Misc
 
         public static void Hunger(HungerChangedEventArgs e)
         {
+            if (!e.Mobile.RP)
+                return;
+
             if (e.Hunger && e.OldValue < e.Mobile.Hunger)
             {
                 if (e.Mobile.HasGump(typeof(FomeSede)))
@@ -78,7 +81,8 @@ namespace Server.Misc
                 {
                     HungerDecay(state.Mobile);
                     ThirstDecay(state.Mobile);
-                    state.Mobile.SendGump(new FomeSede(state.Mobile));
+                    if(state.Mobile.RP)
+                        state.Mobile.SendGump(new FomeSede(state.Mobile));
                 }
             }
         }

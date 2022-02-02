@@ -951,6 +951,10 @@ namespace Server.Spells
             }
             #endregion
 
+
+
+            /*
+
             if (m_Caster.Spell != null)
             {
                 Shard.Debug("Disturbando magia existente");
@@ -960,6 +964,7 @@ namespace Server.Spells
                     ((Spell)m_Caster.Spell).Disturb(DisturbType.NewCast, false, false);
                 }
             }
+            */
 
             if (m_Caster.Spell == null && m_Caster.CheckSpellCast(this) && CheckCast() &&
                 m_Caster.Region.OnBeginSpellCast(m_Caster, this))
@@ -1077,10 +1082,12 @@ namespace Server.Spells
                 }
             }
 
+            /*
             if (!Shard.POL_STYLE && m_Caster.Spell is Spell && ((Spell)m_Caster.Spell).State == SpellState.Sequencing)
             {
                 ((Spell)m_Caster.Spell).Disturb(DisturbType.NewCast);
             }
+            */
 
             var item = m_Caster.FindItemOnLayer(Layer.OneHanded);
             if (item != null && !item.AllowEquipedCast(this.Caster))
@@ -1144,6 +1151,7 @@ namespace Server.Spells
             {
                 m_Caster.SendMessage("Voce nao pode fazer isto agora");
             }
+          
             /*
             else if (BandageContext.GetContext(m_Caster) != null)
             {
