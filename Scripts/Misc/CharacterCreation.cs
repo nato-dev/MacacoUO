@@ -16,24 +16,9 @@ namespace Server.Misc
     {
         public static Point3D WSHALL = new Point3D(1015, 527, -65);
         public static Point3D HAVEN = new Point3D(3503, 2574, 14);
-
-        private static readonly CityInfo m_NewHavenInfo = new CityInfo(
-            "New Haven",
-            "The Bountiful Harvest Inn",
-            3503,
-            2574,
-            14,
-            Map.Trammel);
-
-        private static readonly CityInfo m_SiegeInfo = new CityInfo(
-            "Britain",
-            "The Wayfarer's Inn",
-            1075074,
-            1602,
-            1591,
-            20,
-            Map.Felucca);
-
+        public static Point3D HAVEN_NOOB = new Point3D(3473, 2623, 10);
+        
+        
         private static Mobile m_Mobile;
 
         public static void Initialize()
@@ -226,11 +211,10 @@ namespace Server.Misc
             }
 
             var city = args.City;
-            //var map = Siege.SiegeShard && city.Map == Map.Trammel ? Map.Felucca : city.Map;
-
-
-            newChar.MoveToWorld(city.Location, city.Map);
-
+            if(newChar.IsYoung())
+                newChar.MoveToWorld(HAVEN_NOOB, Map.Trammel);
+            else
+                newChar.MoveToWorld(HAVEN, Map.Trammel);
             Utility.PushColor(ConsoleColor.Green);
             Console.WriteLine("Login: {0}: New character being created (account={1})", state, args.Account.Username);
             Utility.PopColor();

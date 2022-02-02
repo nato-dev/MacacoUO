@@ -20,7 +20,7 @@ namespace Server.Mobiles
             SetDex(76, 95);
             SetInt(301, 325);
 
-            SetHits(286, 303);
+            SetHits(386, 403);
 
             SetDamage(7, 14);
 
