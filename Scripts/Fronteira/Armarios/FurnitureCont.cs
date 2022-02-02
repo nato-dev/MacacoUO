@@ -69,19 +69,6 @@ namespace Server.Items
         {
         }
 
-        public override void Open(Mobile from)
-        {
-            if(BaseArmario.Acesso(this, from))
-            {
-                if(from.IsCooldown("armario"))
-                {
-                    from.SetCooldown("armario", TimeSpan.FromMinutes(30));
-                    from.SendMessage(78, "Guarde mochilas com sets no armario para equipar sets rapidamente !");
-                }
-            }
-            base.Open(from);
-        }
-
         public override void GetProperties(ObjectPropertyList list)
         {
             base.GetProperties(list);

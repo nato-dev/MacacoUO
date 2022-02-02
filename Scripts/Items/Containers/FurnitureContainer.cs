@@ -489,7 +489,7 @@ namespace Server.Items
                 return false;
             }
 
-            if (c is Armoire || c is FancyArmoire)
+            if (c is Armoire || c is FancyArmoire || c is Armario || c is ArmarioBonito)
             {
                 Timer t = new FurnitureTimer(c, m);
                 t.Start();
@@ -528,7 +528,7 @@ namespace Server.Items
                 m_Table.Remove(c);
             }
 
-            if (c is Armoire || c is FancyArmoire)
+            if (c is Armoire || c is FancyArmoire || c is Armario || c is ArmarioBonito)
             {
                 switch ( c.ItemID )
                 {
@@ -545,6 +545,7 @@ namespace Server.Items
                         c.ItemID = 0xA53;
                         break;
                 }
+               
             }
         }
     }

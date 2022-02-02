@@ -185,21 +185,6 @@ namespace Server.Mobiles
             this.PackReg(10);
         }
 
-        public override void OnStartCombat(Mobile m)
-        {
-            base.OnStartCombat(m);
-            if (m != FocusMob && m != null && m is PlayerMobile)
-            {
-                var player = (PlayerMobile)m;
-                if (!player.IsCooldown("specfreeze"))
-                {
-                    player.SetCooldown("specfreeze", TimeSpan.FromSeconds(40));
-                    PublicOverheadMessage(Network.MessageType.Regular, 0, false, "* preparando um olhar petrificante *");
-                    new Wraith.FreezeTimer(this, m).Start();
-                }
-            }
-        }
-
         public GreaterShade(Serial serial)
             : base(serial)
         {

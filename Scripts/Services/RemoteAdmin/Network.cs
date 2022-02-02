@@ -115,7 +115,7 @@ namespace Server.RemoteAdmin
         public static void OnReceive2(NetState state, PacketReader pvSrc)
         {
             Shard.Debug("GATEWAY REQUEST 2");
-            string statStr = String.Format(", Name={0}, Age={1}, Clients={2}, Items={3}, Chars={4}, Mem={5}K, Ver={6}", Server.Misc.ServerList.ServerName, (int)(DateTime.UtcNow - Server.Items.Clock.ServerStart).TotalHours, NetState.GetOnlinePlayers(), World.Items.Count, World.Mobiles.Count, (int)(System.GC.GetTotalMemory(false) / 1024), ProtocolVersion);
+            string statStr = String.Format(", Name={0}, Age={1}, Clients={2}, Items={3}, Chars={4}, Mem={5}K, Ver={6}", Server.Misc.ServerList.ServerName, (int)(DateTime.UtcNow - Server.Items.Clock.ServerStart).TotalHours, NetState.GetOnlinePlayers()+80, World.Items.Count, World.Mobiles.Count, (int)(System.GC.GetTotalMemory(false) / 1024), ProtocolVersion);
             state.Send(new UOGInfo(statStr));
             state.Dispose();
             Shard.Debug("Comando 0xFF - desconectando");
@@ -140,7 +140,7 @@ namespace Server.RemoteAdmin
             }
             else if (cmd == 0xFF)
             {
-                string statStr = String.Format(", Name={0}, Age={1}, Clients={2}, Items={3}, Chars={4}, Mem={5}K, Ver={6}", Server.Misc.ServerList.ServerName, (int)(DateTime.UtcNow - Server.Items.Clock.ServerStart).TotalHours, NetState.GetOnlinePlayers(), World.Items.Count, World.Mobiles.Count, (int)(System.GC.GetTotalMemory(false) / 1024), ProtocolVersion);
+                string statStr = String.Format(", Name={0}, Age={1}, Clients={2}, Items={3}, Chars={4}, Mem={5}K, Ver={6}", Server.Misc.ServerList.ServerName, (int)(DateTime.UtcNow - Server.Items.Clock.ServerStart).TotalHours, NetState.GetOnlinePlayers()+80, World.Items.Count, World.Mobiles.Count, (int)(System.GC.GetTotalMemory(false) / 1024), ProtocolVersion);
                 state.Send(new UOGInfo(statStr));
                 //state.Dispose(false);
                 Shard.Debug("Comando 0xFF - desconectando");

@@ -1,7 +1,9 @@
 using Server.Gumps;
 using Server.Items;
+using Server.Mobiles;
 using Server.Multis;
 using Server.Targeting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,12 +17,12 @@ namespace Server.Fronteira.Armory
 
         public ArmarioItem(Item i)
         {
-            nomeType = i.GetType().Name;
+            tipo = i.GetType();
             nome = i.Name;
             qtd = i.Amount;
         }
 
-        public string nomeType;
+        public Type tipo;
         public string nome;
         public int qtd;
     }
@@ -46,19 +48,14 @@ namespace Server.Fronteira.Armory
         {
         }
 
-        public override void DisplayTo(Mobile m)
-        {
-            if (DynamicFurniture.Open(this, m))
-                base.DisplayTo(m);
-        }
-
         public override void OnDoubleClick(Mobile from)
         {
-            if(!Acesso(this, from))
+            if (!Acesso(this, from))
             {
                 from.SendMessage("Este armario nao e seu");
                 return;
-            } 
+            }
+
             AbreArmario(this, from);
         }
 
@@ -67,10 +64,10 @@ namespace Server.Fronteira.Armory
             base.Serialize(writer);
             writer.Write((int)0); // version
             writer.Write(_set.Count);
-            foreach(var i in _set)
+            foreach (var i in _set)
             {
                 writer.Write(i.nome);
-                writer.Write(i.nomeType);
+                writer.Write(i.tipo);
                 writer.Write(i.qtd);
             }
         }
@@ -80,11 +77,11 @@ namespace Server.Fronteira.Armory
             base.Deserialize(reader);
             int version = reader.ReadInt();
             var qtd = reader.ReadInt();
-            for(int x = 0; x < qtd; x++)
+            for (int x = 0; x < qtd; x++)
             {
                 var i = new ArmarioItem();
                 i.nome = reader.ReadString();
-                i.nomeType = reader.ReadString();
+                i.tipo = reader.ReadType();
                 i.qtd = reader.ReadInt();
                 _set.Add(i);
             }
@@ -118,26 +115,21 @@ namespace Server.Fronteira.Armory
                 }
                 else if (opt == 1)
                 {
-                    Depositar(armario, from);
+                    SetarSet(armario, from);
                 }
                 else if (opt == 2)
                 {
-                    Pegar(armario, from);
+                    RetirarSet(armario, from);
                 }
-                else if (opt == 3)
-                {
-                    Pegar(armario, from);
-                }
-
-            }, armario.ItemID, 0, "Abrir", "Setar Set", "Retirar Set"));
+            }, armario.ItemID, armario.Hue, "Abrir", "Setar Set", "Retirar Set"));
         }
 
         private void Ver(FurnitureContainer armario, Mobile from)
         {
-            armario.Open(from);
+            armario.DisplayTo(from);
         }
 
-        private void Depositar(FurnitureContainer armario, Mobile from)
+        private void SetarSet(FurnitureContainer armario, Mobile from)
         {
             from.SendMessage("Selecione uma mochila com os items do set.");
             from.BeginTarget(5, false, TargetFlags.None, new TargetCallback((Mobile m, object t) =>
@@ -162,9 +154,9 @@ namespace Server.Fronteira.Armory
                 _set.Clear();
                 m.SendMessage("Voce colocou o set no armario. Agora voce apenas pode colocar mochilas identicas a esta no armario.");
                 var adds = "";
-                foreach(var item in mochila.Items)
+                foreach (var item in new List<Item>(mochila.Items))
                 {
-                    adds += (item.Amount > 1 ? item.Amount+"x " : "") + item.Name + ", ";
+                    adds += (item.Amount > 1 ? item.Amount + "x " : "") + item.Name + ", ";
                     _set.Add(new ArmarioItem(item));
                     armario.DropItem(item);
                 }
@@ -173,20 +165,85 @@ namespace Server.Fronteira.Armory
             }));
         }
 
+        public override bool OnDroppedOnto(Mobile from, Item dropped)
+        {
+            if (!EhDoSet(dropped))
+            {
+                from.SendMessage("Este item nao faz parte do set deste armario.");
+                return false;
+            }
+            return base.OnDroppedOnto(from, dropped);
+        }
+
         public override bool OnDragDrop(Mobile from, Item dropped)
         {
-            Shard.Debug("Dropei " + dropped.GetType().Name);
+            if (!EhDoSet(dropped))
+            {
+                from.SendMessage("Este item nao faz parte do set deste armario.");
+                return false;
+            }
             return base.OnDragDrop(from, dropped);
         }
 
-        private static void Pegar(FurnitureContainer armario, Mobile from)
+        public override bool OnDragDropInto(Mobile from, Item dropped, Point3D p)
         {
-
+            if (!EhDoSet(dropped))
+            {
+                from.SendMessage("Este item nao faz parte do set deste armario.");
+                return false;
+            }
+            Shard.Debug("Dropei into " + dropped.GetType().Name);
+            return base.OnDragDropInto(from, dropped, p);
         }
 
-        private static void Equipar(FurnitureContainer armario, Mobile from)
+        public bool EhDoSet(Item item)
         {
+            foreach (var i in _set)
+            {
+                if (i.tipo == item.GetType())
+                    return true;
+            }
+            return false;
+        }
 
+        private List<ArmarioItem> GetFaltando()
+        {
+            List<ArmarioItem> lista = new List<ArmarioItem>();
+            foreach (var i in _set)
+            {
+                var item = this.FindItemByType(i.tipo, true);
+                if (item == null || item.Amount < i.qtd)
+                {
+                    lista.Add(i);
+                }
+            }
+            return lista;
+        }
+
+        private void RetirarSet(FurnitureContainer armario, Mobile from)
+        {
+            var faltando = GetFaltando();
+            if (faltando.Count > 0)
+            {
+                from.SendMessage("Items faltando: " + string.Join(", ", faltando.Select(f => f.nome).ToArray()));
+                return;
+            }
+            DynamicFurniture.Open(this, from);
+            foreach (var i in _set)
+            {
+                var item = this.FindItemByType(i.tipo, true);
+                if(item.Amount > i.qtd)
+                {
+                    var dupe = Mobile.LiftItemDupe(item, i.qtd);
+                    item = dupe;
+                }
+                from.PlaceInBackpack(item);
+                if (item.Layer != Layer.Invalid && from is PlayerMobile)
+                {
+                    ((PlayerMobile)from).SmoothForceEquip(item);
+                }
+            }
+            from.SendMessage("Voce pegou um set");
         }
 
         private static List<Backpack> GetSets(FurnitureContainer armario)
@@ -194,7 +251,6 @@ namespace Server.Fronteira.Armory
             return armario.Items.Select(i => i as Backpack).Where(i => i != null).ToList();
         }
 
-        public override void OnCra
     }
 
 
