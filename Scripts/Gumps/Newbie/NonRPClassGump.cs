@@ -166,11 +166,8 @@ namespace Server.Gumps
                         skill.SetLockNoRelay(SkillLock.Up);
                         if (k.Skills.ContainsKey(skill.SkillName))
                         {
-                            from.Skills[skill.SkillName].Base = k.Skills[skill.SkillName];
-                        }
-                        else
-                        {
-                            from.Skills[skill.SkillName].Base = 0;
+                            if(from.Skills[skill.SkillName].Base < k.Skills[skill.SkillName])
+                                from.Skills[skill.SkillName].Base = k.Skills[skill.SkillName];
                         }
                         skill.SendPacket = true;
                     }

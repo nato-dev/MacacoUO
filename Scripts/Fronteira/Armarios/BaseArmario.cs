@@ -1,192 +1,201 @@
-using Server.Engines.Craft;
-using Server.Fronteira.Armory;
-using System;
+using Server.Gumps;
+using Server.Items;
+using Server.Multis;
+using Server.Targeting;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Server.Items
+namespace Server.Fronteira.Armory
 {
-    public class FurnitureContainer : BaseContainer, IResource
+    public class ArmarioItem
     {
-        #region Old Item Serialization Vars
-        /* DO NOT USE! Only used in serialization of old furniture that originally derived from BaseContainer */
-        private bool m_InheritsItem;
-
-        protected bool InheritsItem
-        {
-            get
-            {
-                return this.m_InheritsItem;
-            }
-        }
-        #endregion
-
-        private Mobile m_Crafter;
-        private CraftResource m_Resource;
-        private ItemQuality m_Quality;
-        private bool m_PlayerConstructed;
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public Mobile Crafter
-        {
-            get { return m_Crafter; }
-            set
-            {
-                m_Crafter = value;
-                InvalidateProperties();
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public ItemQuality Quality
-        {
-            get { return m_Quality; }
-            set { m_Quality = value; InvalidateProperties(); }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public CraftResource Resource
-        {
-            get { return m_Resource; }
-            set
-            {
-                m_Resource = value;
-                Hue = CraftResources.GetHue(m_Resource);
-                InvalidateProperties();
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public bool PlayerConstructed
-        {
-            get { return m_PlayerConstructed; }
-            set
-            {
-                m_PlayerConstructed = value;
-                InvalidateProperties();
-            }
-        }
-
-        public FurnitureContainer(int id) : base(id)
+        public ArmarioItem()
         {
         }
 
-        public override bool OnDragLift(Mobile from)
+        public ArmarioItem(Item i)
         {
-            Shard.Debug("Lift");
-            return base.OnDragLift(from);
+            nomeType = i.GetType().Name;
+            nome = i.Name;
+            qtd = i.Amount;
         }
 
-        public override bool OnDragDrop(Mobile from, Item dropped)
+        public string nomeType;
+        public string nome;
+        public int qtd;
+    }
+
+    public class BaseArmario : FurnitureContainer
+    {
+        private List<ArmarioItem> _set = new List<ArmarioItem>();
+
+        public BaseArmario()
+            : base(0xA4F)
         {
-            Shard.Debug("Drop " + dropped.GetType().Name+" - "+dropped.Parent.GetType().Name);
-            return base.OnDragDrop(from, dropped);
+            this.Weight = 1.0;
         }
 
-        public override void Open(Mobile from)
+        public BaseArmario(int itemID)
+         : base(itemID)
         {
-            /*
-            if (this is Armoire || this is FancyArmoire)
-            {
-                Armario.AbreArmario(this, from);
-                return;
-            }
-            */
-            if(BaseArmario.Acesso(this, from))
-            {
-                if(from.IsCooldown("armario"))
-                {
-                    from.SetCooldown("armario", TimeSpan.FromSeconds(30));
-                    from.SendMessage(78, "Guarde mochilas no armario para equipar sets rapidamente !");
-                }
-            }
-            base.Open(from);
+            this.Weight = 1.0;
         }
 
-        public virtual int SlotsSets { get { return 5; } }
-
-        public override void GetProperties(ObjectPropertyList list)
-        {
-            base.GetProperties(list);
-
-            if (m_Crafter != null)
-            {
-                list.Add(1050043, m_Crafter.Name); // crafted by ~1_NAME~
-            }
-
-            if (Quality == ItemQuality.Exceptional)
-            {
-                list.Add(1060636); // Exceptional
-            }
-
-            if (m_Resource > CraftResource.Ferro)
-            {
-                list.Add(1114057, "#{0}", CraftResources.GetLocalizationNumber(m_Resource)); // ~1_val~
-            }
-        }
-
-        public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
-        {
-            PlayerConstructed = true;
-
-            Quality = (ItemQuality)quality;
-
-            if (makersMark)
-            {
-                Crafter = from;
-            }
-
-            if (!craftItem.ForceNonExceptional)
-            {
-                if (typeRes == null)
-                {
-                    typeRes = craftItem.Resources.GetAt(0).ItemType;
-                }
-
-                Resource = CraftResources.GetFromType(typeRes);
-            }
-
-            return quality;
-        }
-
-        public FurnitureContainer(Serial serial)
+        public BaseArmario(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void DisplayTo(Mobile m)
+        {
+            if (DynamicFurniture.Open(this, m))
+                base.DisplayTo(m);
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            if(!Acesso(this, from))
+            {
+                from.SendMessage("Este armario nao e seu");
+                return;
+            } 
+            AbreArmario(this, from);
         }
 
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write((int)2); // version
-
-            writer.Write(m_PlayerConstructed);
-            writer.Write((int)m_Resource);
-            writer.Write((int)m_Quality);
-            writer.Write(m_Crafter);
+            writer.Write((int)0); // version
+            writer.Write(_set.Count);
+            foreach(var i in _set)
+            {
+                writer.Write(i.nome);
+                writer.Write(i.nomeType);
+                writer.Write(i.qtd);
+            }
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
-
-            switch (version)
+            var qtd = reader.ReadInt();
+            for(int x = 0; x < qtd; x++)
             {
-                case 2:
-                case 1:
-                    if (version == 1 && this is EmptyBookcase)
-                    {
-                        m_InheritsItem = true;
-                        break;
-                    }
-
-                    m_PlayerConstructed = reader.ReadBool();
-                    m_Resource = (CraftResource)reader.ReadInt();
-                    m_Quality = (ItemQuality)reader.ReadInt();
-                    m_Crafter = reader.ReadMobile();
-                    break;
-                case 0:
-                    m_InheritsItem = true;
-                    break;
+                var i = new ArmarioItem();
+                i.nome = reader.ReadString();
+                i.nomeType = reader.ReadString();
+                i.qtd = reader.ReadInt();
+                _set.Add(i);
             }
+            DynamicFurniture.Close(this);
         }
+
+        public static bool Acesso(FurnitureContainer armario, Mobile from)
+        {
+            var casa = BaseHouse.FindHouseAt(armario);
+            if (casa != null && !casa.HasAccess(from))
+            {
+                return false;
+            }
+            return true;
+        }
+
+        public void AbreArmario(FurnitureContainer armario, Mobile from)
+        {
+            var casa = BaseHouse.FindHouseAt(armario);
+            if (casa != null && !casa.HasAccess(from))
+            {
+                from.SendMessage("Este armario nao e seu");
+                return;
+            }
+
+            from.SendGump(new GumpOpcoes("Selecione", (opt) =>
+            {
+                if (opt == 0)
+                {
+                    Ver(armario, from);
+                }
+                else if (opt == 1)
+                {
+                    Depositar(armario, from);
+                }
+                else if (opt == 2)
+                {
+                    Pegar(armario, from);
+                }
+                else if (opt == 3)
+                {
+                    Pegar(armario, from);
+                }
+
+            }, armario.ItemID, 0, "Abrir", "Setar Set", "Retirar Set"));
+        }
+
+        private void Ver(FurnitureContainer armario, Mobile from)
+        {
+            armario.Open(from);
+        }
+
+        private void Depositar(FurnitureContainer armario, Mobile from)
+        {
+            from.SendMessage("Selecione uma mochila com os items do set.");
+            from.BeginTarget(5, false, TargetFlags.None, new TargetCallback((Mobile m, object t) =>
+            {
+                var mochila = t as Container;
+                if (mochila == null)
+                {
+                    from.SendMessage("Voce apenas pode fazer isto com mochilas");
+                    return;
+                }
+                if (mochila.Parent is Mobile)
+                {
+                    from.SendMessage("Nao pode fazer isto com mochilas equipadas");
+                    return;
+                }
+                if (mochila.RootParent != from)
+                {
+                    from.SendMessage("Voce apenas pode selecionar mochilas que estao dentro de sua mochila");
+                    return;
+                }
+
+                _set.Clear();
+                m.SendMessage("Voce colocou o set no armario. Agora voce apenas pode colocar mochilas identicas a esta no armario.");
+                var adds = "";
+                foreach(var item in mochila.Items)
+                {
+                    adds += (item.Amount > 1 ? item.Amount+"x " : "") + item.Name + ", ";
+                    _set.Add(new ArmarioItem(item));
+                    armario.DropItem(item);
+                }
+                m.SendMessage("Voce setou o set desse armario com os items:");
+                m.SendMessage(adds);
+            }));
+        }
+
+        public override bool OnDragDrop(Mobile from, Item dropped)
+        {
+            Shard.Debug("Dropei " + dropped.GetType().Name);
+            return base.OnDragDrop(from, dropped);
+        }
+
+        private static void Pegar(FurnitureContainer armario, Mobile from)
+        {
+
+        }
+
+        private static void Equipar(FurnitureContainer armario, Mobile from)
+        {
+
+        }
+
+        private static List<Backpack> GetSets(FurnitureContainer armario)
+        {
+            return armario.Items.Select(i => i as Backpack).Where(i => i != null).ToList();
+        }
+
+        public override void OnCra
     }
+
+
 }

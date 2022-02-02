@@ -124,7 +124,7 @@ namespace Server.Items
 
             if(Utility.RandomBool())
             {
-                var rnd = Utility.Random(5);
+                var rnd = Utility.Random(6);
                 switch (rnd)
                 {
                     case 0: DropItem(new EmbroideryTool()); break;
@@ -132,6 +132,7 @@ namespace Server.Items
                     case 2: DropItem(new ArmorEngravingTool()); break;
                     case 3: DropItem(new SpellbookEngraver()); break;
                     case 4: DropItem(new MetalContainerEngraver()); break;
+                    case 5: DropItem(new WoodenContainerEngraver()); break;
                 }
             }
 

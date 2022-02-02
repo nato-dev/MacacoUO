@@ -122,6 +122,8 @@
     <Compile Include="Commands\Custom\Remover.cs" />
     <Compile Include="Commands\Custom\Secure.cs" />
     <Compile Include="Commands\Custom\Trancar.cs" />
+    <Compile Include="Fronteira\Armarios\BaseArmario.cs" />
+    <Compile Include="Fronteira\Armarios\FurnitureCont.cs" />
     <Compile Include="Fronteira\Bancos\BancoConta.cs" />
     <Compile Include="Fronteira\Classes\Gumps\RPClassGump.cs" />
     <Compile Include="Fronteira\Comandos\Disarm.cs" />

@@ -334,6 +334,57 @@ namespace Server.Items
     }
 
     [Furniture]
+    [Flipable(0xa4f, 0xa53)]
+    public class Armario : BaseArmario
+    {
+        [Constructable]
+        public Armario()
+            : base(0xA4F)
+        {
+            this.Weight = 1.0;
+        }
+
+        public Armario(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void DisplayTo(Mobile m)
+        {
+            if (DynamicFurniture.Open(this, m))
+                base.DisplayTo(m);
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = (this.InheritsItem ? 0 : reader.ReadInt()); // Required for FurnitureContainer insertion
+
+            DynamicFurniture.Close(this);
+        }
+
+        public override int PesoMaximo
+        {
+            get
+            {
+                if (this is IResource)
+                {
+                    var mat = ((IResource)this).Resource;
+                    if (mat == CraftResource.Eucalipto)
+                        return base.PesoMaximo * 2;
+                }
+                return base.PesoMaximo;
+            }
+        }
+    }
+
+    [Furniture]
     [Flipable(0xa4d, 0xa51)]
     public class FancyArmoire : FurnitureContainer
     {
@@ -344,9 +395,63 @@ namespace Server.Items
             this.Weight = 1.0;
         }
 
+      
+
         public FancyArmoire(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void DisplayTo(Mobile m)
+        {
+            if (DynamicFurniture.Open(this, m))
+                base.DisplayTo(m);
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = (this.InheritsItem ? 0 : reader.ReadInt()); // Required for FurnitureContainer insertion
+
+            DynamicFurniture.Close(this);
+        }
+    }
+
+
+    [Furniture]
+    [Flipable(0xa4d, 0xa51)]
+    public class ArmarioBonito : BaseArmario
+    {
+        [Constructable]
+        public ArmarioBonito()
+            : base(0xA4D)
+        {
+            this.Weight = 1.0;
+        }
+
+        public ArmarioBonito(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override int PesoMaximo
+        {
+            get
+            {
+                if (this is IResource)
+                {
+                    var mat = ((IResource)this).Resource;
+                    if (mat == CraftResource.Eucalipto)
+                        return base.PesoMaximo * 5;
+                }
+                return base.PesoMaximo * 2;
+            }
         }
 
         public override void DisplayTo(Mobile m)
