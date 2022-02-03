@@ -2426,14 +2426,13 @@ namespace Server.Items
                 {
                     if (attacker is BaseCreature)
                     {
-                        scalar *= 2;
+                        scalar *= 2.5;
                     } else
                     {
                         scalar *= 3;
                     }
                 }
                
-
                 int from = (int)(virtualArmor * scalar) / 2;
                 int to = (int)(virtualArmor * scalar);
                 var redux = Utility.Random(from, (to - from) + 1);

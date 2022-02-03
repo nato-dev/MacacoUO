@@ -153,7 +153,6 @@ namespace Server.Spells.Second
                         if (value < 1)
                             value = 1;
                    
-                        CastDisturbProtection.Add(this.Caster, value);
                         this.Caster.VirtualArmorMod += value;
                         ArchProtectionSpell.AddEntry(this.Caster, value);
                         BuffInfo.AddBuff(this.Caster, new BuffInfo(BuffIcon.Protection, 1075816, String.Format("{0}\t{1}", 0, 0).ToString()));
