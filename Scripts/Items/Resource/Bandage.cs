@@ -262,7 +262,7 @@ namespace Server.Items
             if (dano > 15)
                 ++m_Slips;
             if(dano > 35)
-                ++m_Slips;
+                m_Slips += 2;
             m_Healer.SendMessage("Seus dedos escorregam [- "+m_Slips*SLIP_MULT+" cura]"); // Your fingers slip!
         }
 
