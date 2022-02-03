@@ -121,6 +121,8 @@ namespace Server.Engines.Harvest
             Item item = from.FindItemOnLayer(Layer.OneHanded);
             Item h2item = from.FindItemOnLayer(Layer.TwoHanded);
 
+            from.RevealingAction();
+
             if ((item != null && item == tool) || h2item != null && h2item == tool)
             {
                 EventSink.InvokeResourceHarvestAttempt(new ResourceHarvestAttemptEventArgs(from, tool, sys));
@@ -591,6 +593,8 @@ namespace Server.Engines.Harvest
                 return false;
             }
 
+            from.RevealingAction();
+
             DoHarvestingEffect(from, tool, def, map, loc);
 
             new HarvestSoundTimer(from, tool, this, def, toHarvest, locked, last).Start();
@@ -695,6 +699,8 @@ namespace Server.Engines.Harvest
                 OnConcurrentHarvest(from, tool, def, toHarvest);
                 return;
             }
+
+           
 
             new HarvestTimer(from, tool, this, def, toHarvest, toLock).Start();
             OnHarvestStarted(from, tool, def, toHarvest);
