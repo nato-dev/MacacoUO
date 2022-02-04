@@ -48,6 +48,9 @@ namespace Server.Gumps
             {
                 case (int)Buttons.Continuar:
                     m.SendMessage("Voce continuará como uma alma penada");
+
+
+
                     return;
 
                 case (int)Buttons.Teleportar:
@@ -89,6 +92,33 @@ namespace Server.Gumps
 
                     break;
             }
+        }
+
+        public static void AchaCurandeiro(Mobile m)
+        {
+            double min = int.MaxValue;
+            BaseHealer achou = null;
+
+            foreach(var healer in BaseHealer.healers)
+            {
+                if(!healer.Deleted && healer.Map == m.Map && !(healer.Region is DungeonRegion))
+                {
+                    var dist = healer.GetDistance(m);
+                    if(dist < min)
+                    {
+                        achou = healer;
+                        min = dist;
+                    }
+                }
+            }
+
+            if(achou != null)
+            {
+                m.QuestArrow = new QuestArrow(m, achou);
+                m.SendMessage(78, "Voce esta sendo guiado para o curandeiro mais proximo fora de dungeon. Para parar a setinha, va em Help -> Onde Devo Ir -> Parar Busca");
+            }
+
+
         }
 
         public static void Revive(Mobile m)
