@@ -7,7 +7,7 @@ namespace Server.Gumps
 {
     public class PctExpGump : Gump
     {
-        public PctExpGump(PlayerMobile caller, double pct, string text) : base(0, 0)
+        public PctExpGump(PlayerMobile caller, double pct, string text) : base(240, 0)
         {
             this.Closable = true;
             this.Disposable = true;
