@@ -760,7 +760,7 @@ namespace Server.Items
         /// </summary>
         public static CraftResource GetFromType(Type resourceType)
         {
-            if (m_TypeTable == null)
+            if (m_TypeTable == null || resourceType == null)
                 return CraftResource.None;
 
             object obj = m_TypeTable[resourceType];
