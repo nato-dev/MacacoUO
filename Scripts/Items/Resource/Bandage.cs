@@ -108,6 +108,13 @@ namespace Server.Items
             if (bandage == null || bandage.Deleted)
                 return;
 
+
+            if(BandageContext.GetContext(from) != null)
+            {
+                from.SendMessage("Voce ja esta aplicando bandagens");
+                return;
+            }
+
             if (from.InRange(bandage.GetWorldLocation(), Range))
             {
                 Target t = from.Target;

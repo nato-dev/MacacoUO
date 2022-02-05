@@ -1174,7 +1174,11 @@ namespace Server.Spells
             {
                 m_Caster.SendMessage("Você não pode usar magias estando acalmado"); // You cannot cast a spell while calmed.
             }
-            else if (m_Caster.Mana >= AjustaMana(GetMana()))
+            else if(m_Caster.Spell != null)
+            {
+                m_Caster.SendMessage("Voce ja esta conjurando uma magia");
+            }
+            if (m_Caster.Mana >= AjustaMana(GetMana()))
             {
                 if (!ConsumeReagents())
                 {
