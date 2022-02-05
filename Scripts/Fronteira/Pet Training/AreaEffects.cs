@@ -124,7 +124,7 @@ namespace Server.Mobiles
                     from.CanBeHarmful(to, false) &&
                     (to is BaseCreature || (from is BaseCreature && ((BaseCreature)from).Controlador != to)) &&
                     SpellHelper.ValidIndirectTarget(from, to) &&
-                    from.InLOS(to);
+                    from.InLOS(to) && (!(to is PlayerMobile) || (from.HasAggressed(to) || from.HasAggressor(to)));
         }
 
 		public List<Mobile> _Cooldown;
