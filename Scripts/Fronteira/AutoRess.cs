@@ -50,7 +50,7 @@ namespace Server.Gumps
                     m.SendMessage("Voce continuará como uma alma penada");
 
 
-
+                    AchaCurandeiro(m);
                     return;
 
                 case (int)Buttons.Teleportar:
@@ -96,14 +96,21 @@ namespace Server.Gumps
 
         public static void AchaCurandeiro(Mobile m)
         {
+            IPoint3D loc = Point3D.Zero;
+            if (m.LastDungeonEntrance != Point3D.Zero && m.Region != null && (m.Region is DungeonRegion || m.Region is DungeonGuardedRegion))
+            {
+                Shard.Debug("Achei last teleport");
+                loc = m.LastDungeonEntrance;
+            }
+
             double min = int.MaxValue;
             BaseHealer achou = null;
 
             foreach(var healer in BaseHealer.healers)
             {
-                if(!healer.Deleted && healer.Map == m.Map && !(healer.Region is DungeonRegion))
+                if(healer != null && !healer.Deleted && healer.Map == m.Map && !(healer.Region is DungeonRegion))
                 {
-                    var dist = healer.GetDistance(m);
+                    var dist = healer.GetDistance(loc);
                     if(dist < min)
                     {
                         achou = healer;
