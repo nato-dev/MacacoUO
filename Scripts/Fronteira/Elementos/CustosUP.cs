@@ -33,7 +33,7 @@ namespace Server.Fronteira.Elementos
 
         public static int QuantidadeItems(int nivel)
         {
-            return (nivel + 1) * 2;
+            return (int)(nivel + 1) * 2;
         }
 
         public static double CustoUpExp(int nivel)

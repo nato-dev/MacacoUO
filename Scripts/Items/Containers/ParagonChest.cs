@@ -167,8 +167,8 @@ namespace Server.Items
             DropItem(joia);
             DropItem(new Gold(level * 200));
 
-            for (int i = 0; i < level; ++i)
-                DropItem(Loot.RandomScroll(0, 63, SpellbookType.Regular));
+            //for (int i = 0; i < level; ++i)
+            //    DropItem(Loot.RandomScroll(0, 63, SpellbookType.Regular));
 
             for (int i = 0; i < level; ++i)
             {

@@ -269,6 +269,7 @@ namespace Server
                 }
                 #endregion
 
+                // Bonus dano poison
                 if (m_From != null && m_From.Player && m_Mobile != null && !m_Mobile.Player)
                 {
                     var bonus = (int)(damage * m_From.GetBonusElemento(ElementoPvM.Terra));
@@ -278,10 +279,11 @@ namespace Server
                     }
                     damage += bonus;
                 }
+                // bonus resist poison
                 else if (m_From != null && !m_From.Player && m_Mobile != null && m_Mobile.Player)
                 {
-                    var resist = 1.5 - m_From.GetBonusElemento(ElementoPvM.Terra) / 1.5;
-                    damage = (int)(damage * resist);
+                    var resist = damage * m_From.GetBonusElemento(ElementoPvM.Vento);
+                    damage = damage - (int)resist;
                 }
 
                 if(m_Mobile != null && !m_Mobile.Deleted)

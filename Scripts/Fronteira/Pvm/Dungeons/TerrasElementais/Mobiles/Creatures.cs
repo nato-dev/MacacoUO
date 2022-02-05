@@ -1836,8 +1836,9 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV5, 2);
-            this.AddLoot(LootPack.HighScrolls, Utility.RandomMinMax(1, 8));
+            this.AddLoot(LootPack.LV4, 1);
+            if(Utility.RandomDouble() > 0.25)
+                this.AddLoot(LootPack.HighScrolls);
         }
 
         public DiseasedBloodElemental(Serial serial)

@@ -4978,6 +4978,8 @@ namespace Server.Mobiles
 
             if (this.Region is DungeonRegion)
                 SendGump(new DeadGump(this));
+            else
+                DeadGump.AchaCurandeiro(this);
         }
 
         private List<Mobile> m_PermaFlags;

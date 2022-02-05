@@ -1178,7 +1178,7 @@ namespace Server.Spells
             {
                 m_Caster.SendMessage("Voce ja esta conjurando uma magia");
             }
-            if (m_Caster.Mana >= AjustaMana(GetMana()))
+            else if (m_Caster.Mana >= AjustaMana(GetMana()))
             {
                 if (!ConsumeReagents())
                 {
@@ -1190,7 +1190,6 @@ namespace Server.Spells
                     return CastaMagiaSphere();
                 return CastMagiaPadrao();
             }
-
             else
             {
                 m_Caster.PrivateOverheadMessage(MessageType.Regular, 0x22, false, "Mana insuficiente, voce precisa de " + AjustaMana(GetMana()).ToString() + " mana para esta magia", m_Caster.NetState); // Insufficient mana. You must have at least ~1_MANA_REQUIREMENT~ Mana to use this spell.

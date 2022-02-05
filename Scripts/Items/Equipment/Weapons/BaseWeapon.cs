@@ -2448,6 +2448,10 @@ namespace Server.Items
                 {
                     Shard.Debug("Virtual Armor: " + virtualArmor + " Scalar: " + scalar + " REDUX " + redux);
                     Shard.Debug("Virtual MinMax: " + from + "/" + to + " - Calculando media", defender);
+                    if(attacker.Hidden)
+                    {
+                        Shard.Debug("Escondidinho");
+                    }
                 }
             }
 
@@ -2689,11 +2693,6 @@ namespace Server.Items
                 }
             }
 
-            if (this is BaseRanged && attacker.FindItemOnLayer(Layer.Cloak) is BaseQuiver)
-            {
-
-            }
-
             var transform = AnimalForm.GetContext(attacker);
             if (transform != null)
             {
@@ -2811,7 +2810,7 @@ namespace Server.Items
 
             if (a != null)
             {
-                var bonus = defender is BaseCreature ? a.DamageScalar * 2 : a.DamageScalar;
+                var bonus = a.DamageScalar;
                 percentageBonus += (int)(bonus * 100) - 100;
             }
 
@@ -4030,6 +4029,8 @@ namespace Server.Items
             SkillMasterySpell.OnMiss(attacker, defender);
         }
 
+        public static bool SemVariar = false;
+
         public virtual void GetBaseDamageRange(Mobile attacker, out int min, out int max)
         {
             if (attacker is BaseCreature)
@@ -4061,6 +4062,8 @@ namespace Server.Items
                 min = MinDamage;
                 max = MaxDamage;
             }
+            if (SemVariar)
+                min = max;
         }
 
         public virtual double GetBaseDamage(Mobile attacker)
@@ -4069,7 +4072,8 @@ namespace Server.Items
 
             GetBaseDamageRange(attacker, out min, out max);
 
-            Shard.Debug("Weapon Min/Max: " + min + "/" + max);
+            if(Shard.DebugEnabled)
+                Shard.Debug("Weapon Min/Max: " + min + "/" + max);
 
             var armsLoreBonus = attacker.Skills[SkillName.ArmsLore].Value / 10;
 
@@ -4392,6 +4396,8 @@ namespace Server.Items
             if (Shard.DebugEnabled)
                 Shard.Debug("Modifiers de dano " + modifiers * 100 + "%", attacker);
 
+            
+
             // Apply bonuses
             damage += (damage * modifiers);
 
@@ -4399,6 +4405,8 @@ namespace Server.Items
             {
                 damage *= 0.9;
             }
+
+
 
             return ScaleDamageByDurability((int)damage);
         }
@@ -4432,12 +4440,7 @@ namespace Server.Items
                     Shard.Debug("Half Damage on players", attacker);
                 damage = (int)(damage / 2.0);
             }
-
-            if (!(this is BaseRanged) && attacker is PlayerMobile && defender is BaseCreature && defender.HitsMax > 150)
-            {
-                damage = (int)(damage * 1.1);
-            }
-
+          
             return damage;
         }
 

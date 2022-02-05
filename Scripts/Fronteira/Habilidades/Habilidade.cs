@@ -149,10 +149,6 @@ namespace Server.Items
         {
             int stamina = BaseMana;
             double skillTotal = GetSkillTotal(from);
-            if (skillTotal >= 300.0)
-                stamina -= 10;
-            else if (skillTotal >= 200.0)
-                stamina -= 5;
 
             // Using a special move within 3 seconds of the previous special move costs double mana 
             if (GetContext(from) != null)

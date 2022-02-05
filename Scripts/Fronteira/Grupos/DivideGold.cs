@@ -11,7 +11,6 @@ namespace Felladrin.Automations
 {
     public static class DivideGold
     {
-
         public static List<PartyMemberInfo> DivideQuanto(Mobile from)
         {
             var party = Party.Get(from);
