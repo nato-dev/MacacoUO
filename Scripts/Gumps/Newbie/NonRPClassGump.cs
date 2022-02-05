@@ -166,7 +166,6 @@ namespace Server.Gumps
                         skill.SetLockNoRelay(SkillLock.Up);
                         if (k.Skills.ContainsKey(skill.SkillName))
                         {
-                            if(
                             if(from.Skills[skill.SkillName].Base < k.Skills[skill.SkillName])
                                 from.Skills[skill.SkillName].Base = k.Skills[skill.SkillName];
                         }
