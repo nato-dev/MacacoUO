@@ -346,7 +346,7 @@ namespace Server.Engines.Craft
             #endregion
 
             #region Parts
-            index = AddCraft(typeof(Gears), 1044047, 1024179, 80, 120.0, typeof(IronIngot), 1044036, 2, 1044037);
+            index = AddCraft(typeof(Gears), 1044047, 1024179, 60, 120.0, typeof(IronIngot), 1044036, 2, 1044037);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");
             index = AddCraft(typeof(ClockParts), 1044047, 1024175, 80, 120.0, typeof(IronIngot), 1044036, 1, 1044037);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");
