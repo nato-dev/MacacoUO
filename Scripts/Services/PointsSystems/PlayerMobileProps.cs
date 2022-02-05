@@ -90,19 +90,6 @@ namespace Server.Mobiles
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public double ShameCrystals
-        {
-            get
-            {
-                return (int)PointsSystem.ShameCrystals.GetPoints(Player);
-            }
-            set
-            {
-                PointsSystem.ShameCrystals.SetPoints(Player, value);
-            }
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
         public double DespiseCrystals
         {
             get

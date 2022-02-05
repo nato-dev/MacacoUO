@@ -25,12 +25,14 @@ namespace Server.Items
 		
 		public override void OnDoubleClick(Mobile from)
 		{
+			/*
 			if(IsChildOf(from.Backpack))
 			{
                 from.SendMessage("Voce consumiu um cristal");
 				PointsSystem.ShameCrystals.AwardPoints(from, 1, true, true);
                 Consume(1);
 			}
+			*/
 		}
 		
 		public CristalElemental(Serial serial) : base(serial)

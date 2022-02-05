@@ -87,7 +87,8 @@ namespace Server.Engines.ShameRevamped
 
         public void CheckSummon(Mobile from)
         {
-            if (PointsSystem.ShameCrystals.GetPoints(from) < SummonCost)
+            var cristais = from.FindItemByType<CristalElemental>();
+            if(cristais == null || cristais.Amount < SummonCost)
                 from.SendLocalizedMessage("Voce nao tem cristais suficientes para lutar contra um guardiao !"); // You are not yet worthy of challenging the champion.
             else if (Guardian != null)
                 from.SendLocalizedMessage("Ja existe um guardiao ativo neste nivel"); // The champion for this dungeon level has already been summoned.
@@ -95,6 +96,8 @@ namespace Server.Engines.ShameRevamped
                 from.SendLocalizedMessage("Voce precisa aguardar para poder invocar o guardiao novamente"); // The champion has recently been defeated, and cannot be summoned again for a few minutes.
             else
             {
+                cristais.Consume(SummonCost);
+
                 SpawnGuardian();
                 Summoner = from;
 
