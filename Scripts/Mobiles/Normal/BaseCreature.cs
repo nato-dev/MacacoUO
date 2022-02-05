@@ -5259,7 +5259,7 @@ namespace Server.Mobiles
                             toTeach = 420;
                         }
 
-                        list.Add(new TeachEntry((SkillName)i, this, from, (toTeach > theirSkill.BaseFixedPoint)));
+                        // list.Add(new TeachEntry((SkillName)i, this, from, (toTeach > theirSkill.BaseFixedPoint)));
                     }
                 }
             }

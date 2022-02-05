@@ -25,16 +25,25 @@ namespace Server.ContextMenus
             if (!this.m_From.CheckAlive())
                 return;
 
-            if (!Banker.Withdraw(this.m_From, 500))
+            if(this.m_Mobile is BaseVendor)
             {
-                if (!this.m_From.Backpack.ConsumeTotal(typeof(Gold), 500))
+                ((BaseVendor)this.m_Mobile).Treinar(m_From);
+            } else
+            {
+                if (!Banker.Withdraw(this.m_From, 500))
                 {
-                    this.m_From.SendMessage("Voce precisa de 500 moedas para isto");
-                    return;
+                    if (!this.m_From.Backpack.ConsumeTotal(typeof(Gold), 500))
+                    {
+                        this.m_From.SendMessage("Voce precisa de 500 moedas para isto");
+                        return;
+                    }
                 }
+
+                this.m_Mobile.Teach(this.m_Skill, this.m_From, 500, true);
+
             }
 
-            this.m_Mobile.Teach(this.m_Skill, this.m_From, 500, true);
+
         }
     }
 }
