@@ -166,13 +166,11 @@ namespace Server.Gumps
                         skill.SetLockNoRelay(SkillLock.Up);
                         if (k.Skills.ContainsKey(skill.SkillName))
                         {
-                            if(newCharacter)
-                            {
-                                if (from.Skills[skill.SkillName].Base < k.Skills[skill.SkillName])
-                                    from.Skills[skill.SkillName].Base = k.Skills[skill.SkillName];
-                            }
-                         
-                        } else if(!newCharacter)
+                            if (!newCharacter || from.Skills[skill.SkillName].Base < k.Skills[skill.SkillName])
+                                from.Skills[skill.SkillName].Base = k.Skills[skill.SkillName];
+
+                        }
+                        else if (!newCharacter)
                         {
                             from.Skills[skill.SkillName].Base = 0;
                         }
