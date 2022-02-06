@@ -292,9 +292,10 @@ namespace Server.Engines.UOStore
                         }
                     }
 
-                    if (IsFeatured(entry))
+                    if (entry.TooltipStr != null)
                     {
-                        AddImage(x, y + 189, 0x9C58);
+                        //AddImage(x, y + 189, 0x9C58);
+                        AddButton(x, y + 189, 0x9C58, 0x9C58, i + 10000, GumpButtonType.Reply, 0);
                     }
 
                     for (int j = 0; j < entry.Name.Length; j++)
@@ -379,6 +380,9 @@ namespace Server.Engines.UOStore
         public override void OnResponse(RelayInfo info)
         {
             var id = info.ButtonID;
+
+            if(Shard.DebugEnabled)
+                Shard.Debug("Id clicado: "+id.ToString());
 
             if (id == 0)
             {
@@ -579,8 +583,13 @@ namespace Server.Engines.UOStore
 
                 Refresh();
                 return;
+            } else if(id >= 10000)
+            {
+                Refresh();
+                var entry = StoreList[id - 10000];
+                SendGump(new InfoGump(User, this, (entry.Name.Length > 0 ? entry.Name[0].ToString() : "Erro"), entry.TooltipStr));
+                return;
             }
-
             ReleaseHidden(User);
         }
     }
@@ -845,6 +854,55 @@ namespace Server.Engines.UOStore
                     Codigos.Consome(User, text.Text);
                 }
             }
+        }
+    }
+
+    public class InfoGump : BaseGump
+    {
+        public BaseGump Gump { get; private set; }
+        private string item;
+        private string info;
+
+        public InfoGump(PlayerMobile pm, BaseGump gump, string item, string info)
+            : base(pm, 10, 10)
+        {
+            Gump = gump;
+
+            pm.CloseGump(typeof(InfoGump));
+            this.item = item;
+            this.info = info;
+        }
+
+        public override void AddGumpLayout()
+        {
+            AddPage(0);
+
+            AddBackground(0, 0, 400, 340, 0x9C40);
+
+            AddHtml(0, 10, 400, 20, "<center>"+item+"</center>", 0x7FFF, false, false); // Enter Promotional Code
+
+            AddHtml(20, 60, 355, 160, info, C32216(0xFFFF00), false, false); // Enter your promotional code EXACTLY as it was given to you (including dashes). Enter no other text in the box aside from your promotional code.
+
+            AddECHandleInput();
+
+            AddECHandleInput();
+            AddECHandleInput();
+
+
+            AddECHandleInput();
+        }
+
+        public override void OnServerClose(NetState owner)
+        {
+            if (owner.Mobile is PlayerMobile)
+            {
+                UltimaStoreGump.ReleaseHidden(User);
+            }
+        }
+
+        public override void OnResponse(RelayInfo info)
+        {
+           
         }
     }
 }

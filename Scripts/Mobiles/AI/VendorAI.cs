@@ -149,7 +149,7 @@ namespace Server.Mobiles
                         BaseVendor.PegaRecompensa(from, vendor);
                     }
                 }
-                else if(e.Speech.Contains("treinar"))
+                else if(e.Speech.Contains("treinar") || e.Speech.Contains("train"))
                 {
                     if (vendor != null)
                     {

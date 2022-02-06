@@ -52,7 +52,7 @@ namespace Server.Mobiles
 
             this.Fame = 4000;
             this.Karma = 0;
-
+            this.ControlSlots = 0;
             this.VirtualArmor = 40;
             SetCooldown("pensa", TimeSpan.FromSeconds(10));
 

@@ -12,6 +12,7 @@ using Server.Network;
 using Server.Engines.Points;
 using Server.Multis;
 using Server.Items.Functional.Pergaminhos;
+using Server.Multis.Deeds;
 
 namespace Server.Engines.UOStore
 {
@@ -80,18 +81,23 @@ namespace Server.Engines.UOStore
         public static void Initialize()
         {
             StoreCategory cat = StoreCategory.Featured;
-            Register<PergaminhoSagradoSupremo>("Pergaminho Sagrado Supremo", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2000, cat);
+            Register<PergaminhoSagradoSupremo>("Pergaminho Sagrado Supremo", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2500, cat);
             Register<TintaPreta>("Tinta Preta", "Balde de tinta preta.<br>Ma-ra-vi-lhosa com roupas sombrias.", 0xFAB, 0, TintaPreta.COR, 200, cat);
             Register<TintaBranca>("Tinta Branca", "Balde de tinta branca.<br>Divina cor para iluminados e praticantes da luz.", 0xFAB, 0, TintaBranca.COR, 200, cat);
+            Register<CastleDeed>("Castelo", "Deed de Castelo imenso.<br>Moradia super glamurosa para realeza.", 0x14F0, 0, 0, 10000, cat);
+            Register<KeepDeed>("Keep", "Deed de Keep.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
+            Register<DoubleExpDeed>("PowerHour 2x Exp", "Ativa double exp para o shard todo por 1h.</ br > Todos vao te amar um pouco mais.", 0x14F0, 0, 256, 1000, cat);
+            Register<DoubleGoldDeed>("Power Hour 2x Gold", "Ativa double gold para o shard todo por 1h.</br>Todos vao te amar um pouco mais.", 0x14F0, 0, 54, 1000, cat);
 
             cat = StoreCategory.Misc;
             Register<PergaminhoSagradoSupremo>("Pergaminho Sagrado Supremo", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2000, cat);
-            Register<TintaPreta>("Tinta Preta", "Balde de tinta preta.<br>Ma-ra-vi-lhosa com roupas sombrias.", 0xFAB, 0, TintaPreta.COR, 200, cat);
-            Register<TintaBranca>("Tinta Branca", "Balde de tinta branca.<br>Divina cor para iluminados e praticantes da luz.", 0xFAB, 0, TintaBranca.COR, 200, cat);
-            Register<BagOfBulkOrderCovers>(1071116, 1157603, 0, 0x9CC6, 0, 200, cat, ConstructBOBCoverOne);
+            Register<TintaPreta>("Tinta Preta", "Balde de tinta preta.<br>Ma-ra-vi-lhosa com roupas sombrias.", 0xFAB, 0, TintaPreta.COR, 500, cat);
+            Register<TintaBranca>("Tinta Branca", "Balde de tinta branca.<br>Divina cor para iluminados e praticantes da luz.", 0xFAB, 0, TintaBranca.COR, 500, cat);
+            //Register<BagOfBulkOrderCovers>(1071116, 1157603, 0, 0x9CC6, 0, 200, cat, ConstructBOBCoverOne);
 
             cat = StoreCategory.Character;
-            Register<StableSlotIncreaseToken>("+1 Slot Estabulo", "Aumenta um slot para deixar animais no estabulo", 0x2AAA, 0, 0, 1000, cat);
+            Register<CombatSkillBook>("Livro +300 Exp", "Livro que garante instantaneamente 300 EXP.</br>Nao funciona para elementos.", 0xEFA, 0, 0xA33, 100, cat);
+            Register<StableSlotIncreaseToken>("+1 Slot Estabulo", "Aumenta um slot para deixar animais no estabulo", 0x2AAA, 0, 0, 2000, cat);
             Register<AbyssalHairDye>("Tinta para Cabelos", "Vermelho Abissal", 0, 0x9C7A, 0, 1000, cat);
             Register<SpecialHairDye>(new TextDefinition("Tinta para Cabelos"), "Verde Limao", 0, 0x9C78, 0, 1000, cat, ConstructHairDye); // Lemon Lime
             Register<SpecialHairDye>(new TextDefinition("Tinta para Cabelos"), "Marrom bom bom", 0, 0x9C6D, 0, 1000, cat, ConstructHairDye); // Yew Brown 
@@ -110,8 +116,8 @@ namespace Server.Engines.UOStore
             Register<NameChangeToken>(new TextDefinition[] { "Trocar de Nome", 1156615 }, 1156641, 0x2AAA, 0, 0, 1000, cat);
 
             cat = StoreCategory.Equipment;
-            Register<SmugglersLantern>(new TextDefinition("Lanterna Magica"), "Percente Pessoal<br>Permite usar magias com a lanterna na mao.<br>Vem em cores sortidas.", 0xA25, 0, 0, 700, cat);
-            Register<Kasa>(new TextDefinition("Chapeu Oriental"), "Percence Pessoal. <br>Apenas cosmetico. <br> Pode ser pintado.", 0x2798, 0, 0, 2000, cat, ConstructNewbie);
+            Register<SmugglersLantern>(new TextDefinition("Lanterna Magica"), "Percente Pessoal<br>Permite usar magias com a lanterna na mao.<br>Vem em cores sortidas.", 0xA25, 0, 0, 2000, cat);
+            Register<Kasa>(new TextDefinition("Chapeu Oriental"), "Percence Pessoal. <br>Apenas cosmetico. <br> Pode ser pintado.", 0x2798, 0, 0, 1000, cat, ConstructNewbie);
 
             // decorations
             cat = StoreCategory.Decorations;
@@ -145,10 +151,13 @@ namespace Server.Engines.UOStore
             Register<RoseOfTrinsic>(1062913, 1156960, 0x234D, 0, 0, 500, cat);
             Register<HearthOfHomeFireDeed>(1062919, 1156958, 0, 0x9C97, 0, 500, cat);
 
-            Register<HitchingPost>(1071090, 1156651, 0x14E7, 0, 0, 3000, cat, ConstructHitchingPost);
-
+            Register<HitchingPost>("Poste de Estabulo", "Permite estabular e retirar animais em casa. </br>Tem 30 cargas mas pode ser recarregado com cordas de estabulo.", 0x14E7, 0, 0, 5000, cat, ConstructHitchingPost);
+            Register<HitchingRope>("Corda de Estabulo", "Recarrega o poste de estabulo", 0x14F8, 0, 0, 100, cat, ConstructHitchingPost);
+            
             cat = StoreCategory.Mounts;
             Register<EtherealHorse>(new TextDefinition("Cavalo Magico"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um cavalo magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x20DD, 0, 0, 1000, cat, CavaloEthy);
+            Register<EtherealOstard>(new TextDefinition("Ostard Magico [20/02/2022]"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um ostard magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x2135, 0, 0, 5000, cat, OstardEthy);
+            Register<WindrunnerStatue>(new TextDefinition("Windrunner"), "Montaria. <br>Esta montaria vem Bound e pode ser ressada com Veterinary.<br>", 0x9ED5, 0, 0, 3000, cat, WindRunner);
 
             /*
             cat = StoreCategory.Equipment;
@@ -539,6 +548,20 @@ namespace Server.Engines.UOStore
             return cavalo;
         }
 
+        public static Item WindRunner(Mobile m, StoreEntry entry)
+        {
+            var cavalo = new WindrunnerStatue();
+            return cavalo;
+        }
+
+        public static Item OstardEthy(Mobile m, StoreEntry entry)
+        {
+            var cavalo = new EtherealOstard();
+            cavalo.Transparent = false;
+            cavalo.BoundTo = m.Name;
+            return cavalo;
+        }
+
         public static Item LhamaEthy(Mobile m, StoreEntry entry)
         {
             var cavalo = new EtherealLlama();
@@ -549,6 +572,13 @@ namespace Server.Engines.UOStore
         public static Item ConstructNewbie(Mobile m, StoreEntry entry)
         {
             var item = (Item)Activator.CreateInstance(entry.ItemType);
+            if(item.Name != null)
+            {
+                if (item.Name.Substring(item.Name.Length - 1) == "o")
+                    item.Name += " sofisticado";
+                else
+                    item.Name += " sofisticada";
+            }
             item.LootType = LootType.Blessed;
             return item;
         }

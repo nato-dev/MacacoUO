@@ -22,7 +22,7 @@ namespace Server.Items
             AddComponent(new InternalComponent(), 0, 0, 0);
 
             Expires = DateTime.UtcNow + TimeSpan.FromHours(DecayPeriod);
-            m_Timer = Timer.DelayCall(TimeSpan.FromSeconds(10), TimeSpan.FromSeconds(10), CheckDecay);
+            m_Timer = Timer.DelayCall(TimeSpan.FromSeconds(20), TimeSpan.FromSeconds(20), CheckDecay);
         }
 
         public override void OnChop(Mobile from)

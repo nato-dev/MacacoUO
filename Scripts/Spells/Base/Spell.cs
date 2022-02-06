@@ -549,6 +549,13 @@ namespace Server.Spells
             double casterEI = m_Caster.Skills[DamageSkill].Value;
             double targetRS = target.Skills[SkillName.MagicResist].Value;
 
+            if (!target.Player && m_Caster.Player)
+            {
+                var bonus = targetRS * Caster.GetBonusElemento(ElementoPvM.Escuridao);
+                if (bonus > targetRS) bonus = targetRS;
+                targetRS -= bonus;
+            }
+
             var pl = m_Caster as PlayerMobile;
 
             if (PsychicAttack.Registry.ContainsKey(target))

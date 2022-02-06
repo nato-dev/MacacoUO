@@ -3242,12 +3242,12 @@ namespace Server.Mobiles
         public int GetInsuranceCost(Item item)
         {
             if (item is BaseTalisman)
-                return 2000;
+                return 4000;
 
             if (item is BaseHat)
-                return 500;
+                return 1000;
  
-            return 1000;
+            return 3000;
         }
 
         private void AutoRenewInventoryInsurance()
@@ -6265,7 +6265,7 @@ namespace Server.Mobiles
                 return m.Player && ((Party != null && Party == m.Party) || (Guild != null && Guild == m.Guild));
             }
 
-            if (m is BaseMount)
+            if (m is BaseCreature)
             {
                 if (m.Hidden)
                 {

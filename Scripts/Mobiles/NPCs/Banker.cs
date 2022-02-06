@@ -325,6 +325,7 @@ namespace Server.Mobiles
                 {
                     switch (keyword)
                     {
+                        case "withdraw":
                         case "sacar": // *withdraw*
                             {
                                 e.Handled = true;
@@ -405,7 +406,7 @@ namespace Server.Mobiles
                             }
                             e.Mobile.SendGump(new UpgradeBankGump(e.Mobile));
                             break;
-
+                        case "balance":
                         case "saldo": // *balance*
                             {
                                 e.Handled = true;
@@ -433,6 +434,7 @@ namespace Server.Mobiles
                             }
                             break;
                         case "banco": // *bank*
+                        case "bank": // *bank*
                             {
                                 e.Handled = true;
 
@@ -453,6 +455,7 @@ namespace Server.Mobiles
                                 BankLevels.OpenBank(e.Mobile);
                             }
                             break;
+                        case "check":
                         case "cheque": // *check*
                             {
                                 e.Handled = true;

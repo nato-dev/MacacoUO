@@ -37,7 +37,7 @@ namespace Server.Fronteira.Elementos
                     break;
                 case ElementoPvM.Terra:
                     efeitos = new string[] {
-                        "Dano de Venenos",
+                        "Dano & Resist de Venenos",
                         "Armadura",
                         "Dano Fisico"
                     };
@@ -58,7 +58,8 @@ namespace Server.Fronteira.Elementos
                     break;
                 case ElementoPvM.Escuridao:
                     efeitos = new string[] {
-                        "Dano Magias Proibidas",
+                        "Penetr. Magica",
+                        //"Dano Magias Proibidas",
                         "Resistencia Magica",
                         "LifeSteal Magico"
                     };
@@ -73,7 +74,7 @@ namespace Server.Fronteira.Elementos
                 case ElementoPvM.Vento:
                     efeitos = new string[] {
                         "Velocidade Ataque",
-                        "Resist a Veneno",
+                        "Penetr. Armadura",
                         "Esquiva"
                     };
                     break;

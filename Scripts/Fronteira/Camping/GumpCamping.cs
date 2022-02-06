@@ -74,7 +74,7 @@ namespace Server.Gumps
                 return;
             }
 
-            for (var xx = pageAtual * 7; xx < 7; xx++)
+            for (var xx = pageAtual * 8; xx < pageAtual * 8 + 8; xx++)
             {
                 if (xx < campsLiberados.Count)
                 {
@@ -95,7 +95,7 @@ namespace Server.Gumps
             AddButton(365, 376, 4005, 4005, 666, GumpButtonType.Reply, 0);
 
             if (pageAtual > 0)
-                AddButton(94, 376, 4014, 4014, 999, GumpButtonType.Page, 0);
+                AddButton(94, 376, 4014, 4014, 999, GumpButtonType.Reply, 0);
         }
 
         public override void OnResponse(NetState sender, RelayInfo info)

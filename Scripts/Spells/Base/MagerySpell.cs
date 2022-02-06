@@ -178,6 +178,12 @@ namespace Server.Spells
                 {
                     resist += (int)(resist * Caster.GetBonusElemento(ElementoPvM.Agua));
                 }
+                if(!target.Player && Caster.Player)
+                {
+                    var bonus = resist * Caster.GetBonusElemento(ElementoPvM.Escuridao);
+                    if (bonus > resist) bonus = resist;
+                    resist -= bonus;
+                }
                 if (target.Player)
                 {
                     if(((PlayerMobile)target).Talentos.Tem(Talento.PeleArcana))

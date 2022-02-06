@@ -457,7 +457,7 @@ namespace Server.Mobiles
                         m_Mobile.PublicOverheadMessage(MessageType.Regular, 0x3B2, generalNumber);
                     }
                 }
-                else if (e.Speech.Contains("treinar"))
+                else if (e.Speech.Contains("treinar") || e.Speech.Contains("train"))
                 {
                     var vendor = m_Mobile as BaseVendor;
                     if (vendor != null)

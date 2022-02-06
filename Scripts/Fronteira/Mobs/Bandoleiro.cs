@@ -28,6 +28,7 @@ namespace Server.Mobiles
             {
                 PackItem(DefCookingExp.GetReceitaMolhoRandom());
             }
+            PackItem(new Banana(2));
         }
 
         public override bool CanStealth { get { return true; } }

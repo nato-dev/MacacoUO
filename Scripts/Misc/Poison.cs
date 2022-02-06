@@ -282,7 +282,7 @@ namespace Server
                 // bonus resist poison
                 else if (m_From != null && !m_From.Player && m_Mobile != null && m_Mobile.Player)
                 {
-                    var resist = damage * m_From.GetBonusElemento(ElementoPvM.Vento);
+                    var resist = damage * m_From.GetBonusElemento(ElementoPvM.Terra);
                     damage = damage - (int)resist;
                 }
 

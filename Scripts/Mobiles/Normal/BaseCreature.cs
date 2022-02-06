@@ -6577,6 +6577,11 @@ namespace Server.Mobiles
                 list.Add(1155480); // Ambusher
         }
 
+        public bool IsPacifico()
+        {
+            return AIPacificas.Contains(AIObject.GetType());
+        }
+
         public HashSet<Type> AIPacificas = new HashSet<Type>(new Type[] {
             typeof(AnimalAI),  typeof(HealerAI),  typeof(VendorAI)
         });

@@ -55,6 +55,9 @@ namespace Server.Commands
             var cooldown = ts;
             Timer.DelayCall(cooldown, () =>
             {
+                if (SkillCheck.BONUS_GERAL != 0)
+                    return;
+
                 Anuncio.Anuncia("POWEHOUR !! Bonus de UP por 3 Horas !");
                 SkillCheck.BONUS_GERAL = 1.5;
                 Timer.DelayCall(TimeSpan.FromHours(3), () => {

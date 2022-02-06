@@ -2327,6 +2327,13 @@ namespace Server.Items
             {
                 virtualArmor += (virtualArmor / 2) * ((defender.GetBonusElemento(ElementoPvM.Terra) + defender.GetBonusElemento(ElementoPvM.Luz)));
             }
+            if(!defender.Player && attacker.Player)
+            {
+                var bonus = virtualArmor * attacker.GetBonusElemento(ElementoPvM.Vento);
+                if (bonus > virtualArmor)
+                    bonus = virtualArmor;
+                virtualArmor -= bonus;
+            }
 
             WeaponAbility a = WeaponAbility.GetCurrentAbility(attacker);
             SpecialMove move = SpecialMove.GetCurrentMove(attacker);

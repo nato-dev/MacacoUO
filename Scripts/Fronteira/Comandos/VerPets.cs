@@ -28,7 +28,7 @@ namespace Server.Commands
             {
                 var reg = f.Region != null ? f.Region.Name : "Floresta";
                 pl.SendMessage(f.Name + " esta em " + f.Location.ToString()+" na regiao "+reg+" mapa "+f.Map);
-                if(f.Map == Map.Internal && pl.Mount != f)
+                if(f.Map == Map.Internal && pl.Mount != f && pl.DungeonMount != f)
                 {
                     f.Delete();
                     pl.SendMessage("Um dos pets estava perdido, entao foi removido");

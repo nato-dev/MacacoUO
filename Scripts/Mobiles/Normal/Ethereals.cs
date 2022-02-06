@@ -684,7 +684,10 @@ namespace Server.Mobiles
         [Constructable]
         public EtherealOstard()
             : base(0x2135, 0x3EAC, 0x3EA5)
-        { }
+        {
+            Name = "Ostard Magico";
+            this.Transparent = false;
+        }
 
         public EtherealOstard(Serial serial)
             : base(serial)

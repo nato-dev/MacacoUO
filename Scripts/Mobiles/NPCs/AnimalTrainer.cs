@@ -613,8 +613,12 @@ namespace Server.Mobiles
                     SellPetForGold(from, pet, 101);
                 else if (pet is Llama)
                     SellPetForGold(from, pet, 150);
+                else if(pet is BaseCreature && pet.MinTameSkill > 60 && !pet.IsPacifico())
+                {
+                    SellPetForGold(from, pet, (int)(pet.MinTameSkill * 5));
+                }
                 else
-                    SayTo(from, "I dont want that Beast, go away"); // You can't PetSale that!
+                    SayTo(from, "Nao quero comprar isto"); // You can't PetSale that!
             }
         }
 
