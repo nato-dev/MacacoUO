@@ -225,8 +225,8 @@ namespace Server.Misc
                 if (skillDifficulty == SkillInfo.COMBAT && skill >= 80)
                     gc /= 2;
 
-                if (gc < 0.0025)
-                    gc = 0.0025;
+                if (gc < 0.0015)
+                    gc = 0.0015;
 
                 if (skillDifficulty == SkillInfo.EASY)
                 {
@@ -241,11 +241,9 @@ namespace Server.Misc
                 if (skillDifficulty == SkillInfo.COMBAT)
                 {
                     if (skill < 80 && gc < 0.009)
-                        gc = 0.009;
+                        gc = 0.005;
                     else if (skill < 90 && gc < 0.006)
-                        gc = 0.0025;
-                    else if (gc < 0.001)
-                        gc = 0.001;
+                        gc = 0.003;
                 }
             }
 

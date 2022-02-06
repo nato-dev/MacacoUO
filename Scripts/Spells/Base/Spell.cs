@@ -549,6 +549,9 @@ namespace Server.Spells
             double casterEI = m_Caster.Skills[DamageSkill].Value;
             double targetRS = target.Skills[SkillName.MagicResist].Value;
 
+            if (!target.Player && casterEI < 75)
+                casterEI = 80;
+
             if (!target.Player && m_Caster.Player)
             {
                 var bonus = targetRS * Caster.GetBonusElemento(ElementoPvM.Escuridao);

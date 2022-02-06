@@ -17,7 +17,7 @@ namespace Server.Items
 
         [Constructable]
         public HousePlacementTool()
-            : base(0x64)
+            : base(5360)
         {
             Weight = 3.0;
             LootType = LootType.Blessed;
