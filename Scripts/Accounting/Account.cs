@@ -311,7 +311,7 @@ namespace Server.Accounting
 			TotalCurrency = Utility.GetXMLDouble(Utility.GetText(node["totalCurrency"], "0"), 0);
             MoedasMagicas = Utility.GetXMLInt32(Utility.GetText(node["sovereigns"], "0"), 0);
 
-			m_Mobiles = LoadMobiles(node);
+            m_Mobiles = LoadMobiles(node);
 			m_Comments = LoadComments(node);
 			m_Tags = LoadTags(node);
 			LoginIPs = LoadAddressList(node);

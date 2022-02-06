@@ -11,7 +11,7 @@ namespace Server.Ziden.Traducao
     {
         public static void Initialize()
         {
-            CommandSystem.Register("traduzir", AccessLevel.VIP, OnAction);
+            CommandSystem.Register("traduzir", AccessLevel.Counselor, OnAction);
         }
 
         public static void Configure()

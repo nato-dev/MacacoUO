@@ -542,6 +542,7 @@ namespace Server.Mobiles
         [CommandProperty(AccessLevel.GameMaster)]
         public DateTime BondingBegin { get { return m_BondingBegin; } set { m_BondingBegin = value; } }
 
+
         [CommandProperty(AccessLevel.GameMaster)]
         public DateTime OwnerAbandonTime { get { return m_OwnerAbandonTime; } set { m_OwnerAbandonTime = value; } }
         #endregion
@@ -1961,13 +1962,14 @@ namespace Server.Mobiles
                 Animate(Body.IsAnimal ? 10 : 18, 5, 1, true, false, 0);
             }
 
-            Loyalty -= 3;
+            if(!(this is IMount))
+                Loyalty -= 3;
             return false;
         }
 
         public virtual bool CanBeControlledBy(Mobile m)
         {
-            return (GetControlChance(m) > 0.0);
+            return (this is IMount || GetControlChance(m) > 0.0);
         }
 
         public double GetControlChance(Mobile m)
@@ -4785,9 +4787,7 @@ namespace Server.Mobiles
                     }
                 }
             }
-
             eable.Free();
-
             return iCount;
         }
 
@@ -7152,6 +7152,16 @@ namespace Server.Mobiles
                 }
 
                 Warmode = false;
+
+                if(this.ControlMaster is PlayerMobile)
+                {
+                    if(!this.ControlMaster.IsCooldown("petmsg"))
+                    {
+                        this.ControlMaster.SetCooldown("petmsg", TimeSpan.FromHours(1));
+                        this.ControlMaster.SendMessage(78, "SEU PET MORREU !! Voce precisa de Veterinary para usar bandagens no corpo do seu pet para ressa-lo ou levar seu espirito para um veterinario ! Se o corpo do seu pet sumir, seu pet sera perdido para sempre !");
+                    }
+                  
+                }
 
                 Poison = null;
                 Combatant = null;

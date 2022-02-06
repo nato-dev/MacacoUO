@@ -1827,6 +1827,8 @@ namespace Server
                     return "Alvo invalido";
                 case 1115898:
                     return "Deslinkado";
+                
+                   
                 case 1011247: return "Trocar Chave";
                 case 502088: return "Um item foi colocado em sua mochila";
                 case 1153599: return "Voce ja usou isto em outro ritual";
@@ -2192,6 +2194,8 @@ namespace Server
                 case 1042558: return "Eu cobro por semana. Se nao me pagar, nao vai recuperar seu animal";
                 case 1046000: return "Esses selvagens... me ajude !";
                 case 502671: return "Voce nao tem nada aqui";
+                case 501041: return "Isto nao esta morto";
+                case 1060020: return "Voce nao tem dinheiro suficiente em seu banco.";
                 //Couros
                 //case 1024216: return "Peles";
                 //case 1024199: return "Couro";

@@ -194,7 +194,7 @@ namespace Server.Mobiles
 				case -1:
 					{
 						// You decide against paying the Veterinarian, and the ghost of your pet looks at you sadly...
-						from.SendMessage("Voce decide nao pagar e seu pet fica triste com voce");
+						from.SendMessage("Voce decide nao pagar e seu pet fica triste com voce :(");
 
 						break;
 					}
@@ -216,12 +216,13 @@ namespace Server.Mobiles
 									from.SendLocalizedMessage(500643); // Target is too far away.
 								else if (pet.ControlMaster != from)
 									from.SendLocalizedMessage(1113200); // You must be the owner of that pet to have it resurrected.
-								else if (pet.Corpse != null && !pet.Corpse.Deleted)
-									from.SendLocalizedMessage(1113279); // That creature's spirit lacks cohesion. Try again in a few minutes.
 								else if (Banker.Withdraw(from, fee))
 								{
 									pet.PlaySound(0x214);
 									pet.ResurrectPet();
+
+                                    if (pet.Corpse != null && !pet.Corpse.Deleted)
+                                        pet.Corpse.Delete();
 
 									for (int j = 0; j < pet.Skills.Length; ++j) // Decrease all skills on pet.
 										pet.Skills[j].Base -= 0.2;
@@ -229,8 +230,7 @@ namespace Server.Mobiles
                                     if (pet.Map == Map.Internal)
                                         pet.MoveToWorld(from.Location, from.Map);
 
-									from.SendLocalizedMessage(1060398, fee.ToString()); // ~1_AMOUNT~ gold has been withdrawn from your bank box.
-									from.SendLocalizedMessage(1060022, Banker.GetBalance(from).ToString(), 0x16); // You have ~1_AMOUNT~ gold in cash remaining in your bank box.
+									from.SendLocalizedMessage("Foi retirado "+ fee+" de sua conta no banco, agora voce tem "+ Banker.GetBalance(from)+" moedas de ouro no banco"); // ~1_AMOUNT~ gold has been withdrawn from your bank box.
 								}
 								else
 									from.SendLocalizedMessage(1060020); // Unfortunately, you do not have enough cash in your bank to cover the cost of the healing.

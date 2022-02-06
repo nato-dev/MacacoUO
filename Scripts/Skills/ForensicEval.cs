@@ -61,14 +61,18 @@ namespace Server.SkillHandlers
             {
                 foreach (var r in bank.Vein.FallbackResource.Types)
                 {
-                    harvestables.Add(r);
+                    if (!HarvestSystem.MineriosFodas.Contains(r) && !HarvestSystem.MadeirasFodas.Contains(r))
+                        harvestables.Add(r);
                 }
             }
 
             foreach (var r in bank.Vein.PrimaryResource.Types)
             {
-                harvestables.Add(r);
+                if (!HarvestSystem.MineriosFodas.Contains(r) && !HarvestSystem.MadeirasFodas.Contains(r))
+                    harvestables.Add(r);
             }
+
+           
 
             var jaFoi = new HashSet<CraftResource>();
 

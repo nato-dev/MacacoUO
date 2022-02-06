@@ -120,12 +120,15 @@ namespace Server.Gumps.Newbie
                     Code = 1,
                     Desc = @"[Boa para iniciantes] Focado em combate corpo a corpo, usa espadas e machados. Usa bandagens ou magia para se curar."
                 };
+               
                 guerreiro.Skills.Add(SkillName.Swords, 50);
-                guerreiro.Skills.Add(SkillName.Anatomy, 40);
+                guerreiro.Skills.Add(SkillName.Anatomy, 50);
+                guerreiro.Skills.Add(SkillName.Tactics, 50);
                 guerreiro.Skills.Add(SkillName.Healing, 50);
                 guerreiro.Skills.Add(SkillName.MagicResist, 50);
                 guerreiro.Skills.Add(SkillName.Parry, 35);
                 guerreiro.Skills.Add(SkillName.Magery, 50);
+                guerreiro.Skills.Add(SkillName.Lumberjacking, 40);
                 guerreiro.equips.Add(new VikingSword());
                 guerreiro.equips.Add(new MetalShield());
                 guerreiro.items.Add(new Bandage(100));
@@ -221,6 +224,7 @@ namespace Server.Gumps.Newbie
                 bard.Skills.Add(SkillName.Fencing, 40);
                 bard.Skills.Add(SkillName.Healing, 50);
                 bard.Skills.Add(SkillName.Anatomy, 35);
+                bard.Skills.Add(SkillName.MagicResist, 50);
                 bard.equips.Add(new Dagger());
                 bard.equips.Add(new StuddedChest());
                 bard.equips.Add(new StuddedLegs());
@@ -244,13 +248,14 @@ namespace Server.Gumps.Newbie
                     Desc = "Usuario de magia, tanto beneficas quanto maleficas. Magos sao muito versateis. Precisa de reagentes para usar magias."
                 };
                 mage.Skills.Add(SkillName.Magery, 50);
-                mage.Skills.Add(SkillName.EvalInt, 40);
+                mage.Skills.Add(SkillName.EvalInt, 50);
                 mage.Skills.Add(SkillName.Meditation, 50);
                 mage.Skills.Add(SkillName.Inscribe, 50);
                 mage.Skills.Add(SkillName.Alchemy, 50);
                 mage.Skills.Add(SkillName.Macing, 40);
                 mage.Skills.Add(SkillName.Tactics, 25);
                 mage.Skills.Add(SkillName.MagicResist, 50);
+                mage.Skills.Add(SkillName.Hiding, 50);
                 mage.items.Add(new BlankScroll(10));
                 mage.items.Add(new PenAndInk());
                 mage.items.Add(new AlchemyBag());
@@ -278,7 +283,7 @@ namespace Server.Gumps.Newbie
                 tamer.Skills.Add(SkillName.AnimalLore, 40);
                 tamer.Skills.Add(SkillName.Veterinary, 50);
                 tamer.Skills.Add(SkillName.Healing, 50);
-                tamer.Skills.Add(SkillName.Magery, 50);
+                tamer.Skills.Add(SkillName.Magery, 40);
                 tamer.Skills.Add(SkillName.Fencing, 40);
                 tamer.Skills.Add(SkillName.Anatomy, 35);
                 tamer.items.Add(new Bandage(100));

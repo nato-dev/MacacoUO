@@ -369,7 +369,7 @@ namespace Server.Mobiles
                     sellbonus += (ba.Female ? 10 : 0);
                     SellPetForGold(from, pet, 50 + (int)sellbonus);
                 }
-                else if (pet is ForestOstard) SellPetForGold(from, pet, 500);
+                else if (pet.GetType().Name.Contains("Ostard")) SellPetForGold(from, pet, 500);
                 else if (pet is Cow) SellPetForGold(from, pet, 150);
                 else if (pet is FarmCow)
                 {
