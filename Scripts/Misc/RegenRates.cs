@@ -186,7 +186,7 @@ namespace Server.Misc
                 rate += armorPenalty;
 
                 if (!from.Meditating)
-                    rate *= 2;
+                    rate *= 2.2;
 
                 if (CheckTransform(from, typeof(VampiricEmbraceSpell)))
                     rate -= 0.15;
@@ -320,7 +320,7 @@ namespace Server.Misc
                 case ArmorMeditationAllowance.None:
                     return ar.BaseArmorRatingScaled;
                 case ArmorMeditationAllowance.Half:
-                    return ar.BaseArmorRatingScaled / 2.0;
+                    return ar.BaseArmorRatingScaled / 2.2;
                 case ArmorMeditationAllowance.All:
                     return 0.0;
             }
