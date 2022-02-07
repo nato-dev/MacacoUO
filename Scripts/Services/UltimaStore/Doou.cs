@@ -20,27 +20,38 @@ namespace Server.Services.UltimaStore
             CommandSystem.Register("doou", AccessLevel.Administrator, OnAction);
         }
 
-        [Usage("Action")]
+        [Description("Da moedas magicas a alguem que doou")]
         private static void OnAction(CommandEventArgs e)
         {
-            if (e.Arguments.Count() != 1)
+            try
             {
-                e.Mobile.SendMessage("NOP");
-                return;
-            }
-            var conta = e.GetString(0);
-            var acc = Accounts.GetAccount(conta) as Account;
-            if(acc==null)
+                if (e.Arguments.Count() != 2)
+                {
+                    e.Mobile.SendMessage("Use .doou <login> <reais>");
+                    return;
+                }
+                var conta = e.GetString(0);
+                var reais = e.GetInt32(1);
+                var valor = reais * 100;
+                var acc = Accounts.GetAccount(conta) as Account;
+                if (acc == null)
+                {
+                    e.Mobile.SendMessage("Nao achei a conta " + conta);
+                    return;
+                }
+                acc.DepositarMoedasMagicas(reais * 10);
+                var from = acc.GetOnlineMobile();
+                Consome(from);
+                Log(conta, valor.ToString());
+                e.Mobile.SendMessage("Despositada moedas magicas na conta " + conta + " com sucesso !");
+            } catch(Exception ex)
             {
-                e.Mobile.SendMessage("Nao achei a conta");
-                return;
+                e.Mobile.SendMessage("Algum erro aconteceu. Contate os devs e mande isso pra eles:");
+                e.Mobile.SendMessage(ex.StackTrace);
             }
-            acc.DepositarMoedasMagicas(3000);
-            var from = acc.GetOnlineMobile();
-            Consome(from);
         }
 
-        private static string FilePath = Path.Combine("Saves/Loja", "Codigos.bin");
+        private static string FilePath = Path.Combine("Saves/Loja", "Doadas.bin");
 
         public static void Consome(Mobile from)
         {
@@ -65,33 +76,14 @@ namespace Server.Services.UltimaStore
             */
         }
 
-        private static void Salva(GenericWriter writer)
+
+        public static void Log(string conta, string valor)
         {
-            writer.Write((int)1);
-            writer.Write(Cods.Count);
-            foreach(var key in Cods.Keys)
+            using (StreamWriter w = File.AppendText("doacoes.csv"))
             {
-                writer.Write(key);
-                writer.Write(Cods[key]);
+                w.WriteLine(conta + ";" + valor + ";" + DateTime.Now.ToShortDateString());
             }
         }
 
-        private static void Carrega(GenericReader reader)
-        {
-            var version = reader.ReadInt();
-            var count = reader.ReadInt();
-        }
-
-        public static void OnSave(WorldSaveEventArgs e)
-        {
-            Console.WriteLine("Salvando Loja Donates");
-            Persistence.Serialize(FilePath, Salva);
-        }
-
-        public static void OnLoad()
-        {
-            Console.WriteLine("Carregando Loja Donates");
-            Persistence.Deserialize(FilePath, Carrega);
-        }
     }
 }

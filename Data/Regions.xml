@@ -1004,7 +1004,60 @@
       <go x="4550" y="2317" z="-2" />
     </region>
   </Facet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <Facet name="Trammel">
+      <region type="DungeonRegion" priority="50" name="Despise">
+      <rect x="5377" y="516" width="254" height="506" />
+      <go x="5501" y="570" z="59" />
+      <music name="Victory" />
+      <entrance x="1296" y="1082" />
+    </region>
+     <region type="NoHousingRegion" priority="50" name="Despise Entrance">
+      <rect x="1289" y="1064" width="32" height="37" />
+      <go x="1298" y="1081" z="0" />
+    </region>
+    <region type="NoHousingRegion" priority="50" name="Despise Passage">
+      <rect x="1338" y="1060" width="51" height="62" />
+      <rect x="1354" y="1122" width="42" height="121" />
+      <rect x="1349" y="1122" width="5" height="102" />
+      <go x="1380" y="1114" z="0" />
+    </region>
     <region type="DungeonRegion" priority="50" name="Khaldun">
       <rect x="5381" y="1284" width="247" height="225" />
       <go x="5571" y="1302" z="0" />
@@ -1014,7 +1067,7 @@
     <region type="NoTravelSpellsAllowed" priority="50" name="Underwater World">
       <rect x="6251" y="1613" width="222" height="200" />
     </region>
-    <region type="GuardedRegion" priority="50" name="Moongates">
+    <region type="NoHousingRegion" priority="50" name="Moongates">
       <!-- britain -->
       <rect x="1330" y="1991" width="13" height="13" />
       <!-- jhelom -->

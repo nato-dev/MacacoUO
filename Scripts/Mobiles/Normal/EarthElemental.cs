@@ -42,16 +42,28 @@ namespace Server.Mobiles
 
             this.PackItem(new FertileDirt(Utility.RandomMinMax(1, 4)));
             this.PackItem(new MandrakeRoot());
-			
+
             Item ore = new IronOre(5);
             ore.ItemID = 0x19B7;
             this.PackItem(ore);
         }
 
-  
+
         public EarthElemental(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            if(this.Combatant is Mobile && !IsCooldown("pula"))
+            {
+                this.PlayAngerSound();
+                OverheadMessage("* enterrando *");
+                SetCooldown("pula", TimeSpan.FromSeconds(30));
+                new TerraTimer(this, this.Combatant as Mobile, 0.09).Start();
+            }
         }
 
         public override double DispelDifficulty
@@ -61,6 +73,7 @@ namespace Server.Mobiles
                 return 117.5;
             }
         }
+
         public override double DispelFocus
         {
             get
@@ -82,11 +95,64 @@ namespace Server.Mobiles
                 return 1;
             }
         }
+
+        public class TerraTimer : Timer {
+
+            BaseCreature bc;
+            bool desce;
+            Mobile alvo;
+            int ct = 0;
+            Rectangle2D rect;
+
+            public TerraTimer(BaseCreature c, Mobile alvo, double tempo = 0.06) : base(TimeSpan.FromSeconds(tempo), TimeSpan.FromSeconds(tempo), 20)
+            {
+                this.bc = c;
+                this.alvo = alvo;
+                rect = new Rectangle2D(c.X - 1, c.Y - 1, 3, 3);
+
+            }
+
+            protected override void OnTick()
+            {
+                ct++;
+                if(ct % 5 == 0)
+                {
+                    var p = new Point3D(
+                        Utility.RandomBool() ? bc.X : Utility.RandomBool() ? bc.X + 1 : bc.X - 1,
+                        Utility.RandomBool() ? bc.Y : Utility.RandomBool() ? bc.Y - 1 : bc.Y + 1,
+                        bc.Z
+                    );
+                    p.Z = bc.Map.GetAverageZ(p.X, p.Y);
+                    var terra = new DirtPatch();
+                    terra.MoveToWorld(p, bc.Map);
+                    Effects.SendMovingParticles(bc, new Entity(Serial.Zero, p, bc.Map), terra.ItemID, 7, 0, false, false, 0, 0, 9502, 1, 0, (EffectLayer)255, 0x100);
+                }
+
+                if (ct < 10)
+                {
+                    bc.MoveToWorld(new Point3D(bc.Location.X, bc.Location.Y, bc.Location.Z-2), bc.Map);
+                } else if (ct == 10) {
+                  
+                    bc.MoveToWorld(new Point3D(alvo.X, alvo.Location.Y, alvo.Location.Z-20), alvo.Map);
+                    rect = new Rectangle2D(bc.X - 1, bc.Y - 1, 3, 3);
+                } else if (ct < 20)
+                {
+                    bc.MoveToWorld(new Point3D(bc.Location.X, bc.Location.Y, bc.Location.Z+2), bc.Map);
+                }
+                else if (ct == 20)
+                {
+                    bc.Combatant = alvo;
+                    bc.PlayAngerSound();
+                }
+            }
+        }
+
         public override void GenerateLoot()
         {
+            this.AddLoot(LootPack.LV1);
             this.AddLoot(LootPack.LV2);
-            this.AddLoot(LootPack.LV2);
-            this.AddLoot(LootPack.Gems);
+            if(Utility.RandomBool())
+                this.AddLoot(LootPack.Gems);
         }
 
         public override void Serialize(GenericWriter writer)

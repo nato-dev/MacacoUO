@@ -221,8 +221,8 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 45.1, 60.0);
             this.SetSkill(SkillName.Wrestling, 75.1, 90.0);
 
-            this.Fame = 1000;
-            this.Karma = -1000;
+            this.Fame = 3000;
+            this.Karma = -3000;
 
             this.VirtualArmor = 0;
 

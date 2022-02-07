@@ -165,4 +165,89 @@ namespace Server.Mobiles
             }
         }
     }
+
+    public class WaterElementalFake : BaseCreature
+    { 
+        [Constructable]
+        public WaterElementalFake()
+            : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
+        {
+            this.Name = "elemental da agua";
+            this.Body = 16;
+            this.BaseSoundID = 278;
+
+            this.SetStr(12, 15);
+            this.SetDex(6, 8);
+            this.SetInt(101, 125);
+
+            this.SetHits(5, 5);
+
+            this.SetDamage(1, 1);
+
+            this.SetDamageType(ResistanceType.Physical, 100);
+
+            this.SetResistance(ResistanceType.Physical, 35, 45);
+            this.SetResistance(ResistanceType.Fire, 10, 25);
+            this.SetResistance(ResistanceType.Cold, 10, 25);
+            this.SetResistance(ResistanceType.Poison, 60, 70);
+            this.SetResistance(ResistanceType.Energy, 5, 10);
+            this.SetSkill(SkillName.Wrestling, 1, 2);
+
+            this.Fame = 0;
+            this.Karma = -0;
+            NoKillAwards = true;
+
+            this.VirtualArmor = 0;
+
+            this.CanSwim = true;
+        }
+
+        public WaterElementalFake(Serial serial)
+            : base(serial)
+        {
+        }
+
+      
+        public override double DispelDifficulty
+        {
+            get
+            {
+                return 117.5;
+            }
+        }
+        public override double DispelFocus
+        {
+            get
+            {
+                return 45.0;
+            }
+        }
+        public override bool BleedImmune
+        {
+            get
+            {
+                return true;
+            }
+        }
+        public override int TreasureMapLevel
+        {
+            get
+            {
+                return 2;
+            }
+        }
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write((int)1);
+
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+
+        }
+    }
 }

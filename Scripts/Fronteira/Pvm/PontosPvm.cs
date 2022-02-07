@@ -130,21 +130,7 @@ namespace Server.Ziden.Kills
                                     }
                                 }
 
-                                if(pl.Elemento != ElementoPvM.None)
-                                {
-                                    var expElem = pl.Elementos.GetExp(pl.Elemento);
-                                    expElem += (int)exp;
-                                    var lvl = pl.Elementos.GetNivel(pl.Elemento);
-                                    var maxExp = CustosUPElementos.CustoUpExp(lvl);
-                                    if (expElem > maxExp)
-                                    {
-                                        expElem = (int)maxExp;
-                                    }
-                                    pl.Elementos.SetExp(pl.Elemento, expElem);
-                                    var pct = (expElem / maxExp) * 100;
-                                    pl.CloseGump(typeof(PctExpGump));
-                                    pl.SendGump(new PctExpGump(pl, (int)pct, pl.Elemento.ToString()+" "+expElem+"/"+maxExp));
-                                }
+                                DaXpElementos(pl, exp);
 
                                 //pl.SendMessage(78, "Bonus de XP: Semana FULL EXP");
                                 c.PrivateOverheadMessage(Network.MessageType.Regular, 66, false, string.Format("+{0} EXP", exp), pl.NetState);
@@ -178,6 +164,26 @@ namespace Server.Ziden.Kills
                     }
                 }
             }
+        }
+
+       public static void DaXpElementos(PlayerMobile pl, double exp)
+        {
+            if (pl.Elemento != ElementoPvM.None)
+            {
+                var expElem = pl.Elementos.GetExp(pl.Elemento);
+                expElem += (int)exp;
+                var lvl = pl.Elementos.GetNivel(pl.Elemento);
+                var maxExp = CustosUPElementos.CustoUpExp(lvl);
+                if (expElem > maxExp)
+                {
+                    expElem = (int)maxExp;
+                }
+                pl.Elementos.SetExp(pl.Elemento, expElem);
+                var pct = (expElem / maxExp) * 100;
+                pl.CloseGump(typeof(PctExpGump));
+                pl.SendGump(new PctExpGump(pl, (int)pct, pl.Elemento.ToString() + " " + expElem + "/" + maxExp));
+            }
+
         }
 
         public override void Serialize(GenericWriter writer)

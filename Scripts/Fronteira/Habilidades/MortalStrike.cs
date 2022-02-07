@@ -33,7 +33,7 @@ namespace Server.Items
         {
             get
             {
-                return 0.8;
+                return 1;
             }
         }
 

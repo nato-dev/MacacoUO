@@ -44,8 +44,8 @@ namespace Server.Mobiles
             SetSkill(SkillName.EvalInt, 100, 100);
             SetSkill(SkillName.Meditation, 100, 100);
 
-            Fame = 8500;
-            Karma = -8500;
+            Fame = 18500;
+            Karma = -18500;
 
             VirtualArmor = 60;
 

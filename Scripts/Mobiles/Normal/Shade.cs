@@ -70,6 +70,7 @@ namespace Server.Mobiles
             this.PackReg(10);
         }
 
+        /*
         public override void OnStartCombat(Mobile m)
         {
             base.OnStartCombat(m);
@@ -84,6 +85,7 @@ namespace Server.Mobiles
                 }
             }
         }
+        */
 
         public Shade(Serial serial)
             : base(serial)

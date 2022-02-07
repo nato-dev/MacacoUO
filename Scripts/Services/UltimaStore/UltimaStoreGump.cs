@@ -93,7 +93,7 @@ namespace Server.Engines.UOStore
 
         public static int B1 = 0x9C5F;
         public static int B2 = 0x9C55;
- 
+
         public static int B3 = 0x9C4F;
         public static int B4 = 0x9C4E;
 
@@ -103,7 +103,7 @@ namespace Server.Engines.UOStore
         public override void AddGumpLayout()
         {
             AddPage(0);
-            AddImage(0, 0, I1); 
+            AddImage(0, 0, I1);
 
             AddECHandleInput();
 
@@ -381,8 +381,8 @@ namespace Server.Engines.UOStore
         {
             var id = info.ButtonID;
 
-            if(Shard.DebugEnabled)
-                Shard.Debug("Id clicado: "+id.ToString());
+            if (Shard.DebugEnabled)
+                Shard.Debug("Id clicado: " + id.ToString());
 
             if (id == 0)
             {
@@ -401,45 +401,46 @@ namespace Server.Engines.UOStore
                 case 103:
                 case 104:
                 case 105:
-                {
-                    Search = false;
-
-                    var oldCat = profile.Category;
-
-                    profile.Category = (StoreCategory)id - 99;
-
-                    if (oldCat != profile.Category)
                     {
-                        StoreList = UltimaStore.GetList(Category);
-                        Page = 0;
-                    }
+                        Search = false;
 
-                    Refresh();
-                    return;
-                }
+                        var oldCat = profile.Category;
+
+                        profile.Category = (StoreCategory)id - 99;
+
+                        if (oldCat != profile.Category)
+                        {
+                            StoreList = UltimaStore.GetList(Category);
+                            Page = 0;
+                        }
+
+                        Refresh();
+                        return;
+                    }
 
                 // Promo Code
                 case 106:
-                {
-                    Refresh();
-                    SendGump(new PromoCodeGump(User, this));
-                    return;
-                }
+                    {
+                        Refresh();
+                        SendGump(new PromoCodeGump(User, this));
+                        return;
+                    }
 
                 // FAQ
                 case 107:
-                {
-                    if (!String.IsNullOrWhiteSpace(Configuration.Website))
                     {
-                        //User.LaunchBrowser(Configuration.Website);
+                        User.LaunchBrowser("http://www.dragonicage.com/page/doar.htm");
+                        if (!String.IsNullOrWhiteSpace(Configuration.Website))
+                        {
+                            //User.LaunchBrowser(Configuration.Website);
+                        }
+                        else
+                        {
+                            //User.LaunchBrowser("https://www.ultimafronteirashard.com.br/");
+                        }
+                        Refresh();
+                        return;
                     }
-                    else
-                    {
-                        //User.LaunchBrowser("https://www.ultimafronteirashard.com.br/");
-                    }
-                    Refresh();
-                    return;
-                }
 
                 // Change Sort Method
                 case 108:
@@ -447,65 +448,32 @@ namespace Server.Engines.UOStore
                 case 110:
                 case 111:
                 case 112:
-                {
-                    var oldSort = profile.SortBy;
-
-                    profile.SortBy = (SortBy)id - 108;
-
-                    if (oldSort != profile.SortBy)
                     {
-                        // re-orders the list
-                        if (oldSort == SortBy.Newest || oldSort == SortBy.Oldest)
-                        {
-                            ColUtility.Free(StoreList);
+                        var oldSort = profile.SortBy;
 
-                            StoreList = UltimaStore.GetList(Category);
+                        profile.SortBy = (SortBy)id - 108;
+
+                        if (oldSort != profile.SortBy)
+                        {
+                            // re-orders the list
+                            if (oldSort == SortBy.Newest || oldSort == SortBy.Oldest)
+                            {
+                                ColUtility.Free(StoreList);
+
+                                StoreList = UltimaStore.GetList(Category);
+                            }
+
+                            UltimaStore.SortList(StoreList, profile.SortBy);
+
+                            Page = 0;
                         }
 
-                        UltimaStore.SortList(StoreList, profile.SortBy);
-
-                        Page = 0;
+                        Refresh();
+                        return;
                     }
-
-                    Refresh();
-                    return;
-                }
 
                 // Cart View
                 case 113:
-                {
-                    if (profile != null)
-                    {
-                        profile.Category = StoreCategory.Cart;
-                    }
-
-                    Refresh();
-                    return;
-                }
-
-                // Search
-                case 114:
-                {
-                    var searchTxt = info.GetTextEntry(0);
-
-                    if (searchTxt != null && !String.IsNullOrEmpty(searchTxt.Text))
-                    {
-                        Search = true;
-                        SearchText = searchTxt.Text;
-                    }
-                    else
-                    {
-                        User.SendMessage("Texto invalido"); // That text is unacceptable.
-                    }
-
-                    Refresh();
-                    return;
-                }
-
-                // Buy
-                case 115:
-                {
-                    if (UltimaStore.CartCount(User) == 0)
                     {
                         if (profile != null)
                         {
@@ -516,37 +484,70 @@ namespace Server.Engines.UOStore
                         return;
                     }
 
-                    int total = UltimaStore.GetSubTotal(Cart);
-
-                    if (total <= UltimaStore.GetCurrency(User, true))
+                // Search
+                case 114:
                     {
-                        SendGump(new ConfirmPurchaseGump(User));
-                    }
-                    else
-                    {
-                        SendGump(new NoFundsGump(User));
+                        var searchTxt = info.GetTextEntry(0);
+
+                        if (searchTxt != null && !String.IsNullOrEmpty(searchTxt.Text))
+                        {
+                            Search = true;
+                            SearchText = searchTxt.Text;
+                        }
+                        else
+                        {
+                            User.SendMessage("Texto invalido"); // That text is unacceptable.
+                        }
+
+                        Refresh();
+                        return;
                     }
 
-                    return;
-                }
+                // Buy
+                case 115:
+                    {
+                        if (UltimaStore.CartCount(User) == 0)
+                        {
+                            if (profile != null)
+                            {
+                                profile.Category = StoreCategory.Cart;
+                            }
+
+                            Refresh();
+                            return;
+                        }
+
+                        int total = UltimaStore.GetSubTotal(Cart);
+
+                        if (total <= UltimaStore.GetCurrency(User, true))
+                        {
+                            SendGump(new ConfirmPurchaseGump(User));
+                        }
+                        else
+                        {
+                            SendGump(new NoFundsGump(User));
+                        }
+
+                        return;
+                    }
 
                 // Next Page
                 case 116:
-                {
-                    ++Page;
+                    {
+                        ++Page;
 
-                    Refresh();
-                    return;
-                }
+                        Refresh();
+                        return;
+                    }
 
                 // Previous Page
                 case 117:
-                {
-                    --Page;
+                    {
+                        --Page;
 
-                    Refresh();
-                    return;
-                }
+                        Refresh();
+                        return;
+                    }
             }
 
             if (id < 2000) // Add To Cart
@@ -583,7 +584,8 @@ namespace Server.Engines.UOStore
 
                 Refresh();
                 return;
-            } else if(id >= 10000)
+            }
+            else if (id >= 10000)
             {
                 Refresh();
                 var entry = StoreList[id - 10000];
@@ -617,7 +619,7 @@ namespace Server.Engines.UOStore
 
             for (var i = 0; i < Entry.Name.Length; i++)
             {
-                if (Entry.Name[i].String==null)
+                if (Entry.Name[i].String == null)
                 {
                     AddHtmlLocalized(10, 60 + (i * 14), 400, 20, 1114513, String.Format("#{0}", Entry.Name[i].Number), 0x6B45, false, false);
                 }
@@ -815,7 +817,7 @@ namespace Server.Engines.UOStore
             AddBackground(0, 0, 400, 340, 0x9C40);
 
             AddHtml(0, 10, 400, 20, "<center>Digitar Codigo</center>", 0x7FFF, false, false); // Enter Promotional Code
-            AddHtml(20, 60, 355, 160, "Digite EXATAMENTE como lhe foi enviado. <br> Para obter um codigo, doe em nosso site www.ultimafronteirashard.com.br", C32216(0xFFFF00), false, false); // Enter your promotional code EXACTLY as it was given to you (including dashes). Enter no other text in the box aside from your promotional code.
+            AddHtml(20, 60, 355, 160, "Digite EXATAMENTE como lhe foi enviado.", C32216(0xFFFF00), false, false); // Enter your promotional code EXACTLY as it was given to you (including dashes). Enter no other text in the box aside from your promotional code.
 
             AddECHandleInput();
 
@@ -879,7 +881,7 @@ namespace Server.Engines.UOStore
 
             AddBackground(0, 0, 400, 340, 0x9C40);
 
-            AddHtml(0, 10, 400, 20, "<center>"+item+"</center>", 0x7FFF, false, false); // Enter Promotional Code
+            AddHtml(0, 10, 400, 20, "<center>" + item + "</center>", 0x7FFF, false, false); // Enter Promotional Code
 
             AddHtml(20, 60, 355, 160, info, C32216(0xFFFF00), false, false); // Enter your promotional code EXACTLY as it was given to you (including dashes). Enter no other text in the box aside from your promotional code.
 
@@ -902,7 +904,7 @@ namespace Server.Engines.UOStore
 
         public override void OnResponse(RelayInfo info)
         {
-           
+
         }
     }
 }

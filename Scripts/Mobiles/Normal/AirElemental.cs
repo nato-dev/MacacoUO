@@ -1,6 +1,7 @@
 using System;
 using Server.Items;
 using Server.Spells;
+using Server.Spells.Fourth;
 using Server.Spells.Sixth;
 
 namespace Server.Mobiles
@@ -12,7 +13,7 @@ namespace Server.Mobiles
         {
             if (Utility.RandomBool())
             {
-                return new EnergyBoltSpell(this, null);
+                return new LightningSpell(this, null);
             }
             return null;
         }

@@ -194,7 +194,7 @@ namespace Server.Items
                     {
                         if(targeted is IMount)
                         {
-                            from.SendMessage("Para reviver sua montaria use bandagens no corpo da montaria");
+                            from.SendMessage("Para reviver sua montaria use bandagens no corpo da montaria ou a leve para o veterinario !");
                             return;
                         }
                     }

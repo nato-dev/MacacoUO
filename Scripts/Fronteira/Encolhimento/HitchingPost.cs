@@ -51,6 +51,9 @@ namespace Shrink.ShrinkSystem
 		public override void AddNameProperties( ObjectPropertyList list )
 		{
 			base.AddNameProperties( list );
+            list.Add("Transforma montarias em estatuas");
+            list.Add("Custo: 2000");
+            list.Add("Taming Necessario: 90");
 
 			if ( m_Charges >= 0 )
 				list.Add( 1060658, "Cargas\t{0}", m_Charges.ToString() );

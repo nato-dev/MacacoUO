@@ -421,7 +421,7 @@ namespace Server.Items
                 int ar = BaseArmorRating;
 
                 if (m_Protection != ArmorProtectionLevel.Regular)
-                    ar += 1 + (4 * (int)m_Protection);
+                    ar += 1 + (2 * (int)m_Protection);
 
                 switch (m_Resource)
                 {

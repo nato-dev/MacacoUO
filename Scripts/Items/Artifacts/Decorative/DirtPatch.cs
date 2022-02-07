@@ -8,6 +8,7 @@ namespace Server.Items
         public DirtPatch()
             : base(0x0913)
         {
+            Name = "Terra";
         }
 
         public DirtPatch(Serial serial)

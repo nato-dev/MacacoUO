@@ -213,6 +213,12 @@ namespace Server.Items
             from.SendMessage("Minerio com a cor de sangue. Normalmente usado para armas.");
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para armas");
+        }
+
         [Constructable]
         public BeriloIngot(int amount)
             : base(CraftResource.Berilo, amount)
@@ -274,6 +280,12 @@ namespace Server.Items
             from.SendMessage("Minerio claro brilhante, muito raro. Otimo para armas.");
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para armas");
+        }
+
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
@@ -310,6 +322,12 @@ namespace Server.Items
         {
             base.OnDoubleClick(from);
             from.SendMessage("Minerio de cor unica. Muito bom para armaduras.");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para armaduras");
         }
 
         public override void Serialize(GenericWriter writer)
@@ -351,7 +369,13 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
-            from.SendMessage("Minerio conhecido de tempos antigos. Muito usado para criar barcos.");
+            from.SendMessage("Minerio conhecido de tempos antigos. Muito usado para criar barcos e ferramentas.");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para ferramentas e barcos");
         }
 
         public override void Serialize(GenericWriter writer)
@@ -397,6 +421,12 @@ namespace Server.Items
             from.SendMessage("Minerio conhecido de tempos antigos. Decente para equipamentos.");
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Razoavel para equipamentos");
+        }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
@@ -433,6 +463,12 @@ namespace Server.Items
         {
             base.OnDoubleClick(from);
             from.SendMessage("Minerio com alto valor devido a diversas utilidades. Muito bom para armaduras.");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para armaduras");
         }
 
         public SilverIngot(Serial serial)
@@ -483,6 +519,12 @@ namespace Server.Items
             from.SendMessage("Minerio negro, nao eh muito bom para armas.");
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para armaduras");
+        }
+
         public NiobioIngot(Serial serial)
             : base(serial)
         {
@@ -518,6 +560,12 @@ namespace Server.Items
         {
             base.OnDoubleClick(from);
             from.SendMessage("Um elegante minerio azul. Util para tudo.");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para qualquer coisa");
         }
 
         [Constructable]
@@ -572,6 +620,12 @@ namespace Server.Items
         {
             base.OnDoubleClick(from);
             from.SendMessage("Este bonito minerio diz ser muito eficiente para criar ferramentas");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Bom para ferramentas");
         }
 
         public override void Serialize(GenericWriter writer)

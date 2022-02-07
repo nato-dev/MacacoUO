@@ -46,6 +46,20 @@ namespace Server.Regions
             ChecaMobs();
         }
 
+        public DungeonRegion(string name, XmlElement xml, Map map, Region parent, int priority, params Rectangle3D[] area)
+            : base(name, map, priority, area)
+        {
+            XmlElement entrEl = xml["entrance"];
+
+            Map entrMap = map;
+            ReadMap(entrEl, "map", ref entrMap, false);
+
+            if (ReadPoint3D(entrEl, entrMap, ref this.m_EntranceLocation, false))
+                this.m_EntranceMap = entrMap;
+
+            ChecaMobs();
+        }
+
         public void ChecaMobs()
         {
             var lista = this.GetMobiles();

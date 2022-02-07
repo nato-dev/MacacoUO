@@ -52,9 +52,9 @@ namespace Server.Mobiles
             this.PackNecroReg(200, 375);
             PackItem(Decos.RandomDeco());
             PackItem(new LivroAntigo());
-            var book = new NecromancerSpellbook();
-            book.LootType = LootType.Regular;
-            PackItem(book);
+            //var book = new NecromancerSpellbook();
+            //book.LootType = LootType.Regular;
+            //PackItem(book);
         }
 
         public AncientLichRenowned(Serial serial)

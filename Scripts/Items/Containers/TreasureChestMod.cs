@@ -3,6 +3,10 @@
 
 using Server.Engines.Craft;
 using Server.Engines.Points;
+using Server.Fronteira.Elementos;
+using Server.Gumps;
+using Server.Mobiles;
+using Server.Ziden.Kills;
 
 namespace Server.Items
 {
@@ -163,8 +167,12 @@ namespace Server.Items
         {
             int exp = 20;
             base.LockPick(from);
+            var pl = from as PlayerMobile;
+            if (pl == null)
+                return;
             from.SendMessage("Ganhou " + exp + " exp");
             PointsSystem.Exp.AwardPoints(from, exp);
+            PontosPvm.DaXpElementos(pl, exp);
         }
 
         public override void Serialize(GenericWriter writer)
@@ -269,6 +277,7 @@ namespace Server.Items
             base.LockPick(from);
             from.SendMessage("Ganhou " + exp + " exp");
             PointsSystem.Exp.AwardPoints(from, exp);
+            PontosPvm.DaXpElementos(from as PlayerMobile, exp);
         }
 
         public override void Serialize(GenericWriter writer)
@@ -383,6 +392,7 @@ namespace Server.Items
             base.LockPick(from);
             from.SendMessage("Ganhou " + exp + " exp");
             PointsSystem.Exp.AwardPoints(from, exp);
+            PontosPvm.DaXpElementos(from as PlayerMobile, exp);
         }
 
         public override void Serialize(GenericWriter writer)
@@ -535,6 +545,7 @@ namespace Server.Items
             base.LockPick(from);
             from.SendMessage("Ganhou " + exp + " exp");
             PointsSystem.Exp.AwardPoints(from, exp);
+            PontosPvm.DaXpElementos(from as PlayerMobile, exp);
         }
 
         public TreasureLevel3(Serial serial) : base(serial)
@@ -572,6 +583,7 @@ namespace Server.Items
             base.LockPick(from);
             from.SendMessage("Ganhou " + exp + " exp");
             PointsSystem.Exp.AwardPoints(from, exp);
+            PontosPvm.DaXpElementos(from as PlayerMobile, exp);
         }
 
 

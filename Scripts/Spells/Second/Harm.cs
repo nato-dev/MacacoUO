@@ -62,7 +62,7 @@ namespace Server.Spells.Second
                     return;
                 }
 
-                SpellHelper.Turn(this.Caster, m);
+                //SpellHelper.Turn(this.Caster, m);
                 Mobile source = this.Caster;
 
                 SpellHelper.CheckReflect((int)this.Circle, ref source, ref m);
@@ -135,7 +135,7 @@ namespace Server.Spells.Second
 
                 if (m_Attacker.HarmfulCheck(m_Target))
                 {
-                    SpellHelper.Turn(this.Caster, m_Target);
+                    //SpellHelper.Turn(this.Caster, m_Target);
                     Mobile source = this.Caster;
 
                     double damage = 0;

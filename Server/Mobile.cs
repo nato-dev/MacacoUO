@@ -1986,15 +1986,27 @@ namespace Server
 
         public bool CanAttack(Type weapon)
         {
-            Shard.Debug("Can attack " + weapon.Name);
+
+            if(this.Spell != null && this.Spell.IsCasting)
+            {
+                return false;
+            }
+
+          
             if (weapon == null)
                 weapon = this.Weapon.GetType();
 
-            Shard.Debug("Verificando se pode atacar");
+            if(Shard.DebugEnabled)
+            {
+                Shard.Debug("Can attack " + weapon.Name);
+                Shard.Debug("Verificando se pode atacar");
+            }
+           
             var next = this.m_NextCombatTime;
             if (Shard.TROCA_ARMA_RAPIDA && weapon != null)
             {
-                Shard.Debug("Pode atacar com " + weapon.Name);
+                if (Shard.DebugEnabled)
+                    Shard.Debug("Pode atacar com " + weapon.Name);
                 if (this.NextCombatTimes.TryGetValue(weapon, out aux))
                 {
                     next = aux;

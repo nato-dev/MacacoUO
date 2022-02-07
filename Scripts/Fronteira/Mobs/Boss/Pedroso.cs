@@ -65,7 +65,9 @@ namespace Server.Mobiles
             AddItem(new Rock1Rand());
             AddItem(new Rock2Rand());
             AddItem(new BronzeIngot(300));
-            if(Utility.RandomBool())
+            if (Utility.RandomBool())
+                AddItem(new ElementalBall(1000));
+            if (Utility.RandomBool())
                 AddItem(new QuartzoIngot(80));
             else
                 AddItem(new BeriloIngot(80));
@@ -93,10 +95,9 @@ namespace Server.Mobiles
             {
                 if (e.m_HasRight && e.m_Mobile != null)
                 {
-                    if(Utility.RandomDouble() < 0.05)
-                        e.m_Mobile.AddToBackpack(new ElementalBall());
-                    else
-                        e.m_Mobile.AddToBackpack(Decos.RandomDeco());
+                    
+                   
+                    e.m_Mobile.AddToBackpack(Decos.RandomDeco());
 
                     e.m_Mobile.AddToBackpack(Loot.JoiaRaraRandom(this.Map));
 

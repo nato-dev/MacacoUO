@@ -35,7 +35,7 @@ namespace Shrink.ShrinkSystem
 		public static double ShrunkenWeight = 10.0;
 		public static bool BlessedLeash = true;
 		public static BlessStatus LootStatus = BlessStatus.None;	// How the shruken pet should be as loot
-		public static double TamingRequired = 0;		// set to zero for no skill requirement to use shrink tools
+		public static double TamingRequired = 90;		// set to zero for no skill requirement to use shrink tools
 		public static int ShrinkCharges = -1;			// set to -1 for infinite uses
 
 		public static Type[] PackAnimals = new Type []

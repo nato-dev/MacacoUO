@@ -131,7 +131,10 @@ namespace Shrink.ShrinkSystem
 
             else if ( !m_StaffCommand && ShrinkItem.IsPackAnimal( pet ) && ( null != pet.Backpack && pet.Backpack.Items.Count > 0 ) )
 				from.SendMessage( "Voce precisa liberar a mochila do pet antes de encolher ele." );
-
+            else if(!Banker.Withdraw(from, 2000))
+            {
+                from.SendMessage("Voce precisa de 2000 moedas no banco para isto");
+            }
 			else
 			{
 				if ( pet.ControlMaster != from && !pet.Controlled )

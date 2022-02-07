@@ -12,11 +12,11 @@ namespace Server.Engines.Despise
     {
         public static void Initialize()
         {
-            EventSink.Login += new LoginEventHandler(OnLogin);
-            EventSink.OnEnterRegion += new OnEnterRegionEventHandler(OnEnterRegion);
+            //EventSink.Login += new LoginEventHandler(OnLogin);
+            //EventSink.OnEnterRegion += new OnEnterRegionEventHandler(OnEnterRegion);
 
-            if (m_Instance != null)
-                CommandSystem.Register("CheckSpawnersVersion3", AccessLevel.Administrator, m_Instance.CheckSpawnersVersion3);
+            //if (m_Instance != null)
+            //    CommandSystem.Register("CheckSpawnersVersion3", AccessLevel.Administrator, m_Instance.CheckSpawnersVersion3);
         }
 
         private static DespiseController m_Instance;
@@ -106,8 +106,15 @@ namespace Server.Engines.Despise
         public DespiseController()
             : base(3806)
         {
+
             Movable = false;
             Visible = false;
+
+            Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
+            {
+                this.Delete();
+            });
+            return;
 
             m_Enabled = true;
             m_Instance = this;
@@ -134,6 +141,8 @@ namespace Server.Engines.Despise
 
         private void BeginTimer()
         {
+            return;
+
             EndTimer();
 
             m_Timer = Timer.DelayCall(TimeSpan.FromMinutes(1), TimeSpan.FromMinutes(1), new TimerCallback(OnTick));
@@ -279,6 +288,7 @@ namespace Server.Engines.Despise
 
         private void CreateSpawners()
         {
+            return; 
             //Console.Write("Locating Despise Revamp Spawners...");
 
             m_GoodSpawners = new List<XmlSpawner>();
@@ -335,6 +345,7 @@ namespace Server.Engines.Despise
 
         private void BeginSequence()
         {
+      
             m_Sequencing = false;
 
             if (m_ToTransport.Count == 0)
@@ -657,6 +668,10 @@ namespace Server.Engines.Despise
         public DespiseController(Serial serial)
             : base(serial)
         {
+            Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
+            {
+                this.Delete();
+            });
         }
 
         public override void Serialize(GenericWriter writer)

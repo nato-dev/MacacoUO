@@ -1962,7 +1962,7 @@ namespace Server.Mobiles
                 Animate(Body.IsAnimal ? 10 : 18, 5, 1, true, false, 0);
             }
 
-            if(!(this is IMount))
+            if (!(this is IMount))
                 Loyalty -= 3;
             return false;
         }
@@ -7153,14 +7153,14 @@ namespace Server.Mobiles
 
                 Warmode = false;
 
-                if(this.ControlMaster is PlayerMobile)
+                if (this.ControlMaster is PlayerMobile)
                 {
-                    if(!this.ControlMaster.IsCooldown("petmsg"))
+                    if (!this.ControlMaster.IsCooldown("petmsg"))
                     {
                         this.ControlMaster.SetCooldown("petmsg", TimeSpan.FromHours(1));
                         this.ControlMaster.SendMessage(78, "SEU PET MORREU !! Voce precisa de Veterinary para usar bandagens no corpo do seu pet para ressa-lo ou levar seu espirito para um veterinario ! Se o corpo do seu pet sumir, seu pet sera perdido para sempre !");
                     }
-                  
+
                 }
 
                 Poison = null;
@@ -8584,21 +8584,22 @@ namespace Server.Mobiles
                 m_NextRummageTime = tc + (int)TimeSpan.FromMinutes(delay).TotalMilliseconds;
             }
 
-        
+
             if (IsSpawnerBound() && !InRange(Home, RangeHome))
             {
-                if(homePath != null)
+                if (homePath != null)
                 {
-                    if(Combatant != null || Warmode)
+                    if (Combatant != null || Warmode)
                     {
                         homePath = null;
-                    } else
+                    }
+                    else
                     {
                         if (!homePath.Follow(true, 1))
                         {
                             homePath = null;
                         }
-                    } 
+                    }
                 }
 
                 if ((Combatant == null) && (Warmode == false) && !IsCooldown("volta"))

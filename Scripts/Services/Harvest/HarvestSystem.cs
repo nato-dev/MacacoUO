@@ -420,7 +420,7 @@ namespace Server.Engines.Harvest
                 else if (from.Skills[def.Skill].Value >= 75)
                     mult = 0.3;
                 else if (from.Skills[def.Skill].Value >= 85)
-                    mult = 0.1;
+                    mult = 0.08;
             }
             else if (def.Skill == SkillName.Lumberjacking)
             {
@@ -429,7 +429,7 @@ namespace Server.Engines.Harvest
                 else if (from.Skills[def.Skill].Value >= 75)
                     mult = 0.3;
                 else if (from.Skills[def.Skill].Value >= 85)
-                    mult = 0.1;
+                    mult = 0.08;
             }
 
             if (mult < 1 && !from.IsCooldown("msgmult"))

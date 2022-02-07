@@ -2262,6 +2262,10 @@ namespace Server.Items
                 var arma = attacker.FindItemOnLayer(Layer.TwoHanded);
 
                 double chanceParry = defender.Skills[SkillName.Parry].Value / 130;
+
+                if (((BaseCreature)defender).Controlled)
+                    chanceParry *= 0.9;
+
                 if (arma == null || !(arma is BaseRanged))
                 {
                     chanceParry /= 2;
