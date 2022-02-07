@@ -114,6 +114,11 @@ namespace Server.Mobiles
 
             protected override void OnTick()
             {
+                if (bc.Deleted || bc == null)
+                    return;
+
+
+
                 ct++;
                 if(ct % 5 == 0)
                 {
@@ -132,9 +137,11 @@ namespace Server.Mobiles
                 {
                     bc.MoveToWorld(new Point3D(bc.Location.X, bc.Location.Y, bc.Location.Z-2), bc.Map);
                 } else if (ct == 10) {
-                  
-                    bc.MoveToWorld(new Point3D(alvo.X, alvo.Location.Y, alvo.Location.Z-20), alvo.Map);
-                    rect = new Rectangle2D(bc.X - 1, bc.Y - 1, 3, 3);
+                    if(alvo.Alive)
+                    {
+                        bc.MoveToWorld(new Point3D(alvo.X, alvo.Location.Y, alvo.Location.Z - 20), alvo.Map);
+                        rect = new Rectangle2D(bc.X - 1, bc.Y - 1, 3, 3);
+                    }
                 } else if (ct < 20)
                 {
                     bc.MoveToWorld(new Point3D(bc.Location.X, bc.Location.Y, bc.Location.Z+2), bc.Map);
