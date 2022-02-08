@@ -697,9 +697,7 @@ namespace Server.Engines.Harvest
             {
                 OnConcurrentHarvest(from, tool, def, toHarvest);
                 return;
-            }
-
-           
+            }    
 
             new HarvestTimer(from, tool, this, def, toHarvest, toLock).Start();
             OnHarvestStarted(from, tool, def, toHarvest);
