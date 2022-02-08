@@ -2008,8 +2008,6 @@ namespace Server.Items
             }
         }
 
-        private void EscondeProps = false;
-
         public override void GetProperties(ObjectPropertyList list)
         {
             base.GetProperties(list);
