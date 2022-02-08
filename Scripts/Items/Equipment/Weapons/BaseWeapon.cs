@@ -2261,7 +2261,7 @@ namespace Server.Items
             {
                 var arma = attacker.FindItemOnLayer(Layer.TwoHanded);
 
-                double chanceParry = defender.Skills[SkillName.Parry].Value / 130;
+                double chanceParry = defender.Skills[SkillName.Parry].Value / 200;
 
                 if (((BaseCreature)defender).Controlled)
                     chanceParry *= 0.9;

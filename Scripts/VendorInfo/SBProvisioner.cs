@@ -156,6 +156,7 @@ namespace Server.Mobiles
 
                 Add(typeof(Beeswax), 1);
 
+                /*
                 Add(typeof(Amber), 25);
                 Add(typeof(Amethyst), 50);
                 Add(typeof(Citrine), 25);
@@ -177,7 +178,7 @@ namespace Server.Mobiles
                 Add(typeof(SilverBracelet), 10);
                 Add(typeof(GoldEarrings), 13);
                 Add(typeof(SilverEarrings), 10);
-
+                */
                 if (!Guild.NewGuildSystem)
                     Add(typeof(GuildDeed), 6225);
             }

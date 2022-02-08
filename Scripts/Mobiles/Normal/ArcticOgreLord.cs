@@ -31,14 +31,14 @@ namespace Server.Mobiles
             SetResistance(ResistanceType.Poison, 100);
             SetResistance(ResistanceType.Energy, 40, 50);
 
-            SetSkill(SkillName.MagicResist, 125.1, 140.0);
+            SetSkill(SkillName.MagicResist, 10, 20);
             SetSkill(SkillName.Tactics, 90.1, 100.0);
             SetSkill(SkillName.Wrestling, 90.1, 100.0);
 
             Fame = 15000;
             Karma = -15000;
 
-            VirtualArmor = 50;
+            VirtualArmor = 70;
 
             PackItem(new Club());
         }

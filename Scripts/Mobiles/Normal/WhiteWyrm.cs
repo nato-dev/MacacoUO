@@ -58,14 +58,14 @@ namespace Server.Mobiles
             cloth.Hue = 1153;
             cloth.Name = "Tecido Puro Branco";
             AddItem(cloth);
-            if (Utility.RandomDouble() > 0.02)
+            if (Utility.RandomDouble() < 0.02)
             {
                 var h = new DragonHead();
                 h.Name = "Cabeca de Dragao Branco";
                 h.Hue = this.Hue;
                 AddItem(h);
             }
-            if (Utility.RandomDouble() > 0.02)
+            if (Utility.RandomDouble() < 0.02)
             {
                 var d = new DyeTub();
                 d.DyedHue = 1153;
