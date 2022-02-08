@@ -1,9 +1,6 @@
-using System;
 using Server.Items;
 using Server.Spells;
-using Server.Spells.Fourth;
 using Server.Spells.Seventh;
-using Server.Spells.Sixth;
 
 namespace Server.Mobiles
 {
@@ -12,7 +9,6 @@ namespace Server.Mobiles
     {
         public override Spell ChooseSpell()
         {
-            return new FireFieldSpell(this, null);
             if (Utility.RandomBool())
             {
                 return new FlameStrikeSpell(this, null);

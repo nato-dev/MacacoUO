@@ -49,6 +49,9 @@ namespace Server.Spells.Chivalry
 
         public override bool CheckCast()
 		{
+            if (!Shard.NECRO)
+                return false;
+
 			int mana = AjustaMana(RequiredMana);
             int stam = 0;//ScaleStamina(RequiredMana/8);
 

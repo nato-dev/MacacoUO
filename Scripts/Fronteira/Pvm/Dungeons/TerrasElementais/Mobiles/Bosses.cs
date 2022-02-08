@@ -313,6 +313,12 @@ namespace Server.Mobiles
             Karma = -4500;
 
             PackItem(new SulfurousAsh(5));
+            var cloth = new UncutCloth(Utility.Random(10, 5));
+            cloth.Hue = 1161;
+            cloth.Name = "Tecido Magmatico";
+            AddItem(cloth);
+
+            AddItem(new FireElementalCostume());
         }
 
         public override bool HasBreath { get { return true; } } // fire breath enabled

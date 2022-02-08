@@ -56,7 +56,7 @@ namespace Server.Mobiles
         {
         }
 
-        public override Poison HitPoison { get { return Poison.Deadly; } }
+        public override Poison HitPoison { get { return Poison.Greater; } }
 
         public override FoodType FavoriteFood
         {

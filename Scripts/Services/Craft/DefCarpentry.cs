@@ -160,19 +160,14 @@ namespace Server.Engines.Craft
             int index = -1;
 
             // Boats
-            index = AddCraft(typeof(BritannianShipDeed), "Barcos", "Barco Grande Brittanico",90, 115, typeof(HeartwoodBoard), 1044041, 1000, 1044351);
+            index = AddCraft(typeof(BritannianShipDeed), "Barcos", "Barco Grande Brittanico",90, 115, typeof(HeartwoodBoard), 1044041, 300, 1044351);
             AddSkill(index, SkillName.Tinkering, 80.0, 85.0);
-            AddRes(index, typeof(CopperIngot), 1044036, 800, 1044037);
+            AddRes(index, typeof(CopperIngot), 1044036, 500, 1044037);
             AddRes(index, typeof(AxleGears), "Engrenagens de Eixo", 50, "Voce precisa de engrenagens de eixo");
 
-            index = AddCraft(typeof(TokunoGalleonDeed), "Barcos", "Barco Grande Oriental", 80, 110, typeof(HeartwoodBoard), 1044041, 900, 1044351);
-            AddSkill(index, SkillName.Tinkering, 80.0, 85.0);
-            AddRes(index, typeof(CopperIngot), 1044036, 800, 1044037);
-            AddRes(index, typeof(AxleGears), "Engrenagens de Eixo", 40, "Voce precisa de engrenagens de eixo");
-
-            index = AddCraft(typeof(TokunoGalleonDeed), "Barcos", "Barco Grande", 70, 105, typeof(HeartwoodBoard), 1044041, 800, 1044351);
-            AddSkill(index, SkillName.Tinkering, 80.0, 85.0);
-            AddRes(index, typeof(CopperIngot), 1044036, 800, 1044037);
+            index = AddCraft(typeof(TokunoGalleonDeed), "Barcos", "Barco Grande", 60, 100, typeof(HeartwoodBoard), 1044041, 100, 1044351);
+            AddSkill(index, SkillName.Tinkering, 60.0, 85.0);
+            AddRes(index, typeof(CopperIngot), 1044036, 300, 1044037);
             AddRes(index, typeof(AxleGears), "Engrenagens de Eixo", 40, "Voce precisa de engrenagens de eixo");
 
             // Other

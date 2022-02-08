@@ -37,7 +37,7 @@ namespace Server.Items
 
         public BaseTreasureChestMod( int itemID ) : base ( itemID )
 		{
-            Name = "Bau Trancado";
+            Name = "Tesouro";
 			Locked = true;
 			Movable = false;
             Tesouros.Add(this);
