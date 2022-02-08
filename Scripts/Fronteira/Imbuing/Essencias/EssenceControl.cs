@@ -2,49 +2,29 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenceDiligence : Item, ICommodity
+    public class EssenciaAgua : BaseItemElemental, ICommodity
     {
+        public override ElementoPvM Elemento { get { return ElementoPvM.Agua; } }
+
         [Constructable]
-        public EssenceDiligence()
+        public EssenciaAgua()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenceDiligence(int amount)
+        public EssenciaAgua(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
-			Hue = 1166;
         }
 
-        public EssenceDiligence(Serial serial)
+        public EssenciaAgua(Serial serial)
             : base(serial)
         {
         }
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1113338;
-            }
-        }// essence of diligence
-		TextDefinition ICommodity.Description
-        {
-            get
-            {
-                return this.LabelNumber;
-            }
-        }
-        bool ICommodity.IsDeedable
-        {
-            get
-            {
-                return true;
-            }
-        }
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

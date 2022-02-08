@@ -36,7 +36,7 @@ namespace Server.Mobiles
             if(b.Skills.Parry.Base < 25)
                 b.Skills.Parry.Base = 25;
             b.Skills.MagicResist.Base = 100;
-            b.Backpack.DropItem(new Gold(300));
+            b.AddItem(new Gold(Utility.Random(200, 200)));
             b.DamageMin = (int)(b.DamageMin * 1.2);
             b.DamageMax = (int)(b.DamageMax * 1.2);
         }

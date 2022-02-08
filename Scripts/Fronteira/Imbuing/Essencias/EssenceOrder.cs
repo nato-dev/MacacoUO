@@ -2,49 +2,30 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenceBalance : Item, ICommodity
+    public class EssenciaVento : BaseItemElemental, ICommodity
     {
+        public override ElementoPvM Elemento { get { return ElementoPvM.Vento; } }
+
         [Constructable]
-        public EssenceBalance()
+        public EssenciaVento()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenceBalance(int amount)
+        public EssenciaVento(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
-			Hue = 1268;
+		
         }
 
-        public EssenceBalance(Serial serial)
+        public EssenciaVento(Serial serial)
             : base(serial)
         {
         }
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1113324;
-            }
-        }// essence of balance
-		TextDefinition ICommodity.Description
-        {
-            get
-            {
-                return this.LabelNumber;
-            }
-        }
-        bool ICommodity.IsDeedable
-        {
-            get
-            {
-                return true;
-            }
-        }
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

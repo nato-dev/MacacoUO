@@ -2,24 +2,27 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenceDirection : Item, ICommodity
+    public class EssenciaTerra : BaseItemElemental, ICommodity
     {
+        public override ElementoPvM Elemento { get { return ElementoPvM.Terra; } }
+
         [Constructable]
-        public EssenceDirection()
+        public EssenciaTerra()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenceDirection(int amount)
+        public EssenciaTerra(int amount)
             : base(0x571C)
         {
+         
             Stackable = true;
             Amount = amount;
-			Hue = 1156;
+           
         }
 
-        public EssenceDirection(Serial serial)
+        public EssenciaTerra(Serial serial)
             : base(serial)
         {
         }
@@ -28,9 +31,9 @@ namespace Server.Items
         {
             get
             {
-                return 1113328;
+                return 1113325;
             }
-        }// essence of direction
+        }// essence of achievement
 		TextDefinition ICommodity.Description
         {
             get

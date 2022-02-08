@@ -7238,6 +7238,11 @@ namespace Server.Mobiles
                         i.LootType = LootType.Blessed;
                         i.DuraSegundos = 60 * 60 * 12; // 12 horas
                     }
+                    if(i is BaseArmor && Elemento != ElementoPvM.None)
+                    {
+                        if(Utility.RandomDouble() < 0.2)
+                            ((BaseArmor)i).Elemento = Elemento;
+                    }
                 }
 
                 var goldMult = GoldHour.GOLD_MULT + 1;

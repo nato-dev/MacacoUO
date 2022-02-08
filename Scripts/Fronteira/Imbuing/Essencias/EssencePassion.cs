@@ -2,49 +2,27 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenceControl : Item, ICommodity
+    public class EssenciaRaio : BaseItemElemental, ICommodity
     {
         [Constructable]
-        public EssenceControl()
+        public EssenciaRaio()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenceControl(int amount)
+        public EssenciaRaio(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
-			Hue = 1165;
         }
 
-        public EssenceControl(Serial serial)
+        public EssenciaRaio(Serial serial)
             : base(serial)
         {
         }
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1113340;
-            }
-        }// essence of control
-		TextDefinition ICommodity.Description
-        {
-            get
-            {
-                return this.LabelNumber;
-            }
-        }
-        bool ICommodity.IsDeedable
-        {
-            get
-            {
-                return true;
-            }
-        }
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

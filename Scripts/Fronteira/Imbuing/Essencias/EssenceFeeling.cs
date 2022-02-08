@@ -2,49 +2,29 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenceOrder : Item, ICommodity
+    public class EssenciaEscuridao : BaseItemElemental, ICommodity
     {
+        public override ElementoPvM Elemento { get { return ElementoPvM.Escuridao; } }
+
         [Constructable]
-        public EssenceOrder()
+        public EssenciaEscuridao()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenceOrder(int amount)
+        public EssenciaEscuridao(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
-			Hue = 1153;
         }
 
-        public EssenceOrder(Serial serial)
+        public EssenciaEscuridao(Serial serial)
             : base(serial)
         {
         }
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1113342;
-            }
-        }// essence of order
-		TextDefinition ICommodity.Description
-        {
-            get
-            {
-                return this.LabelNumber;
-            }
-        }
-        bool ICommodity.IsDeedable
-        {
-            get
-            {
-                return true;
-            }
-        }
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

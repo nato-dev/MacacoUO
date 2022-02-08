@@ -34,7 +34,7 @@ namespace Server.Items
         public static Type[] ArtifactsLevelSeven { get { return m_LevelSevenOnly; } }
         private static Type[] m_LevelSevenOnly = new Type[]
         {
-            typeof(CoffinPiece), typeof(MasterSkeletonKey)
+            typeof(CoffinPiece), typeof(MasterSkeletonKey), typeof(BakeKitsuneStatue)
         };
 
         public static Type[] SOSArtifacts { get { return m_SOSArtifacts; } }
@@ -55,9 +55,9 @@ namespace Server.Items
 
         private static Type[] m_ImbuingIngreds =
         {
-            typeof(AbyssalCloth),   typeof(EssencePrecision), typeof(EssenceAchievement), typeof(EssenceBalance),
-            typeof(EssenceControl), typeof(EssenceDiligence), typeof(EssenceDirection),   typeof(EssenceFeeling),
-            typeof(EssenceOrder),   typeof(EssencePassion),   typeof(EssencePersistence), typeof(EssenceSingularity)
+            typeof(AbyssalCloth),   typeof(EssencePrecision), typeof(EssenciaTerra), typeof(EssenciaFogo),
+            typeof(EssenciaAgua), typeof(EssenciaGelo), typeof(EssenciaLuz),   typeof(EssenciaEscuridao),
+            typeof(EssenciaVento),   typeof(EssenciaRaio),   typeof(EssencePersistence), typeof(EssenceSingularity)
         };
 
         private int m_Level;
@@ -90,7 +90,7 @@ namespace Server.Items
             m_Timer.Start();
 
             int luck = 0;
-            Map map = Map.Felucca;
+            Map map = Map.Trammel;
 
             if (owner != null)
             {
@@ -230,22 +230,22 @@ namespace Server.Items
                         cont.RequiredSkill = 5;
                         break;
                     case 2:
-                        cont.RequiredSkill = 45;
+                        cont.RequiredSkill = 20;
                         break;
                     case 3:
-                        cont.RequiredSkill = 65;
+                        cont.RequiredSkill = 50;
                         break;
                     case 4:
-                        cont.RequiredSkill = 75;
+                        cont.RequiredSkill = 70;
                         break;
                     case 5:
-                        cont.RequiredSkill = 75;
-                        break;
-                    case 6:
                         cont.RequiredSkill = 80;
                         break;
+                    case 6:
+                        cont.RequiredSkill = 90;
+                        break;
                     case 7:
-                        cont.RequiredSkill = 85;
+                        cont.RequiredSkill = 100;
                         break;
                 }
 

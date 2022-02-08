@@ -1739,11 +1739,11 @@ namespace Server.SkillHandlers
             m_Table[10] = new ImbuingDefinition(AosAttribute.BonusStam, 1075632, 110, typeof(EnchantedEssence), typeof(Diamond), typeof(LuminescentFungi), 8, 1, 1112042, false, false, true, false, false);
             m_Table[11] = new ImbuingDefinition(AosAttribute.BonusMana, 1075631, 110, typeof(EnchantedEssence), typeof(Sapphire), typeof(LuminescentFungi), 8, 1, 1112002, false, false, true, false, false);
             m_Table[12] = new ImbuingDefinition(AosAttribute.WeaponDamage, 1079399, 100, typeof(EnchantedEssence), typeof(Citrine), typeof(CrystalShards), 50, 1, 1112005, true, true, false, false, true);
-            m_Table[13] = new ImbuingDefinition(AosAttribute.WeaponSpeed, 1075629, 110, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenceControl), 30, 5, 1112045, true, true, false, false, false);
+            m_Table[13] = new ImbuingDefinition(AosAttribute.WeaponSpeed, 1075629, 110, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenciaAgua), 30, 5, 1112045, true, true, false, false, false);
             m_Table[14] = new ImbuingDefinition(AosAttribute.SpellDamage, 1075628, 100, typeof(EnchantedEssence), typeof(Emerald), typeof(CrystalShards), 12, 1, 1112041, false, false, false, false, true);
-            m_Table[15] = new ImbuingDefinition(AosAttribute.CastRecovery, 1075618, 120, typeof(RelicFragment), typeof(Amethyst), typeof(EssenceDiligence), 3, 1, 1111952, false, false, false, false, true);
-            m_Table[16] = new ImbuingDefinition(AosAttribute.CastSpeed, 1075617, 140, typeof(RelicFragment), typeof(Ruby), typeof(EssenceAchievement), 1, 1, 1111951, false, false, false, true, true);
-            m_Table[17] = new ImbuingDefinition(AosAttribute.LowerManaCost, 1075621, 110, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenceOrder), 8, 1, 1111996, false, false, true, false, true);
+            m_Table[15] = new ImbuingDefinition(AosAttribute.CastRecovery, 1075618, 120, typeof(RelicFragment), typeof(Amethyst), typeof(EssenciaGelo), 3, 1, 1111952, false, false, false, false, true);
+            m_Table[16] = new ImbuingDefinition(AosAttribute.CastSpeed, 1075617, 140, typeof(RelicFragment), typeof(Ruby), typeof(EssenciaTerra), 1, 1, 1111951, false, false, false, true, true);
+            m_Table[17] = new ImbuingDefinition(AosAttribute.LowerManaCost, 1075621, 110, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenciaVento), 8, 1, 1111996, false, false, true, false, true);
             m_Table[18] = new ImbuingDefinition(AosAttribute.LowerRegCost, 1075625, 100, typeof(MagicalResidue), typeof(Amber), typeof(FaeryDust), 20, 1, 1111997, false, false, true, false, true);
             m_Table[19] = new ImbuingDefinition(AosAttribute.ReflectPhysical, 1075626, 100, typeof(MagicalResidue), typeof(Citrine), typeof(ReflectiveWolfEye), 15, 1, 1112006, false, false, true, true, false);
             m_Table[20] = new ImbuingDefinition(AosAttribute.EnhancePotions, 1075624, 100, typeof(EnchantedEssence), typeof(Citrine), typeof(CrushedGlass), 25, 5, 1111950, false, false, false, false, true);
@@ -1762,10 +1762,10 @@ namespace Server.SkillHandlers
             m_Table[32] = new ImbuingDefinition(AosWeaponAttribute.HitColdArea, 1079693, 100, typeof(MagicalResidue), typeof(Sapphire), typeof(RaptorTeeth), 50, 2, 1111953, true, true, false, false, false);
             m_Table[33] = new ImbuingDefinition(AosWeaponAttribute.HitPoisonArea, 1079697, 100, typeof(MagicalResidue), typeof(Emerald), typeof(RaptorTeeth), 50, 2, 1111957, true, true, false, false, false);
             m_Table[34] = new ImbuingDefinition(AosWeaponAttribute.HitEnergyArea, 1079694, 100, typeof(MagicalResidue), typeof(Amethyst), typeof(RaptorTeeth), 50, 2, 1111954, true, true, false, false, false);
-            m_Table[35] = new ImbuingDefinition(AosWeaponAttribute.HitMagicArrow, 1079706, 120, typeof(RelicFragment), typeof(Amber), typeof(EssenceFeeling), 50, 2, 1111963, true, true, false, false, false);
+            m_Table[35] = new ImbuingDefinition(AosWeaponAttribute.HitMagicArrow, 1079706, 120, typeof(RelicFragment), typeof(Amber), typeof(EssenciaEscuridao), 50, 2, 1111963, true, true, false, false, false);
             m_Table[36] = new ImbuingDefinition(AosWeaponAttribute.HitHarm, 1079704, 110, typeof(EnchantedEssence), typeof(Emerald), typeof(ParasiticPlant), 50, 2, 1111961, true, true, false, false, false);
             m_Table[37] = new ImbuingDefinition(AosWeaponAttribute.HitFireball, 1079703, 140, typeof(EnchantedEssence), typeof(Ruby), typeof(FireRuby), 50, 2, 1111960, true, true, false, false, false);
-            m_Table[38] = new ImbuingDefinition(AosWeaponAttribute.HitLightning, 1079705, 140, typeof(RelicFragment), typeof(Amethyst), typeof(EssencePassion), 50, 2, 1111962, true, true, false, false, false);
+            m_Table[38] = new ImbuingDefinition(AosWeaponAttribute.HitLightning, 1079705, 140, typeof(RelicFragment), typeof(Amethyst), typeof(EssenciaRaio), 50, 2, 1111962, true, true, false, false, false);
             m_Table[39] = new ImbuingDefinition(AosWeaponAttribute.HitDispel, 1079702, 100, typeof(MagicalResidue), typeof(Amber), typeof(SlithTongue), 50, 2, 1111959, true, true, false, false, false);
             m_Table[40] = new ImbuingDefinition(AosWeaponAttribute.UseBestSkill, 1079592, 150, typeof(EnchantedEssence), typeof(Amber), typeof(DelicateScales), 1, 0, 1111946, true, false, false, false, false);
             m_Table[41] = new ImbuingDefinition(AosWeaponAttribute.MageWeapon, 1079759, 100, typeof(EnchantedEssence), typeof(Emerald), typeof(ArcanicRuneStone), 10, 1, 1112001, true, true, false, false, false);
@@ -1779,8 +1779,8 @@ namespace Server.SkillHandlers
             m_Table[54] = new ImbuingDefinition(AosElementAttribute.Poison, 1061161, 100, typeof(MagicalResidue), typeof(Emerald), typeof(BouraPelt), 15, 1, 1112011, true, true, true, false, true);
             m_Table[55] = new ImbuingDefinition(AosElementAttribute.Energy, 1061162, 100, typeof(MagicalResidue), typeof(Amethyst), typeof(BouraPelt), 15, 1, 1112008, true, true, true, false, true);
 
-            m_Table[60] = new ImbuingDefinition("WeaponVelocity", 1080416, 130, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenceDirection), 50, 2, 1112048, false, true, false, false, false);
-            m_Table[61] = new ImbuingDefinition(AosAttribute.BalancedWeapon, 1072792, 150, typeof(RelicFragment), typeof(Amber), typeof(EssenceBalance), 1, 0, 1112047, false, true, false, false, false);
+            m_Table[60] = new ImbuingDefinition("WeaponVelocity", 1080416, 130, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenciaLuz), 50, 2, 1112048, false, true, false, false, false);
+            m_Table[61] = new ImbuingDefinition(AosAttribute.BalancedWeapon, 1072792, 150, typeof(RelicFragment), typeof(Amber), typeof(EssenciaFogo), 1, 0, 1112047, false, true, false, false, false);
             m_Table[62] = new ImbuingDefinition("SearingWeapon", 1151183, 150, null, null, null, 1, 0, -1, true, false, false, false, false);
 
             m_Table[101] = new ImbuingDefinition(SlayerName.Orcs, 1079741, 100, typeof(MagicalResidue), typeof(Emerald), typeof(WhitePearl), 1, 0, 1111977, true, true);
@@ -1927,10 +1927,10 @@ namespace Server.SkillHandlers
             typeof(CrushedGlass),       typeof(CrystallineBlackrock),   typeof(PowderedIron),
             typeof(ElvenFletching),     typeof(DelicateScales),
 
-            typeof(EssenceSingularity), typeof(EssenceBalance),         typeof(EssencePassion),
-            typeof(EssenceDirection),   typeof(EssencePrecision),       typeof(EssenceControl),
-            typeof(EssenceDiligence),   typeof(EssenceAchievement),     typeof(EssenceFeeling),
-            typeof(EssenceOrder),
+            typeof(EssenceSingularity), typeof(EssenciaFogo),         typeof(EssenciaRaio),
+            typeof(EssenciaLuz),   typeof(EssencePrecision),       typeof(EssenciaAgua),
+            typeof(EssenciaGelo),   typeof(EssenciaTerra),     typeof(EssenciaEscuridao),
+            typeof(EssenciaVento),
 
             typeof(ParasiticPlant),     typeof(LuminescentFungi),
             typeof(FireRuby),           typeof(WhitePearl),             typeof(BlueDiamond),

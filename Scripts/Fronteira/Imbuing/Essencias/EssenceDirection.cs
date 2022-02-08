@@ -2,49 +2,29 @@ using System;
 
 namespace Server.Items
 {
-    public class EssencePassion : Item, ICommodity
+    public class EssenciaLuz : BaseItemElemental, ICommodity
     {
+        public override ElementoPvM Elemento { get { return ElementoPvM.Luz; } }
+
         [Constructable]
-        public EssencePassion()
+        public EssenciaLuz()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssencePassion(int amount)
+        public EssenciaLuz(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
-            Hue = 1161;
         }
 
-        public EssencePassion(Serial serial)
+        public EssenciaLuz(Serial serial)
             : base(serial)
         {
         }
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1113326;
-            }
-        }// essence of passion
-		TextDefinition ICommodity.Description
-        {
-            get
-            {
-                return this.LabelNumber;
-            }
-        }
-        bool ICommodity.IsDeedable
-        {
-            get
-            {
-                return true;
-            }
-        }
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

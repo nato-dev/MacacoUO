@@ -2,49 +2,30 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenceFeeling : Item, ICommodity
+    public class EssenciaFogo : BaseItemElemental, ICommodity
     {
+        public override ElementoPvM Elemento { get { return ElementoPvM.Fogo; } }
+
         [Constructable]
-        public EssenceFeeling()
+        public EssenciaFogo()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenceFeeling(int amount)
+        public EssenciaFogo(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
-			Hue = 455;
         }
 
-        public EssenceFeeling(Serial serial)
+        public EssenciaFogo(Serial serial)
             : base(serial)
         {
         }
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1113339;
-            }
-        }// essence of feeling
-		TextDefinition ICommodity.Description
-        {
-            get
-            {
-                return this.LabelNumber;
-            }
-        }
-        bool ICommodity.IsDeedable
-        {
-            get
-            {
-                return true;
-            }
-        }
+    
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

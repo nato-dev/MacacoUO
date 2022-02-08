@@ -2,35 +2,37 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenceAchievement : Item, ICommodity
+    public class EssencePersistence : Item, ICommodity
     {
         [Constructable]
-        public EssenceAchievement()
+        public EssencePersistence()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenceAchievement(int amount)
+        public EssencePersistence(int amount)
             : base(0x571C)
         {
+            Name = "Essencia Magica";
             Stackable = true;
             Amount = amount;
-			Hue = 1724;
         }
 
-        public EssenceAchievement(Serial serial)
+        public EssencePersistence(Serial serial)
             : base(serial)
         {
         }
+
+
 
         public override int LabelNumber
         {
             get
             {
-                return 1113325;
+                return 1113343;
             }
-        }// essence of achievement
+        }// essence of persistence
 		TextDefinition ICommodity.Description
         {
             get

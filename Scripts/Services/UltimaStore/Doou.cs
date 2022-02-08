@@ -55,6 +55,9 @@ namespace Server.Services.UltimaStore
 
         public static void Consome(Mobile from)
         {
+            if (from == null || from.Deleted || from.NetState == null)
+                return;
+
             Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
             Effects.PlaySound(from.Location, from.Map, 0x243);
 

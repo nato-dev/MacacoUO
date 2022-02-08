@@ -314,9 +314,11 @@ namespace Server
 
         private static readonly Type[] m_ImbuingEssenceIngreds = new[]
         {
-            typeof(EssencePrecision), typeof(EssenceAchievement), typeof(EssenceBalance), typeof(EssenceControl), typeof(EssenceDiligence),
-            typeof(EssenceDirection),   typeof(EssenceFeeling), typeof(EssenceOrder),   typeof(EssencePassion),   typeof(EssencePersistence),
-            typeof(EssenceSingularity)
+             typeof(EssenciaTerra), typeof(EssenciaFogo), typeof(EssenciaAgua), typeof(EssenciaGelo),
+            typeof(EssenciaLuz),   typeof(EssenciaEscuridao), typeof(EssenciaVento),   typeof(EssenciaRaio),
+            //typeof(EssencePersistence),
+            //typeof(EssenceSingularity),
+            //  typeof(EssencePrecision),
         };
 
         public static Type[] ImbuingEssenceIngreds { get { return m_ImbuingEssenceIngreds; } }

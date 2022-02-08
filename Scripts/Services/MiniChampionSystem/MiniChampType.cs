@@ -97,7 +97,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Fairy Dragon Lair
             (
-                typeof(EssenceDiligence),
+                typeof(EssenciaGelo),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(25, typeof(FairyDragon))
@@ -117,7 +117,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Abyssal Lair
             (
-                typeof(EssenceAchievement),
+                typeof(EssenciaTerra),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(20, typeof(GreaterMongbat)),
@@ -138,7 +138,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Discarded Cavern Clan Ribbon
             (
-                typeof(EssenceBalance),
+                typeof(EssenciaFogo),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(10, typeof(ClanRibbonPlagueRat)),
@@ -156,7 +156,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Discarded Cavern Clan Scratch
             (
-                typeof(EssenceBalance),
+                typeof(EssenciaFogo),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(10, typeof(ClanSSW)),
@@ -174,7 +174,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Discarded Cavern Clan Chitter
             (
-                typeof(EssenceBalance),
+                typeof(EssenciaFogo),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(10, typeof(ClockworkScorpion)),
@@ -213,7 +213,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Lands of the Lich
             (
-                typeof(EssenceDirection),
+                typeof(EssenciaLuz),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(5, typeof(Wraith)),
@@ -242,7 +242,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Secret Garden
             (
-                typeof(EssenceFeeling),
+                typeof(EssenciaEscuridao),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(20, typeof(Pixie))
@@ -262,7 +262,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Fire Temple Ruins
             (
-                typeof(EssenceOrder),
+                typeof(EssenciaVento),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(20, typeof(LavaSnake)),
@@ -287,7 +287,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Enslaved Goblins
             (
-                typeof(EssenceControl),
+                typeof(EssenciaAgua),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(10, typeof(EnslavedGrayGoblin)),
@@ -338,7 +338,7 @@ namespace Server.Engines.MiniChamps
             ),
             new MiniChampInfo // Lava Caldera
             (
-                typeof(EssencePassion),
+                typeof(EssenciaRaio),
                 new MiniChampLevelInfo // Level 1
                 (
                     new MiniChampTypeInfo(10, typeof(LavaSnake)),
