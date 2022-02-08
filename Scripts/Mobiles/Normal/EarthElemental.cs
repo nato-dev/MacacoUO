@@ -117,22 +117,7 @@ namespace Server.Mobiles
                 if (bc.Deleted || bc == null)
                     return;
 
-
-
                 ct++;
-                if(ct % 5 == 0)
-                {
-                    var p = new Point3D(
-                        Utility.RandomBool() ? bc.X : Utility.RandomBool() ? bc.X + 1 : bc.X - 1,
-                        Utility.RandomBool() ? bc.Y : Utility.RandomBool() ? bc.Y - 1 : bc.Y + 1,
-                        bc.Z
-                    );
-                    p.Z = bc.Map.GetAverageZ(p.X, p.Y);
-                    var terra = new DirtPatch();
-                    terra.MoveToWorld(p, bc.Map);
-                    Effects.SendMovingParticles(bc, new Entity(Serial.Zero, p, bc.Map), terra.ItemID, 7, 0, false, false, 0, 0, 9502, 1, 0, (EffectLayer)255, 0x100);
-                }
-
                 if (ct < 10)
                 {
                     bc.MoveToWorld(new Point3D(bc.Location.X, bc.Location.Y, bc.Location.Z-2), bc.Map);

@@ -3011,13 +3011,13 @@ namespace Server.Mobiles
                     if (IsParagon && Utility.Random(5) == 1)
                         PackItem(new TalismanElemental());
 
-                    SetHits(Hits * 3);
-                    SetDamage(m_DamageMin + 8, m_DamageMax + 8);
+                    //SetHits(Hits * 3);
+                    //SetDamage(m_DamageMin + 8, m_DamageMax + 8);
                 }
                 else if (this.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(this))
                 {
-                    SetHits((int)(Hits * 2));
-                    SetDamage(m_DamageMin + 4, m_DamageMax + 4);
+                    //SetHits((int)(Hits * 2));
+                    //SetDamage(m_DamageMin + 4, m_DamageMax + 4);
                 }
             });
         }

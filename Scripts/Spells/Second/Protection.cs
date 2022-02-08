@@ -114,12 +114,7 @@ namespace Server.Spells.Second
                 this.Caster.SendLocalizedMessage(1005559); // This spell is already in effect.
                 return false;
             }
-            else if (!this.Caster.CanBeginAction(typeof(DefensiveSpell)))
-            {
-                this.Caster.SendLocalizedMessage(1005385); // The spell will not adhere to you at this time.
-                return false;
-            }
-
+            
             return true;
         }
 
@@ -200,7 +195,6 @@ namespace Server.Spells.Second
             {
                 ArchProtectionSpell.RemoveEntry(this.m_Caster);
                 BuffInfo.RemoveBuff(this.m_Caster, BuffIcon.Protection);
-                DefensiveSpell.Nullify(this.m_Caster);
             }
         }
     }

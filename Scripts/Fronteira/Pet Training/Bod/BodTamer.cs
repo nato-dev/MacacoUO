@@ -21,8 +21,10 @@ namespace Server.Engines.BulkOrders
         [CommandProperty(AccessLevel.GameMaster)]
         public int QuantidadeAtual { get; set; }
 
+        [CommandProperty(AccessLevel.GameMaster)]
         public int GraficoBody { get; set; }
 
+        [CommandProperty(AccessLevel.GameMaster)]
         public int Pontos { get; set; }
 
         public override int Lifespan { get { return 60 * 60 * 24 * 5; } }

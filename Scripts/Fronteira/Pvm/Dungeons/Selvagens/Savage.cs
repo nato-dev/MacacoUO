@@ -1,6 +1,7 @@
 using System;
 using Server.Engines.Craft;
 using Server.Items;
+using Server.Menus.Questions;
 using Server.Ziden;
 
 namespace Server.Mobiles
@@ -8,6 +9,38 @@ namespace Server.Mobiles
     [CorpseName("a savage corpse")]
     public class Savage : BaseCreature
     {
+
+        public static void CheckSelvagem(BaseCreature b)
+        {
+            Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
+            {
+                if (!b.Deleted && b.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(b))
+                    Macumbeiro(b);
+            });
+            
+        }
+
+        public static void Macumbeiro(BaseCreature b)
+        {
+            b.Hue = TintaPreta.COR;
+            foreach(var i in new [] { b.ChestArmor, b.ArmsArmor, b.LegsArmor, b.HeadArmor, b.ArmsArmor, b.HandArmor})
+            {
+                if (i == null)
+                    continue;
+
+                i.Hue = TintaBranca.COR;
+            }
+            b.HitsMaxSeed = 1000;
+            b.Hits = 1000;
+            b.VirtualArmor = 60;
+            if(b.Skills.Parry.Base < 25)
+                b.Skills.Parry.Base = 25;
+            b.Skills.MagicResist.Base = 100;
+            b.Backpack.DropItem(new Gold(300));
+            b.DamageMin = (int)(b.DamageMin * 1.2);
+            b.DamageMax = (int)(b.DamageMax * 1.2);
+        }
+
         [Constructable]
         public Savage()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
@@ -26,7 +59,6 @@ namespace Server.Mobiles
             this.SetDamage(23, 27);
 
             this.SetDamageType(ResistanceType.Physical, 100);
-
             this.SetSkill(SkillName.Fencing, 60.0, 82.5);
             this.SetSkill(SkillName.Macing, 60.0, 82.5);
             this.SetSkill(SkillName.Poisoning, 60.0, 82.5);
@@ -71,6 +103,7 @@ namespace Server.Mobiles
             }
 
             this.Backpack.DropItem(new Bandage(Utility.Random(10) + 5));
+            Savage.CheckSelvagem(this);
         }
 
         public override void OnDamage(int amount, Mobile from, bool willKill)

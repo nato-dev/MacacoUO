@@ -87,8 +87,12 @@ namespace Server.SkillHandlers
                     {
                         if (check.Combatant == m)
                         {
-                            if(check.GetDistanceToSqrt(m) <= 5 || check.InLOS(m))
+                            if(check.GetDistanceToSqrt(m) <= 4 || check.InLOS(m))
                             {
+                                if (Shard.DebugEnabled)
+                                    Shard.Debug("Hiding: Distancia alvo: " + check.GetDistanceToSqrt(m) + " Vendo alvo ? " + check.InLOS(m), check);
+
+                                check.SendMessage("Voce nota " + m.Name + " tentando se esconder");
                                 badCombat = true;
                                 ok = false;
                                 break;

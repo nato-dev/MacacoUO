@@ -27,7 +27,7 @@ namespace Server.Items
         {
             get
             {
-                return 1.25;
+                return 1.2;
             }
         }
         public override bool RequiresSecondarySkill(Mobile from)
@@ -60,6 +60,7 @@ namespace Server.Items
             ClearCurrentAbility(attacker);
 
             attacker.SendLocalizedMessage("Voce da um golpe das sombras"); // You strike and hide in the shadows!
+
             defender.SendLocalizedMessage("Voce foi atacado rapidamente e seu atacante sumiu nas sombras"); // You are dazed by the attack and your attacker vanishes!
 
             Effects.SendLocationParticles(EffectItem.Create(attacker.Location, attacker.Map, EffectItem.DefaultDuration), 0x376A, 8, 12, 9943);

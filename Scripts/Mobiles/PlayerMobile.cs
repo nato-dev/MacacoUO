@@ -6273,10 +6273,6 @@ namespace Server.Mobiles
                     {
                         return true;
                     }
-                    else
-                    {
-                        return false;
-                    }
                 }
             }
 

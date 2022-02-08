@@ -89,7 +89,7 @@ namespace Server.Engines.Harvest
             *  - 'return GetType();' : This will disallow multiple harvesting of the same type. That is, we couldn't mine more than once concurrently, but we could be both mining and lumberjacking.
             *  - 'return typeof( HarvestSystem );' : This will completely restrict concurrent harvesting.
             */
-            return tool;
+            return typeof(HarvestSystem);
         }
 
         public virtual void OnConcurrentHarvest(Mobile from, Item tool, HarvestDefinition def, object toHarvest)
@@ -146,16 +146,15 @@ namespace Server.Engines.Harvest
             /* End Captcha Mod */
 
             return true;
-
         }
 
         public static HashSet<Type> MineriosFodas = new HashSet<Type>(new Type[] {
             typeof(AdamantiumOre), typeof(VibraniumOre), typeof(BeriloOre), typeof(QuartzoOre),
-            typeof(LazuritaOre)
+            typeof(LazuritaOre), typeof(SilverOre),  typeof(NiobioOre)
         });
 
         public static HashSet<Type> MadeirasFodas = new HashSet<Type>(new Type[] {
-           typeof(FrostwoodLog), typeof(BloodwoodLog), typeof(HeartwoodLog), typeof(YewLog)
+           typeof(FrostwoodLog), typeof(BloodwoodLog), typeof(HeartwoodLog), typeof(YewLog), typeof(AshLog)
         });
 
         public virtual void FinishHarvesting(Mobile from, Item tool, HarvestDefinition def, object toHarvest, object locked)

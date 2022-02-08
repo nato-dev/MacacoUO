@@ -1303,7 +1303,7 @@ namespace Server.Mobiles
                     SkillCheck.Gain(from, from.Skills[SkillName.AnimalTaming], 3);
                     from.PlaceInBackpack(new Gold(Utility.RandomMinMax(250, 450)));
                 }
-                else if (from.Skills[SkillName.AnimalTaming].Value < 100)
+                else if (from.Skills[SkillName.AnimalTaming].Value < 95)
                 {
                     SkillCheck.Gain(from, from.Skills[SkillName.AnimalTaming], 2);
                     from.PlaceInBackpack(new Gold(Utility.RandomMinMax(300, 500)));

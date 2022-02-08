@@ -58,7 +58,7 @@ namespace Server.Mobiles
             SetInt(151, 165);
             SetStam(200);
 
-            SetDamage(2, 10);
+            SetDamage(3, 11);
 
             SetDamageType(ResistanceType.Physical, 65);
             SetDamageType(ResistanceType.Fire, 15);
@@ -135,7 +135,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV4);
+            AddLoot(LootPack.LV6);
             AddLoot(LootPack.Gems, 2);
         }
         public class PotTimer : Timer
@@ -174,7 +174,8 @@ namespace Server.Mobiles
                     else
                     {
                         Effects.SendMovingEffect(m_Defender, m_Target, 0xF0D, 12, 0, false, false, 0, 0);
-                        Timer.DelayCall(TimeSpan.FromMilliseconds(500), () => {
+                        Timer.DelayCall(TimeSpan.FromMilliseconds(500), () =>
+                        {
 
                             if (m_Target == null || m_Target.Map == null)
                                 return;
@@ -244,15 +245,15 @@ namespace Server.Mobiles
             {
                 if (e.m_HasRight && e.m_Mobile != null)
                 {
-                    var ps = GetRandomPS(105);
-                    if (ps != null)
-                    {
-                        e.m_Mobile.AddToBackpack(new CabecaAnthony());
-                        e.m_Mobile.AddToBackpack(new LivroAntigo());
-                        e.m_Mobile.AddToBackpack(ps);
-                        e.m_Mobile.SendMessage(78, "Voce ganhou recompensas por ajudar a matar o boss");
-                        e.m_Mobile.SendMessage(78, "As recompensas foram colocadas em sua mochila");
-                    }
+                    if (Utility.RandomBool())
+                        e.m_Mobile.AddToBackpack(GetRandomPS(105));
+
+                    e.m_Mobile.AddToBackpack(new CabecaAnthony());
+                    e.m_Mobile.AddToBackpack(new LivroAntigo());
+
+                    e.m_Mobile.SendMessage(78, "Voce ganhou recompensas por ajudar a matar o boss");
+                    e.m_Mobile.SendMessage(78, "As recompensas foram colocadas em sua mochila");
+
                 }
             }
 

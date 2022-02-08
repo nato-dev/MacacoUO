@@ -12,7 +12,6 @@ namespace Server.Ziden
         public PocaoShrink() : base(0x0EFC)
         {
             this.Name = "Pocao do Encolhimento";
-            this.Stackable = true;
             ShrinkCharges = -1;
         }
 

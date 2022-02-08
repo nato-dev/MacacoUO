@@ -109,7 +109,7 @@ namespace Server.Items.Functional.Pergaminhos
         {
             this.Dias = 30 * 6;
             this.Hue = 356;
-            this.Name = "Pergaminho Sagrado Supremo";
+            this.Name = "Pergaminho de Item Pessoal";
         }
 
         public PergaminhoSagradoSupremo(int itemID)
@@ -117,7 +117,7 @@ namespace Server.Items.Functional.Pergaminhos
         {
             this.Dias = 30 * 6;
             this.Hue = 356;
-            this.Name = "Pergaminho Sagrado Supremo";
+            this.Name = "Pergaminho de Item Pessoal";
         }
 
         public PergaminhoSagradoSupremo(Serial serial)
@@ -169,10 +169,10 @@ namespace Server.Items.Functional.Pergaminhos
             }
         }
 
-        public virtual void AddNameProperties(ObjectPropertyList list)
+        public override void AddNameProperties(ObjectPropertyList list)
         {
-            list.Add("Pergaminho Sagrado Supremo");
             list.Add("Abencoa um item para sempre");
+            list.Add("tornando-o pertence pessoal");
         }
 
         public override void Serialize(GenericWriter writer)

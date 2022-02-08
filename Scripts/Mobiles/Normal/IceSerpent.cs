@@ -47,6 +47,8 @@ namespace Server.Mobiles
 
         }
 
+        public override Poison HitPoison { get { return Poison.Lesser; } }
+
         public override bool CanStealth { get { return true; } }
 
         public override void OnThink()

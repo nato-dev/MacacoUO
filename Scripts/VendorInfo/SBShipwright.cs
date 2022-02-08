@@ -32,7 +32,7 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                Add(new GenericBuyInfo("Barco Superfaturado", typeof(SmallBoatDeed), 100000, 20, 0x14F2, 0));
+                Add(new GenericBuyInfo("Barco Superfaturado", typeof(SmallBoatDeed), 300000, 20, 0x14F2, 0));
             }
         }
 

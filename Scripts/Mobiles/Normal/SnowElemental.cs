@@ -1,5 +1,6 @@
 using System;
 using Server.Items;
+using Server.Ziden;
 
 namespace Server.Mobiles
 {
@@ -31,9 +32,9 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Poison, 25, 35);
             this.SetResistance(ResistanceType.Energy, 25, 35);
 
-            this.SetSkill(SkillName.MagicResist, 50.1, 65.0);
+            this.SetSkill(SkillName.MagicResist, 120, 120);
             this.SetSkill(SkillName.Tactics, 80.1, 100.0);
-            this.SetSkill(SkillName.Wrestling, 80.1, 100.0);
+            this.SetSkill(SkillName.Wrestling, 100, 100.0);
 
             this.Fame = 5000;
             this.Karma = -5000;
@@ -44,6 +45,36 @@ namespace Server.Mobiles
             Item ore = new IronOre(3);
             ore.ItemID = 0x19B8;
             this.PackItem(ore);
+            this.PackItem(new BolaDeNeve());
+            this.PackItem(new BolaDeNeve());
+        }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            if (this.Combatant != null)
+            {
+                if (!IsCooldown("bonethrow"))
+                {
+                    if (this.Combatant is PlayerMobile)
+                    {
+                        var player = (PlayerMobile)this.Combatant;
+                        var dist = player.GetDistanceToSqrt(this.Location);
+                        if (dist <= 3 || dist >= 9 || !this.InLOS(player))
+                        {
+                            return;
+                        }
+     
+                        SetCooldown("bonethrow", TimeSpan.FromSeconds(10));
+                        this.MovingParticles(player, 0x3729, 9, 0, false, false, 9502, 4019, 0x160);
+                        AOS.Damage(player, 5 + Utility.Random(5), 0, 0, 0, 0, 0);
+                        PublicOverheadMessage(Network.MessageType.Regular, 0, false, "* joga gelo *");
+                        player.Paralyze(TimeSpan.FromSeconds(0.5));
+                    }
+
+
+                }
+            }
         }
 
         public SnowElemental(Serial serial)
@@ -80,6 +111,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV4);
+            this.AddLoot(LootPack.Gems);
         }
 
         public override void Serialize(GenericWriter writer)

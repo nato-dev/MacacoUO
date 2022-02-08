@@ -82,6 +82,11 @@ namespace Server.Misc.Custom
 
             m.SendGump(new BankInfoGump(m));
             m.BankBox.Open();
+            if(!m.IsCooldown("dicacheck"))
+            {
+                m.SetCooldown("dicacheck");
+                m.SendMessage(78, "Voce pode falar 'cheque <valor>' para o banqueiro para fazer cheques");
+            }
         }
     }
 }

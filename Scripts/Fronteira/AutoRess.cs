@@ -122,6 +122,7 @@ namespace Server.Gumps
             if(achou != null)
             {
                 m.QuestArrow = new QuestArrow(m, achou);
+                m.QuestArrow.Update();
                 m.SendMessage(78, "Voce esta sendo guiado para o curandeiro mais proximo fora de dungeon. Para parar a setinha, va em Help -> Onde Devo Ir -> Parar Busca");
             }
 

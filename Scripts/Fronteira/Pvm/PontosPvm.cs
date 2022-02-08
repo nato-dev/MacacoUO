@@ -140,7 +140,7 @@ namespace Server.Ziden.Kills
                                     pl.SetCooldown("xpp", TimeSpan.FromMinutes(10));
                                     pl.SendMessage(78, "Digite .xp para usar sua EXP para subir skills");
                                     if(pl.Young)
-                                        pl.PrivateOverheadMessage("Usarei o .xp", 1152);
+                                        pl.PrivateOverheadMessage("Comando: .xp", 222);
                                 }
                             } else
                             {

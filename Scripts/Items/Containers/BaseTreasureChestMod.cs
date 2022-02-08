@@ -37,7 +37,7 @@ namespace Server.Items
 
         public BaseTreasureChestMod( int itemID ) : base ( itemID )
 		{
-            Name = "Tesouro nivel "+GetLevel();
+            Name = "Bau Trancado";
 			Locked = true;
 			Movable = false;
             Tesouros.Add(this);
@@ -51,7 +51,7 @@ namespace Server.Items
 
             Timer.DelayCall(TimeSpan.FromSeconds(1), () => {
                 var r = this.GetRegion();
-                if(r != null)
+                if(r != null && !this.Deleted)
                 {
                     if (!ByRegion.ContainsKey(r))
                         ByRegion.Add(r, new List<BaseTreasureChestMod>());

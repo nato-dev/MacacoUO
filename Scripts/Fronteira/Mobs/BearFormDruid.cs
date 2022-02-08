@@ -58,7 +58,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV2);
-            this.AddLoot(LootPack.LV4);
+            this.AddLoot(LootPack.LV5);
           
         }
 

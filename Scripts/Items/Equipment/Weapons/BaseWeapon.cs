@@ -1575,7 +1575,7 @@ namespace Server.Items
             }
             else
             {
-                var bonusElemental = defender.GetBonusElemento(ElementoPvM.Fogo) + defender.GetBonusElemento(ElementoPvM.Vento) + defender.GetBonusElemento(ElementoPvM.Raio) + defender.GetBonusElemento(ElementoPvM.Gelo);
+                var bonusElemental = defender.GetBonusElemento(ElementoPvM.Fogo) + (defender.GetBonusElemento(ElementoPvM.Vento)/2) + defender.GetBonusElemento(ElementoPvM.Raio) + defender.GetBonusElemento(ElementoPvM.Gelo);
                 bonusElemental /= 3;
                 bonus -= (int)(bonusElemental * 100);
                 if (bonus < -80)
@@ -2821,7 +2821,7 @@ namespace Server.Items
 
             if (a != null)
             {
-                var bonus = a.DamageScalar;
+                var bonus = defender.Player ? a.DamageScalar : a.DamageScalar * 1.3;
                 percentageBonus += (int)(bonus * 100) - 100;
             }
 

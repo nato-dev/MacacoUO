@@ -474,7 +474,7 @@ namespace Server.Gumps
                             if (from is PlayerMobile)
                             {
                                 PlayerMobile pm = (PlayerMobile)from;
-                                pm.NextCaptchaTime = DateTime.Now + TimeSpan.FromMinutes(120);
+                                pm.NextCaptchaTime = DateTime.Now + TimeSpan.FromMinutes(60 + Utility.Random(60));
                             }
 
                             //call our delegate and pass it our mobile & argument

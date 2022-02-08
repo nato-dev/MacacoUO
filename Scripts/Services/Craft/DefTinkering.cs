@@ -591,7 +591,7 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 1, "Voce precisa de lingotes de cobre");
             AddRes(index, typeof(ClockParts), 1044173, 1, 1044253);
 
-            index = AddCraft(typeof(Sextant), 1044051, 1024183, 0.0, 0.0, typeof(SextantParts), 1044175, 1, 1044253);
+            index = AddCraft(typeof(Sextant), 1044051, 1024183, 75.0, 100, typeof(SextantParts), 1044175, 1, 1044253);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 3, "Voce precisa de lingotes de cobre");
 
             index = AddCraft(typeof(Bola), 1044051, 1046441, 60.0, 80.0, typeof(BolaBall), 1046440, 4, 1042613);

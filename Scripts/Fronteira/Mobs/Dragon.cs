@@ -98,7 +98,7 @@ namespace Server.Mobiles
             AddLoot(LootPack.LV5);
             AddLoot(LootPack.Gems, 2);
 
-            if (0.001 > Utility.RandomDouble()) // 2 percent - multipy number x 100 to get percent
+            if (0.02 > Utility.RandomDouble()) // 2 percent - multipy number x 100 to get percent
             {
                 switch (Utility.Random(2))
                 {

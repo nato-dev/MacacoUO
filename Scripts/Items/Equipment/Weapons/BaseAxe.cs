@@ -100,6 +100,17 @@ namespace Server.Items
             }
             else
             {
+                var tool = from.FindItemOnLayer(Layer.OneHanded);
+                if(tool == null) tool = from.FindItemOnLayer(Layer.TwoHanded);
+                if(tool != null)
+                {
+                    Shard.Debug("Check Concorrencia", from);
+                    if (from.HasAction(HarvestSystem.GetLock(from, tool, null, null)))
+                    {
+                        from.SendMessage("Voce ja esta fazendo algo");
+                        return;
+                    }
+                }
                 from.ClearHands();
                 from.EquipItem(this);
                 HarvestSystem.BeginHarvesting(from, this);

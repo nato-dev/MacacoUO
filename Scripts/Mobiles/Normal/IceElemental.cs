@@ -32,7 +32,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Energy, 20, 30);
 
             this.SetSkill(SkillName.EvalInt, 10.5, 60.0);
-            this.SetSkill(SkillName.Magery, 10.5, 60.0);
+            this.SetSkill(SkillName.Magery, 35, 60.0);
             this.SetSkill(SkillName.MagicResist, 30.1, 80.0);
             this.SetSkill(SkillName.Tactics, 70.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 60.1, 100.0);

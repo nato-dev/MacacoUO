@@ -25,7 +25,7 @@ namespace Server.Items
         {
             get
             {
-                return 0.025;
+                return 0.01;
             }
         }
         public override void Serialize(GenericWriter writer)

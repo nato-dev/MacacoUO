@@ -188,14 +188,13 @@ namespace Server.Engines.Craft
 
                     Type resourceType = info.ResourceTypes[0];
 
-                    /*
-                   Shard.Debug("Resmelt resource " + resourceType);
-                   Shard.Debug("Info " + info.Resource);
-                   Shard.Debug("Info 2 " + info.Name);
-                   Shard.Debug("RES: " + resource.ToString());
-
-
-                   */
+                    if (Shard.DebugEnabled)
+                    {
+                        Shard.Debug("Resmelt resource " + resourceType);
+                        Shard.Debug("Info " + info.Resource);
+                        Shard.Debug("Info 2 " + info.Name);
+                        Shard.Debug("RES: " + resource.ToString());
+                    }
 
                     if (item is BaseRanged && resourceType == typeof(IronIngot) && resource == CraftResource.Ferro)
                     {

@@ -1,3 +1,8 @@
+using Server.Items;
+using Server.Spells;
+using Server.Spells.Fifth;
+using Server.Spells.Fourth;
+using Server.Spells.Seventh;
 using System;
 
 namespace Server.Mobiles
@@ -7,19 +12,21 @@ namespace Server.Mobiles
     {
         public override double AverageThreshold { get { return 0.25; } }
 
+        public override bool ReduceSpeedWithDamage { get { return false; } }
+
         [Constructable]
         public WhiteWyrm()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             Body = Utility.RandomBool() ? 180 : 49;
-            Name = "dragao branco";
+            Name = "dragao branco de olhos azuis";
             BaseSoundID = 362;
 
             SetStr(721, 760);
             SetDex(101, 130);
             SetInt(386, 425);
 
-            SetHits(433, 456);
+            SetHits(533, 656);
 
             SetDamage(17, 25);
 
@@ -32,26 +39,64 @@ namespace Server.Mobiles
             SetResistance(ResistanceType.Poison, 40, 50);
             SetResistance(ResistanceType.Energy, 40, 50);
 
+            SetSkill(SkillName.Inscribe, 99.1, 100.0);
             SetSkill(SkillName.EvalInt, 99.1, 100.0);
-            SetSkill(SkillName.Magery, 99.1, 100.0);
+            SetSkill(SkillName.Magery, 120, 120.0);
             SetSkill(SkillName.MagicResist, 99.1, 100.0);
             SetSkill(SkillName.Tactics, 97.6, 100.0);
             SetSkill(SkillName.Wrestling, 90.1, 100.0);
 
-            Fame = 18000;
-            Karma = -18000;
+            Fame = 19000;
+            Karma = -19000;
 
-            VirtualArmor = 64;
+            VirtualArmor = 120;
 
             Tamable = true;
             ControlSlots = 3;
             MinTameSkill = 96.3;
+            var cloth = new UncutCloth(Utility.Random(2, 6));
+            cloth.Hue = 1153;
+            cloth.Name = "Tecido Puro Branco";
+            AddItem(cloth);
+            if (Utility.RandomDouble() > 0.02)
+            {
+                var h = new DragonHead();
+                h.Name = "Cabeca de Dragao Branco";
+                h.Hue = this.Hue;
+                AddItem(h);
+            }
+            if (Utility.RandomDouble() > 0.02)
+            {
+                var d = new DyeTub();
+                d.DyedHue = 1153;
+                AddItem(d);
+            }
+        }
+
+        public override Spell ChooseSpell()
+        {
+            if (this.MagicDamageAbsorb == 0)
+            {
+                return new MagicReflectSpell(this, null);
+            }
+            var l = Utility.Random(0, 20);
+            if (l < 18 && this.Hits < (this.HitsMax * 0.8))
+            {
+                return new GreaterHealSpell(this, null);
+            }
+            else if(this.Combatant is Mobile && !((Mobile)this.Combatant).Paralyzed)
+            {
+                return new ParalyzeSpell(this, null);
+            }
+            return new FireFieldSpell(this, null);
         }
 
         public WhiteWyrm(Serial serial)
-            : base(serial)
+        : base(serial)
         {
         }
+
+        public override Poison PoisonImmune { get { return Poison.Lethal; } }
 
         public override bool ReacquireOnMovement
         {
@@ -133,7 +178,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV4);
-            AddLoot(LootPack.LV3);
+            AddLoot(LootPack.LV4);
             AddLoot(LootPack.Gems, Utility.Random(1, 5));
         }
 

@@ -178,7 +178,7 @@ namespace Server.Engines.UOStore
             AddECHandleInput();
 
             AddButton(598, 36, Category == StoreCategory.Cart ? 0x9C5E : 0x9C54, 0x9C5E, 113, GumpButtonType.Reply, 0);
-            AddHtmlLocalized(628, 39, 123, 25, 1156593, String.Format("@{0}@{1}", UltimaStore.CartCount(User), Configuration.CartCapacity), 0x7FFF, false, false);
+            AddHtmlLocalized(618, 39, 123, 25, 1156593, String.Format("@{0}@{1}", UltimaStore.CartCount(User), Configuration.CartCapacity), 0x7FFF, false, false);
 
             AddECHandleInput();
 
@@ -668,13 +668,14 @@ namespace Server.Engines.UOStore
 
                     if (amount > 0)
                     {
-                        if (amount <= 10)
+                        if (amount <= 50)
                         {
                             UltimaStore.GetProfile(User).SetCartAmount(Entry, amount);
+                            User.SendMessage("Voce adicionou ao seu carrinho. Para visualizar seu carrinho, clique no botao verde na parte superior direita da loja");
                         }
                         else
                         {
-                            User.SendMessage("Texto inaceitavel"); // That text is unacceptable.
+                            User.SendMessage("Quantidade incorreta, favor entrar menos de 100 items"); // That text is unacceptable.
                             //User.SendLocalizedMessage(1156836); // You can't exceed 125 items per purchase. 
                         }
 

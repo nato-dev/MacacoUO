@@ -42,6 +42,7 @@ namespace Server.Mobiles
 
 		private void HideSelf()
 		{
+
 			Effects.SendLocationParticles(
 				EffectItem.Create(m_Mobile.Location, m_Mobile.Map, EffectItem.DefaultDuration),
 				0x3728,

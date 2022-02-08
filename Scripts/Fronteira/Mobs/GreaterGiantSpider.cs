@@ -3,58 +3,53 @@ using Server.Items;
 
 namespace Server.Mobiles
 {
-    [TypeAlias("Server.Mobiles.DreadSpiderWeak")]
-    [CorpseName("a dread spider corpse")]
-    public class DreadSpider : BaseCreature
+    [CorpseName("a giant spider corpse")]
+    public class GreaterGiantSpider : BaseCreature
     {
         [Constructable]
-        public DreadSpider()
-            : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
+        public GreaterGiantSpider()
+            : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "aranha assassina";
-            Body = 11;
-            BaseSoundID = 1170;
+            Name = "viuva negra";
+            Body = 28;
+            BaseSoundID = 0x388;
+            Hue = TintaPreta.COR;
 
-            SetStr(196, 220);
-            SetDex(126, 145);
-            SetInt(286, 310);
+            SetStr(76, 100);
+            SetDex(200, 200);
+            SetInt(36, 60);
 
-            SetHits(118, 132);
+            SetHits(250, 300);
+            SetMana(0);
 
-            SetDamage(5, 17);
+            SetDamage(35, 50);
 
-            SetDamageType(ResistanceType.Physical, 20);
-            SetDamageType(ResistanceType.Poison, 80);
+            SetDamageType(ResistanceType.Physical, 100);
 
-            SetResistance(ResistanceType.Physical, 40, 50);
-            SetResistance(ResistanceType.Fire, 20, 30);
-            SetResistance(ResistanceType.Cold, 20, 30);
-            SetResistance(ResistanceType.Poison, 100);
-            SetResistance(ResistanceType.Energy, 20, 30);
+            SetResistance(ResistanceType.Physical, 15, 20);
+            SetResistance(ResistanceType.Poison, 25, 35);
 
-            SetSkill(SkillName.EvalInt, 65.1, 80.0);
-            SetSkill(SkillName.Magery, 65.1, 80.0);
-            SetSkill(SkillName.MagicResist, 45.1, 60.0);
-            SetSkill(SkillName.Tactics, 55.1, 70.0);
-            SetSkill(SkillName.Wrestling, 60.1, 75.0);
-            SetSkill(SkillName.Poisoning, 80.0);
-            SetSkill(SkillName.DetectHidden, 50.0, 60.0);
-            SetSkill(SkillName.Necromancy, 20.0);
-            SetSkill(SkillName.SpiritSpeak, 20.0);
+            SetSkill(SkillName.Poisoning, 120, 120);
+            SetSkill(SkillName.MagicResist, 120, 120);
+            SetSkill(SkillName.Tactics, 35.1, 50.0);
+            SetSkill(SkillName.Wrestling, 120, 120);
 
-            Fame = 5000;
-            Karma = -5000;
+            Fame = 3600;
+            Karma = -1200;
 
-            VirtualArmor = 36;
-
-            PackItem(new SpidersSilk(8));
+            VirtualArmor = 80;
 
             Tamable = true;
-            ControlSlots = 3;
-            MinTameSkill = 96.0;
+            ControlSlots = 1;
+            MinTameSkill = 89.1;
         }
 
-              public override void OnThink()
+        public GreaterGiantSpider(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void OnThink()
         {
             if (!this.IsCooldown("teia"))
             {
@@ -98,19 +93,37 @@ namespace Server.Mobiles
             }
         }
 
-        public DreadSpider(Serial serial)
-            : base(serial)
+        public override FoodType FavoriteFood
         {
+            get
+            {
+                return FoodType.Meat;
+            }
         }
-
-        public override bool CanAngerOnTame { get { return true; } }
-        public override Poison PoisonImmune { get { return Poison.Lethal; } }
-        public override Poison HitPoison { get { return Poison.Lethal; } }
-        public override int TreasureMapLevel { get { return 3; } }
-
+        public override PackInstinct PackInstinct
+        {
+            get
+            {
+                return PackInstinct.Arachnid;
+            }
+        }
+        public override Poison PoisonImmune
+        {
+            get
+            {
+                return Poison.Lethal;
+            }
+        }
+        public override Poison HitPoison
+        {
+            get
+            {
+                return Poison.Lethal;
+            }
+        }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV5);
+            AddLoot(LootPack.LV3);
         }
 
         public override void Serialize(GenericWriter writer)
@@ -129,5 +142,14 @@ namespace Server.Mobiles
                 SetMagicalAbility(MagicalAbility.Poisoning);
             }
         }
+
+        public override void OnCarve(Mobile from, Corpse corpse, Item with)
+        {
+            corpse.Carved = true;
+            from.PrivateOverheadMessage("* Coletou teias *");
+            from.AddToBackpack(new SpidersSilk(17 + Utility.Random(20)));
+            PlaySound(0x57);
+        }
+       
     }
 }

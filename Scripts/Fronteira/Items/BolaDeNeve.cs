@@ -67,7 +67,6 @@ namespace Server.Ziden
                     {
                         from.SendMessage("Você não pode jogar em você mesmo"); // You can't throw this at yourself.
                     }
-
                     else
                     {
                         Item one = from.FindItemOnLayer(Layer.OneHanded);

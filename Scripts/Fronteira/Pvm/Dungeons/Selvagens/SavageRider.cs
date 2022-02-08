@@ -53,6 +53,7 @@ namespace Server.Mobiles
             this.AddItem(new BearMask());
 
             new SavageRidgeback().Rider = this;
+            Savage.CheckSelvagem(this);
         }
 
         public override void OnDamage(int amount, Mobile from, bool willKill)

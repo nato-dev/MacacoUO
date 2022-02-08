@@ -25,7 +25,8 @@ namespace Server.Engines.UOStore
         Decorations,
         Mounts,
         Misc,
-        Cart
+        Cart,
+        Houses
     }
 
     public enum SortBy
@@ -81,11 +82,14 @@ namespace Server.Engines.UOStore
         public static void Initialize()
         {
             StoreCategory cat = StoreCategory.Featured;
-            Register<PergaminhoSagradoSupremo>("Pergaminho Sagrado Supremo", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2500, cat);
+            Register<PergaminhoSagradoSupremo>("Pergaminho de Item Pessoal", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2500, cat);
             Register<TintaPreta>("Tinta Preta", "Balde de tinta preta.<br>Ma-ra-vi-lhosa com roupas sombrias.", 0xFAB, 0, TintaPreta.COR, 200, cat);
             Register<TintaBranca>("Tinta Branca", "Balde de tinta branca.<br>Divina cor para iluminados e praticantes da luz.", 0xFAB, 0, TintaBranca.COR, 200, cat);
+
             Register<CastleDeed>("Castelo", "Deed de Castelo imenso.<br>Moradia super glamurosa para realeza.", 0x14F0, 0, 0, 10000, cat);
-            Register<KeepDeed>("Keep", "Deed de Keep.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
+            Register<KeepDeed>("Keep", "Deed de Keep.<br>Moradia chique para lords.", 0x14F0, 0, 0, 7500, cat);
+            Register<TowerDeed>("Torre", "Deed de Torre.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
+
             Register<DoubleExpDeed>("PowerHour 2x Exp", "Ativa double exp para o shard todo por 1h.</ br > Todos vao te amar um pouco mais.", 0x14F0, 0, 256, 500, cat);
             Register<DoubleGoldDeed>("Power Hour 2x Gold", "Ativa double gold para o shard todo por 1h.</br>Todos vao te amar um pouco mais.", 0x14F0, 0, 54, 500, cat);
 
@@ -94,6 +98,12 @@ namespace Server.Engines.UOStore
             Register<TintaPreta>("Tinta Preta", "Balde de tinta preta.<br>Ma-ra-vi-lhosa com roupas sombrias.", 0xFAB, 0, TintaPreta.COR, 500, cat);
             Register<TintaBranca>("Tinta Branca", "Balde de tinta branca.<br>Divina cor para iluminados e praticantes da luz.", 0xFAB, 0, TintaBranca.COR, 500, cat);
             //Register<BagOfBulkOrderCovers>(1071116, 1157603, 0, 0x9CC6, 0, 200, cat, ConstructBOBCoverOne);
+            Register<CastleDeed>("Castelo", "Deed de Castelo imenso.<br>Moradia super glamurosa para realeza.", 0x14F0, 0, 0, 10000, cat);
+            Register<KeepDeed>("Keep", "Deed de Keep.<br>Moradia chique para lords.", 0x14F0, 0, 0, 7500, cat);
+            Register<TowerDeed>("Torre", "Deed de Torre.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
+
+            Register<DoubleExpDeed>("PowerHour 2x Exp", "Ativa double exp para o shard todo por 1h.</ br > Todos vao te amar um pouco mais.", 0x14F0, 0, 256, 500, cat);
+            Register<DoubleGoldDeed>("Power Hour 2x Gold", "Ativa double gold para o shard todo por 1h.</br>Todos vao te amar um pouco mais.", 0x14F0, 0, 54, 500, cat);
 
             cat = StoreCategory.Character;
             Register<CombatSkillBook>("Livro +300 Exp", "Livro que garante instantaneamente 300 EXP.</br>Nao funciona para elementos.", 0xEFA, 0, 0xA33, 100, cat);

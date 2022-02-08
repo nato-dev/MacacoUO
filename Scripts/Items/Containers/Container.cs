@@ -504,17 +504,12 @@ namespace Server.Items
         {
             get
             {
-                if (Core.ML)
+
+                Mobile m = ParentEntity as Mobile;
+                if (m != null && m.Player && m.Backpack == this)
                 {
-                    Mobile m = ParentEntity as Mobile;
-                    if (m != null && m.Player && m.Backpack == this)
-                    {
-                        return 550;
-                    }
-                    else
-                    {
-                        return base.DefaultMaxWeight;
-                    }
+                    return base.DefaultMaxWeight + (int)(m.Skills.Camping.Value * 1.1);
+
                 }
                 else
                 {
@@ -848,7 +843,7 @@ namespace Server.Items
 
         public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
         {
-            if(typeRes != null)
+            if (typeRes != null)
             {
                 CraftResource thisResource = CraftResources.GetFromType(typeRes);
                 Shard.Debug(thisResource.ToString());

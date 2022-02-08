@@ -113,9 +113,9 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel0() : base(Utility.RandomList(0xE3C, 0xE3E, 0x9a9))
         {
-            RequiredSkill = 50;
-            LockLevel = this.RequiredSkill - Utility.Random(1, 10);
-            MaxLockLevel = this.RequiredSkill + 25;
+            RequiredSkill = 0;
+            LockLevel = 40 - Utility.Random(1, 10);
+            MaxLockLevel = 40 + 25;
             TrapType = TrapType.MagicTrap;
             TrapPower = 2 * Utility.Random(1, 25);
 

@@ -73,7 +73,8 @@ namespace Server.Mobiles
 			AddItem(new BoneArms());
 			AddItem(new BoneLegs());
 			AddItem(new BoneHelm());
-		}
+            Savage.CheckSelvagem(this);
+        }
 
 		public SavageNecro(Serial serial)
 			: base(serial)

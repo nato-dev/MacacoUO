@@ -64,6 +64,7 @@ namespace Server.Mobiles
             {
                 PackItem(DefCookingExp.GetReceitaRandom());
             }
+            Savage.CheckSelvagem(this);
         }
 
 		public SavageShaman(Serial serial)

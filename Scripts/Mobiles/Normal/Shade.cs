@@ -18,11 +18,11 @@ namespace Server.Mobiles
                 return new WeakenSpell(this, null);
             }
             var l = Utility.Random(0, 20);
-            if(l < 15)
+            if(l < 18)
             {
                 return new MagicArrowSpell(this, null);
             }
-            else if (l < 17)
+            else if (l < 19)
             {
                 return new LightningSpell(this, null);
             }
@@ -69,6 +69,8 @@ namespace Server.Mobiles
 
             this.PackReg(10);
         }
+
+
 
         /*
         public override void OnStartCombat(Mobile m)

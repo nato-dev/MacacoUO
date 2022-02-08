@@ -8,7 +8,7 @@ namespace Server.Engines.Quests
 {
     public class AnthonyQ : BaseQuest
     {
-        public override bool DoneOnce { get { return true; } }
+        public override bool DoneOnce { get { return false; } }
 
         public override object Title
         {
@@ -60,7 +60,7 @@ namespace Server.Engines.Quests
 
         public override void OnCompleted()
         {
-            PointsSystem.Exp.AwardPoints(this.Owner, 200);
+            PointsSystem.Exp.AwardPoints(this.Owner, 500);
             this.Owner.PlaySound(this.CompleteSound);
         }
 

@@ -39,7 +39,7 @@ namespace Server.Services.UltimaStore
                     e.Mobile.SendMessage("Nao achei a conta " + conta);
                     return;
                 }
-                acc.DepositarMoedasMagicas(reais * 10);
+                acc.DepositarMoedasMagicas(valor);
                 var from = acc.GetOnlineMobile();
                 Consome(from);
                 Log(conta, valor.ToString());

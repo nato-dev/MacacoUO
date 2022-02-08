@@ -39,8 +39,8 @@ namespace Server.Mobiles
             SetSkill(SkillName.Tactics, 35.1, 50.0);
             SetSkill(SkillName.Wrestling, 50.1, 65.0);
 
-            Fame = 775;
-            Karma = -775;
+            Fame = 1775;
+            Karma = -1775;
 
             VirtualArmor = 28; 
 
@@ -55,6 +55,8 @@ namespace Server.Mobiles
             : base(serial)
         {
         }
+
+        public override Poison HitPoison { get { return Poison.Deadly; } }
 
         public override FoodType FavoriteFood
         {
@@ -73,7 +75,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV2);
-            AddLoot(LootPack.LV1);
+            AddLoot(LootPack.LV2);
         }
 
         public override void OnThink()
