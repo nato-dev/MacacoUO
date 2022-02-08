@@ -121,8 +121,8 @@ namespace Server.Mobiles
             if(Utility.RandomBool())
             {
                 var cloth = new UncutCloth(Utility.Random(2, 2));
-                cloth.Hue = Loot.RandomRareDye();
-                cloth.Name = "Tecido Raro";
+                cloth.Hue = 1151;
+                cloth.Name = "Tecido do Coracao Gelido";
                 c.DropItem(cloth);
             }
             //if ( Utility.RandomDouble() < 0.4 )
