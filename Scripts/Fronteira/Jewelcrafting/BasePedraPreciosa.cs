@@ -9,6 +9,16 @@ namespace Server.Items
     {
         public static Dictionary<Type, ElementoPvM> Elementos = new Dictionary<Type, ElementoPvM>();
 
+        public static Type GetTipoPedra(ElementoPvM elemento)
+        {
+            foreach(var tipo in Elementos.Keys)
+            {
+                if (Elementos[tipo] == elemento)
+                    return tipo;
+            }
+            return null;
+        }
+
         public static void Configure()
         {
             Shard.Info("Inicializando sistema de pedras preciosas elementais");
@@ -21,6 +31,8 @@ namespace Server.Items
             Elementos.Add(typeof(StarSapphire), ElementoPvM.Luz);
             Elementos.Add(typeof(Sapphire), ElementoPvM.Escuridao);
         }
+
+
 
         public ElementoPvM GetElemento()
         {
@@ -102,7 +114,7 @@ namespace Server.Items
                 }
                 */
 
-                if (from.Skills.Imbuing.Value < 30)
+                if (from.Skills.Imbuing.Value < 40)
                 {
                     from.SendMessage("Voce nao tem Imbuing suficiente para isto");
                     return;
@@ -117,7 +129,7 @@ namespace Server.Items
                     if (from.Deleted || !from.Alive)
                         return;
                 });
-                if (!from.CheckSkillMult(SkillName.Imbuing, 50, 120))
+                if (!from.CheckSkillMult(SkillName.Imbuing, 40, 90))
                 {
                     from.SendMessage("Voce falhou ao imbuir a pedra preciosa no equipamento");
                     return;

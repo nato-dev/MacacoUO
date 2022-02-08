@@ -70,8 +70,16 @@ namespace Server.Mobiles
 					attacker.Alive && !attacker.IsDeadBondedPet && defender.InRange(attacker.Location, MaxRange) && 
 					defender.Map == attacker.Map && attacker.InLOS(defender) && !attacker.BardPacified && (defender.Party == null || defender.Party != attacker.ControlMaster.Party);
 		}
-		
-		public bool CheckMana(Mobile m)
+
+        public static bool ValidatePvM(Mobile attacker, BaseCreature defender)
+        {
+            return defender != null && defender.Alive && !defender.Deleted && !defender.IsDeadBondedPet && defender.ControlMaster != attacker &&
+                    (defender.ControlMaster is PlayerMobile && attacker.CanBeHarmful(defender.ControlMaster)) &&
+                    attacker.Alive && !attacker.IsDeadBondedPet && 
+                    defender.Map == attacker.Map && attacker.InLOS(defender) && (defender.ControlMaster == null || (defender.ControlMaster.Party == null || defender.ControlMaster.Party != attacker.Party));
+        }
+
+        public bool CheckMana(Mobile m)
 		{
 			return m.Mana >= ManaCost;
 		}

@@ -2,7 +2,7 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenciaRaio : BaseItemElemental, ICommodity
+    public class EssenciaRaio : BaseEssenciaElemental, ICommodity
     {
         [Constructable]
         public EssenciaRaio()

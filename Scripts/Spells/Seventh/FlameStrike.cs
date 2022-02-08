@@ -72,6 +72,12 @@ namespace Server.Spells.Seventh
                         ((Mobile)m).SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                     }
 
+                    if(!((Mobile)m).Player)
+                    {
+                        var nivel = ColarElemental.GetNivel(Caster, ElementoPvM.Fogo);
+                        damage *= 1 + (nivel / 15);
+                    }
+
                     damage *= this.GetDamageScalar((Mobile)m, ElementoPvM.Fogo);
                 }
 

@@ -2,7 +2,7 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenciaGelo : BaseItemElemental, ICommodity
+    public class EssenciaGelo : BaseEssenciaElemental, ICommodity
     {
         public override ElementoPvM Elemento { get { return ElementoPvM.Gelo; } }
 

@@ -132,6 +132,7 @@ namespace Server.Spells.Fourth
             private DateTime m_End;
             private Mobile m_Caster;
             private int m_Damage;
+            private int nivelColar;
 
             public Mobile Caster { get { return m_Caster; } }
 
@@ -144,7 +145,7 @@ namespace Server.Spells.Fourth
                 : base(itemID)
             {
                 bool canFit = SpellHelper.AdjustField(ref loc, map, 12, false);
-
+                nivelColar = ColarElemental.GetNivel(caster, ElementoPvM.Fogo);
                 var house = BaseHouse.FindHouseAt(loc, map, loc.Z);
                 if(house != null)
                 {
@@ -241,7 +242,8 @@ namespace Server.Spells.Fourth
 
             public override bool OnMoveOver(Mobile m)
             {
-                Shard.Debug("Visible " + Visible + " CanHarm " + m_Caster.CanBeHarmful(m, false)+" Valid target "+ SpellHelper.ValidIndirectTarget(m_Caster, m));
+                if(Shard.DebugEnabled)
+                    Shard.Debug("Visible " + Visible + " CanHarm " + m_Caster.CanBeHarmful(m, false)+" Valid target "+ SpellHelper.ValidIndirectTarget(m_Caster, m));
                 if (Visible && m_Caster != null && m_Caster.CanBeHarmful(m, false))
                 {
                     if(Shard.DebugEnabled)
@@ -258,7 +260,7 @@ namespace Server.Spells.Fourth
 
                     int damage = m_Damage;
 
-                    if (!Core.AOS && m_Caster != m && m.CheckSkillMult(SkillName.MagicResist, 0.0, 80.0))
+                    if (!Core.AOS && m_Caster != m && m.CheckSkillMult(SkillName.MagicResist, 0.0, 110, 0))
                     {
                         damage = 1;
 
@@ -266,6 +268,10 @@ namespace Server.Spells.Fourth
                     }
 
                     Shard.Debug("Dano Firefield");
+
+                    if (!m.Player)
+                        damage += nivelColar * 2;
+
                     AOS.Damage(m, m_Caster, damage, 0, 100, 0, 0, 0);
                     m.PlaySound(0x208);
 

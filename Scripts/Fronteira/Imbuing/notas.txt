@@ -1,0 +1,47 @@
+﻿/*
+
+
+Fogo:
+
+- Flamestrike Bonus
+- Explosion AOE
+
+Gelo:
+
++ x10 Coleta Recursos
++ Bonus Magias de Wand
+
+Vento:
+
++ Chance Critico
+
+Luz:
+
++ Parry
++ Parry pode bloquear magias
+
+Sombra:
+
++ Imune a magias negras
++ Bonus Mind Blast
+
+Agua:
+
++ Bonus dano Pots
++ Magic Resist
+
+Terra:
+
++ Pets Tankam Mais
+
+Raio:
+
++ Bonus Corp Por
++ Lightning AoE
+
+
+
+
+
+
+*/

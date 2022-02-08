@@ -95,6 +95,7 @@ namespace Server.Spells.Sixth
                 if (m_Attacker.HarmfulCheck(m_Target))
                 {
                     double damage = 0;
+                    var aoe = false;
 
                     if (Core.AOS)
                     {

@@ -7,6 +7,7 @@ namespace Server.Fronteira.Elementos
     public class EfeitosElementos
     {
         private static Dictionary<ElementoPvM, string[]> _efeitos = new Dictionary<ElementoPvM, string[]>();
+        private static Dictionary<ElementoPvM, string[]> _efeitosColar = new Dictionary<ElementoPvM, string[]>();
 
         public static void Effect(Mobile m, ElementoPvM e)
         {
@@ -83,6 +84,70 @@ namespace Server.Fronteira.Elementos
                     break;
             }
             _efeitos[elemento] = efeitos;
+            return efeitos;
+        }
+
+        public static string[] GetEfeitosColar(ElementoPvM elemento)
+        {
+            string[] efeitos;
+            if (_efeitosColar.TryGetValue(elemento, out efeitos))
+                return efeitos;
+
+            switch (elemento)
+            {
+                case ElementoPvM.Fogo:
+                    efeitos = new string[] {
+                        "Bonus Flamestrike",
+                        "Bonus Fire Field",
+                    };
+                    break;
+                case ElementoPvM.Agua:
+                    efeitos = new string[] {
+                        "Bonus Pots de Dano",
+                        "Magic Resist",
+                    };
+                    break;
+                case ElementoPvM.Terra:
+                    efeitos = new string[] {
+                        "Armor Pets",
+                        "Dano Pets",
+                    };
+                    break;
+                case ElementoPvM.Raio:
+                    efeitos = new string[] {
+                        "Bonus Energy Bolt",
+                        "Bonus Lightning",
+                    };
+                    break;
+                case ElementoPvM.Luz:
+                    efeitos = new string[] {
+                        "Bonus Parry",
+                        "Parry Bloqueia Magias",
+                    };
+                    break;
+                case ElementoPvM.Escuridao:
+                    efeitos = new string[] {
+                        "Bonus Resist Magias Negras",
+                        "Bonus Magias Negras",
+                    };
+                    break;
+                case ElementoPvM.Gelo:
+                    efeitos = new string[] {
+                        "Bonus Magias de Varinhas",
+                        "Bonus Coleta Recursos"
+                    };
+                    break;
+                case ElementoPvM.Vento:
+                    efeitos = new string[] {
+                        "Chance Critico",
+                        "Chance Stun"
+                    };
+                    break;
+                default:
+                    efeitos = new string[] { };
+                    break;
+            }
+            _efeitosColar[elemento] = efeitos;
             return efeitos;
         }
     }
