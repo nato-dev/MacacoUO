@@ -100,11 +100,15 @@ namespace Server.Items
             }
             else
             {
+                if(this.RootParent != from)
+                {
+                    from.SendMessage("Voce precisa estar com isto na mochila");
+                    return;
+                }
                 var tool = from.FindItemOnLayer(Layer.OneHanded);
                 if(tool == null) tool = from.FindItemOnLayer(Layer.TwoHanded);
                 if(tool != null)
                 {
-                    Shard.Debug("Check Concorrencia", from);
                     if (from.HasAction(HarvestSystem.GetLock(from, tool, null, null)))
                     {
                         from.SendMessage("Voce ja esta fazendo algo");

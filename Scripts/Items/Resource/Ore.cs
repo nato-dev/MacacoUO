@@ -151,7 +151,7 @@ namespace Server.Items
             if (!Movable)
                 return;
 
-            if (RootParent is BaseCreature)
+            if (RootParent != from)
             {
                 from.SendMessage("Isto nao esta acessivel"); // That is not accessible
             }

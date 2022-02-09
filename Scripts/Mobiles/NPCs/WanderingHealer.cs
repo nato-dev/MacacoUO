@@ -8,13 +8,16 @@ namespace Server.Mobiles
         [Constructable]
         public WanderingHealer()
         {
-            this.Title = "the wandering healer";
+            this.Title = "o andarilho curandeiro";
 
             this.AddItem(new GnarledStaff());
 
             this.SetSkill(SkillName.Camping, 80.0, 100.0);
             this.SetSkill(SkillName.Forensics, 80.0, 100.0);
             this.SetSkill(SkillName.SpiritSpeak, 80.0, 100.0);
+
+            BaseHealer.healers.Add(this);
+
         }
 
         public WanderingHealer(Serial serial)
