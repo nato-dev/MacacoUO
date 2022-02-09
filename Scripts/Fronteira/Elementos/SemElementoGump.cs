@@ -112,7 +112,7 @@ namespace Server.Gumps
 
         public ElementoPvM DecideElementoGratiz(PlayerMobile from)
         {
-            if (from.Skills.Blacksmith.Value >= 60 || from.Skills.Tailoring.Value >= 60 || from.Skills.Carpentry.Value >= 60 || from.Skills.Tinkering >= 60 || from.Skills.Fletching >= 60)
+            if (from.Skills.Blacksmith.Value >= 60 || from.Skills.Tailoring.Value >= 60 || from.Skills.Carpentry.Value >= 60 || from.Skills.Tinkering.Value >= 60 || from.Skills.Fletching.Value >= 60)
                 return ElementoPvM.Gelo;
 
             if(from.Skills.Swords.Value >= 60)
