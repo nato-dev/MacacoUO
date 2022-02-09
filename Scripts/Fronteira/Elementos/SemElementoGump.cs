@@ -106,6 +106,7 @@ namespace Server.Gumps
                 "para o elemento do set."
             };
             bag.AddItem(livro);
+            from.AddItem(bag);
             from.SendGump(new ElementosGump(from));
         }
 
