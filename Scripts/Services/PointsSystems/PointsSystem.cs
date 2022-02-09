@@ -72,7 +72,13 @@ namespace Server.Engines.Points
         Lenhador,
         Alquimista,
         Cozinha,
-        Ouro
+        Ouro,
+
+        // Guildas & PvP
+
+        GuildPvM,
+        GuildKills,
+
     }
 
     public abstract class PointsSystem

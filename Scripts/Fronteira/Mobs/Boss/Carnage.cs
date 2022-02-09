@@ -129,7 +129,7 @@ namespace Server.Mobiles
                 case 4: return new PowerScroll(SkillName.Carpentry, skill);
                 case 5: return new PowerScroll(SkillName.Fletching, skill);
                 case 6: return new PowerScroll(SkillName.Tailoring, skill);
-                case 7: return new PowerScroll(SkillName.TasteID, skill);
+                case 7: return new PowerScroll(SkillName.Fishing, skill);
                 case 8: return new PowerScroll(SkillName.Peacemaking, skill);
                 case 9: return new PowerScroll(SkillName.Provocation, skill);
                 case 10: return new PowerScroll(SkillName.Discordance, skill);

@@ -1616,7 +1616,7 @@ namespace Server.Mobiles
                     if (BulkOrderSystem.CanExchangeBOD(from, this, bod, -1))
                     {
                         int amount = BulkOrderSystem.GetBribe(bod);
-                        amount *= BribeMultiplier;
+                        amount *= BribeMultiplier * 10;
 
                         if (Bribes == null)
                             Bribes = new Dictionary<Mobile, PendingBribe>();

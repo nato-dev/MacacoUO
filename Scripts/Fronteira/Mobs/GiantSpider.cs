@@ -115,7 +115,7 @@ namespace Server.Mobiles
                 var m = this.Combatant as Mobile;
                 Timer.DelayCall(TimeSpan.FromMilliseconds(400), () =>
                 {
-                    m.SendMessage("Voce foi preso por uma teia e nao consegue se soltar");
+                    m.SendMessage("Voce foi preso por uma teia e nao consegue se soltar. Talvez alguem possa te ajudar a se soltar.");
                     m.OverheadMessage("* Preso em uma teia *");
                     var teia = new Teia(m);
                     teia.MoveToWorld(m.Location, m.Map);
