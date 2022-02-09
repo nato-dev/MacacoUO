@@ -28,6 +28,7 @@ using Server.Services.Virtues;
 using Server.SkillHandlers;
 using Server.Spells;
 using Server.Spells.Bushido;
+using Server.Spells.Eighth;
 using Server.Spells.Fifth;
 using Server.Spells.Necromancy;
 using Server.Spells.Seventh;
@@ -6673,10 +6674,11 @@ namespace Server.Mobiles
         private static int FS = -1;
         private static int PARA = -1;
         private static int EXPLO = -1;
+        private static int RESS = -1;
 
         public void DropScrollsGarantidos()
         {
-            if (this.Skills.Magery.Value == 0)
+            if (this.Skills.Magery.Value <= 50)
                 return;
 
             if (EB == -1)
@@ -6687,7 +6689,8 @@ namespace Server.Mobiles
                 PARA = SpellRegistry.GetRegistryNumber(typeof(ParalyzeSpell));
             if (EXPLO == -1)
                 EXPLO = SpellRegistry.GetRegistryNumber(typeof(ExplosionSpell));
-
+            if(RESS == -1)
+                RESS = SpellRegistry.GetRegistryNumber(typeof(ResurrectionSpell));
             List<DamageStore> rights = GetLootingRights();
             foreach (var r in rights)
             {
@@ -6712,6 +6715,10 @@ namespace Server.Mobiles
                         else if (r.m_Mobile.Skills.Magery.Value > 55 && !book.HasSpell(PARA) && !r.m_Mobile.Backpack.HasItem<ParalyzeScroll>())
                         {
                             PackItem(new ParalyzeScroll());
+                        }
+                        else if (this.Skills.Magery.Value >= 90 && r.m_Mobile.Skills.Magery.Value > 90 && !book.HasSpell(RESS) && !r.m_Mobile.Backpack.HasItem<ResurrectionScroll>())
+                        {
+                            PackItem(new ResurrectionScroll());
                         }
                     }
                 }
