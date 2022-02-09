@@ -8,6 +8,9 @@ namespace Server.Items
 
         public static int GetNivel(Mobile from, ElementoPvM elemento)
         {
+            if (from == null)
+                return 0;
+
             var colar = from.NeckArmor as ColarElemental;
             if(colar != null && colar.Elemento == elemento && from.Elemento == elemento)
             {
