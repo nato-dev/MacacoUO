@@ -14825,6 +14825,7 @@
     <Compile Include="Fronteira\Imbuing\Essencias\EssencePrecision.cs" />
     <Compile Include="Fronteira\Imbuing\Essencias\EssenceSingularity.cs" />
     <Compile Include="Fronteira\Imbuing\JoiasImbuing.cs" />
+    <Compile Include="Fronteira\Comandos\TimerTesouros.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Fronteira\Chat\Text Data Files\ChatAvatars.txt" />

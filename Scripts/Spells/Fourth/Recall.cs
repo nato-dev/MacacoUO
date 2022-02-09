@@ -119,7 +119,7 @@ namespace Server.Spells.Fourth
             }
             else if (Server.Misc.WeightOverloading.IsOverloaded(Caster))
             {
-                Caster.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
+                Caster.SendLocalizedMessage(35, "Voce esta muito pesado para conseguir usar Recall"); // Thou art too encumbered to move.
                 return false;
             }
 

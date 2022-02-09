@@ -578,16 +578,22 @@ namespace Server.Mobiles
 
             protected override void OnTick()
             {
-                m.Delete();
+                if(m!= null && !m.Deleted)
+                {
+                    if(m.Combatant == null && !m.InCombat(TimeSpan.FromMinutes(1)))
+                        m.Delete();
+                }
+                   
             }
         }
 
-        public void BeginDeleteTimer()
+        public void BeginDeleteTimer(int hours = 24 * 3)
         {
+            
             if (!(this is BaseEscortable) && !Summoned && !Deleted && !IsStabled)
             {
                 StopDeleteTimer();
-                m_DeleteTimer = new DeleteTimer(this, TimeSpan.FromDays(3.0));
+                m_DeleteTimer = new DeleteTimer(this, TimeSpan.FromHours(hours));
                 m_DeleteTimer.Start();
             }
         }
@@ -6846,6 +6852,7 @@ namespace Server.Mobiles
             return base.OnBeforeDeath();
         }
 
+        public Timer 
         private bool m_NoKillAwards;
         private bool m_NoLootOnDeath;
 

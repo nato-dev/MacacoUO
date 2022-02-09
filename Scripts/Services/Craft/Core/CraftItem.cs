@@ -1401,6 +1401,16 @@ namespace Server.Engines.Craft
                 bonus += apron.Bonus / 100.0;
             }
 
+            if(system is DefCarpentry)
+            {
+                var avental = from.FindItemOnLayer(Layer.MiddleTorso) as CarpenterApron;
+
+                if (avental != null)
+                {
+                    bonus += avental.Bonus / 100.0;
+                }
+            }
+
             if (WoodworkersBench.HasBonus(from, system.MainSkill))
             {
                 bonus += .3;

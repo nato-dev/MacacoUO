@@ -4785,10 +4785,21 @@ namespace Server.Mobiles
 
             Mobile m = FindMostRecentDamager(false);
             PlayerMobile killer = m as PlayerMobile;
+            var bc = m as BaseCreature;
 
-            if (killer == null && m is BaseCreature)
+            if (killer == null && bc != null)
             {
-                killer = ((BaseCreature)m).GetMaster() as PlayerMobile;
+                killer = bc.GetMaster() as PlayerMobile;
+                if(killer == null)
+                {
+                    if(bc.IsParagon)
+                    {
+                        if(bc.DeleteTimeLeft == TimeSpan.Zero)
+                        {
+                            bc.BeginDeleteTimer(TimeSpan.FromHours(6));
+                        }
+                    }
+                }
             }
 
             if (m_NonAutoreinsuredItems > 0)

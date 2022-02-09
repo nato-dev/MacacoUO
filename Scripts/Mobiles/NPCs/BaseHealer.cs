@@ -8,7 +8,7 @@ namespace Server.Mobiles
     public abstract class BaseHealer : BaseVendor
     {
 
-        public static List<BaseHealer> healers = new List<BaseHealer>();
+        public static HashSet<BaseHealer> healers = new HashSet<BaseHealer>();
 
         private static readonly TimeSpan ResurrectDelay = TimeSpan.FromSeconds(2.0);
         private readonly List<SBInfo> m_SBInfos = new List<SBInfo>();
