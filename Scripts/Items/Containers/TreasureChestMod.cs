@@ -640,8 +640,7 @@ namespace Server.Items
             DropItem(DefAlchemy.GetRandomRecipe());
             DropItem(DefCookingExp.GetReceitaRandom());
 
-            if(Utility.RandomBool())
-                DropItem(Decos.RandomDeco());
+           
             DropItem(new Gold(1000, 1210));
             DropItem(new BlankScroll(Utility.Random(1, 4)));
 

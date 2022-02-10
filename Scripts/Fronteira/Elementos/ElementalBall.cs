@@ -1,6 +1,10 @@
+using System;
+using Server.Engines.Craft;
+using Server.Items;
+
 namespace Server.Misc.Custom
 {
-    public class ElementalBall : Item
+    public class ElementalBall : Item, ICraftable
     {
         public int Cargas = 0;
 
@@ -75,6 +79,14 @@ namespace Server.Misc.Custom
                         break;
                     }
             }
+        }
+
+        public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
+        {
+            this.Name += " feita por "+from.Name;
+            this.LootType = LootType.Newbied;
+            this.Cargas = 5000;
+            return quality;
         }
     }
 

@@ -65,12 +65,20 @@ namespace Server.Mobiles
             AddItem(new Rock1Rand());
             AddItem(new Rock2Rand());
             AddItem(new BronzeIngot(300));
-            if (Utility.RandomBool())
-                AddItem(new ElementalBall(1000));
+            //if (Utility.RandomBool())
+            //    AddItem(new ElementalBall(1000));
             if (Utility.RandomBool())
                 AddItem(new QuartzoIngot(80));
             else
                 AddItem(new BeriloIngot(80));
+
+
+            if(Utility.RandomDouble() < 0.3)
+            {
+                var t = new SmeltersTalisman(getRecursoTalisman());
+                t.Charges = 20;
+                AddItem(t);
+            }
 
             if(Utility.RandomDouble() < 0.15)
             {
@@ -109,6 +117,24 @@ namespace Server.Mobiles
 
             GolemMecanico.JorraOuro(this.Location, this.Map, 150);
             return base.OnBeforeDeath();
+        }
+
+        public CraftResource getRecursoTalisman()
+        {
+            var random = Utility.Random(100);
+            if(random < 50)
+            {
+                return CraftResource.Berilo;
+            } else if(random < 75)
+            {
+                return CraftResource.Quartzo;
+            } else if(random < 90)
+            {
+                return CraftResource.Vibranium;
+            } else
+            {
+                return CraftResource.Adamantium;
+            }
         }
 
         public override void OnDeath(Container c)
