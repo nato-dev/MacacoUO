@@ -84,6 +84,13 @@ namespace Server.Items
 
                 if(Shard.EXP)
                 {
+                    var pontos = PointsSystem.Exp.GetPoints(from);
+                    if(pontos + 300 > PointsSystem.Exp.MaxPoints)
+                    {
+                        from.SendMessage("Voce ultrapassaria os " + PointsSystem.Exp.MaxPoints + " pontos de XP");
+                        from.SendMessage("Por favor use seus pontos antes de usar um livro de XP novamente");
+                        return;
+                    }
                     PointsSystem.Exp.AwardPoints(from, 300);
                     from.FixedParticles(0x375A, 9, 20, 5016, EffectLayer.Waist);
                     from.PlaySound(0x1FD);
