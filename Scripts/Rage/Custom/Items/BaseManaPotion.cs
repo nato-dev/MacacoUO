@@ -10,13 +10,13 @@ namespace Server.Items
         public BaseManaPotion(PotionEffect effect)
             : base(0x0F01, effect)
         {
-            Stackable = true;
+            Stackable = false;
         }
 
         public BaseManaPotion(Serial serial)
             : base(serial)
         {
-            Stackable = true;
+            Stackable = false;
         }
 
         public abstract int MinMana { get; }

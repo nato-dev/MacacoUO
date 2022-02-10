@@ -59,9 +59,17 @@ namespace Server.Ziden
             var custo = 100;
             if (!Imbuing.CheckSoulForge(from, 2))
             {
-                from.SendMessage("Por estar longe de uma forja das almas voce precisa do dobro de material");
-                custo *= 2;
-                return;
+                from.SendMessage("Por estar longe de uma forja das almas voce precisa de mais material");
+                custo *= 3;
+            } else
+            {
+                bool anvil, forge = false;
+                DefBlacksmithy.CheckAnvilAndForge(from, 3, out anvil, out forge);
+                if (!anvil || !forge)
+                {
+                    from.SendMessage("Voce precisa estar proximo de uma bigorna e forja para isto caso nao esteja proximo de uma forja das almas.");
+                    return;
+                }
             }
 
             if (this.Amount < custo)
@@ -77,13 +85,7 @@ namespace Server.Ziden
                 return;
             }
 
-            bool anvil, forge = false;
-            DefBlacksmithy.CheckAnvilAndForge(from, 3, out anvil, out forge);
-            if (!anvil || !forge)
-            {
-                from.SendMessage("Voce precisa estar proximo de uma bigorna e forja para isto");
-                return;
-            }
+
 
             garrafa.Consume(1);
             Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);

@@ -69,7 +69,7 @@ namespace Server.Mobiles
                         this.MovingParticles(player, 0x3729, 9, 0, false, false, 9502, 4019, 0x160);
                         AOS.Damage(player, 5 + Utility.Random(5), 0, 0, 0, 0, 0);
                         PublicOverheadMessage(Network.MessageType.Regular, 0, false, "* joga gelo *");
-                        player.Paralyze(TimeSpan.FromSeconds(0.5));
+                        player.Freeze(TimeSpan.FromSeconds(0.5));
                     }
 
 

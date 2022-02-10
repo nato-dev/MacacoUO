@@ -24,7 +24,7 @@ namespace Server.Mobiles
             SetDex(126, 145);
             SetInt(71, 92);
 
-            SetHits(136, 153);
+            SetHits(336, 353);
 
             SetDamage(9, 16);
 
@@ -104,7 +104,7 @@ namespace Server.Mobiles
                     {
                         mob.FixedParticles(0x36BD, 20, 10, 5044, EffectLayer.Head);
                         mob.PlaySound(0x307);
-                        AOS.Damage(mob, this, Utility.RandomMinMax(25, 50), 50, 50, 0, 0, 0);
+                        AOS.Damage(mob, this, Utility.RandomMinMax(35, 65), 50, 50, 0, 0, 0);
                     }, m);
             }
 

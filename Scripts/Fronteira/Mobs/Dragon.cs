@@ -20,15 +20,16 @@ namespace Server.Mobiles
         {
             Body = Utility.RandomList(12, 59);
             Name = "Dragao";
+            SetHits(1500, 2000);
             if (Body == 12)
             {
                 int random = Utility.Random(100);
                 if (random == 0)
                 {
                     Hue = 1153;
-                    Name = "Dragao Branco";
-                    AddItem(new Gold(20000));
-                    AddItem(Carnage.GetRandomPS(110));
+                    Name = "Dragao Branco de Olhos Negros";
+                    AddItem(new Gold(2000));
+                    SetHits(2500, 3000);
                     AddItem(Carnage.GetRandomPS(105));
 
                 }
@@ -45,7 +46,7 @@ namespace Server.Mobiles
             SetDex(86, 105);
             SetInt(436, 475);
 
-            SetHits(1500, 2000);
+           
 
             SetDamage(16, 27);
 
@@ -63,7 +64,7 @@ namespace Server.Mobiles
 
             Tamable = true;
             ControlSlots = 3;
-            MinTameSkill = 100;
+            MinTameSkill = 106;
 
             if (Utility.RandomDouble() < 0.1)
             {

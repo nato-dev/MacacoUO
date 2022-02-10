@@ -53,7 +53,7 @@ namespace Server.Mobiles
 
             Tamable = true;
             ControlSlots = 3;
-            MinTameSkill = 96.3;
+            MinTameSkill = 100;
             var cloth = new UncutCloth(Utility.Random(2, 6));
             cloth.Hue = 1153;
             cloth.Name = "Tecido Puro Branco";

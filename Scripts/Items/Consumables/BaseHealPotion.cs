@@ -64,7 +64,7 @@ namespace Server.Items
 
         public override void Drink(Mobile from)
         {
-            if (!(Shard.POL_STYLE && from.Poisoned) || MortalStrike.IsWounded(from))
+            if ((!Shard.POL_STYLE && from.Poisoned) || MortalStrike.IsWounded(from))
             {
                 from.LocalOverheadMessage(MessageType.Regular, 0x22, true, "Voce nao pode beber isto estando neste estado"); // You can not heal yourself in your current state.
             }

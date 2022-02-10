@@ -6,11 +6,7 @@
 //////////////////////////////////////////////////////////////////////
 #define RunUo2_0
 
-using System;
-using Server;
-using Server.Gumps;
 using Server.Network;
-using Server.Commands;
 using Server.Ziden;
 using Server.Leilaum;
 

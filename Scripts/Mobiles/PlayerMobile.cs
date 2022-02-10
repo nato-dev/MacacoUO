@@ -4796,7 +4796,7 @@ namespace Server.Mobiles
                     {
                         if(bc.DeleteTimeLeft == TimeSpan.Zero)
                         {
-                            bc.BeginDeleteTimer(TimeSpan.FromHours(6));
+                            bc.BeginDeleteTimer(6);
                         }
                     }
                 }
