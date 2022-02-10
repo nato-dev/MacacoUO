@@ -64,7 +64,7 @@ namespace Server.Mobiles
             {
                 return;
             }
-            if (this.Combatant != null && this.Combatant.InRange2D(this.Location, 9))
+            if (this.Combatant != null && this.Combatant.InRange2D(this.Location, 7))
             {  
                 if (!this.IsCooldown("teiab"))
                 {

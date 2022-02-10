@@ -24,7 +24,7 @@ namespace Server.Mobiles
             this.SetDex(126, 145);
             this.SetInt(71, 92);
 
-            this.SetHits(136, 153);
+            this.SetHits(336, 453);
 
             this.SetDamage(9, 16);
 
@@ -95,6 +95,18 @@ namespace Server.Mobiles
         {
             this.AddLoot(LootPack.LV3);
             this.AddLoot(LootPack.Gems, 2);
+        }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            if (this.Combatant is Mobile && !IsCooldown("pula"))
+            {
+                this.PlayAngerSound();
+                OverheadMessage("* enterrando *");
+                SetCooldown("pula", TimeSpan.FromSeconds(30));
+                new EarthElemental.TerraTimer(this, this.Combatant as Mobile, 0.09).Start();
+            }
         }
 
         public override void AlterMeleeDamageFrom(Mobile from, ref int damage)

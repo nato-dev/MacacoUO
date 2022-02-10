@@ -1007,13 +1007,13 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(IronIngot), 1044036, 150, 1044037);
 
             // Training
-            index = AddCraft(typeof(TrainingDummyEastDeed), 1044297, 1044335, 68.4, 93.4, typeof(AshBoard), 1044041, 55, 1044351);
+            index = AddCraft(typeof(TrainingDummyEastDeed), 1044297, 1044335, 68.4, 93.4, typeof(AshBoard), 1044041, 20, 1044351);
             AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
             AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
 
-            index = AddCraft(typeof(TrainingDummySouthDeed), 1044297, 1044336, 68.4, 93.4, typeof(AshBoard), 1044041, 55, 1044351);
-            AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
-            AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
+            //index = AddCraft(typeof(TrainingDummySouthDeed), 1044297, 1044336, 68.4, 93.4, typeof(AshBoard), 1044041, 55, 1044351);
+            //AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
+            //AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
 
             index = AddCraft(typeof(PickpocketDipEastDeed), 1044297, 1044337, 73.6, 98.6, typeof(AshBoard), 1044041, 65, 1044351);
             AddSkill(index, SkillName.Tailoring, 50.0, 55.0);

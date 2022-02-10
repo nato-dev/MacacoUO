@@ -8,7 +8,7 @@ namespace Server.Mobiles
     {
         [Constructable]
         public VeriteElemental()
-            : this(25)
+            : this(2)
         {
         }
 
@@ -24,7 +24,7 @@ namespace Server.Mobiles
             SetDex(126, 145);
             SetInt(71, 92);
 
-            SetHits(136, 153);
+            SetHits(336, 453);
 
             SetDamage(9, 16);
 
@@ -64,6 +64,19 @@ namespace Server.Mobiles
                 return true;
             }
         }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            if (this.Combatant is Mobile && !IsCooldown("pula"))
+            {
+                this.PlayAngerSound();
+                OverheadMessage("* enterrando *");
+                SetCooldown("pula", TimeSpan.FromSeconds(30));
+                new EarthElemental.TerraTimer(this, this.Combatant as Mobile, 0.09).Start();
+            }
+        }
+
         public override bool BleedImmune
         {
             get

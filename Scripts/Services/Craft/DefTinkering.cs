@@ -644,19 +644,21 @@ namespace Server.Engines.Craft
                 ForceNonExceptional(index);
             }
 
-            index = AddCraft(typeof(AdvancedTrainingDummySouthDeed), 1044051, 1150595, 90.0, 120.0, typeof(TrainingDummySouthDeed), 1044336, 1, 1044253);
-            AddRes(index, typeof(PlateChest), 1025141, 1, 1044253);
-            AddRes(index, typeof(CloseHelm), 1025128, 1, 1044253);
-            AddRes(index, typeof(Broadsword), 1015055, 1, 1044253);
-            ForceNonExceptional(index);
-            SetNeededThemePack(index, ThemePack.Gothic);
+            //index = AddCraft(typeof(AdvancedTrainingDummySouthDeed), 1044051, 1150595, 90.0, 120.0, typeof(TrainingDummySouthDeed), 1044336, 1, 1044253);
+            //AddRes(index, typeof(PlateChest), 1025141, 1, 1044253);
+            //AddRes(index, typeof(CloseHelm), 1025128, 1, 1044253);
+            //AddRes(index, typeof(Broadsword), 1015055, 1, 1044253);
+            //ForceNonExceptional(index);
+            //SetNeededThemePack(index, ThemePack.Gothic);
 
-            index = AddCraft(typeof(AdvancedTrainingDummyEastDeed), 1044051, 1150596, 90.0, 120.0, typeof(TrainingDummyEastDeed), 1044335, 1, 1044253);
+            index = AddCraft(typeof(AdvancedTrainingDummyEastDeed), 1044051, "Boneco de Treino Avancado", 70.0, 130.0, typeof(TrainingDummyEastDeed), 1044335, 1, 1044253);
             AddRes(index, typeof(PlateChest), 1025141, 1, 1044253);
             AddRes(index, typeof(CloseHelm), 1025128, 1, 1044253);
             AddRes(index, typeof(Broadsword), 1015055, 1, 1044253);
+            AddRes(index, typeof(CopperIngot), "Lingotes de Cobre", 20, "Voce precisa de lingotes de cobre");
+            AddRes(index, typeof(YewBoard), "Tabuas de Mogno", 20, "Voce precisa de 10 tabuas de mogno");
             ForceNonExceptional(index);
-            SetNeededThemePack(index, ThemePack.Gothic);
+            //SetNeededThemePack(index, ThemePack.Gothic);
 
             index = AddCraft(typeof(DistillerySouthAddonDeed2), 1044051, 1150663, 90.0, 120.0, typeof(MetalKeg), 1150675, 2, 1044253);
             AddRes(index, typeof(HeatingStand), 1011224, 4, 1044253);

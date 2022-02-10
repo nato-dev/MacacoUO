@@ -8,7 +8,7 @@ namespace Server.Mobiles
     {
         [Constructable]
         public GoldenElemental()
-            : this(25)
+            : this(2)
         {
         }
 
@@ -24,7 +24,7 @@ namespace Server.Mobiles
             this.SetDex(126, 145);
             this.SetInt(71, 92);
 
-            this.SetHits(136, 153);
+            this.SetHits(336, 353);
 
             this.SetDamage(9, 16);
 
@@ -54,6 +54,18 @@ namespace Server.Mobiles
         public GoldenElemental(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            if (this.Combatant is Mobile && !IsCooldown("pula"))
+            {
+                this.PlayAngerSound();
+                OverheadMessage("* enterrando *");
+                SetCooldown("pula", TimeSpan.FromSeconds(30));
+                new EarthElemental.TerraTimer(this, this.Combatant as Mobile, 0.09).Start();
+            }
         }
 
         public override bool AutoDispel

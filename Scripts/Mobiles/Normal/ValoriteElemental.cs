@@ -8,7 +8,7 @@ namespace Server.Mobiles
     {
         [Constructable]
         public ValoriteElemental()
-            : this(25)
+            : this(2)
         {
         }
 
@@ -25,7 +25,7 @@ namespace Server.Mobiles
             SetDex(126, 145);
             SetInt(71, 92);
 
-            SetHits(136, 153);
+            SetHits(336, 453);
 
             SetDamage(28);
 
@@ -47,7 +47,7 @@ namespace Server.Mobiles
             Fame = 3500;
             Karma = -3500;
 
-            VirtualArmor = 38;
+            VirtualArmor = 200;
 
             Item ore = new QuartzoOre(oreAmount);
             ore.ItemID = 0x19B9;
@@ -60,6 +60,18 @@ namespace Server.Mobiles
         public ValoriteElemental(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            if (this.Combatant is Mobile && !IsCooldown("pula"))
+            {
+                this.PlayAngerSound();
+                OverheadMessage("* enterrando *");
+                SetCooldown("pula", TimeSpan.FromSeconds(30));
+                new EarthElemental.TerraTimer(this, this.Combatant as Mobile, 0.09).Start();
+            }
         }
 
         public override bool AutoDispel
