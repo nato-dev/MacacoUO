@@ -103,8 +103,8 @@ namespace Server.Engines.BulkOrders
                 }
                 else
                 {
-                    m_From.SendMessage("Nao tem espaco na sua mochila"); // There is not enough room in your backpack for the deed.
-                    m_Deed.Delete();
+                    m_From.SendMessage("Nao tem espaco na sua mochila e a ordem foi adicionada no seu banco"); // There is not enough room in your backpack for the deed.
+                    m_From.BankBox.AddItem(m_Deed);
                 }
             }
             else

@@ -4606,8 +4606,10 @@ namespace Server.Multis
             if (m == null)
                 return false;
 
-            if (m.IsStaff() || IsFriend(m) || (m_Access != null && m_Access.Contains(m)))
+            if (m.IsStaff() || IsFriend(m) || IsOwner(m) || (m_Access != null && m_Access.Contains(m)))
                 return true;
+
+       
 
             if (m is BaseCreature)
             {

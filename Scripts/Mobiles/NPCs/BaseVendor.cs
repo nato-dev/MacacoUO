@@ -107,6 +107,9 @@ namespace Server.Mobiles
 
         public static void OfereceBulkOrder(Mobile from, BaseVendor vendor)
         {
+
+           
+
             if (vendor is AnimalTrainer)
             {
                 BodTamer.EntregaBodTamer(from as PlayerMobile, vendor);
@@ -140,6 +143,7 @@ namespace Server.Mobiles
                         {
                             vendor.SayTo(from, true, "Nao encontrei um trabalho para voce ...tente novamente...");
                         }
+
 
                         if (bulkOrder is LargeBOD)
                         {
