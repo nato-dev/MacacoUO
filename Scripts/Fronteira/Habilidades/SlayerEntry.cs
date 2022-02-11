@@ -111,11 +111,18 @@ namespace Server.Items
         {
             get
             {
-                int[] titles = (m_AosTitles);
+                try
+                {
 
-                return titles[(int)this.m_Name - 1];
+                    int[] titles = (m_AosTitles);
+
+                    return titles[(int)this.m_Name - 1];
+                } catch(Exception e) {
+                    return 1156126; // todo arrumar titulos slayer
+                }
             }
         }
+
         public bool Slays(Mobile m)
         {
 
