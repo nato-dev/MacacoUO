@@ -36,7 +36,6 @@ namespace Server.Commands
 
             bool isOwner = House.IsOwner(from);
             bool isCoOwner = isOwner || House.IsCoOwner(from);
-            bool isFriend = isCoOwner || House.IsFriend(from);
 
             if (isCoOwner)
             {

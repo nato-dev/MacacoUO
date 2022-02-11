@@ -151,7 +151,7 @@ namespace Server.Items
             if (!Movable)
                 return;
 
-            if (RootParent != from)
+            if (RootParent != from && Movable == false)
             {
                 from.SendMessage("Isto nao esta acessivel"); // That is not accessible
             }
