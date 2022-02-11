@@ -9,7 +9,7 @@ namespace Server.Mobiles
     {
         public override Spell ChooseSpell()
         {
-            if (Utility.RandomBool())
+            if ((ControlMaster == null && Utility.RandomBool()) || (Utility.RandomDouble() < 0.35))
             {
                 return new FlameStrikeSpell(this, null);
             }
@@ -32,14 +32,8 @@ namespace Server.Mobiles
 
             this.SetDamage(7, 9);
 
-            this.SetDamageType(ResistanceType.Physical, 25);
-            this.SetDamageType(ResistanceType.Fire, 75);
-
-            this.SetResistance(ResistanceType.Physical, 35, 45);
-            this.SetResistance(ResistanceType.Fire, 60, 80);
-            this.SetResistance(ResistanceType.Cold, 5, 10);
-            this.SetResistance(ResistanceType.Poison, 30, 40);
-            this.SetResistance(ResistanceType.Energy, 30, 40);
+            this.SetDamageType(ResistanceType.Fire, 100);
+            this.SetResistance(ResistanceType.Fire, 100, 100);
 
             this.SetSkill(SkillName.EvalInt, 60.1, 75.0);
             this.SetSkill(SkillName.Magery, 60.1, 75.0);

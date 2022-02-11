@@ -47,8 +47,11 @@ namespace Server.Spells.Eighth
                 TimeSpan duration = TimeSpan.FromSeconds(40 + (2 * this.Caster.Skills.SpiritSpeak.Value));
 
                 var ele = new FireElemental();
-                SpellHelper.Summon(ele, this.Caster, 0x217, duration, false, false);
                 ele.VirtualArmor = 0;
+                ele.DamageMax = 5;
+                ele.DamageMin = 1;
+                SpellHelper.Summon(ele, this.Caster, 0x217, duration, false, false);
+     
             }
 
             this.FinishSequence();
