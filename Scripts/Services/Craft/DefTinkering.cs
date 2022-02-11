@@ -653,8 +653,6 @@ namespace Server.Engines.Craft
 
             index = AddCraft(typeof(AdvancedTrainingDummyEastDeed), 1044051, "Boneco de Treino Avancado", 70.0, 130.0, typeof(TrainingDummyEastDeed), 1044335, 1, 1044253);
             AddRes(index, typeof(PlateChest), 1025141, 1, 1044253);
-            AddRes(index, typeof(CloseHelm), 1025128, 1, 1044253);
-            AddRes(index, typeof(Broadsword), 1015055, 1, 1044253);
             AddRes(index, typeof(CopperIngot), "Lingotes de Cobre", 20, "Voce precisa de lingotes de cobre");
             AddRes(index, typeof(YewBoard), "Tabuas de Mogno", 20, "Voce precisa de 10 tabuas de mogno");
             ForceNonExceptional(index);
