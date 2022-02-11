@@ -81,6 +81,8 @@ namespace Server.SkillHandlers
                     {
                         if (trg.Hidden && src != trg)
                         {
+                            if (src is BaseCreature bc && bc.Controlled && bc.ControlMaster == trg)
+                              continue;
                             double ss = srcSkill + Utility.Random(29) - 10;
                             double ts = trg.Skills[SkillName.Hiding].Value + Utility.Random(21) - 10;
                             double shadow = Server.Spells.SkillMasteries.ShadowSpell.GetDifficultyFactor(trg);
@@ -110,7 +112,7 @@ namespace Server.SkillHandlers
                     inRange.Free();
 
                     IPooledEnumerable itemsInRange = src.Map.GetItemsInRange(p, range);
-                   
+
                     foreach (Item item in itemsInRange)
                     {
                         if (item is LibraryBookcase && Server.Engines.Khaldun.GoingGumshoeQuest3.CheckBookcase(src, item))
@@ -177,7 +179,7 @@ namespace Server.SkillHandlers
                     if(m.Hidden)
                         m.SendMessage("Voce foi revelado"); // You have been revealed!
                     m.RevealingAction(true);
-                  
+
                 }
             }
 

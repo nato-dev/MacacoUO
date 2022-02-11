@@ -86,6 +86,8 @@ namespace Server.Items
                     typeof(ForestOstard),   typeof(FrenziedOstard),
                     typeof(Phoenix),        typeof(Pyre),
                     typeof(Swoop),          typeof(Saliva)
+                    typeof(GreaterPhoenix), typeof(Turkey),
+                    typeof(GiantTurkey)
                 };
 
             m_Table[TalismanSlayerName.Ice] = new Type[]
@@ -104,6 +106,7 @@ namespace Server.Items
                 {
                     typeof(FireBeetle),         typeof(HellHound),
                     typeof(LavaSerpent),        typeof(FireElemental),
+                    typeof(FireElementalRenowned), typeof(FlameElemental),
                     typeof(PredatorHellCat),    typeof(Phoenix),
                     typeof(FireGargoyle),       typeof(HellCat),
                     typeof(Pyre),               typeof(FireSteed),
