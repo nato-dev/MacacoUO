@@ -101,11 +101,12 @@ namespace Server.Items
             if(!from.IsCooldown("boneco"))
             {
                 from.SetCooldown("boneco", TimeSpan.FromHours(6));
-                from.SendMessage(78, "Voce pode subir sua skill em bonecos de treino vagarosamente ate 90. Bonecos Avancados, craftados, podem upar mais rapido ate 100.");
+                from.SendMessage(78, "Voce pode subir sua skill em bonecos de treino vagarosamente ate 85. Bonecos Avancados, craftados, podem upar mais rapido ate 100.");
                 from.SendMessage(78, "Lembre-se que matando monstros em dungeon skills de combate upam muito mais rapido");
             }
-            from.CheckSkillMult(weapon.Skill, this.m_MinSkill, this.m_MaxSkill, 0.5);
-            from.CheckSkillMult(SkillName.Tactics, this.m_MinSkill, this.m_MaxSkill, 0.25);
+
+            from.CheckSkillMult(weapon.Skill, this.m_MinSkill, this.m_MaxSkill, from.Skills[weapon.Skill].Value < 80 ? 1.5 : 0.5);
+            from.CheckSkillMult(SkillName.Tactics, this.m_MinSkill, this.m_MaxSkill, from.Skills[SkillName.Tactics].Value < 80 ? 1 : 0.5);
         }
 
         public override void OnDoubleClick(Mobile from)
