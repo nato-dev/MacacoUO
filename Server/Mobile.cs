@@ -9278,7 +9278,7 @@ namespace Server
         #endregion
 
         [CommandProperty(AccessLevel.Decorator)]
-        public bool Warmode
+        public virtual bool Warmode
         {
             get { return m_Warmode; }
             set

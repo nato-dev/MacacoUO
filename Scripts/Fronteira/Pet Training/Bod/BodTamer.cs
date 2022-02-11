@@ -25,9 +25,9 @@ namespace Server.Engines.BulkOrders
         public int GraficoBody { get; set; }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int Pontos { get; set; }
+        public int DuracaoDias { get; set; }
 
-        public override int Lifespan { get { return 60 * 60 * 24 * 5; } }
+        public override int Lifespan { get { return 60 * 60 * 24 * DuracaoDias; } }
         public override bool UseSeconds { get { return false; } }
 
         public BodTamer(Tamavel tamavel, int quantidade)
@@ -39,6 +39,7 @@ namespace Server.Engines.BulkOrders
             Quantidade = quantidade;
             Cor = tamavel.Hue;
             Nome = tamavel.Name;
+            DuracaoDias = 5;
         }
 
         public BodTamer(Serial serial)
@@ -85,7 +86,7 @@ namespace Server.Engines.BulkOrders
             writer.Write(Quantidade);
             writer.Write(QuantidadeAtual);
             writer.Write(GraficoBody);
-            writer.Write(Pontos);
+            writer.Write(DuracaoDias);
         }
 
         public override void Deserialize(GenericReader reader)
@@ -98,7 +99,9 @@ namespace Server.Engines.BulkOrders
             Quantidade = reader.ReadInt();
             QuantidadeAtual = reader.ReadInt();
             GraficoBody = reader.ReadInt();
-            Pontos = reader.ReadInt();
+            DuracaoDias = reader.ReadInt();
+            if (DuracaoDias == 0)
+                DuracaoDias = 5;
         }
 
         private static Item CriaBod(PlayerMobile tamer)
@@ -106,7 +109,14 @@ namespace Server.Engines.BulkOrders
             var skill = tamer.Skills.AnimalTaming.Value;
             var tamavel = Tamavel.Sorteia(skill);
             var bod = new BodTamer(tamavel.Item1, tamavel.Item2);
+            if (skill <= 70)
+                bod.DuracaoDias = 3;
+            else if (skill <= 80)
+                bod.DuracaoDias = 5;
+            else
+                bod.DuracaoDias = 10;
             bod.BoundTo = tamer.Name;
+            bod.InvalidateProperties();
             return bod;
         }
 

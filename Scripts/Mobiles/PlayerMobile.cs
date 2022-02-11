@@ -392,12 +392,31 @@ namespace Server.Mobiles
             }
         }
 
+        private bool DicaCombate = true;
+        private bool DicaBands = true;
+
+        public override bool Warmode { get { return base.Warmode; }  set { base.Warmode = value; if (value) DicaCombate = false; } }
+
         public override void OnRegionChange(Region Old, Region New)
         {
             base.OnRegionChange(Old, New);
 
             var newDungeon = New is DungeonRegion || New is DungeonGuardedRegion;
             var oldDungeon = Old is DungeonRegion || Old is DungeonGuardedRegion;
+
+            Timer.DelayCall(TimeSpan.FromSeconds(3), () =>
+            {
+                if (DicaCombate && Wisp != null && Young && New is DungeonGuardedRegion && !(Old is DungeonGuardedRegion))
+                {
+                    if (!IsCooldown("dicacbt"))
+                    {
+                        SetCooldown("dicacbt", TimeSpan.FromSeconds(10));
+                        Wisp.Fala("Aperte ALT+P e clique em PEACE para entrar em modo guerra. Clique 2x no monstro para bater.");
+
+                    }
+                }
+            });
+            
 
             DecideMusic(Old, New);
 
@@ -2767,6 +2786,11 @@ namespace Server.Mobiles
                 return;
             }
 
+            if(Young && DicaBands && item is Bandage)
+            {
+                DicaBands = false;
+            }
+
             /*
             if (this.Paralyzed)
             {
@@ -4237,6 +4261,21 @@ namespace Server.Mobiles
             int disruptThreshold;
 
             LastDamage = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+
+            if (Wisp != null && Young && Region is DungeonGuardedRegion)
+            {
+                if (!IsCooldown("dicacbt") && !Warmode)
+                {
+                    SetCooldown("dicacbt", TimeSpan.FromSeconds(10));
+                    Wisp.Fala("Aperte ALT+P e clique em PEACE para entrar em modo guerra. Clique nos monstros 2x para bater neles.");
+
+                } else if (!IsCooldown("dicabands") && DicaBands)
+                {
+                    SetCooldown("dicabands", TimeSpan.FromSeconds(10));
+                    Wisp.Fala("Clique 2x nas bandagens em sua mochila e em vc para se curar, mas evite tomar dano enquanto se cura !");
+
+                }
+            }
 
             if (!Core.AOS)
             {
@@ -7034,6 +7073,11 @@ namespace Server.Mobiles
                     this.CloseGump(typeof(SkillExperienceGump));
                     this.SendGump(new SkillExperienceGump(this, skill, exp));
                 }
+            }
+            if(Young && Wisp != null && Skills.Magery.Value >= 50 && !IsCooldown("dicamagia") && Region is DungeonGuardedRegion)
+            {
+                SetCooldown("dicamagia", TimeSpan.FromSeconds(600));
+                Wisp.Fala("Voce pode clicar 2x no seu livro de magias e arrastar icones de magia para fora para usa-las.");
             }
         }
 

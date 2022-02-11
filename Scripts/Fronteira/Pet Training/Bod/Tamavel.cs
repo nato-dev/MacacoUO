@@ -35,14 +35,14 @@ namespace Server.Fronteira.Quests
                 if (Utility.RandomDouble() < 0.35)
                     return new Tuple<Tamavel, int>(Randomiza(l80), 6);
                 else if (Utility.RandomBool())
-                    return new Tuple<Tamavel, int>(Randomiza(l120), 1);
+                    return new Tuple<Tamavel, int>(Randomiza(l120), 2);
                 else
-                    return new Tuple<Tamavel, int>(Randomiza(l100), 3);
+                    return new Tuple<Tamavel, int>(Randomiza(l100), 4);
             else if (skill > 90)
                 if (Utility.RandomDouble() < 0.35)
                     return new Tuple<Tamavel, int>(Randomiza(l80), 8);
                 else
-                    return new Tuple<Tamavel, int>(Randomiza(l90), 3);
+                    return new Tuple<Tamavel, int>(Randomiza(l90), 4);
             else if (skill > 80)
                 if (Utility.RandomDouble() < 0.35)
                     return new Tuple<Tamavel, int>(Randomiza(l70), 8);

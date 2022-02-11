@@ -45,15 +45,11 @@ namespace Server.Spells.Eighth
             if (this.CheckSequence())
             { 
                 TimeSpan duration = TimeSpan.FromSeconds(20 + (2 * this.Caster.Skills.SpiritSpeak.Value));
-                Shard.Debug("Duration Inicial: " + duration.TotalSeconds);
-                if (Core.AOS)  /* Why two diff daemons? TODO: solve this */
-                {
-                    BaseCreature m_Daemon = new SummonedDaemon();
-                    SpellHelper.Summon(m_Daemon, this.Caster, 0x216, duration, false, false);
-                    m_Daemon.FixedParticles(0x3728, 8, 20, 5042, EffectLayer.Head);
-                }
-                else
-                    SpellHelper.Summon(new Daemon(), this.Caster, 0x216, duration, false, false);
+                Shard.Debug("Duration Inicial: " + duration.TotalSeconds);    
+                BaseCreature m_Daemon = new SummonedDaemon();
+                SpellHelper.Summon(m_Daemon, this.Caster, 0x216, duration, false, false);
+                m_Daemon.FixedParticles(0x3728, 8, 20, 5042, EffectLayer.Head);
+
             }
 
             this.FinishSequence();

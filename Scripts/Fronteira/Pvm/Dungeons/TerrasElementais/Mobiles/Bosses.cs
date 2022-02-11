@@ -3,6 +3,7 @@ using Server;
 using Server.Items;
 using Server.Engines.ShameRevamped;
 using Server.Engines.PartySystem;
+using Server.Misc.Custom;
 
 namespace Server.Mobiles
 {
@@ -410,7 +411,7 @@ namespace Server.Mobiles
 
             Fame = 4500;
             Karma = -4500;
-
+            AddItem(new ElementalBall());
             SetWeaponAbility(WeaponAbility.ParalyzingBlow);
         }
 
