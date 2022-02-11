@@ -1871,7 +1871,7 @@ namespace Server.Items
                     attacker.HitPronto = false;
                     attacker.hitTimer = null;
                     return;
-                }     
+                }
 
                 attacker.HitPronto = true;
                 attacker.hitTimer = null;
@@ -2443,7 +2443,7 @@ namespace Server.Items
                         scalar *= 3;
                     }
                 }
-               
+
                 int from = (int)(virtualArmor * scalar) / 2;
                 int to = (int)(virtualArmor * scalar);
                 var redux = Utility.Random(from, (to - from) + 1);
@@ -4286,7 +4286,7 @@ namespace Server.Items
 
             GetBaseDamageRange(from, out baseMin, out baseMax);
 
-            //var 
+            //var
             var bonus = GetdDamageBonusSoPraMostrarProClient();
             var armslore = from.Skills[SkillName.ArmsLore].Value / 20;
             min = Math.Max((int)ScaleDamageOld(from, baseMin, false), 1) + bonus;
@@ -4396,7 +4396,7 @@ namespace Server.Items
                         mine = 0.2;
 
                     modifiers += mine;
-                    if (mine >= 100.0)
+                    if (attacker.Skills[SkillName.Mining].Value >= 100.0)
                     {
                         modifiers += 0.1;
                     }
@@ -4407,7 +4407,7 @@ namespace Server.Items
             if (Shard.DebugEnabled)
                 Shard.Debug("Modifiers de dano " + modifiers * 100 + "%", attacker);
 
-            
+
 
             // Apply bonuses
             damage += (damage * modifiers);
@@ -4451,7 +4451,7 @@ namespace Server.Items
                     Shard.Debug("Half Damage on players", attacker);
                 damage = (int)(damage / 2.0);
             }
-          
+
             return damage;
         }
 
