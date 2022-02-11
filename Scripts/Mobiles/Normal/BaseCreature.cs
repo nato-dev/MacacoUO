@@ -6852,7 +6852,6 @@ namespace Server.Mobiles
             return base.OnBeforeDeath();
         }
 
-        public Timer 
         private bool m_NoKillAwards;
         private bool m_NoLootOnDeath;
 
