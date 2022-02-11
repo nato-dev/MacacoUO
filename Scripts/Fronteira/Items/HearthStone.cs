@@ -138,8 +138,9 @@ namespace Server.Items
         {
             if (CheckHearth(m, i))  // double check after "casting time" that its legal still
             {
-                m.MoveToWorld(home, map);
                 BaseCreature.TeleportPets(m, home, map);
+                m.MoveToWorld(home, map);
+              
                 m.FixedEffect(0x375A, 10, 15);
                 m.PlaySound(0x1E7);
                 this.lastused = DateTime.Now;
