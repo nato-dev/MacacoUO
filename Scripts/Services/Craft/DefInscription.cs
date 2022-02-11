@@ -299,12 +299,12 @@ namespace Server.Engines.Craft
             AddSpell(typeof(ManaDrainScroll), Reg.BlackPearl, Reg.SpidersSilk, Reg.MandrakeRoot);
             AddSpell(typeof(RecallScroll), Reg.BlackPearl, Reg.Bloodmoss, Reg.MandrakeRoot);
 
-            m_Circle = 6;
-            m_Mana = 40;
+            m_Circle = 4;
+            m_Mana = 16;
 
             //AddSpell(typeof(GateTravelScroll), Reg.BlackPearl, Reg.MandrakeRoot, Reg.SulfurousAsh);
 
-            /*
+
             AddSpell(typeof(BladeSpiritsScroll), Reg.BlackPearl, Reg.Nightshade, Reg.MandrakeRoot);
             AddSpell(typeof(DispelFieldScroll), Reg.BlackPearl, Reg.Garlic, Reg.SpidersSilk, Reg.SulfurousAsh);
             AddSpell(typeof(IncognitoScroll), Reg.Bloodmoss, Reg.Garlic, Reg.Nightshade);
@@ -349,7 +349,7 @@ namespace Server.Engines.Craft
             AddSpell(typeof(SummonEarthElementalScroll), Reg.Bloodmoss, Reg.MandrakeRoot, Reg.SpidersSilk);
             AddSpell(typeof(SummonFireElementalScroll), Reg.Bloodmoss, Reg.MandrakeRoot, Reg.SpidersSilk, Reg.SulfurousAsh);
             AddSpell(typeof(SummonWaterElementalScroll), Reg.Bloodmoss, Reg.MandrakeRoot, Reg.SpidersSilk);
-            */
+
 
             if (Core.AOS)
             {
@@ -423,7 +423,7 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(DragonStone), "Pedra Draconica", 5, "Voce nao tem a pedra draconica (jewelcrafting)");
             AddRes(index, typeof(EstruturaDeLivro), "Estrutura de Livro", 1, "Voce precisa de uma estrutura de livro");
 
-            #region Mondain's Legacy	
+            #region Mondain's Legacy
             if (Core.ML)
             {
                 index = AddCraft(typeof(ScrappersCompendium), 1044294, 1072940, 75.0, 125.0, typeof(BlankScroll), 1044377, 100, 1044378);
