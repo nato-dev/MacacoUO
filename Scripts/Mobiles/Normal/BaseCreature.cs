@@ -2639,6 +2639,18 @@ namespace Server.Mobiles
                 }
             }
 
+            if(from.Player)
+            {
+                var colarVento = ColarElemental.GetNivel(from, ElementoPvM.Vento);
+                if(!from.IsCooldown("hitstun") && colarVento > 0 && Utility.RandomDouble() < 0.1 + colarVento / 100)
+                {
+                    from.SendMessage("Voce acertou um golpe ventania que atordoou o inimigo");
+                    this.OverheadMessage(" * stun *");
+                    from.SetCooldown("hitstun", TimeSpan.FromSeconds(4));
+                    this.Paralyze(TimeSpan.FromSeconds(1));
+                }
+            }
+
             if (m_TempDamageAbsorb > 0 && VialofArmorEssence.UnderInfluence(this))
                 damage -= damage / m_TempDamageAbsorb;
 
@@ -2665,6 +2677,7 @@ namespace Server.Mobiles
             if (m_TempDamageBonus > 0 && TastyTreat.UnderInfluence(this))
                 damage += damage / m_TempDamageBonus;
 
+            // pet batendo em monstro
             if (ControlMaster != null && ControlMaster.Player && !to.Player)
             {
                 if (StuckMenu.IsInSecondAgeArea(this))
@@ -2676,11 +2689,16 @@ namespace Server.Mobiles
                     var redux = nivel / 25; // max 50%
                     damage += damage * redux;
                 }
-                
-            }
+            } 
 
             if (to.Player && to.Elemento != ElementoPvM.None)
             {
+                var colarGelo = ColarElemental.GetNivel(to, ElementoPvM.Gelo);
+                if(colarGelo > 0 && Utility.RandomDouble() < 0.1 + colarGelo / 100)
+                {
+                    this.Paralyze(TimeSpan.FromSeconds(colarGelo / 25));
+                }
+
                 if (this.Elemento.ForteContra(to.Elemento))
                 {
                     if (!to.IsCooldown("efmsg"))
@@ -2694,7 +2712,7 @@ namespace Server.Mobiles
                 else if (this.Elemento.FracoContra(to.Elemento) && TalismanElemental.Tem(to))
                 {
                     damage = (int)(damage * 0.85);
-                }
+                } 
             }
         }
         #endregion
@@ -7269,6 +7287,8 @@ namespace Server.Mobiles
                     ChaveDg.CriaChave(c);
                 }
                 */
+
+                
 
                 foreach (var i in c.Items)
                 {

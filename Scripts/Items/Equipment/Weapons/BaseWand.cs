@@ -49,12 +49,9 @@ namespace Server.Items
             this.Effect = effect;
             this.Charges = Utility.RandomMinMax(minCharges, maxCharges);
             this.Name = "Varinha Magica";
-            if (Core.AOS && m_WandEffect < WandEffect.None)
-            {
-                this.Attributes.SpellChanneling = 1;
-                this.Attributes.CastSpeed = -1;
-                this.WeaponAttributes.MageWeapon = Utility.RandomMinMax(1, 10);
-            }
+            this.Attributes.SpellChanneling = 1;
+
+
         }
 
         public BaseWand(Serial serial)

@@ -8,7 +8,7 @@ Fogo:
 
 Gelo:
 
-+ x10 Coleta Recursos
++ chance craft exp
 + Bonus Magias de Wand
 
 Vento:

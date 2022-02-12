@@ -77,7 +77,9 @@ namespace Server.Spells.Fifth
                     SpellHelper.CheckReflect((int)Circle, ref from, ref target);
 
                 double damage = GetDamageScalar(m, ElementoPvM.Escuridao) * ((Caster.Int - target.Int) / 4); //less damage
-                if (damage > 45)
+                damage += ColarElemental.GetNivel(Caster, ElementoPvM.Escuridao) * (Caster.Int / 25);
+
+                if (m.Player && damage > 45)
                     damage = 45;
 
                 if (CheckResisted(target))

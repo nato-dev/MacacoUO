@@ -2,26 +2,25 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenciaVento : BaseEssenciaElemental, ICommodity
+    public class EssenciaEscuridao : BaseEssencia, ICommodity
     {
-        public override ElementoPvM Elemento { get { return ElementoPvM.Vento; } }
+        public override ElementoPvM Elemento { get { return ElementoPvM.Escuridao; } }
 
         [Constructable]
-        public EssenciaVento()
+        public EssenciaEscuridao()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenciaVento(int amount)
+        public EssenciaEscuridao(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
-		
         }
 
-        public EssenciaVento(Serial serial)
+        public EssenciaEscuridao(Serial serial)
             : base(serial)
         {
         }

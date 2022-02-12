@@ -80,12 +80,12 @@ namespace Server.Spells.Second
                         mob.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
                     }
 
-                    damage *= this.GetDamageScalar(mob);
+                    damage *= this.GetDamageScalar(mob, ElementoPvM.Escuridao);
                 }
 
-                if (!this.Caster.InRange(m, 2))
+                if (!this.Caster.InRange(m, 3))
                     damage *= 0.25; // 1/4 damage at > 2 tile range
-                else if (!this.Caster.InRange(m, 1))
+                else if (!this.Caster.InRange(m, 2))
                     damage *= 0.50; // 1/2 damage at 2 tile range
 
                 if (mob != null)

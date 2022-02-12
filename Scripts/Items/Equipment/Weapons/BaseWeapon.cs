@@ -2061,7 +2061,7 @@ namespace Server.Items
                 BaseShield shield = defender.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
                 attacker.SendMessage("O alvo bloqueou seu ataque");
                 defender.SendMessage("Voce bloqueou o ataque");
-                defender.FixedEffect(0x37B9, 10, 16);
+               
                 var bloqueado = 0;
                 if (shield != null)
                     bloqueado = (int)(shield.ArmorRating * (attackerWeapon is BaseRanged ? 1.5 : 1.2));
@@ -2075,7 +2075,7 @@ namespace Server.Items
                     Shard.Debug("Bloqueado dano: " + bloqueado, defender);
                 damage -= bloqueado;
 
-                defender.Animate(AnimationType.Parry, 0);
+              
 
                 // Successful block removes the Honorable Execution penalty.
                 HonorableExecution.RemovePenalty(defender);
@@ -2602,6 +2602,8 @@ namespace Server.Items
             Mobile defender = damageable as Mobile;
             Clone clone = null;
 
+
+
             if (defender != null)
             {
                 clone = MirrorImage.GetDeflect(attacker, defender);
@@ -3125,6 +3127,13 @@ namespace Server.Items
                 Effects.SendTargetEffect(defender, 0x37BE, 1, 4, 0x30, 3);
 
                 damage += (int)inc;
+            }
+
+            var colarVento = ColarElemental.GetNivel(attacker, ElementoPvM.Vento);
+            if(colarVento > 0 && Utility.RandomDouble() < 0.1 + colarVento / 120)
+            {
+                defender.PublicOverheadMessage(MessageType.Regular, 38, true, "* crit *");
+                damage *= 2;
             }
 
             damageGiven = AOS.Damage(

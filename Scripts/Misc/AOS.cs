@@ -168,6 +168,25 @@ namespace Server
                     AttuneWeaponSpell.TryAbsorb(m, ref damage);
                 }
 
+                if(damageable is PlayerMobile && damageDealer is BaseCreature)
+                {
+                    var from = damageable as Mobile;
+                    var nivel = ColarElemental.GetNivel(damageable as Mobile, ElementoPvM.Luz);
+                    var chanceResist = nivel / 100; 
+                    if(m.Hits > 50)
+                    {
+                        chanceResist += nivel / 100; 
+                    }
+                    if(chanceResist > 0 && Utility.RandomDouble() < chanceResist)
+                    {
+                        keepAlive = true;
+                        Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
+                        Effects.PlaySound(from.Location, from.Map, 0x243);
+                        from.SendMessage("Voce resistiu a morte");
+                    }
+                }
+
+
                 if (keepAlive && damage > m.Hits)
                 {
                     damage = m.Hits;

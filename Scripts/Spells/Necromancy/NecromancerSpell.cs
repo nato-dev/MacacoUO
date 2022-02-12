@@ -1,4 +1,5 @@
 using System;
+using Server.Fronteira.Talentos;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
@@ -134,11 +135,35 @@ namespace Server.Spells.Necromancy
                 double value = GetResistSkill(target);
                 double firstPercent = value / 5.0;
                 double secondPercent = value - (((Caster.Skills[CastSkill].Value - 20.0) / 5.0) + (1 + (int)circle) * 5.0);
-                return (firstPercent > secondPercent ? firstPercent : secondPercent) / 1.5;
+                return (firstPercent > secondPercent ? firstPercent : secondPercent) / 2.0; // Seems should be about half of what stratics says.
             }
             else
             {
                 var resist = target.Skills[SkillName.MagicResist].Value;
+                if (target.Player && !Caster.Player)
+                {
+                    resist += (int)(resist * Caster.GetBonusElemento(ElementoPvM.Agua));
+                    resist += ColarElemental.GetNivel(Caster, ElementoPvM.Agua);
+                    resist += ColarElemental.GetNivel(Caster, ElementoPvM.Escuridao) * 2;
+                }
+                if (!target.Player && Caster.Player)
+                {
+                    var bonus = resist * Caster.GetBonusElemento(ElementoPvM.Escuridao);
+                    if (bonus > resist) bonus = resist;
+                    resist -= bonus;
+                }
+                if (target.Player)
+                {
+                    if (((PlayerMobile)target).Talentos.Tem(Talento.PeleArcana))
+                        resist += 10;
+                }
+
+                if (Caster.Player && Caster.RP)
+                {
+                    if (((PlayerMobile)Caster).Talentos.Tem(Talento.MentePerfurante))
+                        resist -= 10;
+                }
+
                 var cap = resist / 5;
 
                 var magery = Caster.Skills[CastSkill].Value;
@@ -154,9 +179,9 @@ namespace Server.Spells.Necromancy
                     chance = cap;
 
                 if (Shard.SPHERE_STYLE)
-                    chance *= 0.5; // sem pre cast mais dificil de resistir
+                    chance *= 0.35; // sem pre cast mais dificil de resistir
                 else
-                    chance *= 0.85;
+                    chance *= 0.80;
 
                 if (Caster is BaseCreature && target is PlayerMobile)
                     chance /= 1.5;

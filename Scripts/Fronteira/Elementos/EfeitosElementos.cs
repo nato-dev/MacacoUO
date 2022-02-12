@@ -121,25 +121,25 @@ namespace Server.Fronteira.Elementos
                 case ElementoPvM.Luz:
                     efeitos = new string[] {
                         "Chance Resist a Morte", //
-                        "Parry Bloqueia Magias",
+                        "Parry Bloqueia Magias", //
                     };
                     break;
                 case ElementoPvM.Escuridao:
                     efeitos = new string[] {
-                        "Bonus Resist Magias Negras",
-                        "Bonus Magias Negras",
+                        "Bonus Resist Magias Negras", //
+                        "Bonus Magias Negras",        //
                     };
                     break;
                 case ElementoPvM.Gelo:
                     efeitos = new string[] {
-                        "Bonus Magias de Varinhas",
-                        "Bonus Coleta Recursos"
+                        "Bonus Magias de Varinhas",   //
+                        "Chance Congelar Monstros Atacantes"      // 
                     };
                     break;
                 case ElementoPvM.Vento:
                     efeitos = new string[] {
-                        "Chance Critico",
-                        "Chance Stun"
+                        "Chance Critico",       //
+                        "Chance Stun"           //
                     };
                     break;
                 default:

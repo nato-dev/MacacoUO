@@ -91,7 +91,7 @@ namespace Server.Spells.Fourth
 
         public override double GetResistPercent(Mobile target)
         {
-            return 99.0;
+            return 90.0;
         }
 
         private void AosDelay_Callback(object state)

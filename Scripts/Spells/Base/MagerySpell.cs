@@ -1,8 +1,14 @@
 using System;
+using System.Collections.Generic;
 using Server.Fronteira.Talentos;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
+using Server.Spells.Fifth;
+using Server.Spells.First;
+using Server.Spells.Fourth;
+using Server.Spells.Second;
+using Server.Spells.Seventh;
 using Server.Spells.Third;
 
 namespace Server.Spells
@@ -134,6 +140,24 @@ namespace Server.Spells
             if (target == Caster)
                 return false;
 
+            if(target.Player && !Caster.Player)
+            {
+                var lvl = ColarElemental.GetNivel(Caster, ElementoPvM.Luz);
+                if(lvl > 0 && Caster.Skills.Parry.Value >= 100)
+                {
+                    var chance = 0.1 + lvl / 100;
+                    if(Utility.RandomDouble() <= chance)
+                    {
+                        target.SendMessage("Voce bloqueou a magia com seu escudo");
+                        target.FixedEffect(0x37B9, 10, 16);
+                        target.Animate(AnimationType.Parry, 0);
+                        return true;
+                    }
+                }
+           
+            }
+
+
             double n = GetResistPercent(target);
 
             Shard.Debug("Resist % " + n, target);
@@ -162,6 +186,12 @@ namespace Server.Spells
             return resisted;
         }
 
+        public static HashSet<Type> DarkSpells = new HashSet<Type>(new Type[] {
+            typeof(HarmSpell), typeof(MindBlastSpell),  typeof(ParalyzeSpell),
+            typeof(CurseSpell), typeof(WeakenSpell), typeof(ClumsySpell), typeof(FeeblemindSpell),
+            typeof(ManaDrainSpell), typeof(ManaVampireSpell)
+        });
+
         public virtual double GetResistPercentForCircle(Mobile target, SpellCircle circle)
         {
             if (!Shard.POL_STYLE)
@@ -178,6 +208,10 @@ namespace Server.Spells
                 {
                     resist += (int)(resist * Caster.GetBonusElemento(ElementoPvM.Agua));
                     resist += ColarElemental.GetNivel(Caster, ElementoPvM.Agua);
+
+                    if(DarkSpells.Contains(this.GetType())) {
+                        resist += ColarElemental.GetNivel(Caster, ElementoPvM.Escuridao) * 2;
+                    }
                 }
                 if(!target.Player && Caster.Player)
                 {

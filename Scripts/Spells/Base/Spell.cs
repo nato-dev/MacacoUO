@@ -545,6 +545,7 @@ namespace Server.Spells
 
             if (target == null)
                 return scalar;
+           
 
             double casterEI = m_Caster.Skills[DamageSkill].Value;
             double targetRS = target.Skills[SkillName.MagicResist].Value;
@@ -557,6 +558,18 @@ namespace Server.Spells
                 var bonus = targetRS * Caster.GetBonusElemento(ElementoPvM.Escuridao);
                 if (bonus > targetRS) bonus = targetRS;
                 targetRS -= bonus;
+
+                if(elemento==ElementoPvM.Escuridao)
+                {
+                    scalar += ColarElemental.GetNivel(m_Caster, ElementoPvM.Escuridao) / 15;
+                }
+
+                if (m_Scroll is BaseWand)
+                {
+                    scalar += 1; // bonus de dano wands em PvM
+
+                    scalar += ColarElemental.GetNivel(m_Caster, ElementoPvM.Gelo) / 10;
+                }
             }
 
             var pl = m_Caster as PlayerMobile;

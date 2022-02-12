@@ -2,30 +2,30 @@ using System;
 
 namespace Server.Items
 {
-    public class EssenciaGelo : BaseEssenciaElemental, ICommodity
+    public class EssenciaAgua : BaseEssencia, ICommodity
     {
-        public override ElementoPvM Elemento { get { return ElementoPvM.Gelo; } }
+        public override ElementoPvM Elemento { get { return ElementoPvM.Agua; } }
 
         [Constructable]
-        public EssenciaGelo()
+        public EssenciaAgua()
             : this(1)
         {
         }
 
         [Constructable]
-        public EssenciaGelo(int amount)
+        public EssenciaAgua(int amount)
             : base(0x571C)
         {
             Stackable = true;
             Amount = amount;
         }
 
-        public EssenciaGelo(Serial serial)
+        public EssenciaAgua(Serial serial)
             : base(serial)
         {
         }
 
-      public override void Serialize(GenericWriter writer)
+        public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
 

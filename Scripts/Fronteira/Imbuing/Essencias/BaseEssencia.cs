@@ -1,18 +1,32 @@
 using Server.Engines.Craft;
-using Server.Gumps;
-using Server.Items;
 using System;
 
 namespace Server.Items
 {
-    public class BaseEssenciaElemental : Item, ICommodity
+    public class BaseEssencia : Item, ICommodity
     {
         public virtual ElementoPvM Elemento { get { return ElementoPvM.None; } }
 
-        private static Type[] Elementos = new Type[] {
+        private static readonly Type[] Elementos = new Type[] {
             typeof(EssenciaFogo), typeof(EssenciaAgua), typeof(EssenciaTerra), typeof(EssenciaRaio), typeof(EssenciaLuz),
              typeof(EssenciaEscuridao),  typeof(EssenciaVento),  typeof(EssenciaGelo)
         };
+
+        public static Type GetEssencia(ElementoPvM e)
+        {
+            switch(e)
+            {
+                case ElementoPvM.Agua: return typeof(EssenciaAgua);
+                case ElementoPvM.Fogo: return typeof(EssenciaFogo);
+                case ElementoPvM.Terra: return typeof(EssenciaTerra);
+                case ElementoPvM.Raio: return typeof(EssenciaRaio);
+                case ElementoPvM.Luz: return typeof(EssenciaLuz);
+                case ElementoPvM.Vento: return typeof(EssenciaVento);
+                case ElementoPvM.Escuridao: return typeof(EssenciaEscuridao);
+                case ElementoPvM.Gelo: return typeof(EssenciaGelo);
+            }
+            return null;
+        }
 
         public static Item RandomEssencia()
         {
@@ -21,7 +35,7 @@ namespace Server.Items
         }
 
         [Constructable]
-        public BaseEssenciaElemental()
+        public BaseEssencia()
             : this(1)
         {
         }
@@ -30,16 +44,18 @@ namespace Server.Items
         {
             base.AddNameProperties(list);
             list.Add("Contem magia de " + Elemento.ToString());
-            list.Add("Usado para criar joias e talismans elementais");
+            list.Add("Usado para criar joias elementais");
             list.Add("Imbuing: 70");
             list.Add("Tinkering: 90");
         }
 
+        public static readonly int QTD = 30;
+
         public override void OnDoubleClick(Mobile from)
         {
-            if(this.Amount < 30)
+            if(this.Amount < QTD)
             {
-                from.SendMessage("Junte 30 essencias do mesmo elemento para craftar joias elementais");
+                from.SendMessage("Junte "+QTD+" essencias do mesmo elemento para craftar joias elementais");
                 return;
             }
             var ferramentas = from.FindItemsByType(typeof(TinkerTools));
@@ -70,8 +86,13 @@ namespace Server.Items
                 from.SendMessage("Voce precisa de uma forja e uma bigorna para isto");
                 return;
             }
-            tem.UsesRemaining -= 2;
-            this.Consume(30);
+            tem.UsesRemaining -= 5;
+            if(tem.UsesRemaining <= 0)
+            {
+                tem.Delete();
+                from.SendMessage("Sua ferramenta quebrou");
+            }
+            this.Consume(QTD);
             var colar = new ColarElemental(this.Elemento);
             colar.OwnerName = from.Name;
             from.PlaceInBackpack(colar);
@@ -82,7 +103,7 @@ namespace Server.Items
         }
 
         [Constructable]
-        public BaseEssenciaElemental(int amount)
+        public BaseEssencia(int amount)
             : base(0x571C)
         {
             Name = "Essencia de " + Elemento.ToString();
@@ -91,7 +112,7 @@ namespace Server.Items
             Hue = BaseArmor.HueElemento(Elemento);
         }
 
-        public BaseEssenciaElemental(Serial serial)
+        public BaseEssencia(Serial serial)
             : base(serial)
         {
         }
