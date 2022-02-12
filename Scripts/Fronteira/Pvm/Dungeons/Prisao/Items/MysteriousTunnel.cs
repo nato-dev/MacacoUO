@@ -39,12 +39,6 @@ namespace Server.Items
         {
         }
 
-        public override bool OnMoveOver(Mobile m)
-        {
-            OnDoubleClick(m);
-            return true;
-        }
-
         public override void OnDoubleClick(Mobile m)
         {
             if (m is PlayerMobile)
