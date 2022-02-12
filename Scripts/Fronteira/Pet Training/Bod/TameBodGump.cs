@@ -126,7 +126,7 @@ namespace Server.Engines.BulkOrders
                 }
 
                 // if (deed.Nome == bc.Name && (bc is Bird || bc.Name.ToLower() == "cavalo" || deed.Cor == bc.Hue))
-                if (deed.Nome == bc.Name && deed.GraficoBody == bc.BodyValue)
+                if (deed.Nome == bc.Name && (deed.GraficoBody == bc.BodyValue || BodTamer.BodyValido(bc.GetType(), deed.GraficoBody)))
                 {
                     bc.Delete();
                     deed.QuantidadeAtual++;

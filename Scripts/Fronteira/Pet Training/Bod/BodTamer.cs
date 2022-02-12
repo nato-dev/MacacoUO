@@ -9,6 +9,9 @@ namespace Server.Engines.BulkOrders
 {
     public class BodTamer : BaseDecayingItem
     {
+
+        public static Dictionary<Type, List<int>> Bodies = null;
+
         [CommandProperty(AccessLevel.GameMaster)]
         public string Nome { get; set; }
 
@@ -40,6 +43,24 @@ namespace Server.Engines.BulkOrders
             Cor = tamavel.Hue;
             Nome = tamavel.Name;
             DuracaoDias = 5;
+
+            if(Bodies == null)
+            {
+                Bodies = new Dictionary<Type, List<int>>();
+                Bodies[typeof(Drake)] = new List<int>(new int[] { 60, 61 });
+                Bodies[typeof(Dragon)] = new List<int>(new int[] { 12, 59 });
+                Bodies[typeof(Horse)] = new List<int>(new int[] { 0xC8,
+                0xE2,
+                0xE4,
+                0xCC });     
+            }
+        }
+
+        public static bool BodyValido(Type t, int body)
+        {
+            if (Bodies.ContainsKey(t))
+                return Bodies[t].Contains(body);
+            return false;
         }
 
         public BodTamer(Serial serial)
@@ -119,6 +140,8 @@ namespace Server.Engines.BulkOrders
             bod.InvalidateProperties();
             return bod;
         }
+
+       
 
         public static void EntregaBodTamer(PlayerMobile from, BaseVendor vendor)
         {
