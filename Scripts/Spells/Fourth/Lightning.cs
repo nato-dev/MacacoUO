@@ -1,6 +1,7 @@
 using System;
 using Server.Targeting;
 using Server.Mobiles;
+using Server.Items;
 
 namespace Server.Spells.Fourth
 {
@@ -68,6 +69,13 @@ namespace Server.Spells.Fourth
                     }
 
                     damage *= GetDamageScalar(mob, Items.ElementoPvM.Raio);
+                }
+
+
+                if (!((Mobile)m).Player)
+                {
+                    var nivel = ColarElemental.GetNivel(Caster, ElementoPvM.Raio);
+                    damage *= 1 + (nivel / 14);
                 }
 
                 if (m is Mobile)

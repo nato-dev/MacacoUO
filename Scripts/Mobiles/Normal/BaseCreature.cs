@@ -2610,7 +2610,7 @@ namespace Server.Mobiles
 
         public virtual void AlterMeleeDamageFrom(Mobile from, ref int damage)
         {
-            #region Mondain's Legacy
+           
             if (from != null && from.Talisman is BaseTalisman)
             {
                 BaseTalisman talisman = (BaseTalisman)from.Talisman;
@@ -2625,7 +2625,19 @@ namespace Server.Mobiles
                     }
                 }
             }
-            #endregion
+
+            if(ControlMaster != null && ControlMaster.Player && !from.Player)
+            {
+                if (StuckMenu.IsInSecondAgeArea(this))
+                    damage = (int)(damage * 1.5);
+
+                var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
+                if(nivel > 0)
+                {
+                    var redux = nivel / 100; // max 50%
+                    damage -= damage * redux;
+                }
+            }
 
             if (m_TempDamageAbsorb > 0 && VialofArmorEssence.UnderInfluence(this))
                 damage -= damage / m_TempDamageAbsorb;
@@ -2652,6 +2664,20 @@ namespace Server.Mobiles
         {
             if (m_TempDamageBonus > 0 && TastyTreat.UnderInfluence(this))
                 damage += damage / m_TempDamageBonus;
+
+            if (ControlMaster != null && ControlMaster.Player && !to.Player)
+            {
+                if (StuckMenu.IsInSecondAgeArea(this))
+                    damage = (int)(damage * 0.8);
+
+                var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
+                if(nivel > 0)
+                {
+                    var redux = nivel / 25; // max 50%
+                    damage += damage * redux;
+                }
+                
+            }
 
             if (to.Player && to.Elemento != ElementoPvM.None)
             {

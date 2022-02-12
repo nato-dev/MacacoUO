@@ -84,11 +84,11 @@ namespace Server.Mobiles
             {
                 return new GreaterHealSpell(this, null);
             }
-            else if(this.Combatant is Mobile && !((Mobile)this.Combatant).Paralyzed)
+            else if(this.Combatant is Mobile && !((Mobile)this.Combatant).Paralyzed && Utility.RandomBool())
             {
                 return new ParalyzeSpell(this, null);
             }
-            return new FireFieldSpell(this, null);
+            return null;
         }
 
         public WhiteWyrm(Serial serial)

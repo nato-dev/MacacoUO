@@ -76,7 +76,15 @@ namespace Server.Spells.Sixth
 
                     // Scale damage based on evalint and resist
                     damage *= GetDamageScalar(mob, ElementoPvM.Raio);
+
+                    if (!mob.Player)
+                    {
+                        var nivel = ColarElemental.GetNivel(Caster, ElementoPvM.Raio);
+                        damage *= 1 + (nivel / 15);
+                    }
+
                 }
+
 
                 // Do the effects
                 Caster.MovingParticles(m, 0x379F, 7, 0, false, true, 3043, 4043, 0x211);

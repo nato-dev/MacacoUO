@@ -261,6 +261,9 @@ namespace Server.Items
 
             public int GetDamage()
             {
+
+
+
                 return Utility.RandomMinMax(m_MinDamage, m_MaxDamage);
             }
 
@@ -322,6 +325,8 @@ namespace Server.Items
                     if(!m.Player && m_From.Player)
                     {
                         dmg += (int)(dmg * m_From.GetBonusElemento(ElementoPvM.Agua));
+                        var nivelColar = ColarElemental.GetNivel(m_From, ElementoPvM.Agua);
+                        dmg += nivelColar;
                     }
 
                     AOS.Damage(m, m_From, dmg, 0, 100, 0, 0, 0);

@@ -96,31 +96,31 @@ namespace Server.Fronteira.Elementos
             {
                 case ElementoPvM.Fogo:
                     efeitos = new string[] {
-                        "Bonus Flamestrike",
-                        "Bonus Fire Field",
+                        "Bonus Flamestrike", //
+                        "Bonus Fire Field",  //
                     };
                     break;
                 case ElementoPvM.Agua:
                     efeitos = new string[] {
-                        "Bonus Pots de Dano",
-                        "Magic Resist",
+                        "Bonus Pots de Dano", //
+                        "Magic Resist",       //
                     };
                     break;
                 case ElementoPvM.Terra:
                     efeitos = new string[] {
-                        "Armor Pets",
-                        "Dano Pets",
+                        "Armor Pets",       //
+                        "Dano Fisico Pets", //
                     };
                     break;
                 case ElementoPvM.Raio:
                     efeitos = new string[] {
-                        "Bonus Energy Bolt",
-                        "Bonus Lightning",
+                        "Bonus Energy Bolt", //
+                        "Bonus Lightning",   //
                     };
                     break;
                 case ElementoPvM.Luz:
                     efeitos = new string[] {
-                        "Bonus Parry",
+                        "Chance Resist a Morte", //
                         "Parry Bloqueia Magias",
                     };
                     break;
