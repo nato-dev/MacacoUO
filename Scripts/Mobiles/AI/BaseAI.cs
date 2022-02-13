@@ -619,6 +619,39 @@ namespace Server.Mobiles
                     var keywords = e.Keywords;
                     var speech = e.Speech;
 
+                    if(isOwner)
+                    {
+                        if (speech.Contains("todos venha"))
+                        {
+                            if (m_Mobile.CheckControlChance(e.Mobile))
+                            {
+                                m_Mobile.ControlTarget = null;
+                                m_Mobile.ControlOrder = OrderType.Come;
+                            }
+                            return;
+                        }
+                        else if (speech.Contains("todos mate"))
+                        {
+                            BeginPickTarget(e.Mobile, OrderType.Attack);
+                            return;
+                        }
+                        else if (speech.Contains("todos pare"))
+                        {
+                            if (m_Mobile.CheckControlChance(e.Mobile))
+                            {
+                                m_Mobile.ControlTarget = null;
+                                m_Mobile.ControlOrder = OrderType.Stay;
+                            }
+                            return;
+                        } else if(speech.Contains("todos libertar"))
+                        {
+                            m_Mobile.OverheadMessage("* libertado *");
+                            m_Mobile.ControlTarget = null;
+                            m_Mobile.ControlOrder = OrderType.Release;
+                        }
+                    }
+                 
+
                     // First, check the all*
                     for (var i = 0; i < keywords.Length; ++i)
                     {
