@@ -144,8 +144,6 @@ namespace Server.Engines.BulkOrders
                     else
                         amountMax = Utility.RandomList(10, 10, 15, 20);
                 }
-                
-
 
                 double excChance = 0.0;
 

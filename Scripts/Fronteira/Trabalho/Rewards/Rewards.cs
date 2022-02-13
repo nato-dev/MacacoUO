@@ -557,7 +557,7 @@ namespace Server.Engines.BulkOrders
                 points += 10;
             else if (quantity == 15)
                 points += 25;
-            else if (quantity == 20)
+            else if (quantity >= 20)
                 points += 50;
 
             if (exceptional)

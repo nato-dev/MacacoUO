@@ -37,6 +37,7 @@ namespace Server.Items.Functional.Pergaminhos
             }
             GoldHour.GOLD_MULT = 1.5;
             Anuncio.Anuncia(from.Name + " ativou um GoldHour 2x Gold para todos");
+            Consume();
             Timer.DelayCall(TimeSpan.FromHours(1), () => {
                 GoldHour.GOLD_MULT = 0;
                 Anuncio.Anuncia("O PowerHour de Gold Terminou !");
@@ -98,6 +99,7 @@ namespace Server.Items.Functional.Pergaminhos
             }
             SkillCheck.BONUS_GERAL = 1.5;
             Anuncio.Anuncia(from.Name+" ativou um PowerHour 2x Exp para todos");
+            Consume();
             Timer.DelayCall(TimeSpan.FromHours(1), () => {
                 SkillCheck.BONUS_GERAL = 0;
                 Anuncio.Anuncia("O PowerHour de XP Terminou !");
