@@ -105,8 +105,13 @@ namespace Server.Items
                 from.SendMessage(78, "Lembre-se que matando monstros em dungeon skills de combate upam muito mais rapido");
             }
 
-            from.CheckSkillMult(weapon.Skill, this.m_MinSkill, this.m_MaxSkill, from.Skills[weapon.Skill].Value < 90 ? 1.5 : 0.5);
-            from.CheckSkillMult(SkillName.Tactics, this.m_MinSkill, this.m_MaxSkill, from.Skills[SkillName.Tactics].Value < 90 ? 1 : 0.5);
+            if(from.Skills[weapon.Skill].Base < this.m_MaxSkill)
+            {
+                from.CheckSkillMult(weapon.Skill, this.m_MinSkill, this.m_MaxSkill, from.Skills[weapon.Skill].Value < 90 ? 1 : 0.5);
+            } else
+            {
+                from.SendMessage("Voce nao pode aprender mais nada neste boneco.");
+            }
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -119,8 +124,6 @@ namespace Server.Items
                 this.SendLocalizedMessageTo(from, "Muito longe"); // You are too far away to do that.
             else if (this.Swinging)
                 this.SendLocalizedMessageTo(from, "Aguarde ate o boneco parar de balancar"); // You have to wait until it stops swinging.
-            else if (from.Skills[weapon.Skill].Base >= this.m_MaxSkill)
-                this.SendLocalizedMessageTo(from, "Voce nao pode aprender mais contra este boneco"); // Your skill cannot improve any further by simply practicing with a dummy.
             else if (from.Mounted)
                 this.SendLocalizedMessageTo(from, "Nao pode praticar montado"); // You can't practice on this while on a mount.
             else
