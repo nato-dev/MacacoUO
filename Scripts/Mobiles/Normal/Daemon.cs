@@ -64,7 +64,7 @@ namespace Server.Mobiles
                         break;
                 }
             }
-            if (Utility.Random(20) == 1)
+            if (Utility.Random(50) == 1)
                 PackItem(Loot.RandomTalisman());
             ControlSlots = Core.SE ? 4 : 5;
         }

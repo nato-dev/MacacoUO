@@ -1093,7 +1093,7 @@ namespace Server
             talisman.Slayer = BaseTalisman.GetRandomSlayer();
             talisman.Protection = BaseTalisman.GetRandomProtection();
             talisman.Killer = BaseTalisman.GetRandomKiller();
-            talisman.Skill = BaseTalisman.GetRandomSkill();
+            //talisman.Skill = BaseTalisman.GetRandomSkill();
             talisman.ExceptionalBonus = BaseTalisman.GetRandomExceptional();
             talisman.SuccessBonus = BaseTalisman.GetRandomSuccessful();
             talisman.Charges = talisman.MaxCharges;
