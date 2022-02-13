@@ -614,7 +614,10 @@ namespace Server
 							try
 							{
 								m_LoadingType = entry.TypeName;
-								m.Deserialize(reader);
+                                if (Shard.DebugEnabled)
+                                    Shard.Debug("Deserializando " + m_LoadingType);
+
+                                m.Deserialize(reader);
 
 								if (reader.Position != (entry.Position + entry.Length))
 								{

@@ -39,7 +39,26 @@ namespace Server.Items
         {
         }
 
+        public override bool OnMoveOver(Mobile m)
+        {
+            if(base.OnMoveOver(m))
+            {
+                if(!m.IsCooldown("msgtunel"))
+                {
+                    m.SetCooldown("msgtunel");
+                    m.SendMessage(78, "Clique duas vezes para entrar em um tunel");
+                }
+                return true;
+            }
+            return false;
+        }
+
         public override void OnDoubleClick(Mobile m)
+        {
+            Entra(m);
+        }
+
+        public void Entra(Mobile m)
         {
             if (m is PlayerMobile)
             {

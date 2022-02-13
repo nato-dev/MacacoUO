@@ -1,10 +1,6 @@
 using Server.Commands;
 using Server.Misc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Server.Items.Functional.Pergaminhos
 {
@@ -14,7 +10,6 @@ namespace Server.Items.Functional.Pergaminhos
         public DoubleGoldDeed()
             : this(0x14F0)
         {
-
             this.Hue = 54;
             this.Name = "Pergaminho de Double Gold";
         }

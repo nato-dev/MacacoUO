@@ -9,7 +9,7 @@ namespace Server.Mobiles
         public FireDaemon()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a fire daemon";
+            this.Name = "capiroto";
             this.Body = 9;
             this.BaseSoundID = 0x47D;
             this.Hue = 1636;
