@@ -129,20 +129,16 @@ namespace Server.Multis
 
                     items.Clear();
 
-                    for (int i = 0; i < sector.Items.Count; ++i)
+                    foreach (var item in sector.Items)
                     {
-                        Item item = sector.Items[i];
-
                         if (item.Visible && item.X == tileX && item.Y == tileY)
                             items.Add(item);
                     }
 
                     mobiles.Clear();
 
-                    for (int i = 0; i < sector.Mobiles.Count; ++i)
+                    foreach (var m in sector.Mobiles)
                     {
-                        Mobile m = sector.Mobiles[i];
-
                         if (m.X == tileX && m.Y == tileY)
                             mobiles.Add(m);
                     }
@@ -371,11 +367,10 @@ namespace Server.Multis
                 }
 
                 Sector sector = map.GetSector(borderPoint.X, borderPoint.Y);
-                List<Item> sectorItems = sector.Items;
+                var sectorItems = sector.Items;
 
-                for (int j = 0; j < sectorItems.Count; ++j)
+                foreach (var item in sectorItems)
                 {
-                    Item item = sectorItems[j];
 
                     if (item.X != borderPoint.X || item.Y != borderPoint.Y || item.Movable)
                         continue;
@@ -404,11 +399,11 @@ namespace Server.Multis
 					
                     if (sector.Multis != null)
                     {
-                        for (int j = 0; j < sector.Multis.Count; j++)
+                        foreach (var multi in sector.Multis)
                         {
-                            if (sector.Multis[j] is BaseHouse)
+                            var _house = multi as BaseHouse;
+                            if (_house != null)
                             {
-                                BaseHouse _house = (BaseHouse)sector.Multis[j];
                                 if (!_houses.Contains(_house))
                                 {
                                     _houses.Add(_house);

@@ -161,7 +161,7 @@ namespace Server.Regions
             return focus.GetMobilesInRange(r).Where(m => m is PlayerMobile).Select(m => m).ToList();
         }
 
-        public override void MakeGuard(Mobile focus)
+        public override Mobile MakeGuard(Mobile focus)
 		{
 			BaseGuard useGuard = null;
             var eable = GetInRange(focus, 8);
@@ -195,6 +195,7 @@ namespace Server.Regions
 			{
 				useGuard.Focus = focus;
 			}
+            return useGuard;
 		}
 
 		public override void OnEnter(Mobile m)

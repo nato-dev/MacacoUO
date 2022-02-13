@@ -38,10 +38,9 @@ namespace Server.Multis
 
             Sector sector = map.GetSector(loc);
 
-            for (int i = 0; i < sector.Multis.Count; i++)
+            foreach (var m in sector.Multis)
             {
-                BaseBoat boat = sector.Multis[i] as BaseBoat;
-
+                BaseBoat boat = m as BaseBoat;
                 if (boat != null && boat.Contains(loc.X, loc.Y))
                     return boat;
             }

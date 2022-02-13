@@ -1,0 +1,141 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Application\\ServUO.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Application\\ServUO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Application\\ServUO.csproj",
+        "projectName": "ServUO",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Application\\ServUO.csproj",
+        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {
+              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj": {
+                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj"
+              },
+              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
+                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj"
+              },
+              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Settings\\Settings.csproj": {
+                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Settings\\Settings.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
+        }
+      }
+    },
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj",
+        "projectName": "Scripts",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {
+              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
+                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    },
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj",
+        "projectName": "Server",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {}
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    },
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Settings\\Settings.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Settings\\Settings.csproj",
+        "projectName": "Settings",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Settings\\Settings.csproj",
+        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Settings\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net48"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net48": {
+            "targetAlias": "net48",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net48": {
+          "targetAlias": "net48",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

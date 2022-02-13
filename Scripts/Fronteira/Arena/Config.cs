@@ -158,7 +158,7 @@ namespace Server.TournamentSystem
 
             if (!loaded)
             {
-                Utility.WriteConsoleColor(ConsoleColor.Cyan, "Running system for first time. Be sure to use [SetupPVPTournamentSystem to configure system.");
+                Utility.WriteLine(ConsoleColor.Cyan, "Running system for first time. Be sure to use [SetupPVPTournamentSystem to configure system.");
             }
             else
             {

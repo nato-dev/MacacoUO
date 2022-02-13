@@ -3430,10 +3430,8 @@ namespace Server
 
                         if (mudandoSector)
                         {
-                            for (int i = 0; i < oldSector.Mobiles.Count; ++i)
+                            foreach (var m in oldSector.Mobiles)
                             {
-                                Mobile m = oldSector.Mobiles[i];
-
                                 if (m != this && m.X == oldX && m.Y == oldY && (m.Z + 15) > oldZ && (oldZ + 15) > m.Z && !m.OnMoveOff(this))
                                 {
                                     //Shard.Debug("Bloqueado passar por cima do item", this);
@@ -3441,10 +3439,8 @@ namespace Server
                                 }
                             }
 
-                            for (int i = 0; i < oldSector.Items.Count; ++i)
+                            foreach (var item in oldSector.Items)
                             {
-                                Item item = oldSector.Items[i];
-
                                 if (item.AtWorldPoint(oldX, oldY) &&
                                     (item.Z == oldZ || ((item.Z + item.ItemData.Height) > oldZ && (oldZ + 15) > item.Z)) && !item.OnMoveOff(this))
                                 {
@@ -3453,10 +3449,8 @@ namespace Server
                                 }
                             }
 
-                            for (int i = 0; i < newSector.Mobiles.Count; ++i)
+                            foreach (var m in newSector.Mobiles)
                             {
-                                Mobile m = newSector.Mobiles[i];
-
                                 if (m.X == x && m.Y == y && (m.Z + 15) > newZ && (newZ + 15) > m.Z && !m.OnMoveOver(this))
                                 {
                                     //Shard.Debug("Bloqueado passar por cima do mobile", this);
@@ -3464,10 +3458,8 @@ namespace Server
                                 }
                             }
 
-                            for (int i = 0; i < newSector.Items.Count; ++i)
+                            foreach (var item in newSector.Items)
                             {
-                                Item item = newSector.Items[i];
-
                                 if (item.AtWorldPoint(x, y) &&
                                     (item.Z == newZ || ((item.Z + item.ItemData.Height) >= newZ && (newZ + 15) > item.Z)) && !item.OnMoveOver(this))
                                 {
@@ -3478,10 +3470,8 @@ namespace Server
                         }
                         else
                         {
-                            for (int i = 0; i < oldSector.Mobiles.Count; ++i)
+                            foreach (var m in oldSector.Mobiles)
                             {
-                                Mobile m = oldSector.Mobiles[i];
-
                                 if (m != this && m.X == oldX && m.Y == oldY && (m.Z + 15) > oldZ && (oldZ + 15) > m.Z && !m.OnMoveOff(this))
                                 {
                                     return false;
@@ -3493,10 +3483,8 @@ namespace Server
                                 }
                             }
 
-                            for (int i = 0; i < oldSector.Items.Count; ++i)
+                            foreach (var item in oldSector.Items)
                             {
-                                Item item = oldSector.Items[i];
-
                                 if (item.AtWorldPoint(oldX, oldY) &&
                                     (item.Z == oldZ || ((item.Z + item.ItemData.Height) > oldZ && (oldZ + 15) > item.Z)) && !item.OnMoveOff(this))
                                 {
@@ -7036,10 +7024,10 @@ namespace Server
                         op.WriteLine();
                     }
 
-                    Utility.WriteConsoleColor(ConsoleColor.Red, String.Format("Offending Mobile: {0} [{1}]", GetType().ToString(), this));
-                    Utility.WriteConsoleColor(ConsoleColor.Red, String.Format("Offending Item: {0} [{1}]", item, item.GetType().ToString()));
-                    Utility.WriteConsoleColor(ConsoleColor.Red, String.Format("Equipped Item: {0} [{1}]", equipped, equipped.GetType().ToString()));
-                    Utility.WriteConsoleColor(ConsoleColor.Red, String.Format("Layer: {0}", item.Layer.ToString()));
+                    Utility.WriteLine(ConsoleColor.Red, String.Format("Offending Mobile: {0} [{1}]", GetType().ToString(), this));
+                    Utility.WriteLine(ConsoleColor.Red, String.Format("Offending Item: {0} [{1}]", item, item.GetType().ToString()));
+                    Utility.WriteLine(ConsoleColor.Red, String.Format("Equipped Item: {0} [{1}]", equipped, equipped.GetType().ToString()));
+                    Utility.WriteLine(ConsoleColor.Red, String.Format("Layer: {0}", item.Layer.ToString()));
                 }
                 catch
                 { }
@@ -7622,7 +7610,7 @@ namespace Server
                     {
                         Mobile m = (Mobile)o;
 
-                        if (m != this && Utility.InUpdateRange(m, m_Location, m.m_Location))
+                        if (m != this && Utility.InUpdateRange(this, m))
                         {
                             ns.Send(m.RemovePacket);
                         }

@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  SectorExt.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -13,9 +13,6 @@ namespace Server
 {
 	public static class SectorExtUtility
 	{
-		public static bool Contains(this Sector s, Point3D p)
-		{
-			return s.RegionRects.Contains(p);
-		}
+	
 	}
 }

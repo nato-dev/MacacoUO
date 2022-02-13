@@ -188,7 +188,7 @@ namespace Server.SkillHandlers
             {
                 for (int y = -4; y <= 4; y++)
                 {
-                    var s = from.Map.InternalGetSector(sector.X + x, sector.Y + y);
+                    var s = from.Map.GetSector(sector.X + x, sector.Y + y);
                     if (Shard.DebugEnabled)
                         Shard.Debug("Vendo setor " + (s.X) + " " + (sector.Y + y));
                     recursos.AddRange(Recurso.RecursosNoSector(from.Map, s));

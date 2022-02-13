@@ -173,10 +173,8 @@ namespace Server.Spells
 
             Sector sector = map.GetSector(p.X, p.Y);
 
-            for (int i = 0; i < sector.Multis.Count; ++i)
+            foreach (var multi in sector.Multis)
             {
-                BaseMulti multi = sector.Multis[i];
-
                 if (multi is BaseHouse)
                 {
                     BaseHouse bh = (BaseHouse)multi;

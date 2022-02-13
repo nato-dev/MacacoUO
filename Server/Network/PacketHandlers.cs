@@ -1726,7 +1726,7 @@ namespace Server.Network
             {
                 var o = (Item)target;
 
-                if (Utility.InUpdateRange(m.Location, o.GetWorldLocation()))
+                if (Utility.InUpdateRange(m, o.GetWorldLocation()))
                 {
                     if (ItemClickOverride == null || !ItemClickOverride(m, o))
                     {

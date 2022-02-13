@@ -43,7 +43,7 @@ namespace Server
 			}
 		}
 
-		private Serial(int serial)
+		public Serial(int serial)
 		{
 			m_Serial = serial;
 		}

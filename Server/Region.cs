@@ -5,1687 +5,1583 @@ using System.IO;
 using System.Linq;
 using System.Xml;
 
+using Server.ContextMenus;
 using Server.Items;
-using Server.Network;
 using Server.Targeting;
 #endregion
 
 namespace Server
 {
-	public enum MusicName
-	{
-		Invalid = -1,
-		OldUlt01 = 0,
-		Create1,
-		DragFlit,
-		OldUlt02,
-		OldUlt03,
-		OldUlt04,
-		OldUlt05,
-		OldUlt06,
-		Stones2,
-		Britain1,
-		Britain2,
-		Bucsden,
-		Jhelom,
-		LBCastle,
-		Linelle,
-		Magincia,
-		Minoc,
+    public enum MusicName
+    {
+        Invalid = -1,
+        OldUlt01 = 0,
+        Create1,
+        DragFlit,
+        OldUlt02,
+        OldUlt03,
+        OldUlt04,
+        OldUlt05,
+        OldUlt06,
+        Stones2,
+        Britain1,
+        Britain2,
+        Bucsden,
+        Jhelom,
+        LBCastle,
+        Linelle,
+        Magincia,
+        Minoc,
         Minoc1,
         Ocllo,
-		Samlethe,
-		Serpents,
-		Skarabra,
-		Trinsic,
-		Vesper,
-		Wind,
-		Yew,
-		Cave01,
-		Dungeon9,
-		Forest_a,
-		InTown01,
-		Jungle_a,
-		Mountn_a,
-		Plains_a,
-		Sailing,
-		Swamp_a,
-		Tavern01,
-		Tavern02,
-		Tavern03,
-		Tavern04,
-		Combat1,
-		Combat2,
-		Combat3,
-		Approach,
-		Death,
-		Victory,
-		BTCastle,
-		Nujelm,
-		Dungeon2,
-		Cove,
-		Moonglow,
-		Zento,
-		TokunoDungeon,
-		Taiko,
-		DreadHornArea,
-		ElfCity,
-		GrizzleDungeon,
-		MelisandesLair,
-		ParoxysmusLair,
-		GwennoConversation,
-		GoodEndGame,
-		GoodVsEvil,
-		GreatEarthSerpents,
-		Humanoids_U9,
-		MinocNegative,
-		Paws,
-		SelimsBar,
-		SerpentIsleCombat_U7,
-		ValoriaShips,
-		TheWanderer,
-		Castle,
-		Festival,
-		Honor,
-		Medieval,
-		BattleOnStones,
-		Docktown,
-		GargoyleQueen,
-		GenericCombat,
-		Holycity,
-		HumanLevel,
-		LoginLoop,
-		NorthernForestBattleonStones,
-		PrimevalLich,
-		QueenPalace,
-		RoyalCity,
-		SlasherVeil,
-		StygianAbyss,
-		StygianDragon,
-		Void,
-		CodexShrine,
-		AnvilStrikeInMinoc,
-		ASkaranLullaby,
-		BlackthornsMarch,
-		DupresNightInTrinsic,
-		FayaxionAndTheSix,
-		FlightOfTheNexus,
-		GalehavenJaunt,
-		JhelomToArms,
-		MidnightInYew,
-		MoonglowSonata,
-		NewMaginciaMarch,
-		NujelmWaltz,
-		SherrysSong,
-		StarlightInBritain,
-		TheVesperMist,
+        Samlethe,
+        Serpents,
+        Skarabra,
+        Trinsic,
+        Vesper,
+        Wind,
+        Yew,
+        Cave01,
+        Dungeon9,
+        Forest_a,
+        InTown01,
+        Jungle_a,
+        Mountn_a,
+        Plains_a,
+        Sailing,
+        Swamp_a,
+        Tavern01,
+        Tavern02,
+        Tavern03,
+        Tavern04,
+        Combat1,
+        Combat2,
+        Combat3,
+        Approach,
+        Death,
+        Victory,
+        BTCastle,
+        Nujelm,
+        Dungeon2,
+        Cove,
+        Moonglow,
+        Zento,
+        TokunoDungeon,
+        Taiko,
+        DreadHornArea,
+        ElfCity,
+        GrizzleDungeon,
+        MelisandesLair,
+        ParoxysmusLair,
+        GwennoConversation,
+        GoodEndGame,
+        GoodVsEvil,
+        GreatEarthSerpents,
+        Humanoids_U9,
+        MinocNegative,
+        Paws,
+        SelimsBar,
+        SerpentIsleCombat_U7,
+        ValoriaShips,
+        TheWanderer,
+        Castle,
+        Festival,
+        Honor,
+        Medieval,
+        BattleOnStones,
+        Docktown,
+        GargoyleQueen,
+        GenericCombat,
+        Holycity,
+        HumanLevel,
+        LoginLoop,
+        NorthernForestBattleonStones,
+        PrimevalLich,
+        QueenPalace,
+        RoyalCity,
+        SlasherVeil,
+        StygianAbyss,
+        StygianDragon,
+        Void,
+        CodexShrine,
+        AnvilStrikeInMinoc,
+        ASkaranLullaby,
+        BlackthornsMarch,
+        DupresNightInTrinsic,
+        FayaxionAndTheSix,
+        FlightOfTheNexus,
+        GalehavenJaunt,
+        JhelomToArms,
+        MidnightInYew,
+        MoonglowSonata,
+        NewMaginciaMarch,
+        NujelmWaltz,
+        SherrysSong,
+        StarlightInBritain,
+        TheVesperMist,
         Floresta
     }
 
-	[PropertyObject]
-	public class Region : IComparable
-	{
-		private static readonly List<Region> m_Regions = new List<Region>();
+    [PropertyObject]
+    public class Region : IComparable, IComparable<Region>
+    {
+        public static List<Region> Regions { get; } = new List<Region>(0x400);
 
-		public static List<Region> Regions { get { return m_Regions; } }
+        public int GetPlayerCount()
+        {
+            return AllPlayers.Count();
+        }
 
-		public static Region Find(Point3D p, Map map)
-		{
-			if (map == null)
-			{
-				return Map.Internal.DefaultRegion;
-			}
+        public IEnumerable<Mobile> GetPlayers()
+        {
+            return AllPlayers;
+        }
 
-			Sector sector = map.GetSector(p);
-			var list = sector.RegionRects;
+        public static Region Find(Point3D p, Map map)
+        {
+            if (map == null)
+            {
+                return Map.Internal.DefaultRegion;
+            }
 
-			for (int i = 0; i < list.Count; ++i)
-			{
-				RegionRect regRect = list[i];
+            var sector = map.GetSector(p);
 
-				if (regRect.Contains(p))
-				{
-					return regRect.Region;
-				}
-			}
+            if (sector == null)
+            {
+                return map.DefaultRegion;
+            }
 
-			return map.DefaultRegion;
-		}
+            var list = sector.RegionRects;
 
-		private static Type m_DefaultRegionType = typeof(Region);
-		public static Type DefaultRegionType { get { return m_DefaultRegionType; } set { m_DefaultRegionType = value; } }
+            var r = list.FirstOrDefault(regRect => regRect.Contains(p));
 
-		private static TimeSpan m_StaffLogoutDelay = TimeSpan.Zero;
-		private static TimeSpan m_DefaultLogoutDelay = TimeSpan.FromMinutes(5.0);
+            return r?.Region ?? map.DefaultRegion;
+        }
 
-		public static TimeSpan StaffLogoutDelay { get { return m_StaffLogoutDelay; } set { m_StaffLogoutDelay = value; } }
-		public static TimeSpan DefaultLogoutDelay { get { return m_DefaultLogoutDelay; } set { m_DefaultLogoutDelay = value; } }
+        public static IEnumerable<Region> FindRegions(Point3D p, Map map)
+        {
+            if (map == null)
+            {
+                yield return Map.Internal.DefaultRegion;
+                yield break;
+            }
 
-		public static readonly int DefaultPriority = 50;
+            var sector = map.GetSector(p);
 
-		public static readonly int MinZ = sbyte.MinValue;
-		public static readonly int MaxZ = sbyte.MaxValue + 1;
+            if (sector == null)
+            {
+                yield return map.DefaultRegion;
+                yield break;
+            }
 
-		public static Rectangle3D ConvertTo3D(Rectangle2D rect)
-		{
-			return new Rectangle3D(new Point3D(rect.Start, MinZ), new Point3D(rect.End, MaxZ));
-		}
+            var found = false;
+            var list = sector.RegionRects;
 
-		public static Rectangle3D[] ConvertTo3D(Rectangle2D[] rects)
-		{
-			var ret = new Rectangle3D[rects.Length];
+            foreach (var regRect in list)
+            {
+                if (regRect.Contains(p))
+                {
+                    if (!found)
+                    {
+                        found = true;
+                    }
 
-			for (int i = 0; i < ret.Length; i++)
-			{
-				ret[i] = ConvertTo3D(rects[i]);
-			}
+                    yield return regRect.Region;
+                }
+            }
 
-			return ret;
-		}
+            if (!found)
+            {
+                yield return map.DefaultRegion;
+            }
+        }
 
-        public bool PvP = true;
-        public bool Recall = true;
-		private readonly string m_Name;
-		private readonly Map m_Map;
-		private readonly Region m_Parent;
-		private readonly List<Region> m_Children = new List<Region>();
-		private readonly Rectangle3D[] m_Area;
-		private Sector[] m_Sectors;
-		private readonly bool m_Dynamic;
-		private readonly int m_Priority;
-		private readonly int m_ChildLevel;
-		private bool m_Registered;
 
-		private Point3D m_GoLocation;
+        public static event Action OnLoaded;
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public string Name { get { return m_Name; } }
+        public static event Action<Region> OnActivate;
+        public static event Action<Region> OnDeactivate;
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public Map Map { get { return m_Map; } }
+        public static event Action<Region, Mobile, Region> OnTransition;
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public Region Parent { get { return m_Parent; } }
+        public static Type DefaultRegionType { get; set; } = typeof(Region);
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public List<Region> Children { get { return m_Children; } }
+        public static TimeSpan StaffLogoutDelay { get; set; } = TimeSpan.Zero;
+        public static TimeSpan DefaultLogoutDelay { get; set; } = TimeSpan.FromMinutes(5.0);
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public Rectangle3D[] Area { get { return m_Area; } }
+        public static readonly int DefaultPriority = 50;
 
-		public Sector[] Sectors { get { return m_Sectors; } }
+        public static readonly int MinZ = SByte.MinValue;
+        public static readonly int MaxZ = SByte.MaxValue + 1;
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public bool Dynamic { get { return m_Dynamic; } }
+        public static Rectangle3D ConvertTo3D(Rectangle2D rect)
+        {
+            return new Rectangle3D(new Point3D(rect.Start, MinZ), new Point3D(rect.End, MaxZ));
+        }
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public int Priority { get { return m_Priority; } }
+        public static Rectangle3D[] ConvertTo3D(Rectangle2D[] rects)
+        {
+            var ret = new Rectangle3D[rects.Length];
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public int ChildLevel { get { return m_ChildLevel; } }
+            for (var i = 0; i < ret.Length; i++)
+            {
+                ret[i] = ConvertTo3D(rects[i]);
+            }
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public bool Registered { get { return m_Registered; } }
+            return ret;
+        }
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public Point3D GoLocation { get { return m_GoLocation; } set { m_GoLocation = value; } }
+        public static IEnumerable<Rectangle3D> ConvertTo3D(IEnumerable<Rectangle2D> rects)
+        {
+            foreach (var r in rects)
+            {
+                yield return ConvertTo3D(r);
+            }
+        }
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public MusicName Music { get; set; }
+        public static bool CanSwitch(IEntity e, Point3D destLoc)
+        {
+            return CanSwitch(e, destLoc, e.Map);
+        }
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public bool IsDefault { get { return m_Map.DefaultRegion == this; } }
+        public static bool CanSwitch(IEntity e, Point3D destLoc, Map destMap)
+        {
+            if (e == null || e.Deleted)
+            {
+                return false;
+            }
 
-		[CommandProperty(AccessLevel.GameMaster)]
-		public virtual MusicName DefaultMusic { get { return m_Parent != null ? m_Parent.Music : MusicName.Invalid; } }
+            if (e.Location == destLoc && e.Map == destMap)
+            {
+                return true;
+            }
 
-        [CommandProperty(AccessLevel.GameMaster)]
-        public virtual double InsuranceMultiplier { get { return 1.0; } }
+            var source = Find(e.Location, e.Map);
 
-		public Region(string name, Map map, int priority, params Rectangle2D[] area)
-			: this(name, map, priority, ConvertTo3D(area))
-		{ }
+            if (source == null || (source.Map == destMap && source.Contains(destLoc)))
+            {
+                return true;
+            }
 
-		public Region(string name, Map map, int priority, params Rectangle3D[] area)
-			: this(name, map, null, area)
-		{
-			m_Priority = priority;
-		}
+            var dest = Find(destLoc, destMap);
 
-		public Region(string name, Map map, Region parent, params Rectangle2D[] area)
-			: this(name, map, parent, ConvertTo3D(area))
-		{ }
+            return CanSwitch(e, source, dest);
+        }
 
-        public static MusicName FLORESTA { get {
+        public static bool CanSwitch(IEntity e, Region source, Region dest)
+        {
+            return e != null && !e.Deleted && (source == dest || ((source == null || source.CanExit(e)) && (dest == null || dest.CanEnter(e))));
+        }
+
+        private readonly string m_Name;
+        private readonly int m_Priority;
+
+        private Point3D m_GoLocation;
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public string Name => m_Name;
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public Map Map { get; }
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public Region Parent { get; }
+
+        public bool PvP;
+        public bool Recall;
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public List<Region> Children { get; } = new List<Region>();
+
+        public Rectangle3D[] Area { get; }
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public Rectangle3D Bounds { get; private set; }
+
+        public Sector[] Sectors { get; private set; }
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public bool Dynamic { get; }
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public int Priority => m_Priority;
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public int ChildLevel { get; }
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public bool Registered { get; private set; }
+
+        [CommandProperty(AccessLevel.Counselor, AccessLevel.GameMaster)]
+        public Point3D GoLocation { get => m_GoLocation; set => m_GoLocation = value; }
+
+        [CommandProperty(AccessLevel.Counselor, AccessLevel.GameMaster)]
+        public MusicName Music { get; set; }
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public bool IsDefault => Map.DefaultRegion == this;
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public virtual MusicName DefaultMusic => Parent != null ? Parent.Music : MusicName.Invalid;
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public virtual double InsuranceMultiplier => 1.0;
+
+        private IEnumerable<Item> InternalItems
+        {
+            get
+            {
+                for (var i = 0; i < Area.Length; i++)
+                {
+                    foreach (var o in Map.GetItemsInBounds(Area[i]))
+                        yield return o;
+                }
+            }
+        }
+
+        public IEnumerable<Item> GetEnumeratedItems()
+        {
+            return AllItems;
+        }
+
+        public IEnumerable<BaseMulti> GetEnumeratedMultis()
+        {
+            return AllMultis;
+        }
+
+        public IEnumerable<Mobile> GetEnumeratedMobiles()
+        {
+            return AllMobiles;
+        }
+
+        public IEnumerable<Mobile> GetMobiles()
+        {
+            return AllMobiles;
+        }
+
+
+        public IEnumerable<Item> AllItems => InternalItems.Distinct();
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public int ItemCount => AllItems.Count();
+
+        private IEnumerable<Mobile> InternalPlayers
+        {
+            get
+            {
+                for (var i = 0; i < Area.Length; i++)
+                {
+                    foreach (var ns in Map.GetClientsInBounds(Area[i]))
+                        yield return ns.Mobile;
+                }
+            }
+        }
+
+        public IEnumerable<Mobile> AllPlayers => InternalPlayers.Distinct();
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public int PlayerCount => AllPlayers.Count();
+
+        private IEnumerable<Mobile> InternalMobiles
+        {
+            get
+            {
+                for (var i = 0; i < Area.Length; i++)
+                {
+                    foreach (var m in Map.GetMobilesInBounds(Area[i]))
+                        yield return m;
+                }
+            }
+        }
+
+        public IEnumerable<Mobile> AllMobiles => InternalMobiles.Distinct();
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public int MobileCount => AllMobiles.Count();
+
+        private IEnumerable<BaseMulti> InternalMultis
+        {
+            get
+            {
+                for (var i = 0; i < Area.Length; i++)
+                {
+                    foreach (var m in Map.GetMultisInBounds(Area[i]))
+                        yield return m;
+                }
+            }
+        }
+
+        public IEnumerable<BaseMulti> AllMultis => InternalMultis.Distinct();
+
+        [CommandProperty(AccessLevel.Counselor, true)]
+        public int MultiCount => AllMultis.Count();
+
+        public Region(string name, Map map, int priority, params Rectangle2D[] area)
+            : this(name, map, priority, ConvertTo3D(area))
+        { }
+
+        public Region(string name, Map map, int priority, params Rectangle3D[] area)
+            : this(name, map, null, area)
+        {
+            m_Priority = priority;
+        }
+
+        public Region(string name, Map map, Region parent, params Rectangle2D[] area)
+            : this(name, map, parent, ConvertTo3D(area))
+        { }
+
+        public static MusicName FLORESTA
+        {
+            get
+            {
                 return MusicName.Festival;
-        }}
+            }
+        }
         public static MusicName CAVERNA = MusicName.Medieval;
         public static MusicName DEFAULT = MusicName.Medieval;
 
         public Region(string name, Map map, Region parent, params Rectangle3D[] area)
-		{
-			m_Name = name;
-			m_Map = map;
-			m_Parent = parent;       
-			m_Area = area;
-			m_Dynamic = true;
-			//Music = FLORESTA;
-
-			if (m_Parent == null)
-			{
-				m_ChildLevel = 0;
-				m_Priority = DefaultPriority;
-			}
-			else
-			{
-				m_ChildLevel = m_Parent.ChildLevel + 1;
-				m_Priority = m_Parent.Priority;
-			}
-		}
-
-		public void Register()
-		{
-			if (m_Registered)
-			{
-				return;
-			}
-
-			OnRegister();
-
-			m_Registered = true;
-
-			if (m_Parent != null)
-			{
-				m_Parent.m_Children.Add(this);
-				m_Parent.OnChildAdded(this);
-			}
-
-			m_Regions.Add(this);
-
-			m_Map.RegisterRegion(this);
-
-			var sectors = new List<Sector>();
-
-			for (int i = 0; i < m_Area.Length; i++)
-			{
-				Rectangle3D rect = m_Area[i];
-
-				Point2D start = m_Map.Bound(new Point2D(rect.Start));
-				Point2D end = m_Map.Bound(new Point2D(rect.End));
-
-				Sector startSector = m_Map.GetSector(start);
-				Sector endSector = m_Map.GetSector(end);
-
-				for (int x = startSector.X; x <= endSector.X; x++)
-				{
-					for (int y = startSector.Y; y <= endSector.Y; y++)
-					{
-						Sector sector = m_Map.GetRealSector(x, y);
-
-						sector.OnEnter(this, rect);
-
-						if (!sectors.Contains(sector))
-						{
-							sectors.Add(sector);
-						}
-					}
-				}
-			}
-
-			m_Sectors = sectors.ToArray();
-		}
-
-		public void Unregister()
-		{
-			if (!m_Registered)
-			{
-				return;
-			}
-
-			OnUnregister();
-
-			m_Registered = false;
-
-			if (m_Children.Count > 0)
-			{
-				Console.WriteLine("Warning: Unregistering region '{0}' with children", this);
-			}
-
-			if (m_Parent != null)
-			{
-				m_Parent.m_Children.Remove(this);
-				m_Parent.OnChildRemoved(this);
-			}
-
-			m_Regions.Remove(this);
-
-			m_Map.UnregisterRegion(this);
-
-			if (m_Sectors != null)
-			{
-				for (int i = 0; i < m_Sectors.Length; i++)
-				{
-					m_Sectors[i].OnLeave(this);
-				}
-			}
-
-			m_Sectors = null;
-		}
-
-		public bool Contains(Point3D p)
-		{
-			for (int i = 0; i < m_Area.Length; i++)
-			{
-				Rectangle3D rect = m_Area[i];
-
-				if (rect.Contains(p))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-
-		public bool IsChildOf(Region region)
-		{
-			if (region == null)
-			{
-				return false;
-			}
-
-			Region p = m_Parent;
-
-			while (p != null)
-			{
-				if (p == region)
-				{
-					return true;
-				}
-
-				p = p.m_Parent;
-			}
-
-			return false;
-		}
-
-		public Region GetRegion(Type regionType)
-		{
-			if (regionType == null)
-			{
-				return null;
-			}
-
-			Region r = this;
-
-			do
-			{
-				if (regionType.IsAssignableFrom(r.GetType()))
-				{
-					return r;
-				}
-
-				r = r.m_Parent;
-			}
-			while (r != null);
-
-			return null;
-		}
-
-		public Region GetRegion(string regionName)
-		{
-			if (regionName == null)
-			{
-				return null;
-			}
-
-			Region r = this;
-
-			do
-			{
-				if (r.m_Name == regionName)
-				{
-					return r;
-				}
-
-				r = r.m_Parent;
-			}
-			while (r != null);
-
-			return null;
-		}
-
-		public bool IsPartOf(Region region)
-		{
-			if (this == region)
-			{
-				return true;
-			}
-
-			return IsChildOf(region);
-		}
-
-		public bool IsPartOf(Type regionType)
-		{
-			return (GetRegion(regionType) != null);
-		}
-
-		public bool IsPartOf<T>() where T : Region
-		{
-			return IsPartOf(typeof(T));
-		}
-
-		public bool IsPartOf(string regionName)
-		{
-			return (GetRegion(regionName) != null);
-		}
-
-		public virtual bool AcceptsSpawnsFrom(Region region)
-		{
-			if (!AllowSpawn())
-			{
-				return false;
-			}
-
-			if (region == this)
-			{
-				return true;
-			}
-
-			if (m_Parent != null)
-			{
-				return m_Parent.AcceptsSpawnsFrom(region);
-			}
-
-			return false;
-		}
-
-		#region Entity Enumeration
-		public List<Mobile> GetPlayers()
-		{
-			return GetPlayers(null);
-		}
-
-		public List<Mobile> GetPlayers(Func<Mobile, bool> predicate)
-		{
-			return GetEnumeratedPlayers(predicate).ToList();
-		}
-
-		public IEnumerable<Mobile> GetEnumeratedPlayers()
-		{
-			return GetEnumeratedPlayers(null);
-		}
-
-		public IEnumerable<Mobile> GetEnumeratedPlayers(Func<Mobile, bool> predicate)
-		{
-			if (Sectors != null)
-			{
-				foreach (Sector s in Sectors)
-				{
-					foreach (var o in GetDistinctEnumeration(s.Players, predicate))
-					{
-						yield return o;
-					}
-				}
-			}
-		}
-
-		public int GetPlayerCount()
-		{
-			return GetPlayerCount(null);
-		}
-
-		public int GetPlayerCount(Func<Mobile, bool> predicate)
-		{
-			return GetEnumeratedPlayers(predicate).Count();
-		}
-
-		public List<Mobile> GetMobiles()
-		{
-			return GetMobiles(null);
-		}
-
-		public List<Mobile> GetMobiles(Func<Mobile, bool> predicate)
-		{
-			return GetEnumeratedMobiles(predicate).ToList();
-		}
-
-		public IEnumerable<Mobile> GetEnumeratedMobiles()
-		{
-			return GetEnumeratedMobiles(null);
-		}
-
-		public IEnumerable<Mobile> GetEnumeratedMobiles(Func<Mobile, bool> predicate)
-		{
-			if (Sectors != null)
-			{
-				foreach (Sector s in Sectors)
-				{
-					foreach (var o in GetDistinctEnumeration(s.Mobiles, predicate))
-					{
-						yield return o;
-					}
-				}
-			}
-		}
-
-		public int GetMobileCount()
-		{
-			return GetMobileCount(null);
-		}
-
-		public int GetMobileCount(Func<Mobile, bool> predicate)
-		{
-			return GetEnumeratedMobiles(predicate).Count();
-		}
-
-		public List<Item> GetItems()
-		{
-			return GetItems(null);
-		}
-
-		public List<Item> GetItems(Func<Item, bool> predicate)
-		{
-			return GetEnumeratedItems(predicate).ToList();
-		}
-
-		public IEnumerable<Item> GetEnumeratedItems()
-		{
-			return GetEnumeratedItems(null);
-		}
-
-		public IEnumerable<Item> GetEnumeratedItems(Func<Item, bool> predicate)
-		{
-			if (Sectors != null)
-			{
-				foreach (Sector s in Sectors)
-				{
-					foreach (var o in GetDistinctEnumeration(s.Items, predicate))
-					{
-						yield return o;
-					}
-				}
-			}
-		}
-
-		public int GetItemCount()
-		{
-			return GetItemCount(null);
-		}
-
-		public int GetItemCount(Func<Item, bool> predicate)
-		{
-			return GetEnumeratedItems(predicate).Count();
-		}
-
-		public List<BaseMulti> GetMultis()
-		{
-			return GetMultis(null);
-		}
-
-		public List<BaseMulti> GetMultis(Func<BaseMulti, bool> predicate)
-		{
-			return GetEnumeratedMultis(predicate).ToList();
-		}
-
-		public IEnumerable<BaseMulti> GetEnumeratedMultis()
-		{
-			return GetEnumeratedMultis(null);
-		}
-
-		public IEnumerable<BaseMulti> GetEnumeratedMultis(Func<BaseMulti, bool> predicate)
-		{
-			if (Sectors != null)
-			{
-				foreach (Sector s in Sectors)
-				{
-					foreach (var o in GetDistinctEnumeration(s.Multis, predicate))
-					{
-						yield return o;
-					}
-				}
-			}
-		}
-
-		public int GetMultiCount()
-		{
-			return GetMultiCount(null);
-		}
-
-		public int GetMultiCount(Func<BaseMulti, bool> predicate)
-		{
-			return GetEnumeratedMultis(predicate).Count();
-		}
-
-		private IEnumerable<T> GetDistinctEnumeration<T>(List<T> list, Func<T, bool> predicate)
-			where T : IEntity
-		{
-			return GetEnumeration(list, predicate).Distinct();
-		}
-
-		private IEnumerable<T> GetEnumeration<T>(List<T> list, Func<T, bool> predicate)
-			where T : IEntity
-		{
-			T e;
-
-			var i = list.Count;
-
-			while (--i >= 0)
-			{
-				if (i >= list.Count)
-				{
-					continue;
-				}
-
-				e = list[i];
-
-				if (e != null && e.Map == Map && Contains(e.Location) && (predicate == null || predicate(e)))
-				{
-					yield return e;
-				}
-			}
-		}
-		#endregion
-
-		int IComparable.CompareTo(object obj)
-		{
-			if (obj == null)
-			{
-				return 1;
-			}
-
-			Region reg = obj as Region;
-
-			if (reg == null)
-			{
-				throw new ArgumentException("obj is not a Region", "obj");
-			}
-
-			// Dynamic regions go first
-			if (Dynamic)
-			{
-				if (!reg.Dynamic)
-				{
-					return -1;
-				}
-			}
-			else if (reg.Dynamic)
-			{
-				return 1;
-			}
-
-			int thisPriority = Priority;
-			int regPriority = reg.Priority;
-
-			if (thisPriority != regPriority)
-			{
-				return (regPriority - thisPriority);
-			}
-
-			return (reg.ChildLevel - ChildLevel);
-		}
-
-		public override string ToString()
-		{
-			if (m_Name != null)
-			{
-				return m_Name;
-			}
-			else
-			{
-				return GetType().Name;
-			}
-		}
-
-		public virtual void OnRegister()
-		{ }
-
-		public virtual void OnUnregister()
-		{ }
-
-		public virtual void OnChildAdded(Region child)
-		{ }
-
-		public virtual void OnChildRemoved(Region child)
-		{ }
-
-		public virtual bool OnMoveInto(Mobile m, Direction d, Point3D newLocation, Point3D oldLocation)
-		{
-			return (m.WalkRegion == null || AcceptsSpawnsFrom(m.WalkRegion));
-		}
-
-		public virtual void OnEnter(Mobile m)
-		{ }
-
-		public virtual void OnExit(Mobile m)
-		{ }
-
-		public virtual void MakeGuard(Mobile focus)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.MakeGuard(focus);
-			}
-		}
-
-		public virtual Type GetResource(Type type)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.GetResource(type);
-			}
-
-			return type;
-		}
-
-		public virtual bool CanUseStuckMenu(Mobile m)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.CanUseStuckMenu(m);
-			}
-
-			return true;
-		}
-
-		public virtual void OnAggressed(Mobile aggressor, Mobile aggressed, bool criminal)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnAggressed(aggressor, aggressed, criminal);
-			}
-		}
-
-		public virtual void OnDidHarmful(Mobile harmer, IDamageable harmed)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnDidHarmful(harmer, harmed);
-			}
-		}
-
-		public virtual void OnGotHarmful(Mobile harmer, IDamageable harmed)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnGotHarmful(harmer, harmed);
-			}
-		}
-
-		public virtual void OnLocationChanged(Mobile m, Point3D oldLocation)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnLocationChanged(m, oldLocation);
-			}
-		}
-
-		public virtual bool OnTarget(Mobile m, Target t, object o)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnTarget(m, t, o);
-			}
-
-			return true;
-		}
-
-        public virtual bool OnCombatantChange(Mobile m, IDamageable Old, IDamageable New)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnCombatantChange(m, Old, New);
-			}
-
-			return true;
-		}
-
-	    public virtual bool AllowAutoClaim(Mobile from)
-	    {
-	        if (m_Parent != null)
-	            return m_Parent.AllowAutoClaim( from );
-
-	        return true;
-	    }
-
-	    public virtual bool AllowFlying(Mobile from)
-	    {
-	        if (m_Parent != null)
-	            return m_Parent.AllowFlying(from);
-
-	        return true;
-	    }
-
-		public virtual bool AllowHousing(Mobile from, Point3D p)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.AllowHousing(from, p);
-			}
-
-			return true;
-		}
-
-		public virtual bool SendInaccessibleMessage(Item item, Mobile from)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.SendInaccessibleMessage(item, from);
-			}
-
-			return false;
-		}
-
-		public virtual bool CheckAccessibility(Item item, Mobile from)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.CheckAccessibility(item, from);
-			}
-
-			return true;
-		}
-
-		public virtual bool OnDecay(Item item)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnDecay(item);
-			}
-
-			return true;
-		}
-
-		public virtual bool AllowHarmful(Mobile from, IDamageable target)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.AllowHarmful(from, target);
-			}
-
-			if (Mobile.AllowHarmfulHandler != null)
-			{
-				return Mobile.AllowHarmfulHandler(from, target);
-			}
-
-			return true;
-		}
-
-		public virtual void OnCriminalAction(Mobile m, bool message)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnCriminalAction(m, message);
-			}
-			else if (message)
-			{
-				m.SendLocalizedMessage("Voce cometeu um ato criminoso !"); // You've committed a criminal act!!
-			}
-		}
-
-		public virtual bool AllowBeneficial(Mobile from, Mobile target)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.AllowBeneficial(from, target);
-			}
-
-			if (Mobile.AllowBeneficialHandler != null)
-			{
-				return Mobile.AllowBeneficialHandler(from, target);
-			}
-
-			return true;
-		}
-
-		public virtual void OnBeneficialAction(Mobile helper, Mobile target)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnBeneficialAction(helper, target);
-			}
-		}
-
-		public virtual void OnGotBeneficialAction(Mobile helper, Mobile target)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnGotBeneficialAction(helper, target);
-			}
-		}
-
-		public virtual void SpellDamageScalar(Mobile caster, Mobile target, ref double damage)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.SpellDamageScalar(caster, target, ref damage);
-			}
-		}
-
-		public virtual void OnSpeech(SpeechEventArgs args)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnSpeech(args);
-			}
-		}
-
-		public virtual bool OnSkillUse(Mobile m, int Skill)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnSkillUse(m, Skill);
-			}
-
-			return true;
-		}
-
-		public virtual bool OnBeginSpellCast(Mobile m, ISpell s)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnBeginSpellCast(m, s);
-			}
-
-			return true;
-		}
-
-		public virtual void OnSpellCast(Mobile m, ISpell s)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnSpellCast(m, s);
-			}
-		}
-
-		public virtual bool OnResurrect(Mobile m)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnResurrect(m);
-			}
-
-			return true;
-		}
-
-		public virtual bool OnBeforeDeath(Mobile m)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnBeforeDeath(m);
-			}
-
-			return true;
-		}
-
-		public virtual void OnDeath(Mobile m)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.OnDeath(m);
-			}
-		}
-		
-		public virtual bool OnDamage(Mobile m, ref int damage)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnDamage(m, ref damage);
-			}
-
-			return true;
-		}
-		
-		public virtual bool OnHeal(Mobile m, ref int heal)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnHeal(m, ref heal);
-			}
-
-			return true;
-		}
-
-		public virtual bool OnDoubleClick(Mobile m, object o)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnDoubleClick(m, o);
-			}
-
-			return true;
-		}
-
-		public virtual bool OnSingleClick(Mobile m, object o)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.OnSingleClick(m, o);
-			}
-
-			return true;
-		}
-
-        public virtual void GetContextMenuEntries(Mobile from, List<Server.ContextMenus.ContextMenuEntry> list, Item item)
         {
+            m_Name = name;
+            Map = map;
+            Parent = parent;
+            Area = area;
+            Dynamic = true;
+
+            Music = DefaultMusic;
+
+            if (Parent == null)
+            {
+                ChildLevel = 0;
+                m_Priority = DefaultPriority;
+            }
+            else
+            {
+                ChildLevel = Parent.ChildLevel + 1;
+                m_Priority = Parent.Priority;
+            }
         }
 
-		public virtual bool AllowSpawn()
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.AllowSpawn();
-			}
+        public void Register()
+        {
+            if (Registered)
+            {
+                return;
+            }
 
-			return true;
-		}
+            OnRegister();
 
-		public virtual void AlterLightLevel(Mobile m, ref int global, ref int personal)
-		{
-			if (m_Parent != null)
-			{
-				m_Parent.AlterLightLevel(m, ref global, ref personal);
-			}
-		}
+            Registered = true;
 
-		public virtual TimeSpan GetLogoutDelay(Mobile m)
-		{
-			if (m_Parent != null)
-			{
-				return m_Parent.GetLogoutDelay(m);
-			}
-			else if (m.IsStaff())
-			{
-				return m_StaffLogoutDelay;
-			}
-			else
-			{
-				return m_DefaultLogoutDelay;
-			}
-		}
+            if (Parent != null)
+            {
+                Parent.Children.Add(this);
+                Parent.OnChildAdded(this);
+            }
 
-		internal static bool CanMove(Mobile m, Direction d, Point3D newLocation, Point3D oldLocation, Map map)
-		{
-			Region oldRegion = m.Region;
-			Region newRegion = Find(newLocation, map);
+            Regions.Add(this);
 
-			while (oldRegion != newRegion)
-			{
-				if (!newRegion.OnMoveInto(m, d, newLocation, oldLocation))
-				{
-					return false;
-				}
+            Map.RegisterRegion(this);
 
-				if (newRegion.m_Parent == null)
-				{
-					return true;
-				}
+            var area = Area;
 
-				newRegion = newRegion.m_Parent;
-			}
+            if (area.Length > 0)
+            {
+                var rect = area[0];
 
-			return true;
-		}
+                var p1 = rect.Start;
+                var p2 = rect.End;
 
-		internal static void OnRegionChange(Mobile m, Region oldRegion, Region newRegion)
-		{
-			if (newRegion != null && m.NetState != null)
-			{
-				m.CheckLightLevels(false); 
+                var sectors = new HashSet<Sector>(area.Length * 8 * 8);
 
-				if (oldRegion == null || oldRegion.Music != newRegion.Music)
-				{
-                    m.PlayGameMusic(newRegion.Music);
-				}
-			}
+                for (var i = 0; i < area.Length; i++)
+                {
+                    rect = Area[i];
 
-            m.DecideMusic(oldRegion, newRegion);
+                    var start = Map.Bound(rect.Start);
+                    var end = Map.Bound(rect.End);
 
-			Region oldR = oldRegion;
-			Region newR = newRegion;
+                    Utility.FixPoints(ref start, ref end);
+
+                    if (i > 0)
+                    {
+                        p1.m_X = Math.Min(start.m_X, p1.m_X);
+                        p2.m_X = Math.Max(end.m_X, p2.m_X);
+
+                        p1.m_Y = Math.Min(start.m_Y, p1.m_Y);
+                        p2.m_Y = Math.Max(end.m_Y, p2.m_Y);
+
+                        p1.m_Z = Math.Min(rect.Start.m_Z, p1.m_Z);
+                        p2.m_Z = Math.Max(rect.End.m_Z, p2.m_Z);
+                    }
+
+                    var startSector = Map.GetSector(start);
+                    var endSector = Map.GetSector(end);
+
+                    for (var x = startSector.X; x <= endSector.X; x++)
+                    {
+                        for (var y = startSector.Y; y <= endSector.Y; y++)
+                        {
+                            var sector = Map.GetRealSector(x, y);
+
+                            if (sectors.Add(sector))
+                            {
+                                sector.OnEnter(this, rect);
+                            }
+                        }
+                    }
+                }
+
+                Bounds = new Rectangle3D(p1, p2);
+
+                Sectors = sectors.ToArray();
+
+                sectors.Clear();
+                sectors.TrimExcess();
+            }
+            else
+                Sectors = Array.Empty<Sector>();
+
+            OnActivate?.Invoke(this);
+        }
+
+        public void Unregister()
+        {
+            if (!Registered)
+            {
+                return;
+            }
+
+            OnUnregister();
+
+            Registered = false;
+
+            OnDeactivate?.Invoke(this);
+
+            if (Children.Count > 0)
+            {
+                Console.WriteLine("Warning: Unregistering region '{0}' with children", this);
+            }
+
+            if (Parent != null)
+            {
+                Parent.Children.Remove(this);
+                Parent.Children.TrimExcess();
+                Parent.OnChildRemoved(this);
+            }
+
+            Regions.Remove(this);
+            Regions.TrimExcess();
+
+            Map.UnregisterRegion(this);
+
+            if (Sectors == null)
+            {
+                return;
+            }
+
+            foreach (var s in Sectors)
+            {
+                s.OnLeave(this);
+            }
+
+            Sectors = null;
+        }
+
+        public void PlayMusic(Mobile m)
+        {
+            var music = Music;
+
+            if (OnPlayMusic(m, ref music))
+            {
+                m.PlayGameMusic(music);
+            }
+        }
+
+        protected virtual bool OnPlayMusic(Mobile m, ref MusicName music)
+        {
+            if (Parent != null)
+            {
+                return Parent.OnPlayMusic(m, ref music);
+            }
+
+            return true;
+        }
+
+        public bool Contains(Point3D p)
+        {
+            for (var i = 0; i < Area.Length; i++)
+            {
+                if (Area[i].Contains(p))
+                    return true;
+            }
+
+            return false;
+        }
+
+        public bool IsChildOf(Region region)
+        {
+            if (region == null)
+            {
+                return false;
+            }
+
+            var p = Parent;
+
+            while (p != null)
+            {
+                if (p == region)
+                {
+                    return true;
+                }
+
+                p = p.Parent;
+            }
+
+            return false;
+        }
+
+        public Region GetRegion(Type regionType)
+        {
+            if (regionType == null)
+            {
+                return null;
+            }
+
+            var r = this;
+
+            do
+            {
+                if (regionType.IsAssignableFrom(r.GetType()))
+                {
+                    return r;
+                }
+
+                r = r.Parent;
+            }
+            while (r != null);
+
+            return null;
+        }
+
+        public Region GetRegion(string regionName)
+        {
+            if (regionName == null)
+            {
+                return null;
+            }
+
+            var r = this;
+
+            do
+            {
+                if (r.Name == regionName)
+                {
+                    return r;
+                }
+
+                r = r.Parent;
+            }
+            while (r != null);
+
+            return null;
+        }
+
+        public bool IsPartOf(Region region)
+        {
+            return this == region || IsChildOf(region);
+        }
+
+        public bool IsPartOf(Type regionType)
+        {
+            return GetRegion(regionType) != null;
+        }
+
+        public bool IsPartOf<T>() where T : Region
+        {
+            return IsPartOf(typeof(T));
+        }
+
+        public bool IsPartOf(string regionName)
+        {
+            return GetRegion(regionName) != null;
+        }
+
+        public virtual bool AcceptsSpawnsFrom(Region region)
+        {
+            if (!AllowSpawn())
+            {
+                return false;
+            }
+
+            if (region == this)
+            {
+                return true;
+            }
+
+            if (Parent != null)
+            {
+                return Parent.AcceptsSpawnsFrom(region);
+            }
+
+            return false;
+        }
+
+        public virtual int CompareTo(object obj)
+        {
+            if (obj is Region reg)
+            {
+                return CompareTo(reg);
+            }
+
+            return 1;
+        }
+
+        public virtual int CompareTo(Region reg)
+        {
+            if (reg == null)
+            {
+                return 1;
+            }
+
+            if (Dynamic)
+            {
+                if (!reg.Dynamic)
+                {
+                    return -1;
+                }
+            }
+            else if (reg.Dynamic)
+            {
+                return 1;
+            }
+
+            return ComparePriority(reg);
+        }
+
+        public int ComparePriority(Region reg)
+        {
+            var thisPriority = Priority;
+            var regPriority = reg.Priority;
+
+            if (thisPriority != regPriority)
+            {
+                return regPriority - thisPriority;
+            }
+
+            return reg.ChildLevel - ChildLevel;
+        }
+
+        public override string ToString()
+        {
+            return m_Name ?? GetType().Name;
+        }
+
+        public virtual void OnRegister()
+        { }
+
+        public virtual void OnUnregister()
+        { }
+
+        public virtual void OnChildAdded(Region child)
+        { }
+
+        public virtual void OnChildRemoved(Region child)
+        { }
+
+        public virtual bool OnMoveInto(Mobile m, Direction d, Point3D newLocation, Point3D oldLocation)
+        {
+            if (Contains(oldLocation))
+            {
+                return m.WalkRegion == null || (m.Spawner != null && AcceptsSpawnsFrom(m.WalkRegion));
+            }
+
+            var oldRegion = Find(oldLocation, m.Map);
+
+            if (oldRegion != null && oldRegion != this && (!oldRegion.CanExit(m) || !CanEnter(m)))
+            {
+                return false;
+            }
+
+            return m.WalkRegion == null || (m.Spawner != null && AcceptsSpawnsFrom(m.WalkRegion));
+        }
+
+        public virtual bool CanEnter(IEntity e)
+        {
+            return true;
+        }
+
+        public virtual bool CanExit(IEntity e)
+        {
+            return true;
+        }
+
+        public virtual void OnEnter(Mobile m)
+        { }
+
+        public virtual void OnExit(Mobile m)
+        { }
+
+        public virtual Mobile MakeGuard(Mobile focus)
+        {
+            return Parent?.MakeGuard(focus);
+        }
+
+        public virtual Type GetResource(Type type)
+        {
+            return Parent?.GetResource(type) ?? type;
+        }
+
+        public virtual bool CanUseStuckMenu(Mobile m)
+        {
+            return Parent?.CanUseStuckMenu(m) != false;
+        }
+
+        public virtual void OnAggressed(Mobile aggressor, Mobile aggressed, bool criminal)
+        {
+            Parent?.OnAggressed(aggressor, aggressed, criminal);
+        }
+
+        public virtual void OnDidHarmful(Mobile harmer, IDamageable harmed)
+        {
+            Parent?.OnDidHarmful(harmer, harmed);
+        }
+
+        public virtual void OnGotHarmful(Mobile harmer, IDamageable harmed)
+        {
+            Parent?.OnGotHarmful(harmer, harmed);
+        }
+
+        public virtual void OnLocationChanged(Mobile m, Point3D oldLocation)
+        {
+            Parent?.OnLocationChanged(m, oldLocation);
+        }
+
+        public virtual bool OnTarget(Mobile m, Target t, object o)
+        {
+            return Parent?.OnTarget(m, t, o) != false;
+        }
+
+        public virtual bool OnCombatantChange(Mobile m, IDamageable Old, IDamageable New)
+        {
+            return Parent?.OnCombatantChange(m, Old, New) != false;
+        }
+
+        public virtual bool AllowAutoClaim(Mobile m)
+        {
+            return Parent?.AllowAutoClaim(m) != false;
+        }
+
+        public virtual bool AllowFlying(Mobile m)
+        {
+            return Parent?.AllowFlying(m) != false;
+        }
+
+        public virtual bool AllowHousing(Mobile m, Point3D p)
+        {
+            return Parent?.AllowHousing(m, p) != false;
+        }
+
+        public virtual bool SendInaccessibleMessage(Item item, Mobile m)
+        {
+            return Parent?.SendInaccessibleMessage(item, m) == true;
+        }
+
+        public virtual bool CheckAccessibility(Item item, Mobile user)
+        {
+            return Parent?.CheckAccessibility(item, user) != false;
+        }
+
+        public virtual bool CheckAccessibility(Mobile mobile, Mobile user)
+        {
+            return Parent?.CheckAccessibility(mobile, user) != false;
+        }
+
+        public virtual bool OnDecay(Item item)
+        {
+            return Parent?.OnDecay(item) != false;
+        }
+
+        public virtual bool AllowHarmful(Mobile m, IDamageable target)
+        {
+            return (Parent?.AllowHarmful(m, target) ?? Mobile.AllowHarmfulHandler?.Invoke(m, target)) != false;
+
+        }
+
+        public virtual void OnCriminalAction(Mobile m, bool message)
+        {
+            if (Parent != null)
+            {
+                Parent.OnCriminalAction(m, message);
+            }
+            else if (message)
+            {
+                m.SendLocalizedMessage(1005040); // You've committed a criminal act!!
+            }
+        }
+
+        public virtual bool AllowBeneficial(Mobile m, Mobile target)
+        {
+            return (Parent?.AllowBeneficial(m, target) ?? Mobile.AllowBeneficialHandler?.Invoke(m, target)) != false;
+        }
+
+        public virtual void OnBeneficialAction(Mobile helper, Mobile target)
+        {
+            Parent?.OnBeneficialAction(helper, target);
+        }
+
+        public virtual void OnGotBeneficialAction(Mobile helper, Mobile target)
+        {
+            Parent?.OnGotBeneficialAction(helper, target);
+        }
+
+        public virtual void SpellDamageScalar(Mobile caster, Mobile target, ref double damage)
+        {
+            Parent?.SpellDamageScalar(caster, target, ref damage);
+        }
+
+        public virtual void OnSpeech(SpeechEventArgs args)
+        {
+            Parent?.OnSpeech(args);
+        }
+
+        public virtual bool OnSkillUse(Mobile m, int skill)
+        {
+            return Parent?.OnSkillUse(m, skill) != false;
+        }
+
+        public virtual bool OnSkillGain(Mobile m, int skill, ref int toGain)
+        {
+            return Parent?.OnSkillGain(m, skill, ref toGain) != false;
+        }
+
+        public virtual bool OnBeginSpellCast(Mobile m, ISpell s)
+        {
+            return Parent?.OnBeginSpellCast(m, s) != false;
+        }
+
+        public virtual void OnSpellCast(Mobile m, ISpell s)
+        {
+            Parent?.OnSpellCast(m, s);
+        }
+
+        public virtual bool OnResurrect(Mobile m)
+        {
+            return Parent?.OnResurrect(m) != false;
+        }
+
+        public virtual bool OnBeforeDeath(Mobile m)
+        {
+            return Parent?.OnBeforeDeath(m) != false;
+        }
+
+        public virtual void OnDeath(Mobile m)
+        {
+            Parent?.OnDeath(m);
+        }
+
+        public virtual bool OnDamage(Mobile m, ref int damage)
+        {
+            return Parent?.OnDamage(m, ref damage) != false;
+        }
+
+        public virtual bool OnHeal(Mobile m, ref int heal)
+        {
+            return Parent?.OnHeal(m, ref heal) != false;
+        }
+
+        public virtual bool OnDoubleClick(Mobile m, object o)
+        {
+            return Parent?.OnDoubleClick(m, o) != false;
+        }
+
+        public virtual bool OnSingleClick(Mobile m, object o)
+        {
+            return Parent?.OnSingleClick(m, o) != false;
+        }
+
+        public virtual void OnDelete(Item item)
+        {
+            Parent?.OnDelete(item);
+        }
+
+        public virtual void GetContextMenuEntries(Mobile m, List<ContextMenuEntry> list, Item item)
+        {
+            Parent?.GetContextMenuEntries(m, list, item);
+        }
+
+        public virtual bool AllowSpawn()
+        {
+            return Parent?.AllowSpawn() != false;
+        }
+
+        public virtual void AlterLightLevel(Mobile m, ref int global, ref int personal)
+        {
+            Parent?.AlterLightLevel(m, ref global, ref personal);
+        }
+
+        public virtual TimeSpan GetLogoutDelay(Mobile m)
+        {
+            return Parent?.GetLogoutDelay(m) ?? (m.IsStaff() ? StaffLogoutDelay : DefaultLogoutDelay);
+        }
+
+        static internal bool CanMove(Mobile m, Direction d, Point3D newLocation, Point3D oldLocation, Map map)
+        {
+            var oldRegion = m.Region;
+            var newRegion = Find(newLocation, map);
+
+            while (oldRegion != newRegion)
+            {
+                if (!newRegion.OnMoveInto(m, d, newLocation, oldLocation))
+                {
+                    return false;
+                }
+
+                if (newRegion.Parent == null)
+                {
+                    return true;
+                }
+
+                newRegion = newRegion.Parent;
+            }
+
+            return true;
+        }
+
+        static internal void OnRegionChange(Mobile m, Region oldRegion, Region newRegion)
+        {
+            var oldR = oldRegion;
+            var newR = newRegion;
+
             while (oldR != newR)
-			{
-				int oldRChild = (oldR != null ? oldR.ChildLevel : -1);
-				int newRChild = (newR != null ? newR.ChildLevel : -1);
+            {
+                var oldRChild = oldR?.ChildLevel ?? -1;
+                var newRChild = newR?.ChildLevel ?? -1;
 
-				if (oldRChild >= newRChild && oldR != null)
-				{
-					oldR.OnExit(m);
+                if (oldR != null && oldRChild >= newRChild)
+                {
+                    oldR.OnExit(m);
+                    oldR = oldR.Parent;
+                }
 
-					oldR = oldR.Parent;
-				}
-
-				if (newRChild >= oldRChild && newR != null)
-				{
+                if (newR != null && newRChild >= oldRChild)
+                {
                     newR.OnEnter(m);
 
-					EventSink.InvokeOnEnterRegion(new OnEnterRegionEventArgs(m, oldRegion, newR));
+                    EventSink.InvokeOnEnterRegion(new OnEnterRegionEventArgs(m, oldR, newR));
 
-					newR = newR.Parent;
+                    newR = newR.Parent;
                 }
-			}
-		}
+            }
 
-		internal static void Load()
-		{
-			if (!File.Exists("Data/Regions.xml"))
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Error: Data/Regions.xml does not exist");
-				Utility.PopColor();
-				return;
-			}
+            if (newRegion != null && m.NetState != null)
+            {
+                m.CheckLightLevels(false);
 
-			Utility.PushColor(ConsoleColor.Yellow);
-			Console.Write("Regions: Loading...");
-			Utility.PopColor();
+                if (oldRegion == null || oldRegion.Music != newRegion.Music)
+                {
+                    newRegion.PlayMusic(m);
+                }
+            }
 
-			XmlDocument doc = new XmlDocument();
-			doc.Load(Path.Combine(Core.BaseDirectory, "Data/Regions.xml"));
+            OnTransition?.Invoke(oldRegion, m, newRegion);
+        }
 
-			XmlElement root = doc["ServerRegions"];
+        public static readonly string XmlDirectory = Path.Combine(Core.BaseDirectory, "Data", "Regions");
 
-			if (root == null)
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not find root element 'ServerRegions' in Regions.xml");
-				Utility.PopColor();
-			}
-			else
-			{
-				foreach (XmlElement facet in root.SelectNodes("Facet"))
-				{
-					Map map = null;
-					if (ReadMap(facet, "name", ref map))
-					{
-						if (map == Map.Internal)
-						{
-							Utility.PushColor(ConsoleColor.Red);
-							Console.WriteLine("Invalid internal map in a facet element");
-							Utility.PopColor();
-						}
-						else
-						{
-							LoadRegions(facet, map, null);
-						}
-					}
-				}
-			}
+        static internal void Load()
+        {
+            if (!Directory.Exists(XmlDirectory))
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Regions: Directory not found:\n > {XmlDirectory}");
+                return;
+            }
 
-			Utility.PushColor(ConsoleColor.Green);
-			Console.WriteLine("done");
-			Utility.PopColor();
-		}
+            Utility.WriteLine(ConsoleColor.Yellow, "Regions: Loading...");
 
-		private static void LoadRegions(XmlElement xml, Map map, Region parent)
-		{
-			foreach (XmlElement xmlReg in xml.SelectNodes("region"))
-			{
-				var expansion = Expansion.None;
+            var files = new HashSet<string>();
 
-				if (ReadEnum(xmlReg, "expansion", ref expansion, false) && expansion > Core.Expansion)
-				{
-					continue;
-				}
+            var legacyPath = Path.Combine(Core.BaseDirectory, "Data", "Regions.xml");
 
-				Type type = DefaultRegionType;
+            if (File.Exists(legacyPath))
+            {
+                files.Add(legacyPath);
+            }
 
-				ReadType(xmlReg, "type", ref type, false);
+            files.UnionWith(Directory.EnumerateFiles(XmlDirectory, "*.xml", SearchOption.AllDirectories));
 
-				if (!typeof(Region).IsAssignableFrom(type))
-				{
-					Utility.PushColor(ConsoleColor.Red);
-					Console.WriteLine("Invalid region type '{0}' in regions.xml", type.FullName);
-					Utility.PopColor();
-					continue;
-				}
+            var doc = new XmlDocument();
 
-				Region region = null;
-				try
-				{
-					region = (Region)Activator.CreateInstance(type, new object[] {xmlReg, map, parent});
-				}
-				catch (Exception ex)
-				{
-					Utility.PushColor(ConsoleColor.Red);
-					Console.WriteLine("Error during the creation of region type '{0}': {1}", type.FullName, ex);
-					Utility.PopColor();
-					continue;
-				}
+            foreach (var file in files)
+            {
+                doc.Load(file);
 
-				region.Register();
+                var root = doc["ServerRegions"];
 
-				LoadRegions(xmlReg, map, region);
-			}
-		}
+                if (root == null)
+                {
+                    Utility.WriteLine(ConsoleColor.Red, $"Regions: 'ServerRegions' element not found:\n > {file}");
+                    continue;
+                }
 
-		public Region(XmlElement xml, Map map, Region parent)
-		{
-			m_Map = map;
-			m_Parent = parent;
-			m_Dynamic = false;
+                var nodes = root.SelectNodes("Facet");
 
-			if (m_Parent == null)
-			{
-				m_ChildLevel = 0;
-				m_Priority = DefaultPriority;
-			}
-			else
-			{
-				m_ChildLevel = m_Parent.ChildLevel + 1;
-				m_Priority = m_Parent.Priority;
-			}
+                if (nodes != null)
+                {
+                    foreach (XmlElement facet in nodes)
+                    {
+                        Map map = null;
 
-			ReadString(xml, "name", ref m_Name, false);
+                        if (ReadMap(facet, "name", ref map) && map != null && map != Map.Internal)
+                        {
+                            LoadRegions(facet, map, null);
+                        }
+                    }
+                }
+            }
 
-			if (parent == null)
-			{
-				ReadInt32(xml, "priority", ref m_Priority, false);
-			}
+            Utility.WriteLine(ConsoleColor.Green, "Regions: Loaded");
 
-			int minZ = MinZ;
-			int maxZ = MaxZ;
+            OnLoaded?.Invoke();
+        }
 
-			XmlElement zrange = xml["zrange"];
-			ReadInt32(zrange, "min", ref minZ, false);
-			ReadInt32(zrange, "max", ref maxZ, false);
+        private static void LoadRegions(XmlElement xml, Map map, Region parent)
+        {
+            var nodes = xml.SelectNodes("region");
 
-			var area = new List<Rectangle3D>();
-			foreach (XmlElement xmlRect in xml.SelectNodes("rect"))
-			{
-				var expansion = Expansion.None;
+            if (nodes == null)
+            {
+                return;
+            }
 
-				if (ReadEnum(xmlRect, "expansion", ref expansion, false) && expansion > Core.Expansion)
-				{
-					continue;
-				}
+            foreach (XmlElement xmlReg in nodes)
+            {
+                var expansion = Expansion.None;
 
-				Rectangle3D rect = new Rectangle3D();
-				if (ReadRectangle3D(xmlRect, minZ, maxZ, ref rect))
-				{
-					area.Add(rect);
-				}
-			}
+                if (ReadEnum(xmlReg, "expansion", ref expansion, false) && expansion > Core.Expansion)
+                {
+                    continue;
+                }
 
-			m_Area = area.ToArray();
+                var type = DefaultRegionType;
 
-			if (m_Area.Length == 0)
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Empty area for region '{0}'", this);
-				Utility.PopColor();
-			}
+                ReadType(xmlReg, "type", ref type, false);
 
-			if (!ReadPoint3D(xml["go"], map, ref m_GoLocation, false) && m_Area.Length > 0)
-			{
-				Point3D start = m_Area[0].Start;
-				Point3D end = m_Area[0].End;
+                if (!typeof(Region).IsAssignableFrom(type))
+                {
+                    Utility.WriteLine(ConsoleColor.Red, $"Invalid region type '{type}' in regions.xml");
+                    continue;
+                }
 
-				int x = start.X + (end.X - start.X) / 2;
-				int y = start.Y + (end.Y - start.Y) / 2;
+                Region region;
 
-				m_GoLocation = new Point3D(x, y, m_Map.GetAverageZ(x, y));
-			}
+                try
+                {
+                    region = (Region)Activator.CreateInstance(type, xmlReg, map, parent);
+                }
+                catch (Exception ex)
+                {
+                    Utility.WriteLine(ConsoleColor.Red, $"Error during the creation of region type '{type}':\n{ex}");
+                    continue;
+                }
 
-            MusicName music = MusicName.Invalid; //DEFAULT;
+                region.Register();
+
+                LoadRegions(xmlReg, map, region);
+            }
+        }
+
+        public Region(XmlElement xml, Map map, Region parent)
+        {
+            Map = map;
+            Parent = parent;
+            Dynamic = false;
+
+            if (Parent == null)
+            {
+                ChildLevel = 0;
+                m_Priority = DefaultPriority;
+            }
+            else
+            {
+                ChildLevel = Parent.ChildLevel + 1;
+                m_Priority = Parent.Priority;
+            }
+
+            ReadString(xml, "name", ref m_Name, false);
+
+            if (parent == null)
+            {
+                ReadInt32(xml, "priority", ref m_Priority, false);
+            }
+
+            var minZ = MinZ;
+            var maxZ = MaxZ;
+
+            var zrange = xml["zrange"];
+            ReadInt32(zrange, "min", ref minZ, false);
+            ReadInt32(zrange, "max", ref maxZ, false);
+
+            var area = new List<Rectangle3D>();
+
+            var nodes = xml.SelectNodes("rect");
+
+            if (nodes != null)
+            {
+                foreach (XmlElement xmlRect in nodes)
+                {
+                    var expansion = Expansion.None;
+
+                    if (ReadEnum(xmlRect, "expansion", ref expansion, false) && expansion > Core.Expansion)
+                    {
+                        continue;
+                    }
+
+                    var rect = new Rectangle3D();
+
+                    if (ReadRectangle3D(xmlRect, minZ, maxZ, ref rect))
+                    {
+                        area.Add(rect);
+                    }
+                }
+            }
+
+            Area = area.ToArray();
+
+            area.Clear();
+            area.TrimExcess();
+
+            if (Area.Length == 0)
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Empty area for region '{this}'");
+            }
+
+            if (!ReadPoint3D(xml["go"], map, ref m_GoLocation, false) && Area.Length > 0)
+            {
+                var start = Area[0].Start;
+                var end = Area[0].End;
+
+                var x = start.X + (end.X - start.X) / 2;
+                var y = start.Y + (end.Y - start.Y) / 2;
+
+                m_GoLocation = new Point3D(x, y, Map.GetAverageZ(x, y));
+            }
+
+            var music = DefaultMusic;
 
             ReadEnum(xml["music"], "name", ref music, false);
 
-            var musicaParent = GetMusicaParents(this);
-            if (musicaParent == MusicName.Invalid)
-                music = Region.DEFAULT;
-
-			Music = music;
-		}
-
-
-        public MusicName GetMusicaParents(Region r)
-        {
-            if (r == null)
-                return MusicName.Invalid;
-
-            Shard.Debug("Vendo " + r.Name);
-            while (r.Parent != null && r.Parent.Name != null)
-            {
-                Shard.Debug("Parent " + r.Parent.Name + " Music " + r.Music);
-                if (r != null && r.Name != null && r.Music != MusicName.Invalid && r.Music != MusicName.Invalid)
-                    return r.Music;
-                r = r.Parent;
-            }
-            return MusicName.Invalid;
+            Music = music;
         }
 
         protected static string GetAttribute(XmlElement xml, string attribute, bool mandatory)
-		{
-			if (xml == null)
-			{
-				if (mandatory)
-				{
-					Utility.PushColor(ConsoleColor.Red);
-					Console.WriteLine("Missing element for attribute '{0}'", attribute);
-					Utility.PopColor();
-				}
+        {
+            if (xml == null)
+            {
+                if (mandatory)
+                {
+                    Utility.WriteLine(ConsoleColor.Red, $"Missing element for attribute '{attribute}'");
+                }
 
-				return null;
-			}
-			else if (xml.HasAttribute(attribute))
-			{
-				return xml.GetAttribute(attribute);
-			}
-			else
-			{
-				if (mandatory)
-				{
-					Utility.PushColor(ConsoleColor.Red);
-					Console.WriteLine("Missing attribute '{0}' in element '{1}'", attribute, xml.Name);
-					Utility.PopColor();
-				}
+                return null;
+            }
 
-				return null;
-			}
-		}
+            if (xml.HasAttribute(attribute))
+            {
+                return xml.GetAttribute(attribute);
+            }
 
-		public static bool ReadString(XmlElement xml, string attribute, ref string value)
-		{
-			return ReadString(xml, attribute, ref value, true);
-		}
+            if (mandatory)
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Missing attribute '{attribute}' in element '{xml.Name}'");
+            }
 
-		public static bool ReadString(XmlElement xml, string attribute, ref string value, bool mandatory)
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+            return null;
+        }
 
-			if (s == null)
-			{
-				return false;
-			}
+        public static bool ReadString(XmlElement xml, string attribute, ref string value)
+        {
+            return ReadString(xml, attribute, ref value, true);
+        }
 
-			value = s;
-			return true;
-		}
+        public static bool ReadString(XmlElement xml, string attribute, ref string value, bool mandatory)
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-		public static bool ReadInt32(XmlElement xml, string attribute, ref int value)
-		{
-			return ReadInt32(xml, attribute, ref value, true);
-		}
+            if (s == null)
+            {
+                return false;
+            }
 
-		public static bool ReadInt32(XmlElement xml, string attribute, ref int value, bool mandatory)
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+            value = s;
+            return true;
+        }
 
-			if (s == null)
-			{
-				return false;
-			}
+        public static bool ReadInt32(XmlElement xml, string attribute, ref int value)
+        {
+            return ReadInt32(xml, attribute, ref value, true);
+        }
 
-			try
-			{
-				value = XmlConvert.ToInt32(s);
-			}
-			catch
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not parse integer attribute '{0}' in element '{1}'", attribute, xml.Name);
-				Utility.PopColor();
-				return false;
-			}
+        public static bool ReadInt32(XmlElement xml, string attribute, ref int value, bool mandatory)
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-			return true;
-		}
+            if (s == null)
+            {
+                return false;
+            }
 
-		public static bool ReadBoolean(XmlElement xml, string attribute, ref bool value)
-		{
-			return ReadBoolean(xml, attribute, ref value, true);
-		}
+            try
+            {
+                value = XmlConvert.ToInt32(s);
+            }
+            catch
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Could not parse integer attribute '{attribute}' in element '{xml.Name}'");
+                return false;
+            }
 
-		public static bool ReadBoolean(XmlElement xml, string attribute, ref bool value, bool mandatory)
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+            return true;
+        }
 
-			if (s == null)
-			{
-				return false;
-			}
+        public static bool ReadBoolean(XmlElement xml, string attribute, ref bool value)
+        {
+            return ReadBoolean(xml, attribute, ref value, true);
+        }
 
-			try
-			{
-				value = XmlConvert.ToBoolean(s);
-			}
-			catch
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not parse boolean attribute '{0}' in element '{1}'", attribute, xml.Name);
-				Utility.PopColor();
-				return false;
-			}
+        public static bool ReadBoolean(XmlElement xml, string attribute, ref bool value, bool mandatory)
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-			return true;
-		}
+            if (s == null)
+            {
+                return false;
+            }
 
-		public static bool ReadDateTime(XmlElement xml, string attribute, ref DateTime value)
-		{
-			return ReadDateTime(xml, attribute, ref value, true);
-		}
+            try
+            {
+                value = XmlConvert.ToBoolean(s);
+            }
+            catch
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Could not parse boolean '{attribute}' in element '{xml.Name}'");
+                return false;
+            }
 
-		public static bool ReadDateTime(XmlElement xml, string attribute, ref DateTime value, bool mandatory)
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+            return true;
+        }
 
-			if (s == null)
-			{
-				return false;
-			}
+        public static bool ReadDateTime(XmlElement xml, string attribute, ref DateTime value)
+        {
+            return ReadDateTime(xml, attribute, ref value, true);
+        }
 
-			try
-			{
-				value = XmlConvert.ToDateTime(s, XmlDateTimeSerializationMode.Utc);
-			}
-			catch
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not parse DateTime attribute '{0}' in element '{1}'", attribute, xml.Name);
-				Utility.PopColor();
-				return false;
-			}
+        public static bool ReadDateTime(XmlElement xml, string attribute, ref DateTime value, bool mandatory)
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-			return true;
-		}
+            if (s == null)
+            {
+                return false;
+            }
 
-		public static bool ReadTimeSpan(XmlElement xml, string attribute, ref TimeSpan value)
-		{
-			return ReadTimeSpan(xml, attribute, ref value, true);
-		}
+            try
+            {
+                value = XmlConvert.ToDateTime(s, XmlDateTimeSerializationMode.Utc);
+            }
+            catch
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Could not parse date attribute '{attribute}' in element '{xml.Name}'");
+                return false;
+            }
 
-		public static bool ReadTimeSpan(XmlElement xml, string attribute, ref TimeSpan value, bool mandatory)
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+            return true;
+        }
 
-			if (s == null)
-			{
-				return false;
-			}
+        public static bool ReadTimeSpan(XmlElement xml, string attribute, ref TimeSpan value)
+        {
+            return ReadTimeSpan(xml, attribute, ref value, true);
+        }
 
-			try
-			{
-				value = XmlConvert.ToTimeSpan(s);
-			}
-			catch
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not parse TimeSpan attribute '{0}' in element '{1}'", attribute, xml.Name);
-				Utility.PopColor();
-				return false;
-			}
+        public static bool ReadTimeSpan(XmlElement xml, string attribute, ref TimeSpan value, bool mandatory)
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-			return true;
-		}
+            if (s == null)
+            {
+                return false;
+            }
 
-		public static bool ReadEnum<T>(XmlElement xml, string attribute, ref T value) where T : struct
-		{
-			return ReadEnum(xml, attribute, ref value, true);
-		}
+            try
+            {
+                value = XmlConvert.ToTimeSpan(s);
+            }
+            catch
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Could not parse time attribute '{attribute}' in element '{xml.Name}'");
+                return false;
+            }
 
-		public static bool ReadEnum<T>(XmlElement xml, string attribute, ref T value, bool mandatory) where T : struct
-			// We can't limit the where clause to Enums only
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+            return true;
+        }
 
-			if (s == null)
-			{
-				return false;
-			}
+		public static bool ReadEnum<T>(XmlElement xml, string attribute, ref T value) where T : struct, IConvertible
+        {
+            return ReadEnum(xml, attribute, ref value, true);
+        }
 
-			Type type = typeof(T);
-			T tempVal;
 
-			if (type.IsEnum && Enum.TryParse(s, true, out tempVal))
-			{
-				value = tempVal;
-				return true;
-			}
-			else
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not parse {0} enum attribute '{1}' in element '{2}'", type, attribute, xml.Name);
-				Utility.PopColor();
-				return false;
-			}
-		}
+		public static bool ReadEnum<T>(XmlElement xml, string attribute, ref T value, bool mandatory) where T : struct, IConvertible
 
-		public static bool ReadMap(XmlElement xml, string attribute, ref Map value)
-		{
-			return ReadMap(xml, attribute, ref value, true);
-		}
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-		public static bool ReadMap(XmlElement xml, string attribute, ref Map value, bool mandatory)
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+            if (s == null)
+            {
+                return false;
+            }
 
-			if (s == null)
-			{
-				return false;
-			}
+            var type = typeof(T);
 
-			try
-			{
-				value = Map.Parse(s);
-			}
-			catch
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not parse Map attribute '{0}' in element '{1}'", attribute, xml.Name);
-				Utility.PopColor();
-				return false;
-			}
+            if (type.IsEnum && Enum.TryParse(s, true, out T tempVal))
+            {
+                value = tempVal;
+                return true;
+            }
 
-			return true;
-		}
+            Utility.WriteLine(ConsoleColor.Red, $"Could not parse {type} enum attribute '{attribute}' in element '{xml.Name}'");
+            return false;
+        }
 
-		public static bool ReadType(XmlElement xml, string attribute, ref Type value)
-		{
-			return ReadType(xml, attribute, ref value, true);
-		}
+        public static bool ReadMap(XmlElement xml, string attribute, ref Map value)
+        {
+            return ReadMap(xml, attribute, ref value, true);
+        }
 
-		public static bool ReadType(XmlElement xml, string attribute, ref Type value, bool mandatory)
-		{
-			string s = GetAttribute(xml, attribute, mandatory);
+        public static bool ReadMap(XmlElement xml, string attribute, ref Map value, bool mandatory)
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-			if (s == null)
-			{
-				return false;
-			}
+            if (s == null)
+            {
+                return false;
+            }
 
-			Type type;
-			try
-			{
-				type = ScriptCompiler.FindTypeByName(s, false);
-			}
-			catch
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not parse Type attribute '{0}' in element '{1}'", attribute, xml.Name);
-				Utility.PopColor();
-				return false;
-			}
+            try
+            {
+                value = Map.Parse(s);
+            }
+            catch
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Could not parse map '{attribute}' in element '{xml.Name}'");
+                return false;
+            }
 
-			if (type == null)
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("Could not find Type '{0}'", s);
-				Utility.PopColor();
-				return false;
-			}
+            return true;
+        }
 
-			value = type;
-			return true;
-		}
+        public static bool ReadType(XmlElement xml, string attribute, ref Type value)
+        {
+            return ReadType(xml, attribute, ref value, true);
+        }
 
-		public static bool ReadPoint3D(XmlElement xml, Map map, ref Point3D value)
-		{
-			return ReadPoint3D(xml, map, ref value, true);
-		}
+        public static bool ReadType(XmlElement xml, string attribute, ref Type value, bool mandatory)
+        {
+            var s = GetAttribute(xml, attribute, mandatory);
 
-		public static bool ReadPoint3D(XmlElement xml, Map map, ref Point3D value, bool mandatory)
-		{
-			int x = 0, y = 0, z = 0;
+            if (s == null)
+            {
+                return false;
+            }
 
-			bool xyOk = ReadInt32(xml, "x", ref x, mandatory) & ReadInt32(xml, "y", ref y, mandatory);
-			bool zOk = ReadInt32(xml, "z", ref z, mandatory && map == null);
+            Type type;
 
-			if (xyOk && (zOk || map != null))
-			{
-				if (!zOk)
-				{
-					z = map.GetAverageZ(x, y);
-				}
+            try
+            {
+                type = ScriptCompiler.FindTypeByName(s, false);
+            }
+            catch
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Could not parse type attribute '{attribute}' in element '{xml.Name}'");
+                return false;
+            }
 
-				value = new Point3D(x, y, z);
-				return true;
-			}
+            if (type == null)
+            {
+                Utility.WriteLine(ConsoleColor.Red, $"Could not find type '{s}'");
+                return false;
+            }
 
-			return false;
-		}
+            value = type;
+            return true;
+        }
 
-		public static bool ReadRectangle3D(XmlElement xml, int defaultMinZ, int defaultMaxZ, ref Rectangle3D value)
-		{
-			return ReadRectangle3D(xml, defaultMinZ, defaultMaxZ, ref value, true);
-		}
+        public static bool ReadPoint3D(XmlElement xml, Map map, ref Point3D value)
+        {
+            return ReadPoint3D(xml, map, ref value, true);
+        }
 
-		public static bool ReadRectangle3D(
-			XmlElement xml, int defaultMinZ, int defaultMaxZ, ref Rectangle3D value, bool mandatory)
-		{
-			int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+        public static bool ReadPoint3D(XmlElement xml, Map map, ref Point3D value, bool mandatory)
+        {
+            int x = 0, y = 0, z = 0;
 
-			if (xml.HasAttribute("x"))
-			{
-				if (ReadInt32(xml, "x", ref x1, mandatory) & ReadInt32(xml, "y", ref y1, mandatory) &
-					ReadInt32(xml, "width", ref x2, mandatory) & ReadInt32(xml, "height", ref y2, mandatory))
-				{
-					x2 += x1;
-					y2 += y1;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				if (!ReadInt32(xml, "x1", ref x1, mandatory) | !ReadInt32(xml, "y1", ref y1, mandatory) |
-					!ReadInt32(xml, "x2", ref x2, mandatory) | !ReadInt32(xml, "y2", ref y2, mandatory))
-				{
-					return false;
-				}
-			}
+            var xyOk = ReadInt32(xml, "x", ref x, mandatory) & ReadInt32(xml, "y", ref y, mandatory);
+            var zOk = ReadInt32(xml, "z", ref z, mandatory && map == null);
 
-			int z1 = defaultMinZ;
-			int z2 = defaultMaxZ;
+            if (xyOk && (zOk || map != null))
+            {
+                if (!zOk)
+                {
+                    z = map.GetAverageZ(x, y);
+                }
 
-			ReadInt32(xml, "zmin", ref z1, false);
-			ReadInt32(xml, "zmax", ref z2, false);
+                value = new Point3D(x, y, z);
+                return true;
+            }
 
-			value = new Rectangle3D(new Point3D(x1, y1, z1), new Point3D(x2, y2, z2));
+            return false;
+        }
 
-			return true;
-		}
-	}
+        public static bool ReadRectangle3D(XmlElement xml, int defaultMinZ, int defaultMaxZ, ref Rectangle3D value)
+        {
+            return ReadRectangle3D(xml, defaultMinZ, defaultMaxZ, ref value, true);
+        }
+
+        public static bool ReadRectangle3D(XmlElement xml, int defaultMinZ, int defaultMaxZ, ref Rectangle3D value, bool mandatory)
+        {
+            int x1 = 0, y1 = 0, x2 = 0, y2 = 0;
+
+            if (xml.HasAttribute("x"))
+            {
+                if (ReadInt32(xml, "x", ref x1, mandatory) & ReadInt32(xml, "y", ref y1, mandatory) &
+                    ReadInt32(xml, "width", ref x2, mandatory) & ReadInt32(xml, "height", ref y2, mandatory))
+                {
+                    x2 += x1;
+                    y2 += y1;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!ReadInt32(xml, "x1", ref x1, mandatory) | !ReadInt32(xml, "y1", ref y1, mandatory) |
+                    !ReadInt32(xml, "x2", ref x2, mandatory) | !ReadInt32(xml, "y2", ref y2, mandatory))
+                {
+                    return false;
+                }
+            }
+
+            var z1 = defaultMinZ;
+            var z2 = defaultMaxZ;
+
+            ReadInt32(xml, "zmin", ref z1, false);
+            ReadInt32(xml, "zmax", ref z2, false);
+
+            value = new Rectangle3D(new Point3D(x1, y1, z1), new Point3D(x2, y2, z2));
+
+            return true;
+        }
+    }
 }

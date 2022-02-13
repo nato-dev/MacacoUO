@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  Battle_Weather.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -52,7 +52,7 @@ namespace VitaNex.Modules.AutoPvP
 				return false;
 			}
 
-			if (BattleRegion != null && BattleRegion.GetMobileCount() == 0)
+			if (BattleRegion != null && BattleRegion.MobileCount == 0)
 			{
 				return false;
 			}

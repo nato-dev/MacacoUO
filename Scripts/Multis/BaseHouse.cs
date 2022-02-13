@@ -1281,9 +1281,9 @@ namespace Server.Multis
 
             Sector sector = map.GetSector(loc);
 
-            for (int i = 0; i < sector.Multis.Count; ++i)
+            foreach (var multi in sector.Multis)
             {
-                BaseHouse house = sector.Multis[i] as BaseHouse;
+                BaseHouse house = multi as BaseHouse;
 
                 if (house != null && house.IsInside(loc, height))
                     return house;

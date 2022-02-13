@@ -8,8 +8,8 @@ using System;
 
 namespace Server.Engines.Blackthorn
 {
-	public class WrongLevel3 : DungeonRegion
-	{
+    public class WrongLevel3 : DungeonRegion
+    {
         private List<Mobile> DeathList = new List<Mobile>();
 
         public WrongLevel3(XmlElement xml, Map map, Region parent)
@@ -21,7 +21,7 @@ namespace Server.Engines.Blackthorn
         {
             if (m is PlayerMobile)
             {
-                m.MoveToWorld(new Point3D(5703, 639, 0), this.Map);                      
+                m.MoveToWorld(new Point3D(5703, 639, 0), this.Map);
 
                 if (!DeathList.Contains(m))
                 {

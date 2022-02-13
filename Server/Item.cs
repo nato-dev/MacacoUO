@@ -4833,7 +4833,7 @@ namespace Server
 
             if (Sockets != null)
             {
-                Sockets.IterateReverse(socket =>
+                ColUtility.IterateReverse(Sockets, socket =>
                 {
                     socket.Remove();
                 });

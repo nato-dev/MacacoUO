@@ -432,7 +432,7 @@ namespace Server.Engines.Despise
             if (m_LowerRegion == null)
                 return;
 
-            List<Mobile> mobiles = m_LowerRegion.GetPlayers();
+            var mobiles = m_LowerRegion.GetPlayers();
             Rectangle2D bounds = m_SequenceAlignment == Alignment.Evil ? EvilKickBounds : GoodKickBounds;
 
             foreach (Mobile m in mobiles)
@@ -458,8 +458,6 @@ namespace Server.Engines.Despise
 
                 m.SendLocalizedMessage(1153346); // You are summoned back to your stronghold.
             }
-
-            ColUtility.Free(mobiles);
         }
 
         private void TransportPlayers()

@@ -395,7 +395,7 @@ namespace Server.Engines.VoidPool
 			
 			Region.SendRegionMessage("A batalha comeraca em "+ RestartSpan.ToString()+" minutos"); // The battle for the Void Pool will begin in ~1_VALUE~ minutes.
 			
-			List<Mobile> list = Region.GetPlayers();
+			var list = Region.GetPlayers();
 
             foreach (Mobile m in list.Where(m => GetCurrentPoints(m) > 0))
                 PointsSystem.VoidPool.AwardPoints(m, GetCurrentPoints(m));
@@ -416,7 +416,6 @@ namespace Server.Engines.VoidPool
                 }
             }
 
-            ColUtility.Free(list);
             ClearSpawn(true);
 		}
 		

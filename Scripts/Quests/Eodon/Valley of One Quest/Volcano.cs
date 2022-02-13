@@ -85,14 +85,11 @@ namespace Server.Items
 
             if (count > 0 && _LavaTimer == null && _NextLava < DateTime.UtcNow)
             {
-                List<Mobile> players = _Region.GetPlayers();
-                players.ForEach(m =>
+                _Region.GetPlayers().ForEach(m =>
                 {
                     if (m.AccessLevel <= AccessLevel.VIP)
                         m.PrivateOverheadMessage(MessageType.Regular, 0x21, 1156506, m.NetState); // *The Volcano is becoming unstable!*
                 });
-
-                ColUtility.Free(players);
 
                 _CurrentLava = LavaStart;
                 _NextLavaAdvance = Core.TickCount + 450;

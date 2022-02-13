@@ -436,10 +436,9 @@ namespace Server.Movement
                 {
                     Sector sector = sectors[i];
 
-                    for (int j = 0; j < sector.Items.Count; ++j)
+                    foreach (var item in sector.Items)
                     {
-                        Item item = sector.Items[j];
-
+     
                         if (ignoreMovableImpassables && item.Movable && (item.ItemData.Flags & ImpassableSurface) != 0)
                             continue;
 
@@ -458,10 +457,8 @@ namespace Server.Movement
 
                     if (checkMobs)
                     {
-                        for (int j = 0; j < sector.Mobiles.Count; ++j)
+                        foreach (var mob in sector.Mobiles)
                         {
-                            Mobile mob = sector.Mobiles[j];
-
                             if (sector == sectorForward && mob.X == xForward && mob.Y == yForward)
                                 mobsForward.Add(mob);
                             else if (sector == sectorLeft && mob.X == xLeft && mob.Y == yLeft)
@@ -482,10 +479,8 @@ namespace Server.Movement
 
                 if (sectorStart == sectorForward)
                 {
-                    for (int i = 0; i < sectorStart.Items.Count; ++i)
+                    foreach (var item in sectorStart.Items)
                     {
-                        Item item = sectorStart.Items[i];
-
                         if (ignoreMovableImpassables && item.Movable && (item.ItemData.Flags & ImpassableSurface) != 0)
                             continue;
 
@@ -500,10 +495,8 @@ namespace Server.Movement
                 }
                 else
                 {
-                    for (int i = 0; i < sectorForward.Items.Count; ++i)
+                    foreach (var item in sectorForward.Items)
                     {
-                        Item item = sectorForward.Items[i];
-
                         if (ignoreMovableImpassables && item.Movable && (item.ItemData.Flags & ImpassableSurface) != 0)
                             continue;
 
@@ -514,9 +507,8 @@ namespace Server.Movement
                             itemsForward.Add(item);
                     }
 
-                    for (int i = 0; i < sectorStart.Items.Count; ++i)
+                    foreach (var item in sectorStart.Items)
                     {
-                        Item item = sectorStart.Items[i];
 
                         if (ignoreMovableImpassables && item.Movable && (item.ItemData.Flags & ImpassableSurface) != 0)
                             continue;
@@ -531,10 +523,8 @@ namespace Server.Movement
 
                 if (checkMobs)
                 {
-                    for (int i = 0; i < sectorForward.Mobiles.Count; ++i)
+                    foreach (var mob in sectorForward.Mobiles)
                     {
-                        Mobile mob = sectorForward.Mobiles[i];
-
                         if (mob.X == xForward && mob.Y == yForward)
                             mobsForward.Add(mob);
                     }

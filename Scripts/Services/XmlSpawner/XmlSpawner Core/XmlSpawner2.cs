@@ -506,9 +506,9 @@ namespace Server.Mobiles
 				// is this a region spawner?
 				if (m_Region != null)
 				{
-					List<Mobile> players = m_Region.GetPlayers();
+					var players = m_Region.GetPlayers();
 
-					if (players == null || players.Count == 0) return false;
+					if (players == null) return false;
 
 					// confirm that players with the proper access level are present
 					foreach (Mobile m in players)
@@ -655,7 +655,7 @@ namespace Server.Mobiles
 				foreach (Sector s in sectorList)
 				{
 
-					if (s != null && s.Active && s.Players != null && s.Players.Count > 0)
+					if (s != null && s.Active && s.Players != null && s.PlayerCount > 0)
 					{
 
 						// confirm that players with the proper access level are present
@@ -10135,13 +10135,11 @@ public static void _TraceEnd(int index)
 			}
 
 			Sector sector = map.GetSector(x, y);
-			List<Item> items = sector.Items;
-			List<Mobile> mobs = sector.Mobiles;
+			var items = sector.Items;
+			var mobs = sector.Mobiles;
 
-			for (int i = 0; i < items.Count; ++i)
+			foreach (var item in items)
 			{
-				Item item = items[i];
-
 				if (item.ItemID < 0x4000 && item.AtWorldPoint(x, y))
 				{
 					ItemData id = item.ItemData;
@@ -10175,9 +10173,8 @@ public static void _TraceEnd(int index)
 
 			if (checkMobiles)
 			{
-				for (int i = 0; i < mobs.Count; ++i)
+				foreach (var m in mobs)
 				{
-					Mobile m = mobs[i];
 
 					if (m.Location.X == x && m.Location.Y == y && (m.AccessLevel <= AccessLevel.VIP || !m.Hidden))
 						if ((m.Z + 16) > z && (z + height) > m.Z)

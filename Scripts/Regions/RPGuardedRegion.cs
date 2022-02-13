@@ -121,10 +121,10 @@ namespace Server.Regions
 			return false;
 		}
 
-		public override void MakeGuard(Mobile focus)
+		public override Mobile MakeGuard(Mobile focus)
 		{
             if (focus.RP && focus.Player)
-                return;
+                return null;
 
 			BaseGuard useGuard = null;
             IPooledEnumerable eable = focus.GetMobilesInRange(8);
@@ -165,6 +165,7 @@ namespace Server.Regions
 			{
 				useGuard.Focus = focus;
 			}
+            return useGuard;
 		}
 
 		public override void OnEnter(Mobile m)

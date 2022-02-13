@@ -1,0 +1,6 @@
+C:\Users\gabri\Desktop\ServUO\GIT\UF2\UltimaFronteira\Settings\bin\Debug\Settings.dll
+C:\Users\gabri\Desktop\ServUO\GIT\UF2\UltimaFronteira\Settings\bin\Debug\Settings.pdb
+C:\Users\gabri\Desktop\ServUO\GIT\UF2\UltimaFronteira\Settings\obj\Debug\Settings.csprojAssemblyReference.cache
+C:\Users\gabri\Desktop\ServUO\GIT\UF2\UltimaFronteira\Settings\obj\Debug\Settings.csproj.CoreCompileInputs.cache
+C:\Users\gabri\Desktop\ServUO\GIT\UF2\UltimaFronteira\Settings\obj\Debug\Settings.dll
+C:\Users\gabri\Desktop\ServUO\GIT\UF2\UltimaFronteira\Settings\obj\Debug\Settings.pdb

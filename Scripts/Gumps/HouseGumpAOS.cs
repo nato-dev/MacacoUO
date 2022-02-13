@@ -1120,12 +1120,8 @@ namespace Server.Gumps
                                         from.SendGump(new NoticeGump(1060637, 30720, 501888, 32512, 320, 180, new NoticeGumpCallback(PublicPrivateNotice_Callback), m_House));
 
                                         Region r = m_House.Region;
-                                        List<Mobile> list = r.GetMobiles();
-
-                                        for (int i = 0; i < list.Count; ++i)
+                                        foreach (var m in r.GetMobiles())
                                         {
-                                            Mobile m = (Mobile)list[i];
-
                                             if (!m_House.HasAccess(m) && m_House.IsInside(m))
                                                 m.Location = m_House.BanLocation;
                                         }

@@ -24,26 +24,22 @@ namespace Server.Engines.VoidPool
 		
 		public void SendRegionMessage(int localization)
 		{
-			List<Mobile> list = GetPlayers();
+			var list = GetPlayers();
 			list.ForEach(m => m.SendLocalizedMessage(localization));
-			list.Clear();
-			list.TrimExcess();
 		}
 		
 		public void SendRegionMessage(int localization, string args)
 		{
-			List<Mobile> list = GetPlayers();
+			var list = GetPlayers();
 			list.ForEach(m => m.SendLocalizedMessage(localization, args));
-			list.Clear();
-			list.TrimExcess();
+			
 		}
 
         public void SendRegionMessage(string message)
         {
-            List<Mobile> list = GetPlayers();
+            var list = GetPlayers();
             list.ForEach(m => m.SendMessage(0x25, message));
-            list.Clear();
-            list.TrimExcess();
+
         }
 		
 		public override void OnDeath(Mobile m)

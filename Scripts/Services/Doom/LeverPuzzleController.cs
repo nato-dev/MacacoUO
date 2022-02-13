@@ -703,9 +703,8 @@ namespace Server.Engines.Doom
 
             protected override void OnTick()
             {
+                var mobiles = this.m_Controller.m_LampRoom.GetMobiles();
                 this.ticks++;
-                List<Mobile> mobiles = this.m_Controller.m_LampRoom.GetMobiles();
-
                 if (this.ticks >= 71 || this.m_Controller.m_LampRoom.GetPlayerCount() == 0)
                 {
                     foreach (Mobile mobile in mobiles)

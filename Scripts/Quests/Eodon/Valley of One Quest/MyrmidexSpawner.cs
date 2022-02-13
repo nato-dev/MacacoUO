@@ -207,7 +207,7 @@ namespace Server.Items
 
         public int MaxSpawns { get; private set; }
         public EodonTribe Tribe { get; set; }
-        public int Spawns { get { return this.GetItemCount(i => i is MyrmidexHill); } }
+        public int Spawns { get { return this.AllItems.Count(i => i is MyrmidexHill); } }
 
         public EodonTribeRegion(EodonTribe tribe, Rectangle2D[] rec, int maxSpawns)
             : base(tribe.ToString() + " tribe", Map.TerMur, Region.DefaultPriority, rec)
