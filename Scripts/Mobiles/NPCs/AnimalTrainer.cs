@@ -811,7 +811,7 @@ namespace Server.Mobiles
 
 			if ((from.Backpack == null || from.Backpack.GetAmount(typeof(Gold)) < 30) && Banker.GetBalance(from) < 30)
 			{
-				SayTo(from, 1042556); // Thou dost not have enough gold, not even in thy bank account.
+				SayTo(from, "Voce precisa de 30 moedas para estabular seu animal"); // Thou dost not have enough gold, not even in thy bank account.
 				return;
 			}
 
@@ -880,15 +880,9 @@ namespace Server.Mobiles
 
 				pet.IsStabled = true;
 				pet.StabledBy = from;
-
-				if (Core.SE)
-				{
-					pet.Loyalty = MaxLoyalty; // Wonderfully happy
-				}
-
+				pet.Loyalty = MaxLoyalty; // Wonderfully happy
 				from.Stabled.Add(pet);
-
-				SayTo(from, Core.AOS ? 1049677 : 502679);
+				SayTo(from, "Seu animal foi guardado");
 				// [AOS: Your pet has been stabled.] Very well, thy pet is stabled. 
 				// Thou mayst recover it by saying 'claim' to me. In one real world week, 
 				// I shall sell it off if it is not claimed!
@@ -1021,12 +1015,20 @@ namespace Server.Mobiles
                 e.Handled = true;
                 BeginPetSale(e.Mobile);
             }
-            if (!e.Handled && e.HasKeyword(0x0008)) // *stable*
+            if (!e.Handled && (e.HasKeyword(0x0008) || e.Speech.Contains("estabulo"))) // *stable*
 			{
 				e.Handled = true;
-
-				CloseClaimList(e.Mobile);
-				BeginStable(e.Mobile);
+                e.Mobile.SendGump(new GumpOpcoes("Selecione o banco", (opt) =>
+                {
+                    if(opt==0)
+                    {
+                        CloseClaimList(e.Mobile);
+                        BeginStable(e.Mobile);
+                    } else if(opt==1)
+                    {
+                        Claim(e.Mobile);
+                    }
+                }, 0xE81, 0, new string[] { "Estabular", "Ver Lista"}));   
 			}
 			else if (!e.Handled && e.HasKeyword(0x0009)) // *claim*
 			{

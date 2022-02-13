@@ -43,7 +43,7 @@ namespace Server.Mobiles
             }
         }
 
-        public virtual bool CanGivePowerscrolls { get { return true; } }
+        public virtual bool CanGivePowerscrolls { get { return false; } }
 
         public static void GivePowerScrollTo(Mobile m, Item item, BaseChampion champ)
         {

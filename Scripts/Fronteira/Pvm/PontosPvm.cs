@@ -100,6 +100,9 @@ namespace Server.Ziden.Kills
             if (SkillCheck.BONUS_GERAL != 0)
                 exp = (int)(exp * SkillCheck.BONUS_GERAL);
 
+            if (bc is BaseChampion)
+                exp *= 5;
+
             if (Shard.DebugEnabled)
                 Shard.Debug("Rolando XP " + exp);
 
