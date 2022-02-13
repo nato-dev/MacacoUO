@@ -5,6 +5,7 @@ using Server.Engines.VvV;
 using Server.Fronteira.Elementos;
 using Server.Gumps;
 using Server.Items;
+using Server.Menus.Questions;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Regions;
@@ -102,6 +103,9 @@ namespace Server.Ziden.Kills
 
             if (bc is BaseChampion)
                 exp *= 5;
+
+            if (StuckMenu.IsInSecondAgeArea(bc))
+                exp *= 4;
 
             if (Shard.DebugEnabled)
                 Shard.Debug("Rolando XP " + exp);

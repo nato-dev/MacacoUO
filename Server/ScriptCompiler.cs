@@ -4,6 +4,7 @@ using System.CodeDom.Compiler;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Security.Cryptography;
 using System.Text;
@@ -13,79 +14,81 @@ using Microsoft.CSharp;
 
 namespace Server
 {
-	public static class ScriptCompiler
-	{
-		public static Assembly[] Assemblies { get; set; }
+    public static class ScriptCompiler
+    {
+        public static Assembly[] Assemblies { get; set; }
 
-		private static readonly List<string> m_AdditionalReferences = new List<string>();
+        private static readonly List<string> m_AdditionalReferences = new List<string>();
+        private static readonly List<string> libraries = new List<string>();
 
-		public static string[] GetReferenceAssemblies()
-		{
-			var list = new List<string>();
+        public static string[] GetReferenceAssemblies()
+        {
+            var list = new List<string>();
 
-			var path = Path.Combine(Core.BaseDirectory, "Data/Assemblies.cfg");
+            var path = Path.Combine(Core.BaseDirectory, "Data/Assemblies.cfg");
 
-			if (File.Exists(path))
-			{
-				using (var ip = new StreamReader(path))
-				{
-					string line;
+            if (File.Exists(path))
+            {
+                using (var ip = new StreamReader(path))
+                {
+                    string line;
 
-					while ((line = ip.ReadLine()) != null)
-					{
-						if (line.Length > 0 && !line.StartsWith("#"))
-						{
-							list.Add(line);
-						}
-					}
-				}
-			}
+                    while ((line = ip.ReadLine()) != null)
+                    {
+                        if (line.Length > 0 && !line.StartsWith("#"))
+                        {
+                            list.Add(line);
+                        }
+                    }
+                }
+            }
 
-			list.Add(Core.ExePath);
+            list.Add(Core.ExePath);
 
-			list.AddRange(m_AdditionalReferences);
+            list.AddRange(m_AdditionalReferences);
 
-			return list.ToArray();
-		}
+            return list.ToArray();
+        }
 
-		public static string GetCompilerOptions(bool debug)
-		{
-			StringBuilder sb = null;
+        public static string GetCompilerOptions(bool debug)
+        {
+            StringBuilder sb = null;
 
-			AppendCompilerOption(ref sb, "/d:ServUO");
+            AppendCompilerOption(ref sb, "/d:ServUO");
 
-			AppendCompilerOption(ref sb, "/unsafe");
+            AppendCompilerOption(ref sb, "/unsafe");
+            AppendCompilerOption(ref sb, "/langversion:7.1");
 
-			if (!debug)
-			{
-				AppendCompilerOption(ref sb, "/optimize");
-			}
-			else
-			{
-				AppendCompilerOption(ref sb, "/debug");
-				AppendCompilerOption(ref sb, "/d:DEBUG");
-				AppendCompilerOption(ref sb, "/d:TRACE");
-			}
+            if (!debug)
+            {
+                AppendCompilerOption(ref sb, "/optimize");
+            }
+            else
+            {
+                AppendCompilerOption(ref sb, "/debug");
+                AppendCompilerOption(ref sb, "/d:DEBUG");
+                AppendCompilerOption(ref sb, "/d:TRACE");
+            }
 
 #if MONO
 			AppendCompilerOption( ref sb, "/d:MONO" );
 #endif
 
-			if (Core.Is64Bit)
-			{
-				AppendCompilerOption(ref sb, "/d:x64");
-			}
+            if (Core.Is64Bit)
+            {
+                AppendCompilerOption(ref sb, "/d:x64");
+            }
 
 #if NEWTIMERS
-			AppendCompilerOption(ref sb, "/d:NEWTIMERS");
+            AppendCompilerOption(ref sb, "/d:NEWTIMERS");
 #endif
 
 #if NEWPARENT
 			AppendCompilerOption(ref sb, "/d:NEWPARENT");
 #endif
 
-			return (sb == null ? null : sb.ToString());
-		}
+            return (sb == null ? null : sb.ToString());
+        }
 
         public static string GetData(string bounds_hash)
         {
@@ -94,58 +97,58 @@ namespace Server
         }
 
         private static void AppendCompilerOption(ref StringBuilder sb, string define)
-		{
-			if (sb == null)
-			{
-				sb = new StringBuilder();
-			}
-			else
-			{
-				sb.Append(' ');
-			}
+        {
+            if (sb == null)
+            {
+                sb = new StringBuilder();
+            }
+            else
+            {
+                sb.Append(' ');
+            }
 
-			sb.Append(define);
-		}
+            sb.Append(define);
+        }
 
-		private static byte[] GetHashCode(string compiledFile, string[] scriptFiles, bool debug)
-		{
-			using (var ms = new MemoryStream())
-			{
-				using (var bin = new BinaryWriter(ms))
-				{
-					var fileInfo = new FileInfo(compiledFile);
+        private static byte[] GetHashCode(string compiledFile, string[] scriptFiles, bool debug)
+        {
+            using (var ms = new MemoryStream())
+            {
+                using (var bin = new BinaryWriter(ms))
+                {
+                    var fileInfo = new FileInfo(compiledFile);
 
-					bin.Write(fileInfo.LastWriteTimeUtc.Ticks);
+                    bin.Write(fileInfo.LastWriteTimeUtc.Ticks);
 
-					foreach (var scriptFile in scriptFiles)
-					{
-						fileInfo = new FileInfo(scriptFile);
+                    foreach (var scriptFile in scriptFiles)
+                    {
+                        fileInfo = new FileInfo(scriptFile);
 
-						bin.Write(fileInfo.LastWriteTimeUtc.Ticks);
-					}
+                        bin.Write(fileInfo.LastWriteTimeUtc.Ticks);
+                    }
 
-					bin.Write(debug);
-					bin.Write(Core.Version.ToString());
+                    bin.Write(debug);
+                    bin.Write(Core.Version.ToString());
 
-					ms.Position = 0;
+                    ms.Position = 0;
 
-					using (var sha1 = SHA1.Create())
-					{
-						return sha1.ComputeHash(ms);
-					}
-				}
-			}
-		}
+                    using (var sha1 = SHA1.Create())
+                    {
+                        return sha1.ComputeHash(ms);
+                    }
+                }
+            }
+        }
 
-		public static bool CompileCSScripts(out Assembly assembly)
-		{
-			return CompileCSScripts(false, true, out assembly);
-		}
+        public static bool CompileCSScripts(out Assembly assembly)
+        {
+            return CompileCSScripts(false, true, out assembly);
+        }
 
-		public static bool CompileCSScripts(bool debug, out Assembly assembly)
-		{
-			return CompileCSScripts(debug, true, out assembly);
-		}
+        public static bool CompileCSScripts(bool debug, out Assembly assembly)
+        {
+            return CompileCSScripts(debug, true, out assembly);
+        }
 
         #region Lokai Versioning V1.1		// additional GetScript overload to get list of scripts in specific path
         public static string[] GetScripts(string filter, string path)
@@ -249,7 +252,7 @@ namespace Server
 
             DeleteFiles("ScriptsFronteira.CS*.dll");
 
-            using (var provider = new CSharpCodeProvider())
+            using (var provider = new Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider())
             {
                 var path = GetUnusedPath("ScriptsFronteira.CS");
 
@@ -322,20 +325,31 @@ namespace Server
         }
 
         public static bool CompileCSScripts(bool debug, bool cache, out Assembly assembly)
-		{
-            cache = true;
-			Utility.PushColor(ConsoleColor.Yellow);
-			Utility.PopColor();
-			var files = GetScripts("*.cs");
+        {
+            /*
+            Console.WriteLine("Compilando dependencias");
+            var libs = Directory.GetFiles("Libs", "*.dll");
+            foreach (var lib in libs)
+            {
+                libraries.Add(lib);
+                Assembly.LoadFrom(lib);
+                Console.WriteLine("Adicionada lib " + lib);
+            }
+            */
 
-			if (files.Length == 0)
-			{
-				Utility.PushColor(ConsoleColor.Red);
-				Console.WriteLine("no files found.");
-				Utility.PopColor();
-				assembly = null;
-				return true;
-			}
+            cache = true;
+            Utility.PushColor(ConsoleColor.Yellow);
+            Utility.PopColor();
+            var files = GetScripts("*.cs");
+
+            if (files.Length == 0)
+            {
+                Utility.PushColor(ConsoleColor.Red);
+                Console.WriteLine("no files found.");
+                Utility.PopColor();
+                assembly = null;
+                return true;
+            }
 
             if (File.Exists(DLL))
             {
@@ -346,317 +360,344 @@ namespace Server
             Utility.PushColor(ConsoleColor.Green);
             Console.WriteLine("Carregando Scripts Padroes");
 
-			if (File.Exists("Scripts/Output/Scripts.CS.dll"))
-			{
-				if (cache && File.Exists("Scripts/Output/Scripts.CS.hash"))
-				{
-                    Console.WriteLine("Lendo hashes dos binarios");
-					try
-					{
-						var hashCode = GetHashCode("Scripts/Output/Scripts.CS.dll", files, debug);
-
-						using (var fs = new FileStream("Scripts/Output/Scripts.CS.hash", FileMode.Open, FileAccess.Read, FileShare.Read))
-						{
-							using (var bin = new BinaryReader(fs))
-							{
-								var bytes = bin.ReadBytes(hashCode.Length);
-
-								if (bytes.Length == hashCode.Length)
-								{
-									var valid = true;
-
-									for (var i = 0; i < bytes.Length; ++i)
-									{
-										if (bytes[i] != hashCode[i])
-										{
-                                            Console.WriteLine("Binarios diferentes, recompilando a porra toda");
-											valid = false;
-											break;
-										}
-									}
-
-									if (valid)
-									{
-										assembly = Assembly.LoadFrom("Scripts/Output/Scripts.CS.dll");
-
-										if (!m_AdditionalReferences.Contains(assembly.Location))
-										{
-											m_AdditionalReferences.Add(assembly.Location);
-										}
-
-										Utility.PushColor(ConsoleColor.Green);
-										Console.WriteLine("Scripts nao mudaram");
-										Utility.PopColor();
-
-										return true;
-									}
-								}
-							}
-						}
-					}
-					catch
-					{ }
-				}
-			}
-
-			DeleteFiles("Scripts.CS*.dll");
-
-			using (var provider = new CSharpCodeProvider())
-			{
-				var path = GetUnusedPath("Scripts.CS");
-
-				var parms = new CompilerParameters(GetReferenceAssemblies(), path, debug);
-
-				var options = GetCompilerOptions(debug);
-
-				if (options != null)
-				{
-					parms.CompilerOptions = options;
-				}
-
-				if (Core.HaltOnWarning)
-				{
-					parms.WarningLevel = 4;
-				}
-
-				if (Core.Unix)
+            if (File.Exists("Scripts/Output/Scripts.CS.dll"))
+            {
+                if (cache && File.Exists("Scripts/Output/Scripts.CS.hash"))
                 {
-					parms.CompilerOptions = String.Format( "{0} /nowarn:169,219,414 /recurse:Scripts/*.cs", parms.CompilerOptions );
+                    Console.WriteLine("Lendo hashes dos binarios");
+                    try
+                    {
+                        var hashCode = GetHashCode("Scripts/Output/Scripts.CS.dll", files, debug);
+
+                        using (var fs = new FileStream("Scripts/Output/Scripts.CS.hash", FileMode.Open, FileAccess.Read, FileShare.Read))
+                        {
+                            using (var bin = new BinaryReader(fs))
+                            {
+                                var bytes = bin.ReadBytes(hashCode.Length);
+
+                                if (bytes.Length == hashCode.Length)
+                                {
+                                    var valid = true;
+
+                                    for (var i = 0; i < bytes.Length; ++i)
+                                    {
+                                        if (bytes[i] != hashCode[i])
+                                        {
+                                            Console.WriteLine("Binarios diferentes, recompilando a porra toda");
+                                            valid = false;
+                                            break;
+                                        }
+                                    }
+
+                                    if (valid)
+                                    {
+                                        assembly = Assembly.LoadFrom("Scripts/Output/Scripts.CS.dll");
+
+                                        if (!m_AdditionalReferences.Contains(assembly.Location))
+                                        {
+                                            m_AdditionalReferences.Add(assembly.Location);
+                                        }
+
+                                        Utility.PushColor(ConsoleColor.Green);
+                                        Console.WriteLine("Scripts nao mudaram");
+                                        Utility.PopColor();
+
+                                        return true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    catch
+                    { }
+                }
+            }
+
+            DeleteFiles("Scripts.CS*.dll");
+
+            using (var provider = new Microsoft.CodeDom.Providers.DotNetCompilerPlatform.CSharpCodeProvider())
+            {
+                var path = GetUnusedPath("Scripts.CS");
+
+                var parms = new CompilerParameters(GetReferenceAssemblies(), path, debug);
+
+                var options = GetCompilerOptions(debug);
+
+                if (options != null)
+                {
+                    parms.CompilerOptions = options;
+                }
+
+                if (Core.HaltOnWarning)
+                {
+                    parms.WarningLevel = 4;
+                }
+
+                if (Core.Unix)
+                {
+                    parms.CompilerOptions = String.Format("{0} /nowarn:169,219,414 /recurse:Scripts/*.cs", parms.CompilerOptions);
                     files = new string[0];
                 }
-                
-				var results = provider.CompileAssemblyFromFile(parms, files);
-				
-				m_AdditionalReferences.Add(path);
 
-				Display(results);
+                var results = provider.CompileAssemblyFromFile(parms, files);
 
-				if (results.Errors.Count > 0 && !Core.Unix)
-				{
-					assembly = null;
-					return false;
-				}
+                m_AdditionalReferences.Add(path);
 
-				if (results.Errors.Count > 0 && Core.Unix) 
-				{
-					foreach( CompilerError err in results.Errors ) {
-						if ( !err.IsWarning ) {
-							assembly = null;
-							return false;
-						}
-					}
-				}
+                Display(results);
 
-				if (cache && Path.GetFileName(path) == "Scripts.CS.dll")
-				{
-					try
-					{
-						var hashCode = GetHashCode(path, files, debug);
+                if (results.Errors.Count > 0 && !Core.Unix)
+                {
+                    assembly = null;
+                    return false;
+                }
 
-						using (
-							var fs = new FileStream("Scripts/Output/Scripts.CS.hash", FileMode.Create, FileAccess.Write, FileShare.None))
-						{
-							using (var bin = new BinaryWriter(fs))
-							{
-								bin.Write(hashCode, 0, hashCode.Length);
-							}
-						}
-					}
-					catch
-					{ }
-				}
+                if (results.Errors.Count > 0 && Core.Unix)
+                {
+                    foreach (CompilerError err in results.Errors)
+                    {
+                        if (!err.IsWarning)
+                        {
+                            assembly = null;
+                            return false;
+                        }
+                    }
+                }
 
-				assembly = results.CompiledAssembly;
-				return true;
-			}
-		}
+                if (cache && Path.GetFileName(path) == "Scripts.CS.dll")
+                {
+                    try
+                    {
+                        var hashCode = GetHashCode(path, files, debug);
 
-		public static void Display(CompilerResults results)
-		{
-			if (results.Errors.Count > 0)
-			{
-				var errors = new Dictionary<string, List<CompilerError>>(results.Errors.Count, StringComparer.OrdinalIgnoreCase);
-				var warnings = new Dictionary<string, List<CompilerError>>(results.Errors.Count, StringComparer.OrdinalIgnoreCase);
+                        using (
+                            var fs = new FileStream("Scripts/Output/Scripts.CS.hash", FileMode.Create, FileAccess.Write, FileShare.None))
+                        {
+                            using (var bin = new BinaryWriter(fs))
+                            {
+                                bin.Write(hashCode, 0, hashCode.Length);
+                            }
+                        }
+                    }
+                    catch
+                    { }
+                }
 
-				foreach (CompilerError e in results.Errors)
-				{
-					var file = e.FileName;
+                assembly = results.CompiledAssembly;
+                return true;
+            }
+        }
 
-					// Ridiculous. FileName is null if the warning/error is internally generated in csc.
-					if (string.IsNullOrEmpty(file))
-					{
-						Console.WriteLine("ScriptCompiler: {0}: {1}", e.ErrorNumber, e.ErrorText);
-						continue;
-					}
+        public static void Display(CompilerResults results)
+        {
+            if (results.Errors.Count > 0)
+            {
+                var errors = new Dictionary<string, List<CompilerError>>(results.Errors.Count, StringComparer.OrdinalIgnoreCase);
+                var warnings = new Dictionary<string, List<CompilerError>>(results.Errors.Count, StringComparer.OrdinalIgnoreCase);
 
-					var table = (e.IsWarning ? warnings : errors);
+                foreach (CompilerError e in results.Errors)
+                {
+                    var file = e.FileName;
 
-					List<CompilerError> list = null;
-					table.TryGetValue(file, out list);
+                    // Ridiculous. FileName is null if the warning/error is internally generated in csc.
+                    if (string.IsNullOrEmpty(file))
+                    {
+                        Console.WriteLine("ScriptCompiler: {0}: {1}", e.ErrorNumber, e.ErrorText);
+                        continue;
+                    }
 
-					if (list == null)
-					{
-						table[file] = list = new List<CompilerError>();
-					}
+                    var table = (e.IsWarning ? warnings : errors);
 
-					list.Add(e);
-				}
+                    List<CompilerError> list = null;
+                    table.TryGetValue(file, out list);
 
-				if (errors.Count > 0)
-				{
-					Utility.PushColor(ConsoleColor.Red);
-					Console.WriteLine("Failed with: {0} errors, {1} warnings", errors.Count, warnings.Count);
-					Utility.PopColor();
-				}
-				else
-				{
-					Utility.PushColor(ConsoleColor.Green);
-					Console.WriteLine("Finished with: {0} errors, {1} warnings", errors.Count, warnings.Count);
-					Utility.PopColor();
-				}
+                    if (list == null)
+                    {
+                        table[file] = list = new List<CompilerError>();
+                    }
 
-				var scriptRoot = Path.GetFullPath(Path.Combine(Core.BaseDirectory, "Scripts" + Path.DirectorySeparatorChar));
-				var scriptRootUri = new Uri(scriptRoot);
+                    list.Add(e);
+                }
 
-				Utility.PushColor(ConsoleColor.Yellow);
+                if (errors.Count > 0)
+                {
+                    Utility.PushColor(ConsoleColor.Red);
+                    Console.WriteLine("Failed with: {0} errors, {1} warnings", errors.Count, warnings.Count);
+                    Utility.PopColor();
+                }
+                else
+                {
+                    Utility.PushColor(ConsoleColor.Green);
+                    Console.WriteLine("Finished with: {0} errors, {1} warnings", errors.Count, warnings.Count);
+                    Utility.PopColor();
+                }
 
-				if (warnings.Count > 0)
-				{
-					Console.WriteLine("Warnings:");
-				}
+                var scriptRoot = Path.GetFullPath(Path.Combine(Core.BaseDirectory, "Scripts" + Path.DirectorySeparatorChar));
+                var scriptRootUri = new Uri(scriptRoot);
 
-				foreach (var kvp in warnings)
-				{
-					var fileName = kvp.Key;
-					var list = kvp.Value;
+                Utility.PushColor(ConsoleColor.Yellow);
 
-					var fullPath = Path.GetFullPath(fileName);
-					var usedPath = Uri.UnescapeDataString(scriptRootUri.MakeRelativeUri(new Uri(fullPath)).OriginalString);
+                if (warnings.Count > 0)
+                {
+                    Console.WriteLine("Warnings:");
+                }
 
-					Console.WriteLine(" + {0}:", usedPath);
+                foreach (var kvp in warnings)
+                {
+                    var fileName = kvp.Key;
+                    var list = kvp.Value;
 
-					Utility.PushColor(ConsoleColor.DarkYellow);
+                    var fullPath = Path.GetFullPath(fileName);
+                    var usedPath = Uri.UnescapeDataString(scriptRootUri.MakeRelativeUri(new Uri(fullPath)).OriginalString);
 
-					foreach (var e in list)
-					{
-						Console.WriteLine("    {0}: Line {1}: {2}", e.ErrorNumber, e.Line, e.ErrorText);
-					}
+                    Console.WriteLine(" + {0}:", usedPath);
 
-					Utility.PopColor();
-				}
+                    Utility.PushColor(ConsoleColor.DarkYellow);
 
-				Utility.PopColor();
+                    foreach (var e in list)
+                    {
+                        Console.WriteLine("    {0}: Line {1}: {2}", e.ErrorNumber, e.Line, e.ErrorText);
+                    }
 
-				Utility.PushColor(ConsoleColor.Red);
+                    Utility.PopColor();
+                }
 
-				if (errors.Count > 0)
-				{
-					Console.WriteLine("Errors:");
-				}
+                Utility.PopColor();
 
-				foreach (var kvp in errors)
-				{
-					var fileName = kvp.Key;
-					var list = kvp.Value;
+                Utility.PushColor(ConsoleColor.Red);
 
-					var fullPath = Path.GetFullPath(fileName);
-					var usedPath = Uri.UnescapeDataString(scriptRootUri.MakeRelativeUri(new Uri(fullPath)).OriginalString);
+                if (errors.Count > 0)
+                {
+                    Console.WriteLine("Errors:");
+                }
 
-					Console.WriteLine(" + {0}:", usedPath);
+                foreach (var kvp in errors)
+                {
+                    var fileName = kvp.Key;
+                    var list = kvp.Value;
 
-					Utility.PushColor(ConsoleColor.Red);
+                    var fullPath = Path.GetFullPath(fileName);
+                    var usedPath = Uri.UnescapeDataString(scriptRootUri.MakeRelativeUri(new Uri(fullPath)).OriginalString);
 
-					foreach (var e in list)
-					{
-						Console.WriteLine("    {0}: Line {1}: {2}", e.ErrorNumber, e.Line, e.ErrorText);
-					}
+                    Console.WriteLine(" + {0}:", usedPath);
 
-					Utility.PopColor();
-				}
+                    Utility.PushColor(ConsoleColor.Red);
 
-				Utility.PopColor();
-			}
-			else
-			{
-				Utility.PushColor(ConsoleColor.Green);
-				Console.WriteLine("Finished with: 0 errors, 0 warnings");
-				Utility.PopColor();
-			}
-		}
+                    foreach (var e in list)
+                    {
+                        Console.WriteLine("    {0}: Line {1}: {2}", e.ErrorNumber, e.Line, e.ErrorText);
+                    }
 
-		public static string GetUnusedPath(string name)
-		{
-			var path = Path.Combine(Core.BaseDirectory, String.Format("Scripts/Output/{0}.dll", name));
+                    Utility.PopColor();
+                }
 
-			for (var i = 2; File.Exists(path) && i <= 1000; ++i)
-			{
-				path = Path.Combine(Core.BaseDirectory, String.Format("Scripts/Output/{0}.{1}.dll", name, i));
-			}
+                Utility.PopColor();
+            }
+            else
+            {
+                Utility.PushColor(ConsoleColor.Green);
+                Console.WriteLine("Finished with: 0 errors, 0 warnings");
+                Utility.PopColor();
+            }
+        }
 
-			return path;
-		}
+        public static string GetUnusedPath(string name)
+        {
+            var path = Path.Combine(Core.BaseDirectory, String.Format("Scripts/Output/{0}.dll", name));
 
-		public static void DeleteFiles(string mask)
-		{
-			try
-			{
-				var files = Directory.GetFiles(Path.Combine(Core.BaseDirectory, "Scripts/Output"), mask);
+            for (var i = 2; File.Exists(path) && i <= 1000; ++i)
+            {
+                path = Path.Combine(Core.BaseDirectory, String.Format("Scripts/Output/{0}.{1}.dll", name, i));
+            }
 
-				foreach (var file in files)
-				{
-					try
-					{
-						File.Delete(file);
-					}
-					catch
-					{ }
-				}
-			}
-			catch
-			{ }
-		}
+            return path;
+        }
 
-		private delegate CompilerResults Compiler(bool debug);
+        public static void DeleteFiles(string mask)
+        {
+            try
+            {
+                var files = Directory.GetFiles(Path.Combine(Core.BaseDirectory, "Scripts/Output"), mask);
 
-		public static bool Compile()
-		{
-			return Compile(false);
-		}
+                foreach (var file in files)
+                {
+                    try
+                    {
+                        File.Delete(file);
+                    }
+                    catch
+                    { }
+                }
+            }
+            catch
+            { }
+        }
 
-		public static bool Compile(bool debug)
-		{
-			return Compile(debug, true);
-		}
+        private delegate CompilerResults Compiler(bool debug);
 
-		public static bool Compile(bool debug, bool cache)
-		{
-			EnsureDirectory("Scripts/");
-			EnsureDirectory("Scripts/Output/");
+        public static bool CompileNovo(bool debug, bool cache)
+        {
+            Console.WriteLine("Compilando scripts com Roslyn");
+            try
+            {
+                var assemblies = new HashSet<Assembly>
+                {
+                    typeof(ScriptCompiler).Assembly,
+                    Assembly.LoadFrom("Scripts.dll"),
+                };
+
+                Assemblies = assemblies.ToArray();
+
+                Console.WriteLine("Core: Verifying entity type serialization...");
+
+                var watch = Stopwatch.StartNew();
+
+                Core.VerifySerialization();
+
+                watch.Stop();
+
+                Console.WriteLine($"Core: Verified {Core.ScriptItems} item and {Core.ScriptMobiles} mobile types");
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+                return false;
+            }
+        }
+
+        public static bool CompileVelho(bool debug, bool cache)
+        {
+            //return CompileNovo(debug, cache);
+
+            EnsureDirectory("Scripts/");
+            EnsureDirectory("Scripts/Output/");
             EnsureDirectory("ScriptsFronteira/");
             EnsureDirectory("ScriptsFronteira/Output/");
 
             if (m_AdditionalReferences.Count > 0)
-			{
-				m_AdditionalReferences.Clear();
-			}
+            {
+                m_AdditionalReferences.Clear();
+            }
 
-			var assemblies = new List<Assembly>();
+            var assemblies = new List<Assembly>();
 
-			Assembly assembly;
+            Assembly assembly;
 
             Console.WriteLine("Compilando scripts");
 
-			if (CompileCSScripts(debug, cache, out assembly))
-			{
-				if (assembly != null)
-				{
-					assemblies.Add(assembly);
-				}
-			}
-			else
-			{
-				return false;
-			}
+            if (CompileCSScripts(debug, cache, out assembly))
+            {
+                if (assembly != null)
+                {
+                    assemblies.Add(assembly);
+                }
+            }
+            else
+            {
+                return false;
+            }
 
             Console.WriteLine("Compilando fronteira");
 
@@ -673,81 +714,81 @@ namespace Server
             }
 
             if (assemblies.Count == 0)
-			{
-				return false;
-			}
+            {
+                return false;
+            }
 
-			Assemblies = assemblies.ToArray();
+            Assemblies = assemblies.ToArray();
 
-			Utility.PushColor(ConsoleColor.Yellow);
-			Utility.PopColor();
+            Utility.PushColor(ConsoleColor.Yellow);
+            Utility.PopColor();
 
-			var watch = Stopwatch.StartNew();
+            var watch = Stopwatch.StartNew();
 
-			Core.VerifySerialization();
+            Core.VerifySerialization();
 
-			watch.Stop();
+            watch.Stop();
 
-			Utility.PushColor(ConsoleColor.Green);
-			Console.WriteLine(
-				"Finished ({0} items, {1} mobiles, {2} customs) ({3:F2} seconds)",
-				Core.ScriptItems,
-				Core.ScriptMobiles,
-				Core.ScriptCustoms,
-				watch.Elapsed.TotalSeconds);
-			Utility.PopColor();
+            Utility.PushColor(ConsoleColor.Green);
+            Console.WriteLine(
+                "Finished ({0} items, {1} mobiles, {2} customs) ({3:F2} seconds)",
+                Core.ScriptItems,
+                Core.ScriptMobiles,
+                Core.ScriptCustoms,
+                watch.Elapsed.TotalSeconds);
+            Utility.PopColor();
 
-			return true;
-		}
+            return true;
+        }
 
-		public static void Invoke(string method)
-		{
-			var invoke = new List<MethodInfo>();
+        public static void Invoke(string method)
+        {
+            var invoke = new List<MethodInfo>();
 
-			foreach (var a in Assemblies)
-			{
-				var types = a.GetTypes();
+            foreach (var a in Assemblies)
+            {
+                var types = a.GetTypes();
 
-				foreach (var t in types)
-				{
-					var m = t.GetMethod(method, BindingFlags.Static | BindingFlags.Public);
+                foreach (var t in types)
+                {
+                    var m = t.GetMethod(method, BindingFlags.Static | BindingFlags.Public);
 
-					if (m != null)
-					{
-						invoke.Add(m);
-					}
-				}
-			}
+                    if (m != null)
+                    {
+                        invoke.Add(m);
+                    }
+                }
+            }
 
-			invoke.Sort(new CallPriorityComparer());
+            invoke.Sort(new CallPriorityComparer());
 
-			foreach (var m in invoke)
-			{
-				m.Invoke(null, null);
-			}
-		}
+            foreach (var m in invoke)
+            {
+                m.Invoke(null, null);
+            }
+        }
 
-		private static readonly Dictionary<Assembly, TypeCache> m_TypeCaches = new Dictionary<Assembly, TypeCache>();
-		private static TypeCache m_NullCache;
+        private static readonly Dictionary<Assembly, TypeCache> m_TypeCaches = new Dictionary<Assembly, TypeCache>();
+        private static TypeCache m_NullCache;
 
-		public static TypeCache GetTypeCache(Assembly asm)
-		{
-			if (asm == null)
-			{
-				return m_NullCache ?? (m_NullCache = new TypeCache(null));
-			}
+        public static TypeCache GetTypeCache(Assembly asm)
+        {
+            if (asm == null)
+            {
+                return m_NullCache ?? (m_NullCache = new TypeCache(null));
+            }
 
-			TypeCache c;
+            TypeCache c;
 
-			m_TypeCaches.TryGetValue(asm, out c);
+            m_TypeCaches.TryGetValue(asm, out c);
 
-			if (c == null)
-			{
-				m_TypeCaches[asm] = c = new TypeCache(asm);
-			}
+            if (c == null)
+            {
+                m_TypeCaches[asm] = c = new TypeCache(asm);
+            }
 
-			return c;
-		}
+            return c;
+        }
 
         public static List<Type> GetAllItemsOfBase(Type basetype)
         {
@@ -755,9 +796,9 @@ namespace Server
             for (var i = 0; i < Assemblies.Length; ++i)
             {
                 var assemblyTypes = GetTypeCache(Assemblies[i]).Types;
-                foreach(var t in assemblyTypes)
+                foreach (var t in assemblyTypes)
                 {
-                    if(basetype.IsAssignableFrom(t))
+                    if (basetype.IsAssignableFrom(t))
                     {
                         types.Add(t);
                     }
@@ -766,188 +807,188 @@ namespace Server
             return types;
         }
 
-		public static Type FindTypeByFullName(string fullName)
-		{
-			return FindTypeByFullName(fullName, true);
-		}
+        public static Type FindTypeByFullName(string fullName)
+        {
+            return FindTypeByFullName(fullName, true);
+        }
 
-		public static Type FindTypeByFullName(string fullName, bool ignoreCase)
-		{
-			if (String.IsNullOrWhiteSpace(fullName))
-			{
-				return null;
-			}
+        public static Type FindTypeByFullName(string fullName, bool ignoreCase)
+        {
+            if (String.IsNullOrWhiteSpace(fullName))
+            {
+                return null;
+            }
 
-			Type type = null;
+            Type type = null;
 
-			for (var i = 0; type == null && i < Assemblies.Length; ++i)
-			{
-				type = GetTypeCache(Assemblies[i]).GetTypeByFullName(fullName, ignoreCase);
-			}
+            for (var i = 0; type == null && i < Assemblies.Length; ++i)
+            {
+                type = GetTypeCache(Assemblies[i]).GetTypeByFullName(fullName, ignoreCase);
+            }
 
-			return type ?? GetTypeCache(Core.Assembly).GetTypeByFullName(fullName, ignoreCase);
-		}
+            return type ?? GetTypeCache(Core.Assembly).GetTypeByFullName(fullName, ignoreCase);
+        }
 
-		public static Type FindTypeByName(string name)
-		{
-			return FindTypeByName(name, true);
-		}
+        public static Type FindTypeByName(string name)
+        {
+            return FindTypeByName(name, true);
+        }
 
-		public static Type FindTypeByName(string name, bool ignoreCase)
-		{
-			if (String.IsNullOrWhiteSpace(name))
-			{
-				return null;
-			}
+        public static Type FindTypeByName(string name, bool ignoreCase)
+        {
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                return null;
+            }
 
-			Type type = null;
+            Type type = null;
 
-			for (var i = 0; type == null && i < Assemblies.Length; ++i)
-			{
-				type = GetTypeCache(Assemblies[i]).GetTypeByName(name, ignoreCase);
-			}
+            for (var i = 0; type == null && i < Assemblies.Length; ++i)
+            {
+                type = GetTypeCache(Assemblies[i]).GetTypeByName(name, ignoreCase);
+            }
 
-			return type ?? GetTypeCache(Core.Assembly).GetTypeByName(name, ignoreCase);
-		}
+            return type ?? GetTypeCache(Core.Assembly).GetTypeByName(name, ignoreCase);
+        }
 
-		public static void EnsureDirectory(string dir)
-		{
-			var path = Path.Combine(Core.BaseDirectory, dir);
+        public static void EnsureDirectory(string dir)
+        {
+            var path = Path.Combine(Core.BaseDirectory, dir);
 
-			if (!Directory.Exists(path))
-			{
-				Directory.CreateDirectory(path);
-			}
-		}
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+        }
 
-		public static string[] GetScripts(string filter)
-		{
-			var list = new List<string>();
+        public static string[] GetScripts(string filter)
+        {
+            var list = new List<string>();
 
-			GetScripts(list, Path.Combine(Core.BaseDirectory, "Scripts"), filter);
+            GetScripts(list, Path.Combine(Core.BaseDirectory, "Scripts"), filter);
 
-			return list.ToArray();
-		}
+            return list.ToArray();
+        }
 
-		public static void GetScripts(List<string> list, string path, string filter)
-		{
-			foreach (var dir in Directory.GetDirectories(path))
-			{
-				GetScripts(list, dir, filter);
-			}
+        public static void GetScripts(List<string> list, string path, string filter)
+        {
+            foreach (var dir in Directory.GetDirectories(path))
+            {
+                GetScripts(list, dir, filter);
+            }
 
-			list.AddRange(Directory.GetFiles(path, filter));
-		}
-	}
+            list.AddRange(Directory.GetFiles(path, filter));
+        }
+    }
 
-	public class TypeCache
-	{
-		private readonly Type[] m_Types;
-		private readonly TypeTable m_Names;
-		private readonly TypeTable m_FullNames;
+    public class TypeCache
+    {
+        private readonly Type[] m_Types;
+        private readonly TypeTable m_Names;
+        private readonly TypeTable m_FullNames;
 
-		public Type[] Types { get { return m_Types; } }
-		public TypeTable Names { get { return m_Names; } }
-		public TypeTable FullNames { get { return m_FullNames; } }
+        public Type[] Types { get { return m_Types; } }
+        public TypeTable Names { get { return m_Names; } }
+        public TypeTable FullNames { get { return m_FullNames; } }
 
-		public Type GetTypeByName(string name, bool ignoreCase)
-		{
-			if (String.IsNullOrWhiteSpace(name))
-			{
-				return null;
-			}
+        public Type GetTypeByName(string name, bool ignoreCase)
+        {
+            if (String.IsNullOrWhiteSpace(name))
+            {
+                return null;
+            }
 
-			return m_Names.Get(name, ignoreCase);
-		}
+            return m_Names.Get(name, ignoreCase);
+        }
 
-		public Type GetTypeByFullName(string fullName, bool ignoreCase)
-		{
-			if (String.IsNullOrWhiteSpace(fullName))
-			{
-				return null;
-			}
+        public Type GetTypeByFullName(string fullName, bool ignoreCase)
+        {
+            if (String.IsNullOrWhiteSpace(fullName))
+            {
+                return null;
+            }
 
-			return m_FullNames.Get(fullName, ignoreCase);
-		}
+            return m_FullNames.Get(fullName, ignoreCase);
+        }
 
-		public TypeCache(Assembly asm)
-		{
-			if (asm == null)
-			{
-				m_Types = Type.EmptyTypes;
-			}
-			else
-			{
-				m_Types = asm.GetTypes();
-			}
+        public TypeCache(Assembly asm)
+        {
+            if (asm == null)
+            {
+                m_Types = Type.EmptyTypes;
+            }
+            else
+            {
+                m_Types = asm.GetTypes();
+            }
 
-			m_Names = new TypeTable(m_Types.Length);
-			m_FullNames = new TypeTable(m_Types.Length);
+            m_Names = new TypeTable(m_Types.Length);
+            m_FullNames = new TypeTable(m_Types.Length);
 
-			var typeofTypeAliasAttribute = typeof(TypeAliasAttribute);
+            var typeofTypeAliasAttribute = typeof(TypeAliasAttribute);
 
-			foreach (var type in m_Types)
-			{
-				m_Names.Add(type.Name, type);
-				m_FullNames.Add(type.FullName, type);
+            foreach (var type in m_Types)
+            {
+                m_Names.Add(type.Name, type);
+                m_FullNames.Add(type.FullName, type);
 
-				if (type.IsDefined(typeofTypeAliasAttribute, false))
-				{
-					var attrs = type.GetCustomAttributes(typeofTypeAliasAttribute, false);
+                if (type.IsDefined(typeofTypeAliasAttribute, false))
+                {
+                    var attrs = type.GetCustomAttributes(typeofTypeAliasAttribute, false);
 
-					if (attrs.Length > 0)
-					{
-						var attr = attrs[0] as TypeAliasAttribute;
+                    if (attrs.Length > 0)
+                    {
+                        var attr = attrs[0] as TypeAliasAttribute;
 
-						if (attr != null)
-						{
-							foreach (var a in attr.Aliases)
-							{
-								m_FullNames.Add(a, type);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
+                        if (attr != null)
+                        {
+                            foreach (var a in attr.Aliases)
+                            {
+                                m_FullNames.Add(a, type);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-	public class TypeTable
-	{
-		private readonly Dictionary<string, Type> m_Sensitive;
-		private readonly Dictionary<string, Type> m_Insensitive;
+    public class TypeTable
+    {
+        private readonly Dictionary<string, Type> m_Sensitive;
+        private readonly Dictionary<string, Type> m_Insensitive;
 
-		public void Add(string key, Type type)
-		{
-			m_Sensitive[key] = type;
-			m_Insensitive[key] = type;
-		}
+        public void Add(string key, Type type)
+        {
+            m_Sensitive[key] = type;
+            m_Insensitive[key] = type;
+        }
 
-		public Type Get(string key, bool ignoreCase)
-		{
-			if (String.IsNullOrWhiteSpace(key))
-			{
-				return null;
-			}
+        public Type Get(string key, bool ignoreCase)
+        {
+            if (String.IsNullOrWhiteSpace(key))
+            {
+                return null;
+            }
 
-			Type t = null;
+            Type t = null;
 
-			if (ignoreCase)
-			{
-				m_Insensitive.TryGetValue(key, out t);
-			}
-			else
-			{
-				m_Sensitive.TryGetValue(key, out t);
-			}
+            if (ignoreCase)
+            {
+                m_Insensitive.TryGetValue(key, out t);
+            }
+            else
+            {
+                m_Sensitive.TryGetValue(key, out t);
+            }
 
-			return t;
-		}
+            return t;
+        }
 
-		public TypeTable(int capacity)
-		{
-			m_Sensitive = new Dictionary<string, Type>(capacity);
-			m_Insensitive = new Dictionary<string, Type>(capacity, StringComparer.OrdinalIgnoreCase);
-		}
-	}
+        public TypeTable(int capacity)
+        {
+            m_Sensitive = new Dictionary<string, Type>(capacity);
+            m_Insensitive = new Dictionary<string, Type>(capacity, StringComparer.OrdinalIgnoreCase);
+        }
+    }
 }

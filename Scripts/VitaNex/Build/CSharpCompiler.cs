@@ -208,6 +208,9 @@ namespace VitaNex.Build
 						refs.Add(t);
 					}
 
+            
+                
+
 					foreach (var t in References.Where(t => !String.IsNullOrEmpty(t)).Where(t => !refs.Contains(t)))
 					{
 						refs.Add(t);

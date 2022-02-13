@@ -28,23 +28,12 @@
       },
       "Scripts/1.0.0": {
         "type": "project",
-        "dependencies": {
-          "Server": "1.0.0"
-        },
+        "framework": "Unsupported,Version=v0.0",
         "compile": {
           "bin/placeholder/Scripts.dll": {}
         },
         "runtime": {
           "bin/placeholder/Scripts.dll": {}
-        }
-      },
-      "Server/1.0.0": {
-        "type": "project",
-        "compile": {
-          "bin/placeholder/Server.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/Server.dll": {}
         }
       }
     }
@@ -197,11 +186,6 @@
       "type": "project",
       "path": "../Scripts/Scripts.csproj",
       "msbuildProject": "../Scripts/Scripts.csproj"
-    },
-    "Server/1.0.0": {
-      "type": "project",
-      "path": "../Server/Server.csproj",
-      "msbuildProject": "../Server/Server.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -269,5 +253,16 @@
         "warn": true
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1201",
+      "level": "Error",
+      "message": "Project Scripts is not compatible with netstandard2.0 (.NETStandard,Version=v2.0). Project Scripts supports: net48 (.NETFramework,Version=v4.8)",
+      "libraryId": "Scripts",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
 }

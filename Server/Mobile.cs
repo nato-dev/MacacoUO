@@ -1987,21 +1987,21 @@ namespace Server
         public bool CanAttack(Type weapon)
         {
 
-            if(this.Spell != null && this.Spell.IsCasting)
+            if (this.Spell != null && this.Spell.IsCasting)
             {
                 return false;
             }
 
-          
+
             if (weapon == null)
                 weapon = this.Weapon.GetType();
 
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
             {
                 Shard.Debug("Can attack " + weapon.Name);
                 Shard.Debug("Verificando se pode atacar");
             }
-           
+
             var next = this.m_NextCombatTime;
             if (Shard.TROCA_ARMA_RAPIDA && weapon != null)
             {
@@ -3588,7 +3588,7 @@ namespace Server
                     return false;
                 }
 
-                if(!Shard.SPHERE_STYLE)
+                if (!Shard.SPHERE_STYLE)
                     DisruptiveAction();
             }
 
@@ -3783,7 +3783,7 @@ namespace Server
             }
             if (shoved.Player && Shard.POL_STYLE)
                 return true;
-          
+
             if (!m_Pushing)
             {
                 m_Pushing = true;
@@ -3956,7 +3956,7 @@ namespace Server
 
         public bool m_Deleted;
 
-        public bool Deleted { get { return m_Deleted; }  }
+        public bool Deleted { get { return m_Deleted; } }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int VirtualArmor
@@ -4025,7 +4025,7 @@ namespace Server
 
             OnDelete();
 
-            if(m_Items != null)
+            if (m_Items != null)
             {
                 for (int i = m_Items.Count - 1; i >= 0; --i)
                 {
@@ -4036,7 +4036,7 @@ namespace Server
                 }
             }
 
-            if(m_Stabled != null)
+            if (m_Stabled != null)
             {
                 for (int i = 0; i < m_Stabled.Count; i++)
                 {
@@ -4635,7 +4635,7 @@ namespace Server
                 return;
             }
 
-            if(!Shard.SPHERE_STYLE)
+            if (!Shard.SPHERE_STYLE)
                 DisruptiveAction();
 
             if (m_Spell != null && !m_Spell.OnCasterUsingObject(item))

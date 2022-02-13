@@ -106,7 +106,7 @@ namespace Server.Items
             }
 
             from.CheckSkillMult(weapon.Skill, this.m_MinSkill, this.m_MaxSkill, from.Skills[weapon.Skill].Value < 90 ? 1.5 : 0.5);
-            from.CheckSkillMult(SkillName.Tactics, this.m_MinSkill, this.m_MaxSkill, from.Skills[SkillName.Tactics].Value < 90 ? 1 : 0.5);
+            //from.CheckSkillMult(SkillName.Tactics, this.m_MinSkill, this.m_MaxSkill, from.Skills[SkillName.Tactics].Value < 90 ? 1 : 0.5);
         }
 
         public override void OnDoubleClick(Mobile from)

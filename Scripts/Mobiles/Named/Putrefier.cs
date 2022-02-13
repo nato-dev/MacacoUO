@@ -44,10 +44,10 @@ namespace Server.Mobiles
             this.Fame = 24000;
             this.Karma = -24000;
 
-            for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
-            {
-                this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-            }
+            //for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
+            //{
+            //    this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
+            //}
         }
 
         public Putrefier(Serial serial)
@@ -167,7 +167,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV6, 3);
-            this.AddLoot(LootPack.MedScrolls, 2);
+            this.AddLoot(LootPack.HighScrolls, 2);
         }
 
         public override void Serialize(GenericWriter writer)

@@ -606,7 +606,7 @@ namespace Server
             Utility.PushColor(ConsoleColor.Green);
             Config.Load();
 
-            while (!ScriptCompiler.Compile(Debug, _Cache))
+            while (!ScriptCompiler.CompileVelho(Debug, _Cache))
             {
                 Utility.PushColor(ConsoleColor.Red);
                 Console.WriteLine("Scripts tao cagados, favor nao cagar nos scripts.");

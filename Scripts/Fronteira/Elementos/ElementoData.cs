@@ -80,8 +80,8 @@ namespace Server.Fronteira.Elementos
         public void Deserialize(GenericReader reader)
         {
             _niveis[ElementoPvM.Fogo] = reader.ReadUShort();
-            _niveis[ElementoPvM.Raio] = reader.ReadUShort();
             _niveis[ElementoPvM.Agua] = reader.ReadUShort();
+            _niveis[ElementoPvM.Raio] = reader.ReadUShort();
             _niveis[ElementoPvM.Gelo] = reader.ReadUShort();
             _niveis[ElementoPvM.Vento] = reader.ReadUShort();
             _niveis[ElementoPvM.Terra] = reader.ReadUShort();
@@ -89,8 +89,8 @@ namespace Server.Fronteira.Elementos
             _niveis[ElementoPvM.Escuridao] = reader.ReadUShort();
 
             _exps[ElementoPvM.Fogo] = reader.ReadInt();
-            _exps[ElementoPvM.Raio] = reader.ReadInt();
             _exps[ElementoPvM.Agua] = reader.ReadInt();
+            _exps[ElementoPvM.Raio] = reader.ReadInt();
             _exps[ElementoPvM.Gelo] = reader.ReadInt();
             _exps[ElementoPvM.Vento] = reader.ReadInt();
             _exps[ElementoPvM.Terra] = reader.ReadInt();
