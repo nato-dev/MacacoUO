@@ -157,6 +157,7 @@ namespace Server
                 }
             }
 
+            bmp.UnlockBits(bd);
             return bmp;
         }
     }
