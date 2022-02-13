@@ -85,7 +85,7 @@ namespace Server.Items
                     typeof(DesertOstard),   typeof(Eagle),
                     typeof(ForestOstard),   typeof(FrenziedOstard),
                     typeof(Phoenix),        typeof(Pyre),
-                    typeof(Swoop),          typeof(Saliva)
+                    typeof(Swoop),          typeof(Saliva),
                     typeof(GreaterPhoenix), typeof(Turkey),
                     typeof(GiantTurkey)
                 };

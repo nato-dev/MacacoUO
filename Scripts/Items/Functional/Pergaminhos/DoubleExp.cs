@@ -38,6 +38,7 @@ namespace Server.Items.Functional.Pergaminhos
             if (GoldHour.GOLD_MULT != 0)
             {
                 from.SendMessage("Ja esta ativo");
+                return;
             }
             GoldHour.GOLD_MULT = 1.5;
             Anuncio.Anuncia(from.Name + " ativou um GoldHour 2x Gold para todos");
@@ -98,6 +99,7 @@ namespace Server.Items.Functional.Pergaminhos
             if(SkillCheck.BONUS_GERAL != 0)
             {
                 from.SendMessage("Double Exp ja esta ativo");
+                return;
             }
             SkillCheck.BONUS_GERAL = 1.5;
             Anuncio.Anuncia(from.Name+" ativou um PowerHour 2x Exp para todos");

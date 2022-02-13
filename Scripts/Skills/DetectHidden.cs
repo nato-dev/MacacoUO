@@ -70,6 +70,7 @@ namespace Server.SkillHandlers
 
                 src.RevealingAction();
 
+                if(Shard.DebugEnabled)
                 Shard.Debug("Range Detect " + range);
 
                 int found = 0;
@@ -81,8 +82,12 @@ namespace Server.SkillHandlers
                     {
                         if (trg.Hidden && src != trg)
                         {
-                            if (src is BaseCreature bc && bc.Controlled && bc.ControlMaster == trg)
-                              continue;
+                            var bc = src as BaseCreature;
+                            if (bc != null && bc.Controlled && bc.ControlMaster == trg)
+                            {
+                                continue;
+                            }
+
                             double ss = srcSkill + Utility.Random(29) - 10;
                             double ts = trg.Skills[SkillName.Hiding].Value + Utility.Random(21) - 10;
                             double shadow = Server.Spells.SkillMasteries.ShadowSpell.GetDifficultyFactor(trg);

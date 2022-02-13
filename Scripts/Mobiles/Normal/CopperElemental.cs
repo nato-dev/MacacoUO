@@ -1,6 +1,5 @@
 using System;
 using Server.Items;
-using static Server.Mobiles.EarthElemental;
 
 namespace Server.Mobiles
 {
@@ -59,7 +58,7 @@ namespace Server.Mobiles
                 this.PlayAngerSound();
                 OverheadMessage("* enterrando *");
                 SetCooldown("pula", TimeSpan.FromSeconds(30));
-                new TerraTimer(this, this.Combatant as Mobile, 0.09).Start();
+                new EarthElemental.TerraTimer(this, this.Combatant as Mobile, 0.09).Start();
             }
         }
 

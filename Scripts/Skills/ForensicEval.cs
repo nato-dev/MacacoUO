@@ -184,9 +184,9 @@ namespace Server.SkillHandlers
             List<Recurso> recursos = new List<Recurso>();
             var sector = from.Map.GetSector(from);
 
-            for (int x = -2; x <= 2; x++)
+            for (int x = -4; x <= 4; x++)
             {
-                for (int y = -2; y <= 2; y++)
+                for (int y = -4; y <= 4; y++)
                 {
                     var s = from.Map.InternalGetSector(sector.X + x, sector.Y + y);
                     if (Shard.DebugEnabled)
