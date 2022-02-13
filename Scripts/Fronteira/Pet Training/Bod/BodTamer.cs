@@ -43,8 +43,11 @@ namespace Server.Engines.BulkOrders
             Cor = tamavel.Hue;
             Nome = tamavel.Name;
             DuracaoDias = 5;
+        }
 
-            if(Bodies == null)
+        private static void InitBodies()
+        {
+            if (Bodies == null)
             {
                 Bodies = new Dictionary<Type, List<int>>();
                 Bodies[typeof(Drake)] = new List<int>(new int[] { 60, 61 });
@@ -52,12 +55,13 @@ namespace Server.Engines.BulkOrders
                 Bodies[typeof(Horse)] = new List<int>(new int[] { 0xC8,
                 0xE2,
                 0xE4,
-                0xCC });     
+                0xCC });
             }
         }
 
         public static bool BodyValido(Type t, int body)
         {
+            InitBodies();
             if (Bodies.ContainsKey(t))
                 return Bodies[t].Contains(body);
             return false;
