@@ -2626,7 +2626,7 @@ namespace Server.Mobiles
                 }
             }
 
-            if(ControlMaster != null && ControlMaster.Player && !from.Player)
+            if(ControlMaster != null && ControlMaster.Player && from != null && !from.Player)
             {
                 if (StuckMenu.IsInSecondAgeArea(this))
                     damage = (int)(damage * 1.5);
