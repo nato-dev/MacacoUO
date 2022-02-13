@@ -3,6 +3,7 @@ using Server.Network;
 using Server.Prompts;
 using Server.Targeting;
 using Server.Engines.Craft;
+using Server.Multis;
 
 namespace Server.Items
 {
@@ -391,9 +392,9 @@ namespace Server.Items
                         }
 
                         if (o.Locked)
-                            item.SendLocalizedMessageTo(from, 1048000); // You lock it.
+                            item.PrivateOverheadMessage(MessageType.Regular, 0, true, "* trancado *", from.NetState);
                         else
-                            item.SendLocalizedMessageTo(from, 1048001); // You unlock it.
+                            item.PrivateOverheadMessage(MessageType.Regular, 0, true, "* destrancado *", from.NetState);
 
                         if (item is LockableContainer)
                         {
@@ -414,6 +415,26 @@ namespace Server.Items
             }
             else
             {
+                if (o is BaseDoor)
+                {
+                    var porta = o as BaseDoor;
+                    if (Shard.DebugEnabled)
+                        Shard.Debug("Porta code " + porta.KeyValue);
+
+                    if (porta.KeyValue == 0)
+                    {
+                        var casa = BaseHouse.FindHouseAt(o as Item);
+                        if (casa != null && (casa.HasAccess(from) || casa.IsOwner(from)))
+                        {
+                            if (Shard.DebugEnabled)
+                                Shard.Debug("Retornando pra destrancar");
+                            porta.Locked = false;
+                            porta.PrivateOverheadMessage(MessageType.Regular, 0, true, "* destrancado *", from.NetState);
+                            return true;
+                        }
+                           
+                    }
+                }
                 return false;
             }
         }
@@ -467,10 +488,14 @@ namespace Server.Items
                 }
                 else if (targeted is ILockable)
                 {
-                    if (m_Key.UseOn(from, (ILockable)targeted))
+                    var locked = (ILockable)targeted;
+                    if (m_Key.UseOn(from, locked))
                         number = -1;
                     else
+                    {
                         number = 501668; // This key doesn't seem to unlock that.
+                    }
+                      
                 }
                 else
                 {

@@ -144,7 +144,7 @@ namespace Server.Engines.BulkOrders
                     }
                     from.SendMessage("Esta criatura aparenta ser diferente, nome ou cor...");
                 }
-
+                from.SendGump(new TameBodGump(from, deed));
             }
         }
     }

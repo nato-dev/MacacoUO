@@ -1,5 +1,6 @@
 using System;
 using Server.Engines.Craft;
+using Server.Gumps;
 using Server.Multis;
 using Server.Targeting;
 
@@ -181,6 +182,7 @@ namespace Server.Items
 
                     if (res == AddonFitResult.Valid)
                     {
+
                         addon.Resource = m_Deed.Resource;
 
                         if (addon.RetainDeedHue || (m_Deed.Hue != 0 && CraftResources.GetHue(m_Deed.Resource) != m_Deed.Hue))
@@ -194,6 +196,17 @@ namespace Server.Items
                             boat.AddAddon(addon);
 
                         m_Deed.DeleteDeed();
+
+                        from.SendGump(new GumpOpcoes("Manter Addon ?", (opt) =>
+                        {
+                            if(opt==1)
+                            {
+                                from.Backpack.DropItem(addon.GetDeed());
+                                addon.Delete();
+                            }
+
+                        }, 0x14F0, 0, "Manter", "Remover"));
+      
                     }
                     else if (res == AddonFitResult.Blocked)
                         from.SendLocalizedMessage("Voce nao pode construir ali pois existe algo ali"); // You cannot build that there.
