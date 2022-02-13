@@ -32,7 +32,6 @@ namespace Server.SkillHandlers
             {
                 m.SendMessage("Voce ja esta conjurando algo"); // You are already casting a spell.
             }
-            m.RevealingAction();
             else if (BeginSpiritSpeak(m))
             {
                 return TimeSpan.FromSeconds(5.0);
@@ -61,6 +60,11 @@ namespace Server.SkillHandlers
 
         public static bool BeginSpiritSpeak(Mobile m)
         {
+            m.RevealingAction();
+
+            if (m.Paralyzed)
+                return false;
+
             if (_Table == null || !_Table.ContainsKey(m))
             {
                 m.Freeze(TimeSpan.FromSeconds(1));
@@ -132,11 +136,17 @@ namespace Server.SkillHandlers
             protected override void OnTick()
             {
                 Corpse toChannel = null;
+                Caster.RevealingAction();
+
+                if (Caster.Paralyzed)
+                {
+                    return;
+                }
+
 
                 IPooledEnumerable eable = Caster.GetObjectsInRange(3);
 
-                Caster.RevealingAction();
-
+          
                 foreach (object objs in eable)
                 {
                     if (objs is Corpse && !((Corpse)objs).Channeled && !((Corpse)objs).Animated)

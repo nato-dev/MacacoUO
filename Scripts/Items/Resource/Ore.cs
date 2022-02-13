@@ -148,6 +148,8 @@ namespace Server.Items
 
         public override void OnDoubleClick(Mobile from)
         {
+            from.RevealingAction();
+
             if (!Movable)
                 return;
 
@@ -391,7 +393,7 @@ namespace Server.Items
             var loc = forge;
             loc.Z = loc.Z + 7;
             Effects.SendLocationParticles(EffectItem.Create(loc, from.Map, TimeSpan.FromSeconds(1)), 0x3709, 30, 30, 5052);
-
+      
             Timer.DelayCall(TimeSpan.FromSeconds(2), () =>
             {
                 if (from != null && this != null && this.Amount > 0 && !this.Deleted)
