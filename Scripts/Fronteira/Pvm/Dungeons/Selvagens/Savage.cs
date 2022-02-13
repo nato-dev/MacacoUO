@@ -30,8 +30,8 @@ namespace Server.Mobiles
 
                 i.Hue = TintaBranca.COR;
             }
-            b.HitsMaxSeed = 1000;
-            b.Hits = 1000;
+            b.HitsMaxSeed = 2000;
+            b.Hits = 2000;
             b.VirtualArmor = 60;
             if(b.Skills.Parry.Base < 25)
                 b.Skills.Parry.Base = 25;

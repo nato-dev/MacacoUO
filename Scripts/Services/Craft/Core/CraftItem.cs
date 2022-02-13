@@ -298,9 +298,12 @@ namespace Server.Engines.Craft
         {
             if (!CraftResources.IsTierZero(type))
             {
-                var trad = Trads.GetNome(type);
-                if (trad != null)
-                    message = "Voce nao tem " + trad + " suficiente para isto. Este item precisa deste recurso especifico para ser feito.";
+                if(message == null || message.m_String==null)
+                {
+                    var trad = Trads.GetNome(type);
+                    if (trad != null)
+                        message = "Voce nao tem " + trad + " suficiente para isto. Este item precisa deste recurso especifico para ser feito.";
+                }
             }
 
             CraftRes craftRes = new CraftRes(type, name, amount, message);

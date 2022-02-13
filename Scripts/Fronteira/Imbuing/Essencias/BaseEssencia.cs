@@ -86,7 +86,7 @@ namespace Server.Items
                 from.SendMessage("Voce precisa de uma forja e uma bigorna para isto");
                 return;
             }
-            tem.UsesRemaining -= 5;
+            tem.UsesRemaining -= 30;
             if(tem.UsesRemaining <= 0)
             {
                 tem.Delete();

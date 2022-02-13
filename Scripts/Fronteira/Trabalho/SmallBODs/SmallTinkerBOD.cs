@@ -30,9 +30,9 @@ namespace Server.Engines.BulkOrders
 
         public static double[] m_TinkerMaterialChances = new double[]
         {
-            0.501953125, // None
-            0.250000000, // Dull Copper
-            0.125000000, // Shadow Iron
+            0.301953125, // None
+            0.350000000, // Dull Copper
+            0.225000000, // Shadow Iron
             0.062500000, // Copper
             0.031250000, // Bronze
             0.015625000, // Gold
@@ -45,9 +45,9 @@ namespace Server.Engines.BulkOrders
         public SmallTinkerBOD()
         {
             SmallBulkEntry[] entries;
-            bool useMaterials;
+            bool useMaterials = Utility.RandomBool();
 
-            if (useMaterials = 0.75 > Utility.RandomDouble())
+            if (useMaterials)
                 entries = SmallBulkEntry.TinkeringSmalls;
             else
                 entries = SmallBulkEntry.TinkeringSmallsRegular;
@@ -62,6 +62,7 @@ namespace Server.Engines.BulkOrders
                     material = GetRandomMaterial(BulkMaterialType.Cobre, m_TinkerMaterialChances);
                 else
                     material = BulkMaterialType.None;
+
 
                 bool reqExceptional = useMaterials ? Utility.RandomBool() : false;
 

@@ -1411,6 +1411,18 @@ namespace Server.Mobiles
                             exp *= 6;
 
                             exp += (ushort)(matBonus * 2000);
+                        } else if(dropped is SmallBOD)
+                        {
+                            var small = (SmallBOD)dropped;
+                            var matBonus = (int)small.Material;
+
+                            if (small.Material >= BulkMaterialType.Spined && small.Material <= BulkMaterialType.Horned)
+                                matBonus -= 8;
+
+                            if (small.Material >= BulkMaterialType.Carvalho && small.Material <= BulkMaterialType.Gelo)
+                                matBonus -= 11;
+
+                            exp += (ushort)(matBonus * 1000);
                         }
 
 

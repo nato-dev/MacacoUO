@@ -12,9 +12,9 @@ namespace Server.Engines.BulkOrders
 
         public static double[] m_BlacksmithMaterialChances = new double[]
         {
-            0.501953125, // None
-            0.250000000, // Dull Copper
-            0.125000000, // Shadow Iron
+            0.401953125, // None
+            0.300000000, // Dull Copper
+            0.175000000, // Shadow Iron
             0.062500000, // Copper
             0.031250000, // Bronze
             0.015625000, // Gold
@@ -26,9 +26,8 @@ namespace Server.Engines.BulkOrders
         public SmallSmithBOD()
         {
             SmallBulkEntry[] entries;
-            bool useMaterials;
-
-            if (useMaterials = Utility.RandomBool())
+            var useMaterials = Utility.RandomBool();
+            if (Utility.RandomBool())
                 entries = SmallBulkEntry.BlacksmithArmor;
             else
                 entries = SmallBulkEntry.BlacksmithWeapons;
@@ -93,7 +92,7 @@ namespace Server.Engines.BulkOrders
         {
             SmallBulkEntry[] entries;
             bool useMaterials;
-
+         
             useMaterials = Utility.RandomDouble() < 0.1;
 
             if (Utility.RandomBool())
@@ -104,15 +103,7 @@ namespace Server.Engines.BulkOrders
             if (entries.Length > 0)
             {
                 double theirSkill = BulkOrderSystem.GetBODSkill(m, SkillName.Blacksmith);
-                int amountMax;
-
-                if (theirSkill >= 70.1)
-                    amountMax = Utility.RandomList(10, 15, 20, 20);
-                else if (theirSkill >= 50.1)
-                    amountMax = Utility.RandomList(10, 15, 15, 20);
-                else
-                    amountMax = Utility.RandomList(10, 10, 15, 20);
-
+         
                 BulkMaterialType material = BulkMaterialType.None;
 
                 if (useMaterials && theirSkill >= 70.1)
@@ -121,14 +112,40 @@ namespace Server.Engines.BulkOrders
                     {
                         BulkMaterialType check = GetRandomMaterial(BulkMaterialType.Cobre, m_BlacksmithMaterialChances);
                         double skillReq = GetRequiredSkill(check);
-
+                        if(Shard.DebugEnabled)
+                        {
+                            Shard.Debug("Checando material " + check.ToString());
+                            Shard.Debug("Skill " + theirSkill + " precisa de " + skillReq);
+                        }
                         if (theirSkill >= skillReq)
                         {
+                         
                             material = check;
                             break;
                         }
                     }
                 }
+
+                int amountMax;
+
+                if(material != BulkMaterialType.None)
+                {
+                    amountMax = Utility.RandomList(10, 10, 15, 20);
+                } else
+                {
+                    if (theirSkill >= 110)
+                        amountMax = Utility.RandomList(45, 60, 55, 55);
+                    else if (theirSkill >= 100)
+                        amountMax = Utility.RandomList(35, 40, 45, 45);
+                    else if (theirSkill >= 70.1)
+                        amountMax = Utility.RandomList(20, 25, 30, 30);
+                    else if (theirSkill >= 50.1)
+                        amountMax = Utility.RandomList(15, 20, 20, 25);
+                    else
+                        amountMax = Utility.RandomList(10, 10, 15, 20);
+                }
+                
+
 
                 double excChance = 0.0;
 

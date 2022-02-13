@@ -75,7 +75,7 @@ namespace Server.Spells.Seventh
                     if(!((Mobile)m).Player)
                     {
                         var nivel = ColarElemental.GetNivel(Caster, ElementoPvM.Fogo);
-                        damage *= 1 + (nivel / 15);
+                        damage *= 1 + (nivel / 10);
                     }
 
                     damage *= this.GetDamageScalar((Mobile)m, ElementoPvM.Fogo);

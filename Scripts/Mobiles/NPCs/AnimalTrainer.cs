@@ -1018,7 +1018,7 @@ namespace Server.Mobiles
             if (!e.Handled && (e.HasKeyword(0x0008) || e.Speech.Contains("estabulo"))) // *stable*
 			{
 				e.Handled = true;
-                e.Mobile.SendGump(new GumpOpcoes("Selecione o banco", (opt) =>
+                e.Mobile.SendGump(new GumpOpcoes("Estabulo", (opt) =>
                 {
                     if(opt==0)
                     {

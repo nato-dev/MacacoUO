@@ -207,6 +207,9 @@ namespace Server.Items
                     if (res != AddonFitResult.Valid)
                     {
                         addon.Delete();
+                    } else
+                    {
+                        from.SendMessage(78, "Para voltar o addon de sua casa a ser uma escritura, use um machado");
                     }
                 }
                 else
