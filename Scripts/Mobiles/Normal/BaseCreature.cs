@@ -2639,7 +2639,7 @@ namespace Server.Mobiles
                 }
             }
 
-            if(from.Player)
+            if(from != null && from.Player)
             {
                 var colarVento = ColarElemental.GetNivel(from, ElementoPvM.Vento);
                 if(!from.IsCooldown("hitstun") && colarVento > 0 && Utility.RandomDouble() < 0.1 + colarVento / 100)
