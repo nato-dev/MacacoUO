@@ -21,6 +21,7 @@ namespace Server.SkillHandlers
 
         public static TimeSpan OnUse(Mobile m)
         {
+
             if(BleedAttack.IsBleeding(m))
             {
                 m.SendMessage("Voce nao pode usar isto sangrando");
@@ -31,6 +32,7 @@ namespace Server.SkillHandlers
             {
                 m.SendMessage("Voce ja esta conjurando algo"); // You are already casting a spell.
             }
+            m.RevealingAction();
             else if (BeginSpiritSpeak(m))
             {
                 return TimeSpan.FromSeconds(5.0);
@@ -132,6 +134,8 @@ namespace Server.SkillHandlers
                 Corpse toChannel = null;
 
                 IPooledEnumerable eable = Caster.GetObjectsInRange(3);
+
+                Caster.RevealingAction();
 
                 foreach (object objs in eable)
                 {
