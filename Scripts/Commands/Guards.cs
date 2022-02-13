@@ -32,6 +32,7 @@ namespace Server.Commands
             {
                 e.Mobile.PrivateOverheadMessage("GuardoOoOoOoOOOooOoo");
                 e.Mobile.SendMessage("Os guardas nao podem ouvir os mortos");
+                return;
             }
             var m = msg[rnd.Next(msg.Length)];
             e.Mobile.Yell(m);

@@ -199,7 +199,7 @@ namespace Server.Items
 
                         from.SendGump(new GumpOpcoes("Manter Addon ?", (opt) =>
                         {
-                            if(opt==1)
+                            if(opt==1 && from.Alive)
                             {
                                 from.Backpack.DropItem(addon.GetDeed());
                                 addon.Delete();
