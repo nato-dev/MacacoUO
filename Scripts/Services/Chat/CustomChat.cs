@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 using Server;
 using Server.Accounting;
@@ -7,6 +8,7 @@ using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
+using VitaNex.Modules.Discord;
 
 namespace Felladrin.Engines
 {
@@ -145,11 +147,20 @@ namespace Felladrin.Engines
 
         static void Broadcast(Mobile sender, string message)
         {
+            if(sender.IsCooldown("chat"))
+            {
+                sender.SendMessage("Aguarde para enviar outra msg");
+                return;
+            }
+            sender.SetCooldown("chat", TimeSpan.FromSeconds(2));
+
             if (History.Count > Config.HistorySize)
                 History.RemoveAt(0);
 
             History.Add(string.Format("<basefont size=5 color=#524759>[{0}] <basefont size=5 color=#{1}>{2}<basefont color=#14131A> {3}", System.DateTime.UtcNow.ToString("<basefont size=5 color=#151524>HH:mm"), (Config.AutoColoredNames ? (sender.Name.GetHashCode() >> 8).ToString() : "54432D"), sender.Name, Utility.FixHtml(message)));
-
+            var mess = string.Format("[{0}] {1}", sender.Name, message);
+            DiscordBot.SendMessage(mess);
+      
             foreach (NetState ns in NetState.Instances)
             {
                 var player = ns.Mobile as PlayerMobile;
@@ -157,7 +168,7 @@ namespace Felladrin.Engines
                 if (player == null || DisabledPlayers.Contains(player.Serial.Value))
                     continue;
 
-                player.SendMessage(Config.MessageHue, string.Format("[{0}] {1}", sender.Name, message));
+                player.SendMessage(Config.MessageHue, mess);
 
                 if (player.HasGump(typeof(ChatHistoryGump)))
                 {

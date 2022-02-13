@@ -8,6 +8,8 @@
     <AssemblyName>Scripts.CS</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -25,15 +27,19 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>Output\</OutputPath>
-    <DefineConstants>TRACE;NEWTIMERS;ServUO</DefineConstants>
+    <DefineConstants>TRACE</DefineConstants>
     <UseVSHostingProcess>false</UseVSHostingProcess>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>7.3</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <RootNamespace>Server</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RuntimeIdentifier>win</RuntimeIdentifier>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -45,7 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abilities\ColdWind.cs" />
     <Compile Include="Accounting\AccessRestrictions.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,15 +78,6 @@
     <Compile Include="Accounting\IPLimiter.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Beta\Commands\Beta.cs" />
-    <Compile Include="Beta\Commands\Beta2.cs" />
-    <Compile Include="Beta\Commands\MeuStatus.cs" />
-    <Compile Include="Beta\Commands\MinhaSkill.cs" />
-    <Compile Include="Beta\Commands\Refresh.cs" />
-    <Compile Include="Beta\Commands\RefreshMe.cs" />
-    <Compile Include="Beta\Gumps\BetaGump.cs" />
-    <Compile Include="Beta\Gumps\BetaGump2.cs" />
-    <Compile Include="Beta\Items\KitFerramentas.cs" />
     <Compile Include="Commands\AccountGoldCheck.cs" />
     <Compile Include="Commands\Custom\Musicali.cs" />
     <Compile Include="Commands\LimpaGuilda.cs" />
@@ -134,6 +130,8 @@
     <Compile Include="Fronteira\Comandos\WipeTudo.cs" />
     <Compile Include="Fronteira\Cooking\CookingLoader.cs" />
     <Compile Include="Fronteira\Cooking\PlantaRandom.cs" />
+    <Compile Include="Fronteira\Discord\DiscordBot.cs" />
+    <Compile Include="Fronteira\Discord\DiscordBotOptions.cs" />
     <Compile Include="Fronteira\Exp\PctExpGump.cs" />
     <Compile Include="Fronteira\Exp\SkillExpGump.cs" />
     <Compile Include="Fronteira\Factions\Core\Election.cs" />
@@ -232,66 +230,6 @@
     <Compile Include="Fronteira\Camping\Acampamento.cs" />
     <Compile Include="Fronteira\Camping\GumpCamping.cs" />
     <Compile Include="Fronteira\Animations\CustomAnimations.cs" />
-    <Compile Include="Fronteira\Chat\Channels\Alliance.cs" />
-    <Compile Include="Fronteira\Chat\Channels\Channel.cs" />
-    <Compile Include="Fronteira\Chat\Channels\Guild.cs" />
-    <Compile Include="Fronteira\Chat\Channels\Irc.cs" />
-    <Compile Include="Fronteira\Chat\Channels\Multi.cs" />
-    <Compile Include="Fronteira\Chat\Channels\Public.cs" />
-    <Compile Include="Fronteira\Chat\Channels\Staff.cs" />
-    <Compile Include="Fronteira\Chat\Commands\All.cs" />
-    <Compile Include="Fronteira\Chat\Commands\Friends.cs" />
-    <Compile Include="Fronteira\Chat\Commands\HelpContents.cs" />
-    <Compile Include="Fronteira\Chat\Commands\Mail.cs" />
-    <Compile Include="Fronteira\Chat\Commands\Pm.cs" />
-    <Compile Include="Fronteira\Chat\Commands\ViewAll.cs" />
-    <Compile Include="Fronteira\Chat\General\Avatar.cs" />
-    <Compile Include="Fronteira\Chat\General\Chat3Guild.cs" />
-    <Compile Include="Fronteira\Chat\General\CommandInfo.cs" />
-    <Compile Include="Fronteira\Chat\General\Data.cs" />
-    <Compile Include="Fronteira\Chat\General\DefaultLocal.cs" />
-    <Compile Include="Fronteira\Chat\General\Events.cs" />
-    <Compile Include="Fronteira\Chat\General\Filter.cs" />
-    <Compile Include="Fronteira\Chat\General\General.cs" />
-    <Compile Include="Fronteira\Chat\General\IrcConnection.cs" />
-    <Compile Include="Fronteira\Chat\General\Logging.cs" />
-    <Compile Include="Fronteira\Chat\General\Message.cs" />
-    <Compile Include="Fronteira\Chat\General\MultiConnection.cs" />
-    <Compile Include="Fronteira\Chat\General\Notification.cs" />
-    <Compile Include="Fronteira\Chat\General\TrackSpam.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\1.0 Skin\ListGump10.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\1.0 Skin\PmNotifyGump10.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\2.0 Skin\ListGump20.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\2.0 Skin\PmNotifyGump20.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\ChannelGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\ColorsGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\EditNotGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\FilterGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\GeneralGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\GlobalGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\HelpContentsGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\HistoryGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\IrcGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\ListGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\LoggingGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\MailGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\MessageGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\MultiGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\PmNotifyGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\ProfileGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\SendMessageGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\3.0 Skin\SpamGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Error Reporting\Errors.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Error Reporting\ErrorsGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Error Reporting\ErrorsNotifyGump.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Gumps Plus\BackgroundPlus.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Gumps Plus\ButtonPlus.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Gumps Plus\GumpInfo.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Gumps Plus\GumpPlus.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Gumps Plus\HTML.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Gumps Plus\HtmlPlus.cs" />
-    <Compile Include="Fronteira\Chat\Gumps\Gumps Plus\InfoGump.cs" />
-    <Compile Include="Fronteira\Chat\RUOVersion.cs" />
     <Compile Include="Fronteira\Classes\ClassDef.cs" />
     <Compile Include="Fronteira\Classes\ClassePersonagem.cs" />
     <Compile Include="Fronteira\Classes\ClassGump.cs" />
@@ -9833,108 +9771,6 @@
     <Compile Include="Items\Equipment\Weapons\WeaknessWand.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Abilities\ArmorIgnore.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\ArmorPierce.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\BattleLust.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\Bladeweave.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\BleedAttack.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\Block.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\ConcussionBlow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\CrushingBlow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\DefenseMastery.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\Disarm.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\Dismount.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\Disrobe.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\DoubleShot.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\DoubleStrike.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\DualWield.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\Feint.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\ForceArrow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\ForceofNature.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\FrenziedWhirlwind.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\InfectiousStrike.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\InfusedThrow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\LightningArrow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\MortalStrike.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\MovingShot.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\MysticArc.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\NerveStrike.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\ParalyzingBlow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\PsychicAttack.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\RidingSwipe.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\SerpentArrow.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\ShadowStrike.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\TalonStrike.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\WeaponAbility.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\WhirlwindAttack.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Items\Artifacts\Equipment\Weapons\AxeOfAbandon.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -10351,15 +10187,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Items\Equipment\Weapons\Yumi.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\SlayerEntry.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\SlayerGroup.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\SlayerName.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Items\Equipment\Weapons\BladedStaff.cs">
@@ -10832,21 +10659,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Misc\WelcomeTimer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\BaseSummoned.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\Enhancement.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\EnhancementTimer.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\SelfDeletingItem.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Abilities\TimedResistanceMod.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Mobiles\AI\AIControlMobileTarget.cs">
@@ -14827,12 +14639,6 @@
     <Compile Include="Fronteira\Comandos\TimerTesouros.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Fronteira\Chat\Text Data Files\ChatAvatars.txt" />
-    <Content Include="Fronteira\Chat\Text Data Files\ChatBacks.txt" />
-    <Content Include="Fronteira\Chat\Text Data Files\ChatColors.txt" />
-    <Content Include="Fronteira\Chat\Text Data Files\ChatFilters.txt" />
-    <Content Include="Fronteira\Chat\Text Data Files\ChatLocal.txt" />
-    <Content Include="Fronteira\Chat\Text Data Files\HelpContents.txt" />
     <Content Include="Fronteira\XML\XmlSiege\XmlSiege.txt" />
     <Content Include="Items\Addons\Randoms\BoardGames\notes.txt" />
     <Content Include="Items\Addons\Randoms\BoardGames\toto.txt" />
@@ -14897,10 +14703,6 @@
     <Content Include="Services\UltimaStore\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fronteira\Fronteira.csproj">
-      <Project>{04dc71f5-99c2-4ab2-b193-6746d84caee9}</Project>
-      <Name>Fronteira</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Server\Server.csproj">
       <Project>{AE4A9EAA-E0EB-4DC9-9604-BE4289F9F6C3}</Project>
       <Name>Server</Name>
@@ -14929,8 +14731,6 @@
     <Folder Include="VitaNex\Items\Tools\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Fronteira\Chat\Beta 9.doc" />
-    <None Include="Fronteira\Chat\Read.doc" />
     <None Include="Items\Addons\Randoms\abby addons\logcabinhealers.mlt" />
     <None Include="Items\Addons\Randoms\abby addons\Loghouse1.mlt" />
     <None Include="Items\Addons\Randoms\abby addons\LogHouse2.mlt" />

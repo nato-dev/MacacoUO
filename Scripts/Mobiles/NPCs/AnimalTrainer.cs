@@ -1026,7 +1026,7 @@ namespace Server.Mobiles
                         BeginStable(e.Mobile);
                     } else if(opt==1)
                     {
-                        Claim(e.Mobile);
+                        BeginClaimList(e.Mobile);
                     }
                 }, 0xE81, 0, new string[] { "Estabular", "Ver Lista"}));   
 			}

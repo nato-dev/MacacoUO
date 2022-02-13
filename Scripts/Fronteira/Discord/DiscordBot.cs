@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  DiscordBot.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -12,45 +12,32 @@
 #region References
 using System;
 using System.Linq;
-
+using System.Web;
 using Server;
 using Server.Misc;
-
+using Server.Commands;
+using System.Net;
 using VitaNex.Collections;
 using VitaNex.IO;
 using VitaNex.Modules.AutoPvP;
 using VitaNex.Text;
 using VitaNex.Web;
+using System.IO;
+using System.Text;
+using System.Threading;
 #endregion
 
 namespace VitaNex.Modules.Discord
 {
-	public static partial class DiscordBot
+	public class DiscordBot
 	{
-		public const AccessLevel Access = AccessLevel.Administrator;
-
-		private static readonly string[] _SaveMessages;
-
-		private static string _LastMessage;
-
-		private static readonly DictionaryPool<string, object> _Pool;
-
 		public static DiscordBotOptions CMOptions { get; private set; }
-		/*
-		private static void OnWorldBroadcast(WorldBroadcastEventArgs e)
-		{
-			if (CMOptions.HandleBroadcast)
-			{
-				SendMessage(e.Text);
-			}
-		}
-		*/
 
 		private static void OnServerShutdown(ShutdownEventArgs e)
 		{
 			if (CMOptions.HandleStatus)
 			{
-				SendMessage("Status: Offline");
+				SendMessage("TestShard: Offline - Manutencao");
 			}
 		}
 
@@ -58,7 +45,7 @@ namespace VitaNex.Modules.Discord
 		{
 			if (CMOptions.HandleStatus)
 			{
-				SendMessage("Status: Offline (Back Soon!)");
+				SendMessage(":cross: TestShard: Offline (Crash - Reiniciando !)");
 			}
 		}
 
@@ -66,7 +53,7 @@ namespace VitaNex.Modules.Discord
 		{
 			if (CMOptions.HandleStatus)
 			{
-				SendMessage("Status: Online");
+				SendMessage(":white_check_mark: TestShard Online !");
 			}
 		}
 
@@ -78,6 +65,7 @@ namespace VitaNex.Modules.Discord
 			}
 		}
 
+        /*
 		private static void OnBattleWorldBroadcast(PvPBattle b, string text)
 		{
 			if (CMOptions.HandleBattles)
@@ -85,6 +73,7 @@ namespace VitaNex.Modules.Discord
 				SendMessage(text);
 			}
 		}
+        */
 
 		public static void SendMessage(string message)
 		{
@@ -93,59 +82,44 @@ namespace VitaNex.Modules.Discord
 
 		public static void SendMessage(string message, bool filtered)
 		{
-			if (!CMOptions.ModuleEnabled || String.IsNullOrWhiteSpace(message))
-			{
-				return;
-			}
-
-			var uri = GetWebhookUri();
-
-			if (uri.Contains("NULL"))
+			if (String.IsNullOrWhiteSpace(message))
 			{
 				return;
 			}
 
 			message = message.StripHtmlBreaks(true).StripHtml(false);
 
-			if (filtered)
-			{
-				if (CMOptions.FilterSaves && _SaveMessages.Any(o => Insensitive.Contains(message, o)))
-				{
-					return;
-				}
+            Requesta(message);
+        }
 
-				if (CMOptions.FilterRepeat && _LastMessage == message)
-				{
-					return;
-				}
-			}
+        private static async void Requesta(string message)
+        {
+            var uri = GetWebhookUri();
 
-			_LastMessage = message;
+            if (Shard.DebugEnabled)
+                Shard.Debug("URL Discord " + uri);
 
-			var d = _Pool.Acquire();
+            if (uri.Contains("NULL"))
+            {
+                return;
+            }
 
-			d["content"] = message;
-			d["username"] = ServerList.ServerName;
-			d["file"] = null;
-			d["embeds"] = null;
+            var request = (HttpWebRequest)WebRequest.Create(uri);
+            request.Method = "POST";
+            request.ContentType = "application/json";
+            Shard.Debug("Escrevendo Stream");
+            using (var stream = new StreamWriter(request.GetRequestStream()))
+            {
+                string json = "{\"content\":\"" + message + "\"," +
+                 "\"username\":\"Dragonic\"}";
+                stream.Write(json);
+            }
+            request.GetResponseAsync();
+        }
 
-			WebAPI.BeginRequest(
-				uri,
-				d,
-				(req, o) =>
-				{
-					req.Method = "POST";
-					req.ContentType = FileMime.Lookup("json");
-					req.SetContent(Json.Encode(o));
-
-					_Pool.Free(o);
-				},
-				null);
-		}
-
-		public static string GetWebhookUri()
+        public static string GetWebhookUri()
 		{
-			return GetWebhookUri(CMOptions.ModuleDebug);
+            return GetWebhookUri(true);
 		}
 
 		public static string GetWebhookUri(bool debug)
@@ -155,8 +129,8 @@ namespace VitaNex.Modules.Discord
 
 		public static Uri GetWebhook(bool debug)
 		{
-			var id = debug ? CMOptions.WebhookDebugID : CMOptions.WebhookID;
-			var key = debug ? CMOptions.WebhookDebugKey : CMOptions.WebhookKey;
+			var id = CMOptions.WebhookID;
+			var key = CMOptions.WebhookKey;
 
 			if (String.IsNullOrWhiteSpace(id))
 			{
@@ -167,61 +141,31 @@ namespace VitaNex.Modules.Discord
 			{
 				key = "NULL";
 			}
-
-			return new Uri("https://discordapp.com/api/webhooks/" + id + "/" + key);
+			return new Uri("https://discord.com/api/webhooks/" + id + "/" + key);
 		}
 
-		public static bool SetWebhook(string uri, bool debug)
-		{
-			try
-			{
-				return SetWebhook(new Uri(uri), debug);
-			}
-			catch
-			{
-				return false;
-			}
-		}
+        static DiscordBot()
+        {
+            CMOptions = new DiscordBotOptions();
+            CMOptions.SetDefaults();
+        }
 
-		public static bool SetWebhook(Uri u, bool debug)
-		{
-			try
-			{
-				var s = u.ToString();
+        public static void Initialize()
+        {
+            EventSink.Shutdown += OnServerShutdown;
+            EventSink.Crashed += OnServerCrashed;
+            EventSink.ServerStarted += OnServerStarted;
+            Notify.Notify.OnBroadcast += OnNotifyBroadcast;
+            CommandSystem.Register("Discord", AccessLevel.Administrator, new CommandEventHandler(CMD2));
+            //AutoPvP.AutoPvP.OnBattleWorldBroadcast += OnBattleWorldBroadcast;
+        }
 
-				var i = s.IndexOf("discordapp.com/api/webhooks/", StringComparison.OrdinalIgnoreCase);
+        private static void CMD2(CommandEventArgs e)
+        {
+            SendMessage(e.ArgString);
+        }
 
-				if (i < 0 || i >= s.Length - 28)
-				{
-					return false;
-				}
+    }
 
-				s = s.Substring(i + 28);
 
-				i = s.IndexOf('/');
-
-				if (i <= 0 || i >= s.Length - 1)
-				{
-					return false;
-				}
-
-				if (debug)
-				{
-					CMOptions.WebhookDebugID = s.Substring(0, i);
-					CMOptions.WebhookDebugKey = s.Substring(i + 1);
-				}
-				else
-				{
-					CMOptions.WebhookID = s.Substring(0, i);
-					CMOptions.WebhookKey = s.Substring(i + 1);
-				}
-
-				return true;
-			}
-			catch
-			{
-				return false;
-			}
-		}
-	}
 }

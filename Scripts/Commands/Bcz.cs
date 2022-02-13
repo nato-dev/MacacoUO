@@ -3,6 +3,7 @@ using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
+using VitaNex.Modules.Discord;
 
 namespace Server.Commands
 {
@@ -30,6 +31,7 @@ namespace Server.Commands
                     mobile.SendGump(new AnuncioGump(mobile as PlayerMobile, msg));
                 }
             }
+            DiscordBot.SendMessage(":boom:"+msg);
         }
     }
 }

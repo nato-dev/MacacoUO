@@ -52,9 +52,6 @@
   </Target>
   -->
   <ItemGroup>
-    <PackageReference Include="DSharpPlus" Version="3.2.3" />
-    <PackageReference Include="DSharpPlus.WebSocket.WebSocket4Net" Version="3.2.3" />
-    <PackageReference Include="DSharpPlus.WebSocket.WebSocketSharp" Version="3.2.3" />
     <Compile Include=".\AggressorInfo.cs" />
     <Compile Include=".\AssemblyInfo.cs" />
     <Compile Include=".\Attributes.cs" />
@@ -210,6 +207,11 @@
     <Content Include="servuo.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
