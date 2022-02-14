@@ -50,6 +50,7 @@ namespace Server.Spells.Eighth
                 ele.VirtualArmor = 0;
                 ele.DamageMax = 5;
                 ele.DamageMin = 1;
+                ele.Elemento = Items.ElementoPvM.Fogo;
                 SpellHelper.Summon(ele, this.Caster, 0x217, duration, false, false);
      
             }
