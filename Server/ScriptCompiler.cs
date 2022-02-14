@@ -524,7 +524,7 @@ namespace Server
 
         public static bool CompileVelho(bool debug, bool cache)
         {
-            //return CompileNovo(debug, cache);
+            return CompileNovo(debug, cache);
 
             EnsureDirectory("Scripts/");
             EnsureDirectory("Scripts/Output/");
