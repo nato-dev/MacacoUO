@@ -85,7 +85,13 @@ namespace Server.SkillHandlers
 
         public static bool IsInSpiritSpeak(Mobile m)
         {
-            return _Table != null && _Table.ContainsKey(m);
+            Shard.Debug("Checando ss", m);
+            if (_Table == null)
+                return false;
+            Timer t = null;
+            if (_Table.TryGetValue(m, out t))
+                return t.Running;
+            return false;
         }
 
         public static void Remove(Mobile m)
