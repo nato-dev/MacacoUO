@@ -199,7 +199,7 @@ namespace Server.Gumps
             var str = ToString(number);
             if (str != null)
             {
-                str = Cor(str, 0); 
+                str = Cor(str, 0);
                 Add(new GumpHtml(x, y, width, height, str, background, scrollbar));
             }
             else
@@ -489,7 +489,7 @@ namespace Server.Gumps
 
         public int Intern(string value, bool enforceUnique)
         {
-            if (enforceUnique)
+            if (!enforceUnique)
             {
                 int indexOf = m_Strings.IndexOf(value);
 
