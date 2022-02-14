@@ -1,0 +1,63 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v2.1",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v2.1": {
+      "MacacoUO/1.0.0": {
+        "dependencies": {
+          "Scripts": "1.0.0",
+          "Server": "1.0.0"
+        },
+        "runtime": {
+          "MacacoUO.dll": {}
+        }
+      },
+      "Scripts/1.0.0": {
+        "dependencies": {
+          "Server": "1.0.0"
+        },
+        "runtime": {
+          "Scripts.CS.dll": {}
+        }
+      },
+      "Server/1.0.0": {
+        "runtime": {
+          "ServUO.exe": {}
+        }
+      },
+      "Microsoft.CodeDom.Providers.DotNetCompilerPlatform/3.6.0.0": {
+        "runtime": {
+          "Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll": {
+            "assemblyVersion": "3.6.0.0",
+            "fileVersion": "3.6.10708.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MacacoUO/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Scripts/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Server/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "Microsoft.CodeDom.Providers.DotNetCompilerPlatform/3.6.0.0": {
+      "type": "reference",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

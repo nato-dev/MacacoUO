@@ -1,0 +1,104 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\MacacoUO\\MacacoUO.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\MacacoUO\\MacacoUO.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\MacacoUO\\MacacoUO.csproj",
+        "projectName": "MacacoUO",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\MacacoUO\\MacacoUO.csproj",
+        "packagesPath": "C:\\Users\\gabri\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\MacacoUO\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\gabri\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "targetAlias": "netcoreapp2.1",
+            "projectReferences": {
+              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj": {
+                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj"
+              },
+              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
+                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "targetAlias": "netcoreapp2.1",
+          "dependencies": {
+            "Microsoft.NETCore.App": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.201\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj",
+        "projectName": "Scripts",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Scripts\\Scripts.csproj",
+        "frameworks": {
+          "net48": {
+            "projectReferences": {
+              "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
+                "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj"
+              }
+            }
+          }
+        }
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    },
+    "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj": {
+      "restore": {
+        "projectUniqueName": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj",
+        "projectName": "Server",
+        "projectPath": "C:\\Users\\gabri\\Desktop\\ServUO\\GIT\\UF2\\UltimaFronteira\\Server\\Server.csproj"
+      },
+      "frameworks": {
+        "net48": {}
+      }
+    }
+  }
+}
