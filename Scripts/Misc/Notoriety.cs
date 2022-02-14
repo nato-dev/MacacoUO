@@ -132,8 +132,30 @@ namespace Server.Misc
             if (attacker == null || defender == null || attacker.IsStaff() || defender.IsStaff())
                 return true;
 
+            var fromGuild = GetGuildFor(attacker.Guild as Guild, attacker);
+            var targetGuild = GetGuildFor(defender.Guild as Guild, defender);
+
+            // GVG
+            if (fromGuild != null && targetGuild != null)
+            {
+                if (fromGuild == targetGuild || fromGuild.IsAlly(targetGuild) || fromGuild.IsEnemy(targetGuild))
+                    return true; // Guild allies or enemies can be harmful
+            }
+
+            // Factions vs Factions
+            if (Settings.Enabled)
+            {
+                var srcFaction = Faction.Find(attacker, true, true);
+                var trgFaction = Faction.Find(defender, true, true);
+
+                if (srcFaction != null && trgFaction != null && srcFaction != trgFaction)
+                    return true;
+            }
+
             if (defender.Player && attacker.Player && defender.Region is GuardedRegion)
-                return false;
+            {
+                return false; // na cidade so pode tretar 
+            }
 
             var map = attacker.Map;
 
@@ -141,9 +163,10 @@ namespace Server.Misc
             var targPlayer = damageable as PlayerMobile;
             var attackerPlayer = attacker as PlayerMobile;
 
+
             if (attacker != null && !attacker.Player && !(bc != null && bc.GetMaster() != null && bc.GetMaster().IsPlayer()))
             {
-                if (targPlayer != null && ProtecaoRP(targPlayer) && bc!=null && bc.GetMaster() != null && !bc.GetMaster().RP)
+                if (targPlayer != null && ProtecaoRP(targPlayer) && bc != null && bc.GetMaster() != null && !bc.GetMaster().RP)
                     return false;
 
 
@@ -152,18 +175,18 @@ namespace Server.Misc
                 {
                     return false;
                 }
-                    
-                   
+
+
             }
 
             // PVPs
             if (attackerPlayer != null && targPlayer != null)
             {
                 var targ = targPlayer;
-                if(targ.Young)
+                if (targ.Young)
                 {
                     return false;
-                } 
+                }
 
                 if (targ.RP != attacker.RP && ProtecaoRP(targ))
                 {
@@ -183,7 +206,7 @@ namespace Server.Misc
                 }
             }
 
-            if(attacker.Player && defender is BaseCreature)
+            if (attacker.Player && defender is BaseCreature)
             {
                 var master = ((BaseCreature)defender).ControlMaster;
                 if (!attacker.RP && master != null && master.RP && ProtecaoRP(master as PlayerMobile))
@@ -209,14 +232,6 @@ namespace Server.Misc
                 return true; // Uncontrolled NPCs are only restricted by the young system
             }
 
-            var fromGuild = GetGuildFor(attacker.Guild as Guild, attacker);
-            var targetGuild = GetGuildFor(defender.Guild as Guild, defender);
-
-            if (fromGuild != null && targetGuild != null)
-            {
-                if (fromGuild == targetGuild || fromGuild.IsAlly(targetGuild) || fromGuild.IsEnemy(targetGuild))
-                    return true; // Guild allies or enemies can be harmful
-            }
 
             if (ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.EnhancedRules && ViceVsVirtueSystem.IsEnemy(attacker, damageable))
                 return true;
