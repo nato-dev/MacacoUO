@@ -7066,7 +7066,7 @@ namespace Server.Mobiles
 
         public override void OnExpGain(SkillName skill, ushort exp)
         {
-            if(this.Skills[skill].Value < this.Skills[skill].Cap && this.SkillsTotal < this.SkillsCap)
+            if(this.Skills[skill].Value < this.Skills[skill].Cap)
             {
                 if(!SkillExpGump.NaoMostra.Contains(skill))
                 {

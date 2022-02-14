@@ -104,6 +104,9 @@ namespace Server
 
         public bool IncreaseExp(ushort exp)
         {
+            if (Base >= Cap || Lock != SkillLock.Up)
+                return false;
+
             var x = m_Exp;
             x += exp;
             if (x > 1000)
