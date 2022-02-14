@@ -176,7 +176,7 @@ namespace Server
             }
         }
 
-     
+
 
         public static bool CompileCSScripts(bool debug, bool cache, out Assembly assembly)
         {
@@ -494,11 +494,22 @@ namespace Server
             Console.WriteLine("Compilando scripts com Roslyn");
             try
             {
-                var assemblies = new HashSet<Assembly>
+                var assemblies = new HashSet<Assembly>();
+
+                assemblies.Add(typeof(ScriptCompiler).Assembly);
+
+                if (!File.Exists("Scripts\\Output\\Scripts.CS.dll") && File.Exists("Scripts.dll"))
                 {
-                    typeof(ScriptCompiler).Assembly,
-                    Assembly.LoadFrom("Scripts.dll"),
-                };
+                    Console.WriteLine("Lendo assembly da pasta root");
+                    assemblies.Add(Assembly.LoadFrom("Scripts.dll"));
+                }
+
+                else
+                {
+                    Console.WriteLine("Lendo assembly da de output do visual studio");
+                    assemblies.Add(Assembly.LoadFrom("Scripts\\Output\\Scripts.CS.dll"));
+                }
+
 
                 Assemblies = assemblies.ToArray();
 

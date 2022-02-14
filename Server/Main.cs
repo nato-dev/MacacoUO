@@ -758,6 +758,7 @@ namespace Server
 
             foreach (Assembly a in ScriptCompiler.Assemblies)
             {
+                Shard.Debug("Validando assembly " + a.FullName);
                 VerifySerialization(a);
             }
         }
@@ -767,6 +768,7 @@ namespace Server
 
         private static void VerifyType(Type t)
         {
+            Shard.Debug("Validando type " + t.Name);
             bool isItem = t.IsSubclassOf(typeof(Item));
 
             if (isItem || t.IsSubclassOf(typeof(Mobile)))
