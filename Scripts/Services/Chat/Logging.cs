@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using System.Collections.Generic;
 
@@ -6,7 +6,7 @@ namespace Server.Engines.Chat
 {
     public class ChatLogging
     {
-        public static readonly bool Enabled = true;
+        public static readonly bool Enabled = false;
 
         private static StreamWriter m_Output;
         private static Dictionary<string, StreamWriter> m_OutputPerChannel;

@@ -1,1 +1,0 @@
-Currenlty, you will need to keep #define PVP_UsingNewMultis commented out in BaseMultiArena.cs and TheCageArena.cs. This requires the CustomMulti package, which as of 2/18/2020, isn't quite ready for release. You can try out the MinaxMultiArena, however when you do he switch over to the new multi's, this arena will have to be deleted.

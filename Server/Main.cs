@@ -369,7 +369,7 @@ namespace Server
             _Signal.Set();
         }
 
-        public static void Main(string[] args)
+        public static void MainCore(string[] args)
         {
 #if DEBUG
             Debug = true;
@@ -768,7 +768,6 @@ namespace Server
 
         private static void VerifyType(Type t)
         {
-            Shard.Debug("Validando type " + t.Name);
             bool isItem = t.IsSubclassOf(typeof(Item));
 
             if (isItem || t.IsSubclassOf(typeof(Mobile)))

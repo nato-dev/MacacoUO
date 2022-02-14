@@ -498,18 +498,7 @@ namespace Server
 
                 assemblies.Add(typeof(ScriptCompiler).Assembly);
 
-                if (!File.Exists("Scripts\\Output\\Scripts.CS.dll") && File.Exists("Scripts.dll"))
-                {
-                    Console.WriteLine("Lendo assembly da pasta root");
-                    assemblies.Add(Assembly.LoadFrom("Scripts.dll"));
-                }
-
-                else
-                {
-                    Console.WriteLine("Lendo assembly da de output do visual studio");
-                    assemblies.Add(Assembly.LoadFrom("Scripts\\Output\\Scripts.CS.dll"));
-                }
-
+                assemblies.Add(Assembly.LoadFrom("Scripts.dll"));
 
                 Assemblies = assemblies.ToArray();
 
@@ -623,6 +612,7 @@ namespace Server
 
                     if (m != null)
                     {
+
                         invoke.Add(m);
                     }
                 }
