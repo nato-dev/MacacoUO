@@ -30,7 +30,7 @@ namespace Server.Fronteira.Recursos
         }
 
         public Recurso(Serial s) : base(s) {
-            
+
         }
 
 
@@ -70,6 +70,8 @@ namespace Server.Fronteira.Recursos
             else if (rnd < 10)
                 return CraftResource.Carmesim;
             else if (rnd < 20)
+                return CraftResource.Eucalipto;
+            else if (rnd < 30)
                 return CraftResource.Mogno;
             else if (rnd < 50)
                 return CraftResource.Pinho;
@@ -116,7 +118,7 @@ namespace Server.Fronteira.Recursos
                 _folha.Delete();
                 _folha = null;
             }
-              
+
             base.OnDelete();
         }
 
@@ -158,7 +160,7 @@ namespace Server.Fronteira.Recursos
                         exp += 1000;
                     else if (from.Skills[skill].Value < 110)
                         exp += 800;
-                    else 
+                    else
                         exp += 500;
                 }
             }
