@@ -13,6 +13,9 @@ namespace Server
         public static bool GUIA { get { return Config.Get("General.Guia", false); } }
         public static bool WHITELIST { get { return Config.Get("General.Whitelist", false); } }
 
+        public static string BotID { get { return Config.Get("General.BotID", ""); } }
+        public static string BotKey { get { return Config.Get("General.BotKey", ""); } }
+
         public static bool TITULOS_RP = false;
 
         public static string SEGREDO_WEB_API = "segredowebapi";

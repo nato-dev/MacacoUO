@@ -64,6 +64,9 @@ namespace VitaNex.Modules.Discord
 
         public static void SendMessage(string message, bool filtered)
         {
+            if (Shard.BotID == "")
+                return;
+
             if (String.IsNullOrWhiteSpace(message))
             {
                 return;
@@ -184,8 +187,8 @@ namespace VitaNex.Modules.Discord
         public void SetDefaults()
         {
 
-            WebhookID = "942521189895647246";
-            WebhookKey = "ft-5_yeqhzZGLcgROXD_Igdz9TZKFyZuKvB3mi3hYlKmdfqaYx1VJ80yEXX1WbZ_hFPX";
+            WebhookID = Shard.BotID;
+            WebhookKey = Shard.BotKey;
 
             WebhookDebugID = String.Empty;
             WebhookDebugKey = String.Empty;

@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  VitaNex_Modules.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -161,6 +161,7 @@ namespace VitaNex
 
 			foreach (var cmi in Modules.OrderBy(cmi => cmi.Priority))
 			{
+                ToConsole("Invoking " + cmi.GetType().Name);
 				InvokeModule(cmi);
 			}
 		}
