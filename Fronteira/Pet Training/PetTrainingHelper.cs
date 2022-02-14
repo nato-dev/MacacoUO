@@ -50,7 +50,7 @@ namespace Server.Mobiles
         MagicalNecromanticAndTokuno = MagicalAndNecromantic | Tokuno,
         ClawedTailedAndTokuno = ClawedAndTailed | Tokuno,
         ClawedTailedAndNecromantic = ClawedAndTailed | Necromantic,
-        
+
         MagicalClawedTailedAndNecromantic = MagicalClawedAndTailed | Necromantic,
         ClawedTailedNecromanticAndTokuno = ClawedNecromanticAndTokuno | Tailed,
         ClawedTailedMagicalAndTokuno = MagicalClawedAndTailed | Tokuno,
@@ -93,7 +93,7 @@ namespace Server.Mobiles
         StandardClawedOrTailed = SabreToothedTiger | Slashing | WrestlingMastery,
         Tokuno1 = Tokuno | Chivalry | Discordance | MageryMastery | Mysticism | Poisoning | Spellweaving,
         Dragon1 = Bashing | BattleDefense | Chivalry | Discordance | MageryMastery | Mysticism | Piercing | Poisoning | Slashing | Spellweaving | WrestlingMastery,
-        Dragon2 = Bashing | Chivalry | Discordance | MageryMastery | Mysticism | Piercing | Poisoning | Slashing | Spellweaving | WrestlingMastery, 
+        Dragon2 = Bashing | Chivalry | Discordance | MageryMastery | Mysticism | Piercing | Poisoning | Slashing | Spellweaving | WrestlingMastery,
         ColdDrake = Chivalry | Discordance | Poisoning | Mysticism | Spellweaving,
         Cusidhe = ColdDrake | WrestlingMastery,
         Wolf = Bashing | Tokuno | Necromage | Necromancy | Piercing | Poisoning | Slashing | WrestlingMastery,
@@ -119,7 +119,7 @@ namespace Server.Mobiles
         public static List<TrainingPoint> _TrainingPoints;
 
         public static TrainingDefinition[] Definitions { get; private set; }
-       
+
         #region Accessors
         public static TrainingDefinition GetTrainingDefinition(BaseCreature bc)
         {
@@ -339,28 +339,28 @@ namespace Server.Mobiles
 
         public static Habilidade[] WepAbility3 =
         {
-            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.ConcussionBlow, Habilidade.CrushingBlow, 
+            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.ConcussionBlow, Habilidade.CrushingBlow,
             Habilidade.Dismount, Habilidade.Feint, Habilidade.ForceOfNature, Habilidade.FrenziedWhirlwind, Habilidade.MortalStrike,
             Habilidade.NerveStrike, Habilidade.ParalyzingBlow, Habilidade.PsychicAttack, Habilidade.TalonStrike
         };
 
         public static Habilidade[] WepAbility4 =
         {
-            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.BleedAttack, Habilidade.ConcussionBlow, 
+            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.BleedAttack, Habilidade.ConcussionBlow,
             Habilidade.CrushingBlow, Habilidade.Dismount, Habilidade.Feint, Habilidade.ForceOfNature, Habilidade.MortalStrike,
             Habilidade.NerveStrike, Habilidade.ParalyzingBlow, Habilidade.PsychicAttack, Habilidade.TalonStrike
         };
 
         public static Habilidade[] WepAbility5 =
         {
-            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.ColdWind, Habilidade.ConcussionBlow, 
+            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.ColdWind, Habilidade.ConcussionBlow,
             Habilidade.CrushingBlow, Habilidade.Dismount, Habilidade.Feint, Habilidade.ForceOfNature, Habilidade.FrenziedWhirlwind,
             Habilidade.MortalStrike, Habilidade.NerveStrike, Habilidade.ParalyzingBlow, Habilidade.PsychicAttack, Habilidade.TalonStrike
         };
 
         public static Habilidade[] WepAbility6 =
         {
-            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.BleedAttack, Habilidade.ColdWind, 
+            Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.BleedAttack, Habilidade.ColdWind,
             Habilidade.ConcussionBlow, Habilidade.CrushingBlow, Habilidade.Disarm, Habilidade.Feint, Habilidade.ForceOfNature, Habilidade.FrenziedWhirlwind,
             Habilidade.MortalStrike, Habilidade.NerveStrike, Habilidade.ParalyzingBlow, Habilidade.PsychicAttack, Habilidade.TalonStrike
         };
@@ -382,15 +382,15 @@ namespace Server.Mobiles
         public static Habilidade[] WepAbility9 =
         {
             Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.BleedAttack, Habilidade.Block,
-            Habilidade.ConcussionBlow, Habilidade.CrushingBlow, Habilidade.Dismount, Habilidade.Feint, Habilidade.ForceOfNature, 
-            Habilidade.FrenziedWhirlwind, Habilidade.MortalStrike, Habilidade.NerveStrike, Habilidade.ParalyzingBlow, Habilidade.PsychicAttack, 
+            Habilidade.ConcussionBlow, Habilidade.CrushingBlow, Habilidade.Dismount, Habilidade.Feint, Habilidade.ForceOfNature,
+            Habilidade.FrenziedWhirlwind, Habilidade.MortalStrike, Habilidade.NerveStrike, Habilidade.ParalyzingBlow, Habilidade.PsychicAttack,
             Habilidade.TalonStrike
         };
 
         public static Habilidade[] WepAbility10 =
         {
             Habilidade.ArmorIgnore, Habilidade.ArmorPierce, Habilidade.Bladeweave, Habilidade.BleedAttack, Habilidade.ColdWind,
-            Habilidade.ConcussionBlow, Habilidade.CrushingBlow, Habilidade.Dismount, Habilidade.Feint, Habilidade.ForceOfNature, 
+            Habilidade.ConcussionBlow, Habilidade.CrushingBlow, Habilidade.Dismount, Habilidade.Feint, Habilidade.ForceOfNature,
             Habilidade.FrenziedWhirlwind, Habilidade.MortalStrike, Habilidade.NerveStrike, Habilidade.PsychicAttack, Habilidade.TalonStrike
         };
 
@@ -438,30 +438,30 @@ namespace Server.Mobiles
             SpecialAbilityNone = new SpecialAbility[] { };
 
             SpecialAbilityMagical1 = new SpecialAbility[]
-            { 
+            {
                 SpecialAbility.AngryFire, SpecialAbility.ConductiveBlast, SpecialAbility.DragonBreath, SpecialAbility.Inferno,
                 SpecialAbility.LightningForce, SpecialAbility.RagingBreath
             };
 
             SpecialAbilityMagical2 = new SpecialAbility[]
-            { 
+            {
                 SpecialAbility.AngryFire, SpecialAbility.ConductiveBlast, SpecialAbility.DragonBreath, SpecialAbility.Inferno,
                 SpecialAbility.LightningForce, SpecialAbility.RagingBreath, SpecialAbility.StealLife
             };
 
             SpecialAbilityMagical3 = new SpecialAbility[]
-            { 
+            {
                 SpecialAbility.AngryFire, SpecialAbility.ConductiveBlast, SpecialAbility.DragonBreath, SpecialAbility.Inferno,
                 SpecialAbility.LightningForce, SpecialAbility.RagingBreath
             };
 
             SpecialAbilityMagical4 = new SpecialAbility[]
-            { 
+            {
                 SpecialAbility.AngryFire, SpecialAbility.DragonBreath, SpecialAbility.Inferno, SpecialAbility.RagingBreath
             };
 
             SpecialAbilityNecroMagical = new SpecialAbility[]
-            { 
+            {
                 SpecialAbility.AngryFire, SpecialAbility.ConductiveBlast, SpecialAbility.DragonBreath, SpecialAbility.Inferno,
                 SpecialAbility.LightningForce, SpecialAbility.RagingBreath, SpecialAbility.LifeLeech
             };
@@ -533,7 +533,7 @@ namespace Server.Mobiles
             SpecialAbilityBitingClawedAndTailed = new SpecialAbility[]
             {
                 SpecialAbility.VenomousBite, SpecialAbility.ViciousBite,
-                SpecialAbility.ManaDrain, SpecialAbility.Repel, SpecialAbility.SearingWounds, SpecialAbility.GraspingClaw, 
+                SpecialAbility.ManaDrain, SpecialAbility.Repel, SpecialAbility.SearingWounds, SpecialAbility.GraspingClaw,
                 SpecialAbility.TailSwipe
             };
 
@@ -608,12 +608,12 @@ namespace Server.Mobiles
             };
 
             SpecialAbilitySabreTri = new SpecialAbility[]
-            { 
+            {
                 SpecialAbility.SearingWounds, SpecialAbility.TailSwipe
             };
 
             RuleBreakers = new SpecialAbility[]
-            { 
+            {
                 SpecialAbility.SearingWounds, SpecialAbility.TailSwipe, SpecialAbility.DragonBreath, SpecialAbility.LifeLeech, SpecialAbility.ViciousBite
             };
             #endregion
@@ -654,56 +654,56 @@ namespace Server.Mobiles
 
             AreaEffectArea2 = new AreaEffect[]
             {
-                AreaEffect.EssenceOfEarth, AreaEffect.ExplosiveGoo, AreaEffect.AuraOfEnergy, 
+                AreaEffect.EssenceOfEarth, AreaEffect.ExplosiveGoo, AreaEffect.AuraOfEnergy,
                 AreaEffect.AuraOfNausea, AreaEffect.EssenceOfDisease,
                 AreaEffect.PoisonBreath
             };
 
             AreaEffectArea3 = new AreaEffect[]
             {
-                AreaEffect.AuraOfNausea, AreaEffect.EssenceOfDisease, AreaEffect.PoisonBreath, 
+                AreaEffect.AuraOfNausea, AreaEffect.EssenceOfDisease, AreaEffect.PoisonBreath,
             };
             #endregion
 
             #region Creature Training Definitions
             Definitions = new TrainingDefinition[]
             {
-                new TrainingDefinition(typeof(Alligator), Class.ClawedAndTailed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawedAndTailed, WepAbility1, AreaEffectNone, 1, 4),  
-                new TrainingDefinition(typeof(BakeKitsune), Class.ClawedTailedAndTokuno, MagicalAbility.Tokuno1, SpecialAbilityClawedTailedAndMagical2, WepAbility2, AreaEffectArea1, 3, 5), 
-                new TrainingDefinition(typeof(BaneDragon), Class.MagicalClawedAndTailed, MagicalAbility.Dragon1, SpecialAbilityBaneDragon, WepAbility2, AreaEffectArea2, 3, 5), 
-                new TrainingDefinition(typeof(BattleChickenLizard), Class.Untrainable, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 1, 1), 
-                new TrainingDefinition(typeof(Bird), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 2), 
-                new TrainingDefinition(typeof(BlackBear), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3), 
+                new TrainingDefinition(typeof(Alligator), Class.ClawedAndTailed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawedAndTailed, WepAbility1, AreaEffectNone, 1, 4),
+                new TrainingDefinition(typeof(BakeKitsune), Class.ClawedTailedAndTokuno, MagicalAbility.Tokuno1, SpecialAbilityClawedTailedAndMagical2, WepAbility2, AreaEffectArea1, 3, 5),
+                new TrainingDefinition(typeof(BaneDragon), Class.MagicalClawedAndTailed, MagicalAbility.Dragon1, SpecialAbilityBaneDragon, WepAbility2, AreaEffectArea2, 3, 5),
+                new TrainingDefinition(typeof(BattleChickenLizard), Class.Untrainable, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 1, 1),
+                new TrainingDefinition(typeof(Bird), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 2),
+                new TrainingDefinition(typeof(BlackBear), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3),
                 new TrainingDefinition(typeof(BloodFox), Class.None, MagicalAbility.Poisoning, SpecialAbilityNone, WepAbility3, AreaEffectNone, 2, 3),
                 new TrainingDefinition(typeof(Boar), Class.None, MagicalAbility.StandardClawedOrTailed, SpecialAbilityAnimalStandard, WepAbility1, AreaEffectNone, 1, 3),
-                new TrainingDefinition(typeof(BrownBear), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3), 
-                new TrainingDefinition(typeof(Bull), Class.None, MagicalAbility.StandardClawedOrTailed, SpecialAbilityAnimalStandard, WepAbility1, AreaEffectNone, 1 ,4), 
+                new TrainingDefinition(typeof(BrownBear), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3),
+                new TrainingDefinition(typeof(Bull), Class.None, MagicalAbility.StandardClawedOrTailed, SpecialAbilityAnimalStandard, WepAbility1, AreaEffectNone, 1 ,4),
                 new TrainingDefinition(typeof(BullFrog), Class.None, MagicalAbility.StandardClawedOrTailed, SpecialAbilityAnimalStandard, WepAbility1, AreaEffectNone, 1, 3),
-                new TrainingDefinition(typeof(Cat), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility4, AreaEffectNone, 1, 3), 
-                new TrainingDefinition(typeof(Chicken), Class.Clawed, MagicalAbility.None, SpecialAbilityClawed, WepAbilityNone, AreaEffectNone, 1, 2), 
+                new TrainingDefinition(typeof(Cat), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility4, AreaEffectNone, 1, 3),
+                new TrainingDefinition(typeof(Chicken), Class.Clawed, MagicalAbility.None, SpecialAbilityClawed, WepAbilityNone, AreaEffectNone, 1, 2),
                 new TrainingDefinition(typeof(ChickenLizard), Class.Untrainable, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 1, 1),
                 new TrainingDefinition(typeof(LeatherWolf), Class.None, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 1, 1),
                 new TrainingDefinition(typeof(ColdDrake), Class.None, MagicalAbility.ColdDrake, SpecialAbilityNone, WepAbility2, new AreaEffect[] { AreaEffect.AuraOfEnergy, AreaEffect.ExplosiveGoo, AreaEffect.EssenceOfEarth }, 3, 5),
                 new TrainingDefinition(typeof(CorrosiveSlime), Class.StickySkin, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 1, 3),
                 new TrainingDefinition(typeof(Cougar), Class.ClawedAndTailed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawedAndTailed, WepAbility1, AreaEffectNone, 1, 3),
-                new TrainingDefinition(typeof(Cow), Class.None, MagicalAbility.StandardClawedOrTailed, SpecialAbilityAnimalStandard, WepAbility1, AreaEffectNone, 1, 3), 
+                new TrainingDefinition(typeof(Cow), Class.None, MagicalAbility.StandardClawedOrTailed, SpecialAbilityAnimalStandard, WepAbility1, AreaEffectNone, 1, 3),
                 new TrainingDefinition(typeof(CrimsonDrake), Class.None, MagicalAbility.Dragon2, SpecialAbilityNone, WepAbility2, AreaEffectArea1, 2, 5), // CrimsonDrake[Poison] = AreaEffectArea2
-                new TrainingDefinition(typeof(CuSidhe), Class.MagicalClawedAndTailed, MagicalAbility.Cusidhe, SpecialAbilityClawedTailedAndMagical2, WepAbility5, AreaEffectArea1, 3, 5), 
-                //new TrainingDefinition(typeof(DarkSteed), Class.None, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone), 
-                new TrainingDefinition(typeof(DeathwatchBeetle), Class.Insectoid, MagicalAbility.Poisoning, SpecialAbilityMagicalInsectoid, WepAbility5, AreaEffectNone, 1, 4), 
-                new TrainingDefinition(typeof(DesertOstard), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3), 
-                new TrainingDefinition(typeof(Dimetrosaur), Class.None, MagicalAbility.Poisoning, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 3, 5), 
-                new TrainingDefinition(typeof(DireWolf), Class.ClawedNecromanticAndTokuno, MagicalAbility.Wolf, SpecialAbilityClawedAndNecromantic, WepAbility1, AreaEffectNone, 1, 4), 
-                new TrainingDefinition(typeof(Dog), Class.Tailed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityTailed, WepAbility1, AreaEffectNone, 1, 3), 
+                new TrainingDefinition(typeof(CuSidhe), Class.MagicalClawedAndTailed, MagicalAbility.Cusidhe, SpecialAbilityClawedTailedAndMagical2, WepAbility5, AreaEffectArea1, 3, 5),
+                //new TrainingDefinition(typeof(DarkSteed), Class.None, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone),
+                new TrainingDefinition(typeof(DeathwatchBeetle), Class.Insectoid, MagicalAbility.Poisoning, SpecialAbilityMagicalInsectoid, WepAbility5, AreaEffectNone, 1, 4),
+                new TrainingDefinition(typeof(DesertOstard), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3),
+                new TrainingDefinition(typeof(Dimetrosaur), Class.None, MagicalAbility.Poisoning, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 3, 5),
+                new TrainingDefinition(typeof(DireWolf), Class.ClawedNecromanticAndTokuno, MagicalAbility.Wolf, SpecialAbilityClawedAndNecromantic, WepAbility1, AreaEffectNone, 1, 4),
+                new TrainingDefinition(typeof(Dog), Class.Tailed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityTailed, WepAbility1, AreaEffectNone, 1, 3),
                 new TrainingDefinition(typeof(Dragon), Class.MagicalClawedAndTailed, MagicalAbility.Dragon2, SpecialAbilityNone, WepAbility2, AreaEffectArea1, 4, 5),
                 new TrainingDefinition(typeof(YoungDragon), Class.MagicalClawedAndTailed, MagicalAbility.Dragon2, SpecialAbilityNone, WepAbility2, AreaEffectArea1, 3, 4),
-                new TrainingDefinition(typeof(DragonTurtleHatchling), Class.MagicalAndTailed, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 4, 5), 
-                new TrainingDefinition(typeof(DragonWolf), Class.None, MagicalAbility.DragonWolf, SpecialAbilityNone, WepAbility1, AreaEffectNone, 4, 5), 
-                new TrainingDefinition(typeof(Drake), Class.MagicalAndTailed, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 2, 5), 
-                new TrainingDefinition(typeof(DreadSpider), Class.MagicalNecromanticAndTokuno, MagicalAbility.DreadSpider, SpecialAbilityDreadSpider, WepAbility2, AreaEffectArea2, 3, 5), 
-                new TrainingDefinition(typeof(DreadWarhorse), Class.MagicalAndNecromantic, MagicalAbility.DreadWarhorse, SpecialAbilityNone, WepAbility2, AreaEffectArea2, 3, 5), 
-                new TrainingDefinition(typeof(Eagle), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3), 
-                new TrainingDefinition(typeof(Ferret), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 2), 
+                new TrainingDefinition(typeof(DragonTurtleHatchling), Class.MagicalAndTailed, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 4, 5),
+                new TrainingDefinition(typeof(DragonWolf), Class.None, MagicalAbility.DragonWolf, SpecialAbilityNone, WepAbility1, AreaEffectNone, 4, 5),
+                new TrainingDefinition(typeof(Drake), Class.MagicalAndTailed, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 2, 5),
+                new TrainingDefinition(typeof(DreadSpider), Class.MagicalNecromanticAndTokuno, MagicalAbility.DreadSpider, SpecialAbilityDreadSpider, WepAbility2, AreaEffectArea2, 3, 5),
+                new TrainingDefinition(typeof(DreadWarhorse), Class.MagicalAndNecromantic, MagicalAbility.DreadWarhorse, SpecialAbilityNone, WepAbility2, AreaEffectArea2, 3, 5),
+                new TrainingDefinition(typeof(Eagle), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3),
+                new TrainingDefinition(typeof(Ferret), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 2),
                 new TrainingDefinition(typeof(FireBeetle), Class.MagicalAndInsectoid, MagicalAbility.StandardClawedOrTailed, SpecialAbilityMagicalInsectoid, WepAbility1, AreaEffectExplosiveGoo, 1 ,5),
                 new TrainingDefinition(typeof(FireSteed), Class.Magical, MagicalAbility.Dragon2, SpecialAbilityNone, WepAbility2, AreaEffectArea1, 2, 5),
                 new TrainingDefinition(typeof(ForestOstard), Class.Clawed, MagicalAbility.StandardClawedOrTailed, SpecialAbilityClawed, WepAbility1, AreaEffectNone, 1, 3),
@@ -831,8 +831,8 @@ namespace Server.Mobiles
             _TrainingPoints.Add(new TrainingPoint(ResistanceType.Physical, 3.0, 1, 80, 1061158, 1157517));
             _TrainingPoints.Add(new TrainingPoint(ResistanceType.Fire, 3.0, 1, 80, 1061159, 1157518));
             _TrainingPoints.Add(new TrainingPoint(ResistanceType.Cold, 3.0, 1, 80, 1061160, 1157519));
-            _TrainingPoints.Add(new TrainingPoint(ResistanceType.Poison, 3.0, 1, 80, 1061161, 1157520));
-            _TrainingPoints.Add(new TrainingPoint(ResistanceType.Energy, 3.0, 1, 80, 1061162, 1157521));
+            _TrainingPoints.Add(new TrainingPoint(ResistanceType.Poison, 3.0, 1, 80, 1061161, 1157521));
+            _TrainingPoints.Add(new TrainingPoint(ResistanceType.Energy, 3.0, 1, 80, 1061162, 1157520));
 
             _TrainingPoints.Add(new TrainingPoint(SkillName.Magery, 0.5, 50, 200, 1002106, 1157522));
             _TrainingPoints.Add(new TrainingPoint(SkillName.EvalInt, 1.0, 50, 200, 1044076, 1157522));
@@ -1215,7 +1215,7 @@ namespace Server.Mobiles
                             bc.HitsMaxSeed = bc.HitsMax;
                         }
                         bc.SetStr(value); break;
-                    case PetStat.Dex: 
+                    case PetStat.Dex:
                         if(bc.StamMaxSeed == -1)
                         {
                             bc.StamMaxSeed = bc.StamMax;

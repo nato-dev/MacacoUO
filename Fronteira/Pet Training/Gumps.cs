@@ -55,7 +55,7 @@ namespace Server.Mobiles
 
                 if (trainProfile.HasBegunTraining && def != null && def.Class != Class.Untrainable)
                 {
-                    AddImage(53, 290, 0x805); 
+                    AddImage(53, 290, 0x805);
 
                     AddHtmlLocalized(47, 270, 160, 18, 1157491, 0xC8, false, false); // Pet Training Progress:
 
@@ -68,7 +68,7 @@ namespace Server.Mobiles
 
                     AddHtml(162, 285, 50, 18, FormatDouble(progress, false, true), false, false);
                     AddButton(215, 288, 0x15E1, 0x15E5, 1, GumpButtonType.Reply, 0);
-                    AddTooltip(1157568); // View real-time training progress. 
+                    AddTooltip(1157568); // View real-time training progress.
 
                     if (trainProfile.CanApplyOptions)
                     {
@@ -370,7 +370,7 @@ namespace Server.Mobiles
                     }
 
                     y += 18;
-                }                
+                }
 
                 if (profile.Advancements != null)
                 {
@@ -392,7 +392,7 @@ namespace Server.Mobiles
                         AddImage(28, 76, 0x826);
 
                         AddHtmlLocalized(47, 74, 160, 18, 1157505, 0xC8, false, false); // Pet Advancements
-                        
+
                         for (int i = profileadvcount; i >= 0; i--)
                         {
                             if (++idx > 9)
@@ -547,7 +547,7 @@ namespace Server.Mobiles
         public int Pages(AbilityProfile profile)
         {
             if (profile == null || profile.Advancements == null || profile.Advancements.Count == 0)
-                return 8;            
+                return 8;
 
             return 8 + AdvPage(profile);
         }
@@ -629,7 +629,7 @@ namespace Server.Mobiles
 
         public override void AddGumpLayout()
         {
-            List<BaseCreature> pets = new List<BaseCreature>(User.AllFollowers.OfType<BaseCreature>().Where(p => 
+            List<BaseCreature> pets = new List<BaseCreature>(User.AllFollowers.OfType<BaseCreature>().Where(p =>
                 p.TrainingProfile != null &&
                 p.TrainingProfile.HasBegunTraining &&
                 p.Map == User.Map));
@@ -1068,7 +1068,7 @@ namespace Server.Mobiles
 
                 return false;
             }
- 
+
             if (o is SpecialAbility[])
             {
                 if (!AbilityProfile.CanChooseSpecialAbility((SpecialAbility[])o))
@@ -1309,7 +1309,7 @@ namespace Server.Mobiles
             int max = TrainingPoint.GetMax(Creature);
             PetTrainingHelper.GetStartValue(TrainingPoint, Creature, ref start);
             StartValue = start;
-            
+
             if (StartValue > Value)
             {
                 Value = StartValue;
@@ -1326,7 +1326,7 @@ namespace Server.Mobiles
                 Value = StartValue + (int)(profile.TrainingPoints / weight);
             }
 
-            if (StartValue > 0)
+            if (StartValue > 0 || TrainingPoint.TrainPoint is ResistanceType)
             {
                 double valueWeight = ((double)Value * weight);
                 double maxWeight = max * weight;
@@ -1642,11 +1642,11 @@ namespace Server.Mobiles
                     }
                     else if (TrainingPoint.TrainPoint is SkillName && !CheckPowerScroll((SkillName)TrainingPoint.TrainPoint, Value, ref scroll))
                     {
-                        User.SendLocalizedMessage(1157499); // You are unable to train your pet. The required powerscroll was not found in your main backpack. 
+                        User.SendLocalizedMessage(1157499); // You are unable to train your pet. The required powerscroll was not found in your main backpack.
                     }
                     else if (StartValue >= Value)
                     {
-                        User.SendLocalizedMessage(1157501); // Your pet looks to have already completed that training. 
+                        User.SendLocalizedMessage(1157501); // Your pet looks to have already completed that training.
                     }
                     else if (PetTrainingHelper.CanControl(User, Creature, profile))
                     {
@@ -1756,7 +1756,7 @@ namespace Server.Mobiles
                 return false;
 
             scroll = User.Backpack.Items.OfType<PowerScroll>().FirstOrDefault(ps => ps.Skill == name && ps.Value == 100 + (value / 10));
-            
+
             return scroll != null;
         }
     }
@@ -1781,7 +1781,7 @@ namespace Server.Mobiles
             AddButton(275, 35, 5601, 5601, 1, GumpButtonType.Reply, 0);
             AddHtml(275, 38, 126, 20, Center(profile.TrainingMode == TrainingMode.Planning ? "REMOVER" : "ADICION"), false, false);
 
-            AddHtmlLocalized(0, 11, 654, 18, CenterLoc, "#1157591", 0xF424E5, false, false); // Pet Training Planning 
+            AddHtmlLocalized(0, 11, 654, 18, CenterLoc, "#1157591", 0xF424E5, false, false); // Pet Training Planning
             AddHtmlLocalized(60, 60, 216, 18, 1044010, 0, false, false); // <CENTER>CATEGORIES</CENTER>
             AddHtmlLocalized(275, 60, 216, 18, 1044011, 0, false, false); // <CENTER>SELECTIONS</CENTER>
             AddHtmlLocalized(510, 60, 150, 18, 1113586, 0, false, false); // Property Weight:
@@ -1798,7 +1798,7 @@ namespace Server.Mobiles
 
                 AddButton(25, y, 4017, 4019, i + 100, GumpButtonType.Reply, 0);
                 AddHtmlLocalized(60, y, 200, 18, PetTrainingHelper.GetCategoryLocalization(entry.TrainPoint), false, false);
-                
+
                 var loc = PetTrainingHelper.GetLocalization(entry.TrainPoint);
 
                 if (loc[0].Number > 0)
