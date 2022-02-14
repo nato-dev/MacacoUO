@@ -47,6 +47,10 @@ namespace Server
 
             list.AddRange(m_AdditionalReferences);
 
+            Console.WriteLine("Carregando assemblies");
+            foreach (var ass in list)
+                Console.WriteLine(ass);
+
             return list.ToArray();
         }
 
