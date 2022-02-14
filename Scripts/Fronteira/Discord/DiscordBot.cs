@@ -8,8 +8,9 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Threading;
+using VitaNex.Notify;
 
-namespace VitaNex.Modules.Discord
+namespace Fronteira.Discord
 {
     public class DiscordBot
     {
@@ -19,7 +20,7 @@ namespace VitaNex.Modules.Discord
         {
             if (CMOptions.HandleStatus)
             {
-                SendMessage("TestShard: Offline - Manutencao");
+                SendMessage(":hammer_pick: Shard: Offline - Manutencao");
             }
         }
 
@@ -27,7 +28,7 @@ namespace VitaNex.Modules.Discord
         {
             if (CMOptions.HandleStatus)
             {
-                SendMessage(":cross: TestShard: Offline (Crash - Reiniciando !)");
+                SendMessage(":cross: Shard: Offline (Crash - Reiniciando !)");
             }
         }
 
@@ -35,7 +36,7 @@ namespace VitaNex.Modules.Discord
         {
             if (CMOptions.HandleStatus)
             {
-                SendMessage(":white_check_mark: TestShard Online !");
+                SendMessage(":white_check_mark: Shard Online !");
             }
         }
 
@@ -140,7 +141,7 @@ namespace VitaNex.Modules.Discord
             EventSink.Shutdown += OnServerShutdown;
             EventSink.Crashed += OnServerCrashed;
             EventSink.ServerStarted += OnServerStarted;
-            Notify.Notify.OnBroadcast += OnNotifyBroadcast;
+            Notify.OnBroadcast += OnNotifyBroadcast;
             CommandSystem.Register("Discord", AccessLevel.Administrator, new CommandEventHandler(CMD2));
             //AutoPvP.AutoPvP.OnBattleWorldBroadcast += OnBattleWorldBroadcast;
         }

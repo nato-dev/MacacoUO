@@ -14257,12 +14257,6 @@
     <Content Include="Services\UltimaStore\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Server\Server.csproj">
-      <Project>{AE4A9EAA-E0EB-4DC9-9604-BE4289F9F6C3}</Project>
-      <Name>Server</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="Fronteira\Cooking\Foods\Grains\Refined Grains\" />
     <Folder Include="Fronteira\Cooking\Foods\Protein Foods\Beans and Peas\" />
     <Folder Include="Fronteira\Cooking\Foods\Protein Foods\Meats\Game Meats\Bear\" />
@@ -14309,6 +14303,12 @@
     <None Include="VitaNex\VERSION" />
     <None Include="VitaNex\VNC.cfg" />
     <None Include="Fronteira\Imbuing\notas.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Server\Server.csproj">
+      <Project>{ae4a9eaa-e0eb-4dc9-9604-be4289f9f6c3}</Project>
+      <Name>Server</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>

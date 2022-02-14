@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.Generic;
+using Fronteira.Discord;
 using Server;
 using Server.Accounting;
 using Server.Commands;
@@ -8,7 +9,6 @@ using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Network;
-using VitaNex.Modules.Discord;
 
 namespace Felladrin.Engines
 {

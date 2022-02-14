@@ -1,9 +1,9 @@
 using System;
+using Fronteira.Discord;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
-using VitaNex.Modules.Discord;
 
 namespace Server.Commands
 {

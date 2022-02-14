@@ -2,6 +2,7 @@
 using Server.Network;
 using Server.Mobiles;
 using Server.Misc.Custom;
+using Fronteira.Discord;
 
 namespace Server.Gumps
 {
@@ -13,6 +14,7 @@ namespace Server.Gumps
             {
                 pl.SendMessage(2, msg);
             }
+            DiscordBot.SendMessage(msg);
         }
 
         public AnuncioGump(PlayerMobile from, string texto) : base(0, 20)

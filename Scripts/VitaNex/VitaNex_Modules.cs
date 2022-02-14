@@ -110,6 +110,7 @@ namespace VitaNex
 					ScriptCompiler.Assemblies = asm.FreeToArray(true);
 				},
 				ToConsole);
+                
 		}
 
 		public static void ConfigureModules()

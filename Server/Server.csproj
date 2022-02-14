@@ -219,5 +219,4 @@
     <None Include="app.config" />
     <None Include="ServUO.exe.manifest" />
   </ItemGroup>
-  <Import Project="..\VersionSpecificSymbols.Common.prop" />
 </Project>

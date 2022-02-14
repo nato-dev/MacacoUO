@@ -11,7 +11,7 @@ using Server.Ziden.Achievements;
 using System.Linq;
 using Scripts.Mythik.Systems.Achievements.AchieveTypes;
 using Server.Ziden.Dungeons.Goblins.Quest;
-using VitaNex.Modules.Discord;
+using Fronteira.Discord;
 
 namespace Scripts.Mythik.Systems.Achievements
 {
