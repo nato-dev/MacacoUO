@@ -76,6 +76,10 @@ namespace Server.Ziden.Kills
             var gold = e.Corpse.TotalGold;
             var dg = true;
             var pontos = bc.PontosPvm;
+
+            if (bc.NoKillAwards || bc.NoLootOnDeath)
+                return;
+
             var exp = Math.Ceiling(pontos * 1.5);
             if (!(bc.Region is DungeonRegion))
             {

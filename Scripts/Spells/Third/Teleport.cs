@@ -126,6 +126,8 @@ namespace Server.Spells.Third
 
                 m.PlaySound(0x1FE);
 
+                m.SetCooldown("tp", TimeSpan.FromSeconds(4));
+
                 IPooledEnumerable eable = m.GetItemsInRange(0);
 
                 foreach (Item item in eable)

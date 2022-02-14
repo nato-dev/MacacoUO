@@ -417,7 +417,7 @@ namespace Server.Spells
             if (Shard.DebugEnabled)
                 Shard.Debug("Passos castando: " + caster.SpellSteps);
 
-            if (m_State == SpellState.Casting && caster.SpellSteps > maxDistance)
+            if (m_State == SpellState.Casting && caster.SpellSteps > maxDistance && !((this is TeleportSpell) || caster.IsCooldown("tp")))
             {
                 Disturb(DisturbType.Moved);
                 if (repeatedNerf)
