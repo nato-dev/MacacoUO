@@ -11,6 +11,7 @@ using Server.Ziden.Achievements;
 using System.Linq;
 using Scripts.Mythik.Systems.Achievements.AchieveTypes;
 using Server.Ziden.Dungeons.Goblins.Quest;
+using VitaNex.Modules.Discord;
 
 namespace Scripts.Mythik.Systems.Achievements
 {
@@ -555,13 +556,15 @@ namespace Scripts.Mythik.Systems.Achievements
 
                 if(ach.RewardPoints >= 10)
                 {
-                    foreach(var pl in PlayerMobile.Instances)
+                    var msg = player.Name + " completou a conquista " + ach.Title;
+                    foreach (var pl in PlayerMobile.Instances)
                     {
                         if(pl!=null && pl.NetState != null)
                         {
-                            pl.SendMessage(78, player.Name + " completou a conquista " + ach.Title);
+                            pl.SendMessage(78, msg);
                         }
                     }
+                    DiscordBot.SendMessage(":trophy:" + msg);
                 }
 
                 AddPoints(player, ach.RewardPoints);

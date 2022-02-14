@@ -9,7 +9,6 @@
 //        #        The MIT License (MIT)          #
 #endregion
 
-#region References
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,10 +20,7 @@ using System.Text;
 
 using Server;
 using Server.Guilds;
-#if ServUO
 using CustomsFramework;
-#endif
-#endregion
 
 namespace VitaNex.Text
 {
@@ -649,7 +645,6 @@ namespace VitaNex.Text
 			WriteGuildSet(set);
 		}
 
-#if ServUO
 		public override void Write(SaveData value)
 		{ }
 
@@ -685,6 +680,5 @@ namespace VitaNex.Text
 
 		public override void WriteDataSet<T>(HashSet<T> set, bool tidy)
 		{ }
-#endif
 	}
 }

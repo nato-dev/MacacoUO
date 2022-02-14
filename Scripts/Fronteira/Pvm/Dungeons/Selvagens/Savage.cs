@@ -33,10 +33,11 @@ namespace Server.Mobiles
             b.HitsMaxSeed = 2000;
             b.Hits = 2000;
             b.VirtualArmor = 60;
+            b.Fame *= 4;
             if(b.Skills.Parry.Base < 25)
                 b.Skills.Parry.Base = 25;
             b.Skills.MagicResist.Base = 100;
-            b.AddItem(new Gold(Utility.Random(200, 200)));
+            b.Backpack.DropItem(new Gold(Utility.Random(200, 200)));
             b.DamageMin = (int)(b.DamageMin * 1.2);
             b.DamageMax = (int)(b.DamageMax * 1.2);
         }

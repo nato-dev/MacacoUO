@@ -89,7 +89,8 @@ namespace Server.Items
             int min = m.NetState != null ? m.NetState.UpdateRange : Core.GlobalUpdateRange;
             int max = Core.GlobalRadarRange - 1;
 
-            Shard.Debug("Client Update Range: " + min+"/"+max);
+            if(Shard.DebugEnabled)
+                Shard.Debug("Client Update Range: " + min+"/"+max);
 
             int w = Components.Width;
             int h = Components.Height - 1;

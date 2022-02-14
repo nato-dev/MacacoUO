@@ -369,7 +369,7 @@ namespace Server
             _Signal.Set();
         }
 
-        public static void Main(string[] args)
+        public static void MainCore(string[] args)
         {
 #if DEBUG
             Debug = true;
@@ -606,7 +606,7 @@ namespace Server
             Utility.PushColor(ConsoleColor.Green);
             Config.Load();
 
-            while (!ScriptCompiler.Compile(Debug, _Cache))
+            while (!ScriptCompiler.CompileVelho(Debug, _Cache))
             {
                 Utility.PushColor(ConsoleColor.Red);
                 Console.WriteLine("Scripts tao cagados, favor nao cagar nos scripts.");
@@ -758,6 +758,7 @@ namespace Server
 
             foreach (Assembly a in ScriptCompiler.Assemblies)
             {
+                Shard.Debug("Validando assembly " + a.FullName);
                 VerifySerialization(a);
             }
         }

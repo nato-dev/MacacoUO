@@ -3779,6 +3779,22 @@ namespace Server.Items
             m_TalismanProtection = new TalismanAttribute(type, name, amount);
         }
 
+        public static void Initialize()
+        {
+            EventSink.Login += (ev) =>
+            {
+                var armor = ev.Mobile.ChestArmor as BaseArmor;
+                if (armor != null && armor.Elemento != ElementoPvM.None && ev.Mobile.Elemento == armor.Elemento)
+                {
+                    var count = SetHelper.CountElemento(ev.Mobile, armor.Elemento);
+                    if (count >= 4)
+                    {
+                        ev.Mobile.Elemento = armor.Elemento;
+                    }
+                }
+            };
+        }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public bool Altered
         {

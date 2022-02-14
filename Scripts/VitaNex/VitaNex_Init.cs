@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  VitaNex_Init.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -31,76 +31,83 @@ namespace VitaNex
 
 		static VitaNexCore()
 		{
-			_INITVersion = "5.2.0.0";
+            try
+            {
+                _INITVersion = "5.2.0.0";
 
-			_INITQueue = new Queue<Tuple<string, string>>();
-			_INITHandlers = new Dictionary<string, Action<string>>();
+                _INITQueue = new Queue<Tuple<string, string>>();
+                _INITHandlers = new Dictionary<string, Action<string>>();
 
-			var basePath = IOUtility.GetSafeDirectoryPath(Core.BaseDirectory + "/VitaNexCore");
+                var basePath = IOUtility.GetSafeDirectoryPath(Core.BaseDirectory + "/VitaNexCore");
 
-			if (!Directory.Exists(basePath))
-			{
-				FirstBoot = true;
-			}
+                if (!Directory.Exists(basePath))
+                {
+                    FirstBoot = true;
+                }
 
-			BaseDirectory = IOUtility.EnsureDirectory(basePath);
+                BaseDirectory = IOUtility.EnsureDirectory(basePath);
 
-			var first = IOUtility.GetSafeFilePath(BaseDirectory + "/FirstBoot.vnc", true);
+                var first = IOUtility.GetSafeFilePath(BaseDirectory + "/FirstBoot.vnc", true);
 
-			if (!File.Exists(first))
-			{
-				FirstBoot = true;
+                if (!File.Exists(first))
+                {
+                    FirstBoot = true;
 
-				IOUtility.EnsureFile(first)
-						 .AppendText(
-							 true,
-							 "This file serves no other purpose than to identify if",
-							 "the software has been initialized for the first time. ",
-							 "To re-initialize 'First-Boot' mode, simply delete this",
-							 "file before starting the application.");
-			}
+                    IOUtility.EnsureFile(first)
+                             .AppendText(
+                                 true,
+                                 "This file serves no other purpose than to identify if",
+                                 "the software has been initialized for the first time. ",
+                                 "To re-initialize 'First-Boot' mode, simply delete this",
+                                 "file before starting the application.");
+                }
 
-			var root = FindRootDirectory(Core.BaseDirectory + "/Scripts/VitaNex");
+                var root = FindRootDirectory(Core.BaseDirectory + "/Scripts/VitaNex");
 
-			if (root != null && root.Exists)
-			{
-				RootDirectory = root;
+                if (root != null && root.Exists)
+                {
+                    RootDirectory = root;
 
-				ParseVersion();
-				ParseINIT();
+                    ParseVersion();
+                    ParseINIT();
 
-				RegisterINITHandler(
-					"ROOT_DIR",
-					path =>
-					{
-						root = FindRootDirectory(path);
+                    RegisterINITHandler(
+                        "ROOT_DIR",
+                        path =>
+                        {
+                            root = FindRootDirectory(path);
 
-						if (root == null || !root.Exists)
-						{
-							return;
-						}
+                            if (root == null || !root.Exists)
+                            {
+                                return;
+                            }
 
-						RootDirectory = root;
+                            RootDirectory = root;
 
-						ParseVersion();
-					});
-			}
+                            ParseVersion();
+                        });
+                }
 
-			BackupExpireAge = TimeSpan.FromDays(7);
+                BackupExpireAge = TimeSpan.FromDays(7);
 
-			RegisterINITHandler(
-				"BACKUP_EXPIRE",
-				time =>
-				{
-					TimeSpan ts;
+                RegisterINITHandler(
+                    "BACKUP_EXPIRE",
+                    time =>
+                    {
+                        TimeSpan ts;
 
-					if (TimeSpan.TryParse(time, out ts))
-					{
-						BackupExpireAge = ts;
-					}
-				});
+                        if (TimeSpan.TryParse(time, out ts))
+                        {
+                            BackupExpireAge = ts;
+                        }
+                    });
 
-			Core.Slice += Slice;
+                Core.Slice += Slice;
+            } catch(Exception ex) {
+                Console.WriteLine("Erro ao inicializar vita nex");
+                Console.WriteLine(ex.Message);
+                Console.WriteLine(ex.StackTrace);
+            }
 		}
 
 		private static void Slice()

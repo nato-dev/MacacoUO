@@ -69,7 +69,6 @@ namespace Server.Spells.Eighth
                 if (Caster.Skills[SkillName.SpiritSpeak].Value < 80)
                 {
                     SpellHelper.Summon(creature, Caster, 0x212, duration, true, true, false, SkillName.SpiritSpeak);
-///BaseCreature.Summon(creature, false, this.Caster, new Point3D(p), 0x212, duration);
                     creature.SummonMaster = null;
                 }
                 if (Caster.Skills[SkillName.SpiritSpeak].Value < 95)

@@ -13,7 +13,7 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
             Body = 92;
-            Name = "a silver serpent";
+            Name = "serpente de prata";
             BaseSoundID = 219;
             Hue = 1150;
 
@@ -21,7 +21,7 @@ namespace Server.Mobiles
             SetDex(151, 300);
             SetInt(21, 40);
 
-            SetHits(97, 216);
+            SetHits(497, 516);
 
             SetDamage(5, 21);
 
@@ -51,6 +51,28 @@ namespace Server.Mobiles
         {
         }
 
+         public override void OnAfterSpawn()
+        {
+            base.OnAfterSpawn();
+            this.Hidden = true;
+            this.IsStealthing = true;
+            this.AllowedStealthSteps = 999;
+        }
+
+        public override bool CanStealth { get { return true; } }
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            if (!this.Hidden && this.Combatant == null)
+            {
+                this.AllowedStealthSteps = 999;
+                this.Hidden = true;
+                this.IsStealthing = true;
+            }
+        }
+
+
         public override Faction FactionAllegiance { get { return TrueBritannians.Instance; } }
         public override Ethics.Ethic EthicAllegiance { get { return Ethics.Ethic.Hero; } }
         public override bool DeathAdderCharmable { get { return true; } }
@@ -60,7 +82,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV3);
+            AddLoot(LootPack.LV4);
             AddLoot(LootPack.Gems, 2);
         }
 

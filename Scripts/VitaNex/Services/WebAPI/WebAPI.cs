@@ -388,34 +388,31 @@ namespace VitaNex.Web
 
         public static void BeginRequest<T>(string uri, T state, WebAPIRequestSend<T> send, WebAPIRequestReceive<T> receive)
         {
-            try
+
+            Shard.Debug("Fazendo request HTTP");
+
+
+            var request = (HttpWebRequest)WebRequest.Create(uri);
+
+            request.UserAgent = "VitaNexCore/" + VitaNexCore.Version + " Shard";
+
+            // ReSharper disable once AssignNullToNotNullAttribute
+            request.Proxy = null;
+            request.Credentials = null;
+
+            if (send != null)
             {
-                CSOptions.ToConsole("Requesting: {0}", uri);
-
-                var request = (HttpWebRequest)WebRequest.Create(uri);
-
-                request.UserAgent = "VitaNexCore/" + VitaNexCore.Version + " " + CSOptions.Service.FullName;
-
-                // ReSharper disable once AssignNullToNotNullAttribute
-                request.Proxy = null;
-                request.Credentials = null;
-
-                if (send != null)
-                {
-                    send(request, state);
-                }
-
-                if (RequestSend != null)
-                {
-                    RequestSend(request, state);
-                }
-
-                RequestUtility.BeginGetResponse(request, state, receive);
+                send(request, state);
             }
-            catch (Exception e)
+
+            if (RequestSend != null)
             {
-                CSOptions.ToConsole(e);
+                RequestSend(request, state);
             }
+
+            RequestUtility.BeginGetResponse(request, state, receive);
+
+
         }
 
         private static class ListenerUtility
@@ -595,13 +592,14 @@ namespace VitaNex.Web
                             return;
                         }
                     }
-              
 
 
-                client.Close();
-                } catch(Exception ex)
+
+                    client.Close();
+                }
+                catch (Exception ex)
                 {
-                    if(client != null)
+                    if (client != null)
                     {
                         try
                         {
@@ -1235,36 +1233,32 @@ namespace VitaNex.Web
 
             public static void AsyncRequestResult<T>(IAsyncResult r)
             {
-                try
+                using (var state = (AsyncState<T>)r.AsyncState)
                 {
-                    using (var state = (AsyncState<T>)r.AsyncState)
+                    try
                     {
-                        try
+                        var response = (HttpWebResponse)state.Request.EndGetResponse(r);
+
+                        if (state.Receive != null)
                         {
-                            var response = (HttpWebResponse)state.Request.EndGetResponse(r);
-
-                            if (state.Receive != null)
-                            {
-                                state.Receive(state.Request, state.State, response);
-                            }
-
-                            if (RequestReceive != null)
-                            {
-                                RequestReceive(state.Request, state.State, response);
-                            }
-
-                            response.Close();
+                            state.Receive(state.Request, state.State, response);
                         }
-                        catch (Exception e)
+
+                        if (RequestReceive != null)
                         {
-                            CSOptions.ToConsole(e);
+                            RequestReceive(state.Request, state.State, response);
                         }
+
+                        response.Close();
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                        Console.WriteLine(e.StackTrace);
                     }
                 }
-                catch (Exception e)
-                {
-                    CSOptions.ToConsole(e);
-                }
+
+
             }
 
             public struct AsyncState<T> : IDisposable

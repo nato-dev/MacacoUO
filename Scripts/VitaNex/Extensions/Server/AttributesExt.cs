@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  AttributesExt.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -9,9 +9,7 @@
 //        #        The MIT License (MIT)          #
 #endregion
 
-#if ServUO
 #define SA_ABSORB
-#endif
 
 #region References
 using System;
@@ -268,9 +266,7 @@ namespace Server
 				case AosWeaponAttribute.HitFireball:
 				case AosWeaponAttribute.HitLightning:
 				case AosWeaponAttribute.HitDispel:
-#if ServUO
 				case AosWeaponAttribute.HitCurse:
-#endif
 					return true;
 			}
 
@@ -286,10 +282,8 @@ namespace Server
 				case AosWeaponAttribute.HitLeechMana:
 				case AosWeaponAttribute.HitLowerAttack:
 				case AosWeaponAttribute.HitLowerDefend:
-#if ServUO
 				case AosWeaponAttribute.HitFatigue:
 				case AosWeaponAttribute.HitManaDrain:
-#endif
 					return true;
 			}
 

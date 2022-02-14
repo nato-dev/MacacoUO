@@ -159,7 +159,6 @@ namespace VitaNex
 			return _BeneficialParent(a, b);
 		}
 
-#if ServUO
 		public static bool AllowHarmful(Mobile a, IDamageable b)
 		{
 			if (b is Mobile)
@@ -174,7 +173,6 @@ namespace VitaNex
 
 			return _HarmfulParent(a, b);
 		}
-#endif
 
 		public static bool AllowHarmful(Mobile a, Mobile b)
 		{
@@ -204,7 +202,6 @@ namespace VitaNex
 			return _HarmfulParent(a, b);
 		}
 
-#if ServUO
 		public static int MobileNotoriety(Mobile a, IDamageable b)
 		{
 			if (b is Mobile)
@@ -219,7 +216,6 @@ namespace VitaNex
 
 			return _NotorietyParent(a, b);
 		}
-#endif
 
 		public static int MobileNotoriety(Mobile a, Mobile b)
 		{

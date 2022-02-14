@@ -70,7 +70,7 @@ namespace Server.SkillHandlers
 
                 if(Shard.DebugEnabled)
                 {
-                    Shard.Debug("Flag ? " + ItemFlags.GetStealable(toSteal) + " Dungeon ? " + (toSteal.GetRegion() is DungeonRegion+" Movable ? "+ toSteal.Movable));
+                    Shard.Debug("Flag ? " + ItemFlags.GetStealable(toSteal) + " Dungeon ? " + ((toSteal.GetRegion() is DungeonRegion)+" Movable ? "+ toSteal.Movable));
                 }
 
                 if(!toSteal.Movable && canSteal && toSteal.GetRegion() is DungeonRegion)

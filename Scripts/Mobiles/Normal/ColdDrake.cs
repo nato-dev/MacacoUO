@@ -61,11 +61,19 @@ namespace Server.Mobiles
 
                 PackItem(item);
             }
+
+            if (Utility.RandomDouble() < 0.02)
+            {
+                var h = new DragonHead();
+                h.Name = "Cabeca de Dragao Gelido";
+                h.Hue = this.Hue;
+                AddItem(h);
+            }
         }
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV5, 3);
+            AddLoot(LootPack.LV5, 1);
         }
 
         public override bool CanAngerOnTame { get { return true; } }
@@ -78,7 +86,7 @@ namespace Server.Mobiles
 
         public override bool HasBreath { get { return true; } } // fire breath enabled
         public override int BreathFireDamage { get { return 0; } }
-        public override int BreathColdDamage { get { return 100; } }
+        public override int BreathColdDamage { get { return 90; } }
         public override int BreathEffectHue { get { return 1264; } }
 
         public override bool HasAura { get { return !Controlled; } }

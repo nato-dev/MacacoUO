@@ -4,13 +4,12 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{AE4A9EAA-E0EB-4DC9-9604-BE4289F9F6C3}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Server</RootNamespace>
-    <AssemblyName>ServUO</AssemblyName>
+    <AssemblyName>Server</AssemblyName>
     <ApplicationIcon>
     </ApplicationIcon>
-    <StartupObject>Server.Core</StartupObject>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -19,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>..\</OutputPath>
-    <DefineConstants>TRACE;DEBUG;NEWTIMERS;ServUO</DefineConstants>
+    <DefineConstants>TRACE;DEBUG;NEWTIMERS;Server</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
@@ -36,12 +35,13 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
     <Prefer32Bit>false</Prefer32Bit>
-    <DefineConstants>TRACE;NEWTIMERS;ServUO</DefineConstants>
+    <DefineConstants>TRACE;NEWTIMERS;Server</DefineConstants>
     <UseVSHostingProcess>false</UseVSHostingProcess>
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
-    <ApplicationManifest>ServUO.exe.manifest</ApplicationManifest>
+    <StartupObject />
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -53,7 +53,6 @@
   -->
   <ItemGroup>
     <Compile Include=".\AggressorInfo.cs" />
-    <Compile Include=".\AssemblyInfo.cs" />
     <Compile Include=".\Attributes.cs" />
     <Compile Include=".\BaseVendor.cs" />
     <Compile Include=".\Body.cs" />
@@ -207,6 +206,11 @@
     <Content Include="servuo.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Xml" />
