@@ -17,12 +17,9 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
-
+using CustomsFramework;
 using Server;
 using Server.Guilds;
-#if ServUO
-using CustomsFramework;
-#endif
 #endregion
 
 namespace VitaNex.Text
@@ -421,7 +418,6 @@ namespace VitaNex.Text
 			return new HashSet<T>(ReadArray<string, T>(o => BaseGuild.FindByName(o) as T, o => o != null));
 		}
 
-#if ServUO
 		public override int PeekInt()
 		{
 			return -1;
@@ -461,6 +457,5 @@ namespace VitaNex.Text
 		{
 			return null;
 		}
-#endif
 	}
 }

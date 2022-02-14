@@ -817,12 +817,9 @@ namespace VitaNex.Modules.AutoPvP
 
 			if (m.Combatant != null)
 			{
-#if ServUO
 				// ReSharper disable once RedundantCast
 				var c = m.Combatant as Mobile;
-#else
-				var c = m.Combatant;
-#endif
+
 
 				if (c != null && c.Combatant == m)
 				{

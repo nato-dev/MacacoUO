@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  Regions.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -73,7 +73,6 @@ namespace VitaNex.Modules.AutoPvP
 			return base.AllowBeneficial(from, target);
 		}
 
-#if ServUO
 		public override bool AllowHarmful(Mobile from, IDamageable target)
 		{
 			if (target is Mobile)
@@ -85,9 +84,6 @@ namespace VitaNex.Modules.AutoPvP
 		}
 
 		public virtual bool AllowHarmful(Mobile from, Mobile target)
-#else
-		public override bool AllowHarmful(Mobile from, Mobile target)
-#endif
 		{
 			if (Battle != null)
 			{
@@ -220,7 +216,6 @@ namespace VitaNex.Modules.AutoPvP
 			base.OnBeneficialAction(helper, target);
 		}
 
-#if ServUO
 		public override bool OnCombatantChange(Mobile m, IDamageable oldMob, IDamageable newMob)
 		{
 			if (oldMob is Mobile || newMob is Mobile)
@@ -232,9 +227,7 @@ namespace VitaNex.Modules.AutoPvP
 		}
 
 		public virtual bool OnCombatantChange(Mobile m, Mobile oldMob, Mobile newMob)
-#else
-		public override bool OnCombatantChange(Mobile m, Mobile oldMob, Mobile newMob)
-#endif
+
 		{
 			if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden &&
 				!Battle.OnCombatantChange(m, oldMob, newMob))
@@ -271,13 +264,10 @@ namespace VitaNex.Modules.AutoPvP
 
 			return base.OnDamage(m, ref damage);
 		}
-
-#if ServUO
 		protected void OnDamage(Mobile m, IEntity damager, int damage)
 		{
 			OnDamage(m, damager as Mobile, damage);
 		}
-#endif
 
 		protected virtual void OnDamage(Mobile m, Mobile damager, int damage)
 		{
@@ -307,7 +297,6 @@ namespace VitaNex.Modules.AutoPvP
 			base.OnDeath(m);
 		}
 
-#if ServUO
 		public override void OnDidHarmful(Mobile harmer, IDamageable harmed)
 		{
 			if (harmed is Mobile)
@@ -321,9 +310,6 @@ namespace VitaNex.Modules.AutoPvP
 		}
 
 		public virtual void OnDidHarmful(Mobile harmer, Mobile harmed)
-#else
-		public override void OnDidHarmful(Mobile harmer, Mobile harmed)
-#endif
 		{
 			if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden)
 			{
@@ -383,7 +369,7 @@ namespace VitaNex.Modules.AutoPvP
 			base.OnGotBeneficialAction(helper, target);
 		}
 
-#if ServUO
+
 		public override void OnGotHarmful(Mobile harmer, IDamageable harmed)
 		{
 			if (harmed is Mobile)
@@ -397,9 +383,6 @@ namespace VitaNex.Modules.AutoPvP
 		}
 
 		public virtual void OnGotHarmful(Mobile harmer, Mobile harmed)
-#else
-		public override void OnGotHarmful(Mobile harmer, Mobile harmed)
-#endif
 		{
 			if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden)
 			{
@@ -426,12 +409,10 @@ namespace VitaNex.Modules.AutoPvP
 			return base.OnHeal(m, ref heal);
 		}
 
-#if ServUO
 		protected void OnHeal(Mobile m, IEntity healer, int heal)
 		{
 			OnHeal(m, healer as Mobile, heal);
 		}
-#endif
 
 		protected virtual void OnHeal(Mobile m, Mobile healer, int heal)
 		{

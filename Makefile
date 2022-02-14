@@ -14,6 +14,7 @@ debug:
 	${MCS} -target:library -out:${CURPATH}/Ultima.dll -r:${REFS} -nowarn:${NOWARNS} -d:DEBUG -d:MONO -d:ServUO -d:NEWTIMERS -optimize+ -nologo -debug -unsafe -recurse:${SDKPATH}/*.cs
 	${MCS} -win32icon:${SRVPATH}/servuo.ico -r:${CURPATH}/Ultima.dll,${REFS} -nowarn:${NOWARNS} -target:exe -out:${CURPATH}/${EXENAME}.exe -d:DEBUG -d:MONO -d:ServUO -d:NEWTIMERS -nologo -debug -unsafe -recurse:${SRVPATH}/*.cs
 	sed -i.bak -e 's/<!--//g; s/-->//g' ${EXENAME}.exe.config
+	
 
 run: build
 	${CURPATH}/${EXENAME}.sh

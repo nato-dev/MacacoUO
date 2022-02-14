@@ -174,7 +174,7 @@ namespace Server
 			return false;
 		}
 
-#if ServUO
+
 		public static bool IsValidCombatant(this IEntity o)
 		{
 			if (o == null || o.Deleted || o.Map == null || o.Map == Map.Internal)
@@ -223,19 +223,8 @@ namespace Server
 
 			return false;
 		}
-#else
-		public static bool IsValidCombatant(this Mobile o)
-		{
-			if (o == null || o.Deleted || o.Map == null || o.Map == Map.Internal)
-			{
-				return false;
-			}
 
-			return o.Alive && !o.IsDeadBondedPet && o.CanBeDamaged();
-		}
-#endif
 
-#if ServUO
 		public static T GetLastDamager<T>(this IEntity o, bool allowSelf)
 			where T : IEntity
 		{
@@ -268,29 +257,6 @@ namespace Server
 		{
 			return GetLastRepairer<IEntity>(o, allowSelf);
 		}
-#else
-		public static T GetLastDamager<T>(this Mobile o, bool allowSelf)
-			where T : Mobile
-		{
-			return o.CallMethod<T>("FindMostRecentDamager", allowSelf);
-		}
-
-		public static Mobile GetLastDamager(this Mobile o, bool allowSelf)
-		{
-			return GetLastDamager<Mobile>(o, allowSelf);
-		}
-
-		public static T GetLastHealer<T>(this Mobile o, bool allowSelf)
-			where T : Mobile
-		{
-			return o.CallMethod<T>("FindMostRecentHealer", allowSelf);
-		}
-
-		public static Mobile GetLastHealer(this Mobile o, bool allowSelf)
-		{
-			return GetLastHealer<Mobile>(o, allowSelf);
-		}
-#endif
 
 		public static bool IsControlledBy(this Mobile m, Mobile master)
 		{

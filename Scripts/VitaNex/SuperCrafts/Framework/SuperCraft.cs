@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  SuperCraft.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -71,11 +71,7 @@ namespace VitaNex.SuperCrafts
 
 		public abstract override void InitCraftList();
 
-#if ServUO
 		public override int CanCraft(Mobile m, ITool tool, Type itemType)
-#else
-		public override int CanCraft(Mobile m, BaseTool tool, Type itemType)
-#endif
 		{
 			if (tool == null || tool.Deleted || tool.UsesRemaining < 0)
 			{
