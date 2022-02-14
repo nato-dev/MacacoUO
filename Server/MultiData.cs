@@ -145,7 +145,6 @@ namespace Server
                     {
                         var destData = new byte[decompressedSize];
                         /*ZLibError error = */
-                        Console.WriteLine(Compression.Compressor.GetType().Name);
                         Compression.Compressor.Decompress(destData, ref decompressedSize, sourceData, compressedSize);
 
                         data = destData;
