@@ -42,6 +42,7 @@ namespace Server.Items
             base.Deserialize(reader);
 
             int version = reader.ReadInt();
+            
         }
     }
 }

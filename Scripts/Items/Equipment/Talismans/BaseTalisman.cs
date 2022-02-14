@@ -1467,9 +1467,9 @@ namespace Server.Items
             TalismanSkill.Carpentry,
             TalismanSkill.Cartography,
             TalismanSkill.Cooking,
-            TalismanSkill.Glassblowing,
-            TalismanSkill.Inscription,
-            TalismanSkill.Masonry,
+          //  TalismanSkill.Glassblowing,
+          //  TalismanSkill.Inscription,
+          //  TalismanSkill.Masonry,
             TalismanSkill.Tailoring,
             TalismanSkill.Tinkering,
         };

@@ -27,6 +27,9 @@ namespace Server.SkillHandlers
             if (Core.AOS && item is BaseArmor && ((BaseArmor)item).Attributes.SpellChanneling != 0)
                 return true;
 
+            if (item is SmugglersLantern)
+                return true;
+
             return false;
         }
 
