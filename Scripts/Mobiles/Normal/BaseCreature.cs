@@ -224,6 +224,44 @@ namespace Server.Mobiles
 
         private ElementoPvM _elemento;
 
+        [CommandProperty(AccessLevel.Administrator)]
+        public string Falas
+        {
+            set
+            {
+                XmlDialog xd = XmlAttach.FindAttachment(this, typeof(XmlDialog)) as XmlDialog;
+                if (xd == null)
+                {
+                    xd = new XmlDialog();
+                    XmlAttach.AttachTo(this, xd);
+                }
+                var id = 10;
+                var n = 1;
+                var falas = value.Split(',');
+                foreach(var f in falas)
+                {
+                    var fala = new XmlDialog.SpeechEntry();
+                    fala.Text = f;
+                    fala.EntryNumber = n;
+                    fala.DependsOn = (n - 1).ToString();
+                    fala.ID = id;
+                    id += 10;
+                    n += 1;
+                    xd.SpeechEntries.Add(fala);
+                }
+            }
+            get
+            {
+                XmlDialog xd = XmlAttach.FindAttachment(this, typeof(XmlDialog)) as XmlDialog;
+                if (xd != null && xd.SpeechEntries != null && xd.SpeechEntries.Count > 0)
+                {
+                    var ele = (XmlDialog.SpeechEntry)xd.SpeechEntries[xd.SpeechEntries.Count - 1];
+                    return ele.Text;
+                }
+                return "";
+            }
+        }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public override ElementoPvM Elemento
         {

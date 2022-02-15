@@ -29,7 +29,7 @@ namespace Server.Mobiles
         }
 
         [Constructable]
-        public XmlQuestNPC(int gender) : base( AIType.AI_Melee, FightMode.None, 10, 1, 0.8, 3.0 )
+        public XmlQuestNPC(int gender) : base( AIType.AI_Vendor, FightMode.None, 10, 1, 0.8, 3.0 )
         {
             SetStr( 10, 30 );
             SetDex( 10, 30 );

@@ -9,6 +9,7 @@ using Server.ContextMenus;
 using Server.Engines.BulkOrders;
 using Server.Engines.Points;
 using Server.Engines.Quests;
+using Server.Engines.XmlSpawner2;
 using Server.Factions;
 using Server.Gumps;
 using Server.Items;
@@ -39,6 +40,9 @@ namespace Server.Mobiles
         public static int EconomyStockAmount = Config.Get("Vendors.EconomyStockAmount", 500);
         public static TimeSpan DelayRestock = TimeSpan.FromMinutes(Config.Get("Vendors.RestockDelay", 60));
         public static int MaxSell = Config.Get("Vendors.MaxSell", 500);
+
+      
+
 
         public static void PegaRecompensa(Mobile from, BaseVendor vendor)
         {

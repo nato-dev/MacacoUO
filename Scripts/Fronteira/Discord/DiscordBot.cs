@@ -97,7 +97,7 @@ namespace Fronteira.Discord
             using (var stream = new StreamWriter(request.GetRequestStream()))
             {
                 string json = "{\"content\":\"" + message + "\"," +
-                 "\"username\":\"Dragonic\"}";
+                 "\"username\":\"Arauto\"}";
                 stream.Write(json);
             }
             request.GetResponseAsync();
