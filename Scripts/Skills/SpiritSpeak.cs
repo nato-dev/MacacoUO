@@ -63,7 +63,10 @@ namespace Server.SkillHandlers
             m.RevealingAction();
 
             if (m.Paralyzed)
+            {
+                m.SendMessage("Nao pode fazer isto paralizado");
                 return false;
+            }
 
             if (_Table == null || !_Table.ContainsKey(m))
             {
@@ -144,15 +147,8 @@ namespace Server.SkillHandlers
                 Corpse toChannel = null;
                 Caster.RevealingAction();
 
-                if (Caster.Paralyzed)
-                {
-                    return;
-                }
-
-
                 IPooledEnumerable eable = Caster.GetObjectsInRange(3);
 
-          
                 foreach (object objs in eable)
                 {
                     if (objs is Corpse && !((Corpse)objs).Channeled && !((Corpse)objs).Animated)
@@ -173,6 +169,14 @@ namespace Server.SkillHandlers
                 }
 
                 eable.Free();
+
+
+                if (Caster.Paralyzed)
+                {
+                    SpiritSpeak.Remove(Caster);
+                    Stop();
+                    return;
+                }
 
                 int max, min, mana;
                 string msg;

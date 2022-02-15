@@ -297,6 +297,9 @@ namespace Server.Mobiles
         [CommandProperty(AccessLevel.GameMaster)]
         public string GetCampFires { get { return CampfireLocations; } }
 
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool IsSpiritSpeak { get { return SkillHandlers.SpiritSpeak.IsInSpiritSpeak(this); } set { SkillHandlers.SpiritSpeak.Remove(this); } }
+
         public long LastDamage = 0;
 
         public long GetMillisSinceLastDamage()
