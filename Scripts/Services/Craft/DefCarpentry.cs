@@ -199,13 +199,10 @@ namespace Server.Engines.Craft
             AddSkill(index, SkillName.Tailoring, 50.0, 55.0);
             AddRes(index, typeof(Cloth), 1044286, 60, 1044287);
 
-
-            if (Core.AOS)	//Duplicate Entries to preserve ordering depending on era
-            {
-                index = AddCraft(typeof(FishingPole), 1044294, 1023519, 68.4, 93.4, typeof(Board), 1044041, 5, 1044351); //This is in the categor of Other during AoS
-                AddSkill(index, SkillName.Tailoring, 40.0, 45.0);
-                AddRes(index, typeof(Cloth), 1044286, 5, 1044287);
-            }
+            index = AddCraft(typeof(FishingPole), 1044294, 1023519, 68.4, 93.4, typeof(Board), 1044041, 5, 1044351); //This is in the categor of Other during AoS
+            AddSkill(index, SkillName.Tailoring, 40.0, 45.0);
+            AddRes(index, typeof(Cloth), 1044286, 5, 1044287);
+            
 
             #region Mondain's Legacy
             if (Core.ML)
