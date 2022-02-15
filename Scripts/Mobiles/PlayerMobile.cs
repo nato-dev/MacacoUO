@@ -7069,14 +7069,17 @@ namespace Server.Mobiles
 
         public override void OnExpGain(SkillName skill, ushort exp)
         {
+            /*
             if(this.Skills[skill].Value < this.Skills[skill].Cap)
             {
+                
                 if(!SkillExpGump.NaoMostra.Contains(skill))
                 {
                     this.CloseGump(typeof(SkillExperienceGump));
                     this.SendGump(new SkillExperienceGump(this, skill, exp));
                 }
             }
+            */
             if(Young && Wisp != null && Skills.Magery.Value >= 50 && !IsCooldown("dicamagia") && Region is DungeonGuardedRegion)
             {
                 SetCooldown("dicamagia", TimeSpan.FromSeconds(600));
