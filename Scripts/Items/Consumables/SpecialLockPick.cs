@@ -45,6 +45,7 @@ namespace Server.Ziden
                 from.PlaySound(0x1F5);
 
                 Timer.DelayCall(TimeSpan.FromMilliseconds(200.0), EndLockpick, new object[] { item, from });
+                this.Consume();
                 
             }
             else
@@ -101,7 +102,7 @@ namespace Server.Ziden
                 else
                 {
                     m_Item.BeginLockpick(from, (ILockpickable)targeted);
-                    m_Item.Consume();
+                    
                 }
                                 
             }
