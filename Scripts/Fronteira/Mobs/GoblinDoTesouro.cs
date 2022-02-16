@@ -10,7 +10,7 @@ namespace Server.Mobiles
 
         [Constructable]
         public GoblinDoTesouro()
-            : base(AIType.AI_Runner, FightMode.Closest, 10, 1, 0.1, 0.1)
+            : base(AIType.AI_Runner, FightMode.Closest, 10, 1, 0.08, 0.08)
         {
             Name = "Goblin Tesoureiro";
             Body = 334;
@@ -149,6 +149,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV2, 10);
+            AddItem(new Gold(Utility.Random(200, 200)));
         }
 
         public override void Serialize(GenericWriter writer)
