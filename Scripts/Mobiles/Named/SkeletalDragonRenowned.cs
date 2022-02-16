@@ -20,7 +20,7 @@ namespace Server.Mobiles
             this.SetDex(100, 200);
             this.SetInt(488, 620);
 
-            this.SetHits(558, 599);
+            this.SetHits(1558, 1599);
 
             this.SetDamage(29, 35);
 
@@ -44,6 +44,10 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 80;
 
+            var q = new Aljava();
+            q.Name = "Aljava de Ossos";
+            q.Hue = 1154;
+            AddItem(q);
             AddItem(Loot.JoiaRaraRandom(this.Map));
             AddItem(Loot.JoiaRaraRandom(this.Map));
             AddItem(Loot.JoiaRaraRandom(this.Map));

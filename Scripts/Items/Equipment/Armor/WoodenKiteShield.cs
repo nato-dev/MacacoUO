@@ -77,9 +77,15 @@ namespace Server.Items
         {
             get
             {
-                return 12;
+                return 9;
             }
         }
+
+        public override bool AllowEquipedCast(Mobile from)
+        {
+            return true;
+        }
+
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);

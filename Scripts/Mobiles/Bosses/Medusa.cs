@@ -33,9 +33,9 @@ namespace Server.Mobiles
             SetDex(128, 139);
             SetInt(537, 664);
 
-            SetHits(15000);
+            SetHits(4000);
 
-            SetDamage(21, 28);
+            SetDamage(10, 25);
 
             SetDamageType(ResistanceType.Physical, 60);
             SetDamageType(ResistanceType.Fire, 20);
@@ -74,10 +74,6 @@ namespace Server.Mobiles
             //SetSpecialAbility(SpecialAbility.VenomousBite);
 
             AddItem(Carnage.GetRandomPS(105));
-            if (Utility.RandomBool())
-                AddItem(Carnage.GetRandomPS(110));
-
-         
         }
 
         public Medusa(Serial serial)
@@ -90,7 +86,7 @@ namespace Server.Mobiles
         public override double AutoDispelChance { get { return 1.0; } }
         public override bool BardImmune { get { return true; } }
         public override Poison PoisonImmune { get { return Poison.Lethal; } }
-        public override Poison HitPoison { get { return (0.8 >= Utility.RandomDouble() ? Poison.Deadly : Poison.Lethal); } }
+        public override Poison HitPoison { get { return Poison.Lesser; } }
 
         public override int GetIdleSound() { return 1557; }
         public override int GetAngerSound() { return 1554; }
@@ -102,9 +98,7 @@ namespace Server.Mobiles
             int amount = Utility.Random(5) + 1;
 
             corpse.DropItem(new MedusaDarkScales(amount));
-
-            if(Utility.RandomDouble() < 0.35)
-                corpse.DropItem(new EscamaMagica());
+            corpse.DropItem(new EscamaMagica());
 
             if(0.20 > Utility.RandomDouble())
                 corpse.DropItem(new MedusaBlood());
@@ -538,7 +532,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.OldSuperBoss);
+            AddLoot(LootPack.LV6);
 
         }
 
@@ -564,7 +558,7 @@ namespace Server.Mobiles
 
             GolemMecanico.JorraOuro(c.Location, c.Map, 350);
 
-            if (Utility.RandomDouble() < 0.075)
+            if (Utility.RandomDouble() < 0.1)
                 c.DropItem(new MedusaStatue());
         }
 

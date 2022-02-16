@@ -339,7 +339,9 @@ namespace Server.Items
           new[]
           {
                 new PMEntry(new Point3D(4111, 439, 5), "1. Deceit"),
-                new PMEntry(new Point3D(1021, 1431, 0), "2. Caverna Orc"),
+                new PMEntry(new Point3D(731, 1448, 0), "2. Formigueiro Vermelho"),
+                 new PMEntry(new Point3D(1462, 989, 0), "3. Formigueiro Preto"),
+                new PMEntry(new Point3D(1021, 1431, 0), "4. Caverna Orc"),
               
                 //new PMEntry(new Point3D(5237, 3866, 45), "4. Delucia"),
           }, cost: 100);

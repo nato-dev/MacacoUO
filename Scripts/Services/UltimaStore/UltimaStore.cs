@@ -89,6 +89,7 @@ namespace Server.Engines.UOStore
             Register<CastleDeed>("Castelo", "Deed de Castelo imenso.<br>Moradia super glamurosa para realeza.", 0x14F0, 0, 0, 10000, cat);
             Register<KeepDeed>("Keep", "Deed de Keep.<br>Moradia chique para lords.", 0x14F0, 0, 0, 7500, cat);
             Register<TowerDeed>("Torre", "Deed de Torre.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
+            Register<LargeMarbleDeed>("Marble", "Deed de Marble.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
 
             Register<DoubleExpDeed>("PowerHour 2x Exp", "Ativa double exp para o shard todo por 1h.</ br > Todos vao te amar um pouco mais.", 0x14F0, 0, 256, 500, cat);
             Register<DoubleGoldDeed>("Power Hour 2x Gold", "Ativa double gold para o shard todo por 1h.</br>Todos vao te amar um pouco mais.", 0x14F0, 0, 54, 500, cat);

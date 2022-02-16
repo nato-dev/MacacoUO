@@ -14,6 +14,11 @@ namespace Server.Items
             this.Name = "Escudo de Madeira";
         }
 
+        public override bool AllowEquipedCast(Mobile from)
+        {
+            return true;
+        }
+
         public WoodenShield(Serial serial)
             : base(serial)
         {
@@ -79,7 +84,7 @@ namespace Server.Items
         {
             get
             {
-                return 10;
+                return 6;
             }
         }
         public override void Deserialize(GenericReader reader)

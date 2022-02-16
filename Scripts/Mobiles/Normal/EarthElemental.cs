@@ -37,7 +37,7 @@ namespace Server.Mobiles
             this.Fame = 3500;
             this.Karma = -3500;
 
-            this.VirtualArmor = 100;
+            this.VirtualArmor = 80;
             this.ControlSlots = 2;
 
             this.PackItem(new FertileDirt(Utility.RandomMinMax(1, 4)));

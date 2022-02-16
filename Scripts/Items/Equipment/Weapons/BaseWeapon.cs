@@ -2430,17 +2430,17 @@ namespace Server.Items
                 }
                 else
                 {
-                    scalar = 0.20;
+                    scalar = 0.25;
                 }
 
                 if (defender is PlayerMobile)
                 {
-                    if (attacker is BaseCreature)
+                    if (attacker is BaseCreature || defender is BaseCreature)
                     {
                         scalar *= 2.5;
                     } else
                     {
-                        scalar *= 3;
+                        scalar *= 3.5;
                     }
                 }
 

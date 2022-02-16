@@ -634,7 +634,7 @@ namespace Server
             new SkillInfo(1, "Anatomy", 0.0, 0.0, 0.0, "Biologo", null, 0.15, 0.15, 0.7, COMBAT, StatCode.Int, StatCode.Str),
             new SkillInfo(2, "Animal Lore", 0.0, 0.0, 0.0, "Naturalista", null, 0.0, 0.0, 1.0, MEDIUM, StatCode.Int, StatCode.Str),
             new SkillInfo(3, "Item Identification", 0.0, 0.0, 0.0, "Mercador", null, 0.0, 0.0, 1.0, COMBAT, StatCode.Int, StatCode.Dex),
-            new SkillInfo(4, "Arms Lore", 0.0, 0.0, 0.0, "Armeiro", null, 0.75, 0.15, 0.1, COMBAT, StatCode.Int, StatCode.Str),
+            new SkillInfo(4, "Arms Lore", 0.0, 0.0, 0.0, "Armeiro", null, 0.75, 0.15, 0.1, MEDIUM, StatCode.Int, StatCode.Str),
             new SkillInfo(5, "Parrying", 7.5, 2.5, 0.0, "Duelista", null, 0.75, 0.25, 0.0, COMBAT, StatCode.Dex, StatCode.Str, true ),
             new SkillInfo(6, "Begging", 0.0, 0.0, 0.0, "Mendigo", null, 0.0, 0.0, 0.0, EASY, StatCode.Dex, StatCode.Int),
             new SkillInfo(7, "Blacksmithy", 10.0, 0.0, 0.0, "Ferreiro", null, 1.0, 0.0, 0.0, HARD, StatCode.Str, StatCode.Dex),

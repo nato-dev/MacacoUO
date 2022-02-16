@@ -11,10 +11,10 @@ namespace Server.Engines.BulkOrders
 
     public sealed class RewardType
     {
-        public static int PS105 = 100;
-        public static int PS110 = 300;
-        public static int PS115 = 500;
-        public static int PS120 = 1000;
+        public static int PS105 = 300;
+        public static int PS110 = 500;
+        public static int PS115 = 800;
+        public static int PS120 = 1500;
 
         private readonly int m_Points;
         private readonly Type[] m_Types;

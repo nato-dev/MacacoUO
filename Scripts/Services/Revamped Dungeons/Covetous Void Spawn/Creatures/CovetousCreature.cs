@@ -100,6 +100,9 @@ using Server.Items;
 
             Fame = Math.Min(8500, Level * 142);
             Karma = Math.Min(8500, Level * 142) * -1;
+
+          
+              
         }
 
         public override void OnThink()
@@ -165,8 +168,11 @@ using Server.Items;
 
 		public override void GenerateLoot()
         {
-			if(!VoidSpawn)
-				AddLoot(LootPack.LV4, Math.Max(1, Stage / 2));
+            if (!VoidSpawn)
+            {
+                AddLoot(LootPack.LV2, Math.Max(3, Stage*2));
+                Backpack.DropItem(new Gold(100 + (Stage * 100)));
+            }
         }
 		
 		public virtual void SetPower()

@@ -57,8 +57,8 @@ namespace Server.Mobiles
             SetSkill(SkillName.Wrestling, 90.1, 93.2);
             SetSkill(SkillName.Parry, 20, 30);
             SetSpecialAbility(SpecialAbility.DragonBreath);
-            Fame = 15000;
-            Karma = -15000;
+            Fame = 25000;
+            Karma = -25000;
 
             VirtualArmor = 1000;
 

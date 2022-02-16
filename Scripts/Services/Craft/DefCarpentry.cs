@@ -508,6 +508,7 @@ namespace Server.Engines.Craft
 
             // Armor
             AddCraft(typeof(WoodenShield), 1062760, 1027034, 52.6, 77.6, typeof(Board), 1044041, 9, 1044351);
+            AddCraft(typeof(WoodenKiteShield), 1062760, "Escudo de Madeira Grande", 90, 140, typeof(Board), 1044041, 15, 1044351);
 
             #region Mondain's Legacy
             if (Core.ML)
@@ -591,9 +592,9 @@ namespace Server.Engines.Craft
             }
             #endregion
 
-            #region SA
-            index = AddCraft(typeof(GargishWoodenShield), 1062760, 1095768, 52.6, 77.6, typeof(Board), 1044041, 9, 1044351);
-            #endregion
+            //#region SA
+            //index = AddCraft(typeof(GargishWoodenShield), 1062760, 1095768, 52.6, 77.6, typeof(Board), 1044041, 9, 1044351);
+           // #endregion
 
             // Instruments
             index = AddCraft(typeof(LapHarp), 1044293, 1023762, 63.1, 88.1, typeof(Board), 1044041, 20, 1044351);

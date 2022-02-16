@@ -203,6 +203,8 @@ namespace Server.Items
 
         public virtual bool CheckWeaponSkill(Mobile from)
         {
+            return true;
+
             if (from.RP)
                 return true;
 

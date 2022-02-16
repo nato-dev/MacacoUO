@@ -19,7 +19,7 @@ namespace Server.Mobiles
             this.SetDex(120, 180);
             this.SetInt(26, 40);
 
-            this.SetHits(94, 108);
+            this.SetHits(64, 70);
             this.SetMana(0);
 
             this.SetDamage(3, 10);

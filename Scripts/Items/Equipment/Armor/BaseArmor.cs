@@ -420,11 +420,28 @@ namespace Server.Items
             {
                 int ar = BaseArmorRating;
 
-                if (m_Protection != ArmorProtectionLevel.Regular)
-                    ar += 1 + (2 * (int)m_Protection);
-
+                if (m_Protection != ArmorProtectionLevel.Regular) {
+                    if(this is BaseShield)
+                        ar += 1 + (int)m_Protection;
+                    else
+                        ar += 1 + (2 * (int)m_Protection);
+                }
+                   
                 switch (m_Resource)
                 {
+                    case CraftResource.Eucalipto:
+                    case CraftResource.Cedro:
+                    case CraftResource.Carvalho:
+                        ar += 1;
+                        break;
+                    case CraftResource.Carmesim:
+                    case CraftResource.Mogno:
+                        ar += 3;
+                        break;
+                    case CraftResource.Gelo:
+                        ar += 5;
+                        break;
+
                     case CraftResource.Cobre:
                         ar += 3;
                         break;

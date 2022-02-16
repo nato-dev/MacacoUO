@@ -465,7 +465,7 @@ namespace Server.Engines.Craft
             AddCraft(typeof(HeaterShield), 1011080, 1027030, 24.3, 74.3, typeof(IronIngot), 1044036, 18, 1044037);
             AddCraft(typeof(MetalShield), 1011080, 1027035, -10.2, 39.8, typeof(IronIngot), 1044036, 14, 1044037);
             AddCraft(typeof(MetalKiteShield), 1011080, 1027028, 4.6, 54.6, typeof(IronIngot), 1044036, 16, 1044037);
-            AddCraft(typeof(WoodenKiteShield), 1011080, 1027032, -15.2, 34.8, typeof(IronIngot), 1044036, 8, 1044037);
+   
             AddCraft(typeof(OrderShield), 1011080, 1027108, 85.0, 115.0, typeof(IronIngot), 1044036, 20, 1044037);
 
             if (Core.AOS)

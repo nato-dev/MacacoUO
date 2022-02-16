@@ -62,7 +62,7 @@ namespace Server.Mobiles
             {
                 var h = new DragonHead();
                 h.Name = "Cabeca de Dragao Branco";
-                h.Hue = this.Hue;
+                h.Hue = 1154;
                 AddItem(h);
             }
             if (Utility.RandomDouble() < 0.02)

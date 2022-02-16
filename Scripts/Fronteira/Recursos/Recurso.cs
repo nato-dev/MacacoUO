@@ -237,7 +237,7 @@ namespace Server.Fronteira.Recursos
 
             if (from.Player)
             {
-                var bonus = (int)Math.Ceiling(i.Amount * from.GetBonusElemento(ElementoPvM.Gelo));
+                var bonus = (int)Math.Round(i.Amount * from.GetBonusElemento(ElementoPvM.Gelo));
                 if (bonus > 0)
                     i.Amount += bonus;
             }
