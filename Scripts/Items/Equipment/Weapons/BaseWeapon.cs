@@ -2430,7 +2430,7 @@ namespace Server.Items
                 }
                 else
                 {
-                    scalar = 0.25;
+                    scalar = 0.20;
                 }
 
                 if (defender is PlayerMobile)

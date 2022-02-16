@@ -10,6 +10,7 @@ namespace Server.Items
             : base()
         {
             this.WeightReduction = 30;
+            this.DamageIncrease = 4;
         }
 
         public ElvenQuiver(Serial serial)
