@@ -33,7 +33,7 @@ namespace Server.Mobiles
             SetDex(128, 139);
             SetInt(537, 664);
 
-            SetHits(4000);
+            SetHits(8000);
 
             SetDamage(10, 25);
 
@@ -86,7 +86,7 @@ namespace Server.Mobiles
         public override double AutoDispelChance { get { return 1.0; } }
         public override bool BardImmune { get { return true; } }
         public override Poison PoisonImmune { get { return Poison.Lethal; } }
-        public override Poison HitPoison { get { return Poison.Lesser; } }
+        public override Poison HitPoison { get { return Poison.Greater; } }
 
         public override int GetIdleSound() { return 1557; }
         public override int GetAngerSound() { return 1554; }
