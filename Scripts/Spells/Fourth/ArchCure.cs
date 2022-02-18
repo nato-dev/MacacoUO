@@ -62,7 +62,10 @@ namespace Server.Spells.Fourth
 
                     // You can target any living mobile directly, beneficial checks apply
                     if (directTarget != null && this.Caster.CanBeBeneficial(directTarget, false))
+                    {
                         targets.Add(directTarget);
+                    }
+                        
 
                     IPooledEnumerable eable = map.GetMobilesInRange(new Point3D(p), 2);
 
@@ -133,7 +136,7 @@ namespace Server.Spells.Fourth
             if (!this.Caster.CanBeBeneficial(target, false))
                 return false;
 
-            if (Core.AOS && target != this.Caster)
+            if (target != this.Caster)
             {
                 if (this.IsAggressor(target) || this.IsAggressed(target))
                     return false;

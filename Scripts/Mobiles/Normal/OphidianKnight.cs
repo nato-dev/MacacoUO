@@ -53,6 +53,7 @@ namespace Server.Mobiles
             this.VirtualArmor = 40;
 
             this.PackItem(new LesserPoisonPotion());
+            OphidianArchmage.Converte(this);
         }
 
         public OphidianKnight(Serial serial)

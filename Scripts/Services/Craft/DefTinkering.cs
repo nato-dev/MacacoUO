@@ -346,13 +346,13 @@ namespace Server.Engines.Craft
             #endregion
 
             #region Parts
-            index = AddCraft(typeof(Gears), 1044047, 1024179, 60, 120.0, typeof(IronIngot), 1044036, 2, 1044037);
+            index = AddCraft(typeof(Gears), 1044047, 1024179, 40, 100, typeof(IronIngot), 1044036, 2, 1044037);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");
-            index = AddCraft(typeof(ClockParts), 1044047, 1024175, 80, 120.0, typeof(IronIngot), 1044036, 1, 1044037);
+            index = AddCraft(typeof(ClockParts), 1044047, 1024175, 40, 100, typeof(IronIngot), 1044036, 1, 1044037);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");
-            index = AddCraft(typeof(BarrelTap), 1044047, 1024100, 80, 120.0, typeof(IronIngot), 1044036, 2, 1044037);
+            index = AddCraft(typeof(BarrelTap), 1044047, 1024100, 40, 100, typeof(IronIngot), 1044036, 2, 1044037);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");
-            index = AddCraft(typeof(Springs), 1044047, 1024189, 80, 120.0, typeof(IronIngot), 1044036, 2, 1044037);
+            index = AddCraft(typeof(Springs), 1044047, 1024189, 40, 100, typeof(IronIngot), 1044036, 2, 1044037);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");
             index = AddCraft(typeof(SextantParts), 1044047, 1024185, 30.0, 80.0, typeof(IronIngot), 1044036, 4, 1044037);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");

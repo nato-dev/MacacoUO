@@ -17,9 +17,9 @@ namespace Server.Mobiles
             this.SetDex(126, 145);
             this.SetInt(281, 305);
 
-            this.SetHits(522, 851);
+            this.SetHits(2522, 2851);
 
-            this.SetDamage(13, 16);
+            this.SetDamage(23, 36);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -35,12 +35,12 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 60.1, 80.0);
             this.SetSkill(SkillName.Wrestling, 40.1, 50.0);
 
-            this.Fame = 11500;
-            this.Karma = -11500;
+            this.Fame = 31500;
+            this.Karma = -31500;
 
             this.VirtualArmor = 40;
 
-            if (Core.ML && Utility.RandomDouble() < .33)
+            if (Utility.RandomDouble() < .33)
                 this.PackItem(Engines.Plants.Seed.RandomPeculiarSeed(1));
 
             if (0.1 > Utility.RandomDouble())
@@ -76,7 +76,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV5);
-            this.AddLoot(LootPack.LV3);
+            this.AddLoot(LootPack.LV5);
             this.AddLoot(LootPack.MedScrolls);
         }
 

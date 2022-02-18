@@ -41,7 +41,7 @@ namespace Server.Misc.Custom
             var spellStone = from.Backpack.FindItemByType(typeof(ElementalBall));
             if (spellStone != null)
             {
-                if (spellStone.BoundTo != null && spellStone.BoundTo != from.Name)
+                if (spellStone.BoundTo != null && spellStone.BoundTo != from.RawName)
                     return false;
 
                 var stone = (ElementalBall)spellStone;

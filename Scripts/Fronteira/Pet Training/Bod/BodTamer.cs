@@ -140,7 +140,7 @@ namespace Server.Engines.BulkOrders
                 bod.DuracaoDias = 5;
             else
                 bod.DuracaoDias = 10;
-            bod.BoundTo = tamer.Name;
+            bod.BoundTo = tamer.RawName;
             bod.InvalidateProperties();
             return bod;
         }

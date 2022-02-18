@@ -1205,7 +1205,7 @@ namespace Server.Engines.XmlSpawner2
                             }
 
                             //((Mobile)AttachedTo).DoSpeech(text, new int[] { }, CurrentEntry.SpeechStyle, speechhue);
-                            ((Mobile)AttachedTo).PrivateOverheadMessage( MessageType.Regular, 0x3B2, true, text, m.NetState );
+                            ((Mobile)AttachedTo).OverheadMessage(text);
                         }
                 }
 

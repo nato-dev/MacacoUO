@@ -41,10 +41,10 @@ namespace Server.Mobiles
             this.Fame = 17000;
             this.Karma = -17000;
 
-            for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
-            {
-                this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-            }
+            //for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
+           // {
+           //     this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
+           // }
         }
 
         public CrystalLatticeSeeker(Serial serial)
@@ -79,10 +79,9 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV5, 4);
+            this.AddLoot(LootPack.LV3, 4);
             AddLoot( LootPack.Parrot );
             this.AddLoot(LootPack.Gems);
-            this.AddLoot(LootPack.HighScrolls, 2);
         }
 
         public override void OnGaveMeleeAttack(Mobile defender)

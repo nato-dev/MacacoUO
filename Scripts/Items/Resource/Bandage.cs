@@ -472,8 +472,8 @@ namespace Server.Items
                 heal -= m_Slips * SLIP_MULT;
                 return heal;
             }
-            double healing = m_Healer.Skills[SkillName.Healing].Value / 2 + 50;
-            double anatomy = m_Healer.Skills[SkillName.Anatomy].Value/ 2 + 50;
+            double healing = m_Healer.Skills[SkillName.Healing].Value * 0.75 + 25;
+            double anatomy = m_Healer.Skills[SkillName.Anatomy].Value * 0.75 + 25;
 
             if(m_Patient is BaseCreature && !(m_Patient is BaseHire))
             {
@@ -487,6 +487,9 @@ namespace Server.Items
             max = (anatomy / 6.0) + (healing / 3.0) + 10.0;
 
             double toHeal = (min + (Utility.RandomDouble() * (max - min))) * 0.8;
+
+            if (healing < 100)
+                toHeal *= 0.8;
 
             if ((m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal) && !m_Patient.Player)
             {

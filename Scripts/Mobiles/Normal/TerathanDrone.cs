@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public TerathanDrone()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a terathan drone";
+            this.Name = "terathan trabalhador";
             this.Body = 71;
             this.BaseSoundID = 594;
 
@@ -18,10 +18,10 @@ namespace Server.Mobiles
             this.SetDex(96, 145);
             this.SetInt(21, 45);
 
-            this.SetHits(22, 39);
+            this.SetHits(1222, 1239);
             this.SetMana(0);
 
-            this.SetDamage(6, 12);
+            this.SetDamage(16, 32);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -34,12 +34,12 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Poisoning, 40.1, 60.0);
             this.SetSkill(SkillName.MagicResist, 30.1, 45.0);
             this.SetSkill(SkillName.Tactics, 30.1, 50.0);
-            this.SetSkill(SkillName.Wrestling, 40.1, 50.0);
+            this.SetSkill(SkillName.Wrestling, 150.1, 150.1);
 
-            this.Fame = 2000;
-            this.Karma = -2000;
+            this.Fame = 22000;
+            this.Karma = -22000;
 
-            this.VirtualArmor = 24;
+            this.VirtualArmor = 44;
 			
             this.PackItem(new SpidersSilk(2));
         }
@@ -68,7 +68,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV2);
+            this.AddLoot(LootPack.LV4);
             // TODO: weapon?
         }
 

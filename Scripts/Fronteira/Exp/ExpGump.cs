@@ -26,7 +26,6 @@ namespace Server.Gumps
             NaoMostra.Add(SkillName.SpiritSpeak);
             NaoMostra.Add(SkillName.Focus);
 
-
             Combate.Add(SkillName.MagicResist);
             Combate.Add(SkillName.Magery);
             Combate.Add(SkillName.EvalInt);
@@ -37,7 +36,7 @@ namespace Server.Gumps
             Combate.Add(SkillName.Tactics);
             Combate.Add(SkillName.Anatomy);
             Combate.Add(SkillName.Healing);
-            Combate.Add(SkillName.ArmsLore);
+            //Combate.Add(SkillName.ArmsLore);
             Combate.Add(SkillName.SpiritSpeak);
             Combate.Add(SkillName.Necromancy);
             Combate.Add(SkillName.Inscribe);
@@ -434,12 +433,12 @@ namespace Server.Gumps
                 return;
             }
 
-            var old = from.Skills[skill].Value;
+            var old = from.Skills[skill].Base;
             var gain = 10;
             
-            if (from.Skills[skill].Value > 90)
+            if (from.Skills[skill].Base > 90)
                 gain = 5;
-            if (from.Skills[skill].Value > 99)
+            if (from.Skills[skill].Base >= 99)
                 gain = 1;
             
             SkillCheck.Gain(from, from.Skills[skill], gain);

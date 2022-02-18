@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public TerathanMatriarch()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a terathan matriarch";
+            this.Name = "terathan matriarca";
             this.Body = 72;
             this.BaseSoundID = 599;
 
@@ -18,9 +18,9 @@ namespace Server.Mobiles
             this.SetDex(96, 115);
             this.SetInt(366, 455);
 
-            this.SetHits(190, 243);
+            this.SetHits(2190, 2243);
 
-            this.SetDamage(11, 14);
+            this.SetDamage(21, 34);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -36,8 +36,8 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 50.1, 70.0);
             this.SetSkill(SkillName.Wrestling, 60.1, 80.0);
 
-            this.Fame = 10000;
-            this.Karma = -10000;
+            this.Fame = 50000;
+            this.Karma = -50000;
 
             this.PackItem(new SpidersSilk(5));
             this.PackNecroReg(Utility.RandomMinMax(4, 10));

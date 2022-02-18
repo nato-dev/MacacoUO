@@ -411,7 +411,7 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(Beeswax), 1025154, 5, 1044253);
             AddRes(index, typeof(EstruturaDeLivro), "Estrutura de Livro", 1, "Voce precisa de uma estrutura de livro");
 
-            index = AddCraft(typeof(ElementalBall), 1044294, "Bola de Cristal Elemental", 70.0, 130, typeof(BlankScroll), 1044377, 20, 1044378);
+            index = AddCraft(typeof(ElementalBall), 1044294, "Bola de Cristal Elemental", 70.0, 100, typeof(BlankScroll), 1044377, 20, 1044378);
             AddRes(index, typeof(PedraElementalSuprema), "Pedra Elemental Suprema", 1, "Voce precisa de uma pedra elemental suprema");
 
             index = AddCraft(typeof(Spellbook), 1044294, 1023834, 50.0, 126, typeof(BlankScroll), 1044377, 10, 1044378);

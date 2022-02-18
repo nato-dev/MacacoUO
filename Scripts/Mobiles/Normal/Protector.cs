@@ -16,9 +16,8 @@ namespace Server.Mobiles
             HairItemID = Race.Human.RandomHair(this);
             HairHue = Race.Human.RandomHairHue();
 
-            Name = "A Protector";
-            Title = "The Mystic Llamaherder";
-
+            Name = "protetor";
+   
             SetStr(700, 800);
             SetDex(100, 150);
             SetInt(50, 75);

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Server.Items;
 
 namespace Server.Mobiles
@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public WyvernRenowned()
             : base(AIType.AI_Mage)
         {
-            this.Name = "Wyvern";
+            this.Name = "Dragao das Almas";
             this.Title = "[Renowned]";
             this.Body = 62;
             this.Hue = 243;
@@ -46,6 +46,7 @@ namespace Server.Mobiles
             this.Karma = -24000;
 
             this.VirtualArmor = 70;
+            this.AddItem(new SoulForgeDeed());
         }
 
         public WyvernRenowned(Serial serial)

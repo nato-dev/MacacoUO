@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public CrystalHydra()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "a crystal hydra";
+            Name = "hidra de cristal";
             Body = 0x109;
             Hue = 0x47E;
             BaseSoundID = 0x16A;
@@ -40,13 +40,13 @@ namespace Server.Mobiles
             SetSkill(SkillName.MagicResist, 80.0, 100.0);
             SetSkill(SkillName.Anatomy, 70.0, 80.0);
 			
-            Fame = 17000;
-            Karma = -17000;
+            Fame = 27000;
+            Karma = -27000;
 
-            for (int i = 0; i < Utility.RandomMinMax(0, 1); i++)
-            {
-                PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-            }
+            //for (int i = 0; i < Utility.RandomMinMax(0, 1); i++)
+           // {
+           //     PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
+           // }
         }
 		
         public CrystalHydra(Serial serial)

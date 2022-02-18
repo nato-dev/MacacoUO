@@ -13,6 +13,7 @@ using Server.Engines.Points;
 using Server.Multis;
 using Server.Items.Functional.Pergaminhos;
 using Server.Multis.Deeds;
+using Server.Ziden.Achievements;
 
 namespace Server.Engines.UOStore
 {
@@ -82,6 +83,7 @@ namespace Server.Engines.UOStore
         public static void Initialize()
         {
             StoreCategory cat = StoreCategory.Featured;
+            Register<SacolaCristais>("100 Cristais Elementais", "Sacola com 100 cristais elementais.", 16395, 0, 2611, 25000, cat);
             Register<PergaminhoSagradoSupremo>("Pergaminho de Item Pessoal", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2500, cat);
             Register<TintaPreta>("Tinta Preta", "Balde de tinta preta.<br>Ma-ra-vi-lhosa com roupas sombrias.", 0xFAB, 0, TintaPreta.COR, 200, cat);
             Register<TintaBranca>("Tinta Branca", "Balde de tinta branca.<br>Divina cor para iluminados e praticantes da luz.", 0xFAB, 0, TintaBranca.COR, 200, cat);
@@ -95,7 +97,7 @@ namespace Server.Engines.UOStore
             Register<DoubleGoldDeed>("Power Hour 2x Gold", "Ativa double gold para o shard todo por 1h.</br>Todos vao te amar um pouco mais.", 0x14F0, 0, 54, 500, cat);
 
             cat = StoreCategory.Misc;
-            Register<PergaminhoSagradoSupremo>("Pergaminho de Item Pessoal", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2000, cat);
+            Register<PergaminhoSagradoSupremo>("Pergaminho de Item Pessoal", "Torna uma roupa um percence pessoal (newbie) para sempre.</br>Esta roupa nao sera perdida quando morrer e nao pode ser destruida exceto por acido.", 0x14F0, 0, 0, 2500, cat);
             Register<TintaPreta>("Tinta Preta", "Balde de tinta preta.<br>Ma-ra-vi-lhosa com roupas sombrias.", 0xFAB, 0, TintaPreta.COR, 500, cat);
             Register<TintaBranca>("Tinta Branca", "Balde de tinta branca.<br>Divina cor para iluminados e praticantes da luz.", 0xFAB, 0, TintaBranca.COR, 500, cat);
             //Register<BagOfBulkOrderCovers>(1071116, 1157603, 0, 0x9CC6, 0, 200, cat, ConstructBOBCoverOne);
@@ -549,7 +551,7 @@ namespace Server.Engines.UOStore
         {
             var cavalo = new EtherealHorse();
             cavalo.Transparent = false;
-            cavalo.BoundTo = m.Name;
+            cavalo.BoundTo = m.RawName;
             return cavalo;
         }
 
@@ -563,7 +565,7 @@ namespace Server.Engines.UOStore
         {
             var cavalo = new EtherealOstard();
             cavalo.Transparent = false;
-            cavalo.BoundTo = m.Name;
+            cavalo.BoundTo = m.RawName;
             return cavalo;
         }
 

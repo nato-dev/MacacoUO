@@ -56,8 +56,8 @@ namespace Server.Mobiles
             SetSkill(SkillName.Wrestling, 119.7, 128.9);
             SetSkill(SkillName.DetectHidden, 119.7, 128.9);
 
-            Fame = 22000;
-            Karma = -22000;
+            Fame = 32000;
+            Karma = -32000;
 
             VirtualArmor = 60;
 
@@ -98,9 +98,18 @@ namespace Server.Mobiles
             int amount = Utility.Random(5) + 1;
 
             corpse.DropItem(new MedusaDarkScales(amount));
-            corpse.DropItem(new EscamaMagica());
 
-            if(0.20 > Utility.RandomDouble())
+            if (0.20 > Utility.RandomDouble())
+                corpse.DropItem(new EscamaMagica());
+            else
+            {
+                var arma = Loot.RandomWeapon();
+                arma.Slayer = BaseRunicTool.GetRandomSlayer();
+                if (arma.Name != null)
+                    arma.Name += " da Medusa";
+            }
+
+            if (0.20 > Utility.RandomDouble())
                 corpse.DropItem(new MedusaBlood());
 
             base.OnCarve(from, corpse, with);

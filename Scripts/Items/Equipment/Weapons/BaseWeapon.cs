@@ -1575,7 +1575,7 @@ namespace Server.Items
             }
             else
             {
-                var bonusElemental = defender.GetBonusElemento(ElementoPvM.Fogo) + (defender.GetBonusElemento(ElementoPvM.Vento)/2) + defender.GetBonusElemento(ElementoPvM.Raio) + defender.GetBonusElemento(ElementoPvM.Gelo);
+                var bonusElemental = defender.GetBonusElemento(ElementoPvM.Fogo) + (defender.GetBonusElemento(ElementoPvM.Vento) / 2) + defender.GetBonusElemento(ElementoPvM.Raio) + defender.GetBonusElemento(ElementoPvM.Gelo);
                 bonusElemental /= 3;
                 bonus -= (int)(bonusElemental * 100);
                 if (bonus < -80)
@@ -1775,7 +1775,7 @@ namespace Server.Items
             if (attacker.RP && !attacker.TemTalento(Talento.Curandeiro) && Utility.RandomDouble() < 0.5)
             {
                 BandageContext c = BandageContext.GetContext(attacker);
-                if(c != null)
+                if (c != null)
                     c.Slip();
             }
 
@@ -1826,7 +1826,7 @@ namespace Server.Items
                         }
                     }
                 }
-                if(Shard.SPHERE_STYLE)
+                if (Shard.SPHERE_STYLE)
                     SphereSwing(attacker, damageable, damageBonus);
                 else
                     DoHit(attacker, damageable, damageBonus);
@@ -1850,12 +1850,12 @@ namespace Server.Items
 
         public void SphereSwing(Mobile attacker, IDamageable damageable, double damageBonus)
         {
-            if(attacker.HitPronto)
+            if (attacker.HitPronto)
             {
                 DoHit(attacker, damageable, damageBonus);
                 return;
             }
-            if(attacker.hitTimer != null)
+            if (attacker.hitTimer != null)
             {
                 return;
             }
@@ -1943,6 +1943,9 @@ namespace Server.Items
                 {
                     chance += parry / 600;
                 }
+
+                if (defender is BaseCreature && ((BaseCreature)defender).IsControlled())
+                    chance *= 0.7;
 
                 if (attacker is PlayerMobile && ((PlayerMobile)attacker).Talentos.Tem(Talento.Finta))
                     chance -= 0.2;
@@ -2061,7 +2064,7 @@ namespace Server.Items
                 BaseShield shield = defender.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
                 attacker.SendMessage("O alvo bloqueou seu ataque");
                 defender.SendMessage("Voce bloqueou o ataque");
-               
+
                 var bloqueado = 0;
                 if (shield != null)
                     bloqueado = (int)(shield.ArmorRating * (attackerWeapon is BaseRanged ? 1.5 : 1.2));
@@ -2075,7 +2078,7 @@ namespace Server.Items
                     Shard.Debug("Bloqueado dano: " + bloqueado, defender);
                 damage -= bloqueado;
 
-              
+
 
                 // Successful block removes the Honorable Execution penalty.
                 HonorableExecution.RemovePenalty(defender);
@@ -2331,7 +2334,7 @@ namespace Server.Items
             {
                 virtualArmor += (virtualArmor / 2) * ((defender.GetBonusElemento(ElementoPvM.Terra) + defender.GetBonusElemento(ElementoPvM.Luz)));
             }
-            if(!defender.Player && attacker.Player)
+            if (!defender.Player && attacker.Player)
             {
                 var bonus = virtualArmor * attacker.GetBonusElemento(ElementoPvM.Vento);
                 if (bonus > virtualArmor)
@@ -2438,7 +2441,8 @@ namespace Server.Items
                     if (attacker is BaseCreature || defender is BaseCreature)
                     {
                         scalar *= 2.5;
-                    } else
+                    }
+                    else
                     {
                         scalar *= 3.5;
                     }
@@ -2459,7 +2463,7 @@ namespace Server.Items
                 {
                     Shard.Debug("Virtual Armor: " + virtualArmor + " Scalar: " + scalar + " REDUX " + redux);
                     Shard.Debug("Virtual MinMax: " + from + "/" + to + " - Calculando media", defender);
-                    if(attacker.Hidden)
+                    if (attacker.Hidden)
                     {
                         Shard.Debug("Escondidinho");
                     }
@@ -2614,7 +2618,7 @@ namespace Server.Items
                 defender = clone;
             }
 
-            if(!Shard.SPHERE_STYLE)
+            if (!Shard.SPHERE_STYLE)
                 PlaySwingAnimation(attacker);
 
             if (defender != null)
@@ -3130,7 +3134,7 @@ namespace Server.Items
             }
 
             var colarVento = ColarElemental.GetNivel(attacker, ElementoPvM.Vento);
-            if(colarVento > 0 && Utility.RandomDouble() < 0.1 + colarVento / 120)
+            if (colarVento > 0 && Utility.RandomDouble() < 0.1 + colarVento / 120)
             {
                 defender.PublicOverheadMessage(MessageType.Regular, 38, true, "* crit *");
                 damage *= 2;
@@ -4019,7 +4023,7 @@ namespace Server.Items
         {
             Mobile defender = damageable as Mobile;
 
-            if(!Shard.SPHERE_STYLE)
+            if (!Shard.SPHERE_STYLE)
                 PlaySwingAnimation(attacker);
 
             attacker.PlaySound(GetMissAttackSound(attacker, defender));
@@ -4092,7 +4096,7 @@ namespace Server.Items
 
             GetBaseDamageRange(attacker, out min, out max);
 
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
                 Shard.Debug("Weapon Min/Max: " + min + "/" + max);
 
             var armsLoreBonus = attacker.Skills[SkillName.ArmsLore].Value / 10;
@@ -4134,7 +4138,7 @@ namespace Server.Items
                         bonusOre += 9;
                     break;
                 case CraftResource.Gelo:
-                    if(this is BaseStaff)
+                    if (this is BaseStaff)
                         bonusOre += 9;
                     else
                         bonusOre += 4;
@@ -4509,7 +4513,7 @@ namespace Server.Items
             }
         }
 
-        public virtual void PlaySwingAnimation(Mobile from, int delay=0, int frameCount=5)
+        public virtual void PlaySwingAnimation(Mobile from, int delay = 0, int frameCount = 5)
         {
             int action;
 
@@ -4524,7 +4528,7 @@ namespace Server.Items
             }
             else
             {
-                if(from.Mounted)
+                if (from.Mounted)
                 {
                     action = GetNewAnimationAction(from);
                     from.Animate(action, frameCount, 1, true, false, delay);

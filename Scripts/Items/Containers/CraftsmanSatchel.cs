@@ -212,6 +212,7 @@ namespace Server.Items
                     DropItem(recipe);
                 }
             }
+            DropItem(new QuartzoIngot(20));
         }
 
         public SmithsCraftsmanSatchel(Serial serial)

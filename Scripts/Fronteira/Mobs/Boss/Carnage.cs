@@ -1,6 +1,8 @@
 using Server.Items;
+using Server.Ziden;
 using Server.Ziden.Items;
 using System;
+using System.Linq;
 
 namespace Server.Mobiles
 {
@@ -58,7 +60,8 @@ namespace Server.Mobiles
             PackItem(Decos.RandomDeco());
             SetWeaponAbility(WeaponAbility.BleedAttack);
             SetWeaponAbility(WeaponAbility.WhirlwindAttack);
-
+            PackItem(GetRandomPS(105));
+            PackItem(new PergaminhoCarregamento());
             last = DateTime.UtcNow;
         }
 
@@ -149,20 +152,10 @@ namespace Server.Mobiles
             if (NoKillAwards)
                 return base.OnBeforeDeath();
 
-            foreach (var e in GetLootingRights())
-            {
-                if (e.m_HasRight && e.m_Mobile != null)
-                {
-                    var ps = GetRandomPS(105);
-                    if (ps != null)
-                    {
-                        e.m_Mobile.AddToBackpack(Decos.RandomDeco());
-                        e.m_Mobile.AddToBackpack(ps);
-                        e.m_Mobile.SendMessage(78, "Voce ganhou recompensas por ajudar a matar Carnage");
-                        e.m_Mobile.SendMessage(78, "As recompensas foram colocadas em sua mochila");
-                    }
-                }
-            }
+            var matadores = GetLootingRights().Where(p => p != null && p.m_Mobile != null && p.m_Mobile.Alive).ToList();
+            var ganhador = matadores[Utility.Random(matadores.Count)];
+            ganhador.m_Mobile.Backpack.AddItem(GetRandomPS(110));
+            ganhador.m_Mobile.SendMessage("Voce ganhou um pergaminho do poder RARO !!!!");
             GolemMecanico.JorraOuro(this.Location, this.Map, 150);
             return base.OnBeforeDeath();
         }

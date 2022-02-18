@@ -62,6 +62,12 @@ namespace Server.Items
 
         public void Damage(Mobile m)
         {
+            if(m.IsCooldown("danoacido"))
+            {
+                return;
+            }
+            m.SetCooldown("danoacido", TimeSpan.FromMilliseconds(500));
+
             if(m is BaseCreature)
             {
                 var bc = (BaseCreature)m;

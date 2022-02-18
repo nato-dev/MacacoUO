@@ -12,15 +12,15 @@ namespace Server.Mobiles
 
         public static void CheckSelvagem(BaseCreature b)
         {
-            Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
+            Timer.DelayCall(TimeSpan.FromSeconds(0.1), () =>
             {
                 if (!b.Deleted && b.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(b))
-                    Macumbeiro(b);
+                    Converte(b);
             });
             
         }
 
-        public static void Macumbeiro(BaseCreature b)
+        public static void Converte(BaseCreature b)
         {
             b.Hue = TintaPreta.COR;
             foreach(var i in new [] { b.ChestArmor, b.ArmsArmor, b.LegsArmor, b.HeadArmor, b.ArmsArmor, b.HandArmor})
@@ -30,8 +30,9 @@ namespace Server.Mobiles
 
                 i.Hue = TintaBranca.COR;
             }
-            b.HitsMaxSeed = 2000;
-            b.Hits = 2000;
+            b.Name += " das terras perdidas";
+            b.HitsMaxSeed = 1000;
+            b.Hits = 1000;
             b.VirtualArmor = 60;
             b.Fame *= 4;
             if(b.Skills.Parry.Base < 25)

@@ -18,6 +18,11 @@ namespace Server.Items
         {
         }
 
+        public override void OnDoubleClick(Mobile from)
+        {
+            from.SendMessage("Esta pedra eh um pouco diferente...");
+        }
+
         public override int LabelNumber
         {
             get

@@ -1416,19 +1416,7 @@ namespace Server.Mobiles
 
         public virtual int BreathComputeDamage()
         {
-            int damage = (int)(Hits * BreathDamageScalar);
-
-            if (IsParagon)
-            {
-                damage = (int)(damage / Paragon.HitsBuff);
-            }
-
-            if (damage > 200)
-            {
-                damage = 200;
-            }
-
-            return damage;
+            return 80;
         }
         #endregion
 
@@ -3107,6 +3095,14 @@ namespace Server.Mobiles
                 {
                     //SetHits((int)(Hits * 2));
                     //SetDamage(m_DamageMin + 4, m_DamageMax + 4);
+                    if(this.Tamable)
+                    {
+                        if (this.MinTameSkill < 80)
+                            this.MinTameSkill = 105;
+                        else
+                            this.MinTameSkill = 110;
+                    }
+                  
                 }
             });
         }

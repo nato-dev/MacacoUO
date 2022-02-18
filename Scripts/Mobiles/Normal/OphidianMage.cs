@@ -50,6 +50,7 @@ namespace Server.Mobiles
             {
                 case 0: PackItem(new PainSpikeScroll()); break;
 			}
+            OphidianArchmage.Converte(this);
 
         }
 

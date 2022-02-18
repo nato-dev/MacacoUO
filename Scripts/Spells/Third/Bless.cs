@@ -80,6 +80,10 @@ namespace Server.Spells.Third
                 int newDex = SpellHelper.GetOffset(Caster, m, StatType.Dex, false, true);
                 int newInt = SpellHelper.GetOffset(Caster, m, StatType.Int, false, true);
 
+                newStr = (int)(newStr * (0.7 + (int)(Caster.Skills.Inscribe.Value / 200)));
+                newDex = (int)(newDex * (0.7 + (int)(Caster.Skills.Inscribe.Value / 200)));
+                newInt = (int)(newInt * (0.7 + (int)(Caster.Skills.Inscribe.Value / 200)));
+
                 if ((newStr < oldStr && newDex < oldDex && newInt < oldInt) || 
                     (newStr == 0 && newDex == 0 && newInt == 0))
                 {

@@ -52,9 +52,13 @@ namespace Server.Mobiles
             this.PackNecroReg(200, 375);
             PackItem(Decos.RandomDeco());
             PackItem(new LivroAntigo());
-            //var book = new NecromancerSpellbook();
-            //book.LootType = LootType.Regular;
-            //PackItem(book);
+            PackItem(new CarpenterApron());
+            if(Shard.NECRO)
+            {
+                var book = new NecromancerSpellbook();
+                book.LootType = LootType.Regular;
+                PackItem(book);
+            }
         }
 
         public AncientLichRenowned(Serial serial)
@@ -129,7 +133,6 @@ namespace Server.Mobiles
             return 0x28B;
         }
 
-        /*
         public override bool OnBeforeDeath()
         {
             var rights = this.GetLootingRights();
@@ -142,7 +145,6 @@ namespace Server.Mobiles
             }
             return base.OnBeforeDeath();
         }
-        */
 
         public override void GenerateLoot()
         {

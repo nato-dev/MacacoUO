@@ -255,6 +255,7 @@ namespace Server.Engines.Harvest
             return false;
         }
 
+
         public override Type MutateType(Type type, Mobile from, Item tool, HarvestDefinition def, Map map, Point3D loc, HarvestResource resource)
         {
             if (FishInfo.IsRareFish(type))
@@ -555,7 +556,23 @@ namespace Server.Engines.Harvest
                 }
             }
 
-            return base.Construct(type, from, tool);
+            var item = base.Construct(type, from, tool);
+            if (item is BaseShoes)
+            {
+                if (Utility.Random(10) == 1)
+                {
+                    item.Hue = Loot.RandomRareDye();
+                }
+                else
+                {
+                    item.Hue = Utility.RandomBirdHue();
+                }
+                if (item.Name != null)
+                {
+                    item.Name += " do fundo do mar";
+                }
+            }
+            return item;
         }
 
         public static int[] DECOS = new int[] {

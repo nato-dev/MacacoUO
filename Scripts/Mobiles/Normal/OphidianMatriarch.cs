@@ -40,6 +40,7 @@ namespace Server.Mobiles
             this.Karma = -16000;
 
             this.VirtualArmor = 50;
+            OphidianArchmage.Converte(this);
         }
 
         public OphidianMatriarch(Serial serial)

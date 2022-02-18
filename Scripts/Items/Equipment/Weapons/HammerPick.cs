@@ -1,11 +1,12 @@
 using System;
 using Server.Engines.Craft;
+using Server.Engines.Harvest;
 
 namespace Server.Items
 {
     [Alterable(typeof(DefBlacksmithy), typeof(DiscMace))]
     [FlipableAttribute(0x143D, 0x143C)]
-    public class HammerPick : BaseBashing
+    public class HammerPick : BaseBashing, IHarvestTool, IUsesRemaining
     {
         [Constructable]
         public HammerPick()
@@ -14,6 +15,8 @@ namespace Server.Items
             this.Weight = 9.0;
             this.Layer = Layer.OneHanded;
             Name = "Marreta";
+            this.UsesRemaining = 100;
+            this.ShowUsesRemaining = true;
         }
 
         public HammerPick(Serial serial)
@@ -112,6 +115,60 @@ namespace Server.Items
                 return 70;
             }
         }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            if (HarvestSystem == null || Deleted)
+                return;
+
+            Point3D loc = GetWorldLocation();
+
+            if (!from.InLOS(loc) || !from.InRange(loc, 2))
+            {
+                from.LocalOverheadMessage(Server.Network.MessageType.Regular, 0x3E9, 1019045); // I can't reach that
+                return;
+            }
+            else if (!IsAccessibleTo(from))
+            {
+                PublicOverheadMessage(Server.Network.MessageType.Regular, 0x3E9, 1061637); // You are not allowed to access 
+                return;
+            }
+
+            if (!(HarvestSystem is Mining))
+                from.SendLocalizedMessage(1010018); // What do you want to use this item on?
+
+            if (from.FindItemOnLayer(Layer.OneHanded) == this ||
+                   from.FindItemOnLayer(Layer.TwoHanded) == this)
+            {
+                HarvestSystem.BeginHarvesting(from, this);
+            }
+            else
+            {
+                if (this.RootParent != from)
+                {
+                    from.SendMessage("Voce precisa estar com isto na mochila");
+                    return;
+                }
+                var tool = from.FindItemOnLayer(Layer.OneHanded);
+                if (tool == null) tool = from.FindItemOnLayer(Layer.TwoHanded);
+                if (tool != null)
+                {
+                    if (from.HasAction(HarvestSystem.GetLock(from, tool, null, null)))
+                    {
+                        from.SendMessage("Voce ja esta fazendo algo");
+                        return;
+                    }
+                }
+                from.ClearHands();
+                from.EquipItem(this);
+                HarvestSystem.BeginHarvesting(from, this);
+            }
+        }
+
+        public HarvestSystem HarvestSystem => Mining.System;
+
+        public bool AutoHarvest => true;
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

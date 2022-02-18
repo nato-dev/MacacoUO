@@ -9,7 +9,7 @@ namespace Server.Mobiles
         public TerathanAvenger()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a terathan avenger";
+            this.Name = "terathan vingador";
             this.Body = 152;
             this.BaseSoundID = 0x24D;
 
@@ -17,10 +17,10 @@ namespace Server.Mobiles
             this.SetDex(77, 95);
             this.SetInt(126, 150);
 
-            this.SetHits(296, 372);
+            this.SetHits(2296, 2372);
             this.SetMana(46, 70);
 
-            this.SetDamage(18, 22);
+            this.SetDamage(18, 38);
 
             this.SetDamageType(ResistanceType.Physical, 50);
             this.SetDamageType(ResistanceType.Poison, 50);
@@ -38,10 +38,10 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 90.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 90.1, 100.0);
 
-            this.Fame = 15000;
-            this.Karma = -15000;
+            this.Fame = 35000;
+            this.Karma = -35000;
 
-            this.VirtualArmor = 50;
+            this.VirtualArmor = 150;
         }
 
         public TerathanAvenger(Serial serial)
@@ -89,7 +89,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV4, 2);
+            this.AddLoot(LootPack.LV5, 2);
         }
 
         public override void Serialize(GenericWriter writer)

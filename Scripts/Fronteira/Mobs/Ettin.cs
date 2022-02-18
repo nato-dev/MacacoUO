@@ -38,10 +38,13 @@ namespace Server.Mobiles
             this.Fame = 3000;
             this.Karma = -3000;
 
-            if (Utility.Random(20) == 1)
+            if (Utility.Random(100) == 1)
             {
                 PackItem(Decos.RandomDeco());
             }
+
+            Imp.Converte(this);
+
             this.VirtualArmor = 60;
         }
 

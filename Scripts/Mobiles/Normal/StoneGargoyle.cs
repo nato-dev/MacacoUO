@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public StoneGargoyle()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a stone gargoyle";
+            this.Name = "gargula de pedra";
             this.Body = 67;
             this.BaseSoundID = 0x174;
 
@@ -18,9 +18,9 @@ namespace Server.Mobiles
             this.SetDex(76, 95);
             this.SetInt(81, 105);
 
-            this.SetHits(148, 165);
+            this.SetHits(2148, 2165);
 
-            this.SetDamage(11, 17);
+            this.SetDamage(21, 37);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -32,10 +32,10 @@ namespace Server.Mobiles
 
             this.SetSkill(SkillName.MagicResist, 85.1, 100.0);
             this.SetSkill(SkillName.Tactics, 80.1, 100.0);
-            this.SetSkill(SkillName.Wrestling, 60.1, 100.0);
+            this.SetSkill(SkillName.Wrestling, 100.0, 100.0);
 
-            this.Fame = 4000;
-            this.Karma = -4000;
+            this.Fame = 14000;
+            this.Karma = -14000;
 
             this.VirtualArmor = 50;
 
@@ -59,7 +59,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV3, 2);
+            this.AddLoot(LootPack.LV4, 2);
             this.AddLoot(LootPack.Gems, 1);
             this.AddLoot(LootPack.Potions);
         }

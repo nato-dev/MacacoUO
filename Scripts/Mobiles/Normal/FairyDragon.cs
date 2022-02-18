@@ -1,4 +1,4 @@
-﻿#region References
+#region References
 using Server.Items;
 #endregion
 
@@ -19,7 +19,7 @@ namespace Server.Mobiles
         public FairyDragon()
             : base(AIType.AI_Mystic, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "Fairy Dragon";
+            Name = "fadragao";
             Body = 718;
             BaseSoundID = 362;
 

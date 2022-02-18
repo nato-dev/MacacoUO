@@ -30,6 +30,28 @@ namespace Server.Ziden.Achievements
         }
     }
 
+    public class SacolaCristais : Bag
+    {
+        [Constructable]
+        public SacolaCristais()
+        {
+            this.AddItem(new CristalElemental(100));
+            Name = "Sacola";
+        }
+
+        public SacolaCristais(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
+
     public class ScolaJoias : Bag
     {
         [Constructable]

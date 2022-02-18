@@ -38,6 +38,7 @@ namespace Server.Mobiles
             this.Karma = -4500;
 
             this.VirtualArmor = 36;
+            OphidianArchmage.Converte(this);
         }
 
         public OphidianWarrior(Serial serial)

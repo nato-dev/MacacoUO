@@ -17,11 +17,11 @@ namespace Server.Mobiles
             SetDex(145, 165);
             SetInt(285, 310);
 
-            SetHits(200, 200);
+            SetHits(700, 700);
 			SetMana(285, 310);
 			SetStam(145, 165);
 
-            SetDamage(1, 30);
+            SetDamage(11, 30);
 
             SetDamageType(ResistanceType.Physical, 70);
             SetDamageType(ResistanceType.Poison, 30);
@@ -41,7 +41,10 @@ namespace Server.Mobiles
 
             Tamable = true;
             ControlSlots = 2;
-            MinTameSkill = 69.1;
+            MinTameSkill = 110;
+
+            Fame = 30000;
+            Karma = -30000;
         }
 
         public WolfSpider(Serial serial)

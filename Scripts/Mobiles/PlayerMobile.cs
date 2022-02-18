@@ -3923,7 +3923,7 @@ namespace Server.Mobiles
             }
 
 
-            if (item.BoundTo != null && item.BoundTo != this.Name)
+            if (item.BoundTo != null && item.BoundTo != this.RawName)
             {
                 SendMessage(38, "Isto nao pertence a voce");
                 return false;
@@ -3937,7 +3937,7 @@ namespace Server.Mobiles
                     var copia = Dupe.DupeItem(item);
                     item.PartyLoot = false;
                     if (item.LootType == LootType.Blessed)
-                        item.BoundTo = this.Name;
+                        item.BoundTo = this.RawName;
 
                     if (item.Parent is Mobile)
                     {

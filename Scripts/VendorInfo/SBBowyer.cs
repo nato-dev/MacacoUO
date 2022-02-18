@@ -34,7 +34,7 @@ namespace Server.Mobiles
             {
                 Add(new GenericBuyInfo(typeof(FletcherTools), 2, 20, 0x1022, 0));
 
-                Add(new GenericBuyInfo(typeof(RecipeScroll), 250000, 10, 0x2831, 0, new object[] { (int)TailorRecipe.ElvenQuiver }));
+                //Add(new GenericBuyInfo(typeof(RecipeScroll), 250000, 10, 0x2831, 0, new object[] { (int)TailorRecipe.ElvenQuiver }));
             }
         }
 

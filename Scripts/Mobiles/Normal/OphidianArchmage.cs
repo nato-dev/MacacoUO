@@ -1,3 +1,5 @@
+using Server.Items;
+using Server.Menus.Questions;
 using System;
 
 namespace Server.Mobiles
@@ -6,6 +8,31 @@ namespace Server.Mobiles
     [TypeAlias("Server.Mobiles.OphidianJusticar", "Server.Mobiles.OphidianZealot")]
     public class OphidianArchmage : BaseCreature
     {
+
+        public static void Converte(BaseCreature b)
+        {
+            Timer.DelayCall(TimeSpan.FromSeconds(0.1), () =>
+            {
+                if (b == null || !b.Alive || b.Deleted || !StuckMenu.IsInSecondAgeArea(b))
+                    return;
+
+                b.Hue = TintaPreta.COR;
+                b.Name = " das terras perdidas";
+                b.HitsMaxSeed = 800;
+                b.Hits = 800;
+                b.VirtualArmor = 60;
+                b.Fame *= 4;
+                foreach(var skill in b.Skills)
+                {
+                    if (skill.Base > 30 && skill.Base < 120)
+                        skill.Base = 120;
+                }
+                b.Backpack.DropItem(new Gold(Utility.Random(300, 300)));
+                b.DamageMin = (int)(b.DamageMin * 1.5);
+                b.DamageMax = (int)(b.DamageMax * 1.5);
+            });
+        }
+
         [Constructable]
         public OphidianArchmage()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
@@ -44,6 +71,7 @@ namespace Server.Mobiles
 
             this.PackReg(5, 15);
             this.PackNecroReg(5, 15);
+            OphidianArchmage.Converte(this);
         }
 
         public OphidianArchmage(Serial serial)

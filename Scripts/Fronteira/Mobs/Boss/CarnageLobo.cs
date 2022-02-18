@@ -50,7 +50,7 @@ namespace Server.Mobiles
 
             SetWeaponAbility(WeaponAbility.BleedAttack);
 
-            /*
+            
             Timer.DelayCall(TimeSpan.FromSeconds(20), () =>
             {
                 if (!this.Alive || this.Deleted)
@@ -63,15 +63,15 @@ namespace Server.Mobiles
                     {
                         mobile.SendGump(new AnuncioGump(mobile as PlayerMobile, msg));
                         mobile.SendMessage(78, "Um lobo sinistro nasceu em  " + this.Location.X + " - " + this.Location.Y+" ! Lute para mata-lo e ganhe recompensas !");
-                        if(mobile.QuestArrow == null && mobile.Map == Map.Felucca && !(mobile.Region is DungeonRegion))
+                        if(mobile.QuestArrow == null && mobile.Map == Map.Trammel && !(mobile.Region is DungeonRegion))
                         {
                             mobile.QuestArrow = new QuestArrow(mobile, this.Location);
                             mobile.QuestArrow.Update();
+                            mobile.SendMessage("A seta aponta para proximo de onde Carnage nasceu !");
                         }
                     }
                 }
             });
-            */
 
             Timer.DelayCall(TimeSpan.FromHours(2), () =>
             {
@@ -98,6 +98,12 @@ namespace Server.Mobiles
 
         public override void OnDeath(Container c)
         {
+            Timer.DelayCall(TimeSpan.FromSeconds(3), () => {
+                if (c == null)
+                    return;
+                c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* estranho *");
+            });
+
             base.OnDeath(c);
             Timer.DelayCall(TimeSpan.FromSeconds(10), () => {
                 if (c == null)
@@ -168,17 +174,6 @@ namespace Server.Mobiles
             {
                 this.Combatant = from;
                 this.OverheadMessage("* awwrrrr *");
-            }
-
-            if (rnd < 0.03)
-            {
-                var lobim = new SavagePackWolfy();
-                lobim.MoveToWorld(from.Location, from.Map);
-                if (from != this)
-                    lobim.Combatant = from;
-                lobim.OverheadMessage("* grrr *");
-                from.PlaySound(lobim.GetAngerSound());
-                from.SendMessage("Um lobo sai da tocaia lhe atacando");
             }
         }
 

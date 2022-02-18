@@ -142,7 +142,7 @@ namespace Server.Mobiles
                         }
 
                         if (bulkOrder != null && from != null)
-                            bulkOrder.BoundTo = from.Name;
+                            bulkOrder.BoundTo = from.RawName;
                         else
                         {
                             vendor.SayTo(from, true, "Nao encontrei um trabalho para voce ...tente novamente...");
@@ -184,7 +184,7 @@ namespace Server.Mobiles
                         if (Core.AOS)
                         {
                             Item bulkOrder = vendor.CreateBulkOrder(from, true);
-                            bulkOrder.BoundTo = from.Name;
+                            bulkOrder.BoundTo = from.RawName;
 
                             if (bulkOrder is LargeBOD)
                             {
@@ -1278,7 +1278,7 @@ namespace Server.Mobiles
             {
                 var bod = dropped as BodTamer;
 
-                if(bod.BoundTo != null && bod.BoundTo != from.Name)
+                if(bod.BoundTo != null && bod.BoundTo != from.RawName)
                 {
                     return false;
                 }
@@ -1381,7 +1381,7 @@ namespace Server.Mobiles
                     var type = ((IBOD)dropped).BODType;
                     var skill = BulkOrderSystem.GetSkillForBOD(type);
 
-                    if (dropped.BoundTo == from.Name || from.AccessLevel > AccessLevel.VIP)
+                    if (dropped.BoundTo == from.RawName || from.AccessLevel > AccessLevel.VIP)
                     {
                         ushort exp = 2000;
                         if (from.Skills[skill].Value < 60)
@@ -1389,9 +1389,9 @@ namespace Server.Mobiles
                         else if (from.Skills[skill].Value < 70)
                             exp += 14000;
                         if (from.Skills[skill].Value < 80)
-                            exp += 5000;
+                            exp += 3000;
                         else if (from.Skills[skill].Value < 90)
-                            exp += 1000;
+                            exp += 500;
                         else if (from.Skills[skill].Value > 100)
                             exp = (ushort)(exp * 0.8);
                         else if (from.Skills[skill].Value > 105)
@@ -2511,7 +2511,7 @@ namespace Server.Mobiles
                 {
                     Item bulkOrder = CreateBulkOrder(seller, false);
                     if (bulkOrder != null && seller != null)
-                        bulkOrder.BoundTo = seller.Name;
+                        bulkOrder.BoundTo = seller.RawName;
 
                     if (bulkOrder is LargeBOD)
                     {

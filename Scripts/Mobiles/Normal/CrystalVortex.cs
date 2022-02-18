@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public CrystalVortex()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a crystal vortex";
+            this.Name = "vortex de cristal";
             this.Body = 0xD;
             this.Hue = 0x2B2;
             this.BaseSoundID = 0x107;
@@ -41,10 +41,10 @@ namespace Server.Mobiles
             this.Fame = 17000;
             this.Karma = -17000;
 
-            for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
-            {
-                this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-            }
+            //for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
+           // {
+           //     this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
+           // }
         }
 
         public CrystalVortex(Serial serial)

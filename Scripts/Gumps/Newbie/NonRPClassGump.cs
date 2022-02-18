@@ -186,7 +186,7 @@ namespace Server.Gumps
                         var hue = StarterKits.GetNoobColor();
 
                         var ball = new ElementalBall();
-                        ball.BoundTo = from.Name;
+                        ball.BoundTo = from.RawName;
                         ball.InvalidateProperties();
                         PackItem(from, ball);
 

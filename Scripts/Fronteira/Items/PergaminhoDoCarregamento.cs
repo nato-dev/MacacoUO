@@ -31,7 +31,7 @@ namespace Server.Ziden
 
             if(bp.MaxItems >= 200)
             {
-                from.SendMessage("Sua mochila ja aguenta o maximo de items");
+                from.SendMessage("Voce pode apenas upar ate 200 items com este item !");
                 return;
             }
 

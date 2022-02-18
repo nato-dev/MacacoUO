@@ -18,10 +18,10 @@ namespace Server.Mobiles
             this.SetDex(96, 115);
             this.SetInt(31, 55);
 
-            this.SetHits(202, 231);
+            this.SetHits(2202, 2231);
             this.SetMana(0);
 
-            this.SetDamage(7, 23);
+            this.SetDamage(27, 33);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -34,10 +34,10 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.MagicResist, 60.3, 105.0);
             this.SetSkill(SkillName.Tactics, 80.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 80.1, 90.0);
-            SetSkill(SkillName.Parry, 80);
+            SetSkill(SkillName.Parry, 50);
 
-            this.Fame = 4500;
-            this.Karma = -4500;
+            this.Fame = 34500;
+            this.Karma = -34500;
 
             this.VirtualArmor = 48;
             SetWeaponAbility(WeaponAbility.CrushingBlow);
@@ -64,8 +64,8 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
+            this.AddLoot(LootPack.LV5);
             this.AddLoot(LootPack.LV4);
-            this.AddLoot(LootPack.LV3);
         }
 
         public override void Serialize(GenericWriter writer)

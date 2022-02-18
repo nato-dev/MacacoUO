@@ -73,7 +73,7 @@ namespace Server.Multis
                     k.LootType = LootType.Newbied;
                     k.EngravedText = "Campista: " + m.Name;
                     k.Owner = m;
-                    k.BoundTo = m.Name;
+                    k.BoundTo = m.RawName;
                     m.PlaceInBackpack(k);
                     m.SendMessage("Voce ganhou um chapeu do campista lendario");
                 }

@@ -43,6 +43,7 @@ namespace Server.Mobiles
             {
                 this.AddItem(new HarpyEggSoupRecipe());
             }
+            Imp.Converte(this);
         }
 
         public Harpy(Serial serial)

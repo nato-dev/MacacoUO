@@ -40,7 +40,9 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 40;
 
-            if(Utility.RandomDouble() < 0.05)
+            Imp.Converte(this);
+
+            if (Utility.RandomDouble() < 0.05)
             {
                 var livro = new RedBook(1, false);
                 livro.Title = "Poema do Troll";

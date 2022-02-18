@@ -227,6 +227,7 @@
     <Compile Include="Fronteira\Guia\AcampamentosGump.cs" />
     <Compile Include="Fronteira\Guia\DungeonsGump.cs" />
     <Compile Include="Fronteira\Imbuing\Essencias\EssLuz.cs" />
+    <Compile Include="Fronteira\Mobs\Boss\ZumbiPalmares.cs" />
     <Compile Include="Fronteira\Mobs\GoblinDoTesouro.cs" />
     <Compile Include="Fronteira\Mobs\VendorWS.cs" />
     <Compile Include="Fronteira\PaidBankChest.cs" />

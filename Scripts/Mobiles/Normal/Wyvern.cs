@@ -42,6 +42,7 @@ namespace Server.Mobiles
             this.VirtualArmor = 40;
 			
             this.PackItem(new LesserPoisonPotion());
+            Imp.Converte(this);
         }
 
         public Wyvern(Serial serial)

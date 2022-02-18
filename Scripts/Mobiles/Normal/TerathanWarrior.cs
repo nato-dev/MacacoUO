@@ -9,7 +9,7 @@ namespace Server.Mobiles
         public TerathanWarrior()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "a terathan warrior";
+            this.Name = "terathan guerreiro";
             this.Body = 70;
             this.BaseSoundID = 589;
 
@@ -17,10 +17,10 @@ namespace Server.Mobiles
             this.SetDex(96, 145);
             this.SetInt(41, 65);
 
-            this.SetHits(100, 129);
+            this.SetHits(2100, 2129);
             this.SetMana(0);
 
-            this.SetDamage(7, 17);
+            this.SetDamage(17, 37);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -35,12 +35,12 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 80.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 80.1, 90.0);
 
-            this.Fame = 4000;
-            this.Karma = -4000;
+            this.Fame = 34000;
+            this.Karma = -34000;
 
             this.VirtualArmor = 30;
 
-            if (Core.ML && Utility.RandomDouble() < .33)
+            if (Utility.RandomDouble() < .33)
                 this.PackItem(Engines.Plants.Seed.RandomPeculiarSeed(4));
         }
 

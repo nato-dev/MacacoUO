@@ -1,11 +1,42 @@
 using System;
 using Server.Items;
+using Server.Menus.Questions;
 
 namespace Server.Mobiles
 {
     [CorpseName("an imp corpse")]
     public class Imp : BaseCreature
     {
+
+        public static void Converte(BaseCreature b)
+        {
+            Timer.DelayCall(TimeSpan.FromSeconds(0.1), () =>
+            {
+                if (b == null || !b.Alive || b.Deleted || !StuckMenu.IsInSecondAgeArea(b))
+                    return;
+
+                b.Hue = TintaPreta.COR;
+                b.Name = " das terras perdidas";
+                b.HitsMaxSeed += 700;
+                b.Hits += 700;
+                b.VirtualArmor += 60;
+                b.Fame *= 6;
+                foreach (var skill in b.Skills)
+                {
+                    if (skill.Base > 30 && skill.Base < 100)
+                        skill.Base = 100;
+                }
+
+                var gold = b.Backpack.FindItemByType(typeof(Gold));
+                if(gold != null)
+                {
+                    gold.Amount = (int)gold.Amount * 5;
+                }
+                
+                b.DamageMin = (int)(b.DamageMin * 1.3);
+                b.DamageMax = (int)(b.DamageMax * 1.3);
+            });
+        }
 
         [Constructable]
         public Imp()
@@ -43,28 +74,32 @@ namespace Server.Mobiles
 
             Fame = 2500;
             Karma = -2500;
-			switch (Utility.Random(354))
+            if(Shard.NECRO)
             {
-                case 0: PackItem(new BloodOathScroll()); break;
-                case 1: PackItem(new CorpseSkinScroll()); break;
-                case 2: PackItem(new CurseWeaponScroll()); break;
-                case 3: PackItem(new EvilOmenScroll()); break;
-				case 4: PackItem(new HorrificBeastScroll()); break;
-				case 5: PackItem(new LichFormScroll()); break;
-				case 6: PackItem(new MindRotScroll()); break;
-				case 7: PackItem(new PainSpikeScroll()); break;
-				case 8: PackItem(new PoisonStrikeScroll()); break;
-				case 9: PackItem(new StrangleScroll()); break;
-				case 10: PackItem(new SummonFamiliarScroll()); break;
-				case 11: PackItem(new WitherScroll()); break;
-				case 12: PackItem(new WraithFormScroll()); break;
-			}
+                switch (Utility.Random(354))
+                {
+                    case 0: PackItem(new BloodOathScroll()); break;
+                    case 1: PackItem(new CorpseSkinScroll()); break;
+                    case 2: PackItem(new CurseWeaponScroll()); break;
+                    case 3: PackItem(new EvilOmenScroll()); break;
+                    case 4: PackItem(new HorrificBeastScroll()); break;
+                    case 5: PackItem(new LichFormScroll()); break;
+                    case 6: PackItem(new MindRotScroll()); break;
+                    case 7: PackItem(new PainSpikeScroll()); break;
+                    case 8: PackItem(new PoisonStrikeScroll()); break;
+                    case 9: PackItem(new StrangleScroll()); break;
+                    case 10: PackItem(new SummonFamiliarScroll()); break;
+                    case 11: PackItem(new WitherScroll()); break;
+                    case 12: PackItem(new WraithFormScroll()); break;
+                }
+            }
 
             VirtualArmor = 30;
 
             Tamable = true;
             ControlSlots = 2;
             MinTameSkill = 83.1;
+            Converte(this);
         }
 
         public Imp(Serial serial)

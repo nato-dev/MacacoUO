@@ -162,7 +162,7 @@ namespace Server.Mobiles
                 {
                     if (this.Hits < 50)
                     {
-                        this.PublicOverheadMessage(MessageType.Regular, 0x3B2, true, "* The solen's acid sac is burst open! *");
+                        this.PublicOverheadMessage(MessageType.Regular, 0x3B2, true, "* o acido da formiga explodiu ! *");
                         this.m_BurstSac = true;
                     }
                 }

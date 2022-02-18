@@ -225,6 +225,12 @@ namespace Server.SkillHandlers
 
                 from.PublicOverheadMessage(Network.MessageType.Emote, 0, false, "* Investigando *");
 
+                if(!from.IsCooldown("dicafor"))
+                {
+                    from.SendMessage("dicafor", TimeSpan.FromHours(1));
+                    from.SendMessage(78, "Voce pode usar uma Luneta para encontrar spots de recursos pelo mapa.");
+                }
+
                 if (target is Corpse)
                 {
                     Shard.Debug("Corpse");

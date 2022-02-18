@@ -8,13 +8,29 @@ namespace Server.Items
         public CrystallineFragments()
             : base(0x223B)
         {
-            this.LootType = LootType.Blessed;
             this.Hue = 0x47E;
+            this.Name = "Fragmentos de Essencia Elemental";
         }
 
         public CrystallineFragments(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            if (!this.Movable)
+                return;
+
+            if(Utility.RandomDouble() < 0.05)
+            {
+                from.Backpack.AddItem(BaseEssencia.RandomEssencia());
+                from.SendMessage("Voce encontrou uma essencia elemental dentro do cristal");
+            } else
+            {
+                from.SendMessage("Voce quebrou o cristal, e nao encontrou nada dentro.");
+            }
+            Consume();
         }
 
         public override int LabelNumber

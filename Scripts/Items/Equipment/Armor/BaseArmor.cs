@@ -2740,9 +2740,6 @@ namespace Server.Items
                     if (weapon.Type == WeaponType.Bashing)
                         wear = Absorbed / 2;
 
-                    if(this.m_elementoPvm != ElementoPvM.None)
-                        wear += 1;
-
                     if (wear > 0 && m_MaxHitPoints > 0)
                     {
                         if (m_HitPoints >= wear)
