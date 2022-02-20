@@ -152,7 +152,7 @@ namespace Server.Misc
                     return true;
             }
 
-            if (defender.Player && attacker.Player && defender.Region is GuardedRegion)
+            if (!defender.Criminal && defender.Player && attacker.Player && defender.Region is GuardedRegion)
             {
                 return false; // na cidade so pode tretar 
             }
