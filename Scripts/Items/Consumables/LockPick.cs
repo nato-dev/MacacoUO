@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Server.Mobiles;
 using Server.Regions;
 using Server.Targeting;
@@ -167,15 +168,18 @@ namespace Server.Items
 
                 if(lockpickable is BaseTreasureChestMod && from.Region is GuardedRegion)
                 {
+                    var deletes = new List<Item>();
                     foreach(var i in ((BaseTreasureChestMod)lockpickable).Items)
                     {
                         if (Utility.RandomBool() || Utility.RandomBool())
-                            i.Delete();
-                        else if(i is Gold)
+                            deletes.Add(i);
+                        else if (i is Gold)
                         {
                             i.Amount /= 4;
                         }
                     }
+                    foreach (var i in deletes)
+                        i.Delete();
                 }
             }
             else
