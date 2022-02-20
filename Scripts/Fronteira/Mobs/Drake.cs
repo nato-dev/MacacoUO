@@ -52,6 +52,8 @@ namespace Server.Mobiles
         {
         }
 
+        public override double BreathDamageScalar => 0.1;
+
         public override bool ReacquireOnMovement
         {
             get

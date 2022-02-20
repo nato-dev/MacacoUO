@@ -1454,6 +1454,7 @@ namespace Server.Engines.Craft
                     from.SetCooldown("dicaalore");
                     from.SendMessage(78, "Para criar mais armas e armaduras excepcionais, upe a skill Arms Lore");
                 }
+                from.CheckTargetSkillMinMax(SkillName.ArmsLore, null, 0, 120);
             }
 
             if (from.RP && from.Player)

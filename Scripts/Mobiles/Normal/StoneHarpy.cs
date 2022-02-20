@@ -40,6 +40,7 @@ namespace Server.Mobiles
             this.Karma = -4500;
 
             this.VirtualArmor = 100;
+            Imp.Converte(this);
         }
 
         public StoneHarpy(Serial serial)

@@ -127,6 +127,11 @@ namespace Server.Spells
 
             int sdiBonus = AosAttributes.GetValue(caster, AosAttribute.SpellDamage);
 
+            if(!playerVsPlayer && caster.Player && caster.Elemento != ElementoPvM.None)
+            {
+                sdiBonus += ((PlayerMobile)caster).Elementos.GetNivel(caster.Elemento) * 2;
+            }
+
             if (target != null)
             {
                 if (RunedSashOfWarding.IsUnderEffects(target, WardingEffect.SpellDamage))
@@ -364,9 +369,9 @@ namespace Server.Spells
             return true;
         }
 
-        public static bool AddStatBonus(Mobile caster, Mobile target, bool blockSkill, StatType type)
+        public static bool AddStatBonus(Mobile caster, Mobile target, bool blockSkill, StatType type, double scale = 1)
         {
-            return AddStatBonus(caster, target, type, GetOffset(caster, target, type, false, blockSkill), GetDuration(caster, target));
+            return AddStatBonus(caster, target, type, GetOffset(caster, target, type, false, blockSkill, scale), GetDuration(caster, target));
         }
 
         public static bool AddStatBonus(Mobile caster, Mobile target, StatType type, int bonus, TimeSpan duration)
@@ -477,7 +482,7 @@ namespace Server.Spells
             return percent;
         }
 
-        public static int GetOffset(Mobile caster, Mobile target, StatType type, bool curse, bool blockSkill)
+        public static int GetOffset(Mobile caster, Mobile target, StatType type, bool curse, bool blockSkill, double scale = 1)
         {
             if(!Shard.RP)
                 return 1 + (int)(caster.Skills[SkillName.Magery].Value * 0.1);
@@ -485,7 +490,7 @@ namespace Server.Spells
             var bonus = (int)(caster.Skills[SkillName.Magery].Value * 0.05);
             if (caster.TemTalento(Talento.Feiticeiro))
                 bonus += 6;
-            return 1 + bonus;
+            return (int)Math.Round(scale * (1 + bonus));
         }
 
         public static Guild GetGuildFor(Mobile m)

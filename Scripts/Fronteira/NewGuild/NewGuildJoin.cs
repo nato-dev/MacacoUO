@@ -18,24 +18,21 @@ namespace Server.Scripts.New.Adam.NewGuild
 {
     public abstract class NewPlayerGuildAutoJoin
     {
-        public static string Abrev = "Noob";
+        public static string Abrev = "Ordem";
 
         public static HashSet<Serial> asked = new HashSet<Serial>();
 
         public static void SendStarterGuild(PlayerMobile pm)
         {
-            Shard.Debug("Invitando pra guilda noob", pm);
             if (pm == null || pm.Guild != null)
             {
-                Shard.Debug("R1");
                 return;
             }
 
             if (asked.Contains(pm.Serial))
                 return;
 
-            Shard.Debug("Total Skills: " + pm.SkillsTotal, pm); ;
-            if (pm.SkillsTotal >= 5000)
+            if (pm.SkillsTotal >= 7000)
             {
                 return;
             }

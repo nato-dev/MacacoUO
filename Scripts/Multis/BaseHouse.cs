@@ -1486,7 +1486,7 @@ namespace Server.Multis
 
             m_Owner = owner;
 
-            m_MaxLockDowns = MaxLockDown;
+            m_MaxLockDowns = MaxLockDown * 3;
             m_MaxSecures = MaxSecure;
 
             m_RelativeBanLocation = BaseBanLocation;
@@ -3191,7 +3191,7 @@ namespace Server.Multis
         {
             base.Serialize(writer);
 
-            writer.Write((int)22); // version
+            writer.Write((int)23); // version
 
             writer.Write((int)_CurrentDecay);
 
@@ -3326,6 +3326,7 @@ namespace Server.Multis
 
             switch (version)
             {
+                case 23:
                 case 22:
                     {
                         _CurrentDecay = (DecayType)reader.ReadInt();
@@ -3602,6 +3603,12 @@ namespace Server.Multis
                         }
                         break;
                     }
+            }
+
+
+            if (version == 22)
+            {
+                m_MaxLockDowns *= 3;
             }
 
             if (version <= 1)

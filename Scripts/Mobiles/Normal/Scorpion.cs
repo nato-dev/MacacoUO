@@ -47,6 +47,7 @@ namespace Server.Mobiles
             MinTameSkill = 47.1;
 
             PackItem(new LesserPoisonPotion());
+            Imp.Converte(this);
         }
 
         public Scorpion(Serial serial)

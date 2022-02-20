@@ -73,12 +73,42 @@ namespace Server.Items
         }
     }
 
+    public class KegH : PotionKeg
+    {
+        [Constructable]
+        public KegH() : base()
+        {
+            Type = PotionEffect.Vida;
+            Held = 100;
+
+        }
+
+        public KegH(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
     public class KegGH : PotionKeg
     {
         [Constructable]
         public KegGH(): base()
         {
-            Type = PotionEffect.CuraMaior;
+            Type = PotionEffect.VidaForte;
             Held = 100;
             
         }
@@ -138,7 +168,7 @@ namespace Server.Items
         [Constructable]
         public KegMana() : base()
         {
-            Type = PotionEffect.Mana;
+            Type = PotionEffect.ManaFraca;
             Held = 100;
 
         }

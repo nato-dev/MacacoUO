@@ -243,8 +243,6 @@ namespace Server.Items
         {
             base.Deserialize(reader);
 
-            LootType = LootType.Blessed;
-
             if (Core.SE && Weight == 3.0)
                 Weight = 1.0;
 

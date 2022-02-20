@@ -1,5 +1,6 @@
 using System;
 using Server.Mobiles;
+using Server.Regions;
 using Server.Targeting;
 
 namespace Server.Items
@@ -164,15 +165,17 @@ namespace Server.Items
                 from.PlaySound(0x4A);
                 lockpickable.LockPick(from);
 
-                if(lockpickable is Container)
+                if(lockpickable is BaseTreasureChestMod && from.Region is GuardedRegion)
                 {
-                    /*
-                    if(from.RP)
+                    foreach(var i in ((BaseTreasureChestMod)lockpickable).Items)
                     {
-                        foreach (var i in ((Container)lockpickable).Items)
-                            i.RP = true;
+                        if (Utility.RandomBool() || Utility.RandomBool())
+                            i.Delete();
+                        else if(i is Gold)
+                        {
+                            i.Amount /= 4;
+                        }
                     }
-                    */
                 }
             }
             else

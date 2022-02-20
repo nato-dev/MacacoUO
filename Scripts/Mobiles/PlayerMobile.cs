@@ -54,6 +54,7 @@ using Server.Fronteira.RP;
 using Server.Fronteira.Talentos;
 using Server.Fronteira.Elementos;
 using Server.Fronteira.Pvm;
+using Server.Menus.Questions;
 #endregion
 
 namespace Server.Mobiles
@@ -386,6 +387,12 @@ namespace Server.Mobiles
                 return;
             }
 
+            if (StuckMenu.IsInSecondAgeArea(this))
+            {
+                //LocalOverheadMessage(MessageType.Regular, 0, false, "Seu cavalo aguarda do outro lado");
+                return;
+            }
+
             if (DungeonMount != null && this.Alive)
             {
                 DungeonMount.MoveToWorld(Location, Map);
@@ -406,6 +413,12 @@ namespace Server.Mobiles
 
             var newDungeon = New is DungeonRegion || New is DungeonGuardedRegion;
             var oldDungeon = Old is DungeonRegion || Old is DungeonGuardedRegion;
+
+            if(oldDungeon != null && StuckMenu.IsInSecondAgeArea(this))
+            {
+                PrivateOverheadMessage("* perigo *", 32);
+                SendMessage(32, "[PERIGO] Voce esta nas terras perdidas. Volte se nao quiser morrer.");
+            }
 
             Timer.DelayCall(TimeSpan.FromSeconds(3), () =>
             {
@@ -440,7 +453,7 @@ namespace Server.Mobiles
                 }
             }
 
-            if (newDungeon)
+            if (newDungeon || StuckMenu.IsInSecondAgeArea(this))
             {
                 if (!oldDungeon)
                 {

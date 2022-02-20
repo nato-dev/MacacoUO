@@ -11,7 +11,7 @@ namespace Server.Mobiles
         public IceSerpent()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "a giant ice serpent";
+            Name = "serpente de gelo";
             Body = 89;
             BaseSoundID = 219;
 
@@ -44,6 +44,7 @@ namespace Server.Mobiles
             Karma = -3500;
 
             VirtualArmor = 32;
+            Imp.Converte(this);
 
         }
 

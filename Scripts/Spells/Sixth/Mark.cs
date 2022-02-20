@@ -1,5 +1,6 @@
 using System;
 using Server.Items;
+using Server.Menus.Questions;
 using Server.Network;
 using Server.Targeting;
 
@@ -41,6 +42,11 @@ namespace Server.Spells.Sixth
 
         public void Target(RecallRune rune)
         {
+            if(StuckMenu.IsInSecondAgeArea(Caster) && !(rune is T2ARecallRune))
+            {
+                Caster.SendMessage("A magia parece nao ter efeito com esta runa neste local");
+                return;
+            }
             if (!this.Caster.CanSee(rune))
             {
                 this.Caster.SendLocalizedMessage(500237); // Target can not be seen.
@@ -63,7 +69,6 @@ namespace Server.Spells.Sixth
                 this.Caster.PlaySound(0x1FA);
                 Effects.SendLocationEffect(this.Caster, this.Caster.Map, 14201, 16);
             }
-
             this.FinishSequence();
         }
 

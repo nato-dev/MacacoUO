@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public CrystalElemental()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "a crystal elemental";
+            Name = "elemental de cristal";
             Body = 300;
             BaseSoundID = 278;
 
@@ -18,7 +18,7 @@ namespace Server.Mobiles
             SetDex(51, 65);
             SetInt(86, 110);
 
-            SetHits(150);
+            SetHits(1000);
 
             SetDamage(10, 15);
 
@@ -32,18 +32,20 @@ namespace Server.Mobiles
             SetResistance(ResistanceType.Energy, 55, 70);
 
             SetSkill(SkillName.EvalInt, 70.1, 75.0);
-            SetSkill(SkillName.Magery, 70.1, 75.0);
+            SetSkill(SkillName.Magery, 100, 100);
             SetSkill(SkillName.Meditation, 65.1, 75.0);
-            SetSkill(SkillName.MagicResist, 80.1, 90.0);
+            SetSkill(SkillName.Parry, 50, 50);
+            SetSkill(SkillName.MagicResist, 0, 0);
             SetSkill(SkillName.Tactics, 75.1, 85.0);
             SetSkill(SkillName.Wrestling, 65.1, 75.0);
 
             Fame = 6500;
             Karma = -6500;
 
-            VirtualArmor = 54;
-
+            VirtualArmor = 100;
+            AddItem(new CristalElemental());
             SetWeaponAbility(WeaponAbility.ParalyzingBlow);
+            SetSpecialAbility(SpecialAbility.StealLife);
         }
 
         public CrystalElemental(Serial serial)
@@ -75,6 +77,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
+           
             AddLoot(LootPack.LV4);
             AddLoot(LootPack.LV3);
         }

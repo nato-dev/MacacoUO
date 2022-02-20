@@ -63,11 +63,11 @@ namespace Server.Mobiles
 		
         public override void OnDeath(Container c)
         {
-            base.OnDeath(c);		
-			
+            base.OnDeath(c);
+
             if (Utility.RandomDouble() < 0.25)
-                c.DropItem(new ShatteredCrystals());
-				
+                c.DropItem(PrismOfLightAltar.GetRandomKey());
+
             c.DropItem(new CrystallineFragments());
         }
 		

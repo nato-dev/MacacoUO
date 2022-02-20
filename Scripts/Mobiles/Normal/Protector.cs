@@ -22,7 +22,7 @@ namespace Server.Mobiles
             SetDex(100, 150);
             SetInt(50, 75);
 
-            SetHits(350, 450);
+            SetHits(1350, 1450);
 
             SetDamage(6, 12);
 
@@ -93,6 +93,8 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV5);
+       
+
         }
       
         public override void OnDeath( Container c )
@@ -100,7 +102,10 @@ namespace Server.Mobiles
 			base.OnDeath( c );
 
 			if ( Utility.RandomDouble() < 0.4 )
-			c.DropItem( new ProtectorsEssence() );
+			    c.DropItem( new ProtectorsEssence() );
+
+            if(Utility.RandomDouble() < 0.1)
+                c.DropItem(PrismOfLightAltar.GetRandomKey());
         }
 
         public override void Serialize(GenericWriter writer)

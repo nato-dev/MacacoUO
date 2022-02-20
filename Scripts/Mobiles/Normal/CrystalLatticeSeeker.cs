@@ -6,11 +6,27 @@ namespace Server.Mobiles
     [CorpseName("a Crystal Lattice Seeker corpse")]
     public class CrystalLatticeSeeker : BaseCreature
     {
+        public override bool UseSmartAI
+        {
+            get { return !this.Summoned; }
+        }
+
+        public override bool IsSmart
+        {
+            get { return !this.Summoned; }
+        }
+
+        public override void OnDamage(int amount, Mobile from, bool willKill)
+        {
+            base.OnDamage(amount, from, willKill);
+            Orc.TentaAtacarMaster(this, from);
+        }
+
         [Constructable]
         public CrystalLatticeSeeker()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "Crystal Lattice Seeker";
+            this.Name = "anjo de cristal";
             this.Body = 0x7B;
             this.Hue = 0x47E;
 
@@ -18,7 +34,7 @@ namespace Server.Mobiles
             this.SetDex(190, 250);
             this.SetInt(350, 450);
 
-            this.SetHits(350, 550);
+            this.SetHits(1350, 1550);
 
             this.SetDamage(13, 19);
 
@@ -38,8 +54,8 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 90.0, 100.0);
             this.SetSkill(SkillName.Wrestling, 90.0, 100.0);
 
-            this.Fame = 17000;
-            this.Karma = -17000;
+            this.Fame = 27000;
+            this.Karma = -27000;
 
             //for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
            // {
@@ -59,8 +75,8 @@ namespace Server.Mobiles
             if ( Utility.RandomDouble() < 0.75 )
             c.DropItem( new CrystallineFragments() );
 
-            if ( Utility.RandomDouble() < 0.07 )
-            c.DropItem( new PiecesOfCrystal() );
+            if ( Utility.RandomDouble() < 0.2 )
+            c.DropItem( PrismOfLightAltar.GetRandomKey() );
         }
 
         public override int Feathers

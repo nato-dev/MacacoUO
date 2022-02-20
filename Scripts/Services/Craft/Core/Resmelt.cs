@@ -205,10 +205,20 @@ namespace Server.Engines.Craft
 
                     Item ingot = (Item)Activator.CreateInstance(resourceType);
 
-                    if (item is IResource || item is DragonBardingDeed || (item is BaseArmor && ((BaseArmor)item).PlayerConstructed) || (item is BaseWeapon && ((BaseWeapon)item).PlayerConstructed) || (item is BaseClothing && ((BaseClothing)item).PlayerConstructed))
+                    if (item is DragonBardingDeed || (item is BaseArmor && ((BaseArmor)item).PlayerConstructed) || (item is BaseWeapon && ((BaseWeapon)item).PlayerConstructed) || (item is BaseClothing && ((BaseClothing)item).PlayerConstructed))
                         ingot.Amount = (int)((double)craftResource.Amount * .5);
                     else
-                        ingot.Amount = 1;
+                    {
+                        var res = item as IResource;
+                        if(res != null && res.Resource != CraftResource.Ferro && res.Resource != CraftResource.Cedro && res.Resource != CraftResource.RegularLeather)
+                        {
+                            ingot.Amount = (int)((double)craftResource.Amount * .5);
+                        } else
+                        {
+                            ingot.Amount = 1;
+                        }
+                    }
+                       
 
                     item.Delete();
                     from.AddToBackpack(ingot);

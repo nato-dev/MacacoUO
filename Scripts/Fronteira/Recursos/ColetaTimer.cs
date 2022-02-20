@@ -25,7 +25,7 @@ namespace Server.Fronteira.Recursos
             _recurso = s;
             Anim();
 
-            if((_recurso.Metal() && !(_from.Weapon is Pickaxe || _from.Weapon is SturdyPickaxe)) || (!_recurso.Metal() && !(_from.Weapon is BaseAxe)))
+            if((_recurso.Metal() && !(_from.Weapon is Pickaxe || _from.Weapon is HammerPick || _from.Weapon is SturdyPickaxe)) || (!_recurso.Metal() && !(_from.Weapon is BaseAxe)))
             {
                 _recurso.Coletando = null;
                 _from.SendMessage("Voce talvez precise de outra ferramenta em suas maos para coletar isto");

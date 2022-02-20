@@ -1676,7 +1676,7 @@ namespace Server.SkillHandlers
 
             foreach (Item item in eable)
             {
-                if ((item.ItemID >= 0x4277 && item.ItemID <= 0x4286) || (item.ItemID >= 0x4263 && item.ItemID <= 0x4272) || (item.ItemID >= 17607 && item.ItemID <= 17610))
+                if (item.ItemID == 0x426D || item.ItemID == 0x44C7 || (item.ItemID >= 0x4277 && item.ItemID <= 0x4286) || (item.ItemID >= 0x4263 && item.ItemID <= 0x4272) || (item.ItemID >= 17607 && item.ItemID <= 17610))
                 {
                     isForge = true;
                     break;

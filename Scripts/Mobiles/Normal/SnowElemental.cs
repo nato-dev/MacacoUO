@@ -47,6 +47,7 @@ namespace Server.Mobiles
             this.PackItem(ore);
             this.PackItem(new BolaDeNeve());
             this.PackItem(new BolaDeNeve());
+            Imp.Converte(this, 1154);
         }
 
         public override void OnThink()

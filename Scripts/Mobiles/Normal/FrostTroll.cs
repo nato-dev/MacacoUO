@@ -42,6 +42,7 @@ namespace Server.Mobiles
             this.PackItem(new DoubleAxe()); // TODO: Weapon??
             this.SetSpecialAbility(SpecialAbility.ConductiveBlast);
             this.SetWeaponAbility(WeaponAbility.BleedAttack);
+            Imp.Converte(this, 1154);
         }
 
         public FrostTroll(Serial serial)

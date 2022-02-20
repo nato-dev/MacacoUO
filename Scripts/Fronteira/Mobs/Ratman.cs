@@ -13,7 +13,7 @@ namespace Server.Mobiles
         public BaseRatman(AIType type, FightMode mode, int n1, int n2, double n3, double n4)
             : base(type, mode, n1, n2, n3, n4)
         {
-
+            Imp.Converte(this);
         }
 
         public BaseRatman(Serial serial)

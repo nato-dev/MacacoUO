@@ -8,7 +8,6 @@ namespace Server.Mobiles
     [CorpseName("a golem corpse")]
     public class GolemMecanico : BaseCreature
     {
-
         public bool Carregando = false;
         public bool Tatunado = false;
 
@@ -90,7 +89,13 @@ namespace Server.Mobiles
             PackItem(new MechanicalLifeManual());
             this.PackItem(new Item(0xA517));
             PackItem(Carnage.GetRandomPS(105));
-            PackItem(Carnage.GetRandomPS(105));
+            var r = Utility.Random(3);
+            switch(r)
+            {
+                case 0: PackItem(new RoastingPigOnASpitDeed()); break;
+                case 1: PackItem(new FormalDiningTableDeed()); break;
+                case 2: PackItem(new BuffetTableDeed()); break;
+            }
         }
 
         public GolemMecanico(Serial serial)

@@ -489,7 +489,10 @@ namespace Server.Items
             double toHeal = (min + (Utility.RandomDouble() * (max - min))) * 0.8;
 
             if (healing < 100)
-                toHeal *= 0.8;
+                toHeal *= 0.9;
+
+            if (toHeal < 20)
+                toHeal = 20;
 
             if ((m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal) && !m_Patient.Player)
             {

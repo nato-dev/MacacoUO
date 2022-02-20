@@ -58,8 +58,9 @@ namespace Server.Gumps
                         }
                         break;
                     }
-                case 0: TutorialNoob.InicializaWisp(from); break;
+  
             }
+
         }
     }
 }

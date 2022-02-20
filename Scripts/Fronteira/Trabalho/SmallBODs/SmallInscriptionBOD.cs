@@ -15,7 +15,7 @@ namespace Server.Engines.BulkOrders
 
             if (entries.Length > 0)
             {
-                int amountMax = Utility.RandomList(10, 15, 20);
+                int amountMax = Utility.RandomList(30, 35, 40);
 
                 BulkMaterialType material;
                 material = BulkMaterialType.None;

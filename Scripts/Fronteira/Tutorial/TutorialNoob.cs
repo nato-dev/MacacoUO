@@ -61,10 +61,7 @@ namespace Server.Ziden.Tutorial
                 player.Wisp.Jogador = null;
                 player.Wisp.Delete();                
                 player.Wisp = null;
-            } else
-            {
-                InicializaWisp(player);
-            }
+            } 
         }
         
         public static void InicializaWisp(PlayerMobile player)

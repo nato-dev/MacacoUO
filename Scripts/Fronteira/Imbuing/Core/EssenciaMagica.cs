@@ -57,11 +57,7 @@ namespace Server.Ziden
             base.OnDoubleClick(from);
 
             var custo = 100;
-            if (!Imbuing.CheckSoulForge(from, 2))
-            {
-                from.SendMessage("Por estar longe de uma forja das almas voce precisa de mais material");
-                custo *= 3;
-            } else
+            if (!Imbuing.CheckSoulForge(from, 4))
             {
                 bool anvil, forge = false;
                 DefBlacksmithy.CheckAnvilAndForge(from, 3, out anvil, out forge);
@@ -70,6 +66,9 @@ namespace Server.Ziden
                     from.SendMessage("Voce precisa estar proximo de uma bigorna e forja para isto caso nao esteja proximo de uma forja das almas.");
                     return;
                 }
+
+                from.SendMessage("Por estar longe de uma forja das almas voce precisa de mais material");
+                custo *= 3;
             }
 
             if (this.Amount < custo)

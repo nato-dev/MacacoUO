@@ -94,6 +94,14 @@ namespace Server.Gumps
                 this.AddHtml(772, 640, 89, 27, @"Nova", (bool)true, (bool)false);
             }
 
+            this.AddImage(486, 224, 10440);
+            this.AddImage(972, 243, 10441);
+            this.AddImage(544, 171, 10462);
+            this.AddImage(940, 170, 10462);
+            this.AddImage(741, 171, 10462);
+            this.AddImage(844, 171, 10462);
+            this.AddImage(639, 171, 10462);
+
             int y = 0;
             var index = 100;
             foreach (var template in player.Templates.Templates)
@@ -107,15 +115,9 @@ namespace Server.Gumps
 
             this.AddHtml(669, 203, 200, 19, @"Templates", color, (bool)false, (bool)false);
 
-            this.AddImage(486, 224, 10440);
-            this.AddImage(972, 243, 10441);
-            this.AddImage(544, 171, 10462);
-            this.AddImage(940, 170, 10462);
-            this.AddImage(741, 171, 10462);
-            this.AddImage(844, 171, 10462);
-            this.AddImage(639, 171, 10462);
-
             this.AddButton(842, 644, 1209, 1210, (int)Buttons.NewTemplate, GumpButtonType.Reply, 0);
+   
+            this.AddButton(868, 644, 1151, 1152, (int)Buttons.DeleteTemplate, GumpButtonType.Reply, 0);
         }
 
         public override void OnResponse(NetState sender, RelayInfo info)
@@ -184,6 +186,14 @@ namespace Server.Gumps
                     {
                         player.SendGump(new NonRPClassGump(null, false));
                     }
+                } else if (info.ButtonID == (int)Buttons.DeleteTemplate)
+                {
+                    if (player.Templates.Templates.Count == 1)
+                    {
+                        player.SendMessage("Voce nao pode deletar sua unica template");
+                        return;
+                    }
+                    player.SendGump(new ConfirmDelete(player, player.Templates.GetCurrentTemplate(player)));
                 }
             } catch (Exception e)
             {
@@ -199,6 +209,7 @@ namespace Server.Gumps
             Button3,
             CopyofButton3,
             NewTemplate,
+            DeleteTemplate,
         }
 
     }

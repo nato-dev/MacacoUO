@@ -28,7 +28,7 @@ namespace Server.Mobiles
             }
         }
 
-        public static int PRECO_REAGS = 3;
+        public static int PRECO_REAGS = 4;
 
         public static void BuyReagents(List<GenericBuyInfo> info)
         {
@@ -66,7 +66,6 @@ namespace Server.Mobiles
                 //Add(new GenericBuyInfo("Chapeu Magico", typeof(MagicWizardsHat), 20000, 10, 0x1718, Utility.RandomDyedHue()));
 
                 Add(new GenericBuyInfo(typeof(RecallRune), 1000, 10, 0x1F14, 0));
-
 
                 Type[] types = Loot.RegularScrollTypes;
 

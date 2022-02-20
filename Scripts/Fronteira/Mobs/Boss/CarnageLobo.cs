@@ -1,6 +1,7 @@
 using Server.Commands;
 using Server.Gumps;
 using Server.Items;
+using Server.Menus.Questions;
 using Server.Regions;
 using System;
 
@@ -50,20 +51,26 @@ namespace Server.Mobiles
 
             SetWeaponAbility(WeaponAbility.BleedAttack);
 
-            
+
+
             Timer.DelayCall(TimeSpan.FromSeconds(20), () =>
             {
                 if (!this.Alive || this.Deleted)
                     return;
 
+
+                bool t2a = StuckMenu.IsInSecondAgeArea(this);
+
                 var msg = "Carnage renasce em " + this.Location.X + " - " + this.Location.Y;
+                if(t2a)
+                    msg = "Carnage renasce nas terras perdidas";
+                Anuncio.Anuncia(msg);
                 foreach (var mobile in PlayerMobile.Instances)
                 {
                     if (mobile != null && mobile.NetState != null)
                     {
-                        mobile.SendGump(new AnuncioGump(mobile as PlayerMobile, msg));
-                        mobile.SendMessage(78, "Um lobo sinistro nasceu em  " + this.Location.X + " - " + this.Location.Y+" ! Lute para mata-lo e ganhe recompensas !");
-                        if(mobile.QuestArrow == null && mobile.Map == Map.Trammel && !(mobile.Region is DungeonRegion))
+                        mobile.SendMessage(78, "Um lobo sinistro nasceu nas terras perdidas ! Lute para mata-lo e ganhe recompensas !");
+                        if (mobile.QuestArrow == null && mobile.Map == Map.Trammel && !(mobile.Region is DungeonRegion))
                         {
                             mobile.QuestArrow = new QuestArrow(mobile, this.Location);
                             mobile.QuestArrow.Update();
@@ -81,9 +88,9 @@ namespace Server.Mobiles
 
         public void ChecaTreta()
         {
-            if(Combatant == null)
+            if (Combatant == null)
             {
-                if(Hits == HitsMax)
+                if (Hits == HitsMax)
                 {
                     Delete();
                     return;
@@ -98,32 +105,37 @@ namespace Server.Mobiles
 
         public override void OnDeath(Container c)
         {
-            Timer.DelayCall(TimeSpan.FromSeconds(3), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(3), () =>
+            {
                 if (c == null)
                     return;
                 c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* estranho *");
             });
 
             base.OnDeath(c);
-            Timer.DelayCall(TimeSpan.FromSeconds(10), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(10), () =>
+            {
                 if (c == null)
                     return;
                 c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* se meche *");
             });
 
-            Timer.DelayCall(TimeSpan.FromSeconds(20), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(20), () =>
+            {
                 if (c == null)
                     return;
                 c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* se meche mais *");
             });
 
-            Timer.DelayCall(TimeSpan.FromSeconds(30), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(30), () =>
+            {
                 if (c == null)
                     return;
                 c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* sinistro *");
             });
 
-            Timer.DelayCall(TimeSpan.FromSeconds(31), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(31), () =>
+            {
                 if (c == null)
                     return;
 
@@ -131,7 +143,7 @@ namespace Server.Mobiles
                 Carnage rm = new Carnage();
                 rm.Team = this.Team;
                 rm.Combatant = this.Combatant;
-                
+
 
                 rm.MoveToWorld(c.Location, c.Map);
                 Effects.PlaySound(c, c.Map, 0x208);

@@ -10,12 +10,8 @@ namespace Server.Items
         [Constructable]
         public CrystallineRing()
         {
-            Hue = 0x480;		
-            Attributes.RegenHits = 5;
-            Attributes.RegenMana = 3;
-            Attributes.SpellDamage = 20;		
-            SkillBonuses.SetValues(0, SkillName.Magery, 20.0);
-            SkillBonuses.SetValues(1, SkillName.Focus, 20.0);
+            Hue = 0x480;			
+            SkillBonuses.SetValues(0, SkillName.Magery, 2);
         }
 
         public CrystallineRing(Serial serial)

@@ -295,8 +295,9 @@ namespace Server.Items
             }
             else
             {
-                var check = CheckWeaponSkill(from);
-                return check;
+                return true;
+                //var check = CheckWeaponSkill(from);
+                //return check;
             }
 
 

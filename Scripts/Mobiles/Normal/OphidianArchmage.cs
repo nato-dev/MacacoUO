@@ -16,11 +16,9 @@ namespace Server.Mobiles
                 if (b == null || !b.Alive || b.Deleted || !StuckMenu.IsInSecondAgeArea(b))
                     return;
 
-                b.Hue = TintaPreta.COR;
-                b.Name = " das terras perdidas";
-                b.HitsMaxSeed = 800;
-                b.Hits = 800;
-                b.VirtualArmor = 60;
+                b.HitsMaxSeed += 800;
+                b.Hits += 800;
+                b.VirtualArmor += 60;
                 b.Fame *= 4;
                 foreach(var skill in b.Skills)
                 {

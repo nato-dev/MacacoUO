@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public WyvernRenowned()
             : base(AIType.AI_Mage)
         {
-            this.Name = "Dragao das Almas";
+            this.Name = "Fadragao das Almas";
             this.Title = "[Renowned]";
             this.Body = 62;
             this.Hue = 243;

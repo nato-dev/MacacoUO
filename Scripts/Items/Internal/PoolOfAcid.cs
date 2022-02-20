@@ -68,6 +68,12 @@ namespace Server.Items
             }
             m.SetCooldown("danoacido", TimeSpan.FromMilliseconds(500));
 
+            if(!m.IsCooldown("dicaacido"))
+            {
+                m.SetCooldown("dicaacido", TimeSpan.FromSeconds(60));
+                m.SendMessage(78, "Evite ficar em cima de vomitos e acidos verdes, elas podem lhe causar dano !");
+            }
+
             if(m is BaseCreature)
             {
                 var bc = (BaseCreature)m;

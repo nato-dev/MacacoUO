@@ -252,7 +252,7 @@ namespace Server.Fronteira.Recursos
                 PointsSystem.PontosLenhador.AwardPoints(from, diff.Max, false, false);
 
             var tool = from.Weapon as BaseWeapon;
-            if (tool is IUsesRemaining && (tool is BaseAxe || tool is Pickaxe || tool is SturdyPickaxe || tool is GargoylesPickaxe || Siege.SiegeShard))
+            if (tool is IUsesRemaining && (tool is BaseAxe || tool is Pickaxe || tool is HammerPick || tool is SturdyPickaxe || tool is GargoylesPickaxe || Siege.SiegeShard))
             {
                 IUsesRemaining toolWithUses = (IUsesRemaining)tool;
 

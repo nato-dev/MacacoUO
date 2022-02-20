@@ -236,7 +236,6 @@ namespace Server.Items
             set { _OwnerName = value; InvalidateProperties(); }
         }
 
-        #region Var declarations
         // Instance values. These values are unique to each weapon.
         private WeaponDamageLevel m_DamageLevel;
         private WeaponAccuracyLevel m_AccuracyLevel;
@@ -294,7 +293,7 @@ namespace Server.Items
         private ReforgedPrefix m_ReforgedPrefix;
         private ReforgedSuffix m_ReforgedSuffix;
         #endregion
-        #endregion
+
 
         #region Virtual Properties
         public virtual WeaponAbility PrimaryAbility { get { return null; } }
@@ -1229,7 +1228,7 @@ namespace Server.Items
                         from.SetCooldown("dicaeq", TimeSpan.FromDays(1));
                         from.SendMessage(78, "Por ter muita forca e conhecimento em armas, voce equipou a arma rapidamente, podendo atacar com elas sem precisar esperar seu delay completo.");
                     }
-                    delay = (long)(GetDelay(from).TotalMilliseconds / (this is BaseRanged ? 1.5d : 10));
+                    delay = (long)(GetDelay(from).TotalMilliseconds / (this is BaseRanged ? 2.2 : 10));
                 }
                 else // a arma ainda ta em cooldown, entao d
                 {
@@ -1578,6 +1577,10 @@ namespace Server.Items
                 var bonusElemental = defender.GetBonusElemento(ElementoPvM.Fogo) + (defender.GetBonusElemento(ElementoPvM.Vento) / 2) + defender.GetBonusElemento(ElementoPvM.Raio) + defender.GetBonusElemento(ElementoPvM.Gelo);
                 bonusElemental /= 3;
                 bonus -= (int)(bonusElemental * 100);
+                if (Shard.DebugEnabled && bonusElemental > 0)
+                {
+                    Shard.Debug("Bonus elemental de esquiva: " + bonusElemental);
+                }
                 if (bonus < -80)
                     bonus = -80;
             }
@@ -1587,6 +1590,8 @@ namespace Server.Items
 
             var bonusArmsLore = defender.Skills.ArmsLore.Value / 2000; // 0.05 = 5%
             chance -= bonusArmsLore;
+            if (Shard.DebugEnabled && bonusArmsLore > 0)
+                Shard.Debug("Bonus esquiva armsLore: " + bonusArmsLore);
 
             if (defender is BaseCreature && attacker is PlayerMobile)
             {
@@ -1937,18 +1942,22 @@ namespace Server.Items
 
             if (shield != null || !defender.Player)
             {
-                double chance = (parry - bushidoNonRacial) / (attacker.Player ? 400 : 350.0);
+                double chance = parry / 400; // 25% 
 
-                if (parry > 70 && attacker is BaseCreature)
+                if (defender.Player && parry > 70 && attacker is BaseCreature)
                 {
-                    chance += parry / 600;
+                    chance += parry / 200; // +50%
                 }
 
-                if (defender is BaseCreature && ((BaseCreature)defender).IsControlled())
-                    chance *= 0.7;
+                if (shield is WoodenShield || shield is WoodenKiteShield)
+                    chance *= 0.87;
+
+                if (defender is BaseCreature && !((BaseCreature)defender).IsControlled())
+                    chance *= 3.5;
 
                 if (attacker is PlayerMobile && ((PlayerMobile)attacker).Talentos.Tem(Talento.Finta))
                     chance -= 0.2;
+
 
                 if (attacker != null)
                 {
@@ -1985,7 +1994,8 @@ namespace Server.Items
                 // Low dexterity lowers the chance.
                 //if (defender.Player && defender.Dex < 80)
                 //{
-                chance = chance * (defender.Dex * 1.09) / 100;
+                if (defender.Player)
+                    chance = chance * (defender.Dex * 1.09) / 100;
                 //}
 
                 Shard.Debug("Chance Parry: " + chance, defender);
@@ -2064,21 +2074,29 @@ namespace Server.Items
                 BaseShield shield = defender.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
                 attacker.SendMessage("O alvo bloqueou seu ataque");
                 defender.SendMessage("Voce bloqueou o ataque");
+                defender.FixedEffect(0x37B9, 10, 16);
+                defender.Animate(AnimationType.Parry, 0);
 
                 var bloqueado = 0;
                 if (shield != null)
-                    bloqueado = (int)(shield.ArmorRating * (attackerWeapon is BaseRanged ? 1.5 : 1.2));
+                    bloqueado = (int)(shield.ArmorRating * (attacker is BaseCreature ? 2 : attackerWeapon is BaseRanged ? 1.5 : 1.2));
                 else
-                    bloqueado = (int)(damage * 0.2);
-
-                if (!attacker.Player)
-                    bloqueado += (int)(damage * 0.1);
+                {
+                    if (!defender.Player)
+                    {
+                        bloqueado += (int)(damage * 0.65);
+                        if (attackerWeapon is BaseRanged)
+                            bloqueado += (int)(damage * 0.3);
+                    }
+                    else
+                    {
+                        bloqueado = (int)(damage * 0.2);
+                    }
+                }
 
                 if (Shard.DebugEnabled)
                     Shard.Debug("Bloqueado dano: " + bloqueado, defender);
                 damage -= bloqueado;
-
-
 
                 // Successful block removes the Honorable Execution penalty.
                 HonorableExecution.RemovePenalty(defender);
@@ -2156,7 +2174,7 @@ namespace Server.Items
 
             var mods = new Tuple<int, bool>(damage, false);
 
-            if (defender.Player)
+            if (defender.RP && defender.Player)
             {
                 var perto = defender.GetEntitiesInRange(defender.Map, 2);
                 foreach (var mob in perto)
@@ -2259,6 +2277,7 @@ namespace Server.Items
             damage = mods.Item1;
             var blocked = mods.Item2;
 
+            /*
             // Parry de Monstros
             if (defender is BaseCreature && defender.Skills[SkillName.Parry].Value > 30)
             {
@@ -2283,6 +2302,7 @@ namespace Server.Items
                     attacker.SendMessage("A criatura bloqueou seu ataque.");
                 }
             }
+            */
 
             double chance = Utility.RandomDouble();
 
@@ -3005,14 +3025,6 @@ namespace Server.Items
 
             damage = AOS.Scale(damage, 100 + percentageBonus);
 
-            if (attacker.Player && !defender.Player && !attacker.Poisoned && !BleedAttack.IsBleeding(attacker))
-            {
-                var bonusCura = attacker.GetBonusElemento(ElementoPvM.Luz);
-                var cura = (damage / 2) * bonusCura;
-                if (cura > 0)
-                    attacker.Heal((int)cura);
-            }
-
             #endregion
 
             var mods = AbsorbDamage(attacker, defender, damage);
@@ -3022,6 +3034,15 @@ namespace Server.Items
             {
                 damage = 1;
             }
+
+            if (attacker.Player && !defender.Player && !attacker.Poisoned && !BleedAttack.IsBleeding(attacker))
+            {
+                var bonusCura = attacker.GetBonusElemento(ElementoPvM.Luz);
+                var cura = (damage / 2) * bonusCura;
+                if (cura > 0)
+                    attacker.Heal((int)cura);
+            }
+
             if (blocked) // parried
             {
                 if ((a != null && a.Validate(attacker)) || (move != null && move.Validate(attacker)))
@@ -3036,7 +3057,8 @@ namespace Server.Items
                     }
                 }
 
-                return;
+                //if(attacker.Player && defender.Player)
+                //    return;
             }
 
             // Skill Masteries
@@ -3199,7 +3221,7 @@ namespace Server.Items
                 }
             }
 
-            if (Core.AOS)
+            if (!defender.Player || Core.AOS)
             {
                 int lifeLeech = 0;
                 int stamLeech = 0;
@@ -3211,24 +3233,16 @@ namespace Server.Items
                     stamLeech += 100; // HitLeechStam% chance to leech 100% of damage as stamina
                 }
 
-                if (Core.SA) // New formulas
+                if ((int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitLeechHits) * propertyBonus) >
+                    Utility.Random(100))
                 {
-                    lifeLeech = (int)(WeaponAttributes.HitLeechHits * propertyBonus);
-                    manaLeech = (int)(WeaponAttributes.HitLeechMana * propertyBonus);
+                    lifeLeech += 30; // HitLeechHits% chance to leech 30% of damage as hit points
                 }
-                else // Old leech formulas
-                {
-                    if ((int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitLeechHits) * propertyBonus) >
-                        Utility.Random(100))
-                    {
-                        lifeLeech += 30; // HitLeechHits% chance to leech 30% of damage as hit points
-                    }
 
-                    if ((int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitLeechMana) * propertyBonus) >
-                        Utility.Random(100))
-                    {
-                        manaLeech += 40; // HitLeechMana% chance to leech 40% of damage as mana
-                    }
+                if ((int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitLeechMana) * propertyBonus) >
+                    Utility.Random(100))
+                {
+                    manaLeech += 40; // HitLeechMana% chance to leech 40% of damage as mana
                 }
 
                 int toHealCursedWeaponSpell = 0;
@@ -3245,52 +3259,19 @@ namespace Server.Items
                     attacker.Stam += AOS.Scale(damageGiven, stamLeech);
                 }
 
-                if (Core.SA) // New formulas
+                if (toHealCursedWeaponSpell != 0)
                 {
-                    if (lifeLeech != 0)
-                    {
-                        int toHeal = Utility.RandomMinMax(0, (int)(AOS.Scale(damageGiven, lifeLeech) * 0.3));
-
-                        if (defender is BaseCreature && ((BaseCreature)defender).TaintedLifeAura)
-                        {
-                            AOS.Damage(attacker, defender, toHeal, false, 0, 0, 0, 0, 0, 0, 100, false, false, false);
-                            attacker.SendLocalizedMessage(1116778); //The tainted life force energy damages you as your body tries to absorb it.
-                        }
-                        else
-                        {
-                            attacker.Hits += toHeal;
-                        }
-
-                        Effects.SendPacket(defender.Location, defender.Map, new ParticleEffect(EffectType.FixedFrom, defender.Serial, Serial.Zero, 0x377A, defender.Location, defender.Location, 1, 15, false, false, 1926, 0, 0, 9502, 1, defender.Serial, 16, 0));
-                        Effects.SendPacket(defender.Location, defender.Map, new ParticleEffect(EffectType.FixedFrom, defender.Serial, Serial.Zero, 0x3728, defender.Location, defender.Location, 1, 12, false, false, 1963, 0, 0, 9042, 1, defender.Serial, 16, 0));
-                    }
-
-                    if (toHealCursedWeaponSpell != 0 && !(defender is BaseCreature && ((BaseCreature)defender).TaintedLifeAura))
-                    {
-                        attacker.Hits += toHealCursedWeaponSpell;
-                    }
-
-                    if (manaLeech != 0)
-                    {
-                        attacker.Mana += Utility.RandomMinMax(0, (int)(AOS.Scale(damageGiven, manaLeech) * 0.4));
-                    }
+                    attacker.Hits += toHealCursedWeaponSpell;
                 }
-                else // Old formulas
+
+                if (lifeLeech != 0)
                 {
-                    if (toHealCursedWeaponSpell != 0)
-                    {
-                        attacker.Hits += toHealCursedWeaponSpell;
-                    }
+                    attacker.Hits += AOS.Scale(damageGiven, lifeLeech);
+                }
 
-                    if (lifeLeech != 0)
-                    {
-                        attacker.Hits += AOS.Scale(damageGiven, lifeLeech);
-                    }
-
-                    if (manaLeech != 0)
-                    {
-                        attacker.Mana += AOS.Scale(damageGiven, manaLeech);
-                    }
+                if (manaLeech != 0)
+                {
+                    attacker.Mana += AOS.Scale(damageGiven, manaLeech);
                 }
 
                 if (lifeLeech != 0 || stamLeech != 0 || manaLeech != 0 || toHealCursedWeaponSpell != 0)
@@ -3299,9 +3280,7 @@ namespace Server.Items
                 }
             }
 
-
-
-            if (Core.AOS && !BlockHitEffects)
+            if (!defender.Player && !BlockHitEffects)
             {
                 int physChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitPhysicalArea) * propertyBonus);
                 int fireChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitFireArea) * propertyBonus);
@@ -3340,6 +3319,11 @@ namespace Server.Items
                 int lightningChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitLightning) * propertyBonus);
                 int dispelChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitDispel) * propertyBonus);
 
+                if(Shard.DebugEnabled)
+                {
+                    Shard.Debug("Change light " + lightningChance);
+                }
+
                 #region Mondains Legacy
                 int velocityChance = this is BaseRanged ? (int)((BaseRanged)this).Velocity : 0;
                 #endregion
@@ -3376,7 +3360,7 @@ namespace Server.Items
                 }
 
                 #region Mondains Legacy
-                if (Core.ML && velocityChance != 0 && velocityChance > Utility.Random(100))
+                if (velocityChance != 0 && velocityChance > Utility.Random(100))
                 {
                     DoHitVelocity(attacker, damageable);
                 }
@@ -3397,7 +3381,6 @@ namespace Server.Items
                 {
                     DoManaDrain(attacker, defender, damageGiven);
                 }
-                #endregion
 
                 int laChance = (int)(AosWeaponAttributes.GetValue(attacker, AosWeaponAttribute.HitLowerAttack) * propertyBonus);
 
@@ -3603,6 +3586,7 @@ namespace Server.Items
 
         public virtual void DoLightning(Mobile attacker, Mobile defender)
         {
+            Shard.Debug("Hit light");
             if (!attacker.CanBeHarmful(defender, false))
             {
                 return;
@@ -4368,16 +4352,17 @@ namespace Server.Items
             if (Type == WeaponType.Axe)
             {
                 double lumberValue = attacker.Skills[SkillName.Lumberjacking].Value;
-                lumberValue = (lumberValue / 5.0) / 100.0;
+                if (lumberValue > 100)
+                    lumberValue = (lumberValue / 5.0) / 100.0;
                 if (lumberValue > 0.2)
                     lumberValue = 0.2;
 
                 modifiers += lumberValue;
 
-                if (attacker.Skills[SkillName.Lumberjacking].Value >= 100.0)
-                {
-                    modifiers += 0.1;
-                }
+                //if (attacker.Skills[SkillName.Lumberjacking].Value >= 100.0)
+                // {
+                //     modifiers += 0.1;
+                // }
             }
 
             // New quality bonus:
@@ -4409,10 +4394,10 @@ namespace Server.Items
                         mine = 0.2;
 
                     modifiers += mine;
-                    if (attacker.Skills[SkillName.Mining].Value >= 100.0)
-                    {
-                        modifiers += 0.1;
-                    }
+                    //if (attacker.Skills[SkillName.Mining].Value >= 100.0)
+                    //{
+                    //    modifiers += 0.1;
+                    //}
                 }
 
             }
@@ -6275,34 +6260,30 @@ namespace Server.Items
 
             XmlAttach.AddAttachmentProperties(this, list);
 
-            return;
-
-            if (Core.TOL)
+            // T2A
+            if (m_ExtendedWeaponAttributes.Bane > 0)
             {
-                if (m_ExtendedWeaponAttributes.Bane > 0)
-                {
-                    list.Add(1154671); // Bane
-                }
+                list.Add(1154671); // Bane
+            }
 
-                if (m_ExtendedWeaponAttributes.BoneBreaker > 0)
-                {
-                    list.Add(1157318); // Bone Breaker
-                }
+            if (m_ExtendedWeaponAttributes.BoneBreaker > 0)
+            {
+                list.Add(1157318); // Bone Breaker
+            }
 
-                if ((prop = m_ExtendedWeaponAttributes.HitSwarm) != 0)
-                {
-                    list.Add(1157325, prop.ToString()); // Swarm ~1_val~%
-                }
+            if ((prop = m_ExtendedWeaponAttributes.HitSwarm) != 0)
+            {
+                list.Add(1157325, prop.ToString()); // Swarm ~1_val~%
+            }
 
-                if ((prop = m_ExtendedWeaponAttributes.HitSparks) != 0)
-                {
-                    list.Add(1157326, prop.ToString()); // Sparks ~1_val~%
-                }
+            if ((prop = m_ExtendedWeaponAttributes.HitSparks) != 0)
+            {
+                list.Add(1157326, prop.ToString()); // Sparks ~1_val~%
+            }
 
-                if ((prop = m_ExtendedWeaponAttributes.AssassinHoned) != 0)
-                {
-                    list.Add(1152206); // Assassin Honed
-                }
+            if ((prop = m_ExtendedWeaponAttributes.AssassinHoned) != 0)
+            {
+                list.Add(1152206); // Assassin Honed
             }
 
             if ((prop = m_AosWeaponAttributes.SplinteringWeapon) != 0)
@@ -6468,6 +6449,9 @@ namespace Server.Items
             {
                 list.Add(1060441); // night sight
             }
+
+            return;
+
 
             if ((prop = fcMalus ? 1 : m_AosAttributes.SpellChanneling) != 0)
             {
@@ -7236,3 +7220,4 @@ namespace Server.Items
         Opposition
     }
 }
+#endregion

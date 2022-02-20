@@ -12,6 +12,7 @@ using System.Linq;
 using Scripts.Mythik.Systems.Achievements.AchieveTypes;
 using Server.Ziden.Dungeons.Goblins.Quest;
 using Fronteira.Discord;
+using Server.Misc.Custom;
 
 namespace Scripts.Mythik.Systems.Achievements
 {
@@ -124,6 +125,9 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new DiscoveryAchievement(29, 3, 0x14EB, false, null, "Hythloth!", "Descubra Hythloth", 5, "Hythloth"));
             Achievements.Add(new DiscoveryAchievement(30, 3, 0x14EB, false, null, "Wrong!", "Descubra Wrong", 5, "Wrong"));
             Achievements.Add(new DiscoveryAchievement(31, 3, 0x14EB, false, null, "Shame!", "Descubra Shame", 5, "Shame"));
+            Achievements.Add(new DiscoveryAchievement(31, 3, 0x14EB, false, null, "Shame!", "Descubra Shame", 5, "Shame"));
+            Achievements.Add(new DiscoveryAchievement(32, 3, 0x14EB, false, null, "Ice!", "Descubra Ice", 5, "Shame"));
+            Achievements.Add(new DiscoveryAchievement(33, 3, 0x14EB, false, null, "Fire!", "Descubra Fire", 5, "Shame"));
 
             Achievements.Add(new DiscoveryAchievement(100, 4, 0x14EB, false, null, "Cotton!", "Descubra Plantacao de Algodao Moonglow", 5, "A Cotton Field in Moonglow"));
             Achievements.Add(new DiscoveryAchievement(101, 4, 0x14EB, false, null, "Carrots!", "Descubra plantacao de Cenoura em Skara Brae", 5, "A Carrot Field in Skara Brae"));
@@ -166,40 +170,40 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(achieve);
             achieve = new HarvestAchievement(501, 2000, 0x0E85, false, achieve, 500, "500 Minerios de Ferro", "Minere 500 minerios de ferro", 5, typeof(IronOre), typeof(SturdyPickaxe), typeof(SacolaMinerios));
             Achievements.Add(achieve);
-            Achievements.Add(new HarvestAchievement(502, 2000, 0x0E85, false, achieve, 5000, "5000 Minerios de Ferro", "Minere 5000 minerios de ferro", 5, typeof(IronOre), typeof(SturdyPickaxe), typeof(SacolaMineriosGrande)));
+            Achievements.Add(new HarvestAchievement(502, 2000, 0x0E85, false, achieve, 5000, "5000 Minerios de Ferro", "Minere 5000 minerios de ferro", 50, typeof(IronOre), typeof(SturdyPickaxe), typeof(SacolaMineriosGrande)));
 
-            achieve = new HarvestAchievement(503, 2000, 0xF43, false, null, 50, "50 Madeiras", "Colete 50 Madeiras", 5, typeof(Log), typeof(SacolaMadeiras));
+            achieve = new HarvestAchievement(503, 2000, 0xF43, false, null, 50, "50 Madeiras", "Colete 50 Madeiras", 50, typeof(Log), typeof(SacolaMadeiras));
             Achievements.Add(achieve);
-            Achievements.Add(new HarvestAchievement(504, 2000, 0xF43, false, achieve, 500, "500 Madeiras", "Colete 500 Madeiras", 5, typeof(Log), typeof(SacolaMadeiras)));
-            Achievements.Add(new HarvestAchievement(505, 2000, 0xF43, false, achieve, 5000, "5000 Madeiras", "Colete 5000 Madeiras", 5, typeof(Log), typeof(SacolaMadeirasGrande)));
+            Achievements.Add(new HarvestAchievement(504, 2000, 0xF43, false, achieve, 500, "500 Madeiras", "Colete 500 Madeiras", 50, typeof(Log), typeof(SacolaMadeiras)));
+            Achievements.Add(new HarvestAchievement(505, 2000, 0xF43, false, achieve, 5000, "5000 Madeiras", "Colete 5000 Madeiras", 50, typeof(Log), typeof(SacolaMadeirasGrande)));
 
-            Achievements.Add(new HunterAchievement(1001, 3000, 0x429A, false, null, 1, "Sem Medo", "Mate um Lich", 5, typeof(Lich)));
-            Achievements.Add(new HunterAchievement(1002, 3000, 0x429A, false, null, 50, "Matador de Liches", "Mate 50 Liches", 5, typeof(Lich), typeof(LivroAntigo)));
-            Achievements.Add(new HunterAchievement(1003, 3000, 0x4292, false, null, 50, "Odeio Goblins", "Mate 50 Goblins ", 6, typeof(GreenGoblin), typeof(SacolaMinerios)));
-            Achievements.Add(new HunterAchievement(1004, 3000, 0x20FD, false, null, 100, "Aranhas Malditas", "Mate 100 Aranhas Gigantes ", 5, typeof(GiantSpider), typeof(BagOfAllReagents)));
-            Achievements.Add(new HunterAchievement(1005, 3000, 0x20EC, false, null, 5, "Mortos Fiquem Mortos", "Mate 5 Zumbi ", 2, typeof(Zombie)));
-            Achievements.Add(new HunterAchievement(1006, 3000, 0x20EC, false, null, 1, "Ladrao de Sapato", "Mate o Mato Putrido ", 3, typeof(MagoPodre)));
-            var sebo = new HunterAchievement(1007, 3000, 0x2608, false, null, 1, "Criatura do Pantano", "Mate um sebo do pantano ", 5, typeof(BogThing), typeof(TribalBerry));
+            Achievements.Add(new HunterAchievement(1001, 3000, 0x429A, false, null, 1, "Sem Medo da Morte", "Mate um Lich", 10, typeof(Lich)));
+            Achievements.Add(new HunterAchievement(1002, 3000, 0x429A, false, null, 50, "Matador de Liches", "Mate 50 Liches", 10, typeof(Lich), typeof(LivroAntigo)));
+            Achievements.Add(new HunterAchievement(1003, 3000, 0x4292, false, null, 10, "Odeio Goblins", "Mate 10 Goblins ", 10, typeof(GreenGoblin), typeof(SacolaMinerios)));
+            Achievements.Add(new HunterAchievement(1004, 3000, 0x20FD, false, null, 100, "Aranhas Malditas", "Mate 100 Aranhas Gigantes ", 10, typeof(GiantSpider), typeof(BagOfAllReagents)));
+            Achievements.Add(new HunterAchievement(1005, 3000, 0x20EC, false, null, 5, "Mortos Fiquem Mortos", "Mate 5 Zumbi ", 10, typeof(Zombie)));
+            Achievements.Add(new HunterAchievement(1006, 3000, 0x20EC, false, null, 1, "Ladrao de Sapato", "Mate o Mato Putrido ", 10, typeof(MagoPodre)));
+            var sebo = new HunterAchievement(1007, 3000, 0x2608, false, null, 1, "Criatura do Pantano", "Mate um sebo do pantano ", 10, typeof(BogThing), typeof(TribalBerry));
             Achievements.Add(sebo);
-            Achievements.Add(new HunterAchievement(1008, 3000, 0x2608, false, sebo, 10, "Sebosos Demais, eca", "Mate 10 Sebos do Pantano ", 7, typeof(BogThing), typeof(ElvenBoots)));
+            Achievements.Add(new HunterAchievement(1008, 3000, 0x2608, false, sebo, 10, "Sebosos Demais, eca", "Mate 10 Sebos do Pantano ", 10, typeof(BogThing), typeof(ElvenBoots)));
             
-            Achievements.Add(new HunterAchievement(1009, 3000, 0x25B0, false, null, 30, "Selvaaaaagem", "Mate 30 Selvagens", 5, typeof(Savage)));
-            Achievements.Add(new HunterAchievement(1010, 3000, 0x25B0, false, null, 100, "Shamanismo", "Mate 100 Selvagens Shaman", 5, typeof(SavageShaman), typeof(BearMask)));
-            Achievements.Add(new HunterAchievement(1011, 3000, 0x25B0, false, null, 30, "Druidas Malignos", "Mate 5 Druidas Vis", 5, typeof(BearDruid), typeof(LivroAntigo)));
+            Achievements.Add(new HunterAchievement(1009, 3000, 0x25B0, false, null, 30, "Selvaaaaagem", "Mate 30 Selvagens", 50, typeof(Savage)));
+            Achievements.Add(new HunterAchievement(1010, 3000, 0x25B0, false, null, 100, "Shamanismo", "Mate 100 Selvagens Shaman", 20, typeof(SavageShaman), typeof(BearMask)));
+            Achievements.Add(new HunterAchievement(1011, 3000, 0x25B0, false, null, 30, "Druidas Malignos", "Mate 5 Druidas Vis", 20, typeof(BearDruid), typeof(LivroAntigo)));
             Achievements.Add(new HunterAchievement(1012, 3000, 0x429A, false, null, 1, "Quanto mais velho, mais sabio", "Mate um Lich Anciao", 8, typeof(LichLord), typeof(LivroAntigo)));
             Achievements.Add(new HunterAchievement(1013, 3000, 0x429A, false, null, 1, "[BOSS] WoW - A Ira do Lich Rei", "Mate o Lich Rei", 20, typeof(AncientLichRenowned), typeof(LivroAntigo)));
-            Achievements.Add(new HunterAchievement(1013, 3000, 0x20CB, false, null, 50, "Ogro, logro ?", "Mate 50 Ogrologros", 5, typeof(Ettin)));
+            Achievements.Add(new HunterAchievement(1013, 3000, 0x20CB, false, null, 50, "Ogro, logro ?", "Mate 50 Ogrologros", 20, typeof(Ettin)));
             Achievements.Add(new HunterAchievement(1014, 3000, 0x42A0, false, null, 10, "[BOSS] O Selo do Mal", "Mate o boss EXODO", 30, typeof(ClockworkExodus)));
             Achievements.Add(new HunterAchievement(1015, 3000, 0x42A0, false, null, 10, "[BOSS] Tick, Tak, Boom", "Mate o boss Goblinzord", 30, typeof(GolemMecanico)));
-            Achievements.Add(new HunterAchievement(1016, 3000, 0x25B7, false, null, 100, "Squick Squick", "Mate 100 Ratosos", 5, typeof(Ratman)));
+            Achievements.Add(new HunterAchievement(1016, 3000, 0x25B7, false, null, 100, "Squick Squick", "Mate 100 Ratosos", 20, typeof(Ratman)));
             Achievements.Add(new HunterAchievement(1017, 3000, 0x2608, false, sebo, 100, "Pra que santo sebo ?", "Mate 100 Sebos do Pantano ", 20, typeof(BogThing), typeof(BotaSebosa)));
-            Achievements.Add(new HunterAchievement(1017, 3000, 0x2608, false, null, 50, "Toma um banho de Lama", "Mate 50 Lamosos", 5, typeof(MudPie), typeof(BagOfAllReagents)));
+            Achievements.Add(new HunterAchievement(1017, 3000, 0x2608, false, null, 50, "Toma um banho de Lama", "Mate 50 Restos Elementais", 20, typeof(MudPie), typeof(BagOfAllReagents)));
 
             Achievements.Add(new HunterAchievement(1018, 3000, 0x2608, false, null, 1, "[BOSS] A Chama Do Amor", "Mate o guardiao do fogo", 10, typeof(FlameElemental), typeof(CaixaDeGold)));
             Achievements.Add(new HunterAchievement(1019, 3000, 0x2608, false, null, 1, "[BOSS] A Brisa do Sossego", "Mate o guardiao do vento",10, typeof(WindElemental), typeof(CaixaDeGold)));
             Achievements.Add(new HunterAchievement(1020, 3000, 0x2608, false, null, 1, "[BOSS] A Solidez da Alma", "Mate o guardiao de quartzo", 10, typeof(QuartzElemental), typeof(CaixaDeGold)));
 
-            Achievements.Add(new HunterAchievement(1022, 3000, 0x20D6, false, null, 1, "Eh Facil Quando ta Jovem", "Mate um Dragao Jovem", 5, typeof(YoungDragon)));
+            Achievements.Add(new HunterAchievement(1022, 3000, 0x20D6, false, null, 1, "Eh Facil Quando ta Jovem", "Mate um Dragao Jovem", 20, typeof(YoungDragon)));
             Achievements.Add(new HunterAchievement(1023, 3000, 0x20D6, false, null, 10, "Joias de Dragoes", "Mate 10 Dragoes", 10, typeof(Dragon), typeof(DecoDragonsBlood)));
             Achievements.Add(new HunterAchievement(1024, 3000, 0x20D6, false, null, 10, "Mestre dos Dragoes", "Mate 100 Dragoes", 100, typeof(Dragon), typeof(DragonHead), typeof(DragonLamp), typeof(DecoDragonsBlood2)));
 
@@ -208,13 +212,21 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new HunterAchievement(1022, 3000, 0x4298, false, null, 1, "[BOSS] Medusa me Seduza", "Mate a Medusa", 10, typeof(Medusa), typeof(CaixaDeGold), typeof(MedusaDarkScales)));
             Achievements.Add(new HunterAchievement(1023, 3000, 0x20D7, false, null, 1, "[BOSS] Fique longe do Drack", "Mata o Pedroso de Drack", 10, typeof(Pedroso), typeof(CaixaDeGold), typeof(DecoRocks2)));
             Achievements.Add(new HunterAchievement(1024, 3000, 0x258B, false, null, 1, "[BOSS] Neira nao ta de zoeira", "Mate o champion Neira", 10, typeof(Neira), typeof(CaixaDeGold)));
-            Achievements.Add(new HunterAchievement(1025, 3000, 0x2602, false, null, 1, "Formigas Vermelhas", "Mate 10 Formigas Trabalhadoras Vermelhas", 10, typeof(RedSolenWorker), typeof(BagOfReagents)));
-            Achievements.Add(new HunterAchievement(1026, 3000, 0x2602, false, null, 1, "Formigas Pretas", "Mate 10 Formigas Trabalhadoras Pretas", 10, typeof(BlackSolenWorker), typeof(BagOfReagents)));
-            Achievements.Add(new HunterAchievement(1027, 3000, 0x2602, false, null, 1, "Formigas Guerreiras Vermelhas", "Mate 50 Formigas Guerreiras Vermelhas", 50, typeof(RedSolenWarrior), typeof(SacolaDeOuro3000)));
-            Achievements.Add(new HunterAchievement(1028, 3000, 0x2602, false, null, 1, "Formigas Guerreiras Pretas", "Mate 50 Formigas Guerreiras Pretas", 50, typeof(BlackSolenWarrior), typeof(SacolaDeOuro3000)));
+            Achievements.Add(new HunterAchievement(1025, 3000, 0x2602, false, null, 10, "Formigas Vermelhas", "Mate 10 Formigas Trabalhadoras Vermelhas", 10, typeof(RedSolenWorker), typeof(BagOfReagents)));
+            Achievements.Add(new HunterAchievement(1026, 3000, 0x2602, false, null, 10, "Formigas Pretas", "Mate 10 Formigas Trabalhadoras Pretas", 10, typeof(BlackSolenWorker), typeof(BagOfReagents)));
+            Achievements.Add(new HunterAchievement(1027, 3000, 0x2602, false, null, 50, "Formigas Guerreiras Vermelhas", "Mate 50 Formigas Guerreiras Vermelhas", 50, typeof(RedSolenWarrior), typeof(SacolaDeOuro3000)));
+            Achievements.Add(new HunterAchievement(1028, 3000, 0x2602, false, null, 50, "Formigas Guerreiras Pretas", "Mate 50 Formigas Guerreiras Pretas", 50, typeof(BlackSolenWarrior), typeof(SacolaDeOuro3000)));
             Achievements.Add(new HunterAchievement(1029, 3000, 0x2602, false, null, 5, "Plantas Carnivoras", "Mate 5 Plantas Carnivoras", 5, typeof(Corpser), typeof(SacolaDeOuro3000)));
-            Achievements.Add(new HunterAchievement(1030, 3000, 0x258B, false, null, 1, "Numero da Besta", "Mate um Capeta", 5, typeof(CrystalDaemon), typeof(SacolaDeOuro3000)));
-            Achievements.Add(new HunterAchievement(1030, 3000, 0x258B, false, null, 20, "Domador do Tinhoso", "Mate 20 Capetas", 200, typeof(CrystalDaemon), typeof(SorcererHat)));
+            Achievements.Add(new HunterAchievement(1030, 3000, 0x258B, false, null, 1, "Numero da Besta", "Mate um Capeta", 10, typeof(CrystalDaemon), typeof(SacolaDeOuro3000)));
+            Achievements.Add(new HunterAchievement(1031, 3000, 0x258B, false, null, 10, "Domador do Tinhoso", "Mate 10 Capetas", 200, typeof(CrystalDaemon), typeof(SorcererHat)));
+            Achievements.Add(new HunterAchievement(1032, 3000, 0x258B, false, null, 100, "Senhor da Treta", "Mate 100 Bandoleiros", 20, typeof(Brigand), typeof(CaixaDeGold)));
+            Achievements.Add(new HunterAchievement(1032, 3000, 0x258B, false, null, 1, "[BOSS] Pedra de Drak", "Mate o Pedroso", 20, typeof(Pedroso), typeof(ElementalBall)));
+            Achievements.Add(new HunterAchievement(1033, 3000, 0x258B, false, null, 1, "[BOSS] Fadragao das Almas", "Mate o Fadragao das Almas", 20, typeof(WyvernRenowned), typeof(TintaPreta)));
+            Achievements.Add(new HunterAchievement(1034, 3000, 0x258B, false, null, 1, "Ai, que tudo, ta mara viu miga", "Mate o Orc Estilista", 20, typeof(OrcEstilista)));
+            Achievements.Add(new HunterAchievement(1035, 3000, 0x258B, false, null, 1, "[BOSS] Ta osso ai?", "Mate o Dragao Esqueleto", 20, typeof(SkeletalDragonRenowned)));
+            Achievements.Add(new HunterAchievement(1036, 3000, 0x258B, false, null, 1, "[BOSS] Se ficar o bixo come", "Mate o Carnage", 20, typeof(Carnage)));
+            Achievements.Add(new HunterAchievement(1037, 3000, 0x2602, false, null, 500, "Nao aguento mais formigas pretas", "Mate 500 Formigas Guerreiras Pretas", 50, typeof(BlackSolenWarrior), typeof(SacolaDeOuro3000)));
+            Achievements.Add(new HunterAchievement(1038, 3000, 0x20EC, false, null, 1, "O Primeiro de Muitos", "Mate 1 Zumbi", 10, typeof(Zombie)));
 
             // SKILLS
             // BS

@@ -38,7 +38,7 @@ namespace Server.Items
 
         public override bool CheckWeaponSkill(Mobile from)
         {
-            return  (from is PlayerMobile) && ((PlayerMobile)from).Talentos.Tem(Talento.Hab_DefenseMastery);
+            return !from.RP || (from is PlayerMobile) && ((PlayerMobile)from).Talentos.Tem(Talento.Hab_DefenseMastery);
         }
 
 

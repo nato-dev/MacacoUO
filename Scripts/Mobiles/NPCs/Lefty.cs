@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using Server.Items;
+using Server.Mobiles;
 
 namespace Server.Engines.Quests
 { 
@@ -58,6 +60,152 @@ namespace Server.Engines.Quests
                 return 1074448;
             }
         }
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    public class SBLefty : SBInfo
+    {
+        private readonly List<GenericBuyInfo> m_BuyInfo = new InternalBuyInfo();
+        private readonly IShopSellInfo m_SellInfo = new InternalSellInfo();
+        public SBLefty()
+        {
+        }
+
+        public override IShopSellInfo SellInfo
+        {
+            get
+            {
+                return this.m_SellInfo;
+            }
+        }
+        public override List<GenericBuyInfo> BuyInfo
+        {
+            get
+            {
+                return this.m_BuyInfo;
+            }
+        }
+
+        public class InternalBuyInfo : List<GenericBuyInfo>
+        {
+            public InternalBuyInfo()
+            {
+                //this.Add(new GenericBuyInfo(typeof(IronIngot), 5, 16, 0x1BF2, 0, true));
+                this.Add(new GenericBuyInfo(typeof(PrismOfLightAdmissionTicket), 10000, 0x14EF, 0, 0));
+            }
+        }
+
+        public class InternalSellInfo : GenericSellInfo
+        {
+            public InternalSellInfo()
+            {
+                
+            }
+        }
+    }
+
+    public class LeftyOld : BaseVendor
+    {
+        private readonly List<SBInfo> m_SBInfos = new List<SBInfo>();
+        protected override List<SBInfo> SBInfos
+        {
+            get
+            {
+                return m_SBInfos;
+            }
+        }
+
+        public override NpcGuild NpcGuild
+        {
+            get
+            {
+                return NpcGuild.BlacksmithsGuild;
+            }
+        }
+
+        [Constructable]
+        public LeftyOld()
+            : base("Lefty")
+        {
+            Title = "o vendedor de tickets";
+            SetSkill(SkillName.ArmsLore, 36.0, 68.0);
+            SetSkill(SkillName.Blacksmith, 65.0, 88.0);
+            SetSkill(SkillName.Fencing, 60.0, 83.0);
+            SetSkill(SkillName.Macing, 61.0, 93.0);
+            SetSkill(SkillName.Swords, 60.0, 83.0);
+            SetSkill(SkillName.Tactics, 60.0, 83.0);
+            SetSkill(SkillName.Parry, 61.0, 93.0);
+        }
+
+        public override void InitSBInfo()
+        {
+            /*m_SBInfos.Add( new SBSmithTools() );
+            m_SBInfos.Add( new SBMetalShields() );
+            m_SBInfos.Add( new SBWoodenShields() );
+            m_SBInfos.Add( new SBPlateArmor() );
+            m_SBInfos.Add( new SBHelmetArmor() );
+            m_SBInfos.Add( new SBChainmailArmor() );
+            m_SBInfos.Add( new SBRingmailArmor() );
+            m_SBInfos.Add( new SBAxeWeapon() );
+            m_SBInfos.Add( new SBPoleArmWeapon() );
+            m_SBInfos.Add( new SBRangedWeapon() );
+            m_SBInfos.Add( new SBKnifeWeapon() );
+            m_SBInfos.Add( new SBMaceWeapon() );
+            m_SBInfos.Add( new SBSpearForkWeapon() );
+            m_SBInfos.Add( new SBSwordWeapon() );*/
+
+      
+                m_SBInfos.Add(new SBLefty());
+            
+
+        }
+
+
+
+        public override VendorShoeType ShoeType
+        {
+            get
+            {
+                return VendorShoeType.None;
+            }
+        }
+
+        public override void InitOutfit()
+        {
+            Item item = (Utility.RandomBool() ? null : new Server.Items.RingmailChest());
+
+            if (item != null && !EquipItem(item))
+            {
+                item.Delete();
+                item = null;
+            }
+
+            if (item == null)
+                AddItem(new Server.Items.FullApron());
+
+            AddItem(new Server.Items.Bascinet());
+            AddItem(new Server.Items.SmithHammer());
+
+            base.InitOutfit();
+        }
+
+        public LeftyOld(Serial serial)
+            : base(serial)
+        {
+        }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

@@ -97,6 +97,12 @@ namespace Server.Items
             }
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Chave");
+        }
+
         public virtual void StartTimer()
         {
             if (m_Timer != null)

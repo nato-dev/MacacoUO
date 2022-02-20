@@ -1552,18 +1552,7 @@ namespace Server
     {
         public static bool IsValid(AosWeaponAttribute attribute)
         {
-
-            if (!Core.AOS)
-            {
-                return false;
-            }
-
-            if (!Core.SA && attribute >= AosWeaponAttribute.BloodDrinker)
-            {
-                return false;
-            }
-
-            return true;
+            return attribute.ToString().ToLower().Contains("hit");
         }
 
         public static int[] GetValues(Mobile m, params AosWeaponAttribute[] attributes)

@@ -53,6 +53,14 @@ namespace Server.Mobiles
             AddItem(Loot.JoiaRaraRandom(this.Map));
             AddItem(Loot.JoiaRaraRandom(this.Map));
             AddItem(Loot.RandomRareDyetub());
+            var r = Utility.Random(5);
+            switch (r) {
+                case 0: AddItem(new BoneThroneDeed()); break;
+                case 1: AddItem(new BoneCouchDeed()); break;
+                case 2: AddItem(new BoneTableDeed()); break;
+                case 3: AddItem(new CreepyPortraitDeed()); break;
+                case 4: AddItem(new DisturbingPortraitDeed()); break;
+            }
         }
 
         public SkeletalDragonRenowned(Serial serial)
@@ -60,7 +68,6 @@ namespace Server.Mobiles
         {
         }
 
-     
         public override bool ReacquireOnMovement
         {
             get
@@ -68,13 +75,16 @@ namespace Server.Mobiles
                 return true;
             }
         }
+
         public override bool HasBreath
         {
             get
             {
                 return true;
             }
-        }// fire breath enabled
+        }
+
+        // fire breath enabled
         public override int BreathFireDamage
         {
             get

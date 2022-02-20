@@ -5,6 +5,7 @@ using Server.Network;
 using System.Collections.Generic;
 using Server.Regions;
 using Server.Fronteira.Talentos;
+using Server.Menus.Questions;
 
 namespace Server.Mobiles
 {
@@ -332,6 +333,9 @@ namespace Server.Mobiles
             BlockMountType type = GetMountPrevention(mob, mount);
 
             if (mob.Region is DungeonRegion || mob.Region is DungeonGuardedRegion)
+                return false;
+
+            if (mob.Player && StuckMenu.IsInSecondAgeArea(mob))
                 return false;
 
             if (type == BlockMountType.None)

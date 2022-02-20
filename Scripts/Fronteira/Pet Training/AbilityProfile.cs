@@ -9,6 +9,7 @@ namespace Server.Mobiles
     [PropertyObject]
     public class AbilityProfile
     {
+
         [CommandProperty(AccessLevel.GameMaster)]
         public MagicalAbility MagicalAbility { get; private set; }
 

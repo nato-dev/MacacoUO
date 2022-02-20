@@ -10,8 +10,8 @@ namespace Server.Mobiles
         public ShimmeringEffusion()
             : base(AIType.AI_Spellweaving, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "a shimmering effusion";
-            Body = 0x105;			
+            Name = "energia elemental dispersa";
+            Body = 0x105;
 
             SetStr(500, 550);
             SetDex(350, 400);
@@ -20,13 +20,13 @@ namespace Server.Mobiles
             SetHits(20000);
 
             SetDamage(27, 31);
-			
+
             SetDamageType(ResistanceType.Physical, 20);
             SetDamageType(ResistanceType.Fire, 20);
             SetDamageType(ResistanceType.Cold, 20);
             SetDamageType(ResistanceType.Poison, 20);
             SetDamageType(ResistanceType.Energy, 20);
-			
+
             SetResistance(ResistanceType.Physical, 60, 80);
             SetResistance(ResistanceType.Fire, 60, 80);
             SetResistance(ResistanceType.Cold, 60, 80);
@@ -43,16 +43,16 @@ namespace Server.Mobiles
 
             Fame = 30000;
             Karma = -30000;
-			
-            PackResources(8);
-            PackTalismans(5);
 
-            for (int i = 0; i < Utility.RandomMinMax(1, 6); i++)
-            {
-                PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-            }
+            PackResources(8);
+            //PackTalismans(5);
+
+            //for (int i = 0; i < Utility.RandomMinMax(1, 6); i++)
+            // {
+            //     PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
+            // }
         }
-		
+
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV7, 8);
@@ -60,17 +60,17 @@ namespace Server.Mobiles
             AddLoot(LootPack.HighScrolls, 3);
             AddLoot(LootPack.MedScrolls, 3);
         }
-		
+
         public override void OnDeath(Container c)
         {
-            base.OnDeath(c);		
-			
+            base.OnDeath(c);
+
             c.DropItem(new CapturedEssence());
-            c.DropItem(new ShimmeringCrystals());			
-			
+            c.DropItem(new ShimmeringCrystals());
+
             if (Utility.RandomDouble() < 0.05)
             {
-                switch ( Utility.Random(4) )
+                switch (Utility.Random(4))
                 {
                     case 0:
                         c.DropItem(new ShimmeringEffusionStatuette());
@@ -88,12 +88,19 @@ namespace Server.Mobiles
             }
 
             if (Utility.RandomDouble() < 0.05)
-                c.DropItem(new FerretImprisonedInCrystal());		
-						
+                c.DropItem(new FerretImprisonedInCrystal());
+
             if (Utility.RandomDouble() < 0.025)
-                c.DropItem(new CrystallineRing());	
+                c.DropItem(new CrystallineRing());
+
+            var livro = new Spellbook();
+            livro.Slayer = BaseRunicTool.GetRandomSlayer();
+            livro.Hue = 1172;
+            livro.Name = "Livro Mitico de Magias";
+            livro.EngravedText = "Wololo";
+            c.DropItem(livro);
         }
-			
+
         public override bool AutoDispel
         {
             get
@@ -142,7 +149,7 @@ namespace Server.Mobiles
         {
             return 0x1C2;
         }
-		
+
         #region Helpers
         public override bool CanSpawnHelpers
         {
@@ -165,20 +172,20 @@ namespace Server.Mobiles
                 return 0.1;
             }
         }
-		
+
         public override void SpawnHelpers()
         {
             int amount = 1;
-		
+
             if (Altar != null)
                 amount = Altar.Fighters.Count;
-				
+
             if (amount > 5)
                 amount = 5;
-			
-            for (int i = 0; i < amount; i ++)
-            { 
-                switch ( Utility.Random(3) )
+
+            for (int i = 0; i < amount; i++)
+            {
+                switch (Utility.Random(3))
                 {
                     case 0:
                         SpawnHelper(new MantraEffervescence(), 2);
@@ -203,14 +210,14 @@ namespace Server.Mobiles
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-			
+
             writer.Write((int)0); // version
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
-			
+
             int version = reader.ReadInt();
         }
     }

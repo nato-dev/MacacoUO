@@ -17,7 +17,6 @@ namespace Server.Mobiles
                 if (!b.Deleted && b.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(b))
                     Converte(b);
             });
-            
         }
 
         public static void Converte(BaseCreature b)

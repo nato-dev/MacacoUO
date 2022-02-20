@@ -109,7 +109,6 @@ namespace Server.Mobiles
                 this.bc = c;
                 this.alvo = alvo;
                 rect = new Rectangle2D(c.X - 1, c.Y - 1, 3, 3);
-
             }
 
             protected override void OnTick()

@@ -1,16 +1,27 @@
 using System;
 using Server.Items;
+using Server.Spells;
+using Server.Spells.Second;
+using Server.Spells.Third;
 
 namespace Server.Mobiles
 {
     [CorpseName("a giant spider corpse")]
     public class GreaterGiantSpider : BaseCreature
     {
+
+        public override Spell ChooseSpell()
+        {
+            if (Combatant is Mobile && !((Mobile)Combatant).Poisoned)
+                return new PoisonSpell(this, null);
+            return new TeleportSpell(this, null);
+        }
+
         [Constructable]
         public GreaterGiantSpider()
-            : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
+            : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "viuva negra";
+            Name = "viuva magi-negra";
             Body = 28;
             BaseSoundID = 0x388;
             Hue = TintaPreta.COR;
@@ -19,7 +30,7 @@ namespace Server.Mobiles
             SetDex(200, 200);
             SetInt(36, 60);
 
-            SetHits(250, 300);
+            SetHits(950, 1000);
             SetMana(0);
 
             SetDamage(35, 50);
@@ -147,8 +158,14 @@ namespace Server.Mobiles
         {
             corpse.Carved = true;
             from.PrivateOverheadMessage("* Coletou teias *");
-            from.AddToBackpack(new SpidersSilk(17 + Utility.Random(20)));
+            from.AddToBackpack(new SpidersSilk(27 + Utility.Random(30)));
             PlaySound(0x57);
+
+            if(Utility.RandomDouble() < 0.1)
+            {
+                from.SendMessage("Voce encontrou uma runa misteriosa no corpo");
+                from.AddToBackpack(new T2ARecallRune());
+            }
         }
        
     }

@@ -80,9 +80,10 @@ namespace Server.Spells.Third
                 int newDex = SpellHelper.GetOffset(Caster, m, StatType.Dex, false, true);
                 int newInt = SpellHelper.GetOffset(Caster, m, StatType.Int, false, true);
 
-                newStr = (int)(newStr * (0.7 + (int)(Caster.Skills.Inscribe.Value / 200)));
-                newDex = (int)(newDex * (0.7 + (int)(Caster.Skills.Inscribe.Value / 200)));
-                newInt = (int)(newInt * (0.7 + (int)(Caster.Skills.Inscribe.Value / 200)));
+                var escalaInscript = 0.7 + (int)(Caster.Skills.Inscribe.Value / 200);
+                newStr = (int)(newStr * escalaInscript);
+                newDex = (int)(newDex * escalaInscript);
+                newInt = (int)(newInt * escalaInscript);
 
                 if ((newStr < oldStr && newDex < oldDex && newInt < oldInt) || 
                     (newStr == 0 && newDex == 0 && newInt == 0))
@@ -91,9 +92,9 @@ namespace Server.Spells.Third
                 }
                 else
                 {
-                    SpellHelper.AddStatBonus(this.Caster, m, false, StatType.Str);
-                    SpellHelper.AddStatBonus(this.Caster, m, true, StatType.Dex);
-                    SpellHelper.AddStatBonus(this.Caster, m, true, StatType.Int);
+                    SpellHelper.AddStatBonus(this.Caster, m, false, StatType.Str, scale: escalaInscript);
+                    SpellHelper.AddStatBonus(this.Caster, m, true, StatType.Dex, scale: escalaInscript);
+                    SpellHelper.AddStatBonus(this.Caster, m, true, StatType.Int, scale: escalaInscript);
 
                     int percentage = (int)(SpellHelper.GetOffsetScalar(this.Caster, m, false) * 100);
                     TimeSpan length = SpellHelper.GetDuration(this.Caster, m);

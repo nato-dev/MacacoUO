@@ -36,15 +36,7 @@ namespace Server.Gumps
         public override void OnResponse(NetState sender, RelayInfo info)
         {
             var from = sender.Mobile as PlayerMobile;
-
-            switch (info.ButtonID)
-            {
-                case (int)Buttons.Button1:
-                    {
-                        TutorialNoob.InicializaWisp(from);
-                        break;
-                    }
-            }
+            TutorialNoob.InicializaWisp(from);
         }
     }
 }

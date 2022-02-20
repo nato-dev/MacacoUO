@@ -124,6 +124,7 @@
     <Compile Include="Fronteira\Comandos\Disarm.cs" />
     <Compile Include="Fronteira\Comandos\GenPlantas.cs" />
     <Compile Include="Fronteira\Comandos\GenCamps.cs" />
+    <Compile Include="Fronteira\Comandos\habilidades.cs" />
     <Compile Include="Fronteira\Comandos\ListaComandos.cs" />
     <Compile Include="Fronteira\Comandos\FixVendors.cs" />
     <Compile Include="Fronteira\Comandos\ListaFactions.cs" />
@@ -229,6 +230,7 @@
     <Compile Include="Fronteira\Imbuing\Essencias\EssLuz.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZumbiPalmares.cs" />
     <Compile Include="Fronteira\Mobs\GoblinDoTesouro.cs" />
+    <Compile Include="Fronteira\Mobs\GreaterGiantSpider.cs" />
     <Compile Include="Fronteira\Mobs\VendorWS.cs" />
     <Compile Include="Fronteira\PaidBankChest.cs" />
     <Compile Include="Fronteira\Camping\Acampamento.cs" />
@@ -359,6 +361,7 @@
     <Compile Include="Fronteira\Pvm\GateDG.cs" />
     <Compile Include="Fronteira\Quests\MatarDeceit.cs" />
     <Compile Include="Fronteira\Rankings\RanksTrampo.cs" />
+    <Compile Include="Fronteira\RecompensaLogin\RecompensasGuilda.cs" />
     <Compile Include="Fronteira\Skills\Informacoes.cs" />
     <Compile Include="Fronteira\Storages\MasterStorage.cs" />
     <Compile Include="Fronteira\Storages\MasterStorageContextMenus.cs" />
@@ -832,6 +835,7 @@
     <Compile Include="Items\Functional\Pergaminhos\DoubleExp.cs" />
     <Compile Include="Items\Functional\Pergaminhos\PergaminhoDeBencao.cs" />
     <Compile Include="Mobiles\AI\RunnerAI.cs" />
+    <Compile Include="Mobiles\Normal\CoconutCrab.cs" />
     <Compile Include="Mobiles\Normal\Lobster.cs" />
     <Compile Include="Mobiles\Normal\Boura.cs" />
     <Compile Include="Mobiles\NPCs\Insurer.cs" />
@@ -1216,7 +1220,7 @@
     <Compile Include="Fronteira\Rankings\GumpRanking.cs" />
     <Compile Include="Fronteira\Rankings\PontosTrabalho.cs" />
     <Compile Include="Fronteira\RecipeBook\CurrentRecipesGump.cs" />
-    <Compile Include="Fronteira\RecompensaLogin\LoginRewards.cs" />
+    <Compile Include="Fronteira\RecompensaLogin\Gumps.cs" />
     <Compile Include="Fronteira\RecompensaLogin\RecompensaLogin.cs" />
     <Compile Include="Fronteira\RecompensaLogin\Recompensas.cs" />
     <Compile Include="Fronteira\Regions\EventDuelPit.cs" />

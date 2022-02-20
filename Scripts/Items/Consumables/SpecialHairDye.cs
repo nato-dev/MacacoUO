@@ -137,6 +137,7 @@ namespace Server.Items
                             int hue = e.HueStart + hueOffset;
 
                             m.HairHue = hue;
+                            m.FacialHairHue = hue;
 							
                             m.SendLocalizedMessage(501199);  // You dye your hair
                             m.PlaySound(0x4E);

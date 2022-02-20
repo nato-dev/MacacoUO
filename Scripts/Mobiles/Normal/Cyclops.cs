@@ -34,7 +34,7 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.MagicResist, 60.3, 105.0);
             this.SetSkill(SkillName.Tactics, 80.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 80.1, 90.0);
-            SetSkill(SkillName.Parry, 50);
+            this.SetSkill(SkillName.Parry, 50);
 
             this.Fame = 34500;
             this.Karma = -34500;
@@ -78,6 +78,112 @@ namespace Server.Mobiles
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+        }
+
+        public override void OnGaveMeleeAttack(Mobile defender)
+        {
+            Orc.TentaAtacarMaster(this, defender);
+            if (Utility.Random(0, 3) == 1)
+            {
+                if (!IsCooldown("chute"))
+                {
+                    this.PlayAttackAnimation();
+                    this.PlaySound(0x13C);
+                    SetCooldown("chute", TimeSpan.FromSeconds(5));
+                    this.OverheadMessage("* Marretada Epica *");
+                    new ChuteTimer(this, defender).Start();
+                }
+            }
+        }
+
+        public class ChuteTimer : Timer
+        {
+            private BaseCreature m_Defender;
+            private Mobile player;
+            private Direction dir;
+            private int tick;
+
+            public ChuteTimer(BaseCreature defender, Mobile player)
+                : base(TimeSpan.FromMilliseconds(100), TimeSpan.FromMilliseconds(100), 7)
+            {
+                this.dir = defender.Direction;
+                this.m_Defender = defender;
+                this.player = player;
+            }
+
+            public static Point3D GetPoint(Mobile m, Direction d)
+            {
+                var loc = m.Location.Clone3D();
+                var x = 0;
+                var y = 0;
+                switch (d & Direction.Mask)
+                {
+                    case Direction.North:
+                        --y;
+                        break;
+                    case Direction.Right:
+                        ++x;
+                        --y;
+                        break;
+                    case Direction.East:
+                        ++x;
+                        break;
+                    case Direction.Down:
+                        ++x;
+                        ++y;
+                        break;
+                    case Direction.South:
+                        ++y;
+                        break;
+                    case Direction.Left:
+                        --x;
+                        ++y;
+                        break;
+                    case Direction.West:
+                        --x;
+                        break;
+                    case Direction.Up:
+                        --x;
+                        --y;
+                        break;
+                }
+                loc.X += x;
+                loc.Y += y;
+                return loc;
+            }
+
+            protected override void OnTick()
+            {
+                if (this.player == null || this.m_Defender == null)
+                    return;
+
+                if (this.m_Defender.Map == null || !this.m_Defender.Alive)
+                    return;
+
+                if (this.player.Map == null || !this.player.Alive)
+                    return;
+
+                int z = 0;
+                if (this.player.CheckMovement(this.dir, out z))
+                {
+                    this.player.MoveToWorld(GetPoint(this.player, this.dir), this.player.Map);
+                }
+                else
+                {
+                    this.player.PlaySound(0x13C);
+                    this.player.OverheadMessage("* Ouch! *");
+                    var b = new Rectangle2D(this.player.X - 1, this.player.Y - 1, 3, 3);
+                    for (var i = 0; i < 3; i++)
+                        BaseWeapon.AddBlood(this.player, this.player.Map.GetRandomSpawnPoint(b), this.player.Map);
+                    this.player.FixedParticles(6008, 9, 1, 1, 0, 1, EffectLayer.Head, 0);
+                    AOS.Damage(this.player, Utility.Random(30, 50));
+                    this.player.SendMessage("Voce bateu seu corpo contra a parede");
+                    this.player.OverheadMessage("* tonto *");
+                    this.player.Freeze(TimeSpan.FromSeconds(3));
+                    this.Stop();
+                }
+                this.player.Move(this.dir, true);
+            }
         }
     }
 }

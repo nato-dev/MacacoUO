@@ -8,17 +8,32 @@ namespace Server.Mobiles
     public class Imp : BaseCreature
     {
 
-        public static void Converte(BaseCreature b)
+        public static void Converte(BaseCreature b, int hue = 1175)
         {
             Timer.DelayCall(TimeSpan.FromSeconds(0.1), () =>
             {
                 if (b == null || !b.Alive || b.Deleted || !StuckMenu.IsInSecondAgeArea(b))
                     return;
 
-                b.Hue = TintaPreta.COR;
-                b.Name = " das terras perdidas";
-                b.HitsMaxSeed += 700;
-                b.Hits += 700;
+                if (b is BaseOrc || b is BaseRatman)
+                {
+                    b.Name += " albino";
+                    b.Hue = 1153;
+                }
+                if (b is Gazer)
+                {
+                    b.Name += " do sol";
+                    b.Hue = 1161;
+                    b.Skills.Magery.Base = 180;
+                }
+                else
+                {
+                    b.Name = " das terras perdidas";
+                    b.Hue = hue;
+                }
+              
+                b.HitsMaxSeed += 1000;
+                b.Hits += 1000;
                 b.VirtualArmor += 60;
                 b.Fame *= 6;
                 foreach (var skill in b.Skills)
@@ -33,8 +48,8 @@ namespace Server.Mobiles
                     gold.Amount = (int)gold.Amount * 5;
                 }
                 
-                b.DamageMin = (int)(b.DamageMin * 1.3);
-                b.DamageMax = (int)(b.DamageMax * 1.3);
+                b.DamageMin = (int)(b.DamageMin * 1.5);
+                b.DamageMax = (int)(b.DamageMax * 1.5);
             });
         }
 

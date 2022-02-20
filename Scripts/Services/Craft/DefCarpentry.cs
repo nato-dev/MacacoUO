@@ -977,8 +977,8 @@ namespace Server.Engines.Craft
             ForceNonExceptional(index);
             #endregion
 
-            index = AddCraft(typeof(SoulForgeDeed), 1111809, 1095827, 100.0, 130, typeof(AshBoard), 1044041, 150, 1044351);
-            AddSkill(index, SkillName.Imbuing, 75.0, 80.0);
+            index = AddCraft(typeof(SoulForgeDeed), 1111809, 1095827, 100.0, 130, typeof(AshBoard), 1044041, 350, 1044351);
+            AddSkill(index, SkillName.Imbuing, 90, 110);
 
             AddRes(index, typeof(IronIngot), 1044036, 150, 1044037);
             AddRes(index, typeof(RelicFragment), 1031699, 10, 1044253);

@@ -12,6 +12,12 @@ namespace Server.Items
         public override MasterKey MasterKey { get { return new PrismOfLightKey(); } }
         public List<Item> Pedestals = new List<Item>();
 
+        public static Type [] _Keys = new Type[]
+                {
+                    typeof(JaggedCrystals), typeof(BrokenCrystals), typeof(PiecesOfCrystal),
+                    typeof(CrushedCrystals), typeof(ScatteredCrystals), typeof(ShatteredCrystals)
+                };
+
         public override Type[] Keys
         {
             get
@@ -22,6 +28,12 @@ namespace Server.Items
                     typeof(CrushedCrystals), typeof(ScatteredCrystals), typeof(ShatteredCrystals)
                 };
             }
+        }
+
+        public static Item GetRandomKey()
+        {
+            var t = _Keys[Utility.Random(_Keys.Length)];
+            return (Item)Activator.CreateInstance(t);
         }
 
         public override BasePeerless Boss { get { return new ShimmeringEffusion(); } }
@@ -149,6 +161,12 @@ namespace Server.Items
 
         public PrismOfLightPillar(Serial serial) : base(serial)
         {
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            base.OnDoubleClick(from);
+            from.SendMessage("Arraste as chaves para os pilares. Cada pilar tem uma chave. Junte as 6 chaves.");
         }
 
         public override bool OnDragDrop(Mobile from, Item dropped)

@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Server.Commands;
 using Server.ContextMenus;
@@ -765,6 +766,55 @@ namespace Server.Mobiles
             PetTrainingHelper.GetAbilityProfile(this, true).RemoveAbility(ability);
         }
 
+        [CommandProperty(AccessLevel.Administrator)]
+        public string Habilidades
+        {
+            get {
+                var habs = new StringBuilder();
+                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).SpecialAbilities)
+                    habs.Append(h.GetType().Name+",");
+                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).WeaponAbilities)
+                    habs.Append(h.GetType().Name + ",");
+                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).AreaEffects)
+                    habs.Append(h.GetType().Name + ",");
+                return habs.ToString();
+            }
+            set
+            {
+                var weapons = WeaponAbility.Abilities.Select(a => a.GetType().Name.ToLower());
+                var special = SpecialAbility.Abilities.Select(a => a.GetType().Name.ToLower());
+                var area = AreaEffect.Effects.Select(a => a.GetType().Name.ToLower());
+
+                PetTrainingHelper.GetAbilityProfile(this, true).SpecialAbilities.Clear();
+                PetTrainingHelper.GetAbilityProfile(this, true).WeaponAbilities.Clear();
+                PetTrainingHelper.GetAbilityProfile(this, true).AreaEffects.Clear();
+
+                var skills = value.Split(',');
+                foreach(var skill in skills)
+                {
+                    if(weapons.Contains(skill.ToLower())) {
+                        var hab = WeaponAbility.Abilities.Where(a => a.GetType().Name.ToLower() == skill.ToLower()).First();
+                        SetWeaponAbility(hab);
+                    }
+                    else if (weapons.Contains(skill.ToLower()))
+                    {
+                        var hab = SpecialAbility.Abilities.Where(a => a.GetType().Name.ToLower() == skill.ToLower()).First();
+                        SetSpecialAbility(hab);
+                    }
+                    else if (area.Contains(skill.ToLower()))
+                    {
+                        var hab = AreaEffect.Effects.Where(a => a.GetType().Name.ToLower() == skill.ToLower()).First();
+                        SetAreaEffect(hab);
+                    } else
+                    {
+                        OverheadMessage("Hab invalida: " + skill);
+                    }
+                }
+
+            }
+        }
+
+
         public void RemoveSpecialAbility(SpecialAbility ability)
         {
             if (BaseCreature.BypassInit)
@@ -865,7 +915,6 @@ namespace Server.Mobiles
 
         public double CalculateCurrentTameSkill(int currentControlSlots)
         {
-            /*
             double minSkill = Math.Ceiling(MinTameSkill);
             double current = 0;
 
@@ -890,7 +939,7 @@ namespace Server.Mobiles
 
             if (current < MinTameSkill)
                 current = MinTameSkill;
-            */
+
             return MinTameSkill;
         }
         #endregion
@@ -1416,7 +1465,19 @@ namespace Server.Mobiles
 
         public virtual int BreathComputeDamage()
         {
-            return 80;
+            int damage = (int)(Hits * BreathDamageScalar);
+
+            if (IsParagon)
+            {
+                damage = (int)(damage / Paragon.HitsBuff);
+            }
+
+            if (damage > 200)
+            {
+                damage = 200;
+            }
+
+            return damage;
         }
         #endregion
 
@@ -2632,6 +2693,10 @@ namespace Server.Mobiles
                     damage = (int)(damage * 1.5);
                 }
             }
+            if(this.ControlMaster is PlayerMobile)
+            {
+                damage = (int)(damage * 0.9);
+            }
         }
 
         public virtual void AlterMeleeDamageFrom(Mobile from, ref int damage)
@@ -2655,7 +2720,7 @@ namespace Server.Mobiles
             if(ControlMaster != null && ControlMaster.Player && from != null && !from.Player)
             {
                 if (StuckMenu.IsInSecondAgeArea(this))
-                    damage = (int)(damage * 1.5);
+                    damage = (int)(damage * 2);
 
                 var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
                 if(nivel > 0)
@@ -2707,7 +2772,9 @@ namespace Server.Mobiles
             if (ControlMaster != null && ControlMaster.Player && !to.Player)
             {
                 if (StuckMenu.IsInSecondAgeArea(this))
-                    damage = (int)(damage * 0.8);
+                    damage = (int)(damage * 0.5);
+                else
+                    damage = (int)(damage * 0.9);
 
                 var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
                 if(nivel > 0)
@@ -7322,6 +7389,7 @@ namespace Server.Mobiles
                 }
                 */
 
+                var t2a = StuckMenu.IsInSecondAgeArea(c);
                 
 
                 foreach (var i in c.Items)
@@ -7336,10 +7404,13 @@ namespace Server.Mobiles
                         if(Utility.RandomDouble() < 0.2)
                             ((BaseArmor)i).Elemento = Elemento;
                     }
+                    if (i is BasePedraPreciosa && t2a)
+                        i.Delete();
                 }
 
                 var goldMult = GoldHour.GOLD_MULT + 1;
-                Shard.Debug("Loc: " + this.Location + " REG " + this.Region);
+                if(Shard.DebugEnabled)
+                    Shard.Debug("Loc Creature: " + this.Location + " REG " + this.Region);
 
                 if (!(c.GetRegion() is DungeonRegion))
                 {
@@ -7369,10 +7440,7 @@ namespace Server.Mobiles
 
                 if (this.m_Paragon)
                 {
-                    c.DropItem(new RelicFragment(Utility.Random(2, 6)));
-                    c.DropItem(Loot.RandomGem());
-                    c.DropItem(Loot.RandomGem());
-                    c.DropItem(Loot.RandomGem());
+                    c.DropItem(new RelicFragment(Utility.Random(1, 2)));
                 }
 
                 LootingRights = null;

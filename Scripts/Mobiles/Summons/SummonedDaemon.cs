@@ -17,7 +17,7 @@ namespace Server.Mobiles
             this.SetDex(110);
             this.SetInt(150);
 
-            this.SetDamage(14, 21);
+            this.SetDamage(5, 10);
 
             this.SetDamageType(ResistanceType.Physical, 0);
             this.SetDamageType(ResistanceType.Poison, 100);
@@ -36,7 +36,7 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Wrestling, 98.1, 99.0);
 
             this.VirtualArmor = 58;
-            this.ControlSlots = Core.SE ? 4 : 5;
+            this.ControlSlots = 4;
         }
 
         public SummonedDaemon(Serial serial)

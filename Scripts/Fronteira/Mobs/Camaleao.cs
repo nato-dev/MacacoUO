@@ -28,10 +28,10 @@ namespace Server.Mobiles
             SetDex(56, 75);
             SetInt(11, 20);
 
-            SetHits(100, 120);
+            SetHits(1100, 1120);
             SetMana(0);
 
-            SetDamage(2, 15);
+            SetDamage(10, 25);
 
             SetDamageType(ResistanceType.Physical, 100);
 
@@ -58,7 +58,6 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.OldRich);
-            AddLoot(LootPack.Gems, 2);
         }
 
         public override bool HasBreath { get { return true; } } // fire breath enabled

@@ -283,7 +283,6 @@ namespace Server.Gumps.Newbie
                 tamer.Skills.Add(SkillName.AnimalLore, 40);
                 tamer.Skills.Add(SkillName.Veterinary, 50);
                 tamer.Skills.Add(SkillName.Healing, 50);
-                tamer.Skills.Add(SkillName.Magery, 40);
                 tamer.Skills.Add(SkillName.Fencing, 40);
                 tamer.Skills.Add(SkillName.Anatomy, 35);
                 tamer.items.Add(new Bandage(100));

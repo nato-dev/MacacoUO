@@ -845,7 +845,7 @@
         <logoutDelay active="false" />
       </region>
     </region>
-    <region type="TownRegion" priority="50" name="Papua">
+    <region type="NoHousingRegion" priority="50" name="Papua">
       <rect x="5639" y="3095" width="192" height="223" />
       <rect x="5831" y="3237" width="20" height="30" />
       <go x="5769" y="3176" z="0" />
@@ -1984,7 +1984,7 @@
         <logoutDelay active="false" />
       </region>
     </region>
-    <region type="TownRegion" priority="50" name="Papua">
+    <region type="NoHousingRegion" priority="50" name="Papua">
       <rect x="5639" y="3095" width="192" height="223" />
       <rect x="5831" y="3237" width="20" height="30" />
       <go x="5769" y="3176" z="0" />

@@ -9,7 +9,7 @@ namespace Server.Items
         public FerretImprisonedInCrystal()
             : base(0x1F19)
         {
-            this.Name = "a ferret imprisoned in a crystal";
+            this.Name = "um ferret aprisionado";
             this.Weight = 1.0;
         }
 

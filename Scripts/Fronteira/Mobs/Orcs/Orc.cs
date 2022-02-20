@@ -18,6 +18,8 @@ namespace Server.Mobiles
             if (BaseCreature.BypassInit)
                 return;
 
+            Imp.Converte(this);
+
             // olha a gambiarra... eh pq o bixo ainda nao tem backpack aqui :S
             Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
             {
@@ -130,7 +132,7 @@ namespace Server.Mobiles
                     return;
                 }
                 var heal = this.m_Defender.HitsMax / 3 + Utility.Random(20);
-                var rnd = Utility.Random(80, 60);
+                var rnd = Utility.Random(100, 200);
                 if (heal > rnd)
 
                     heal = rnd;

@@ -169,6 +169,17 @@ namespace Server.Menus.Questions
             return false;
         }
 
+        public static bool IsInSecondAgeArea(Item m)
+        {
+            if (m.Map != Map.Trammel && m.Map != Map.Felucca)
+                return false;
+
+            if (m.X >= 5120 && m.Y >= 2304)
+                return true;
+
+            return false;
+        }
+
         private static bool IsTerMur(Mobile m)
         {
             return m.Map == Map.TerMur && !SpellHelper.IsEodon(m.Map, m.Location);

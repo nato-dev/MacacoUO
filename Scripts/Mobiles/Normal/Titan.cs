@@ -31,9 +31,10 @@ namespace Server.Mobiles
 
             this.SetSkill(SkillName.EvalInt, 85.1, 100.0);
             this.SetSkill(SkillName.Magery, 85.1, 100.0);
-            this.SetSkill(SkillName.MagicResist, 80.2, 110.0);
-            this.SetSkill(SkillName.Tactics, 60.1, 80.0);
-            this.SetSkill(SkillName.Wrestling, 40.1, 50.0);
+            this.SetSkill(SkillName.MagicResist, 120, 120);
+            this.SetSkill(SkillName.Tactics, 120, 120);
+            this.SetSkill(SkillName.Wrestling, 120, 120);
+            this.SetSkill(SkillName.Parry, 80, 80);
 
             this.Fame = 31500;
             this.Karma = -31500;
@@ -59,6 +60,7 @@ namespace Server.Mobiles
                 return 4;
             }
         }
+
         public override Poison PoisonImmune
         {
             get
@@ -66,6 +68,24 @@ namespace Server.Mobiles
                 return Poison.Regular;
             }
         }
+
+        public void JogaPedra(Mobile target, bool cd)
+        {
+            if (!IsCooldown("pedra"))
+            {
+                SetCooldown("pedra", TimeSpan.FromSeconds(5));
+                new Ettin.PedraTimer(this, target).Start();
+                PublicOverheadMessage(Network.MessageType.Emote, 0, false, "* nervoso com a magia *");
+            }
+        }
+
+        public override void OnDamagedBySpell(Mobile from)
+        {
+            base.OnDamagedBySpell(from);
+
+            JogaPedra(from, true);
+        }
+
         public override int TreasureMapLevel
         {
             get
@@ -75,7 +95,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV5);
+            this.AddLoot(LootPack.LV6);
             this.AddLoot(LootPack.LV5);
             this.AddLoot(LootPack.MedScrolls);
         }

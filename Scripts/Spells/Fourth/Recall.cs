@@ -164,10 +164,12 @@ namespace Server.Spells.Fourth
             {
                 Caster.SendLocalizedMessage(502359, "", 0x22); // Thou art too encumbered to move.
             }
+            /*
             else if (!map.CanSpawnMobile(loc.X, loc.Y, loc.Z) && !isboatkey)
             {
                 this.Caster.SendLocalizedMessage(501025); // Something is blocking the location.
             }
+            */
             else if ((checkMulti && SpellHelper.CheckMulti(loc, map)) && !isboatkey)
             {
                 this.Caster.SendLocalizedMessage(501025); // Something is blocking the location.

@@ -332,4 +332,35 @@ namespace Server.Items
             }
         }
     }
+
+    [FlipableAttribute(0x1f14, 0x1f15, 0x1f16, 0x1f17)]
+    public class T2ARecallRune : RecallRune
+    {
+       
+        [Constructable]
+        public T2ARecallRune()
+            : base()
+        {
+            Name = "Runa para Terras Perdida";
+        }
+
+        public T2ARecallRune(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(0);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+
+        }
+    }
 }
