@@ -3798,7 +3798,7 @@ namespace Server.Items
             EventSink.Login += (ev) =>
             {
                 var armor = ev.Mobile.ChestArmor as BaseArmor;
-                if (armor != null && armor.Elemento != ElementoPvM.None && ev.Mobile.Elemento == armor.Elemento)
+                if (armor != null && armor.Elemento != ElementoPvM.None && ev.Mobile.Elemento != armor.Elemento)
                 {
                     var count = SetHelper.CountElemento(ev.Mobile, armor.Elemento);
                     if (count >= 4)

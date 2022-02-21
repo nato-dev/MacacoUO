@@ -67,7 +67,53 @@ namespace Server.Mobiles
             base.GenerateLoot(spawning);
         }
 
+        private void Couro()
+        {
+            var arms = new StuddedArms();
+            var legs = new StuddedLegs();
+            var chest = new StuddedChest();
+            var gloves = new StuddedGloves();
+            arms.Quality = ItemQuality.Exceptional;
+            legs.Quality = ItemQuality.Exceptional;
+            chest.Quality = ItemQuality.Exceptional;
+            gloves.Quality = ItemQuality.Exceptional;
+            AddItem(arms);
+            AddItem(legs);
+            AddItem(chest);
+            AddItem(gloves);
+        }
 
+
+        private void Loriga()
+        {
+            var arms = new RingmailArms();
+            var legs = new RingmailLegs();
+            var chest = new RingmailChest();
+            var gloves = new RingmailGloves();
+            arms.Resource = CraftResource.Cobre;
+            legs.Resource = CraftResource.Cobre;
+            chest.Resource = CraftResource.Cobre;
+            gloves.Resource = CraftResource.Cobre;
+            AddItem(arms);
+            AddItem(legs);
+            AddItem(chest);
+            AddItem(gloves);
+        }
+
+        private void Malha()
+        {
+            var legs = new ChainLegs();
+            var chest = new ChainChest();
+            var gloves = new ChainGloves(); 
+            legs.Resource = CraftResource.Cobre;
+            chest.Resource = CraftResource.Cobre;
+            gloves.Resource = CraftResource.Cobre;
+            AddItem(legs);
+            AddItem(chest);
+            AddItem(gloves);
+        }
+
+      
         public override bool IsSmart { get { return false; } }
 
         public override int GetDeathSound()
@@ -118,6 +164,8 @@ namespace Server.Mobiles
         }
 
 
+
+
         public override bool OnBeforeDeath()
         {
             var manolos = this.GetLootingRights();
@@ -126,7 +174,26 @@ namespace Server.Mobiles
                 if(r.m_HasRight && r.m_Mobile != null && r.m_Mobile is PlayerMobile)
                 {
                     var p = (PlayerMobile)r.m_Mobile;
-                    if(p.Wisp != null)
+                    if(p.Young && p.Wisp != null)
+                    {
+                        switch (p.Profession)
+                        {
+                            case 4://StarterKits.ARCHER:
+                            case 3:// StarterKits.BARD:
+                            case 5:// StarterKits.TAMER:
+                                Loriga();
+                                break;
+                            case 6:// StarterKits.MAGE
+                                Couro();
+                                break;
+                            case 2://  StarterKits.BS:
+                            default:
+                                Malha();
+                                break;
+                        }
+                    }
+
+                    if (p.Wisp != null)
                     {
                         p.Wisp.MataMago();
                         if(p.Young)

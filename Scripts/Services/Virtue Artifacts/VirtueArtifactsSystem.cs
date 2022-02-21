@@ -14,7 +14,7 @@ namespace Server.Misc
 {
     public class VirtueArtifactsSystem
     {
-        public static bool Enabled { get { return SeasonalEventSystem.IsActive(EventType.VirtueArtifacts); } }
+        public static bool Enabled { get { return false; } } //  SeasonalEventSystem.IsActive(EventType.VirtueArtifacts); } }
 
         private static Type[] m_VirtueArtifacts = new Type[]
             {

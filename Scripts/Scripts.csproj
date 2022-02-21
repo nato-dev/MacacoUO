@@ -124,7 +124,7 @@
     <Compile Include="Fronteira\Comandos\Disarm.cs" />
     <Compile Include="Fronteira\Comandos\GenPlantas.cs" />
     <Compile Include="Fronteira\Comandos\GenCamps.cs" />
-    <Compile Include="Fronteira\Comandos\habilidades.cs" />
+    <Compile Include="Fronteira\Comandos\SetHabilidades.cs" />
     <Compile Include="Fronteira\Comandos\ListaComandos.cs" />
     <Compile Include="Fronteira\Comandos\FixVendors.cs" />
     <Compile Include="Fronteira\Comandos\ListaFactions.cs" />

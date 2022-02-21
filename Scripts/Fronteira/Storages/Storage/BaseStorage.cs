@@ -102,7 +102,7 @@ namespace fronteira
 
 		public virtual bool CanStoreItemLootType( Item item )
 		{
-			if (item.Insured || item.LootType == LootType.Blessed || item.LootType == LootType.Newbied)
+			if (item.Insured || item.LootType == LootType.Blessed)
 				return false;
 			return true;
 		}

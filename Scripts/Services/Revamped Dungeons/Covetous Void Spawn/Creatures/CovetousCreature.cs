@@ -62,6 +62,7 @@ using Server.Items;
             Level = level;
             VoidSpawn = voidspawn;
 
+        
             SetSkill(SkillName.MagicResist, SkillStart);
             SetSkill(SkillName.Tactics, SkillStart);
             SetSkill(SkillName.Wrestling, SkillStart);
@@ -93,7 +94,10 @@ using Server.Items;
             SetResistance(ResistanceType.Fire, ResistStart - 5, ResistStart + 5);
             SetResistance(ResistanceType.Cold, ResistStart - 5, ResistStart + 5);
             SetResistance(ResistanceType.Poison, ResistStart - 5, ResistStart + 5);
-            SetResistance(ResistanceType.Energy, ResistStart - 5, ResistStart + 5); 
+            SetResistance(ResistanceType.Energy, ResistStart - 5, ResistStart + 5);
+
+            if (BaseCreature.BypassConstructor)
+                return;
 
             if (Stage > 1)
                 Timer.DelayCall(TimeSpan.FromSeconds(.5), SetPower);

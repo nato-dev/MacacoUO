@@ -1381,6 +1381,9 @@ namespace Server.Mobiles
                     var type = ((IBOD)dropped).BODType;
                     var skill = BulkOrderSystem.GetSkillForBOD(type);
 
+                    from.SendMessage(78, "Diga 'Recompensa' para o NPC para ver os items que voce pode pegar de recompensa por trabalhar !");
+
+
                     if (dropped.BoundTo == from.RawName || from.AccessLevel > AccessLevel.VIP)
                     {
                         ushort exp = 2000;

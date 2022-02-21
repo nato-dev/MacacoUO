@@ -119,7 +119,7 @@ namespace Server.Items
         {
             get
             {
-                return "Usar o pergaminho aumenta o cap de uma skill de trabalho especifica. Voce ainda vai precisar upar a skill e isto nao afeta o cap total de skills";
+                return "Usar o pergaminho aumenta o cap de uma skill de trabalho especifica. Voce ainda vai precisar upar a skills";
             }
         }/* Using a scroll increases the maximum amount of a specific skill or your maximum statistics.
         * When used, the effect is not immediately seen without a gain of points with that skill or statistics.

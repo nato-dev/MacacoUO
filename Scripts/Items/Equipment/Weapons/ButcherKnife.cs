@@ -12,7 +12,7 @@ namespace Server.Items
             : base(0x13F6)
         {
             this.Weight = 1.0;
-            Name = "Punhal";
+            Name = "Faca de Acougueiro";
         }
 
         public ButcherKnife(Serial serial)

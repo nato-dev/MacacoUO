@@ -94,61 +94,69 @@ namespace Server.Mobiles
                 if (r.m_HasRight && r.m_Mobile != null && r.m_Mobile is PlayerMobile)
                 {
                     var p = (PlayerMobile)r.m_Mobile;
-                    switch (p.Profession)
+                    if(p.Young && p.Wisp != null)
                     {
-                        case 4://StarterKits.ARCHER:
-                            var loot = new Bow();
-                            loot.Quality = ItemQuality.Exceptional;
-                            loot.Attributes.BonusDex = -1;
-                            //loot.Hue = 1444;
-                            loot.Name = "Arco pegajoso";
-                            loot.Owner = p;
-                            AddItem(loot);
-                            break;
-                        case 3:// StarterKits.BARD:
-                        case 5:// StarterKits.TAMER:
-                            var spear = new ShortSpear();
-                            spear.Quality = ItemQuality.Exceptional;
-                            spear.Attributes.BonusDex = -1;
-                            //spear.Hue = 1444;
-                            spear.Name = "Lanca pegajosa excepcional";
-                            spear.Owner = p;
-                            AddItem(spear);
-                            break;
-                        case 2://  StarterKits.BS:
-                            var marreta = new WarHammer();
-                            marreta.Quality = ItemQuality.Exceptional;
-                            marreta.Attributes.BonusDex = -1;
-                            //marreta.Hue = 1444;
-                            marreta.Name = "Marretona pegajosa excepcional";
-                            marreta.Owner = p;
-                            AddItem(marreta);
-                            break;
-                        case 6:// StarterKits.MAGE
-                            var cajado = new QuarterStaff();
-                            cajado.Quality = ItemQuality.Exceptional;
-                            cajado.Attributes.BonusDex = -1;
-                            //cajado.Hue = 1444;
-                            cajado.Name = "Cajado pegajoso excepcional";
-                            cajado.Owner = p;
-                            AddItem(cajado);
-                            AddItem(new BagOfReagents());
-                            if (p.Young)
-                            {
-                                p.PlaceInBackpack(new EnergyBoltScroll());
-                            }
-                            break;
-                        default:
-                            var espada = new VikingSword();
-                            espada.Quality = ItemQuality.Exceptional;
-                            espada.Attributes.BonusDex = -1;
-                            //espada.Hue = 1444;
-                            espada.Name = "Espada pegajosa excepcional";
-                            espada.Owner = p;
-                            AddItem(espada);
-                            AddItem(new BagOfReagents());
-                            break;
+                        switch (p.Profession)
+                        {
+                            case 4://StarterKits.ARCHER:
+                                var loot = new Bow();
+                                loot.Quality = ItemQuality.Exceptional;
+                                loot.Resource = CraftResource.Carvalho;
+                                loot.Attributes.BonusDex = -1;
+                                //loot.Hue = 1444;
+                                loot.Name = "Arco pegajoso";
+                                loot.Owner = p;
+                                AddItem(loot);
+                                break;
+                            case 3:// StarterKits.BARD:
+                            case 5:// StarterKits.TAMER:
+                                var spear = new ShortSpear();
+                                spear.Quality = ItemQuality.Exceptional;
+                                spear.Resource = CraftResource.Cobre;
+                                spear.Attributes.BonusDex = -1;
+                                //spear.Hue = 1444;
+                                spear.Name = "Lanca pegajosa";
+                                spear.Owner = p;
+                                AddItem(spear);
+                                break;
+                            case 2://  StarterKits.BS:
+                                var marreta = new WarHammer();
+                                marreta.Quality = ItemQuality.Exceptional;
+                                marreta.Attributes.BonusDex = -1;
+                                marreta.Resource = CraftResource.Cobre;
+                                //marreta.Hue = 1444;
+                                marreta.Name = "Marretona pegajosa";
+                                marreta.Owner = p;
+                                AddItem(marreta);
+                                break;
+                            case 6:// StarterKits.MAGE
+                                var cajado = new QuarterStaff();
+                                cajado.Quality = ItemQuality.Exceptional;
+                                cajado.Attributes.BonusDex = -1;
+                                cajado.Resource = CraftResource.Carvalho;
+                                //cajado.Hue = 1444;
+                                cajado.Name = "Cajado pegajoso";
+                                cajado.Owner = p;
+                                AddItem(cajado);
+                                AddItem(new BagOfReagents());
+                                if (p.Young)
+                                {
+                                    p.PlaceInBackpack(new EnergyBoltScroll());
+                                }
+                                break;
+                            default:
+                                var espada = new VikingSword();
+                                espada.Quality = ItemQuality.Exceptional;
+                                espada.Attributes.BonusDex = -1;
+                                //espada.Hue = 1444;
+                                espada.Name = "Espada pegajosa";
+                                espada.Owner = p;
+                                AddItem(espada);
+                                AddItem(new BagOfReagents());
+                                break;
+                        }
                     }
+                   
 
                     if (p.Wisp != null)
                     {

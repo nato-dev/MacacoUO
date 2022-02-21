@@ -35,7 +35,7 @@ namespace Server.SkillHandlers
             {
                 if (targeted is BaseWeapon)
                 {
-                    if (from.CheckTargetSkillMinMax(SkillName.ArmsLore, targeted, 0, 100))
+                    if (from.CheckTargetSkillMinMax(SkillName.ArmsLore, targeted, 0, 120))
                     {
                         BaseWeapon weap = (BaseWeapon)targeted;
 

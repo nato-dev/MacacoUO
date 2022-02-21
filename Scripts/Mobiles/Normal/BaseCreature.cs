@@ -3183,12 +3183,16 @@ namespace Server.Mobiles
             m_bDebugAI = false;
         }
 
+        [CommandProperty(AccessLevel.GameMaster)]
+        public bool DistribuiItems { get; set; }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
 
-            writer.Write(27); // version
+            writer.Write(28); // version
 
+            writer.Write(DistribuiItems);
             writer.Write((int)Elemento);
             writer.Write(CanMove);
             writer.Write(_LockDirection);
@@ -3379,6 +3383,9 @@ namespace Server.Mobiles
 
             switch (version)
             {
+                case 28:
+                    DistribuiItems = reader.ReadBool();
+                    goto case 27;
                 case 27:
                     Elemento = (ElementoPvM)reader.ReadInt();
                     goto case 26;
@@ -6826,6 +6833,7 @@ namespace Server.Mobiles
         private static int PARA = -1;
         private static int EXPLO = -1;
         private static int RESS = -1;
+        private static int MARK = -1;
 
         public void DropScrollsGarantidos()
         {
@@ -6842,6 +6850,9 @@ namespace Server.Mobiles
                 EXPLO = SpellRegistry.GetRegistryNumber(typeof(ExplosionSpell));
             if(RESS == -1)
                 RESS = SpellRegistry.GetRegistryNumber(typeof(ResurrectionSpell));
+            if (MARK == -1)
+                MARK = SpellRegistry.GetRegistryNumber(typeof(MarkSpell));
+
             List<DamageStore> rights = GetLootingRights();
             foreach (var r in rights)
             {
@@ -6871,6 +6882,10 @@ namespace Server.Mobiles
                         {
                             PackItem(new ResurrectionScroll());
                         }
+                        else if (this.Skills.Magery.Value >= 80 && r.m_Mobile.Skills.Magery.Value > 80 && !book.HasSpell(MARK) && !r.m_Mobile.Backpack.HasItem<MarkScroll>())
+                        {
+                            PackItem(new MarkScroll());
+                        }
                     }
                 }
             }
@@ -6878,7 +6893,6 @@ namespace Server.Mobiles
 
         public override bool OnBeforeDeath()
         {
-
             // Qnd um bixo morrer, se eh de player e foi morto por monstros, os monstros viram no dono do bixo q morreu
             var master = this.GetMaster();
             if (master is PlayerMobile)
@@ -7390,8 +7404,8 @@ namespace Server.Mobiles
                 */
 
                 var t2a = StuckMenu.IsInSecondAgeArea(c);
-                
 
+                var dels = new List<Item>();
                 foreach (var i in c.Items)
                 {
                     if (i is Key)
@@ -7405,8 +7419,10 @@ namespace Server.Mobiles
                             ((BaseArmor)i).Elemento = Elemento;
                     }
                     if (i is BasePedraPreciosa && t2a)
-                        i.Delete();
+                        dels.Add(i);
                 }
+                foreach (var i in dels)
+                    i.Delete();
 
                 var goldMult = GoldHour.GOLD_MULT + 1;
                 if(Shard.DebugEnabled)
@@ -7496,8 +7512,8 @@ namespace Server.Mobiles
                             foreach (var item in partyItems)
                             {
                                 ds.m_Mobile.PlaceInBackpack(Dupe.DupeItem(item));
+                                ds.m_Mobile.SendMessage("Voce ganhou " + item.Amount + " " + (item.Name == null ? item.GetType().Name : item.Name));
                             }
-                            ds.m_Mobile.SendMessage("Voce ganhou items em sua mochila por matar este monstro");
                         }
 
                         if (GivesFameAndKarmaAward)
@@ -7602,7 +7618,20 @@ namespace Server.Mobiles
                     }
 
                     foreach (var i in partyItems)
-                        i.Delete();
+                        i.Delete(); 
+
+                    var disputando = looters.Where(l => l.m_Mobile.Alive && l.m_Mobile.GetDistance(c) < 20).ToList();
+                    if(this.DistribuiItems && disputando.Count > 0)
+                    {
+                        foreach(var i in new List<Item>(c.Items))
+                        {
+                            if (i.Deleted || i is Gold)
+                                continue;
+                            var ganhou = disputando[Utility.Random(disputando.Count)];
+                            ganhou.m_Mobile.SendMessage("Voce ganhou " +i.Amount+" "+(i.Name == null ? i.GetType().Name : i.Name));
+                            ganhou.m_Mobile.PlaceInBackpack(i);
+                        }
+                    }
 
                     for (int i = 0; i < titles.Count; ++i)
                     {

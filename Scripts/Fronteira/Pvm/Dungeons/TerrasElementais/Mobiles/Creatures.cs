@@ -250,7 +250,10 @@ namespace Server.Mobiles
             FightMode = FightMode.Aggressor;
 
             if (wall != null)
+            {
                 Title = "o guardiao do muro";
+                AddItem(new CristalElemental());
+            }
 
           
             Wall = wall;

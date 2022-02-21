@@ -125,9 +125,8 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new DiscoveryAchievement(29, 3, 0x14EB, false, null, "Hythloth!", "Descubra Hythloth", 5, "Hythloth"));
             Achievements.Add(new DiscoveryAchievement(30, 3, 0x14EB, false, null, "Wrong!", "Descubra Wrong", 5, "Wrong"));
             Achievements.Add(new DiscoveryAchievement(31, 3, 0x14EB, false, null, "Shame!", "Descubra Shame", 5, "Shame"));
-            Achievements.Add(new DiscoveryAchievement(31, 3, 0x14EB, false, null, "Shame!", "Descubra Shame", 5, "Shame"));
-            Achievements.Add(new DiscoveryAchievement(32, 3, 0x14EB, false, null, "Ice!", "Descubra Ice", 5, "Shame"));
-            Achievements.Add(new DiscoveryAchievement(33, 3, 0x14EB, false, null, "Fire!", "Descubra Fire", 5, "Shame"));
+            Achievements.Add(new DiscoveryAchievement(32, 3, 0x14EB, false, null, "Ice!", "Descubra Ice", 5, "Ice"));
+            Achievements.Add(new DiscoveryAchievement(33, 3, 0x14EB, false, null, "Fire!", "Descubra Fire", 5, "Fire"));
 
             Achievements.Add(new DiscoveryAchievement(100, 4, 0x14EB, false, null, "Cotton!", "Descubra Plantacao de Algodao Moonglow", 5, "A Cotton Field in Moonglow"));
             Achievements.Add(new DiscoveryAchievement(101, 4, 0x14EB, false, null, "Carrots!", "Descubra plantacao de Cenoura em Skara Brae", 5, "A Carrot Field in Skara Brae"));

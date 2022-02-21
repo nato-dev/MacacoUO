@@ -18,7 +18,7 @@ namespace Server.Scripts.New.Adam.NewGuild
 {
     public abstract class NewPlayerGuildAutoJoin
     {
-        public static string Abrev = "Ordem";
+        public static string Abrev = "NOOB";
 
         public static HashSet<Serial> asked = new HashSet<Serial>();
 

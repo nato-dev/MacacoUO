@@ -84,8 +84,8 @@ namespace Server.Misc.Custom
         public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
         {
             this.Name += " feita por "+from.Name;
-            this.LootType = LootType.Newbied;
-            this.Cargas = 5000;
+            this.LootType = LootType.Blessed;
+            this.Cargas = 10000;
             return quality;
         }
     }

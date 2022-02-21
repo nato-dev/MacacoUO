@@ -70,7 +70,7 @@ namespace Server.Multis
                 {
                     var k = new Kasa(1161);
                     k.Name = "Chapeu do Campista Lendario";
-                    k.LootType = LootType.Newbied;
+                    k.LootType = LootType.Blessed;
                     k.EngravedText = "Campista: " + m.Name;
                     k.Owner = m;
                     k.BoundTo = m.RawName;

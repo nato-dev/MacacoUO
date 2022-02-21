@@ -71,6 +71,7 @@ namespace Server.Misc
             var map = from.Map;
 
             #region Factions/VvV
+            /*
             if (Settings.Enabled)
             {
                 var targetFaction = Faction.Find(target, true);
@@ -81,7 +82,7 @@ namespace Server.Misc
                         return false;
                 }
             }
-
+            */
             if (ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.IsEnemy(from, target))
             {
                 return false;
