@@ -435,12 +435,7 @@ namespace Server.Gumps
 
             var old = from.Skills[skill].Base;
             var gain = 10;
-            
-            if (from.Skills[skill].Base > 90)
-                gain = 5;
-            if (from.Skills[skill].Base >= 99)
-                gain = 1;
-            
+
             SkillCheck.Gain(from, from.Skills[skill], gain);
             var nw = from.Skills[skill].Value;
 

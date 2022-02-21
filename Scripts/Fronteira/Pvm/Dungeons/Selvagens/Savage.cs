@@ -109,6 +109,8 @@ namespace Server.Mobiles
 
         public override void OnDamage(int amount, Mobile from, bool willKill)
         {
+            BaseOrc.TentaAtacarMaster(this, from);
+
             var bands = this.Backpack.FindItemByType(typeof(Bandage));
             if (!IsCooldown("bands") && bands != null)
             {

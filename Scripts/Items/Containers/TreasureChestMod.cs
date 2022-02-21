@@ -593,7 +593,7 @@ namespace Server.Items
             TrapPower = 4 * Utility.Random(1, 27);
 
             var t = Utility.Random(100);
-            var amt = Utility.Random(800, 400);
+            var amt = Utility.Random(25, 25);
             if (t <= 1)
             {
                 DropItem(new LazuritaIngot(amt));
@@ -604,18 +604,15 @@ namespace Server.Items
                 var cloth = new Cloth(amt*4);
                 cloth.Hue = Utility.RandomDyedHue();
                 DropItem(cloth);
-         
             }
             else if (t == 4)
             {
                 DropItem(new Bolt(amt));
                 DropItem(new Arrow(amt));
-         
             }
             else if (t == 5)
             {
                 DropItem(new OakBoard(amt));
-          
             }
 
             if(Utility.RandomDouble() < 0.1)

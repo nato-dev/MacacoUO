@@ -239,7 +239,7 @@ namespace Server.Mobiles
                 var id = 10;
                 var n = 1;
                 var falas = value.Split(',');
-                foreach(var f in falas)
+                foreach (var f in falas)
                 {
                     var fala = new XmlDialog.SpeechEntry();
                     fala.Text = f;
@@ -480,6 +480,23 @@ namespace Server.Mobiles
             }
         }
 
+        public void SorteiaItem(Item i)
+        {
+            var disputando = GetLootingRights().Where(l => l.m_Mobile.Alive && l.m_Mobile.GetDistance(this) < 50).ToList();
+            if (disputando.Count > 0)
+            {
+                var ganhou = disputando[Utility.Random(disputando.Count)];
+                ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
+                ganhou.m_Mobile.PlaceInBackpack(i);
+                foreach (var p in disputando)
+                {
+                    if (p.m_Mobile != ganhou.m_Mobile)
+                        p.m_Mobile.SendMessage(ganhou.m_Mobile.Name + " ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
+
+                }
+            }
+        }
+
         public virtual int DefaultStamRegen
         {
             get
@@ -617,18 +634,18 @@ namespace Server.Mobiles
 
             protected override void OnTick()
             {
-                if(m!= null && !m.Deleted)
+                if (m != null && !m.Deleted)
                 {
-                    if(m.Combatant == null && !m.InCombat(TimeSpan.FromMinutes(1)))
+                    if (m.Combatant == null && !m.InCombat(TimeSpan.FromMinutes(1)))
                         m.Delete();
                 }
-                   
+
             }
         }
 
         public void BeginDeleteTimer(int hours = 24 * 3)
         {
-            
+
             if (!(this is BaseEscortable) && !Summoned && !Deleted && !IsStabled)
             {
                 StopDeleteTimer();
@@ -769,10 +786,11 @@ namespace Server.Mobiles
         [CommandProperty(AccessLevel.Administrator)]
         public string Habilidades
         {
-            get {
+            get
+            {
                 var habs = new StringBuilder();
                 foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).SpecialAbilities)
-                    habs.Append(h.GetType().Name+",");
+                    habs.Append(h.GetType().Name + ",");
                 foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).WeaponAbilities)
                     habs.Append(h.GetType().Name + ",");
                 foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).AreaEffects)
@@ -790,9 +808,10 @@ namespace Server.Mobiles
                 PetTrainingHelper.GetAbilityProfile(this, true).AreaEffects.Clear();
 
                 var skills = value.Split(',');
-                foreach(var skill in skills)
+                foreach (var skill in skills)
                 {
-                    if(weapons.Contains(skill.ToLower())) {
+                    if (weapons.Contains(skill.ToLower()))
+                    {
                         var hab = WeaponAbility.Abilities.Where(a => a.GetType().Name.ToLower() == skill.ToLower()).First();
                         SetWeaponAbility(hab);
                     }
@@ -805,7 +824,8 @@ namespace Server.Mobiles
                     {
                         var hab = AreaEffect.Effects.Where(a => a.GetType().Name.ToLower() == skill.ToLower()).First();
                         SetAreaEffect(hab);
-                    } else
+                    }
+                    else
                     {
                         OverheadMessage("Hab invalida: " + skill);
                     }
@@ -2693,7 +2713,7 @@ namespace Server.Mobiles
                     damage = (int)(damage * 1.5);
                 }
             }
-            if(this.ControlMaster is PlayerMobile)
+            if (this.ControlMaster is PlayerMobile)
             {
                 damage = (int)(damage * 0.9);
             }
@@ -2701,7 +2721,7 @@ namespace Server.Mobiles
 
         public virtual void AlterMeleeDamageFrom(Mobile from, ref int damage)
         {
-           
+
             if (from != null && from.Talisman is BaseTalisman)
             {
                 BaseTalisman talisman = (BaseTalisman)from.Talisman;
@@ -2717,23 +2737,23 @@ namespace Server.Mobiles
                 }
             }
 
-            if(ControlMaster != null && ControlMaster.Player && from != null && !from.Player)
+            if (ControlMaster != null && ControlMaster.Player && from != null && !from.Player)
             {
                 if (StuckMenu.IsInSecondAgeArea(this))
                     damage = (int)(damage * 2);
 
                 var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
-                if(nivel > 0)
+                if (nivel > 0)
                 {
                     var redux = nivel / 100; // max 50%
                     damage -= damage * redux;
                 }
             }
 
-            if(from != null && from.Player)
+            if (from != null && from.Player)
             {
                 var colarVento = ColarElemental.GetNivel(from, ElementoPvM.Vento);
-                if(!from.IsCooldown("hitstun") && colarVento > 0 && Utility.RandomDouble() < 0.1 + colarVento / 100)
+                if (!from.IsCooldown("hitstun") && colarVento > 0 && Utility.RandomDouble() < 0.1 + colarVento / 100)
                 {
                     from.SendMessage("Voce acertou um golpe ventania que atordoou o inimigo");
                     this.OverheadMessage(" * stun *");
@@ -2777,17 +2797,17 @@ namespace Server.Mobiles
                     damage = (int)(damage * 0.9);
 
                 var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
-                if(nivel > 0)
+                if (nivel > 0)
                 {
                     var redux = nivel / 25; // max 50%
                     damage += damage * redux;
                 }
-            } 
+            }
 
             if (to.Player && to.Elemento != ElementoPvM.None)
             {
                 var colarGelo = ColarElemental.GetNivel(to, ElementoPvM.Gelo);
-                if(colarGelo > 0 && Utility.RandomDouble() < 0.1 + colarGelo / 100)
+                if (colarGelo > 0 && Utility.RandomDouble() < 0.1 + colarGelo / 100)
                 {
                     this.Paralyze(TimeSpan.FromSeconds(colarGelo / 25));
                 }
@@ -2805,7 +2825,7 @@ namespace Server.Mobiles
                 else if (this.Elemento.FracoContra(to.Elemento) && TalismanElemental.Tem(to))
                 {
                     damage = (int)(damage * 0.85);
-                } 
+                }
             }
         }
         #endregion
@@ -3162,14 +3182,14 @@ namespace Server.Mobiles
                 {
                     //SetHits((int)(Hits * 2));
                     //SetDamage(m_DamageMin + 4, m_DamageMax + 4);
-                    if(this.Tamable)
+                    if (this.Tamable)
                     {
                         if (this.MinTameSkill < 80)
                             this.MinTameSkill = 105;
                         else
                             this.MinTameSkill = 110;
                     }
-                  
+
                 }
             });
         }
@@ -6848,7 +6868,7 @@ namespace Server.Mobiles
                 PARA = SpellRegistry.GetRegistryNumber(typeof(ParalyzeSpell));
             if (EXPLO == -1)
                 EXPLO = SpellRegistry.GetRegistryNumber(typeof(ExplosionSpell));
-            if(RESS == -1)
+            if (RESS == -1)
                 RESS = SpellRegistry.GetRegistryNumber(typeof(ResurrectionSpell));
             if (MARK == -1)
                 MARK = SpellRegistry.GetRegistryNumber(typeof(MarkSpell));
@@ -7126,93 +7146,9 @@ namespace Server.Mobiles
                 return LootingRights;
 
             List<DamageEntry> damageEntries = DamageEntries;
-            int hitsMax = HitsMax;
+            int hitsMax = HitsMax / 10;
 
             List<DamageStore> rights = new List<DamageStore>();
-
-            for (int i = damageEntries.Count - 1; i >= 0; --i)
-            {
-                if (i >= damageEntries.Count)
-                {
-                    continue;
-                }
-
-                DamageEntry de = damageEntries[i];
-
-                if (de.HasExpired)
-                {
-                    damageEntries.RemoveAt(i);
-                    continue;
-                }
-
-                int damage = de.DamageGiven;
-
-                var respList = de.Responsible;
-
-                if (respList != null)
-                {
-                    for (int j = 0; j < respList.Count; ++j)
-                    {
-                        DamageEntry subEntry = respList[j];
-                        Mobile master = subEntry.Damager;
-
-                        if (master == null || master.Deleted || !master.Player)
-                        {
-                            continue;
-                        }
-
-                        bool needNewSubEntry = true;
-
-                        for (int k = 0; needNewSubEntry && k < rights.Count; ++k)
-                        {
-                            DamageStore ds = rights[k];
-
-                            if (ds.m_Mobile == master)
-                            {
-                                ds.m_Damage += subEntry.DamageGiven;
-                                needNewSubEntry = false;
-                            }
-                        }
-
-                        if (needNewSubEntry)
-                        {
-                            rights.Add(new DamageStore(master, subEntry.DamageGiven));
-                        }
-
-                        damage -= subEntry.DamageGiven;
-                    }
-                }
-
-                Mobile m = de.Damager;
-
-                if (m == null || m.Deleted || !m.Player)
-                {
-                    continue;
-                }
-
-                if (damage <= 0)
-                {
-                    continue;
-                }
-
-                bool needNewEntry = true;
-
-                for (int j = 0; needNewEntry && j < rights.Count; ++j)
-                {
-                    DamageStore ds = rights[j];
-
-                    if (ds.m_Mobile == m)
-                    {
-                        ds.m_Damage += damage;
-                        needNewEntry = false;
-                    }
-                }
-
-                if (needNewEntry)
-                {
-                    rights.Add(new DamageStore(m, damage));
-                }
-            }
 
             if (rights.Count > 0)
             {
@@ -7235,19 +7171,19 @@ namespace Server.Mobiles
                 {
                     if (hitsMax >= 3000)
                     {
-                        minDamage = topDamage / 16;
+                        minDamage = topDamage / 20;
                     }
                     else if (hitsMax >= 1000)
                     {
-                        minDamage = topDamage / 8;
+                        minDamage = topDamage / 16;
                     }
                     else if (hitsMax >= 200)
                     {
-                        minDamage = topDamage / 4;
+                        minDamage = topDamage / 8;
                     }
                     else
                     {
-                        minDamage = topDamage / 2;
+                        minDamage = topDamage / 6;
                     }
                 }
 
@@ -7413,9 +7349,9 @@ namespace Server.Mobiles
                         i.LootType = LootType.Blessed;
                         i.DuraSegundos = 60 * 60 * 12; // 12 horas
                     }
-                    if(i is BaseArmor && Elemento != ElementoPvM.None)
+                    if (i is BaseArmor && Elemento != ElementoPvM.None)
                     {
-                        if(Utility.RandomDouble() < 0.2)
+                        if (Utility.RandomDouble() < 0.2)
                             ((BaseArmor)i).Elemento = Elemento;
                     }
                     if (i is BasePedraPreciosa && t2a)
@@ -7425,7 +7361,7 @@ namespace Server.Mobiles
                     i.Delete();
 
                 var goldMult = GoldHour.GOLD_MULT + 1;
-                if(Shard.DebugEnabled)
+                if (Shard.DebugEnabled)
                     Shard.Debug("Loc Creature: " + this.Location + " REG " + this.Region);
 
                 if (!(c.GetRegion() is DungeonRegion))
@@ -7618,17 +7554,17 @@ namespace Server.Mobiles
                     }
 
                     foreach (var i in partyItems)
-                        i.Delete(); 
+                        i.Delete();
 
                     var disputando = looters.Where(l => l.m_Mobile.Alive && l.m_Mobile.GetDistance(c) < 20).ToList();
-                    if(this.DistribuiItems && disputando.Count > 0)
+                    if (this.DistribuiItems && disputando.Count > 0)
                     {
-                        foreach(var i in new List<Item>(c.Items))
+                        foreach (var i in new List<Item>(c.Items))
                         {
                             if (i.Deleted || i is Gold)
                                 continue;
                             var ganhou = disputando[Utility.Random(disputando.Count)];
-                            ganhou.m_Mobile.SendMessage("Voce ganhou " +i.Amount+" "+(i.Name == null ? i.GetType().Name : i.Name));
+                            ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                             ganhou.m_Mobile.PlaceInBackpack(i);
                         }
                     }

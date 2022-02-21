@@ -34,9 +34,9 @@ namespace Server.Mobiles
             this.SetDex(190, 250);
             this.SetInt(350, 450);
 
-            this.SetHits(1350, 1550);
+            this.SetHits(3350, 3550);
 
-            this.SetDamage(13, 19);
+            this.SetDamage(10, 25);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -47,7 +47,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Energy, 40, 50);
 
             this.SetSkill(SkillName.Anatomy, 50.0, 75.0);
-            this.SetSkill(SkillName.EvalInt, 90.0, 100.0);
+            this.SetSkill(SkillName.EvalInt, 100, 100);
             this.SetSkill(SkillName.Magery, 100.0, 100.0);
             this.SetSkill(SkillName.Meditation, 90.0, 100.0);
             this.SetSkill(SkillName.MagicResist, 90.0, 100.0);
@@ -57,10 +57,16 @@ namespace Server.Mobiles
             this.Fame = 27000;
             this.Karma = -27000;
 
+            if (Utility.RandomDouble() < 0.05)
+                AddItem(new ElvenForgeDeed());
+
+            if (Utility.RandomDouble() < 0.1)
+                AddItem(new FountainDeed());
+
             //for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
-           // {
-           //     this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-           // }
+            // {
+            //     this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
+            // }
         }
 
         public CrystalLatticeSeeker(Serial serial)
@@ -75,7 +81,6 @@ namespace Server.Mobiles
             if ( Utility.RandomDouble() < 0.75 )
             c.DropItem( new CrystallineFragments() );
 
-            if ( Utility.RandomDouble() < 0.2 )
             c.DropItem( PrismOfLightAltar.GetRandomKey() );
         }
 
@@ -95,18 +100,39 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV3, 4);
+            this.AddLoot(LootPack.LV4, 4);
             AddLoot( LootPack.Parrot );
-            this.AddLoot(LootPack.Gems);
+            this.AddLoot(LootPack.Gems, 10);
         }
 
         public override void OnGaveMeleeAttack(Mobile defender)
         {
             base.OnGaveMeleeAttack(defender);
 
+            if(!defender.Paralyzed && defender is BaseCreature && Utility.RandomDouble() < 0.1)
+            {
+                OverheadMessage("Chega, besta !");
+                var mestre = ((BaseCreature)defender).ControlMaster as PlayerMobile;
+                if (mestre != null)
+                {
+                    OverheadMessage("Seu mestre ira morrer !");
+                    Combatant = mestre;
+                    defender.PlaySound(0x204);
+                    defender.FixedEffect(0x376A, 6, 1);
+                    defender.OverheadMessage("* paralizado *");
+                    defender.Paralyze(TimeSpan.FromSeconds(10));
+                } else
+                {
+                    AOS.Damage(defender, defender.Hits - 100);
+                    defender.FixedParticles(0x3709, 10, 30, 5052, EffectLayer.LeftFoot);
+                    defender.PlaySound(0x208);
+                }
+            }
+
             if (Utility.RandomDouble() < 0.1)
                 this.Drain(defender);
         }
+
 
         public override void OnGotMeleeAttack(Mobile attacker)
         {
@@ -119,12 +145,13 @@ namespace Server.Mobiles
         public virtual void Drain(Mobile m)
         {
             int toDrain;
-
+            m.FixedParticles(0x374A, 10, 15, 5032, EffectLayer.Head);
+            m.PlaySound(0x1F8);
             switch ( Utility.Random(3) )
             {
                 case 0:
                     {
-                        this.Say(1042156); // I can grant life, and I can sap it as easily.
+                        this.Say("Eu dou vida, mas posso tira-la"); // I can grant life, and I can sap it as easily.
                         this.PlaySound(0x1E6);
 
                         toDrain = Utility.RandomMinMax(3, 6);
@@ -134,7 +161,7 @@ namespace Server.Mobiles
                     }
                 case 1:
                     {
-                        this.Say(1042157); // You'll go nowhere, unless I deem it should be so.
+                        this.Say("Voce nao vai a lugar algum"); // You'll go nowhere, unless I deem it should be so.
                         this.PlaySound(0x1DF);
 
                         toDrain = Utility.RandomMinMax(10, 25);
@@ -144,7 +171,7 @@ namespace Server.Mobiles
                     }
                 case 2:
                     {
-                        this.Say(1042155); // Your power is mine to use as I will.
+                        this.Say("Seu poder agora e meu"); // Your power is mine to use as I will.
                         this.PlaySound(0x1F8);
 
                         toDrain = Utility.RandomMinMax(15, 25);

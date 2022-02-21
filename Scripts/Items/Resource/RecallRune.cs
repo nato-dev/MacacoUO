@@ -287,7 +287,10 @@ namespace Server.Items
 
         private void CalculateHue()
         {
-            Hue = CalculateHue(m_TargetMap, House, m_Marked);
+            if (this is T2ARecallRune)
+                Hue = TintaPreta.COR;
+            else
+                Hue = CalculateHue(m_TargetMap, House, m_Marked);
         }
 
         public static int CalculateHue(Map map, BaseHouse house, bool mark)
@@ -341,7 +344,7 @@ namespace Server.Items
         public T2ARecallRune()
             : base()
         {
-            Name = "Runa para Terras Perdida";
+            Name = "Runa das Terras Perdida";
         }
 
         public T2ARecallRune(Serial serial)

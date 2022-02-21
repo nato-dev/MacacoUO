@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Items.Functional.Pergaminhos;
 using Server.Mobiles;
 using Server.Network;
 using Server.Scripts.Custom.Items;

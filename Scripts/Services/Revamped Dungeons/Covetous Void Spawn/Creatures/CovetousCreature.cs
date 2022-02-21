@@ -103,10 +103,7 @@ using Server.Items;
                 Timer.DelayCall(TimeSpan.FromSeconds(.5), SetPower);
 
             Fame = Math.Min(8500, Level * 142);
-            Karma = Math.Min(8500, Level * 142) * -1;
-
-          
-              
+            Karma = Math.Min(8500, Level * 142) * -1; 
         }
 
         public override void OnThink()
@@ -174,7 +171,7 @@ using Server.Items;
         {
             if (!VoidSpawn)
             {
-                AddLoot(LootPack.LV2, Math.Max(3, Stage*2));
+                AddLoot(LootPack.LV1, Math.Max(3, Stage*2));
                 Backpack.DropItem(new Gold(100 + (Stage * 100)));
             }
         }

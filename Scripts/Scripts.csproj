@@ -124,6 +124,7 @@
     <Compile Include="Fronteira\Comandos\Disarm.cs" />
     <Compile Include="Fronteira\Comandos\GenPlantas.cs" />
     <Compile Include="Fronteira\Comandos\GenCamps.cs" />
+    <Compile Include="Fronteira\Comandos\FixSpawnersDg.cs" />
     <Compile Include="Fronteira\Comandos\SetHabilidades.cs" />
     <Compile Include="Fronteira\Comandos\ListaComandos.cs" />
     <Compile Include="Fronteira\Comandos\FixVendors.cs" />
@@ -467,6 +468,7 @@
     <Compile Include="Gumps\CharacterCreationRP\CharDetailsA.cs" />
     <Compile Include="Gumps\CharacterCreationRP\RaceSelection.cs" />
     <Compile Include="Gumps\InsuranceGump.cs" />
+    <Compile Include="Gumps\Newbie\FreeTemplateGump.cs" />
     <Compile Include="Gumps\Newbie\NonRPClassGump.cs" />
     <Compile Include="Items\Addons\Randoms\abby addons\AbbygifttobaleAddon.cs" />
     <Compile Include="Items\Addons\Randoms\abby addons\birdhouseAddon.cs" />
@@ -834,6 +836,7 @@
     <Compile Include="Items\Equipment\Weapons\PraticeBow.cs" />
     <Compile Include="Items\Functional\Pergaminhos\DoubleExp.cs" />
     <Compile Include="Items\Functional\Pergaminhos\PergaminhoDeBencao.cs" />
+    <Compile Include="Items\Functional\Pergaminhos\TemplateScroll.cs" />
     <Compile Include="Mobiles\AI\RunnerAI.cs" />
     <Compile Include="Mobiles\Normal\CoconutCrab.cs" />
     <Compile Include="Mobiles\Normal\Lobster.cs" />

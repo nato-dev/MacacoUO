@@ -66,11 +66,13 @@ namespace Server.Gumps.Newbie
             return null; 
         }
 
-        public static int ARCHER = 4;
+
         public static int WAR = 1;
         public static int BS = 2;
-        public static int MERC = 7;
         public static int BARD = 3;
+        public static int ARCHER = 4;
+        public static int MERC = 7;
+    
         public static int MAGE = 6;
         public static int TAMER = 5;
 

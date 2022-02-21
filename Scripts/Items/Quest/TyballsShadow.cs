@@ -14,13 +14,13 @@ namespace Server.Mobiles
             Body = 0x190;
             Hue = 0x4001;
             Female = false;
-            Name = "Tyball's Shadow";
+            Name = "Sombra de Tyball";
                             
             SetStr(400, 450);
             SetDex(210, 250);
             SetInt(310, 330);
 
-            SetHits(2800, 3000);
+            SetHits(12800, 13000);
 
             SetDamage(20, 25);
 
@@ -35,7 +35,7 @@ namespace Server.Mobiles
             SetResistance(ResistanceType.Poison, 70);
             SetResistance(ResistanceType.Energy, 70);
 
-            SetSkill(SkillName.Magery, 100.0);
+            SetSkill(SkillName.Magery, 300);
             SetSkill(SkillName.MagicResist, 120.0);
             SetSkill(SkillName.Tactics, 100.0);
             SetSkill(SkillName.Wrestling, 100.0);

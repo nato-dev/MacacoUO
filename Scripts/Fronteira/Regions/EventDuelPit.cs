@@ -9,10 +9,8 @@ namespace Server.Regions
 
         public override void OnEnter(Mobile m)
         {
-
             RoacheCriminalTimer criminalTimer = new RoacheCriminalTimer(m);
             criminalTimer.Start();
-
             base.OnEnter(m);
         }
 

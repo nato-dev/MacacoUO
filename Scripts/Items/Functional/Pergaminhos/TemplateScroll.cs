@@ -1,3 +1,5 @@
+using Server.Gumps;
+using Server.Mobiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -90,42 +92,46 @@ namespace Server.Items.Functional.Pergaminhos
 
         [Constructable]
         public TemplateDeed()
-            : this(0x14F0)
+            : base(0x14F0)
         {
             this.Hue = 54;
-            this.Name = "Pergaminho de Template";
-        }
-
-        public TemplateDeed(int itemID)
-           : base(itemID)
-        {
-            this.Hue = 54;
-            this.Name = "Pergaminho de Double Gold";
+            this.Name = "Pergaminho de Template de Novatos";
         }
 
         public TemplateDeed(Serial serial)
             : base(serial)
         {
-            this.Hue = 356;
-            this.Name = "Pergaminho de Double Gold";
+          
         }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int Value { get; set; }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public SkillName [] Skills { get; set; }
 
         public override void OnDoubleClick(Mobile from)
         {
-            
+            var pl = from as PlayerMobile;
+            if (pl == null)
+                return;
+
+            if(!pl.Young || pl.Wisp == null)
+            {
+                pl.SendMessage("Voce precisa ser um novato para usar isto");
+                return;
+            }
+
+            if(pl.Templates.Templates.Count >= TemplatesGump.max_templates)
+            {
+                pl.SendMessage("Voce ja e muito experiente para isto");
+                return;
+            }
+
+            pl.SendGump(new FreeTemplateGump(WarPvM(), 90));
         }
 
 
         public override void AddNameProperties(ObjectPropertyList list)
         {
-            //list.Add("Ativa Double Gold por 1h");
-            //list.Add("Para o shard inteiro");
+            base.AddNameProperties(list);
+            list.Add("Novatos podem usar isto");
+            list.Add("Template free com skills em 90");
+            list.Add("De a algum amigo iniciante");
         }
 
         public override void Serialize(GenericWriter writer)

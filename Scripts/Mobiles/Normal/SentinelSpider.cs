@@ -61,7 +61,51 @@ namespace Server.Mobiles
                 c.DropItem(new LuckyCoin());
         }
 
-		public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
+        public override void OnThink()
+        {
+            if (!this.IsCooldown("teia"))
+            {
+                this.SetCooldown("teia", TimeSpan.FromSeconds(3));
+            }
+            else
+            {
+                return;
+            }
+            if (this.Combatant != null && this.Combatant.InRange2D(this.Location, 9))
+            {
+                if (!this.IsCooldown("teiab"))
+                {
+                    this.SetCooldown("teiab", TimeSpan.FromSeconds(30));
+                }
+                else
+                {
+                    return;
+                }
+
+                if (!this.InLOS(this.Combatant))
+                {
+                    return;
+                }
+                this.PlayAngerSound();
+                this.MovingParticles(this.Combatant, 0x10D3, 15, 0, false, false, 9502, 4019, 0x160);
+                var m = this.Combatant as Mobile;
+                Timer.DelayCall(TimeSpan.FromMilliseconds(400), () =>
+                {
+                    m.SendMessage("Voce foi preso por uma teia e nao consegue se soltar");
+                    m.OverheadMessage("* Preso em uma teia *");
+                    var teia = new Teia(m);
+                    teia.MoveToWorld(m.Location, m.Map);
+                    m.Freeze(TimeSpan.FromSeconds(6));
+                    Timer.DelayCall(TimeSpan.FromSeconds(5), () =>
+                    {
+                        teia.Delete();
+                        m.Frozen = false;
+                    });
+                });
+            }
+        }
+
+        public override FoodType FavoriteFood{ get{ return FoodType.Meat; } }
 		public override PackInstinct PackInstinct{ get{ return PackInstinct.Arachnid; } }
 
 		public SentinelSpider( Serial serial ) : base( serial )

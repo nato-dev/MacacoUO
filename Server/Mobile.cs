@@ -1597,7 +1597,7 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int MeleeDamageAbsorb { get; set; }
+        public int MeleeDamageAbsorb { get; set; } 
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int MagicDamageAbsorb { get { return m_MagicDamageAbsorb; } set { m_MagicDamageAbsorb = value; } }

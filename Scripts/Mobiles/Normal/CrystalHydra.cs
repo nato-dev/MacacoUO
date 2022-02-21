@@ -16,12 +16,12 @@ namespace Server.Mobiles
             BaseSoundID = 0x16A;
 
             SetStr(800, 830);
-            SetDex(100, 120);
+            SetDex(300, 300);
             SetInt(100, 120);
 
-            SetHits(1450, 1500);
+            SetHits(5450, 5500);
 
-            SetDamage(21, 26);
+            SetDamage(50, 60);
 
             SetDamageType(ResistanceType.Physical, 5);
             SetDamageType(ResistanceType.Fire, 5);

@@ -10,16 +10,16 @@ namespace Server.Mobiles
         public ShimmeringEffusion()
             : base(AIType.AI_Spellweaving, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "energia elemental dispersa";
+            Name = "Foco Energetico Supremo";
             Body = 0x105;
 
             SetStr(500, 550);
-            SetDex(350, 400);
+            SetDex(50, 60);
             SetInt(1500, 1600);
 
             SetHits(20000);
 
-            SetDamage(27, 31);
+            SetDamage(37, 45);
 
             SetDamageType(ResistanceType.Physical, 20);
             SetDamageType(ResistanceType.Fire, 20);
@@ -51,6 +51,8 @@ namespace Server.Mobiles
             // {
             //     PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
             // }
+            SetWeaponAbility(WeaponAbility.ArmorIgnore);
+            SetSpecialAbility(SpecialAbility.StickySkin);
         }
 
         public override void GenerateLoot()
@@ -65,40 +67,39 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            c.DropItem(new CapturedEssence());
+            SorteiaItem(BaseEssencia.RandomEssencia());
+            SorteiaItem(BaseEssencia.RandomEssencia());
             c.DropItem(new ShimmeringCrystals());
 
-            if (Utility.RandomDouble() < 0.05)
+            switch (Utility.Random(4))
             {
-                switch (Utility.Random(4))
-                {
-                    case 0:
-                        c.DropItem(new ShimmeringEffusionStatuette());
-                        break;
-                    case 1:
-                        c.DropItem(new CorporealBrumeStatuette());
-                        break;
-                    case 2:
-                        c.DropItem(new MantraEffervescenceStatuette());
-                        break;
-                    case 3:
-                        c.DropItem(new FetidEssenceStatuette());
-                        break;
-                }
+                case 0:
+                    SorteiaItem(new ShimmeringEffusionStatuette());
+                    break;
+                case 1:
+                    SorteiaItem(new CorporealBrumeStatuette());
+                    break;
+                case 2:
+                    SorteiaItem(new MantraEffervescenceStatuette());
+                    break;
+                case 3:
+                    SorteiaItem(new FetidEssenceStatuette());
+                    break;
             }
 
             if (Utility.RandomDouble() < 0.05)
                 c.DropItem(new FerretImprisonedInCrystal());
 
             if (Utility.RandomDouble() < 0.025)
-                c.DropItem(new CrystallineRing());
+                SorteiaItem(new CrystallineRing());
 
+          
             var livro = new Spellbook();
             livro.Slayer = BaseRunicTool.GetRandomSlayer();
             livro.Hue = 1172;
-            livro.Name = "Livro Mitico de Magias";
+            livro.Name = "Livro com Foco de Energia Magica";
             livro.EngravedText = "Wololo";
-            c.DropItem(livro);
+            SorteiaItem(livro);
         }
 
         public override bool AutoDispel

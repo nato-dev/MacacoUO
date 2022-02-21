@@ -3944,6 +3944,13 @@ namespace Server.Mobiles
 
             if (item.PartyLoot && !item.IsChildOf(this.Backpack) && !item.IsChildOf(this))
             {
+
+                if(item.Parent is Bag)
+                {
+                    SendMessage("Items de grupo em sacolas nao podem ser arrastados. Arraste a sacola !");
+                    return false;
+                }
+
                 if (!PartyLoots.Contains(item.GetType()))
                 {
                     PartyLoots.Add(item.GetType());

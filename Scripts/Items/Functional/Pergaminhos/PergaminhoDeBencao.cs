@@ -5,7 +5,6 @@ namespace Server.Items.Functional.Pergaminhos
 {
     public class PergaminhoSagrado : Item
     {
-
         [CommandProperty(AccessLevel.GameMaster)]
         public int Dias { get; set; }
 

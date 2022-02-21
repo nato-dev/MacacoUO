@@ -1,4 +1,5 @@
 using System;
+using Server.Engines.Mahjong;
 using Server.Items;
 
 namespace Server.Mobiles
@@ -19,10 +20,10 @@ namespace Server.Mobiles
             this.SetDex(500, 600);
             this.SetInt(200);
 
-            this.SetHits(350, 400);
+            this.SetHits(650, 800);
             this.SetMana(0);
 
-            this.SetDamage(15, 20);
+            this.SetDamage(25, 35);
 
             this.SetDamageType(ResistanceType.Physical, 0);
             this.SetDamageType(ResistanceType.Cold, 50);
@@ -41,10 +42,18 @@ namespace Server.Mobiles
             this.Fame = 17000;
             this.Karma = -17000;
 
+            if(Utility.RandomDouble() < 0.1)
+            {
+                var jogo = new MahjongGame();
+                jogo.Name = "Mahjong de Cristal";
+                jogo.Hue = this.Hue;
+                AddItem(jogo);
+            }
+            
             //for (int i = 0; i < Utility.RandomMinMax(0, 2); i++)
-           // {
-           //     this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-           // }
+            // {
+            //     this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
+            // }
         }
 
         public CrystalVortex(Serial serial)

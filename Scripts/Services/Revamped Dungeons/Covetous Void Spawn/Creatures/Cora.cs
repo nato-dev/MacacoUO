@@ -2,11 +2,13 @@ using Server;
 using System;
 using Server.Items;
 using Server.Engines.VoidPool;
+using Server.Gumps;
+using Server.Items.Functional.Pergaminhos;
 
- namespace Server.Mobiles
- {
-	public class CoraTheSorceress : BaseCreature
-	{
+namespace Server.Mobiles
+{
+    public class CoraTheSorceress : BaseCreature
+    {
         public DateTime NextManaDrain { get; set; }
 
         public TimeSpan ManaDrainInterval { get { return TimeSpan.FromSeconds(Utility.RandomMinMax(15, 120)); } }
@@ -53,6 +55,8 @@ using Server.Engines.VoidPool;
             AddAndEquip(new ChainLegs(), 1936);
             AddAndEquip(new LeatherGloves(), 1910);
             AddAndEquip(new LeatherBustierArms(), 1947);
+            AddItem(new TemplateDeed());
+            AddItem(new TemplateDeed());
         }
 
         public override int BreathChaosDamage { get { return 20; } }
@@ -118,7 +122,7 @@ using Server.Engines.VoidPool;
                     break;
                 case Direction.West:
                     x = this.X - range;
-                    y = this.Y + Utility.RandomMinMax(-offset, offset); 
+                    y = this.Y + Utility.RandomMinMax(-offset, offset);
                     break;
                 case Direction.South:
                     x = this.X + Utility.RandomMinMax(-offset, offset);
@@ -126,7 +130,7 @@ using Server.Engines.VoidPool;
                     break;
                 case Direction.East:
                     x = this.X + range;
-                    y = this.Y + Utility.RandomMinMax(-offset, offset); 
+                    y = this.Y + Utility.RandomMinMax(-offset, offset);
                     break;
             }
 
@@ -281,25 +285,29 @@ using Server.Engines.VoidPool;
         {
             base.OnDeath(c);
 
-            if (0.30 > Utility.RandomDouble())
-            {            
-                Mobile m = DemonKnight.FindRandomPlayer(this);
 
-                if (m != null)
+            Mobile m = DemonKnight.FindRandomPlayer(this);
+
+            if (m != null)
+            {
+                BaseWeapon artifact = Loot.RandomWeapon();
+                artifact.WeaponAttributes.HitFireArea = 20;
+                if (artifact.Name != null)
+                    artifact.Name += " de fogo de Cora";
+                artifact.Resource = CraftResource.Bronze;
+                artifact.Quality = ItemQuality.Exceptional;
+
+                if (artifact != null)
                 {
-                    Item artifact = VoidPoolRewards.DropRandomArtifact();
+                    Container pack = m.Backpack;
 
-                    if (artifact != null)
-                    {
-                        Container pack = m.Backpack;
+                    if (pack == null || !pack.TryDropItem(m, artifact, false))
+                        m.BankBox.DropItem(artifact);
 
-                        if (pack == null || !pack.TryDropItem(m, artifact, false))
-                            m.BankBox.DropItem(artifact);
-
-                        m.SendLocalizedMessage(1062317); // For your valor in combating the fallen beast, a special artifact has been bestowed on you.
-                    }
+                    m.SendLocalizedMessage(1062317); // For your valor in combating the fallen beast, a special artifact has been bestowed on you.
                 }
             }
+
         }
 
         public override void OnKilledBy(Mobile mob)
@@ -335,19 +343,19 @@ using Server.Engines.VoidPool;
 
         public CoraTheSorceress(Serial serial)
             : base(serial)
-		{
-		}
-		
-		public override void Serialize(GenericWriter writer)
-		{
-			base.Serialize(writer);
-			writer.Write(0);
-		}
-		
-		public override void Deserialize(GenericReader reader)
-		{
-			base.Deserialize(reader);
-			int version = reader.ReadInt();
-		}
-	}
- }
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(0);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
+}

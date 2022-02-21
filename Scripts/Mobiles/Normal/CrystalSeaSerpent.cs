@@ -16,9 +16,9 @@ namespace Server.Mobiles
             this.SetDex(100, 150);
             this.SetInt(90, 190);
 
-            this.SetHits(230, 330);
+            this.SetHits(1000, 2000);
 
-            this.SetDamage(10, 18);
+            this.SetDamage(40, 48);
 
             this.SetDamageType(ResistanceType.Physical, 10);
             this.SetDamageType(ResistanceType.Cold, 45);

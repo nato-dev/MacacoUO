@@ -1,5 +1,6 @@
 using System;
 using Server.Items;
+using Server.Items.Functional.Pergaminhos;
 using Server.Ziden;
 using Server.Ziden.Items;
 
@@ -52,8 +53,12 @@ namespace Server.Mobiles
             this.PackNecroReg(200, 375);
             PackItem(Decos.RandomDeco());
             PackItem(new LivroAntigo());
-            PackItem(new CarpenterApron());
-            if(Shard.NECRO)
+            var a = new CarpenterApron();
+            a.Bonus = 5;
+            PackItem(a);
+            PackItem(new PergaminhoSagradoDeRunebook());
+
+            if (Shard.NECRO)
             {
                 var book = new NecromancerSpellbook();
                 book.LootType = LootType.Regular;

@@ -15,7 +15,7 @@ namespace Server.Gumps
     {
         private int color = 0xFFFFFF;
 
-        private int max_templates = 10;
+        public static readonly int max_templates = 10;
 
         public TemplatesGump(PlayerMobile player) : base(0, 0)
         {

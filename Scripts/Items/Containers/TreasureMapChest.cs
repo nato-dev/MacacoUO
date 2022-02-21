@@ -211,7 +211,7 @@ namespace Server.Items
                 cont.DropItem(new Gold(Utility.RandomMinMax(50, 100)));
 
                 if (Utility.RandomDouble() < 0.75)
-                    cont.DropItem(new TreasureMap(0, Map.Felucca));
+                    cont.DropItem(new TreasureMap(0, Map.Trammel));
             }
             else
             {
@@ -219,7 +219,7 @@ namespace Server.Items
                 cont.TrapPower = level * 25;
                 cont.TrapLevel = level;
 
-                for (var i = 0; i < level + 1; i++)
+                for (var i = 1; i < level + 1; i++)
                 {
                     cont.DropItem(new PergaminhoCarregamento());
                 }

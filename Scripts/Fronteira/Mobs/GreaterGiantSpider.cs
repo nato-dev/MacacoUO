@@ -51,8 +51,8 @@ namespace Server.Mobiles
             VirtualArmor = 80;
 
             Tamable = true;
-            ControlSlots = 1;
-            MinTameSkill = 89.1;
+            ControlSlots = 3;
+            MinTameSkill = 105;
         }
 
         public GreaterGiantSpider(Serial serial)

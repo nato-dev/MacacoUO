@@ -24,7 +24,7 @@ namespace Server.Mobiles
 
             SetHits(1350, 1450);
 
-            SetDamage(6, 12);
+            SetDamage(10, 20);
 
             SetDamageType(ResistanceType.Physical, 100);
 
@@ -53,6 +53,8 @@ namespace Server.Mobiles
 
             AddItem(boots);
             AddItem(shroud);
+
+            SetWeaponAbility(WeaponAbility.BleedAttack);
         }
 
         public Protector(Serial serial)

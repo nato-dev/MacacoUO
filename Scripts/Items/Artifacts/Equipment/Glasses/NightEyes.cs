@@ -12,9 +12,7 @@ namespace Server.Items
             : base()
         {	
             Hue = 26;	
-            Attributes.NightSight = 1;
-            Attributes.DefendChance = 10;
-            Attributes.CastRecovery = 3;			
+            Attributes.NightSight = 1;		
         }
 
         public NightEyes(Serial serial)
