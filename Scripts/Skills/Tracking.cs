@@ -180,6 +180,24 @@ namespace Server.SkillHandlers
             }
         }
 
+        public static List<Mobile> ListaMobiles(Mobile from, int range=4)
+        {
+            List<Mobile> recursos = new List<Mobile>();
+            var sector = from.Map.GetSector(from);
+
+            for (int x = -range; x <= range; x++)
+            {
+                for (int y = -range; y <= range; y++)
+                {
+                    var s = from.Map.InternalGetSector(sector.X + x, sector.Y + y);
+                    if (Shard.DebugEnabled)
+                        Shard.Debug("Vendo setor " + (s.X) + " " + (sector.Y + y));
+                    recursos.AddRange(s.Mobiles);
+                }
+            }
+            return recursos;
+        }
+
         public static void DisplayTo(bool success, Mobile from, int type)
         {
             if (!success)
@@ -197,21 +215,17 @@ namespace Server.SkillHandlers
 
             from.CheckSkillMult(SkillName.Tracking, 21.1, 100.0, 5); // Passive gain
 
-            int range = 1 + (int)(from.Skills[SkillName.Tracking].Value / 2);
-            if (from.Skills[SkillName.Tracking].Value >= 100)
-                range += 50;
+            int range = (int)Math.Round(from.Skills[SkillName.Tracking].Value / 25);
 
             List<Mobile> list = new List<Mobile>();
-            IPooledEnumerable eable = from.GetMobilesInRange(range);
 
-            foreach (Mobile m in eable)
+            foreach (Mobile m in ListaMobiles(from, range))
             {
                 // Ghosts can no longer be tracked 
                 if (m != from && m.Alive && check(m))
-                    if(!m.Hidden || from.Skills.DetectHidden.Value > 80 || from.Skills.Tracking.Value >= 80)
+                    if (!m.Hidden || from.Skills.DetectHidden.Value > 80 || from.Skills.Tracking.Value >= 80)
                         list.Add(m);
             }
-            eable.Free();
 
             if (list.Count > 0)
             {
@@ -253,7 +267,7 @@ namespace Server.SkillHandlers
             if (!Core.AOS || !m.Player)
                 return true;
 
-            int tracking = from.Skills[SkillName.Tracking].Fixed;	
+            int tracking = from.Skills[SkillName.Tracking].Fixed;
             int detectHidden = from.Skills[SkillName.DetectHidden].Fixed;
 
             if (Core.ML && m.Race == Race.Elf)

@@ -7556,17 +7556,22 @@ namespace Server.Mobiles
                     foreach (var i in partyItems)
                         i.Delete();
 
-                    var disputando = looters.Where(l => l.m_Mobile.Alive && l.m_Mobile.GetDistance(c) < 20).ToList();
-                    if (this.DistribuiItems && disputando.Count > 0)
+                 
+                    if (this.DistribuiItems)
                     {
-                        foreach (var i in new List<Item>(c.Items))
+                        var disputando = looters.Where(l => l.m_Mobile.Alive && l.m_Mobile.GetDistance(c) < 20).ToList();
+                        if(disputando.Count > 0)
                         {
-                            if (i.Deleted || i is Gold)
-                                continue;
-                            var ganhou = disputando[Utility.Random(disputando.Count)];
-                            ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
-                            ganhou.m_Mobile.PlaceInBackpack(i);
+                            foreach (var i in new List<Item>(c.Items))
+                            {
+                                if (i.Deleted || i is Gold)
+                                    continue;
+                                var ganhou = disputando[Utility.Random(disputando.Count)];
+                                ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
+                                ganhou.m_Mobile.PlaceInBackpack(i);
+                            }
                         }
+                        
                     }
 
                     for (int i = 0; i < titles.Count; ++i)

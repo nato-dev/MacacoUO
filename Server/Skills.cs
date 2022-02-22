@@ -333,15 +333,15 @@ namespace Server
                     value = 0xFFFF;
                 }
 
-                ushort newValue = (ushort)value;
+                ushort sv = (ushort)value;
 
                 int oldBase = m_Base;
 
-                if (m_Base != newValue)
+                if (m_Base != sv)
                 {
-                    m_Owner.Total = (m_Owner.Total - m_Base) + newValue;
+                    m_Owner.Total = (m_Owner.Total - m_Base) + sv;
 
-                    m_Base = newValue;
+                    m_Base = sv;
 
                     if(SendPacket)
                         m_Owner.OnSkillChange(this);

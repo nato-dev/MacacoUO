@@ -1575,7 +1575,6 @@ namespace Server
             }
 
             DateTime now = DateTime.UtcNow, next = m_NextWarmodeChange;
-
             if (now > next || m_WarmodeChanges == 0)
             {
                 m_WarmodeChanges = 1;
@@ -1585,14 +1584,12 @@ namespace Server
             {
                 m_WarmodeTimer = new WarmodeTimer(this, value);
                 m_WarmodeTimer.Start();
-
                 return;
             }
             else
             {
                 ++m_WarmodeChanges;
             }
-
             Warmode = value;
         }
 
