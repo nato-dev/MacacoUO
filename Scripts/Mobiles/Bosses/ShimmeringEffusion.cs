@@ -13,11 +13,11 @@ namespace Server.Mobiles
             Name = "Foco Energetico Supremo";
             Body = 0x105;
 
-            SetStr(500, 550);
+            SetStr(1000, 1000);
             SetDex(50, 60);
             SetInt(1500, 1600);
 
-            SetHits(20000);
+            SetHits(30000);
 
             SetDamage(37, 45);
 

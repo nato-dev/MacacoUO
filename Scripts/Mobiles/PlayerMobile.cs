@@ -6289,7 +6289,7 @@ namespace Server.Mobiles
 
             if (m_LongTermElapse < GameTime)
             {
-                m_LongTermElapse += TimeSpan.FromHours(12);
+                m_LongTermElapse += TimeSpan.FromHours(24);
                 if (Kills > 0)
                 {
                     --Kills;

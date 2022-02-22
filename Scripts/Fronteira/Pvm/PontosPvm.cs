@@ -11,6 +11,7 @@ using Server.Mobiles;
 using Server.Regions;
 using Server.Spells;
 using System;
+using System.Linq;
 
 namespace Server.Ziden.Kills
 {
@@ -112,7 +113,10 @@ namespace Server.Ziden.Kills
                 exp *= 4;
 
             if (Shard.DebugEnabled)
+            {
                 Shard.Debug("Rolando XP " + exp);
+                Shard.Debug("Looters: " + string.Join(",", bc.GetLootingRights()));
+            }
 
             if (bc != null && bc.GetLootingRights() != null)
             {

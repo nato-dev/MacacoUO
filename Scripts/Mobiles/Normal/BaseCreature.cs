@@ -7146,9 +7146,93 @@ namespace Server.Mobiles
                 return LootingRights;
 
             List<DamageEntry> damageEntries = DamageEntries;
-            int hitsMax = HitsMax / 10;
+            int hitsMax = HitsMax;
 
             List<DamageStore> rights = new List<DamageStore>();
+
+            for (int i = damageEntries.Count - 1; i >= 0; --i)
+            {
+                if (i >= damageEntries.Count)
+                {
+                    continue;
+                }
+
+                DamageEntry de = damageEntries[i];
+
+                if (de.HasExpired)
+                {
+                    damageEntries.RemoveAt(i);
+                    continue;
+                }
+
+                int damage = de.DamageGiven;
+
+                var respList = de.Responsible;
+
+                if (respList != null)
+                {
+                    for (int j = 0; j < respList.Count; ++j)
+                    {
+                        DamageEntry subEntry = respList[j];
+                        Mobile master = subEntry.Damager;
+
+                        if (master == null || master.Deleted || !master.Player)
+                        {
+                            continue;
+                        }
+
+                        bool needNewSubEntry = true;
+
+                        for (int k = 0; needNewSubEntry && k < rights.Count; ++k)
+                        {
+                            DamageStore ds = rights[k];
+
+                            if (ds.m_Mobile == master)
+                            {
+                                ds.m_Damage += subEntry.DamageGiven;
+                                needNewSubEntry = false;
+                            }
+                        }
+
+                        if (needNewSubEntry)
+                        {
+                            rights.Add(new DamageStore(master, subEntry.DamageGiven));
+                        }
+
+                        damage -= subEntry.DamageGiven;
+                    }
+                }
+
+                Mobile m = de.Damager;
+
+                if (m == null || m.Deleted || !m.Player)
+                {
+                    continue;
+                }
+
+                if (damage <= 0)
+                {
+                    continue;
+                }
+
+                bool needNewEntry = true;
+
+                for (int j = 0; needNewEntry && j < rights.Count; ++j)
+                {
+                    DamageStore ds = rights[j];
+
+                    if (ds.m_Mobile == m)
+                    {
+                        ds.m_Damage += damage;
+                        needNewEntry = false;
+                    }
+                }
+
+                if (needNewEntry)
+                {
+                    rights.Add(new DamageStore(m, damage));
+                }
+            }
 
             if (rights.Count > 0)
             {
@@ -7163,29 +7247,10 @@ namespace Server.Mobiles
                 int topDamage = rights[0].m_Damage;
                 int minDamage;
 
-                if (Core.SA)
-                {
-                    minDamage = (int)((double)topDamage * 0.06);
-                }
-                else
-                {
-                    if (hitsMax >= 3000)
-                    {
-                        minDamage = topDamage / 20;
-                    }
-                    else if (hitsMax >= 1000)
-                    {
-                        minDamage = topDamage / 16;
-                    }
-                    else if (hitsMax >= 200)
-                    {
-                        minDamage = topDamage / 8;
-                    }
-                    else
-                    {
-                        minDamage = topDamage / 6;
-                    }
-                }
+
+                minDamage = (int)((double)topDamage * 0.05);
+
+
 
                 for (int i = 0; i < rights.Count; ++i)
                 {
@@ -7198,6 +7263,7 @@ namespace Server.Mobiles
             LootingRights = rights;
             return rights;
         }
+
 
         #region Mondain's Legacy
         private bool m_Allured;
@@ -7268,7 +7334,6 @@ namespace Server.Mobiles
                         this.ControlMaster.SetCooldown("petmsg", TimeSpan.FromHours(1));
                         this.ControlMaster.SendMessage(78, "SEU PET MORREU !! Voce precisa de Veterinary para usar bandagens no corpo do seu pet para ressa-lo ou levar seu espirito para um veterinario ! Se o corpo do seu pet sumir, seu pet sera perdido para sempre !");
                     }
-
                 }
 
                 Poison = null;
@@ -7342,7 +7407,7 @@ namespace Server.Mobiles
                 var t2a = StuckMenu.IsInSecondAgeArea(c);
 
                 var dels = new List<Item>();
-                foreach (var i in c.Items)
+                foreach (var i in new List<Item>(c.Items))
                 {
                     if (i is Key)
                     {
@@ -7556,11 +7621,11 @@ namespace Server.Mobiles
                     foreach (var i in partyItems)
                         i.Delete();
 
-                 
+
                     if (this.DistribuiItems)
                     {
                         var disputando = looters.Where(l => l.m_Mobile.Alive && l.m_Mobile.GetDistance(c) < 20).ToList();
-                        if(disputando.Count > 0)
+                        if (disputando.Count > 0)
                         {
                             foreach (var i in new List<Item>(c.Items))
                             {
@@ -7571,7 +7636,7 @@ namespace Server.Mobiles
                                 ganhou.m_Mobile.PlaceInBackpack(i);
                             }
                         }
-                        
+
                     }
 
                     for (int i = 0; i < titles.Count; ++i)

@@ -24,7 +24,7 @@ namespace Server.Mobiles
             this.SetDex(96, 115);
             this.SetInt(966, 1045);
 
-            this.SetHits(3000, 3500);
+            this.SetHits(5000, 5500);
 
             this.SetDamage(15, 27);
 
@@ -57,13 +57,6 @@ namespace Server.Mobiles
             a.Bonus = 5;
             PackItem(a);
             PackItem(new PergaminhoSagradoDeRunebook());
-
-            if (Shard.NECRO)
-            {
-                var book = new NecromancerSpellbook();
-                book.LootType = LootType.Regular;
-                PackItem(book);
-            }
         }
 
         public AncientLichRenowned(Serial serial)

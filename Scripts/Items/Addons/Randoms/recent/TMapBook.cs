@@ -27,7 +27,7 @@ namespace Server.Items
 			Weight = (1.0);
 			LootType = LootType.Blessed;
 			Hue = 1265;
-			Name = "TMap Book";
+			Name = "Livro de Mapas de Tesouro";
 
 			Layer = Layer.OneHanded;
 			m_Entries = new ArrayList();
