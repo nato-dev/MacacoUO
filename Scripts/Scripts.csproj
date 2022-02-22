@@ -360,6 +360,7 @@
     <Compile Include="Fronteira\Pvm\Dungeons\Noob\OgroSuspeito.cs" />
     <Compile Include="Fronteira\Pvm\Dungeons\Noob\QuestNoob.cs" />
     <Compile Include="Fronteira\Pvm\GateDG.cs" />
+    <Compile Include="Fronteira\Pvm\Lapide.cs" />
     <Compile Include="Fronteira\Quests\MatarDeceit.cs" />
     <Compile Include="Fronteira\Rankings\RanksTrampo.cs" />
     <Compile Include="Fronteira\RecompensaLogin\RecompensasGuilda.cs" />
@@ -897,6 +898,7 @@
     <Compile Include="Services\UltimaStore\Codigos.cs" />
     <Compile Include="Services\Underworld\Navrey%27s Lair\NavreysController.cs" />
     <Compile Include="Services\Underworld\Navrey%27s Lair\NavreysPillar.cs" />
+    <Compile Include="Services\XmlSpawner\XmlSpawner Core\SpawnEvents.cs" />
     <Compile Include="Services\XmlSpawner\XmlSpawner Core\XmlAttachments\XmlCast.cs" />
     <Compile Include="VendorInfo\SBWs.cs" />
     <Compile Include="VendorInfo\SBMuambeiro.cs" />

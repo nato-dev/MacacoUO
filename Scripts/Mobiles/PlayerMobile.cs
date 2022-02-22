@@ -8187,8 +8187,12 @@ namespace Server.Mobiles
 
         public void ClaimAutoStabledPets()
         {
-            if (!PetAutoStable || !Region.AllowAutoClaim(this) || m_AutoStabled.Count <= 0)
+            if (Region is GuardedRegion && !PetAutoStable || !Region.AllowAutoClaim(this) || m_AutoStabled.Count <= 0)
             {
+                if(m_AutoStabled.Count > 0)
+                {
+                    SendMessage(78, "Voce tem "+ m_AutoStabled.Count + " pets guardados no estabulo");
+                }
                 return;
             }
 
@@ -8227,6 +8231,7 @@ namespace Server.Mobiles
                     pet.ControlTarget = this;
                     pet.ControlOrder = OrderType.Follow;
 
+                    Shard.Debug("Auto teleport", pet);
                     pet.MoveToWorld(Location, Map);
 
                     pet.IsStabled = false;

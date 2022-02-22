@@ -1842,9 +1842,10 @@ namespace Server
 
 		public static void InvokeLogin(LoginEventArgs e)
 		{
+            Shard.Debug("Evento login", e.Mobile);
 			if (Login != null)
 			{
-				Login(e);
+                Login(e);
 			}
 		}
 

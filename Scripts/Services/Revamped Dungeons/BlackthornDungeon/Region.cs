@@ -49,9 +49,8 @@ namespace Server.Engines.Blackthorn
 
         public void MoveLocation(Mobile m)
         {
-            Point3D p = Random_Locations[Utility.Random(Random_Locations.Length)];
-
-            m.MoveToWorld(p, this.Map);
+            //Point3D p = Random_Locations[Utility.Random(Random_Locations.Length)];
+            //m.MoveToWorld(p, this.Map);
 
             for (int x = m.X - 1; x <= m.X + 1; x++)
             {
@@ -62,7 +61,7 @@ namespace Server.Engines.Blackthorn
             }
 
             Effects.PlaySound(m.Location, m.Map, 0x231);
-            m.LocalOverheadMessage(Server.Network.MessageType.Regular, 0x22, 500855); // You are enveloped by a noxious gas cloud!                
+            m.SendMessage("Voce sente uma onda de gas venenoso lhe envolvendo");                
             m.ApplyPoison(m, Poison.Lethal);
 
             IPooledEnumerable eable = this.Map.GetMobilesInRange(m.Location, 12);
@@ -81,6 +80,11 @@ namespace Server.Engines.Blackthorn
             eable.Free();
 
             m.LastMoveTime = Core.TickCount;
+        }
+
+        public override bool AllowAutoClaim(Mobile from)
+        {
+            return false;
         }
 
         public override bool CheckTravel(Mobile traveller, Point3D p, TravelCheckType type)

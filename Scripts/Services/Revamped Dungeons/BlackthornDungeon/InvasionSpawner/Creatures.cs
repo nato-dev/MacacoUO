@@ -111,24 +111,6 @@ namespace Server.Engines.Blackthorn
             SetBody();
 
             string title;
-
-            if (_Sampire)
-            {
-                title = "the sampire";
-            }
-            else if (specialty == SkillName.Magery)
-            {
-                title = "the wizard";
-            }
-            else
-            {
-                title = String.Format("the {0}", Skills[specialty].Info.Title);
-                if (Female && title.EndsWith("man"))
-                    title = title.Substring(0, title.Length - 3) + "woman";
-            }
-
-            Title = title;
-
             SetStr(120, 170);
             SetDex(SpellCaster ? 75 : 150);
             SetInt(SpellCaster ? 1800 : 500);
