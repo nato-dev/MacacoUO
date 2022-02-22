@@ -9084,7 +9084,7 @@ namespace Server.Mobiles
 
         private static void TeleportPetsPlayer(PlayerMobile master, Point3D loc, Map map)
         {
-            foreach (var pet in master.AllFollowers)
+            foreach (var pet in new List<Mobile>(master.AllFollowers))
             {
                 if (pet.Map == master.Map)
                 {
