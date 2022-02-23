@@ -16,6 +16,8 @@ namespace Server.Mobiles
         private List<Mobile> m_TurnedToStone = new List<Mobile>();
         public List<Mobile> AffectedMobiles { get { return m_TurnedToStone; } }
 
+        public override bool IsBoss => true;
+
         public List<Mobile> m_Helpers = new List<Mobile>();
 
         private int m_Scales;

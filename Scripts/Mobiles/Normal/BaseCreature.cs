@@ -217,6 +217,8 @@ namespace Server.Mobiles
     {
         public static bool BypassConstructor = false;
 
+        public virtual bool IsBoss => false;
+
         public override bool SendGump(Gump g)
         {
             SendMessage("Nao pode fazer isto agora");
@@ -7405,6 +7407,15 @@ namespace Server.Mobiles
                 */
 
                 var t2a = StuckMenu.IsInSecondAgeArea(c);
+
+                /*
+                if (IsBoss && Spawner is XmlSpawner)
+                {
+                    Shard.Debug("Botando lapide", this);
+                    var lapide = new LapideBoss(this);
+                    lapide.MoveToWorld(c.Location, c.Map);
+                }
+                */
 
                 var dels = new List<Item>();
                 foreach (var i in new List<Item>(c.Items))

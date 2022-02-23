@@ -255,7 +255,6 @@ namespace Server.Items
    
                         from.FixedParticles(0x375A, 9, 20, 5016, EffectLayer.Waist);
                         from.PlaySound(0x1FD);
-                        Shard.Debug("BONUS " + bonus);
 
                         for(var x= 0; x < bonus; x++) 
                             SkillCheck.Gain(from, from.Skills[s_idx]);

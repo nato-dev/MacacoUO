@@ -44,8 +44,10 @@ namespace Server.Mobiles
 		private static bool m_XmlPoints;
 		private static bool m_XmlFactions;
 		private static bool m_XmlSockets;
-         
-		public static bool PointsEnabled { get { return m_XmlPoints; } }
+
+        public Item Grave;
+
+        public static bool PointsEnabled { get { return m_XmlPoints; } }
 		public static bool FactionsEnabled { get { return m_XmlFactions; } }
 		public static bool SocketsEnabled { get { return m_XmlSockets; } }
 
@@ -12501,7 +12503,6 @@ public static void _TraceEnd(int index)
 			private bool m_Ignore = false;
 			// temporary variable used to calculate weighted spawn probabilities
 			public bool Available;
-
 
 			public List<object> SpawnedObjects;
 			public string[] PropertyArgs;

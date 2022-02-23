@@ -215,7 +215,7 @@ namespace Server.SkillHandlers
 
             from.CheckSkillMult(SkillName.Tracking, 21.1, 100.0, 5); // Passive gain
 
-            int range = (int)Math.Round(from.Skills[SkillName.Tracking].Value / 25);
+            int range = (int)Math.Ceiling(from.Skills[SkillName.Tracking].Value / 25);
 
             List<Mobile> list = new List<Mobile>();
 
@@ -231,7 +231,7 @@ namespace Server.SkillHandlers
             {
                 list.Sort(new InternalSorter(from));
 
-                from.SendGump(new TrackWhoGump(from, list, range));
+                from.SendGump(new TrackWhoGump(from, list, range * 16));
                 from.SendLocalizedMessage("Selecione quem deseja perseguir"); // Select the one you would like to track.
             }
             else

@@ -14,6 +14,7 @@ using Server.Guilds;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Network;
+using Server.Ziden.Items;
 #endregion
 
 namespace Server.Items
@@ -525,6 +526,7 @@ namespace Server.Items
 
         public override void OnDelete()
         {
+            Shard.Debug("Deletando corpse");
             if (this.Owner is PlayerMobile)
             {
                 for (var xx = 0; xx < this.Items.Count; xx++)
@@ -539,11 +541,13 @@ namespace Server.Items
             }
             if (this.Owner != null)
             {
+                Shard.Debug("Corpse tem dono");
                 if (this.Owner is PlayerMobile && !this.Owner.RP)
                     this.Owner.SendMessage("Seu corpo se decompos. Seus items se tornaram historia, e podem ser encontrados em tesouros pelo mundo.");
                 else if (this.Owner is BaseCreature)
                 {
                     var bc = (BaseCreature)this.Owner;
+                
                     if (bc.ControlMaster is PlayerMobile && !bc.Summoned && bc.IsDeadPet && bc is IMount)
                     {
                         bc.ControlMaster.SendMessage(78, "Sua montaria " + bc.Name + " se foi.");

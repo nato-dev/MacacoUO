@@ -360,6 +360,7 @@
     <Compile Include="Fronteira\Pvm\Dungeons\Noob\OgroSuspeito.cs" />
     <Compile Include="Fronteira\Pvm\Dungeons\Noob\QuestNoob.cs" />
     <Compile Include="Fronteira\Pvm\GateDG.cs" />
+    <Compile Include="Fronteira\Pvm\Lapide.cs" />
     <Compile Include="Fronteira\Quests\MatarDeceit.cs" />
     <Compile Include="Fronteira\Rankings\RanksTrampo.cs" />
     <Compile Include="Fronteira\RecompensaLogin\RecompensasGuilda.cs" />
