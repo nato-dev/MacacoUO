@@ -63,7 +63,7 @@ namespace Server.Gumps
 
             var desc = "Selecione uma template de skills iniciais.";
 
-            desc = "Skills em 90.0";
+            desc = "Suas skills irao resetar e as skills da classe vao para 90";
             AddHtml(103, 258, 441, 83, desc, (bool)true, (bool)false);
             AddButton(473, 498, 247, 248, 10, GumpButtonType.Reply, 0);
 

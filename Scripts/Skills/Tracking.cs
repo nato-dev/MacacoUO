@@ -215,7 +215,7 @@ namespace Server.SkillHandlers
 
             from.CheckSkillMult(SkillName.Tracking, 21.1, 100.0, 5); // Passive gain
 
-            int range = (int)Math.Ceiling(from.Skills[SkillName.Tracking].Value / 25);
+            int range = (int)Math.Floor(from.Skills[SkillName.Tracking].Value / 25);
 
             List<Mobile> list = new List<Mobile>();
 

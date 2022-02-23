@@ -7416,7 +7416,7 @@ namespace Server.Mobiles
                     lapide.MoveToWorld(c.Location, c.Map);
                 }
                 */
-
+                
                 var dels = new List<Item>();
                 foreach (var i in new List<Item>(c.Items))
                 {

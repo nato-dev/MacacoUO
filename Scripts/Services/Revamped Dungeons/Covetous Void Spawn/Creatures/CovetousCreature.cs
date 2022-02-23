@@ -171,8 +171,8 @@ using Server.Items;
         {
             if (!VoidSpawn)
             {
-                AddLoot(LootPack.LV1, Math.Max(3, Stage*2));
-                Backpack.DropItem(new Gold(100 + (Stage * 100)));
+                AddLoot(LootPack.LV1, 1);
+                Backpack.DropItem(new Gold(50 + (Stage * 20)));
             }
         }
 		

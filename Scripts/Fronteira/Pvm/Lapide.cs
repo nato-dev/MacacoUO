@@ -5,30 +5,27 @@ namespace Server.Ziden.Items
 {
     public class LapideBoss : Item
     {
+
+   
+
         public TimeSpan Tempo;
+        public XmlSpawner spawner;
+        public string Nome;
 
         public LapideBoss(BaseCreature morreu) : base(0x1173)
         {
             if (!morreu.IsBoss)
                 return;
+
             Movable = false;
-            if(morreu.Spawner is XmlSpawner)
+            if (morreu.Spawner is XmlSpawner)
             {
+                Shard.Debug("Tem spawner", morreu);
                 var s = morreu.Spawner as XmlSpawner;
-                s.Grave = this;
-                foreach(var o in s.SpawnObjects)
-                {
-                    if(o.TypeName == morreu.GetType().Name)
-                    {
-                        Timer.DelayCall(TimeSpan.FromMilliseconds(10), () =>
-                        {
-                            Tempo = (o.NextSpawn - DateTime.UtcNow);
-                        });
-                       
-                    }
-                }
+                Nome = morreu.GetType().Name;
+                spawner = s;
             }
-            Name = "Lapide de "+morreu.Name;
+            Name = "Lapide de " + morreu.Name;
             Hue = 1161;
         }
 
@@ -44,24 +41,19 @@ namespace Server.Ziden.Items
             int days = t.Days;
             int hours = t.Hours;
             int minutes = t.Minutes;
-            list.Add("Lapide de BOSS");
-            list.Add("Tempo de Respawn");
-
-            if (weeks > 1)
-                list.AddTwoValues("Semanas", (t.Days / 7).ToString()); // Lifespan: ~1_val~ weeks
-            else if (days > 1)
-                list.AddTwoValues("Dias", t.Days.ToString()); // Lifespan: ~1_val~ days
-            else if (hours > 1)
-                list.AddTwoValues("Horas", t.Hours.ToString()); // Lifespan: ~1_val~ hours
-            else if (minutes > 1)
-                list.AddTwoValues("Minutos", t.Minutes.ToString()); // Lifespan: ~1_val~ minutes
-            else
-                list.AddTwoValues("Segundos", t.Seconds.ToString()); // Lifespan: ~1_val~ seconds
+            list.Add("Clique para saber o tempo de respawn do boss");
         }
-
 
         public override void OnDoubleClick(Mobile from)
         {
+            foreach (var o in spawner.SpawnObjects)
+            {
+                if (o.TypeName.ToLower() == Nome.ToLower())
+                {
+                    Tempo = (o.NextSpawn - DateTime.UtcNow + spawner.NextSpawn);
+                }
+            }
+
             var t = Tempo;
             int weeks = (int)t.Days / 7;
             int days = t.Days;
@@ -78,11 +70,17 @@ namespace Server.Ziden.Items
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
+            writer.Write(0);
+            writer.Write(spawner);
+            writer.Write(Nome);
         }
 
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
+            var v = reader.ReadInt();
+            spawner = reader.ReadItem() as XmlSpawner;
+            Nome = reader.ReadString();
         }
 
     }
