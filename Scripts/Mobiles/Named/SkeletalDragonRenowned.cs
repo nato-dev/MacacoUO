@@ -6,9 +6,12 @@ namespace Server.Mobiles
     [CorpseName("Skeletal Dragon [Renowned] corpse")]  
     public class SkeletalDragonRenowned : BaseRenowned
     {
+
+        public override bool IsBoss => true;
+
         [Constructable]
         public SkeletalDragonRenowned()
-            : base(AIType.AI_Mage)
+            : base(AIType.AI_NecroMage)
         {
             this.Name = "Dragao Esqueleto";
             this.Body = 104;
@@ -20,7 +23,7 @@ namespace Server.Mobiles
             this.SetDex(100, 200);
             this.SetInt(488, 620);
 
-            this.SetHits(1558, 1599);
+            this.SetHits(10558, 10599);
 
             this.SetDamage(29, 35);
 
@@ -35,6 +38,7 @@ namespace Server.Mobiles
 
             this.SetSkill(SkillName.EvalInt, 80.1, 100.0);
             this.SetSkill(SkillName.Magery, 80.1, 100.0);
+            this.SetSkill(SkillName.Necromancy, 80.1, 100.0);
             this.SetSkill(SkillName.MagicResist, 100.3, 130.0);
             this.SetSkill(SkillName.Tactics, 97.6, 100.0);
             this.SetSkill(SkillName.Wrestling, 97.6, 100.0);

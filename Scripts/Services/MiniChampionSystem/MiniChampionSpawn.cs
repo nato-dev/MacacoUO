@@ -466,17 +466,17 @@ namespace Server.Engines.MiniChamps
 
         public void Remove(ISpawnable spawn)
         {
-            throw new NotImplementedException();
+           
         }
 
         public void GetSpawnProperties(ISpawnable spawn, ObjectPropertyList list)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void GetSpawnContextEntries(ISpawnable spawn, Mobile m, List<ContextMenuEntry> list)
         {
-            throw new NotImplementedException();
+            
         }
     }
 
