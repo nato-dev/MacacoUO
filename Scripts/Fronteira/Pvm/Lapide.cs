@@ -21,7 +21,7 @@ namespace Server.Ziden.Items
         {
             foreach (var lapide in lapides)
             {
-                if (lapide.Nome.ToLower() == bc.GetType().ToLower())
+                if (lapide.Nome.ToLower() == bc.GetType().Name.ToLower())
                 {
                     lapide.Delete();
                 }
@@ -38,7 +38,7 @@ namespace Server.Ziden.Items
             {
                 Shard.Debug("Tem spawner", morreu);
                 var s = morreu.Spawner as XmlSpawner;
-                Nome = morreu.GetType().Name;
+                Nome = morreu.GetType().Name.ToLower();
                 spawner = s;
                 Killer = morreu.LastKiller?.Name;
             }
