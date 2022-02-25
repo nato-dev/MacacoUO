@@ -21,7 +21,7 @@ namespace Server.Ziden.Items
         {
             foreach (var lapide in lapides)
             {
-                if (lapide.Nome.ToLower() == bc.Name.ToLower())
+                if (lapide.Nome.ToLower() == bc.GetType().ToLower())
                 {
                     lapide.Delete();
                 }
