@@ -30,7 +30,7 @@ namespace Server.Items.Crops
         {
             if (from.Mounted && !CropHelper.CanWorkMounted)
             {
-                from.SendMessage("You cannot plant a seed while mounted.");
+                from.SendMessage("Voce nao pode plantar estando montado.");
                 return;
             }
 

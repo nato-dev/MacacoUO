@@ -16,7 +16,11 @@ namespace Server.Mobiles
             return Tatunado ? 0.4 : 1;
         }
 
+        public override bool IsBoss => true;
+
         public static List<GolemMecanico> Instances = new List<GolemMecanico>();
+
+        public bool Escudo = true;
 
         public void SetSpeed(double speed)
         {
@@ -32,29 +36,28 @@ namespace Server.Mobiles
         public GolemMecanico()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.8)
         {
-            Name = "Goblozord Mechnotron";
+            Name = "Golem Mecanico";
             Body = 763;
             //Hue = 1157;
 
-            SetStr(100, 100);
+            SetStr(1100, 1100);
             SetDex(100, 100);
-            SetHits(7000);
+            SetHits(27000);
 
             SetResistance(ResistanceType.Fire, 100);
             SetResistance(ResistanceType.Poison, 10, 25);
 
             SetSkill(SkillName.MagicResist, 0, 0);
             SetSkill(SkillName.Tactics, 60.0, 100.0);
-            SetSkill(SkillName.Wrestling, 150.0, 190.0);
-            SetSkill(SkillName.DetectHidden, 45.0, 50.0);
-            SetSkill(SkillName.Parry, 60);
+            SetSkill(SkillName.Wrestling, 120, 120);
+            SetSkill(SkillName.DetectHidden, 100, 100);
 
-            Fame = 15000;
-            Karma = -15000;
+            Fame = 55000;
+            Karma = -55000;
 
-            VirtualArmor = 20;
+            VirtualArmor = 0;
 
-            SetDamage(19, 20);
+            SetDamage(20, 30);
 
             if(Instances.Count > 0)
             {
@@ -89,12 +92,26 @@ namespace Server.Mobiles
             PackItem(new MechanicalLifeManual());
             this.PackItem(new Item(0xA517));
             PackItem(Carnage.GetRandomPS(105));
+            if(Utility.RandomDouble() < 0.1)
+                PackItem(Carnage.GetRandomPS(110));
             var r = Utility.Random(3);
             switch(r)
             {
                 case 0: PackItem(new RoastingPigOnASpitDeed()); break;
                 case 1: PackItem(new FormalDiningTableDeed()); break;
                 case 2: PackItem(new BuffetTableDeed()); break;
+            }
+        }
+
+        public override void OnDamage(int amount, Mobile from, bool willKill)
+        {
+            base.OnDamage(amount, from, willKill);
+            if(Escudo && Utility.RandomDouble() < 0.1)
+            {
+                Escudo = false;
+                OverheadMessage("ERRO: Escudo Anti-Dispel");
+                OverheadMessage("Reiniciando");
+                new EscudoTimer(this).Start();
             }
         }
 
@@ -115,6 +132,23 @@ namespace Server.Mobiles
             //this.OverheadMessage("* aquecendo motores *");
             this.PublicOverheadMessage(MessageType.Regular, 8, true, "* aquecendo motores *");
             new TurboTimer(this).Start();
+        }
+
+        private class EscudoTimer : Timer
+        {
+            private int ct = 10;
+            private GolemMecanico bixo;
+
+            public EscudoTimer(GolemMecanico bixo) : base(TimeSpan.FromSeconds(20))
+            {
+                this.bixo = bixo;
+            }
+
+            protected override void OnTick()
+            {
+                this.bixo.Escudo = true;
+                this.bixo.OverheadMessage("Escudo Anti-Dispel Ligado");
+            }
         }
 
         private class TurboTimer : Timer
@@ -196,6 +230,15 @@ namespace Server.Mobiles
                                 bixo.MovingParticles(m, 0x379F, 7, 0, false, true, 3043, 4043, 0x211);
                                 Effects.SendBoltEffect(m, true, 0, false);
                                 AOS.Damage(m, 40 + Utility.Random(30));
+                            } else if(m is BaseCreature)
+                            {
+                                var bc = m as BaseCreature;
+                                if(bc.ControlMaster is PlayerMobile)
+                                {
+                                    bixo.MovingParticles(m, 0x379F, 7, 0, false, true, 3043, 4043, 0x211);
+                                    Effects.SendBoltEffect(m, true, 0, false);
+                                    AOS.Damage(m, 100 + Utility.Random(100));
+                                }
                             }
                         } else
                         {

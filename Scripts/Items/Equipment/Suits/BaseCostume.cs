@@ -38,7 +38,6 @@ namespace Server.Items
             : base(0x19BC)
         {
             Resource = CraftResource.None;
-            Attributes.SpellChanneling = 1;
             Layer = Layer.FirstValid;
             Weight = 4.0;
             StrRequirement = 10;

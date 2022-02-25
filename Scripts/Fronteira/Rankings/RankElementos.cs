@@ -31,7 +31,6 @@ namespace Server.Ziden
         {
             RankPorElemento[el] = PlayerMobile.Instances.OrderByDescending(e => e.Elementos.GetNivel(el)).Select((e, index) =>
             {
-                e.RankingFama = index;
                 return new PointsEntry(e, e.Elementos.GetNivel(el));
             }).ToList();
         }

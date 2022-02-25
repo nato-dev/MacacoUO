@@ -1386,23 +1386,23 @@ namespace Server.Mobiles
 
                     if (dropped.BoundTo == from.RawName || from.AccessLevel > AccessLevel.VIP)
                     {
-                        ushort exp = 2000;
+                        ushort exp = 2500;
                         if (from.Skills[skill].Value < 60)
-                            exp += 19000;
+                            exp += 25000;
                         else if (from.Skills[skill].Value < 70)
-                            exp += 14000;
+                            exp += 19000;
                         if (from.Skills[skill].Value < 80)
-                            exp += 3000;
+                            exp += 5000;
                         else if (from.Skills[skill].Value < 90)
-                            exp += 500;
+                            exp += 2000;
                         else if (from.Skills[skill].Value > 100)
                             exp = (ushort)(exp * 0.8);
                         else if (from.Skills[skill].Value > 105)
-                            exp /= (ushort)(exp * 0.6);
+                            exp = (ushort)(exp * 0.5);
                         else if (from.Skills[skill].Value > 110)
-                            exp /= (ushort)(exp * 0.4);
+                            exp = (ushort)(exp * 0.3);
                         else if (from.Skills[skill].Value > 115)
-                            exp /= (ushort)(exp * 0.2);
+                            exp = (ushort)(exp * 0.15);
 
                         if (dropped is LargeBOD)
                         {

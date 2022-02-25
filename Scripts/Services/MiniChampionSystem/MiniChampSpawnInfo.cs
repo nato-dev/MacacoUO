@@ -79,6 +79,7 @@ namespace Server.Engines.MiniChamps
                 bc.Tamable = false;
                 bc.OnBeforeSpawn(loc, map);
                 bc.MoveToWorld(loc, map);
+                bc.Spawner = Owner;
 
                 if (bc.Fame > Utility.Random(100000) || bc is BaseRenowned)
                 {

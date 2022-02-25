@@ -20,7 +20,7 @@ namespace Server.Mobiles
                     b.Name += " albino";
                     b.Hue = 1153;
                 }
-                if (b is Gazer)
+                else if (b is Gazer)
                 {
                     b.Name += " do sol";
                     b.Hue = 1161;

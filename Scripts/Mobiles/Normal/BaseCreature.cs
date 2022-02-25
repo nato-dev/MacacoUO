@@ -2259,8 +2259,8 @@ namespace Server.Mobiles
             {
                 IsParagon = true;
             }
-
             base.OnBeforeSpawn(location, m);
+            LapideBoss.BixoNasce(this);
         }
 
         public override ApplyPoisonResult ApplyPoison(Mobile from, Poison poison)
@@ -6718,6 +6718,11 @@ namespace Server.Mobiles
             if (this.Tribe != TribeType.None)
                 list.Add(this.Tribe.ToString());
 
+            if(ControlMaster is PlayerMobile)
+            {
+                list.Add("Pet de " + ControlMaster.Name);
+            }
+
             if (BardPacified)
             {
                 var tempo = (BardEndTime - DateTime.UtcNow).TotalSeconds;
@@ -7408,14 +7413,12 @@ namespace Server.Mobiles
 
                 var t2a = StuckMenu.IsInSecondAgeArea(c);
 
-                /*
                 if (IsBoss && Spawner is XmlSpawner)
                 {
                     Shard.Debug("Botando lapide", this);
                     var lapide = new LapideBoss(this);
                     lapide.MoveToWorld(c.Location, c.Map);
                 }
-                */
                 
                 var dels = new List<Item>();
                 foreach (var i in new List<Item>(c.Items))
@@ -7478,14 +7481,6 @@ namespace Server.Mobiles
                     Shard.Debug("Has kill awards", this);
                     int totalFame = Fame / 100;
                     int totalKarma = -Karma / 100;
-
-                    /*
-                    if (Map == Map.Felucca)
-                    {
-                        totalFame += ((totalFame / 10) * 3);
-                        totalKarma += ((totalKarma / 10) * 3);
-                    }
-                    */
 
                     var looters = GetLootingRights();
                     var partyItems = new List<Item>();

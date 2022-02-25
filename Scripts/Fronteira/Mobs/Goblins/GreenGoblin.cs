@@ -92,6 +92,8 @@ namespace Server.Mobiles
             }
 
             SetWeaponAbility(WeaponAbility.BleedAttack);
+
+            Imp.Converte(this);
         }
 
         public GreenGoblin(Serial serial)

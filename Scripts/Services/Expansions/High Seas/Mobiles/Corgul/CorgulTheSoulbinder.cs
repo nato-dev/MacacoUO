@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 using System.Collections.Generic;
 using Server.Items;
@@ -30,8 +30,8 @@ namespace Server.Mobiles
         public override double TeleportProb { get { return 1.0; } }
         public override bool TeleportsPets { get { return true; } }
 
-        public override Type[] UniqueList { get { return new Type[] { typeof(CorgulsEnchantedSash), typeof(CorgulsHandbookOnMysticism), typeof(CorgulsHandbookOnTheUndead) }; } }
-        public override Type[] SharedList { get { return new Type[] { typeof(HelmOfVengence), typeof(RingOfTheSoulbinder), typeof(RuneEngravedPegLeg), typeof(CullingBlade) }; } }
+        public override Type[] UniqueList { get { return new Type[] { typeof(CorgulsEnchantedSash) }; } }
+
         public override Type[] DecorativeList { get { return new Type[] { typeof(EnchantedBladeDeed), typeof(EnchantedVortexDeed) }; } }
 
         public override bool NoGoodies { get { return true; } }
@@ -58,7 +58,7 @@ namespace Server.Mobiles
             : base(null, AIType.AI_NecroMage, FightMode.Closest)
         {
             m_Altar = altar;
-            Name = "Corgul the Soulbinder";
+            Name = "Corgul";
             BaseSoundID = 609;
             Body = 0x4C;
             Hue = 2076;

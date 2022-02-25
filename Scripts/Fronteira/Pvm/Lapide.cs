@@ -1,16 +1,32 @@
 using Server.Mobiles;
 using System;
+using System.Collections.Generic;
 
 namespace Server.Ziden.Items
 {
     public class LapideBoss : Item
     {
+        private static HashSet<LapideBoss> lapides = new HashSet<LapideBoss>();
 
-   
+        [CommandProperty(AccessLevel.Administrator)]
+        public string Killer { get; set; }
 
-        public TimeSpan Tempo;
-        public XmlSpawner spawner;
-        public string Nome;
+        [CommandProperty(AccessLevel.Administrator)]
+        public XmlSpawner spawner { get; set; }
+
+        [CommandProperty(AccessLevel.Administrator)]
+        public string Nome { get; set; }
+
+        public static void BixoNasce(BaseCreature bc)
+        {
+            foreach (var lapide in lapides)
+            {
+                if (lapide.Nome.ToLower() == bc.Name.ToLower())
+                {
+                    lapide.Delete();
+                }
+            }
+        }
 
         public LapideBoss(BaseCreature morreu) : base(0x1173)
         {
@@ -24,23 +40,30 @@ namespace Server.Ziden.Items
                 var s = morreu.Spawner as XmlSpawner;
                 Nome = morreu.GetType().Name;
                 spawner = s;
+                Killer = morreu.LastKiller?.Name;
             }
             Name = "Lapide de " + morreu.Name;
             Hue = 1161;
+            lapides.Add(this);
         }
 
         public LapideBoss(Serial s) : base(s)
         {
 
         }
+
+        public override void OnAfterDelete()
+        {
+            lapides.Remove(this);
+        }
+
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
-            var t = Tempo;
-            int weeks = (int)t.Days / 7;
-            int days = t.Days;
-            int hours = t.Hours;
-            int minutes = t.Minutes;
+            if(Killer != null)
+            {
+                list.Add("Morto por " + Killer);
+            }
             list.Add("Clique para saber o tempo de respawn do boss");
         }
 
@@ -50,21 +73,21 @@ namespace Server.Ziden.Items
             {
                 if (o.TypeName.ToLower() == Nome.ToLower())
                 {
-                    Tempo = (o.NextSpawn - DateTime.UtcNow + spawner.NextSpawn);
+                    var t = (o.NextSpawn - DateTime.UtcNow + spawner.NextSpawn);
+                    int weeks = (int)t.Days / 7;
+                    int days = t.Days;
+                    int hours = t.Hours;
+                    int minutes = t.Minutes;
+                    if (hours > 1)
+                        from.SendMessage("Respawn do boss - Horas: " + t.Hours.ToString()); // Lifespan: ~1_val~ hours
+                    else if (minutes > 1)
+                        from.SendMessage("Respawn do boss - Minutos: " + t.Minutes.ToString());
+                    else
+                        from.SendMessage("Respawn do boss - Segundos: " + t.Seconds.ToString());
+                    return;
                 }
             }
-
-            var t = Tempo;
-            int weeks = (int)t.Days / 7;
-            int days = t.Days;
-            int hours = t.Hours;
-            int minutes = t.Minutes;
-            if (hours > 1)
-                from.SendMessage("Respawn do boss - Horas: " + t.Hours.ToString()); // Lifespan: ~1_val~ hours
-            else if (minutes > 1)
-                from.SendMessage("Respawn do boss - Minutos: " + t.Minutes.ToString());
-            else
-                from.SendMessage("Respawn do boss - Segundos: " + t.Seconds.ToString());
+            from.SendMessage("Algo errado nesta lapide, ela parece estar velha...");
         }
 
         public override void Serialize(GenericWriter writer)
@@ -81,6 +104,7 @@ namespace Server.Ziden.Items
             var v = reader.ReadInt();
             spawner = reader.ReadItem() as XmlSpawner;
             Nome = reader.ReadString();
+            lapides.Add(this);
         }
 
     }

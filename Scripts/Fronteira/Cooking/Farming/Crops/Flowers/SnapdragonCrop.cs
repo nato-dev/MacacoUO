@@ -21,12 +21,12 @@ namespace Server.Items.Crops
 			Hue = 0x5E2;
 			Movable = true;
 			Amount = amount;
-			Name = "Snapdragon Seed";
+			Name = "sementes de snapdragon";
 		}
 
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from.Mounted && !CropHelper.CanWorkMounted ) { from.SendMessage( "You cannot plant a seed while mounted." ); return; }
+			if ( from.Mounted && !CropHelper.CanWorkMounted ) { from.SendMessage( "Voce nao pode plantar estando montado." ); return; }
 			Point3D m_pnt = from.Location;
 			Map m_map = from.Map;
 			if ( !IsChildOf( from.Backpack ) ) { from.SendLocalizedMessage( 1042010 ); return; }

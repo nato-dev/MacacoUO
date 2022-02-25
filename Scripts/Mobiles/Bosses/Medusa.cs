@@ -64,8 +64,8 @@ namespace Server.Mobiles
 
             VirtualArmor = 60;
 
-            PackItem(new Arrow(Utility.RandomMinMax(200, 600)));
-            PackItem(new Bolt(Utility.RandomMinMax(200, 600)));
+            PackItem(new Arrow(Utility.RandomMinMax(100, 300)));
+            PackItem(new Bolt(Utility.RandomMinMax(100, 300)));
 
             IronwoodCompositeBow Bow = new IronwoodCompositeBow();
             Bow.Movable = false;
@@ -76,6 +76,7 @@ namespace Server.Mobiles
             SetWeaponAbility(WeaponAbility.MortalStrike);
             //SetSpecialAbility(SpecialAbility.VenomousBite);
 
+            AddItem(new TemplateDeed());
             AddItem(Carnage.GetRandomPS(105));
         }
 

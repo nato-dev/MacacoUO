@@ -26,6 +26,10 @@ namespace Server.Mobiles
         public abstract Type[] UniqueSAList { get; }
         public abstract Type[] SharedSAList { get; }
 
+        public override bool UseSmartAI => true;
+
+        public override bool IsSmart => true;
+
         public virtual bool NoGoodies
         {
             get

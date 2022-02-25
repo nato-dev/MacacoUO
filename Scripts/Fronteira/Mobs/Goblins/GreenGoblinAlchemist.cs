@@ -1,6 +1,7 @@
 using System;
 using Server.Engines.Craft;
 using Server.Items;
+using Server.Menus.Questions;
 using Server.Network;
 using Server.Services;
 
@@ -116,6 +117,7 @@ namespace Server.Mobiles
                         break;
                 }
             }
+            Imp.Converte(this);
         }
 
         public GreenGoblinAlchemist(Serial serial)

@@ -1,3 +1,5 @@
+using Server.Items;
+using Server.Items.Crops;
 using System;
 
 namespace Server.Mobiles
@@ -5,6 +7,9 @@ namespace Server.Mobiles
     [CorpseName("a dragon corpse")]
     public class AncientWyrm : BaseCreature
     {
+
+        public override bool IsBoss => true;
+
         [Constructable]
         public AncientWyrm()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
@@ -17,9 +22,9 @@ namespace Server.Mobiles
             this.SetDex(86, 175);
             this.SetInt(686, 775);
 
-            this.SetHits(658, 711);
+            this.SetHits(15000, 15000);
 
-            this.SetDamage(29, 35);
+            this.SetDamage(29, 45);
 
             this.SetDamageType(ResistanceType.Physical, 75);
             this.SetDamageType(ResistanceType.Fire, 25);
@@ -35,12 +40,20 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Meditation, 52.5, 75.0);
             this.SetSkill(SkillName.MagicResist, 100.5, 150.0);
             this.SetSkill(SkillName.Tactics, 97.6, 100.0);
-            this.SetSkill(SkillName.Wrestling, 97.6, 100.0);
+            this.SetSkill(SkillName.Wrestling, 120, 120);
+            this.SetSkill(SkillName.Parry, 120, 120);
 
             this.Fame = 22500;
             this.Karma = -22500;
 
-            this.VirtualArmor = 70;
+            this.VirtualArmor = 150;
+
+            PackItem(new DragonWolfCostume());
+            PackItem(new SnapdragonSeed(3));
+            if (Utility.RandomBool())
+            {
+                PackItem(new DraconicOrb());
+            }
         }
 
         public AncientWyrm(Serial serial)
@@ -90,6 +103,7 @@ namespace Server.Mobiles
                 return 19;
             }
         }
+
         public override int Scales
         {
             get
@@ -97,6 +111,7 @@ namespace Server.Mobiles
                 return 12;
             }
         }
+
         public override ScaleType ScaleType
         {
             get
@@ -104,6 +119,7 @@ namespace Server.Mobiles
                 return (ScaleType)Utility.Random(4);
             }
         }
+
         public override Poison PoisonImmune
         {
             get
@@ -118,6 +134,9 @@ namespace Server.Mobiles
                 return Utility.RandomBool() ? Poison.Lesser : Poison.Regular;
             }
         }
+
+        public override double TreasureMapChance => 1;
+
         public override int TreasureMapLevel
         {
             get

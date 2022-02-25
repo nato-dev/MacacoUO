@@ -722,7 +722,9 @@ namespace Server.Mobiles
         [Constructable]
         public EtherealRidgeback()
             : base(0x2615, 0x3E9A, 0x3EBA, DefaultEtherealHue)
-        { }
+        {
+            Transparent = false;
+        }
 
         public EtherealRidgeback(Serial serial)
             : base(serial)
@@ -739,19 +741,7 @@ namespace Server.Mobiles
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
-
             int version = reader.ReadInt();
-
-            if (version == 0)
-            {
-                NonTransparentMountedID = 0x3EBA;
-                Transparent = true;
-            }
-
-            if (version == 1)
-            {
-                TransparentMountedHue = DefaultEtherealHue;
-            }
         }
     }
 

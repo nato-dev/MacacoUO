@@ -117,6 +117,11 @@ namespace Server.Spells.Sixth
                     if(m is GolemMecanico)
                     {
                         var golem = (GolemMecanico)m;
+                        if(golem.Escudo)
+                        {
+                            from.SendMessage("Um escudo anti dispel repele sua magia");
+                            return;
+                        }
                         if(golem.Carregando)
                         {
                             if(Utility.RandomDouble() < 0.75)

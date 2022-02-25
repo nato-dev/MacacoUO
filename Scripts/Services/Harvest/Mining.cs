@@ -186,8 +186,8 @@ namespace Server.Engines.Harvest
             sand.EffectActions = new int[] { 3 };
             sand.EffectSounds = new int[] { 0x125, 0x126 };
             //oreAndStone.EffectCounts = new int[] { 1 };
-            sand.EffectCounts = new int[] { 3 };
-            sand.EffectDelay = TimeSpan.FromSeconds(2);
+            sand.EffectCounts = new int[] { 2 };
+            sand.EffectDelay = TimeSpan.FromSeconds(1.2);
             sand.EffectSoundDelay = TimeSpan.FromSeconds(0.9);
 
             /*oreAndStone.NoResourcesMessage = "Nao tem minerio aqui"; // There is no metal here to mine.
@@ -198,13 +198,13 @@ namespace Server.Engines.Harvest
             oreAndStone.PackFullMessage = "Sua mochila esta cheia"; // Your backpack is full, so the ore you mined is lost.
             oreAndStone.ToolBrokeMessage = "Sua ferramenta quebrou !"; // You have worn out your tool!*/
 
-            oreAndStone.NoResourcesMessage = "Não tem mais minério neste local"; // There is no metal here to mine.
-            oreAndStone.DoubleHarvestMessage = "Alguém pegou o minério antes de você"; // Someone has gotten to the metal before you.
-            oreAndStone.TimedOutOfRangeMessage = "Você se moveu e parou de minerar"; // You have moved too far away to continue mining.
-            oreAndStone.OutOfRangeMessage = "Isto está muito longe"; // That is too far away.
-            oreAndStone.FailMessage = "Você não encontrou nenhum minério"; // You loosen some rocks but fail to find any useable ore.
-            oreAndStone.PackFullMessage = "Sua mochila está cheia e o item foi jogado no chão"; // Your backpack is full, so the ore you mined is lost.
-            oreAndStone.ToolBrokeMessage = "Sua ferramenta quebrou!"; // You have worn out your tool!
+            sand.NoResourcesMessage = "Não tem mais areia neste local"; // There is no metal here to mine.
+            sand.DoubleHarvestMessage = "Alguém pegou o areia antes de você"; // Someone has gotten to the metal before you.
+            sand.TimedOutOfRangeMessage = "Você se moveu e parou de minerar"; // You have moved too far away to continue mining.
+            sand.OutOfRangeMessage = "Isto está muito longe"; // That is too far away.
+            sand.FailMessage = "Você não encontrou nenhuma areia"; // You loosen some rocks but fail to find any useable ore.
+            sand.PackFullMessage = "Sua mochila está cheia e o item foi jogado no chão"; // Your backpack is full, so the ore you mined is lost.
+            sand.ToolBrokeMessage = "Sua ferramenta quebrou!"; // You have worn out your tool!
 
             res = new HarvestResource[]
             {

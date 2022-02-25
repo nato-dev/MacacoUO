@@ -169,7 +169,7 @@ namespace Server.Engines.UOStore
             
             cat = StoreCategory.Mounts;
             Register<EtherealHorse>(new TextDefinition("Cavalo Magico"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um cavalo magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x20DD, 0, 0, 1000, cat, CavaloEthy);
-            Register<EtherealOstard>(new TextDefinition("Ostard Magico [20/02/2022]"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um ostard magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x2135, 0, 0, 5000, cat, OstardEthy);
+            Register<EtherealRidgeback>(new TextDefinition("Ridgeback Magico [20/03/2022]"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um ostard magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x2615, 0, 0, 5000, cat, OstardEthy);
             // Register<WindrunnerStatue>(new TextDefinition("Windrunner"), "Montaria. <br>Esta montaria vem Bound e pode ser ressada com Veterinary.<br>", 0x9ED5, 0, 0, 3000, cat, WindRunner);
 
             /*
@@ -563,7 +563,7 @@ namespace Server.Engines.UOStore
 
         public static Item OstardEthy(Mobile m, StoreEntry entry)
         {
-            var cavalo = new EtherealOstard();
+            var cavalo = new EtherealRidgeback();
             cavalo.Transparent = false;
             cavalo.BoundTo = m.RawName;
             return cavalo;

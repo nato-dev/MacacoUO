@@ -194,6 +194,7 @@ namespace Server.Items
 					if (User.HairItemID !=0)
 					{
 						User.HairHue = Hue;
+                        User.FacialHairHue = Hue;
 
 						User.SendLocalizedMessage(501199);  // You dye your hair
 						Dye.Delete();

@@ -160,6 +160,9 @@ namespace Server.Menus.Questions
             if (m.Map != Map.Trammel && m.Map != Map.Felucca)
                 return false;
 
+            if (m.Region != null && m.Region.IsPartOf("BlackthornDungeon"))
+                return false;
+
             if (m.X >= 5120 && m.Y >= 2304)
                 return true;
 

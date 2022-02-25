@@ -81,6 +81,8 @@ namespace Server.Mobiles
 
             if (0.1 > Utility.RandomDouble())
                 PackItem(new MechanicalComponent());
+
+            Imp.Converte(this);
         }
 
         public GreenGoblin2(Serial serial)

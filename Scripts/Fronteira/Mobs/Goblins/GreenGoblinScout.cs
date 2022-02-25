@@ -8,7 +8,11 @@ namespace Server.Mobiles
 	[CorpseName("a goblin corpse")]
 	public class GreenGoblinScout : BaseCreature
 	{
-		[Constructable]
+        public override bool IsSmart => true;
+
+        public override bool UseSmartAI => true;
+
+        [Constructable]
 		public GreenGoblinScout()
 			: base(AIType.AI_OrcScout, FightMode.Closest, 10, 7, 0.15, 0.3)
 		{
@@ -45,6 +49,7 @@ namespace Server.Mobiles
 			Karma = -1500;
 
             SetWeaponAbility(WeaponAbility.ParalyzingBlow);
+            Imp.Converte(this);
 		}
 
 		public GreenGoblinScout(Serial serial)

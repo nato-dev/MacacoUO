@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 
 namespace Server.Items
@@ -10,8 +10,7 @@ namespace Server.Items
         [Constructable]
         public CorgulsEnchantedSash()
         {
-            Attributes.BonusStam = 1;
-            Attributes.DefendChance = 5;
+            Attributes.BonusStam = 5;
         }
 
         public CorgulsEnchantedSash(Serial serial)

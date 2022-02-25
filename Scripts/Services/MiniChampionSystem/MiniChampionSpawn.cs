@@ -5,10 +5,11 @@ using Server.Gumps;
 using Server.Mobiles;
 using Server.Commands;
 using System.Linq;
+using Server.ContextMenus;
 
 namespace Server.Engines.MiniChamps
 {  
-    public class MiniChamp : Item
+    public class MiniChamp : Item, ISpawner
     {
         public static void Initialize()
         {
@@ -172,6 +173,12 @@ namespace Server.Engines.MiniChamps
             get { return m_Level; }
             set { m_Level = value; InvalidateProperties(); }
         }
+
+        public bool UnlinkOnTaming => true;
+
+        public Point3D HomeLocation => this.HomeLocation;
+
+        public int HomeRange => this.HomeRange;
 
         public void Start()
         {
@@ -455,6 +462,21 @@ namespace Server.Engines.MiniChamps
             }
 
             Controllers.Add(this);
+        }
+
+        public void Remove(ISpawnable spawn)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetSpawnProperties(ISpawnable spawn, ObjectPropertyList list)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetSpawnContextEntries(ISpawnable spawn, Mobile m, List<ContextMenuEntry> list)
+        {
+            throw new NotImplementedException();
         }
     }
 

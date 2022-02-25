@@ -475,6 +475,11 @@ namespace Server.Items
             double healing = m_Healer.Skills[SkillName.Healing].Value * 0.75 + 25;
             double anatomy = m_Healer.Skills[SkillName.Anatomy].Value * 0.75 + 25;
 
+            if(Shard.DebugEnabled)
+            {
+                Shard.Debug("Heal " + healing + " anat " + anatomy);
+            }
+
             if(m_Patient is BaseCreature && !(m_Patient is BaseHire))
             {
                 healing = m_Healer.Skills[SkillName.Veterinary].Value;
@@ -490,6 +495,10 @@ namespace Server.Items
 
             if (healing < 100)
                 toHeal *= 0.9;
+
+            if (healing < 100)
+                toHeal *= 0.9;
+
 
             if (toHeal < 20)
                 toHeal = 20;

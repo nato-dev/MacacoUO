@@ -40,6 +40,8 @@ namespace Server.Mobiles
         public override bool CanStealth { get { return true; } }
         public override bool ReduceSpeedWithDamage { get { return false; } }
 
+        public override bool IsBoss => true;
+
         private DateTime m_NextWeaponChange;
 
         [Constructable]

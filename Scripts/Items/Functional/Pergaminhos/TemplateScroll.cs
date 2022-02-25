@@ -122,6 +122,12 @@ namespace Server.Items.Functional.Pergaminhos
                 return;
             }
 
+            if(pl.Profession==0)
+            {
+                pl.SendMessage("Escolha sua template inicial na quest inicial da fada antes");
+                return;
+            }
+
             pl.SendGump(new FreeTemplateGump(WarPvM(), 90));
         }
 

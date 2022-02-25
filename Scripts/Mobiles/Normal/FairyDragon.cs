@@ -73,7 +73,7 @@ namespace Server.Mobiles
                 c.DropItem(new FairyDragonWing());
             }
 
-            if (Utility.RandomDouble() < 0.10)
+            if (Utility.RandomDouble() < 0.05)
             {
                 c.DropItem(new DraconicOrb());
 

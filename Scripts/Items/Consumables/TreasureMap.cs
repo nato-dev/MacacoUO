@@ -699,29 +699,29 @@ namespace Server.Items
         {
             if (m_Completed)
             {
-                from.SendLocalizedMessage(503028); // The treasure for this map has already been found.
+                from.SendLocalizedMessage("Este tesouro ja foi encontrado"); // The treasure for this map has already been found.
             }
             else if (m_Level == 0 && !CheckYoung(from))
             {
-                from.SendLocalizedMessage(1046447); // Only a young player may use this treasure map.
+                from.SendLocalizedMessage("Apenas um novato pode fazer isto"); // Only a young player may use this treasure map.
             }
-            /*
-        else if ( from != m_Decoder )
-        {
-        from.SendLocalizedMessage( 503016 ); // Only the person who decoded this map may actually dig up the treasure.
-        }
-        */
+
+            else if (from != m_Decoder)
+            {
+                from.SendLocalizedMessage("Apenas quem decodificou o mapa pode fazer isto"); // Only the person who decoded this map may actually dig up the treasure.
+            }
+
             else if (m_Decoder != from && !HasRequiredSkill(from))
             {
-                from.SendLocalizedMessage(503031); // You did not decode this map and have no clue where to look for the treasure.
+                from.SendLocalizedMessage("Voce nao tem habilidade"); // You did not decode this map and have no clue where to look for the treasure.
             }
             else if (!from.CanBeginAction(typeof(TreasureMap)))
             {
-                from.SendLocalizedMessage(503020); // You are already digging treasure.
+                from.SendLocalizedMessage("Voce ja esta cagando o tesouro"); // You are already digging treasure.
             }
             else if (from.Map != Facet)
             {
-                from.SendLocalizedMessage(1010479); // You seem to be in the right place, but may be on the wrong facet!
+                from.SendLocalizedMessage("Voce esta no mapa errado"); // You seem to be in the right place, but may be on the wrong facet!
             }
             else
             {
@@ -836,6 +836,7 @@ namespace Server.Items
                 AddWorldPin(ChestLocation.X, ChestLocation.Y);
             }
 
+            from.SendMessage(78, "Voce deve usar uma picareta no mapa quando estiver no local certo");
             from.PlaySound(0x249);
             base.DisplayTo(from);
         }

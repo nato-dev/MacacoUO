@@ -13,6 +13,8 @@ namespace Server.Mobiles
     {
         public override bool ReduceSpeedWithDamage { get { return false; } }
 
+        public override bool IsBoss => true;
+
         public override bool AutoDispel { get { return true; } }
 
         [Constructable]
@@ -28,10 +30,10 @@ namespace Server.Mobiles
             SetDex(100, 100);
             SetInt(300, 350);
 
-            SetHits(2000);
+            SetHits(5000);
             SetStam(100, 100);
 
-            SetDamage(10, 20);
+            SetDamage(20, 30);
 
             SetDamageType(ResistanceType.Physical, 75);
             SetDamageType(ResistanceType.Fire, 25);
@@ -65,8 +67,8 @@ namespace Server.Mobiles
             AddItem(new Rock1Rand());
             AddItem(new Rock2Rand());
             AddItem(new BronzeIngot(300));
-            //if (Utility.RandomBool())
-            //    AddItem(new ElementalBall(1000));
+            if (Utility.RandomBool())
+                AddItem(new ElementalBall(500));
             if (Utility.RandomBool())
                 AddItem(new QuartzoIngot(80));
             else
@@ -213,8 +215,7 @@ namespace Server.Mobiles
             if (from is PlayerMobile && Utility.RandomDouble() < 0.1)
             {
                 var elem = new EarthElemental();
-                elem.MoveToWorld(from.Location, from.Map);
-                elem.OverheadMessage("* se levanta do chao *");
+                elem.MoveToWorld(this.Location, this.Map);
                 elem.Combatant = from;
             }
 

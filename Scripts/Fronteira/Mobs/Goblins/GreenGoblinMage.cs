@@ -6,6 +6,10 @@ namespace Server.Mobiles
     [CorpseName("a goblin mage corpse")]
     public class GreenGoblinMage : BaseCreature
     {
+        public override bool IsSmart => true;
+
+        public override bool UseSmartAI => true;
+
         [Constructable]
         public GreenGoblinMage()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
@@ -85,6 +89,8 @@ namespace Server.Mobiles
 
             if (0.2 > Utility.RandomDouble())
                 PackItem(new BolaBall());
+
+            Imp.Converte(this);
         }
 
         public GreenGoblinMage(Serial serial)

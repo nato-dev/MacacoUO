@@ -123,7 +123,7 @@ namespace Server.Items
             Stackable = true;
             Amount = amount;
             Hue = CraftResources.GetHue(resource);
-            Weight = Shard.SPHERE_STYLE ? 0.8 : 8;
+            Weight = Shard.SPHERE_STYLE ? 0.8 : 6;
             Name = "Minerio de " + resource.ToString();
             m_Resource = resource;
         }
@@ -356,6 +356,9 @@ namespace Server.Items
                 {
                     ingot.AttachSocket(new Caddellite());
                 }
+
+                if (ingot is IronIngot)
+                    ingot.Amount *= 2;
 
                 //forge.FixedParticles(0x3709, 10, 30, 5052, EffectLayer.LeftFoot);
                 ore.Consume(toConsume);
