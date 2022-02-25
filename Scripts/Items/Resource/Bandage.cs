@@ -496,10 +496,6 @@ namespace Server.Items
             if (healing < 100)
                 toHeal *= 0.9;
 
-            if (healing < 100)
-                toHeal *= 0.9;
-
-
             if (toHeal < 20)
                 toHeal = 20;
 
