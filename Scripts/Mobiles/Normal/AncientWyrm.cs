@@ -67,7 +67,7 @@ namespace Server.Mobiles
             }
             SorteiaItem(Carnage.GetRandomPS(105));
             var arma = Loot.RandomWeapon();
-            arma.WeaponAttributes.HitFireArea = 15;
+            arma.WeaponAttributes.HitColdArea = 15;
             if (arma.Name != null)
                 arma.Name += " de fogo de dragao";
         }
