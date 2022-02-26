@@ -531,6 +531,7 @@ namespace Server.Items
                 if (y2 >= 4094)
                     y2 = 4083;
 
+
                 if (y2 <= 2760)
                     y2 = 2761;
             }
@@ -717,7 +718,7 @@ namespace Server.Items
             }
             else if (!from.CanBeginAction(typeof(TreasureMap)))
             {
-                from.SendLocalizedMessage("Voce ja esta cagando o tesouro"); // You are already digging treasure.
+                from.SendLocalizedMessage("Voce ja esta cavando o tesouro"); // You are already digging treasure.
             }
             else if (from.Map != Facet)
             {
@@ -834,6 +835,12 @@ namespace Server.Items
             if (Pins.Count == 0)
             {
                 AddWorldPin(ChestLocation.X, ChestLocation.Y);
+            }
+
+            if(from.Skills.Cartography.Base > 60 && from.GetDistance(ChestLocation) < 30)
+            {
+                from.QuestArrow = new QuestArrow(from, ChestLocation.ToPoint3D());
+                from.QuestArrow.Update();
             }
 
             from.SendMessage(78, "Voce deve usar uma picareta no mapa quando estiver no local certo");

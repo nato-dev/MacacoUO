@@ -41,7 +41,7 @@ namespace Server.Mobiles
         public static TimeSpan DelayRestock = TimeSpan.FromMinutes(Config.Get("Vendors.RestockDelay", 60));
         public static int MaxSell = Config.Get("Vendors.MaxSell", 500);
 
-      
+
 
 
         public static void PegaRecompensa(Mobile from, BaseVendor vendor)
@@ -94,9 +94,9 @@ namespace Server.Mobiles
 
             from.SendGump(new GumpOpcoes("Custo: 500", (opt) =>
             {
-                if(!Banker.Withdraw(from, 500))
+                if (!Banker.Withdraw(from, 500))
                 {
-                    if(!from.Backpack.ConsumeTotal(typeof(Gold), 500))
+                    if (!from.Backpack.ConsumeTotal(typeof(Gold), 500))
                     {
                         from.SendMessage("Voce precisa de 500 moedas para isto");
                         return;
@@ -112,7 +112,7 @@ namespace Server.Mobiles
         public static void OfereceBulkOrder(Mobile from, BaseVendor vendor)
         {
 
-           
+
 
             if (vendor is AnimalTrainer)
             {
@@ -124,7 +124,13 @@ namespace Server.Mobiles
 
             Shard.Debug("Oferecendo bod", from);
 
-            if (vendor.SupportsBulkOrders(from) && from is PlayerMobile)
+            if (!vendor.SupportsBulkOrders(from))
+            {
+                vendor.SayTo(from, true, "Voce precisa de mais habilidade na minha profissao para trabalhar para mim");
+                return;
+            }
+
+            if (from is PlayerMobile)
             {
                 if (BulkOrderSystem.NewSystemEnabled)
                 {
@@ -1278,7 +1284,7 @@ namespace Server.Mobiles
             {
                 var bod = dropped as BodTamer;
 
-                if(bod.BoundTo != null && bod.BoundTo != from.RawName)
+                if (bod.BoundTo != null && bod.BoundTo != from.RawName)
                 {
                     return false;
                 }
@@ -1386,15 +1392,17 @@ namespace Server.Mobiles
 
                     if (dropped.BoundTo == from.RawName || from.AccessLevel > AccessLevel.VIP)
                     {
-                        ushort exp = 2500;
+                        ushort exp = 5000;
                         if (from.Skills[skill].Value < 60)
-                            exp += 25000;
+                            exp += 45000;
                         else if (from.Skills[skill].Value < 70)
-                            exp += 19000;
+                            exp += 29000;
                         if (from.Skills[skill].Value < 80)
                             exp += 5000;
                         else if (from.Skills[skill].Value < 90)
-                            exp += 2000;
+                            exp += 3000;
+                        else if (from.Skills[skill].Value < 100)
+                            exp += 1000;
                         else if (from.Skills[skill].Value > 100)
                             exp = (ushort)(exp * 0.8);
                         else if (from.Skills[skill].Value > 105)
@@ -1418,7 +1426,11 @@ namespace Server.Mobiles
                             exp *= 6;
 
                             exp += (ushort)(matBonus * 2000);
-                        } else if(dropped is SmallBOD)
+                            if (large.RequireExceptional)
+                                exp += 5000;
+
+                        }
+                        else if (dropped is SmallBOD)
                         {
                             var small = (SmallBOD)dropped;
                             var matBonus = (int)small.Material;
@@ -1429,7 +1441,9 @@ namespace Server.Mobiles
                             if (small.Material >= BulkMaterialType.Carvalho && small.Material <= BulkMaterialType.Gelo)
                                 matBonus -= 11;
 
-                            exp += (ushort)(matBonus * 1000);
+                            exp += (ushort)(matBonus * 2000);
+                            if (small.RequireExceptional)
+                                exp += 3000;
                         }
 
 

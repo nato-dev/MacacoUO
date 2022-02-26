@@ -70,7 +70,7 @@ namespace Server.Items
             if (this.Deleted || !from.CanSee(this))
                 return false;
 
-            base.ScissorHelper(from, new Cloth(), 50);
+            base.ScissorHelper(from, new CutUpCloth(), 50);
 
             return true;
         }

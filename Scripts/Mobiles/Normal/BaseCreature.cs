@@ -484,7 +484,7 @@ namespace Server.Mobiles
 
         public void SorteiaItem(Item i)
         {
-            var disputando = GetLootingRights().Where(l => l.m_Mobile.Alive && l.m_Mobile.GetDistance(this) < 50).ToList();
+            var disputando = GetLootingRights(); //.Where(l => l.m_Mobile.Alive).ToList();
             if (disputando.Count > 0)
             {
                 var ganhou = disputando[Utility.Random(disputando.Count)];
@@ -7255,15 +7255,11 @@ namespace Server.Mobiles
                 int minDamage;
 
 
-                minDamage = (int)((double)topDamage * 0.05);
-
-
-
                 for (int i = 0; i < rights.Count; ++i)
                 {
                     DamageStore ds = rights[i];
 
-                    ds.m_HasRight = (ds.m_Damage >= minDamage);
+                    ds.m_HasRight = true; //  (ds.m_Damage >= minDamage);
                 }
             }
 

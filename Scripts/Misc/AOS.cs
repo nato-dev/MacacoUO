@@ -284,8 +284,38 @@ namespace Server
                     }
                 }
 
-                if (quiver != null)
-                    damage += damage * quiver.DamageIncrease / 100;
+                #region Pet Training
+                if (damageDealer is BaseCreature || m is BaseCreature)
+                {
+                    SpecialAbility.CheckCombatTrigger(damageDealer, m, ref damage, type);
+
+                    if (PetTrainingHelper.Enabled)
+                    {
+                        if (damageDealer is BaseCreature && m is BaseCreature)
+                        {
+                            var profile = PetTrainingHelper.GetTrainingProfile((BaseCreature)damageDealer);
+
+                            if (profile != null)
+                            {
+                                profile.CheckProgress((BaseCreature)m);
+                            }
+
+                            profile = PetTrainingHelper.GetTrainingProfile((BaseCreature)m);
+
+                            if (profile != null && 0.1 > Utility.RandomDouble())
+                            {
+                                profile.CheckProgress((BaseCreature)damageDealer);
+                            }
+                        }
+
+                        if (damageDealer is BaseCreature && ((BaseCreature)damageDealer).Controlled && m.Player)
+                        {
+                            damage /= 2;
+                        }
+                    }
+                }
+                #endregion
+
                 return damage;
             }
             #endregion
@@ -328,7 +358,6 @@ namespace Server
                 }
             }
 
-          
 
             if (ranged && damageDealer.Race != Race.Gargoyle)
                 quiver = damageDealer.FindItemOnLayer(Layer.Cloak) as BaseQuiver;
@@ -479,37 +508,7 @@ namespace Server
             SkillMasterySpell.OnDamage(m, damageDealer, type, ref totalDamage);
             #endregion
 
-            #region Pet Training
-            if (damageDealer is BaseCreature || m is BaseCreature)
-            {
-                SpecialAbility.CheckCombatTrigger(damageDealer, m, ref totalDamage, type);
-
-                if (PetTrainingHelper.Enabled)
-                {
-                    if (damageDealer is BaseCreature && m is BaseCreature)
-                    {
-                        var profile = PetTrainingHelper.GetTrainingProfile((BaseCreature)damageDealer);
-
-                        if (profile != null)
-                        {
-                            profile.CheckProgress((BaseCreature)m);
-                        }
-
-                        profile = PetTrainingHelper.GetTrainingProfile((BaseCreature)m);
-
-                        if (profile != null && 0.3 > Utility.RandomDouble())
-                        {
-                            profile.CheckProgress((BaseCreature)damageDealer);
-                        }
-                    }
-
-                    if (damageDealer is BaseCreature && ((BaseCreature)damageDealer).Controlled && m.Player)
-                    {
-                        totalDamage /= 2;
-                    }
-                }
-            }
-            #endregion
+        
 
             if (type <= DamageType.Ranged)
             {

@@ -4319,6 +4319,14 @@ namespace Server.Items
                 attacker.CheckSkillMult(SkillName.ArmsLore, 0.0, 100.0);
             }
 
+            if(this is BaseRanged)
+            {
+                var quiver = attacker.FindItemOnLayer(Layer.Cloak) as BaseQuiver;
+                if (quiver != null)
+                    damage += damage * quiver.DamageIncrease / 100;
+            }
+          
+
             /* Compute tactics modifier
             * :   0.0 = 50% loss
             * :  50.0 = unchanged

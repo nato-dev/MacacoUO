@@ -110,11 +110,12 @@ namespace Server.Items
                     {
                         return;
                     }
-                    m.Freeze(TimeSpan.FromSeconds(10));
-                    hearth = Timer.DelayCall(TimeSpan.FromSeconds(10), new TimerCallback(HearthTeleport));
-                    m.SendMessage("Voce esta retornando para casa em 10 segundos.");
+                    m.Freeze(TimeSpan.FromSeconds(4));
+                    hearth = Timer.DelayCall(TimeSpan.FromSeconds(4), new TimerCallback(HearthTeleport));
+                    m.SendMessage("Voce esta retornando para casa em 4 segundos.");
                     m.FixedEffect(0x375A, 10, 15);
                     m.PlaySound(0x1E7);
+                    m.OverheadMessage("* retornando *");
                 } else
                 {
                     if (from.Region is GuardedRegion)  // see if they are in an "inn" zone and mark if they are

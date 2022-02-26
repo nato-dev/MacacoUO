@@ -36,9 +36,9 @@ namespace Server.Mobiles
             SetDex(128, 139);
             SetInt(537, 664);
 
-            SetHits(8000);
+            SetHits(5000);
 
-            SetDamage(10, 25);
+            SetDamage(8, 20);
 
             SetDamageType(ResistanceType.Physical, 60);
             SetDamageType(ResistanceType.Fire, 20);
@@ -51,7 +51,7 @@ namespace Server.Mobiles
             SetResistance(ResistanceType.Energy, 60, 75);
 
             SetSkill(SkillName.Anatomy, 110.6, 116.1);
-            SetSkill(SkillName.EvalInt, 100.0, 114.4);
+            SetSkill(SkillName.EvalInt, 0, 20);
             SetSkill(SkillName.Magery, 100.0);
             SetSkill(SkillName.Meditation, 118.2, 127.8);
             SetSkill(SkillName.MagicResist, 120.0);
@@ -76,8 +76,7 @@ namespace Server.Mobiles
             SetWeaponAbility(WeaponAbility.MortalStrike);
             //SetSpecialAbility(SpecialAbility.VenomousBite);
 
-            AddItem(new TemplateDeed());
-            AddItem(Carnage.GetRandomPS(105));
+      
         }
 
         public Medusa(Serial serial)
@@ -553,6 +552,9 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
+            SorteiaItem(new TemplateDeed());
+            SorteiaItem(Carnage.GetRandomPS(105));
+
             var wind = new LobsterMount();
             wind.MoveToWorld(c.Location, c.Map);
             wind.OverheadMessage("* se transformou *");
@@ -566,13 +568,13 @@ namespace Server.Mobiles
                 wind.Delete();
             });
 
-            c.DropItem(new DecoRelPor());
-            c.DropItem(new DecoRelPor());
+            SorteiaItem(new DecoRelPor());
+            SorteiaItem(new DecoRelPor());
 
             GolemMecanico.JorraOuro(c.Location, c.Map, 350);
 
             if (Utility.RandomDouble() < 0.1)
-                c.DropItem(new MedusaStatue());
+                SorteiaItem(new MedusaStatue());
         }
 
         public override void OnAfterDelete()

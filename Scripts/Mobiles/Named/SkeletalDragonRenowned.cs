@@ -7,7 +7,7 @@ namespace Server.Mobiles
     public class SkeletalDragonRenowned : BaseRenowned
     {
 
-        public override bool IsBoss => true;
+       // public override bool IsBoss => true;
 
         [Constructable]
         public SkeletalDragonRenowned()
@@ -48,23 +48,7 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 80;
 
-            var q = new Aljava();
-            q.Name = "Aljava de Ossos";
-            q.Hue = 1154;
-            AddItem(q);
-            AddItem(Loot.JoiaRaraRandom(this.Map));
-            AddItem(Loot.JoiaRaraRandom(this.Map));
-            AddItem(Loot.JoiaRaraRandom(this.Map));
-            AddItem(Loot.JoiaRaraRandom(this.Map));
-            AddItem(Loot.RandomRareDyetub());
-            var r = Utility.Random(5);
-            switch (r) {
-                case 0: AddItem(new BoneThroneDeed()); break;
-                case 1: AddItem(new BoneCouchDeed()); break;
-                case 2: AddItem(new BoneTableDeed()); break;
-                case 3: AddItem(new CreepyPortraitDeed()); break;
-                case 4: AddItem(new DisturbingPortraitDeed()); break;
-            }
+         
         }
 
         public SkeletalDragonRenowned(Serial serial)
@@ -167,6 +151,23 @@ namespace Server.Mobiles
             var hs = new SkeletalMount();
             hs.MoveToWorld(c.Location, c.Map);
             hs.MinTameSkill = 99;
+            var q = new Aljava();
+            q.Name = "Aljava de Ossos";
+            q.Hue = 1154;
+            SorteiaItem(q);
+            SorteiaItem(Loot.JoiaRaraRandom(this.Map));
+            SorteiaItem(Loot.JoiaRaraRandom(this.Map));
+            SorteiaItem(Loot.JoiaRaraRandom(this.Map));
+            SorteiaItem(Loot.JoiaRaraRandom(this.Map));
+            var r = Utility.Random(5);
+            switch (r)
+            {
+                case 0: SorteiaItem(new BoneThroneDeed()); break;
+                case 1: SorteiaItem(new BoneCouchDeed()); break;
+                case 2: SorteiaItem(new BoneTableDeed()); break;
+                case 3: SorteiaItem(new CreepyPortraitDeed()); break;
+                case 4: SorteiaItem(new DisturbingPortraitDeed()); break;
+            }
         }
 
         public override Type[] UniqueSAList { get { return new Type[] { }; } }

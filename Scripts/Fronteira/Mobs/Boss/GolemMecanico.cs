@@ -64,43 +64,14 @@ namespace Server.Mobiles
                 Instances.ForEach(i => i.Delete());
             }
 
-            this.PackItem(new AutomatonActuator());
-            this.PackItem(Decos.RandomDeco());
+           
             Instances.Add(this);
 
-            Item pot = null;
-
-            switch (Utility.Random(4))
-            {
-                case 0: pot = new HealPotion(); break;
-                case 1: pot = new RefreshPotion(); break;
-                case 2: pot = new HealPotion(); break;
-                case 3: pot = new CurePotion(); break;
-            }
-            pot.Amount = 50;
-            PackItem(pot);
+        
             SetSpecialAbility(SpecialAbility.ManaDrain);
             SetWeaponAbility(WeaponAbility.ParalyzingBlow);
 
-            PackItem(new PowerCrystal());
-            if(Utility.RandomBool())
-                PackItem(new PowerCrystal());
-            PackItem(new ClockworkAssembly());
-            if (Utility.RandomBool())
-                PackItem(new ClockworkAssembly());
-            PackItem(new Gold(2000));
-            PackItem(new MechanicalLifeManual());
-            this.PackItem(new Item(0xA517));
-            PackItem(Carnage.GetRandomPS(105));
-            if(Utility.RandomDouble() < 0.1)
-                PackItem(Carnage.GetRandomPS(110));
-            var r = Utility.Random(3);
-            switch(r)
-            {
-                case 0: PackItem(new RoastingPigOnASpitDeed()); break;
-                case 1: PackItem(new FormalDiningTableDeed()); break;
-                case 2: PackItem(new BuffetTableDeed()); break;
-            }
+          
         }
 
         public override void OnDamage(int amount, Mobile from, bool willKill)
@@ -408,6 +379,38 @@ namespace Server.Mobiles
                 c.DropItem(DawnsMusicGear.RandomCommon);
             else
                 c.DropItem(DawnsMusicGear.RandomUncommon);
+
+            Item pot = null;
+            this.SorteiaItem(new AutomatonActuator());
+            this.SorteiaItem(Decos.RandomDeco());
+            switch (Utility.Random(4))
+            {
+                case 0: pot = new HealPotion(); break;
+                case 1: pot = new RefreshPotion(); break;
+                case 2: pot = new HealPotion(); break;
+                case 3: pot = new CurePotion(); break;
+            }
+            pot.Amount = 50;
+            SorteiaItem(pot);
+            SorteiaItem(new PowerCrystal());
+            if (Utility.RandomBool())
+                SorteiaItem(new PowerCrystal());
+            SorteiaItem(new ClockworkAssembly());
+            if (Utility.RandomBool())
+                SorteiaItem(new ClockworkAssembly());
+            PackItem(new Gold(2000));
+            SorteiaItem(new MechanicalLifeManual());
+            this.SorteiaItem(new Item(0xA517));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            if (Utility.RandomDouble() < 0.1)
+                SorteiaItem(Carnage.GetRandomPS(110));
+            var r = Utility.Random(3);
+            switch (r)
+            {
+                case 0: SorteiaItem(new RoastingPigOnASpitDeed()); break;
+                case 1: SorteiaItem(new FormalDiningTableDeed()); break;
+                case 2: SorteiaItem(new BuffetTableDeed()); break;
+            }
 
         }
 

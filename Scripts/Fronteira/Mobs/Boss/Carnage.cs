@@ -55,14 +55,22 @@ namespace Server.Mobiles
             ControlSlots = 4;
             MinTameSkill = 102.0;
 
-            PackItem(new SkillBook());
-            PackItem(new LivroAntigo());
-            PackItem(Decos.RandomDeco());
+          
             SetWeaponAbility(WeaponAbility.BleedAttack);
             SetWeaponAbility(WeaponAbility.WhirlwindAttack);
-            PackItem(GetRandomPS(105));
-            PackItem(new PergaminhoCarregamento());
+
             last = DateTime.UtcNow;
+        }
+
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            SorteiaItem(GetRandomPS(105));
+            SorteiaItem(GetRandomPS(110));
+            SorteiaItem(new PergaminhoCarregamento());
+            SorteiaItem(new SkillBook());
+            SorteiaItem(new LivroAntigo());
+            SorteiaItem(Decos.RandomDeco());
         }
 
         public override void OnDamagedBySpell(Mobile from)
@@ -152,10 +160,6 @@ namespace Server.Mobiles
             if (NoKillAwards)
                 return base.OnBeforeDeath();
 
-            var matadores = GetLootingRights().Where(p => p != null && p.m_Mobile != null && p.m_Mobile.Alive).ToList();
-            var ganhador = matadores[Utility.Random(matadores.Count)];
-            ganhador.m_Mobile.Backpack.AddItem(GetRandomPS(110));
-            ganhador.m_Mobile.SendMessage("Voce ganhou um pergaminho do poder RARO !!!!");
             GolemMecanico.JorraOuro(this.Location, this.Map, 150);
             return base.OnBeforeDeath();
         }

@@ -32,7 +32,7 @@ namespace Server.Scripts
         // Adds a 'violent swing' mechanic which gives dexers triggerable burst damage.
         public static class ViolentSwingMechanic
         {
-            public static readonly bool Enabled = true;
+            public static readonly bool Enabled = false;
 
             public static readonly int StaminaRequired = 20;
             //public static readonly int DamageBonusPercentage = 75;  old mechanic

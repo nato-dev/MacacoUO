@@ -51,12 +51,7 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 60;
             this.PackNecroReg(200, 375);
-            PackItem(Decos.RandomDeco());
-            PackItem(new LivroAntigo());
-            var a = new CarpenterApron();
-            a.Bonus = 5;
-            PackItem(a);
-            PackItem(new PergaminhoSagradoDeRunebook());
+        
         }
 
         public AncientLichRenowned(Serial serial)
@@ -78,6 +73,17 @@ namespace Server.Mobiles
                 return new Type[] { /*typeof(SummonersKilt)*/ };
             }
         }
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            SorteiaItem(Decos.RandomDeco());
+            SorteiaItem(new LivroAntigo());
+            var a = new CarpenterApron();
+            a.Bonus = 5;
+            SorteiaItem(a);
+            SorteiaItem(new PergaminhoSagradoDeRunebook());
+        }
+
         public override OppositionGroup OppositionGroup
         {
             get

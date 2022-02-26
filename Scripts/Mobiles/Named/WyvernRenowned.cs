@@ -46,7 +46,6 @@ namespace Server.Mobiles
             this.Karma = -24000;
 
             this.VirtualArmor = 70;
-            this.AddItem(new SoulForgeDeed());
         }
 
         public WyvernRenowned(Serial serial)
@@ -127,6 +126,12 @@ namespace Server.Mobiles
         public override int GetDeathSound()
         {
             return 716;
+        }
+
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            this.SorteiaItem(new SoulForgeDeed());
         }
 
         public override int GetHurtSound()

@@ -383,7 +383,15 @@ namespace Server.Engines.BulkOrders
                 Type objectType = o.GetType();
                 Item item = o as Item;
 
-                if (m_AmountCur >= m_AmountMax)
+                if(item is BaseWeapon && !((BaseWeapon)item).PlayerConstructed)
+                {
+                    from.SendMessage("Este item nao tem qualidade suficiente, parece ate que foi comprado de uma loja barata...");
+                }
+                else if (item is BaseArmor && !((BaseArmor)item).PlayerConstructed)
+                {
+                    from.SendMessage("Este item nao tem qualidade suficiente, parece ate que foi comprado de uma loja barata...");
+                }
+                else if (m_AmountCur >= m_AmountMax)
                 {
                     from.SendMessage("A quantidade pedida ja foi combinada"); // The maximum amount of requested items have already been combined to this deed.
                 }

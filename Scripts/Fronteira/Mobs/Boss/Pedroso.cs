@@ -63,32 +63,9 @@ namespace Server.Mobiles
 
             SetWeaponAbility(WeaponAbility.ConcussionBlow);
             AddItem(new Gold(1000));
-            AddItem(new Granite());
-            AddItem(new Rock1Rand());
-            AddItem(new Rock2Rand());
-            AddItem(new BronzeIngot(300));
-            if (Utility.RandomBool())
-                AddItem(new ElementalBall(500));
-            if (Utility.RandomBool())
-                AddItem(new QuartzoIngot(80));
-            else
-                AddItem(new BeriloIngot(80));
+         
 
-
-            if(Utility.RandomDouble() < 0.3)
-            {
-                var t = new SmeltersTalisman(getRecursoTalisman());
-                t.Charges = 20;
-                AddItem(t);
-            }
-
-            if(Utility.RandomDouble() < 0.15)
-            {
-                if (Utility.RandomBool())
-                    AddItem(new AdamantiumIngot(30));
-                else
-                    AddItem(new VibraniumIngot(30));
-            }
+           
             //AddItem(Carnage.GetRandomPS(110));
         }
 
@@ -142,9 +119,28 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-         
-            c.DropItem(new DecoRelPor());
-            c.DropItem(new DecoRelPor());
+
+            SorteiaItem(new DecoRelPor());
+            SorteiaItem(new DecoRelPor());
+
+            SorteiaItem(new Granite());
+            SorteiaItem(new Rock1Rand());
+            SorteiaItem(new Rock2Rand());
+            SorteiaItem(new BronzeIngot(300));
+            if (Utility.RandomBool())
+                SorteiaItem(new ElementalBall(500));
+            if (Utility.RandomBool())
+                SorteiaItem(new QuartzoIngot(80));
+            else
+                SorteiaItem(new BeriloIngot(80));
+
+
+            if (Utility.RandomDouble() < 0.3)
+            {
+                var t = new SmeltersTalisman(getRecursoTalisman());
+                t.Charges = 20;
+                SorteiaItem(t);
+            }
 
             var wind = new Kirin();
             wind.MoveToWorld(c.Location, c.Map);

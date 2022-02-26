@@ -1,5 +1,6 @@
 using Server.Items;
 using Server.Items.Crops;
+using Server.Items.Functional.Pergaminhos;
 using System;
 
 namespace Server.Mobiles
@@ -47,18 +48,28 @@ namespace Server.Mobiles
             this.Karma = -22500;
 
             this.VirtualArmor = 150;
-
-            PackItem(new DragonWolfCostume());
-            PackItem(new SnapdragonSeed(3));
-            if (Utility.RandomBool())
-            {
-                PackItem(new DraconicOrb());
-            }
         }
 
         public AncientWyrm(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            SorteiaItem(new TemplateDeed());
+            SorteiaItem(new DragonWolfCostume());
+            SorteiaItem(new SnapdragonSeed(3));
+            if (Utility.RandomBool())
+            {
+                SorteiaItem(new DraconicOrb());
+            }
+            SorteiaItem(Carnage.GetRandomPS(105));
+            var arma = Loot.RandomWeapon();
+            arma.WeaponAttributes.HitFireArea = 15;
+            if (arma.Name != null)
+                arma.Name += " de fogo de dragao";
         }
 
         public override bool ReacquireOnMovement

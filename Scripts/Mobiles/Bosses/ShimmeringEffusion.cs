@@ -71,7 +71,7 @@ namespace Server.Mobiles
 
             SorteiaItem(BaseEssencia.RandomEssencia());
             SorteiaItem(BaseEssencia.RandomEssencia());
-            c.DropItem(new ShimmeringCrystals());
+            SorteiaItem(new ShimmeringCrystals());
 
             switch (Utility.Random(4))
             {
@@ -90,7 +90,7 @@ namespace Server.Mobiles
             }
 
             if (Utility.RandomDouble() < 0.05)
-                c.DropItem(new FerretImprisonedInCrystal());
+                SorteiaItem(new FerretImprisonedInCrystal());
 
             if (Utility.RandomDouble() < 0.025)
                 SorteiaItem(new CrystallineRing());
