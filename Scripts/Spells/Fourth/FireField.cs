@@ -137,7 +137,7 @@ namespace Server.Spells.Fourth
             public Mobile Caster { get { return m_Caster; } }
 
             public FireFieldItem(int itemID, Point3D loc, Mobile caster, Map map, TimeSpan duration)
-                : this(itemID, loc, caster, map, duration, 2)
+                : this(itemID, loc, caster, map, duration, (int)(caster.Player ? 2 : caster.Skills.Magery.Value / 5))
             {
             }
 
@@ -147,7 +147,7 @@ namespace Server.Spells.Fourth
                 bool canFit = SpellHelper.AdjustField(ref loc, map, 12, false);
                 nivelColar = ColarElemental.GetNivel(caster, ElementoPvM.Fogo);
                 var house = BaseHouse.FindHouseAt(loc, map, loc.Z);
-                if(house != null)
+                if (house != null)
                 {
                     Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
                     {
@@ -166,6 +166,10 @@ namespace Server.Spells.Fourth
 
                 m_Damage = damage;
 
+                if (Shard.DebugEnabled)
+                {
+                    Shard.Debug("Dano Fire Field: " + damage);
+                }
                 m_End = DateTime.UtcNow + duration;
 
                 m_Timer = new InternalTimer(this, caster.InLOS(this), canFit);
@@ -212,7 +216,7 @@ namespace Server.Spells.Fourth
 
                 int version = reader.ReadInt();
 
-                switch ( version )
+                switch (version)
                 {
                     case 2:
                         {
@@ -242,11 +246,11 @@ namespace Server.Spells.Fourth
 
             public override bool OnMoveOver(Mobile m)
             {
-                if(Shard.DebugEnabled)
-                    Shard.Debug("Visible " + Visible + " CanHarm " + m_Caster.CanBeHarmful(m, false)+" Valid target "+ SpellHelper.ValidIndirectTarget(m_Caster, m));
+                if (Shard.DebugEnabled)
+                    Shard.Debug("Visible " + Visible + " CanHarm " + m_Caster.CanBeHarmful(m, false) + " Valid target " + SpellHelper.ValidIndirectTarget(m_Caster, m));
                 if (Visible && m_Caster != null && m_Caster.CanBeHarmful(m, false))
                 {
-                    if(Shard.DebugEnabled)
+                    if (Shard.DebugEnabled)
                     {
                         Shard.Debug("Caster " + Caster.Name + " Alvo " + m.Name);
                     }
@@ -255,17 +259,10 @@ namespace Server.Spells.Fourth
 
                     if (SpellHelper.CanRevealCaster(m))
                         m_Caster.RevealingAction();
-					
+
                     m_Caster.DoHarmful(m);
 
                     int damage = m_Damage;
-
-                    if (!Core.AOS && m_Caster != m && m.CheckSkillMult(SkillName.MagicResist, 0.0, 110, 0))
-                    {
-                        damage = 1;
-
-                        m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-                    }
 
                     Shard.Debug("Dano Firefield");
 
@@ -323,7 +320,7 @@ namespace Server.Spells.Fourth
                                 if ((m.Z + 16) > m_Item.Z && (m_Item.Z + 12) > m.Z && SpellHelper.ValidIndirectTarget(caster, m) && caster.CanBeHarmful(m, false))
                                 {
                                     m_Queue.Enqueue(m);
-                                }  
+                                }
                             }
 
                             eable.Free();
@@ -342,13 +339,6 @@ namespace Server.Spells.Fourth
                                 caster.DoHarmful(m);
 
                                 int damage = m_Item.m_Damage;
-
-                                if (!Core.AOS && m != caster && m.CheckSkillMult(SkillName.MagicResist, 0.0, 30.0))
-                                {
-                                    damage = 1;
-
-                                    m.SendLocalizedMessage(501783); // You feel yourself resisting magical energy.
-                                }
 
                                 AOS.Damage(m, caster, damage, 0, 100, 0, 0, 0);
                                 m.PlaySound(0x208);

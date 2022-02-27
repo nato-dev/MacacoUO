@@ -28,7 +28,7 @@ namespace Server.Mobiles
                 }
                 else
                 {
-                    b.Name = " das terras perdidas";
+                    b.Name += " das terras perdidas";
                     b.Hue = hue;
                 }
               

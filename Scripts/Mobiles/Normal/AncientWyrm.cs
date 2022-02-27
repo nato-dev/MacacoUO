@@ -1,6 +1,8 @@
 using Server.Items;
 using Server.Items.Crops;
 using Server.Items.Functional.Pergaminhos;
+using Server.Spells;
+using Server.Spells.Fourth;
 using System;
 
 namespace Server.Mobiles
@@ -8,14 +10,13 @@ namespace Server.Mobiles
     [CorpseName("a dragon corpse")]
     public class AncientWyrm : BaseCreature
     {
-
         public override bool IsBoss => true;
 
         [Constructable]
         public AncientWyrm()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            this.Name = "an ancient wyrm";
+            this.Name = "dragao anciao";
             this.Body = 46;
             this.BaseSoundID = 362;
 
@@ -37,7 +38,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Energy, 60, 70);
 
             this.SetSkill(SkillName.EvalInt, 80.1, 100.0);
-            this.SetSkill(SkillName.Magery, 80.1, 100.0);
+            this.SetSkill(SkillName.Magery, 200, 200);
             this.SetSkill(SkillName.Meditation, 52.5, 75.0);
             this.SetSkill(SkillName.MagicResist, 100.5, 150.0);
             this.SetSkill(SkillName.Tactics, 97.6, 100.0);
@@ -61,15 +62,27 @@ namespace Server.Mobiles
             SorteiaItem(new TemplateDeed());
             SorteiaItem(new DragonWolfCostume());
             SorteiaItem(new SnapdragonSeed(3));
+            c.AddItem(new CottonSeed(20));
+
+            switch(Utility.Random(4))
+            {
+                case 0: SorteiaItem(new VinyardGroundAddonDeed()); break;
+                case 1: SorteiaItem(new kegstorageAddonDeed()); break;
+                case 2: SorteiaItem(new bottlerackAddonDeed()); break;
+                case 3: SorteiaItem(new BeerKeg()); break;
+            }
+
             if (Utility.RandomBool())
             {
                 SorteiaItem(new DraconicOrb());
             }
             SorteiaItem(Carnage.GetRandomPS(105));
             var arma = Loot.RandomWeapon();
+            arma.Resource = CraftResource.Bronze;
+            arma.Quality = ItemQuality.Exceptional;
             arma.WeaponAttributes.HitColdArea = 15;
             if (arma.Name != null)
-                arma.Name += " de fogo de dragao";
+                arma.Name += " de gelo de dragao";
         }
 
         public override bool ReacquireOnMovement

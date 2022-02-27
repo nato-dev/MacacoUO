@@ -10,7 +10,13 @@ namespace Server.Mobiles
     [CorpseName("a dragon turtle corpse")]
 	public class DragonTurtle : BaseChampion
 	{
-		public override Type[] UniqueList{ get { return new Type[] { }; }}
+
+        public override bool IsBoss => true;
+        public override bool ReduceSpeedWithDamage => true;
+        public override bool IsSmart => true;
+        public override bool UseSmartAI => true;
+
+        public override Type[] UniqueList{ get { return new Type[] { }; }}
 		public override Type[] SharedList{ get { return new Type[] { }; }}
 		public override Type[] DecorativeList{ get { return new Type[] { }; }}
 		public override MonsterStatuetteType[] StatueTypes{ get { return new MonsterStatuetteType[] { }; }}
@@ -28,7 +34,7 @@ namespace Server.Mobiles
 			SetDex(185, 240);
 			SetInt(487, 562);
 			
-			SetDamage( 25, 37 );
+			SetDamage( 35, 47 );
 			
 			SetHits(60000);
 			
@@ -40,8 +46,10 @@ namespace Server.Mobiles
 			
 			SetDamageType( ResistanceType.Physical, 50 );
 			SetDamageType( ResistanceType.Poison, 50 );
-			
-			SetSkill( SkillName.MagicResist, 90, 120 );
+
+            SetSkill(SkillName.EvalInt, 200, 200);
+            SetSkill(SkillName.Magery, 200, 200);
+            SetSkill( SkillName.MagicResist, 90, 120 );
 			SetSkill( SkillName.Tactics, 200, 110 );
 			SetSkill( SkillName.Wrestling, 225, 227 );
 			
@@ -55,8 +63,14 @@ namespace Server.Mobiles
         {
 			AddLoot(LootPack.LV7, 3);
         }
-		
-		public override int Meat{ get{ return 1; } }
+
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+
+        }
+
+        public override int Meat{ get{ return 1; } }
 		public override int Hides{ get{ return 33; } }
         public override FoodType FavoriteFood { get { return FoodType.FruitsAndVegies; } }
         public override bool HasBreath { get { return true; } }
@@ -263,21 +277,23 @@ namespace Server.Mobiles
 
             _Affected[m] = hue;
 
-            ResistanceMod mod = new ResistanceMod(type, -25);
-            m.AddResistanceMod(mod);
-
+            //ResistanceMod mod = new ResistanceMod(type, -25);
+            //m.AddResistanceMod(mod);
+            m.VirtualArmorMod -= 30;
+            m.SendMessage("Voce sente suas defesas se desfazendo");
+            var mod = new TimedSkillMod(SkillName.MagicResist, false, -100, DateTime.UtcNow + TimeSpan.FromSeconds(30));
+            m.AddSkillMod(mod);
             BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.DragonTurtleDebuff, 1156192, 1156192));
 
-            Server.Timer.DelayCall(TimeSpan.FromSeconds(30), RemoveMod_Callback, new object[] { m, mod } );
+            Server.Timer.DelayCall(TimeSpan.FromSeconds(30), RemoveMod_Callback, new object[] { m } );
         }
 
         private void RemoveMod_Callback(object obj)
         {
             object[] o = obj as object[];
             Mobile m = o[0] as Mobile;
-            ResistanceMod mod = (ResistanceMod)o[1];
+            m.VirtualArmorMod += 30;
 
-            m.RemoveResistanceMod(mod);
             BuffInfo.RemoveBuff(m, BuffIcon.DragonTurtleDebuff);
 
             if (_Affected != null && _Affected.ContainsKey(m))

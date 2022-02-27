@@ -10,6 +10,11 @@ namespace Server.Mobiles
 {
     public class CorgulTheSoulBinder : BaseSeaChampion
     {
+        public override bool IsBoss => true;
+        public override bool ReduceSpeedWithDamage => true;
+        public override bool IsSmart => true;
+        public override bool UseSmartAI => true;
+
         private DateTime m_NextDismount;
         private DateTime m_NextArea;
         private DateTime m_NextReturn;

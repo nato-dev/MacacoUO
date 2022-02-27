@@ -15,6 +15,7 @@ using Server.ContextMenus;
 using Leilaum.Utilities;
 using Leilaum.Interfaces;
 using Server.Regions;
+using Server.Gumps;
 
 namespace Shrink.ShrinkSystem
 {
@@ -150,7 +151,16 @@ namespace Shrink.ShrinkSystem
 				from.SendMessage( 54, "The server is on a shrinkitem lockdown. You cannot unshrink your pet at this time." );
 
 			else if ( !m_Pet.CanBeControlledBy( from ))
-				from.SendMessage( "Voce nao tem taming suficiente para controlar esta criatura.");
+            {
+                from.SendMessage(38, "Voce pode nao ter taming suficiente para controlar este animal. Deseja mesmo retira-lo ?");
+                from.SendGump(new GumpOpcoes("Retirar?", opt => {
+                    if(opt==0)
+                        UnshrinkPet(from);
+                }, this.ItemID, this.Hue, "Retirar", "Deixar"));
+            }
+			//	from.SendMessage( "Voce nao tem taming suficiente para controlar esta criatura.");
+
+
 
 			else
 				UnshrinkPet( from );

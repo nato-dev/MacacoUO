@@ -11,6 +11,7 @@ namespace Server.Items
         public FemalePlateChest()
             : base(0x1C04)
         {
+            Name = "Peitoral de Placa Feminina";
             this.Weight = 4.0;
         }
 

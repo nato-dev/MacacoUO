@@ -64,7 +64,7 @@ namespace Server.Mobiles
 
             Tamable = true;
             ControlSlots = 3;
-            MinTameSkill = 106;
+            MinTameSkill = 116;
 
             if (Utility.RandomDouble() < 0.1)
             {

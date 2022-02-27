@@ -229,6 +229,8 @@
     <Compile Include="Fronteira\Guia\AcampamentosGump.cs" />
     <Compile Include="Fronteira\Guia\DungeonsGump.cs" />
     <Compile Include="Fronteira\Imbuing\Essencias\EssLuz.cs" />
+    <Compile Include="Fronteira\Items\PergaminhoSkillcap.cs" />
+    <Compile Include="Fronteira\Mobs\Boss\ZeFoguinho.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZumbiPalmares.cs" />
     <Compile Include="Fronteira\Mobs\GoblinDoTesouro.cs" />
     <Compile Include="Fronteira\Mobs\GreaterGiantSpider.cs" />
@@ -14287,6 +14289,15 @@
     <Folder Include="Fronteira\Leilao\Modified\" />
     <Folder Include="Fronteira\NewFolder1\" />
     <Folder Include="Items\Functional\Herding\" />
+    <Folder Include="Services\Factions\Core\" />
+    <Folder Include="Services\Factions\Definitions\" />
+    <Folder Include="Services\Factions\Gumps\" />
+    <Folder Include="Services\Factions\Instances\Factions\" />
+    <Folder Include="Services\Factions\Instances\Towns\" />
+    <Folder Include="Services\Factions\Items\Equipment\" />
+    <Folder Include="Services\Factions\Items\Traps\" />
+    <Folder Include="Services\Factions\Mobiles\Guards\Types\" />
+    <Folder Include="Services\Factions\Mobiles\Vendors\" />
     <Folder Include="VitaNex\Items\Tools\" />
   </ItemGroup>
   <ItemGroup>

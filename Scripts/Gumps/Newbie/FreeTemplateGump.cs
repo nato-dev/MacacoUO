@@ -176,6 +176,13 @@ namespace Server.Gumps
                     from.Skills[skill].Base = v;
                 }
 
+                if (pl.RawStr < 60)
+                    pl.RawStr = 60;
+                if (pl.RawDex < 60)
+                    pl.RawDex = 60;
+                if (pl.RawInt < 60)
+                    pl.RawInt = 60;
+
                 Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
                 Effects.PlaySound(from.Location, from.Map, 0x243);
 

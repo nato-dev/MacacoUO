@@ -8,6 +8,11 @@ namespace Server.Mobiles
 {
     public class Barracoon : BaseChampion
     {
+        public override bool IsBoss => true;
+        public override bool ReduceSpeedWithDamage => true;
+        public override bool IsSmart => true;
+        public override bool UseSmartAI => true;
+
         [Constructable]
         public Barracoon()
             : base(AIType.AI_Melee)
@@ -35,6 +40,8 @@ namespace Server.Mobiles
             SetResistance(ResistanceType.Poison, 70, 75);
             SetResistance(ResistanceType.Energy, 70, 80);
 
+            SetSkill(SkillName.Hiding, 100.0);
+            SetSkill(SkillName.Stealth, 100.0);
             SetSkill(SkillName.MagicResist, 100.0);
             SetSkill(SkillName.Tactics, 118.3, 120.2);
             SetSkill(SkillName.Wrestling, 118.4, 122.7);
@@ -214,6 +221,10 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
+            if(Utility.RandomDouble() < 0.25)
+                SorteiaItem(Carnage.GetRandomPS(110));
+            else
+                SorteiaItem(Carnage.GetRandomPS(105));
             var wind = new Windrunner();
             wind.MoveToWorld(c.Location, c.Map);
             wind.OverheadMessage("* se transformou *");

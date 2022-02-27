@@ -40,6 +40,8 @@ namespace Server.Mobiles
             b.Backpack.DropItem(new Gold(Utility.Random(200, 200)));
             b.DamageMin = (int)(b.DamageMin * 1.2);
             b.DamageMax = (int)(b.DamageMax * 1.2);
+            if (Utility.RandomDouble() < 0.1)
+                b.AddItem(new RecipeScroll((int)CarpRecipes.AcidProofRope));
         }
 
         [Constructable]

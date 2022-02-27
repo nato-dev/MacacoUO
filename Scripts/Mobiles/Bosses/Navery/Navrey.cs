@@ -120,16 +120,16 @@ namespace Server.Mobiles
                 m_Spawner.OnNavreyKilled();
 
             if (Utility.RandomBool())
-                c.AddItem(new UntranslatedAncientTome());
+                SorteiaItem(new UntranslatedAncientTome());
 
             if (0.1 >= Utility.RandomDouble())
-                c.AddItem(ScrollOfTranscendence.CreateRandom(30, 30));
+                SorteiaItem(ScrollOfTranscendence.CreateRandom(30, 30));
 
             if (0.1 >= Utility.RandomDouble())
-                c.AddItem(new TatteredAncientScroll());
+                SorteiaItem(new TatteredAncientScroll());
 
             if (Utility.RandomDouble() < 0.10)
-                c.DropItem(new LuckyCoin());
+                SorteiaItem(new LuckyCoin());
 
             if (Utility.RandomDouble() < 0.025)
                 DistributeRandomArtifact(this, m_Artifact);

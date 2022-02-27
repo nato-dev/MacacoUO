@@ -2742,7 +2742,7 @@ namespace Server.Mobiles
             if (ControlMaster != null && ControlMaster.Player && from != null && !from.Player)
             {
                 if (StuckMenu.IsInSecondAgeArea(this))
-                    damage = (int)(damage * 2);
+                    damage += damage + damage;
 
                 var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
                 if (nivel > 0)

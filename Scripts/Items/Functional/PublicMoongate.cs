@@ -340,9 +340,9 @@ namespace Server.Items
           {
                 new PMEntry(new Point3D(4111, 439, 5), "1. Deceit"),
                 new PMEntry(new Point3D(731, 1448, 0), "2. Formigueiro Vermelho"),
-                 new PMEntry(new Point3D(1462, 989, 0), "3. Formigueiro Preto"),
+                new PMEntry(new Point3D(1462, 989, 0), "3. Formigueiro Preto"),
                 new PMEntry(new Point3D(1021, 1431, 0), "4. Caverna Orc"),
-              
+                new PMEntry(new Point3D(514, 1561, 5), "5. Shame"),
                 //new PMEntry(new Point3D(5237, 3866, 45), "4. Delucia"),
           }, cost: 100);
 
@@ -353,12 +353,15 @@ namespace Server.Items
           new[]
           {
               new PMEntry(new Point3D(4721, 3817, 5), "1. Hyloth"),
-              new PMEntry(new Point3D(2768, 3517, 0), "2. Caverna de Fogo"),
+              new PMEntry(new Point3D(1298, 1081, 5), "2. Despise"),
               new PMEntry(new Point3D(1999, 81, 4), "3. Caverna de Gelo"),
-              new PMEntry(new Point3D(1298, 1081, 5), "4. Despise"),
-              new PMEntry(new Point3D(2043, 227, 14), "5. Wrong"),
-              new PMEntry(new Point3D(1176, 2637, 5), "6. Destard"),
-              new PMEntry(new Point3D(514, 1561, 5), "7. Shame"),
+              new PMEntry(new Point3D(2043, 227, 14), "4. Wrong"),
+              new PMEntry(new Point3D(2768, 3517, 0), "5. Caverna de Fogo"),
+              new PMEntry(new Point3D(3785,1109, 21), "6. Caverna de Cristal"),
+              new PMEntry(new Point3D(1482, 1474, 0), "7. Castelo Blackthorn"),
+              new PMEntry(new Point3D(1176, 2637, 5), "8. Destard"),
+              new PMEntry(new Point3D(4191, 3269, 0), "9. Submundo"),
+              
              //    new PMEntry(new Point3D(2494, 927, 0), "1. Covetous"),
           }, cost: 500);
 

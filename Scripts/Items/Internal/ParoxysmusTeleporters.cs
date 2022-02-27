@@ -37,15 +37,22 @@ namespace Server.Items
 			
                 if (rope != null && !rope.Deleted)
                 {
-                    if (Utility.RandomDouble() < 0.3)
+                    if (Utility.RandomDouble() < 0.15)
                     {
-                        m.SendLocalizedMessage(1075097); // Your rope is severely damaged by the acidic environment.  You're lucky to have made it safely to the ground.
+                        m.SendLocalizedMessage("A corda se rompeu"); // Your rope is severely damaged by the acidic environment.  You're lucky to have made it safely to the ground.
                         rope.Delete();
                     }
                     else
-                        m.SendLocalizedMessage(1075098); // Your rope has been weakened by the acidic environment.
+                        m.SendLocalizedMessage("A corda foi enfraquecida"); // Your rope has been weakened by the acidic environment.
 					
                     return base.OnMoveOver(m);					
+                } else
+                {
+                    if(!m.IsCooldown("dicorda"))
+                    {
+                        m.SetCooldown("dicorda", TimeSpan.FromMinutes(10));
+                        m.SendMessage(78, "Voce precisa de uma corda que seja resistente a acidos para entrar aqui");
+                    }
                 }
             }
             else

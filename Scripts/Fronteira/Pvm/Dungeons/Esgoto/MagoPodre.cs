@@ -174,7 +174,21 @@ namespace Server.Mobiles
                 if(r.m_HasRight && r.m_Mobile != null && r.m_Mobile is PlayerMobile)
                 {
                     var p = (PlayerMobile)r.m_Mobile;
-                    if(p.Young && p.Wisp != null)
+                    bool daItem = true;
+                    foreach(var i in p.Backpack.Items)
+                    {
+                        if(i is IResource)
+                        {
+                            var res = i as IResource;
+                            if(res.Resource == CraftResource.Cobre)
+                            {
+                                daItem = false;
+                                break;
+                            }
+                        }
+                    }
+
+                    if(daItem && p.Young && p.Wisp != null)
                     {
                         switch (p.Profession)
                         {

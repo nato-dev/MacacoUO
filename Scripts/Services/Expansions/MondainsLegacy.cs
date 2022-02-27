@@ -36,12 +36,14 @@ namespace Server
         };
         private static readonly Type[] m_Artifacts = new Type[]
         {
+            /*
             typeof(AegisOfGrace), typeof(BladeDance), typeof(BloodwoodSpirit), typeof(Bonesmasher),
             typeof(Boomstick), typeof(BrightsightLenses), typeof(FeyLeggings), typeof(FleshRipper),
             typeof(HelmOfSwiftness), typeof(PadsOfTheCuSidhe), typeof(QuiverOfRage), typeof(QuiverOfElements),
             typeof(RaedsGlory), typeof(RighteousAnger), typeof(RobeOfTheEclipse), typeof(RobeOfTheEquinox),
             typeof(SoulSeeker), typeof(TalonBite), typeof(TotemOfVoid), typeof(WildfireBow),
             typeof(Windsong)
+            */
         };
         // true - dungeon is enabled, false - dungeon is disabled
         private static bool m_PalaceOfParoxysmus;

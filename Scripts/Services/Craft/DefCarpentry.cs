@@ -243,13 +243,13 @@ namespace Server.Engines.Craft
                 AddRes(index, typeof(PristineDreadHorn), 1032634, 1, 1053098);
                 ForceNonExceptional(index);
 
-                index = AddCraft(typeof(AcidProofRope), 1044294, 1074886, 80, 130.0, typeof(GreaterStrengthPotion), 1073466, 2, 1044253);
-                AddRes(index, typeof(ProtectionScroll), 1044395, 1, 1053098);
-                AddRes(index, typeof(SwitchItem), 1032127, 1, 1053098);
-                AddRecipe(index, (int)CarpRecipes.AcidProofRope);
-                ForceNonExceptional(index);
             }
             #endregion
+
+            index = AddCraft(typeof(AcidProofRope), 1044294, 1074886, 80, 130.0, typeof(GreaterStrengthPotion), 1073466, 10, 1044253);
+            AddRes(index, typeof(ProtectionScroll), 1044395, 10, 1053098);
+            AddRecipe(index, (int)CarpRecipes.AcidProofRope);
+            ForceNonExceptional(index);
 
             #region SA
             if (Core.SA)

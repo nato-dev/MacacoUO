@@ -20,7 +20,7 @@ public class BeerKeg : BaseContainer
 		[Constructable]
 		public BeerKeg() : base( 0xE7F )
 		{
-			Name = "a beer Keg";
+			Name = "tonel de cerveja";
 			Weight = 25.0;
 		}
 

@@ -19,7 +19,7 @@ namespace Server.Ziden.Items
 
         public static void BixoNasce(BaseCreature bc)
         {
-            foreach (var lapide in lapides)
+            foreach (var lapide in new List<LapideBoss>(lapides))
             {
                 if (lapide.Nome.ToLower() == bc.GetType().Name.ToLower())
                 {
@@ -69,11 +69,11 @@ namespace Server.Ziden.Items
 
         public override void OnDoubleClick(Mobile from)
         {
-            foreach (var o in spawner.SpawnObjects)
+            foreach (var spawnObject in spawner.SpawnObjects)
             {
-                if (o.TypeName.ToLower() == Nome.ToLower())
+                if (spawnObject.TypeName.ToLower() == Nome.ToLower())
                 {
-                    var t = (o.NextSpawn - DateTime.UtcNow + spawner.NextSpawn);
+                    var t = (spawnObject.NextSpawn - DateTime.UtcNow + spawner.NextSpawn);
                     int weeks = (int)t.Days / 7;
                     int days = t.Days;
                     int hours = t.Hours;
@@ -83,7 +83,17 @@ namespace Server.Ziden.Items
                     else if (minutes > 1)
                         from.SendMessage("Respawn do boss - Minutos: " + t.Minutes.ToString());
                     else
-                        from.SendMessage("Respawn do boss - Segundos: " + t.Seconds.ToString());
+                    {
+                        if(t.Seconds > 0)
+                        {
+                            from.SendMessage("Respawn do boss - Segundos: " + t.Seconds.ToString());
+                        } else
+                        {
+                            from.SendMessage("Respawn do boss - Muito em breve ");
+                        }
+                       
+                    }
+                     
                     return;
                 }
             }

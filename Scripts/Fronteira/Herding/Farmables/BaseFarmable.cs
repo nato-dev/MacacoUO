@@ -214,6 +214,7 @@ namespace Server.Items
             }
 
             spawn.Amount = amt;
+            spawn.Amount += (int)Math.Round(amt * from.GetBonusElemento(ElementoPvM.Gelo));
 
             var check = from.CheckSkillMult(SkillName.Herding, GetMinSkill(), GetMaxSkill());
 

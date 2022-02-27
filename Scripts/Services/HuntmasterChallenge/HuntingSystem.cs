@@ -76,7 +76,7 @@ namespace Server.Engines.HuntsmasterChallenge
 
             Movable = false;
             Visible = false;
-            Name = "Huntsmaster Challenge System";
+            Name = "Desafios do Cacador";
 
             MoveToWorld(new Point3D(744, 2136, 0), Map.Trammel);
 		}

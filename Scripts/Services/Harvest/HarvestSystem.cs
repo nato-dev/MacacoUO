@@ -250,6 +250,10 @@ namespace Server.Engines.Harvest
                     else
                     {
                         int amount = def.ConsumedPerHarvest;
+
+                        var bonusGelo = amount * from.GetBonusElemento(ElementoPvM.Gelo);
+                        amount += (int)Math.Round(bonusGelo);
+
                         int feluccaAmount = amount;
 
                         if (item is BaseGranite)
@@ -697,7 +701,7 @@ namespace Server.Engines.Harvest
             {
                 OnConcurrentHarvest(from, tool, def, toHarvest);
                 return;
-            }    
+            }
 
             new HarvestTimer(from, tool, this, def, toHarvest, toLock).Start();
             OnHarvestStarted(from, tool, def, toHarvest);
