@@ -9,7 +9,7 @@ namespace Server.Mobiles
     public class Barracoon : BaseChampion
     {
         public override bool IsBoss => true;
-        public override bool ReduceSpeedWithDamage => true;
+        public override bool ReduceSpeedWithDamage => false;
         public override bool IsSmart => true;
         public override bool UseSmartAI => true;
 

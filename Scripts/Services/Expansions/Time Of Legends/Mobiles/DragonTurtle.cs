@@ -10,9 +10,8 @@ namespace Server.Mobiles
     [CorpseName("a dragon turtle corpse")]
 	public class DragonTurtle : BaseChampion
 	{
-
         public override bool IsBoss => true;
-        public override bool ReduceSpeedWithDamage => true;
+        public override bool ReduceSpeedWithDamage => false;
         public override bool IsSmart => true;
         public override bool UseSmartAI => true;
 

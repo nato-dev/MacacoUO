@@ -42,6 +42,11 @@ namespace Server.Engines.Harvest
                 object newTarget = null;
                 if (HarvestSystem.FindValidTile(from, def, out newTarget))
                 {
+                    if (from is PlayerMobile)
+                    {
+                        var player = (PlayerMobile)from;
+                        player.LastTarget = newTarget;
+                    }
                     system.StartHarvesting(from, m_Tool, newTarget);
                     return;
                 }

@@ -9,7 +9,7 @@ namespace Server.Mobiles
     [CorpseName("a dragon wolf corpse")]
     public class Carnage : BaseCreature
     {
-        public override bool ReduceSpeedWithDamage => true;
+        public override bool ReduceSpeedWithDamage => false;
         public override bool IsSmart => true;
         public override bool UseSmartAI => true;
 
