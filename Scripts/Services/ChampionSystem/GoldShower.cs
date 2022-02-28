@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Server.Items;
+using Server.Mobiles;
 
 namespace Server.Engines.CannedEvil
 {
@@ -10,15 +11,18 @@ namespace Server.Engines.CannedEvil
 	{
 		public static void DoForChamp(Point3D center, Map map)
 		{
+            if (BaseCreature.BypassTimerInicial) return;
 			Do(center, map, ChampionSystem.GoldShowerPiles, ChampionSystem.GoldShowerMinAmount, ChampionSystem.GoldShowerMaxAmount);
 		}
 		public static void DoForHarrower(Point3D center, Map map)
 		{
-			Do(center, map, ChampionSystem.HarrowerGoldShowerPiles, ChampionSystem.HarrowerGoldShowerMinAmount, ChampionSystem.HarrowerGoldShowerMaxAmount);
+            if (BaseCreature.BypassTimerInicial) return;
+            Do(center, map, ChampionSystem.HarrowerGoldShowerPiles, ChampionSystem.HarrowerGoldShowerMinAmount, ChampionSystem.HarrowerGoldShowerMaxAmount);
 		}
 		public static void Do(Point3D center, Map map, int piles, int minAmount, int maxAmount)
 		{
-			new GoodiesTimer(center, map, piles, minAmount, maxAmount).Start();
+            if (BaseCreature.BypassTimerInicial) return;
+            new GoodiesTimer(center, map, piles, minAmount, maxAmount).Start();
 		}
 
 		private class GoodiesTimer : Timer

@@ -122,6 +122,7 @@
     <Compile Include="Fronteira\Bancos\BancoConta.cs" />
     <Compile Include="Fronteira\Classes\Gumps\RPClassGump.cs" />
     <Compile Include="Fronteira\Comandos\Disarm.cs" />
+    <Compile Include="Fronteira\Comandos\docbixo.cs" />
     <Compile Include="Fronteira\Comandos\GenPlantas.cs" />
     <Compile Include="Fronteira\Comandos\GenCamps.cs" />
     <Compile Include="Fronteira\Comandos\FixSpawnersDg.cs" />
@@ -135,6 +136,8 @@
     <Compile Include="Fronteira\Cooking\CookingLoader.cs" />
     <Compile Include="Fronteira\Cooking\PlantaRandom.cs" />
     <Compile Include="Fronteira\Discord\DiscordBot.cs" />
+    <Compile Include="Fronteira\Elementos\GumpColar.cs" />
+    <Compile Include="Fronteira\Elementos\JoiasElementais.cs" />
     <Compile Include="Fronteira\Exp\PctExpGump.cs" />
     <Compile Include="Fronteira\Exp\SkillExpGump.cs" />
     <Compile Include="Fronteira\Factions\Core\Election.cs" />
@@ -235,6 +238,7 @@
     <Compile Include="Fronteira\Mobs\GoblinDoTesouro.cs" />
     <Compile Include="Fronteira\Mobs\GreaterGiantSpider.cs" />
     <Compile Include="Fronteira\Mobs\VendorWS.cs" />
+    <Compile Include="Fronteira\Monstros.cs" />
     <Compile Include="Fronteira\PaidBankChest.cs" />
     <Compile Include="Fronteira\Camping\Acampamento.cs" />
     <Compile Include="Fronteira\Camping\GumpCamping.cs" />
@@ -844,6 +848,7 @@
     <Compile Include="Mobiles\Normal\CoconutCrab.cs" />
     <Compile Include="Mobiles\Normal\Lobster.cs" />
     <Compile Include="Mobiles\Normal\Boura.cs" />
+    <Compile Include="Mobiles\Normal\SkeletalCat.cs" />
     <Compile Include="Mobiles\NPCs\Insurer.cs" />
     <Compile Include="Mobiles\NPCs\Muambeiro.cs" />
     <Compile Include="Mobiles\NPCs\ComissionPlayerVendor.cs" />

@@ -1294,6 +1294,11 @@ namespace Server.Mobiles
                     from.SendMessage("Esta ordem nao esta completa...");
                     return false;
                 }
+                if (from.Skills.AnimalTaming.Value > 70 && bod.Skill + 20 < from.Skills.AnimalTaming.Value)
+                {
+                    from.SendMessage("Voce ja tem muito conhecimento para esta ordem");
+                    return false;
+                }
                 bod.Delete();
                 SayTo(from, true, "Obrigado pelo trabalho, irei cuidar bem dos animais");
 

@@ -2472,7 +2472,8 @@ namespace Server.Items
                 int to = (int)(virtualArmor * scalar);
                 var redux = Utility.Random(from, (to - from) + 1);
                 damage -= redux;
-
+                if (damage < 1)
+                    damage = 1;
                 if (attacker.Player && !defender.Player)
                 {
                     var bonus = attacker.GetBonusElemento(ElementoPvM.Terra) + attacker.GetBonusElemento(ElementoPvM.Raio);

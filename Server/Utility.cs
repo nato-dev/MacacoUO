@@ -46,7 +46,10 @@ namespace Server
 
         public static bool Chance(int pct)
         {
-            return Utility.RandomDouble() <= pct / 100;
+            Shard.Debug("R1");
+            var d = Utility.RandomDouble();
+            Shard.Debug("R2");
+            return d <= pct / 100;
         }
 
 		public static void Separate(StringBuilder sb, string value, string separator)
@@ -871,7 +874,8 @@ namespace Server
 
 		public static bool RandomBool()
 		{
-			return RandomImpl.NextBool();
+            if (FIX != -1) return FIX==1;
+            return RandomImpl.NextBool();
 		}
 
 		public static double RandomMinMax(double min, double max)
@@ -908,7 +912,7 @@ namespace Server
 
 		public static int Random(int from, int count)
 		{
-			if (count == 0)
+            if (count == 0)
 			{
 				return from;
 			}
@@ -932,8 +936,11 @@ namespace Server
 			RandomImpl.NextBytes(buffer);
 		}
 
+        public static double FIX = -1;
+
 		public static double RandomDouble()
 		{
+            if (FIX != -1) return FIX;
 			return RandomImpl.NextDouble();
 		}
         #endregion

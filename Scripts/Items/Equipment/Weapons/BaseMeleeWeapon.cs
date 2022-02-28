@@ -35,6 +35,9 @@ namespace Server.Items
                     if (react <= 0)
                         react = 1;
 
+                    if(Shard.DebugEnabled)
+                        Shard.Debug("Abs damage " + damage);
+
                     defender.MeleeDamageAbsorb -= damage;
                     damage = 0;
 

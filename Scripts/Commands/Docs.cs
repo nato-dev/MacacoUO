@@ -10,6 +10,7 @@ using System.Text;
 using Server.Commands.Generic;
 using Server.Engines.BulkOrders;
 using Server.Items;
+using Server.Mobiles;
 using Server.Network;
 #endregion
 
@@ -41,7 +42,9 @@ namespace Server.Commands
 
     public class Docs
 	{
-		public static void Initialize()
+       
+
+        public static void Initialize()
 		{
 			CommandSystem.Register("DocGen", AccessLevel.Administrator, DocGen_OnCommand);
 		}

@@ -387,12 +387,6 @@ namespace Server.Mobiles
                 return;
             }
 
-            if (StuckMenu.IsInSecondAgeArea(this))
-            {
-                //LocalOverheadMessage(MessageType.Regular, 0, false, "Seu cavalo aguarda do outro lado");
-                return;
-            }
-
             if (DungeonMount != null && this.Alive)
             {
                 DungeonMount.MoveToWorld(Location, Map);
@@ -453,7 +447,7 @@ namespace Server.Mobiles
                 }
             }
 
-            if (newDungeon || StuckMenu.IsInSecondAgeArea(this))
+            if (newDungeon)
             {
                 if (!oldDungeon)
                 {

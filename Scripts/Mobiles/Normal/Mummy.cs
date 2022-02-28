@@ -14,9 +14,10 @@ namespace Server.Mobiles
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.4, 0.8)
         {
             this.Name = "mumia";
+            Shard.Debug("m1", this);
             this.Body = 154;
             this.BaseSoundID = 471;
-
+          
             this.SetStr(30, 60);
             this.SetDex(15, 30);
             this.SetInt(26, 40);

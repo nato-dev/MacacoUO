@@ -482,8 +482,11 @@ namespace Server.Mobiles
             }
         }
 
+        public List<Item> Sorteado = new List<Item>();
+
         public void SorteiaItem(Item i)
         {
+            Sorteado.Add(i);
             var disputando = GetLootingRights(); //.Where(l => l.m_Mobile.Alive).ToList();
             if (disputando.Count > 0)
             {
@@ -494,7 +497,6 @@ namespace Server.Mobiles
                 {
                     if (p.m_Mobile != ganhou.m_Mobile)
                         p.m_Mobile.SendMessage(ganhou.m_Mobile.Name + " ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
-
                 }
             }
         }
@@ -3082,12 +3084,16 @@ namespace Server.Mobiles
         public const int DefaultRangePerception = 16;
         public const int OldRangePerception = 10;
 
+        public static bool BypassTimerInicial = false;
+
         public BaseCreature(
             AIType ai, FightMode mode, int iRangePerception, int iRangeFight, double dActiveSpeed, double dPassiveSpeed)
         {
             if (BypassConstructor)
                 return;
 
+
+            Shard.Debug("Criando", this);
             PhysicalDamage = 100;
 
             CanMove = true;
@@ -3147,7 +3153,7 @@ namespace Server.Mobiles
             {
                 NameHue = 0x35;
             }
-
+            Shard.Debug("Iniciando skills", this);
             InitializeAbilities();
 
             Timer.DelayCall(GenerateLoot, true);
@@ -3164,36 +3170,39 @@ namespace Server.Mobiles
                     this.PackItem(Loot.RandomClothing());
                 }
             }
-            Timer.DelayCall(TimeSpan.FromMilliseconds(100), () =>
-            {
-                if (!Deleted && Alive)
-                    Tamavel.RegistraBixo(this);
 
-                if (this.Map == Map.Ilshenar && !(this.Region is DungeonGuardedRegion))
+            if(!BypassTimerInicial)
+                Timer.DelayCall(TimeSpan.FromMilliseconds(100), () =>
                 {
-                    if (IsParagon || Utility.Random(1000) == 1)
-                        PackItem(Loot.RandomTalisman());
+                    if (!Deleted && Alive)
+                        Tamavel.RegistraBixo(this);
 
-                    if (IsParagon && Utility.Random(5) == 1)
-                        PackItem(new TalismanElemental());
-
-                    //SetHits(Hits * 3);
-                    //SetDamage(m_DamageMin + 8, m_DamageMax + 8);
-                }
-                else if (this.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(this))
-                {
-                    //SetHits((int)(Hits * 2));
-                    //SetDamage(m_DamageMin + 4, m_DamageMax + 4);
-                    if (this.Tamable)
+                    if (this.Map == Map.Ilshenar && !(this.Region is DungeonGuardedRegion))
                     {
-                        if (this.MinTameSkill < 80)
-                            this.MinTameSkill = 105;
-                        else
-                            this.MinTameSkill = 110;
-                    }
+                        if (IsParagon || Utility.Random(1000) == 1)
+                            PackItem(Loot.RandomTalisman());
 
-                }
-            });
+                        if (IsParagon && Utility.Random(5) == 1)
+                            PackItem(new TalismanElemental());
+
+                        //SetHits(Hits * 3);
+                        //SetDamage(m_DamageMin + 8, m_DamageMax + 8);
+                    }
+                    else if (this.Map == Map.Trammel && StuckMenu.IsInSecondAgeArea(this))
+                    {
+                        //SetHits((int)(Hits * 2));
+                        //SetDamage(m_DamageMin + 4, m_DamageMax + 4);
+                        if (this.Tamable)
+                        {
+                            if (this.MinTameSkill < 80)
+                                this.MinTameSkill = 105;
+                            else
+                                this.MinTameSkill = 110;
+                        }
+
+                    }
+                });
+            Shard.Debug("Criado", this);
         }
 
         public BaseCreature(Serial serial)
@@ -6209,7 +6218,7 @@ namespace Server.Mobiles
         {
             if (m_NoLootOnDeath || m_Allured)
                 return;
-
+            Shard.Debug("Gerando loot", this);
             m_Spawning = spawning;
 
             if (!spawning)
@@ -6574,8 +6583,6 @@ namespace Server.Mobiles
 
         public void PackItem(Item item)
         {
-
-
             if (BaseCreature.BypassConstructor)
                 return;
 
@@ -6589,6 +6596,9 @@ namespace Server.Mobiles
                 return;
             }
 
+            if (Shard.DebugEnabled)
+                Shard.Debug($"Adicionando item {item.GetType().Name}", this);
+
             Container pack = Backpack;
 
             if (pack == null)
@@ -6598,12 +6608,19 @@ namespace Server.Mobiles
                 pack.Movable = false;
 
                 AddItem(pack);
+
+                if (Shard.DebugEnabled)
+                    Shard.Debug($"Adicionado mochila", this);
             }
 
+            if (Shard.DebugEnabled)
+                Shard.Debug($"Dropando item", this);
             if (!item.Stackable || !pack.TryDropItem(this, item, false)) // try stack
             {
                 pack.DropItem(item); // failed, drop it anyway
             }
+            if (Shard.DebugEnabled)
+                Shard.Debug($"Dropado", this);
         }
 
         public virtual void SetToChampionSpawn()

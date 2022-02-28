@@ -60,7 +60,7 @@ namespace Server.Engines.Plants
 
         public static Seed RandomPeculiarSeed()
         {
-            return RandomPeculiarSeed();
+            return RandomPeculiarSeed(Utility.Random(3)+1);
         }
 
 

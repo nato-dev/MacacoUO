@@ -30,6 +30,8 @@ namespace Server.Engines.BulkOrders
         [CommandProperty(AccessLevel.GameMaster)]
         public int DuracaoDias { get; set; }
 
+        public double Skill;
+
         public override int Lifespan { get { return 60 * 60 * 24 * DuracaoDias; } }
         public override bool UseSeconds { get { return false; } }
 
@@ -42,6 +44,7 @@ namespace Server.Engines.BulkOrders
             Quantidade = quantidade;
             Cor = tamavel.Hue;
             Nome = tamavel.Name;
+            Skill = tamavel.Skill;
             DuracaoDias = 5;
         }
 
@@ -75,6 +78,7 @@ namespace Server.Engines.BulkOrders
         public override void GetProperties(ObjectPropertyList list)
         {
             base.GetProperties(list);
+            list.Add("Skill Maxima: "+(Skill+20));
             list.Add(string.Format("Domar {0} {1}", Quantidade, Nome));
             list.Add(string.Format("Completo: {0}/{1}", QuantidadeAtual, Quantidade));
         }
@@ -105,13 +109,14 @@ namespace Server.Engines.BulkOrders
         {
             base.Serialize(writer);
 
-            writer.Write((int)2); // version
+            writer.Write((int)3); // version
             writer.Write(Nome);
             writer.Write(Cor);
             writer.Write(Quantidade);
             writer.Write(QuantidadeAtual);
             writer.Write(GraficoBody);
             writer.Write(DuracaoDias);
+            writer.Write(Skill);
         }
 
         public override void Deserialize(GenericReader reader)
@@ -125,6 +130,10 @@ namespace Server.Engines.BulkOrders
             QuantidadeAtual = reader.ReadInt();
             GraficoBody = reader.ReadInt();
             DuracaoDias = reader.ReadInt();
+            if (version >= 3)
+                Skill = reader.ReadDouble();
+            else
+                Skill = 100;
             if (DuracaoDias == 0)
                 DuracaoDias = 5;
         }

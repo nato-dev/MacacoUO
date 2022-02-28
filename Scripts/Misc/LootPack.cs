@@ -702,6 +702,9 @@ namespace Server
 
             int totalChance = 0;
 
+            if (m_Items == null || m_Items.Count() == 0 || m_Items[0] == null)
+                return null;
+
             for (int i = 0; i < m_Items.Length; ++i)
             {
                 totalChance += m_Items[i].Chance;

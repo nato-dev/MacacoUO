@@ -4232,6 +4232,7 @@ namespace Server
 
         public virtual void Kill()
         {
+            Shard.Debug("Morrendo", this);
             m_LastKilled = DateTime.UtcNow;
 
             if (!CanBeDamaged())
@@ -4254,7 +4255,7 @@ namespace Server
             {
                 return;
             }
-
+            Shard.Debug("Cleanup morte", this);
             BankBox box = FindBankNoCreate();
 
             if (box != null && box.Opened)
@@ -4292,6 +4293,7 @@ namespace Server
             Poison = null;
             Combatant = null;
 
+
             if (Paralyzed)
             {
                 Paralyzed = false;
@@ -4311,6 +4313,8 @@ namespace Server
                     m_FrozenTimer.Stop();
                 }
             }
+
+            Shard.Debug("Arrumando items", this);
 
             var content = new List<Item>();
             var equip = new List<Item>();
@@ -4353,6 +4357,8 @@ namespace Server
                         }
                 }
             }
+
+            Shard.Debug("Items mochila", this);
 
             if (pack != null)
             {
@@ -4429,6 +4435,7 @@ namespace Server
                 eable.Free();
             }
 
+            Shard.Debug("OnDeath", this);
             OnDeath(c);
         }
 

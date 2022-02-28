@@ -165,7 +165,8 @@ namespace Server.Items
             else if ((this.lastused + Server.Items.Hearthstone.delay) > DateTime.Now) // make sure its not too soon since last use
             {
                 var diff = (this.lastused + Server.Items.Hearthstone.delay) - DateTime.Now;
-                m.SendMessage("Aguarde "+diff.Seconds+" segundos");
+
+                m.SendMessage("Aguarde "+diff.TotalSeconds+" segundos");
                 return false;
             }
             else if (Server.Spells.SpellHelper.CheckCombat(m)) // use a spell system check to make sure they are not in combat
