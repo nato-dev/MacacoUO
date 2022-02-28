@@ -122,7 +122,7 @@ namespace Server.Mobiles
 
             SorteiaItem(new DecoRelPor());
             SorteiaItem(new DecoRelPor());
-
+            SorteiaItem(new BagOfSending());
             SorteiaItem(new Granite());
             SorteiaItem(new Rock1Rand());
             SorteiaItem(new Rock2Rand());

@@ -4,6 +4,7 @@ using Server.Items;
 using Server.Engines.CannedEvil;
 using System.Collections.Generic;
 using System.Linq;
+using Server.Ziden;
 
 namespace Server.Mobiles
 {
@@ -51,7 +52,9 @@ namespace Server.Mobiles
             SetSkill( SkillName.MagicResist, 90, 120 );
 			SetSkill( SkillName.Tactics, 200, 110 );
 			SetSkill( SkillName.Wrestling, 225, 227 );
-			
+
+            VirtualArmor = 100;
+
 			Fame = 11000;
 			Karma = -11000;
 
@@ -66,7 +69,13 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-
+            SorteiaItem(new PergaminhoSkillcap());
+            SorteiaItem(new PergaminhoSkillcap());
+            var a = new CarpenterApron();
+            a.Bonus = Utility.Random(5, 10);
+            a.Skill = SkillName.Tailoring;
+            a.Name = "Avental do Artesao da Tartaruga Dragao";
+            SorteiaItem(a);
         }
 
         public override int Meat{ get{ return 1; } }

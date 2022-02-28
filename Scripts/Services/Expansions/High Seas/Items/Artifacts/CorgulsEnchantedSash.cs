@@ -10,7 +10,7 @@ namespace Server.Items
         [Constructable]
         public CorgulsEnchantedSash()
         {
-            Attributes.BonusStam = 5;
+            Attributes.BonusStam = 10;
         }
 
         public CorgulsEnchantedSash(Serial serial)

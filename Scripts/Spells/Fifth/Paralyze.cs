@@ -74,7 +74,7 @@ namespace Server.Spells.Fifth
                 else
                 {
                     // Algorithm: ((20% of magery) + 7) seconds [- 50% if resisted]
-                    duration = Utility.Random(4, 3);
+                    duration = Utility.Random(5, 3);
    
                     if (duration <= 0 || this.CheckResisted(m))
                     {

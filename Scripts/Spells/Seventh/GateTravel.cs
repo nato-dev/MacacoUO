@@ -62,7 +62,7 @@ namespace Server.Spells.Seventh
             return SpellHelper.CheckTravel(Caster, TravelCheckType.GateFrom);
         }
 
-        public void Effect(Point3D loc, Map map, bool checkMulti, bool isboatkey = false)
+        public void Effect(Point3D loc, Map map, bool checkMulti, bool isboatkey = false, RecallRune rune=null)
         {
             if (Factions.Sigil.ExistsOn(Caster))
             {
@@ -126,6 +126,10 @@ namespace Server.Spells.Seventh
 
                     firstGate.BoatGate = BaseBoat.FindBoatAt(firstGate, firstGate.Map) != null;
                     secondGate.BoatGate = BaseBoat.FindBoatAt(secondGate, secondGate.Map) != null;
+
+                    if (rune is T2ARecallRune)
+                        rune.Delete();
+
                 });
             }
 
@@ -285,7 +289,7 @@ namespace Server.Spells.Seventh
                     RecallRune rune = (RecallRune)o;
 
                     if (rune.Marked)
-                        m_Owner.Effect(rune.Target, rune.TargetMap, true);
+                        m_Owner.Effect(rune.Target, rune.TargetMap, true, false, rune);
                     else
                         from.SendLocalizedMessage(501803); // That rune is not yet marked.
                 }

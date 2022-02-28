@@ -448,6 +448,11 @@ namespace Server.Items
 
         public override bool OnDragDrop(Mobile from, Item dropped)
         {
+            if(dropped is T2ARecallRune)
+            {
+                from.SendMessage("Esta runa nao pode ser adicionada aqui");
+                return false;
+            }
             if (dropped is RecallRune || dropped is ShipRune)
             {
                 if (IsLockedDown && from.AccessLevel < AccessLevel.GameMaster)

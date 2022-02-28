@@ -1404,10 +1404,10 @@ namespace Server.Engines.Craft
                 bonus += apron.Bonus / 100.0;
             }
 
-            if(system is DefCarpentry)
-            {
-                var avental = from.FindItemOnLayer(Layer.MiddleTorso) as CarpenterApron;
+            var avental = from.FindItemOnLayer(Layer.MiddleTorso) as CarpenterApron;
 
+            if (avental != null && avental.Skill == system.MainSkill)
+            {
                 if (avental != null)
                 {
                     bonus += avental.Bonus / 100.0;

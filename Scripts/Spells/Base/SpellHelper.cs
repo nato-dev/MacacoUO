@@ -19,6 +19,7 @@ using Server.Targeting;
 using Server.Services;
 using Server.Fronteira.Talentos;
 using Server.Fronteira.Elementos;
+using Server.Menus.Questions;
 
 namespace Server
 {
@@ -906,6 +907,14 @@ namespace Server.Spells
 
             if (caster != null && caster.IsPlayer())
             {
+                if(type == TravelCheckType.GateFrom || type == TravelCheckType.GateTo)
+                {
+                    if(StuckMenu.IsInSecondAgeArea(caster))
+                    {
+                        return false;
+                    }
+                }
+
                 // Jail region#
                 if (caster.Region.IsPartOf<Regions.Jail>())
                 {

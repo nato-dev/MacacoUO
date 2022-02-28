@@ -352,6 +352,12 @@ namespace Server.Items
         {
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Perde-se ao usar");
+        }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

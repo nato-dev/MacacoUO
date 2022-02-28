@@ -1,3 +1,4 @@
+using Server.Items;
 using System;
 
 namespace Server.Mobiles
@@ -17,7 +18,7 @@ namespace Server.Mobiles
             this.SetDex(126, 145);
             this.SetInt(281, 305);
 
-            this.SetHits(2522, 2851);
+            this.SetHits(1522, 1851);
 
             this.SetDamage(23, 36);
 
@@ -46,6 +47,9 @@ namespace Server.Mobiles
 
             if (0.1 > Utility.RandomDouble())
                 this.PackItem(new Server.Items.RoastPig());
+
+            if (Utility.RandomDouble() < 0.35)
+                AddItem(new T2ARecallRune());
         }
 
         public Titan(Serial serial)

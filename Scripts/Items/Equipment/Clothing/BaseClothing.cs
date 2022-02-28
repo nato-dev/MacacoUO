@@ -1216,10 +1216,14 @@ namespace Server.Items
                 list.Add("DEBUG: RESIST FRIO: " + m_AosResistances.Cold);
             }
 
+            if (m_AosSkillBonuses != null)
+                m_AosSkillBonuses.GetProperties(list);
+
+            int prop = 0;
+            if ((prop = m_AosAttributes.BonusStam) != 0)
+                list.Add(1060484, prop.ToString()); // stamina increase ~1_val~
+
             return;
-
-
-         
 
             if (m_Crafter != null)
                 list.Add(1050043, m_Crafter.TitleName); // crafted by ~1_NAME~
@@ -1276,10 +1280,8 @@ namespace Server.Items
             if (m_NegativeAttributes != null)
                 m_NegativeAttributes.GetProperties(list, this);
 
-            if (m_AosSkillBonuses != null)
-                m_AosSkillBonuses.GetProperties(list);
+       
 
-            int prop;
 
             if ((prop = ArtifactRarity) > 0)
                 list.Add(1061078, prop.ToString()); // artifact rarity ~1_val~
@@ -1342,10 +1344,7 @@ namespace Server.Items
 			
 			if ((prop = m_AosAttributes.BonusHits) != 0)
                 list.Add(1060431, prop.ToString()); // hit point increase ~1_val~
-			
-			if ((prop = m_AosAttributes.BonusStam) != 0)
-                list.Add(1060484, prop.ToString()); // stamina increase ~1_val~
-			
+
 			if ((prop = m_AosAttributes.BonusMana) != 0)
                 list.Add(1060439, prop.ToString()); // mana increase ~1_val~
 

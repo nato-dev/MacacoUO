@@ -1,11 +1,11 @@
 using Server;
-using System;
-using Server.Mobiles;
 using Server.Engines.Points;
+using Server.Mobiles;
+using System;
 
 namespace Server.Items
 {
-	public class CristalElemental : Item
+    public class CristalElemental : Item
 	{
 
 		[Constructable]
@@ -51,4 +51,39 @@ namespace Server.Items
 			int version = reader.ReadInt();
 		}
 	}
+
+    public class CristalTherathan : Item
+    {
+
+        [Constructable]
+        public CristalTherathan() : this(1)
+        {
+        }
+
+        [Constructable]
+        public CristalTherathan(int amount) : base(16395)
+        {
+            Name = "Cristais Therathan";
+            Stackable = true;
+            Amount = amount;
+
+            Hue = TintaPreta.COR;
+        }
+
+        public CristalTherathan(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(0);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
 }

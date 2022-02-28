@@ -31,7 +31,16 @@ namespace Server.Engines.HuntsmasterChallenge
             if (from.InRange(this.Location, 4))
             {
                 from.CloseGump(typeof(BasicInfoGump));
-                from.SendGump(new BasicInfoGump(1155750, 1155726));
+                from.SendGump(new BasicInfoGump(@"Saudações! Apenas os caçadores mais corajosos ousam aceitar meu desafio! Para participar,
+                simplesmente compre uma licença de caça por 5.000 moedas. Quando você estiver pronto para
+                caçar procure qualquer espécie de presa representada pelos troféus neste salão. Quando você
+                superou sua presa, use a escritura no cadáver para documentar sua morte. Retorne
+                para mim e me dê a licença e eu vou processá-la. Se sua morte vencer ou empatar o
+                melhor registro atual para essa espécie, você será elegível para recompensas quando o
+                concurso termina no primeiro dia do próximo mês! Volte e fale comigo em
+                no primeiro dia do mês seguinte para reivindicar suas recompensas, caso seu recorde se mantenha
+                durante o concurso de um mês! Você também pode usar um kit de taxidermia, que pode ser adquirido em um
+                tanner, para criar um troféu de sua morte como os que você vê aqui. Boa Caçada!", "Guilda Ranger"));
 
                 /*Greetings! Only the most brave Hunters dare take my challenge! To participate, 
                 simply purchase a hunting permit from me for 5,000gp.  When you are ready to to 

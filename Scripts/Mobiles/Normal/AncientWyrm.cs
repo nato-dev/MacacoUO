@@ -76,6 +76,12 @@ namespace Server.Mobiles
             {
                 SorteiaItem(new DraconicOrb());
             }
+            var a = new CarpenterApron();
+            a.Bonus = Utility.Random(5, 15);
+            a.Name = "Avental do Artesao do Dragao Anciao";
+            a.Skill = SkillName.Carpentry;
+            SorteiaItem(a);
+            SorteiaItem(new BagOfSending());
             SorteiaItem(Carnage.GetRandomPS(105));
             var arma = Loot.RandomWeapon();
             arma.Resource = CraftResource.Bronze;

@@ -554,7 +554,7 @@ namespace Server.Mobiles
 
             SorteiaItem(new TemplateDeed());
             SorteiaItem(Carnage.GetRandomPS(105));
-
+            SorteiaItem(new BagOfSending());
             var wind = new LobsterMount();
             wind.MoveToWorld(c.Location, c.Map);
             wind.OverheadMessage("* se transformou *");

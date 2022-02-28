@@ -38,6 +38,12 @@ namespace Server.Mobiles
             }
         }
 
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            SorteiaItem(new BagOfSending());
+        }
+
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);

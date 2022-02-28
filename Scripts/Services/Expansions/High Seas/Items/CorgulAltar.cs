@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 using Server.Mobiles;
 using System.Collections.Generic;
@@ -77,6 +77,7 @@ namespace Server.Items
 
         public override int LabelNumber { get { return 1074818; } }
 
+        [Constructable]
         public CorgulAltar()
             : base(13807)
         {

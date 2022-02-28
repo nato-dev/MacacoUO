@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 
 namespace Server.Mobiles
@@ -8,7 +8,7 @@ namespace Server.Mobiles
         [Constructable]
         public SoulboundApprenticeMage()
         {
-            Title = "the soulbound apprentice mage";
+            Title = "alma de mago penada";
 
             SetStr(115);
             SetDex(97);

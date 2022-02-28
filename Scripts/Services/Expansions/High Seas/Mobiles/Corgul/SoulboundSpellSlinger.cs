@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 
 namespace Server.Mobiles
@@ -8,7 +8,7 @@ namespace Server.Mobiles
         [Constructable]
         public SoulboundSpellSlinger()
         {
-            Title = "the soulbound spellslinger";
+            Title = "alma de arcanista";
 
             SetStr(120, 130);
             SetDex(90, 100);

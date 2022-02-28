@@ -63,7 +63,7 @@ namespace Server.Mobiles
             : base(null, AIType.AI_NecroMage, FightMode.Closest)
         {
             m_Altar = altar;
-            Name = "Corgul";
+            Name = "Corgul o ladrao de almas";
             BaseSoundID = 609;
             Body = 0x4C;
             Hue = 2076;
@@ -130,6 +130,27 @@ namespace Server.Mobiles
 
             if(winner != null)
                 GiveArtifact(winner, CreateArtifact(UniqueList));
+
+            if(Utility.RandomBool())
+            {
+                SorteiaItem(new BoatPaint(Loot.RandomRareDye()));
+            } else
+            {
+                SorteiaItem(new BoatPaint(Utility.RandomBirdHue()));
+            }
+        
+            SorteiaItem(Carnage.GetRandomPS(115));
+            SorteiaItem(new CustomizableSquaredDoorMatDeed());
+            SorteiaItem(new eviltreeAddonDeed());
+
+            switch (Utility.Random(5))
+            {
+                case 0: SorteiaItem(new PlumTreeAddonDeed()); break;
+                case 1: SorteiaItem(new HangingAxesDeed()); break;
+                case 2: SorteiaItem(new RawMoonstoneLargeAddonDeed()); break;
+                case 3: SorteiaItem(new RawMoonstoneSmallAddonDeed()); break;
+                case 4: SorteiaItem(new ChaosTileDeed()); break;
+            }
 
             return base.OnBeforeDeath();
         }

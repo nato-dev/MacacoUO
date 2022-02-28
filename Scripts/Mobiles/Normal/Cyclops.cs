@@ -18,7 +18,7 @@ namespace Server.Mobiles
             this.SetDex(96, 115);
             this.SetInt(31, 55);
 
-            this.SetHits(2202, 2231);
+            this.SetHits(1202, 1231);
             this.SetMana(0);
 
             this.SetDamage(27, 33);
@@ -41,6 +41,9 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 48;
             SetWeaponAbility(WeaponAbility.CrushingBlow);
+
+            if (Utility.RandomDouble() < 0.35)
+                AddItem(new T2ARecallRune());
         }
 
         public Cyclops(Serial serial)

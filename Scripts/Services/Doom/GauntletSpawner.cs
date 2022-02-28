@@ -556,6 +556,7 @@ namespace Server.Engines.Doom
 
         public static void GenGauntlet_OnCommand(CommandEventArgs e)
 		{
+            e.Mobile.SendMessage("Gerando doom");
 			WeakEntityCollection.Delete("doom");
 
             /* Begin healer room */

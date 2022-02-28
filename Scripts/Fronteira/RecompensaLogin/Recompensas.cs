@@ -10,6 +10,22 @@ using System.Threading.Tasks;
 
 namespace Server.Ziden.RecompensaLogin
 {
+
+    public class SpellbookPreto : Spellbook
+    {
+        [Constructable]
+        public SpellbookPreto() : base()
+        {
+            Name = "Spellbook Negro";
+            Hue = TintaPreta.COR;
+        }
+
+        public SpellbookPreto(Serial s) : base(s){}
+
+        public override void Serialize(GenericWriter writer) => base.Serialize(writer);
+        public override void Deserialize(GenericReader reader) =>base.Deserialize(reader);
+    }
+
     public static class RecompensasLogin
     {
         public static List<CollectionItem> Rewards { get; set; }
@@ -25,6 +41,7 @@ namespace Server.Ziden.RecompensaLogin
             Rewards.Add(new CollectionItem(typeof(BagOfBolts), 0xE76, "100 Dardos", 0, 3));
             Rewards.Add(new CollectionItem(typeof(HealPotion), 0xF0C, "Pocao de Cura", 0, 3));
             Rewards.Add(new CollectionItem(typeof(SacolaDeOuro), 0xE76, "Sacola com 300 Moedas", 0, 3));
+            Rewards.Add(new CollectionItem(typeof(SpellbookPreto), 0xEFA, "Livro de Magias Negro", TintaPreta.COR, 24));
 
             Rewards.Add(new CollectionItem(typeof(CaixaDeGold), 0xE21, "Caixa com 10k Moedas", 0, 24 * 5));
             Rewards.Add(new CollectionItem(typeof(SkillBook), 0xEFA, "Livro Cientifico</br>Upa uma skill de 0.1 a 0.5", 0, 24 * 3)); // Yew]

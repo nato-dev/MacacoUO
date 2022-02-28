@@ -1,3 +1,4 @@
+using Server.Items;
 using System;
 
 namespace Server.Mobiles
@@ -38,15 +39,22 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 90.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 90.1, 100.0);
 
-            this.Fame = 35000;
-            this.Karma = -35000;
-
+            this.Fame = 3500;
+            this.Karma = -3500;
+            PackItem(new CristalTherathan());
             this.VirtualArmor = 150;
         }
 
         public TerathanAvenger(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (to is BaseCreature)
+                damage *= 4;
         }
 
         public override Poison PoisonImmune

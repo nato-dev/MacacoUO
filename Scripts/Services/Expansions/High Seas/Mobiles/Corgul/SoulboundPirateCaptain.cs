@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 using Server.Items;
 
@@ -12,7 +12,7 @@ namespace Server.Mobiles
         public SoulboundPirateCaptain()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "a soulbound pirate captain";
+            Name = "alma de capitao pirata";
             Body = 0x190;
             Hue = Utility.RandomSkinHue();
             Utility.AssignRandomHair(this);

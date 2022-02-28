@@ -12,7 +12,7 @@ namespace Server.Mobiles
         public override NpcGuild NpcGuild { get { return NpcGuild.MagesGuild; } }
 
 		[Constructable]
-		public DocksAlchemist() : base( "the alchemist" )
+		public DocksAlchemist() : base( "o alquimista marinho" )
 		{
             SetSkill(SkillName.Alchemy, 85.0, 100.0);
             SetSkill(SkillName.TasteID, 65.0, 88.0);

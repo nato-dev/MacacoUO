@@ -151,6 +151,7 @@ namespace Server.Items
             base.GetProperties(list);
 
             list.Add(1060741, m_Charges.ToString()); // charges: ~1_val~
+            list.Add("Usada para enviar items direto ao banco");
         }
 
         public override void OnSingleClick(Mobile from)

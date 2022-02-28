@@ -26,7 +26,7 @@ namespace Server.Mobiles
             SetDex(72, 150);
             SetInt(505, 750);
 
-            SetHits(12000);
+            SetHits(22000);
             SetStam(102, 300);
             SetMana(505, 750);
 
@@ -221,7 +221,19 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            if(Utility.RandomDouble() < 0.25)
+            SorteiaItem(new T2ARecallRune());
+            SorteiaItem(new T2ARecallRune());
+
+            switch(Utility.Random(5))
+            {
+                case 0: SorteiaItem(new GrayBrickFireplaceEastDeedExp()); break;
+                case 1: SorteiaItem(new SandstoneFireplaceEastDeedExp()); break;
+                case 2: SorteiaItem(new GreenTeaCauldronDeed()); break;
+                case 3: SorteiaItem(new MushroomGardenEastDeed()); break;
+                case 4: SorteiaItem(new SmallPersonalGardenFieldAddonDeed()); break;
+            }
+
+            if (Utility.RandomDouble() < 0.25)
                 SorteiaItem(Carnage.GetRandomPS(110));
             else
                 SorteiaItem(Carnage.GetRandomPS(105));

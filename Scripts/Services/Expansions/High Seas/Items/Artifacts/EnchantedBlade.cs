@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 
 namespace Server.Items
@@ -39,7 +39,7 @@ namespace Server.Items
 		[Constructable]
 		public EnchantedBladeDeed()
 		{
-            Name = "A deed for an enchanted blade";
+            Name = "Escritura para arma encantada";
 		}
 
 		public EnchantedBladeDeed( Serial serial ) : base( serial )

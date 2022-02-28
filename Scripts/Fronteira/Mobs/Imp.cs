@@ -15,10 +15,15 @@ namespace Server.Mobiles
                 if (b == null || !b.Alive || b.Deleted || !StuckMenu.IsInSecondAgeArea(b))
                     return;
 
+                if (Utility.RandomDouble() < 0.2)
+                    b.AddItem(BaseEssencia.RandomEssencia());
+
                 if (b is BaseOrc || b is BaseRatman)
                 {
                     b.Name += " albino";
                     b.Hue = 1153;
+                    if (b is BaseOrc && Utility.RandomBool())
+                        b.AddItem(new EnhancedBandage());
                 }
                 else if (b is Gazer)
                 {

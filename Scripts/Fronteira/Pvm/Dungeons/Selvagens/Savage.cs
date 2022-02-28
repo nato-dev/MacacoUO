@@ -29,12 +29,15 @@ namespace Server.Mobiles
 
                 i.Hue = TintaBranca.COR;
             }
-            b.Name += " das terras perdidas";
+            b.Name += " urucum";
             b.HitsMaxSeed = 1000;
             b.Hits = 1000;
             b.VirtualArmor = 60;
             b.Fame *= 4;
-            if(b.Skills.Parry.Base < 25)
+            if (Utility.RandomDouble() < 0.45)
+                b.AddItem(BaseEssencia.RandomEssencia());
+
+            if (b.Skills.Parry.Base < 25)
                 b.Skills.Parry.Base = 25;
             b.Skills.MagicResist.Base = 100;
             b.Backpack.DropItem(new Gold(Utility.Random(200, 200)));

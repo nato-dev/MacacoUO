@@ -78,10 +78,11 @@ namespace Server.Mobiles
             base.OnDeath(c);
             SorteiaItem(Decos.RandomDeco());
             SorteiaItem(new LivroAntigo());
-            var a = new CarpenterApron();
-            a.Bonus = 5;
-            SorteiaItem(a);
             SorteiaItem(new PergaminhoSagradoDeRunebook());
+            var book = new Spellbook();
+            book.Hue = TintaPreta.COR;
+            book.Name = "Livro do Lich Rei";
+            SorteiaItem(book);
         }
 
         public override OppositionGroup OppositionGroup

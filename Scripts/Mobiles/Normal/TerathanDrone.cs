@@ -36,17 +36,26 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 30.1, 50.0);
             this.SetSkill(SkillName.Wrestling, 150.1, 150.1);
 
-            this.Fame = 22000;
-            this.Karma = -22000;
+            this.Fame = 2200;
+            this.Karma = -2200;
 
             this.VirtualArmor = 44;
 			
             this.PackItem(new SpidersSilk(2));
+
+            PackItem(new CristalTherathan());
         }
 
         public TerathanDrone(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (to is BaseCreature)
+                damage *= 4;
         }
 
         public override int Meat

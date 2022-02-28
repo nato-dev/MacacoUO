@@ -71,7 +71,7 @@ namespace Server.Mobiles
                 return;
             }
             if (this.Combatant != null && this.Combatant.InRange2D(this.Location, 9))
-            {  
+            {
                 if (!this.IsCooldown("teiab"))
                 {
                     this.SetCooldown("teiab", TimeSpan.FromSeconds(30));
@@ -158,15 +158,22 @@ namespace Server.Mobiles
         {
             corpse.Carved = true;
             from.PrivateOverheadMessage("* Coletou teias *");
-            from.AddToBackpack(new SpidersSilk(27 + Utility.Random(30)));
+            from.AddToBackpack(new SpidersSilk(17 + Utility.Random(10)));
             PlaySound(0x57);
 
-            if(Utility.RandomDouble() < 0.1)
+            if (Utility.RandomDouble() < 0.2)
+            {
+                from.AddToBackpack(BaseEssencia.RandomEssencia());
+                from.SendMessage("Voce encontrou uma essencia magica no corpo da aranha");
+            } else if (Utility.RandomDouble() < 0.2)
             {
                 from.SendMessage("Voce encontrou uma runa misteriosa no corpo");
                 from.AddToBackpack(new T2ARecallRune());
+            } else
+            {
+                from.SendMessage("Dessa vez voce nao encontrou nada valioso no corpo da aranha");
             }
         }
-       
+
     }
 }

@@ -365,6 +365,15 @@ namespace Server.Items
              //    new PMEntry(new Point3D(2494, 927, 0), "1. Covetous"),
           }, cost: 500);
 
+        public static readonly PMList Pontos = new PMList(
+          "Especial",
+          "Especial",
+          Map.Trammel,
+          new[]
+          {
+              new PMEntry(new Point3D(747, 2162, 0), "Guilda Ranger"),
+          }, cost: 500);
+
         public static readonly PMList Ilshenar = new PMList(
             1012002,
             1012014,
@@ -412,10 +421,10 @@ namespace Server.Items
                 new PMEntry(new Point3D(850, 3525, -38), 1113603), // Royal City
 			});
 
-        public static readonly PMList[] UORLists = { Trammel, Dungeons, Lugares };
-        public static readonly PMList[] UORListsYoung = { Trammel, Dungeons, Lugares };
-        public static readonly PMList[] LBRLists = { Trammel, Dungeons, Lugares };
-        public static readonly PMList[] LBRListsYoung = { Trammel, Dungeons, Lugares };
+        public static readonly PMList[] UORLists = { Trammel, Dungeons, Lugares, Pontos };
+        public static readonly PMList[] UORListsYoung = { Trammel, Dungeons, Lugares, Pontos };
+        public static readonly PMList[] LBRLists = { Trammel, Dungeons, Lugares, Pontos };
+        public static readonly PMList[] LBRListsYoung = { Trammel, Dungeons, Lugares, Pontos };
         public static readonly PMList[] AOSLists = { Trammel, Felucca, Ilshenar, Malas };
         public static readonly PMList[] AOSListsYoung = { Trammel, Ilshenar, Malas };
         public static readonly PMList[] SELists = { Trammel, Felucca, Ilshenar, Malas, Tokuno };

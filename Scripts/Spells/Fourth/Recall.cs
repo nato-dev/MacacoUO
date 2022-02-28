@@ -126,7 +126,7 @@ namespace Server.Spells.Fourth
             return SpellHelper.CheckTravel(Caster, TravelCheckType.RecallFrom);
         }
 
-        public void Effect(Point3D loc, Map map, bool checkMulti, bool isboatkey = false)
+        public void Effect(Point3D loc, Map map, bool checkMulti, bool isboatkey = false, RecallRune rune = null)
         {
             if (Factions.Sigil.ExistsOn(Caster))
             {
@@ -202,6 +202,10 @@ namespace Server.Spells.Fourth
                 Caster.PlaySound(0x1FC);
                 Caster.MoveToWorld(loc, map);
                 Caster.PlaySound(0x1FC);
+
+                if (rune is T2ARecallRune)
+                    rune.Delete();
+            
             }
 
             FinishSequence();
@@ -225,7 +229,7 @@ namespace Server.Spells.Fourth
                     RecallRune rune = (RecallRune)o;
 
                     if (rune.Marked)
-                        m_Owner.Effect(rune.Target, rune.TargetMap, true);
+                        m_Owner.Effect(rune.Target, rune.TargetMap, true, false, rune);
                     else
                         from.SendLocalizedMessage(501805); // That rune is not yet marked.
                 }

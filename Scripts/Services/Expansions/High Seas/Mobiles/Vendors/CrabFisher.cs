@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Server;
 
@@ -11,7 +11,7 @@ namespace Server.Mobiles
 
         [Constructable]
         public CrabFisher()
-            : base("the crab fisher")
+            : base("o pescador de carangueijo")
         {
             SetSkill(SkillName.Fishing, 36.0, 68.0);
         }

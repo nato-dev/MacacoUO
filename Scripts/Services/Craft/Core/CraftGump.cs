@@ -414,7 +414,7 @@ namespace Server.Engines.Craft
                         if (i > 0)
                         {
                             AddButton(370, 260, 4005, 4007, 0, GumpButtonType.Page, (i / 10) + 1);
-                            AddHtml(405, 263, 100, 18, "Proxima", false, false); // NEXT PAGE
+                            AddHtml(405, 263, 200, 18, "Proxima Pagina", false, false); // NEXT PAGE
                         }
 
                         AddPage((i / 10) + 1);

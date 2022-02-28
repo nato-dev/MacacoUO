@@ -36,16 +36,26 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 50.1, 70.0);
             this.SetSkill(SkillName.Wrestling, 60.1, 80.0);
 
-            this.Fame = 50000;
-            this.Karma = -50000;
+            this.Fame = 10000;
+            this.Karma = -10000;
 
             this.PackItem(new SpidersSilk(5));
             this.PackNecroReg(Utility.RandomMinMax(4, 10));
+
+            PackItem(new T2ARecallRune());
+            PackItem(new CristalTherathan());
         }
 
         public TerathanMatriarch(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (to is BaseCreature)
+                damage *= 4;
         }
 
         public override int TreasureMapLevel

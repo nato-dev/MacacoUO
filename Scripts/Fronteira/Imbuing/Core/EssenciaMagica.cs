@@ -84,8 +84,6 @@ namespace Server.Ziden
                 return;
             }
 
-
-
             garrafa.Consume(1);
             Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
             Effects.PlaySound(from.Location, from.Map, 0x243);

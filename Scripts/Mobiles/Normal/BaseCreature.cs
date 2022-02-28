@@ -2747,7 +2747,7 @@ namespace Server.Mobiles
                 var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
                 if (nivel > 0)
                 {
-                    var redux = nivel / 100; // max 50%
+                    var redux = nivel / 50;
                     damage -= damage * redux;
                 }
             }
@@ -6721,6 +6721,11 @@ namespace Server.Mobiles
             if(ControlMaster is PlayerMobile)
             {
                 list.Add("Pet de " + ControlMaster.Name);
+            }
+
+            if(IsBoss || this is BaseChampion || this is BaseRenowned)
+            {
+                list.Add("[ BOSS ]");
             }
 
             if (BardPacified)
