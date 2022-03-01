@@ -137,7 +137,7 @@ namespace Server.Spells.First
                         int value = (int)((this.Caster.Skills[SkillName.Magery].Value/2) + this.Caster.Skills[SkillName.Meditation].Value + (this.Caster.Skills[SkillName.Inscribe].Value * 2));
                         value /= 4;
 
-                        if (value < 0)
+                        if (value < 1)
                             value = 1;
                         else if (value > 75)
                             value = 75;

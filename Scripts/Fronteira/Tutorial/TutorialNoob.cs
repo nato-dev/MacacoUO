@@ -3,6 +3,7 @@ using Server.Fronteira.Tutorial.WispGuia;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
+using Server.Network;
 using Server.Targeting;
 using System;
 
@@ -97,6 +98,11 @@ namespace Server.Ziden.Tutorial
             guia.Fala("Oi !! Eu sou uma fadinha, e vou te ajudar a iniciar no jogo ! :D");
             guia.Fala("Tem muuuuita coisa pra te mostrar, mas vamos com calma, ok ? Hi hi");
             guia.SetCooldown("passo", TimeSpan.FromSeconds(10));
+
+            foreach (var pl in NetState.GetOnlinePlayerMobiles())
+                if(pl != player)
+                    pl.SendMessage(78, "[NOVO JOGADOR] " + player.Name+" chegou no shard");
+
         }
     }
 }

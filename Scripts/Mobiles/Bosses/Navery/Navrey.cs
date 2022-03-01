@@ -115,7 +115,7 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-
+            SorteiaItem(new BagOfSending());
             if (m_Spawner != null)
                 m_Spawner.OnNavreyKilled();
 

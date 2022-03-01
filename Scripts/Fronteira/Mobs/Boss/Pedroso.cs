@@ -122,13 +122,17 @@ namespace Server.Mobiles
 
             SorteiaItem(new DecoRelPor());
             SorteiaItem(new DecoRelPor());
-            SorteiaItem(new BagOfSending());
             SorteiaItem(new Granite());
             SorteiaItem(new Rock1Rand());
             SorteiaItem(new Rock2Rand());
             SorteiaItem(new BronzeIngot(300));
             if (Utility.RandomBool())
-                SorteiaItem(new ElementalBall(500));
+            {
+                var bola = new ElementalBall(500);
+                bola.LootType = LootType.Regular;
+                SorteiaItem(bola);
+            }
+               
             if (Utility.RandomBool())
                 SorteiaItem(new QuartzoIngot(80));
             else

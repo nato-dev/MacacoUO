@@ -98,7 +98,7 @@ namespace Server.Items
         {
             get
             {
-                return "bag of sending";
+                return "sacola de envio";
             }
         }
         public override int LabelNumber
@@ -151,7 +151,7 @@ namespace Server.Items
             base.GetProperties(list);
 
             list.Add(1060741, m_Charges.ToString()); // charges: ~1_val~
-            list.Add("Usada para enviar items direto ao banco");
+            list.Add("Envia items direto ao banco");
         }
 
         public override void OnSingleClick(Mobile from)
@@ -171,6 +171,13 @@ namespace Server.Items
 
         public override void OnDoubleClick(Mobile from)
         {
+
+            if (from.InCombat())
+            {
+                from.SendMessage("Voce nao pode fazer isto em combate");
+                return;
+            }
+
             if (from.Region.IsPartOf<Regions.Jail>())
             {
                 from.SendMessage("You may not do that in jail.");
@@ -261,6 +268,11 @@ namespace Server.Items
                 if (m_Bag.Deleted)
                     return;
 
+                if (from.InCombat()) {
+                    from.SendMessage("Voce nao pode fazer isto em combate");
+                    return;
+                }
+
                 if (from.Region.IsPartOf<Regions.Jail>())
                 {
                     from.SendMessage("You may not do that in jail.");
@@ -279,13 +291,15 @@ namespace Server.Items
                     int reqCharges = 1; // (int)Math.Max(1, Math.Ceiling(item.TotalWeight / 10.0));
                                         // change was ML, however reverted during ML period so we can put it at 1
 
+                    
+
                     if (!item.IsChildOf(from.Backpack))
                     {
                         MessageHelper.SendLocalizedMessageTo(m_Bag, from, 1054152, 0x59); // You may only send items from your backpack to your bank box.
                     }
                     else if (item is BagOfSending || item is Container)
                     {
-                        from.Send(new AsciiMessage(m_Bag.Serial, m_Bag.ItemID, MessageType.Regular, 0x3B2, 3, "", "You cannot send a container through the bag of sending."));
+                        from.Send(new AsciiMessage(m_Bag.Serial, m_Bag.ItemID, MessageType.Regular, 0x3B2, 3, "", "Voce nao pode enviar containers."));
                     }
                     else if (item.LootType == LootType.Cursed)
                     {
@@ -303,7 +317,7 @@ namespace Server.Items
                     {
                         MessageHelper.SendLocalizedMessageTo(m_Bag, from, 1054110, 0x59); // Your bank box is full.
                     }
-                    else if (Core.ML && reqCharges > m_Bag.Charges)
+                    else if (reqCharges > m_Bag.Charges)
                     {
                         from.SendLocalizedMessage(1079932); //You don't have enough charges to send that much weight
                     }
