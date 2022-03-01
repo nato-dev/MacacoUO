@@ -122,7 +122,10 @@ namespace Server.Items
             TrapLevel = level;
             Locked = true;
 
-            if(Utility.RandomBool())
+            if(level >= 3)
+                DropItem(new PowderOfTranslocation());
+
+            if (Utility.RandomBool())
             {
                 var rnd = Utility.Random(6);
                 switch (rnd)

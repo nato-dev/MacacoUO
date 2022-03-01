@@ -7437,6 +7437,11 @@ namespace Server.Mobiles
                     var lapide = new LapideBoss(this);
                     lapide.MoveToWorld(c.Location, c.Map);
                 }
+
+                if(IsBoss || this is BaseChampion || this is BaseRenowned)
+                {
+                    SorteiaItem(new PowderOfTranslocation());
+                }
                 
                 var dels = new List<Item>();
                 foreach (var i in new List<Item>(c.Items))
