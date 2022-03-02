@@ -2817,7 +2817,7 @@ namespace Server.Mobiles
             */
 
             // AUTO EQUIP SPHERE
-            if ((item is BaseClothing || item is BaseWeapon || item is BaseArmor && !(item is Dagger)) && item.IsChildOf(Backpack))
+            if ((item is FishingPole || item is BaseClothing || item is BaseWeapon || item is BaseArmor && !(item is Dagger)) && item.IsChildOf(Backpack))
             {
                 SmoothForceEquip(item);
             }

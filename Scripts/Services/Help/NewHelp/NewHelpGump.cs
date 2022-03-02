@@ -69,6 +69,7 @@ namespace Server.Gumps
         public static void PomboCorreio(Mobile from)
         {
             var pombo = new Bird();
+            pombo.Tamable = false;
             pombo.Name = "pombo correio";
             pombo.Blessed = true;
             pombo.MoveToWorld(from.Location, from.Map);

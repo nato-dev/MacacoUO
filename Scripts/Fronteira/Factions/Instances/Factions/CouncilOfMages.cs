@@ -17,20 +17,20 @@ namespace Server.Factions
                     1325, // join stone : blue
                     1325, // broadcast : blue
                     0x77, 0x3EB1, // war horse
-                    "Concelho dos Magos", "Concelho", "CdM",
-                    new TextDefinition(1011535, "Concelho dos Magos"),
-                    new TextDefinition(1060770, "Concelho dos Magos"),
-                    new TextDefinition(1011422, "<center>Concelho dos Magos</center>"),
+                    "Conselho dos Magos", "Conselho", "CdM",
+                    new TextDefinition(1011535, "Conselho dos Magos"),
+                    new TextDefinition(1060770, "Conselho dos Magos"),
+                    new TextDefinition(1011422, "<center>Conselho dos Magos</center>"),
                     new TextDefinition(1011449, "O conselho dos Magos tem suas raízes na cidade de Moonglow, onde" +
                                                "eles se reuniram uma vez. Eles começaram como um pequeno movimento, dedicado a" +
                                                "convocando o Estrangeiro, que antes salvou as terras uma vez. A" +
                                                "série de guerras e assassinatos e julgamentos ilegítimos por aqueles que são leais a" +
                                                "Lord British fez com que o grupo assumisse a bandeira da guerra."),
-                    new TextDefinition(1011455, "Esta cidade eh controlada pelo Concelho dos Magos."),
-                    new TextDefinition(1042253, "Sigilo corrompido pelo Concelho dos Magos"),
-                    new TextDefinition(1041044, "Alistamento Concelho dos Magos"),
-                    new TextDefinition(1041382, "Pedra do Concelho dos Magos"),
-                    new TextDefinition(1011464, ": Concelho dos Magos"),
+                    new TextDefinition(1011455, "Esta cidade eh controlada pelo Conselho dos Magos."),
+                    new TextDefinition(1042253, "Sigilo corrompido pelo Conselho dos Magos"),
+                    new TextDefinition(1041044, "Alistamento Conselho dos Magos"),
+                    new TextDefinition(1041382, "Pedra do Conselho dos Magos"),
+                    new TextDefinition(1011464, ": Conselho dos Magos"),
                     new TextDefinition(1005187, "Members of the Council of Mages will now be ignored."),
                     new TextDefinition(1005188, "Members of the Council of Mages will now be warned to leave."),
                     new TextDefinition(1005189, "Members of the Council of Mages will now be beaten with a stick."),

@@ -51,8 +51,11 @@ namespace Server.Items
             {
                 if (value > MaxCharges)
                     m_Charges = MaxCharges;
-                else if (value < 0)
+                else if (value <= 0)
+                {
                     m_Charges = 0;
+                   
+                }
                 else
                     m_Charges = value;
 
@@ -291,8 +294,6 @@ namespace Server.Items
                     int reqCharges = 1; // (int)Math.Max(1, Math.Ceiling(item.TotalWeight / 10.0));
                                         // change was ML, however reverted during ML period so we can put it at 1
 
-                    
-
                     if (!item.IsChildOf(from.Backpack))
                     {
                         MessageHelper.SendLocalizedMessageTo(m_Bag, from, 1054152, 0x59); // You may only send items from your backpack to your bank box.
@@ -325,6 +326,11 @@ namespace Server.Items
                     {
                         m_Bag.Charges -= (Core.ML ? reqCharges : 1);
                         MessageHelper.SendLocalizedMessageTo(m_Bag, from, 1054150, 0x59); // The item was placed in your bank box.
+                        if(m_Bag.Charges <= 0)
+                        {
+                            m_Bag.Consume();
+                            from.SendMessage("A sacola de envio ficou sem cargas");
+                        }
                     }
                 }
             }

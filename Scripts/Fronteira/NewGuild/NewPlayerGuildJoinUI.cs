@@ -55,12 +55,13 @@ namespace Server.Gumps
                                 NewGuildPersistence.JoinedIPs.Add(sender.Address);
 
                             from.SendGump(new NewPlayerGuildHelpGump(_Guild, from));
+                            return;
                         }
                         break;
                     }
   
             }
-
+            TutorialNoob.InicializaWisp(from);
         }
     }
 }

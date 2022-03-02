@@ -24,7 +24,10 @@ namespace Server.Items
             base.GetProperties(list);
 
             if (_WeightReduction != 0)
-                list.Add(1072210, _WeightReduction.ToString()); // Weight reduction: ~1_PERCENTAGE~%
+            {
+                list.Add("Reduz peso de recursos especificos");
+                list.Add($"Reducao de peso: {_WeightReduction}%"); // Weight reduction: ~1_PERCENTAGE~%
+            }
         }
 
         public override int GetTotal(TotalType type)

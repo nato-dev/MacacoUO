@@ -60,7 +60,7 @@ namespace Server.Ziden.Items
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
-            if(Killer != null)
+            if (Killer != null)
             {
                 list.Add("Morto por " + Killer);
             }
@@ -74,26 +74,7 @@ namespace Server.Ziden.Items
                 if (spawnObject.TypeName.ToLower() == Nome.ToLower())
                 {
                     var t = (spawnObject.NextSpawn - DateTime.UtcNow + spawner.NextSpawn);
-                    int weeks = (int)t.Days / 7;
-                    int days = t.Days;
-                    int hours = t.Hours;
-                    int minutes = t.Minutes;
-                    if (hours > 1)
-                        from.SendMessage("Respawn do boss - Horas: " + t.Hours.ToString()); // Lifespan: ~1_val~ hours
-                    else if (minutes > 1)
-                        from.SendMessage("Respawn do boss - Minutos: " + t.Minutes.ToString());
-                    else
-                    {
-                        if(t.Seconds > 0)
-                        {
-                            from.SendMessage("Respawn do boss - Segundos: " + t.Seconds.ToString());
-                        } else
-                        {
-                            from.SendMessage("Respawn do boss - Muito em breve ");
-                        }
-                       
-                    }
-                     
+                    from.SendMessage($"Respawn do boss - {t.TotalMinutes} minutos");
                     return;
                 }
             }

@@ -15,7 +15,7 @@ namespace Server.SkillHandlers
             if (item == null)
                 return true;
 
-            if (item is Spellbook || item is Runebook)
+            if (item is Spellbook || item is Runebook || item is BaseWand)
                 return true;
 
             if (item is BaseStaff)

@@ -16,6 +16,8 @@ namespace Server
         public static string BotID { get { return Config.Get("General.BotID", ""); } }
         public static string BotKey { get { return Config.Get("General.BotKey", ""); } }
 
+        public static bool T2A = false;
+
         public static bool TITULOS_RP = false;
 
         public static string SEGREDO_WEB_API = "segredowebapi";

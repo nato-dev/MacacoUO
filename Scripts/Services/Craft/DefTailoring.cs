@@ -361,9 +361,10 @@ namespace Server.Engines.Craft
 
             AddCraft(typeof(Bandage), 1015283, "Bandagem", 35, 65, typeof(Cloth), 1044455, 10, 1044287);
 
-            index = AddCraft(typeof(EnhancedBandage), 1015283, "Bandagem Medica +10 Healing", 60, 80, typeof(Cloth), 1044455, 10, 1044287);
+            index = AddCraft(typeof(EnhancedBandage), 1015283, "Bandagem Medica +10 Healing", 20, 120, typeof(Cloth), 1044455, 10, 1044287);
             AddRes(index, typeof(Charcoal), "Carvao", 5, "Voce precisa de carvao para fazer isto");
             AddRes(index, typeof(Ginseng), "Ginseng", 10, "Voce precisa de ginseng para fazer isto");
+            AddRes(index, typeof(MandrakeRoot), "Mandrake Root", 10, "Voce precisa de mandrake root para fazer isto");
 
             if (Core.SE)
             {

@@ -1397,25 +1397,25 @@ namespace Server.Mobiles
 
                     if (dropped.BoundTo == from.RawName || from.AccessLevel > AccessLevel.VIP)
                     {
-                        ushort exp = 5000;
+                        ushort exp = 1000;
                         if (from.Skills[skill].Value < 60)
-                            exp += 45000;
+                            exp += 43000;
                         else if (from.Skills[skill].Value < 70)
-                            exp += 29000;
+                            exp += 23000;
                         if (from.Skills[skill].Value < 80)
-                            exp += 5000;
+                            exp += 13000;
                         else if (from.Skills[skill].Value < 90)
                             exp += 3000;
                         else if (from.Skills[skill].Value < 100)
                             exp += 1000;
                         else if (from.Skills[skill].Value > 100)
-                            exp = (ushort)(exp * 0.8);
+                            exp = (ushort)(exp * 0.7);
                         else if (from.Skills[skill].Value > 105)
                             exp = (ushort)(exp * 0.5);
                         else if (from.Skills[skill].Value > 110)
                             exp = (ushort)(exp * 0.3);
                         else if (from.Skills[skill].Value > 115)
-                            exp = (ushort)(exp * 0.15);
+                            exp = (ushort)(exp * 0.1);
 
                         if (dropped is LargeBOD)
                         {
@@ -1432,7 +1432,7 @@ namespace Server.Mobiles
 
                             exp += (ushort)(matBonus * 2000);
                             if (large.RequireExceptional)
-                                exp += 5000;
+                                exp += 1000;
 
                         }
                         else if (dropped is SmallBOD)
@@ -1448,10 +1448,8 @@ namespace Server.Mobiles
 
                             exp += (ushort)(matBonus * 2000);
                             if (small.RequireExceptional)
-                                exp += 3000;
+                                exp += 1000;
                         }
-
-
 
                         while (exp > 0)
                         {

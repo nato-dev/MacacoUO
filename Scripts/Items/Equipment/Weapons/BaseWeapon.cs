@@ -6060,11 +6060,11 @@ namespace Server.Items
                 }
                 if (DamageLevel > 0)
                 {
-                    list.AddTwoValues("Poder", "+" + (int)DamageLevel * 2);
+                    list.AddTwoValues("Dano", "+" + (int)DamageLevel * 2);
                 }
                 if (AccuracyLevel > 0)
                 {
-                    list.AddTwoValues("Precisao", "+" + (int)AccuracyLevel * 2);
+                    list.AddTwoValues("Skill", "+" + (int)AccuracyLevel * 5);
                 }
             }
 

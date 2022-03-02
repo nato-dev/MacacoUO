@@ -9,6 +9,7 @@ namespace Server.Fronteira.Quests
 {
     public class Tamavel : IEquatable<Tamavel>
     {
+
         private static HashSet<Tamavel> l50 = new HashSet<Tamavel>();
         private static HashSet<Tamavel> l70 = new HashSet<Tamavel>();
         private static HashSet<Tamavel> l80 = new HashSet<Tamavel>();
@@ -16,44 +17,49 @@ namespace Server.Fronteira.Quests
         private static HashSet<Tamavel> l100 = new HashSet<Tamavel>();
         private static HashSet<Tamavel> l120 = new HashSet<Tamavel>();
 
-        private static Tamavel Randomiza(HashSet<Tamavel> lista)
+        private static Tamavel Randomiza(HashSet<Tamavel> lista, double skill)
         {
             if (lista.Count == 0)
             {
-                if (lista == l70) return Randomiza(l50);
-                if (lista == l80) return Randomiza(l70);
-                if (lista == l90) return Randomiza(l80);
-                if (lista == l100) return Randomiza(l90);
-                if (lista == l120) return Randomiza(l100);
+                if (lista == l70)  return Randomiza(l50, skill);
+                if (lista == l80)  return Randomiza(l70, skill);
+                if (lista == l90)  return Randomiza(l80, skill);
+                if (lista == l100) return Randomiza(l90, skill);
+                if (lista == l120) return Randomiza(l100, skill);
             }
-            return lista.ElementAt(Utility.Random(lista.Count));
+            var filtrada = lista.Where(e => e.Skill >= skill - 20);
+            if(filtrada.Count()==0)
+            {
+                return l70.TakeRandom(1).First();
+            }
+            return filtrada.ElementAt(Utility.Random(filtrada.Count()));
         }
 
         public static Tuple<Tamavel, int> Sorteia(double skill)
         {
             if (skill > 100)
                 if (Utility.RandomDouble() < 0.35)
-                    return new Tuple<Tamavel, int>(Randomiza(l80), 6);
+                    return new Tuple<Tamavel, int>(Randomiza(l80, skill), 6);
                 else if (Utility.RandomBool())
-                    return new Tuple<Tamavel, int>(Randomiza(l120), 2);
+                    return new Tuple<Tamavel, int>(Randomiza(l120, skill), 2);
                 else
-                    return new Tuple<Tamavel, int>(Randomiza(l100), 4);
+                    return new Tuple<Tamavel, int>(Randomiza(l100, skill), 4);
             else if (skill > 90)
                 if (Utility.RandomDouble() < 0.35)
-                    return new Tuple<Tamavel, int>(Randomiza(l80), 8);
+                    return new Tuple<Tamavel, int>(Randomiza(l80, skill), 8);
                 else
-                    return new Tuple<Tamavel, int>(Randomiza(l90), 4);
+                    return new Tuple<Tamavel, int>(Randomiza(l90, skill), 4);
             else if (skill > 80)
                 if (Utility.RandomDouble() < 0.35)
-                    return new Tuple<Tamavel, int>(Randomiza(l70), 8);
+                    return new Tuple<Tamavel, int>(Randomiza(l70, skill), 8);
                 else
-                    return new Tuple<Tamavel, int>(Randomiza(l80), 4);
+                    return new Tuple<Tamavel, int>(Randomiza(l80, skill), 4);
             else if (skill >= 70)
                 if (Utility.RandomDouble() < 0.35)
-                    return new Tuple<Tamavel, int>(Randomiza(l50), 15);
+                    return new Tuple<Tamavel, int>(Randomiza(l50, skill), 15);
                 else
-                    return new Tuple<Tamavel, int>(Randomiza(l70), 5);
-            return new Tuple<Tamavel, int>(Randomiza(l50), 5);
+                    return new Tuple<Tamavel, int>(Randomiza(l70, skill), 5);
+            return new Tuple<Tamavel, int>(Randomiza(l50, skill), 5);
         }
 
         // registra tds possiveis bixos q tem no shard
@@ -63,6 +69,9 @@ namespace Server.Fronteira.Quests
                 return;
 
             if (bc.ControlMaster != null)
+                return;
+
+            if (!Shard.T2A && StuckMenu.IsInSecondAgeArea(bc))
                 return;
 
             if (bc.Owners != null && bc.Owners.Count > 0)

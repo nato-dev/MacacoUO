@@ -78,7 +78,7 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
 
-            if(from.Paralyzed || from.Frozen)
+            if (from.Paralyzed || from.Frozen)
             {
                 from.SendMessage("Voce nao pode fazer isto agora");
                 return;
@@ -109,7 +109,7 @@ namespace Server.Items
                 return;
 
 
-            if(BandageContext.GetContext(from) != null)
+            if (BandageContext.GetContext(from) != null)
             {
                 from.SendMessage("Voce ja esta aplicando bandagens");
                 return;
@@ -139,7 +139,7 @@ namespace Server.Items
         public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
         {
             this.Amount += 9;
-            if(from.Skills[SkillName.Tailoring].Value >= 100)
+            if (from.Skills[SkillName.Tailoring].Value >= 100)
             {
                 this.Amount += 10;
             }
@@ -178,7 +178,7 @@ namespace Server.Items
                         if (from != bc.ControlMaster)
                         {
                             bc.ControlMaster.SendMessage(from.Name + " esta revivendo sua criatura");
-                            from.SendMessage("Voce comeca a reviver a criatura de " + bc.ControlMaster);
+                            from.SendMessage("Voce comeca a reviver a criatura de " + bc.ControlMaster.Name);
                         }
                         else
                         {
@@ -190,9 +190,9 @@ namespace Server.Items
 
                 if (targeted is Mobile)
                 {
-                    if(corpse == null && targeted is BaseCreature && ((BaseCreature)targeted).IsDeadPet)
+                    if (corpse == null && targeted is BaseCreature && ((BaseCreature)targeted).IsDeadPet)
                     {
-                        if(targeted is IMount)
+                        if (targeted is IMount)
                         {
                             from.SendMessage("Para reviver sua montaria use bandagens no corpo da montaria ou a leve para o veterinario !");
                             return;
@@ -268,9 +268,9 @@ namespace Server.Items
             //    ++m_Slips;
             if (dano > 15)
                 ++m_Slips;
-            if(dano > 35)
+            if (dano > 35)
                 m_Slips += 2;
-            m_Healer.SendMessage("Seus dedos escorregam [- "+m_Slips*SLIP_MULT+" cura]"); // Your fingers slip!
+            m_Healer.SendMessage("Seus dedos escorregam [- " + m_Slips * SLIP_MULT + " cura]"); // Your fingers slip!
         }
 
         public BandageContext(Mobile healer, Mobile patient, TimeSpan delay)
@@ -285,18 +285,18 @@ namespace Server.Items
         public static void Move(MovementEventArgs e)
         {
             var pl = e.Mobile as PlayerMobile;
-            if(pl != null && pl.RP)
+            if (pl != null && pl.RP)
             {
                 var ctx = BandageContext.GetContext(pl);
-                if(ctx != null)
+                if (ctx != null)
                 {
                     var chance = 0.9;
                     if (!pl.Correndo())
                         chance = 0.3;
-                    if(Utility.RandomDouble() < chance)
+                    if (Utility.RandomDouble() < chance)
                     {
                         ctx.Slip();
-                        if(!pl.IsCooldown("dicabands"))
+                        if (!pl.IsCooldown("dicabands"))
                         {
                             pl.SetCooldown("dicabands");
                             pl.SendMessage(78, "Evite se movimentar ou lutar enquanto se cura para uma cura mais eficiente");
@@ -306,7 +306,7 @@ namespace Server.Items
             }
         }
 
-        public BandageContext(Mobile healer, Mobile patient, TimeSpan delay, bool enhanced, Corpse corpse=null)
+        public BandageContext(Mobile healer, Mobile patient, TimeSpan delay, bool enhanced, Corpse corpse = null)
         {
             m_Healer = healer;
             m_Patient = patient;
@@ -424,14 +424,14 @@ namespace Server.Items
 
         public void InterruptAndHealPartially()
         {
-            if(this.m_Patient != this.m_Healer)
+            if (this.m_Patient != this.m_Healer)
             {
                 return;
             }
             var begin = this.Time.Began;
 
             var exp = this.Time.Expires - begin;
-            
+
             var now = Core.TickCount - begin;
 
             var pct = (double)now / (double)exp;
@@ -448,25 +448,26 @@ namespace Server.Items
 
                 toHeal *= pct;
             }
-        
+
             toHeal = Math.Floor(toHeal);
 
             if (toHeal <= 0 || BleedAttack.IsBleeding(m_Patient) || MortalStrike.IsWounded(m_Patient) || m_Patient.Poisoned)
             {
                 m_Healer.SendMessage("Voce nao teve tempo de se curar direito");
-            } else
+            }
+            else
             {
                 m_Patient.Heal((int)toHeal, m_Healer, false);
                 m_Healer.SendMessage("Voce se apressou e terminou de aplicar as bandagens");
             }
-          
+
             StopHeal();
         }
 
 
         public double GetToHeal()
         {
-            if(Shard.SPHERE_STYLE)
+            if (Shard.SPHERE_STYLE)
             {
                 var heal = Utility.Random(21, 9);
                 heal -= m_Slips * SLIP_MULT;
@@ -475,12 +476,12 @@ namespace Server.Items
             double healing = m_Healer.Skills[SkillName.Healing].Value * 0.75 + 25;
             double anatomy = m_Healer.Skills[SkillName.Anatomy].Value * 0.75 + 25;
 
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
             {
                 Shard.Debug("Heal " + healing + " anat " + anatomy);
             }
 
-            if(m_Patient is BaseCreature && !(m_Patient is BaseHire))
+            if (m_Patient is BaseCreature && !(m_Patient is BaseHire))
             {
                 healing = m_Healer.Skills[SkillName.Veterinary].Value;
                 anatomy = (m_Healer.Skills[SkillName.AnimalLore].Value * 0.8) + (m_Healer.Skills[SkillName.Healing].Value + 0.2);
@@ -502,12 +503,14 @@ namespace Server.Items
             if ((m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal) && !m_Patient.Player)
             {
                 toHeal += m_Patient.HitsMax / 170;
+                if(this is EnhancedBandage)
+                    toHeal += m_Patient.HitsMax / 10;
             }
 
             toHeal -= m_Slips * SLIP_MULT;
             if (toHeal < 5)
                 toHeal = 5;
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
                 Shard.Debug("To Heal: " + toHeal + " Escorregadas: " + m_Slips, m_Healer);
             return toHeal;
         }
@@ -536,13 +539,13 @@ namespace Server.Items
                 patientNumber = null;
                 playSound = false;
             }
-            else if (!m_Healer.InRange(m_Patient, Bandage.Range))
+            else if (corpse == null && !m_Healer.InRange(m_Patient, Bandage.Range))
             {
                 healerNumber = "Voce esta longe do alvo que estava curando"; // You did not stay close enough to heal your target.
                 patientNumber = null;
                 playSound = false;
             }
-            else if(corpse != null && !m_Healer.InRange(corpse, Bandage.Range))
+            else if (corpse != null && !m_Healer.InRange(corpse, Bandage.Range))
             {
                 healerNumber = "Voce esta muito longe do corpo da criatura"; // You did not stay close enough to heal your target.
                 patientNumber = null;
@@ -581,58 +584,23 @@ namespace Server.Items
                         {
                             Mobile master = petPatient.ControlMaster;
 
-                            if (master != null && m_Healer == master)
+                            if (master != null)
                             {
                                 petPatient.ResurrectPet();
 
                                 for (int i = 0; i < petPatient.Skills.Length; ++i)
                                 {
-                                    petPatient.Skills[i].Base -= 0.1;
-                                }
-                            }
-                            else if (master != null && master.InRange(petPatient, 3))
-                            {
-                                healerNumber = "Voce ressuscitar a criatura"; // You are able to resurrect the creature.
-
-                                master.CloseGump(typeof(PetResurrectGump));
-                                master.SendGump(new PetResurrectGump(m_Healer, petPatient));
-                            }
-                            else
-                            {
-                                bool found = false;
-
-                                var friends = petPatient.Friends;
-
-                                for (int i = 0; friends != null && i < friends.Count; ++i)
-                                {
-                                    Mobile friend = friends[i];
-
-                                    if (friend.InRange(petPatient, 3))
-                                    {
-                                        healerNumber = "Voce ressuscitar a criatura"; // You are able to resurrect the creature.
-
-                                        friend.CloseGump(typeof(PetResurrectGump));
-                                        friend.SendGump(new PetResurrectGump(m_Healer, petPatient));
-
-                                        found = true;
-                                        break;
-                                    }
-                                }
-
-                                if (!found)
-                                {
-                                    healerNumber = "O Dono do animal precisa estar proximo"; // The pet's owner must be nearby to attempt resurrection.
+                                    petPatient.Skills[i].Base -= 0.2;
                                 }
                             }
                             if (corpse != null)
+                            {
+                                petPatient.MoveToWorld(corpse.Location, corpse.Map);
                                 corpse.Delete();
+                            }
                         }
                         else
                         {
-                            /*
-                            m_Patient.CloseGump(typeof(ResurrectGump));
-                            m_Patient.SendGump(new ResurrectGump(m_Patient, m_Healer));
-                            */
                             m_Patient.PlaySound(0x214);
                             m_Patient.FixedEffect(0x376A, 10, 16);
                             m_Patient.Resurrect();
@@ -724,7 +692,7 @@ namespace Server.Items
                 {
                     healerNumber = "Voce terminou de aplicar as bandagens"; // You finish applying the bandages.
 
-                  
+
 
                     #region City Loyalty
                     if (Server.Engines.CityLoyalty.CityLoyaltySystem.HasTradeDeal(m_Healer, Server.Engines.CityLoyalty.TradeDeal.GuildOfHealers))
@@ -837,7 +805,7 @@ namespace Server.Items
             return BeginHeal(healer, patient, false);
         }
 
-        public static BandageContext BeginHeal(Mobile healer, Mobile patient, bool enhanced, Corpse c =null)
+        public static BandageContext BeginHeal(Mobile healer, Mobile patient, bool enhanced, Corpse c = null)
         {
             bool isDeadPet = (patient is BaseCreature && ((BaseCreature)patient).IsDeadPet);
 
@@ -917,13 +885,13 @@ namespace Server.Items
         public static TimeSpan GetDelay(Mobile healer, Mobile patient, bool dead, SkillName skill)
         {
 
-            if(Shard.SPHERE_STYLE)
+            if (Shard.SPHERE_STYLE)
             {
                 if (dead)
                     return TimeSpan.FromSeconds(10);
                 else
                     return TimeSpan.FromSeconds(4.5);
-                    
+
             }
             var resDelay = dead ? 5.0 : 0.0;
 
@@ -955,14 +923,15 @@ namespace Server.Items
             {
                 seconds = Math.Ceiling((double)4 - dex / 60);
                 seconds = Math.Max(seconds, 2);
-            } else
+            }
+            else
             {
                 seconds = 7.4 + (0.6 * ((double)(120 - dex) / 10));
             }
 
-            if(healer != patient && healer.RP && patient.Player && healer.Player)
+            if (healer != patient && healer.RP && patient.Player && healer.Player)
             {
-                if(((PlayerMobile)healer).Talentos.Tem(Fronteira.Talentos.Talento.Curandeiro))
+                if (((PlayerMobile)healer).Talentos.Tem(Fronteira.Talentos.Talento.Curandeiro))
                     seconds -= 5;
             }
 

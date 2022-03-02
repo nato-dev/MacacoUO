@@ -303,6 +303,7 @@ namespace Server.Engines.BulkOrders
 
         public override void OnDoubleClick(Mobile from)
         {
+
             if (IsChildOf(from.Backpack) || InSecureTrade || RootParent is PlayerVendor)
 			{
 				EventSink.InvokeBODUsed(new BODUsedEventArgs(from, this));

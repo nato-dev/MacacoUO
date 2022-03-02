@@ -137,6 +137,10 @@ namespace Server.Spells.Fifth
                 MoveToWorld(loc, map);
                 Effects.SendLocationParticles(EffectItem.Create(loc, map, EffectItem.DefaultDuration), 0x376A, 9, 10, 5029);
 
+                var mobs = map.GetMobilesInRange(loc, 0);
+                foreach (var mob in mobs)
+                    this.OnMoveOver(mob);
+
                 m_Caster = caster;
 
                 m_End = DateTime.UtcNow + duration;
@@ -198,7 +202,6 @@ namespace Server.Spells.Fifth
 
                             m_Timer = new InternalTimer(this, true, true);
                             m_Timer.Start();
-
                             break;
                         }
                 }

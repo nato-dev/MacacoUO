@@ -3,6 +3,7 @@
 using Server.Network;
 using Server.Ziden.Tutorial;
 using Server.Mobiles;
+using Server.Scripts.New.Adam.NewGuild;
 
 namespace Server.Gumps
 {
@@ -36,6 +37,7 @@ namespace Server.Gumps
         public override void OnResponse(NetState sender, RelayInfo info)
         {
             var from = sender.Mobile as PlayerMobile;
+            //NewPlayerGuildAutoJoin.SendStarterGuild(from);
             TutorialNoob.InicializaWisp(from);
         }
     }

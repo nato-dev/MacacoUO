@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Server;
 using Server.Gumps;
 using Server.Network;
@@ -30,7 +30,7 @@ namespace Server.Items
             {
                 from.Kills--;
 
-                from.SendMessage("You have been pardoned from one murder count.");
+                from.SendMessage("Voce foi perdoado de 1 long count.");
                 Delete();
                 m_Table[from] = DateTime.UtcNow + TimeSpan.FromHours(24);
             }

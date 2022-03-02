@@ -26,12 +26,19 @@ namespace Server.Engines.HuntsmasterChallenge
             CheckItems();
 		}
 
-        public override void OnDoubleClick(Mobile from)
+        public override void OnSpeech(SpeechEventArgs e)
         {
-            if (from.InRange(this.Location, 4))
+            base.OnSpeech(e);
+            if(e.Mobile.Player && e.Speech.ToLower().Contains("trabalho"))
             {
-                from.CloseGump(typeof(BasicInfoGump));
-                from.SendGump(new BasicInfoGump(@"Saudações! Apenas os caçadores mais corajosos ousam aceitar meu desafio! Para participar,
+                mostra(e.Mobile);
+            }
+        }
+
+        public void mostra(Mobile from)
+        {
+            from.CloseGump(typeof(BasicInfoGump));
+            from.SendGump(new BasicInfoGump(@"Saudações! Apenas os caçadores mais corajosos ousam aceitar meu desafio! Para participar,
                 simplesmente compre uma licença de caça por 5.000 moedas. Quando você estiver pronto para
                 caçar procure qualquer espécie de presa representada pelos troféus neste salão. Quando você
                 superou sua presa, use a escritura no cadáver para documentar sua morte. Retorne
@@ -42,16 +49,23 @@ namespace Server.Engines.HuntsmasterChallenge
                 durante o concurso de um mês! Você também pode usar um kit de taxidermia, que pode ser adquirido em um
                 tanner, para criar um troféu de sua morte como os que você vê aqui. Boa Caçada!", "Guilda Ranger"));
 
-                /*Greetings! Only the most brave Hunters dare take my challenge! To participate, 
-                simply purchase a hunting permit from me for 5,000gp.  When you are ready to to 
-                hunt seek any species of prey represented by the trophies in this hall.  When you 
-                have bested your quarry use the deed on the corpse to document your kill.  Return 
-                to me and hand me the permit and I will process it.  If your kill beats or ties the 
-                current best record for that species, you will be eligible for rewards when the 
-                contest finishes on the first day of the next month!    Return and speak to me on 
-                the first day of the next month to claim your rewards should your record hold up 
-                during the month long contest! You may also use a taxidermy kit, purchasable from a 
-                tanner, to create a trophy of your kill like the ones you see here. Happy Hunting!*/
+            /*Greetings! Only the most brave Hunters dare take my challenge! To participate, 
+            simply purchase a hunting permit from me for 5,000gp.  When you are ready to to 
+            hunt seek any species of prey represented by the trophies in this hall.  When you 
+            have bested your quarry use the deed on the corpse to document your kill.  Return 
+            to me and hand me the permit and I will process it.  If your kill beats or ties the 
+            current best record for that species, you will be eligible for rewards when the 
+            contest finishes on the first day of the next month!    Return and speak to me on 
+            the first day of the next month to claim your rewards should your record hold up 
+            during the month long contest! You may also use a taxidermy kit, purchasable from a 
+            tanner, to create a trophy of your kill like the ones you see here. Happy Hunting!*/
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            if (from.InRange(this.Location, 4))
+            {
+                mostra(from);
             }
         }
 		
@@ -77,11 +91,11 @@ namespace Server.Engines.HuntsmasterChallenge
 					return false;
 				
 				if(!permit.HasDocumentedKill)
-					SayTo(from, "You can't submit a kill you haven't documented yet!");
+					SayTo(from, "Voce nao pode enviar uma licensa sem ter documentado nada ! Va matar monstros e documente suas mortes !!");
 				else if (permit.KillEntry.DateKilled < sys.SeasonBegins)
-					SayTo(from, 1155720); // This permit was documented in a different month or year than the current month and year. I only accept permits documented in the current month and year.
+					SayTo(from, "Essa licensa eh de outra data..."); // This permit was documented in a different month or year than the current month and year. I only accept permits documented in the current month and year.
 				else if (permit.HasSubmitted)
-					SayTo(from, 1155719); // This permit has already been submitted.
+					SayTo(from, "Essa ai ja foi enviada"); // This permit has already been submitted.
 				else
 					sys.TrySubmitKill(this, from, permit);
 			}
@@ -103,20 +117,20 @@ namespace Server.Engines.HuntsmasterChallenge
 				Mobile from = this.Owner.From;
 				
 				if(HuntingPermit.HasPermit(from))
-					from.SendLocalizedMessage(1155702); // You already have a hunting permit.
+					from.SendLocalizedMessage("Voce ja tem uma licensa"); // You already have a hunting permit.
 				else if(Banker.Withdraw(from, 5000, true))
 				{
 					HuntingPermit permit = new HuntingPermit(from);
 					
 					if(from.Backpack == null || !from.Backpack.TryDropItem(from, permit, false))
 					{
-						from.SendLocalizedMessage(1155703); // Your backpack was too full so the permit was deleted. Empty your backpack and try again.
+						from.SendLocalizedMessage("Sua mochila estava muito cheia entao voce nao pegou a licensa"); // Your backpack was too full so the permit was deleted. Empty your backpack and try again.
 						permit.Delete();
 					}
 					//TODO: Message???
 				}
                 else
-                    from.SendLocalizedMessage(500382); // Thou dost not have sufficient funds in thy account to withdraw that much.
+                    from.SendLocalizedMessage("Voce nao tem dinheiro suficiente no banco"); // Thou dost not have sufficient funds in thy account to withdraw that much.
 			}
 		}
 

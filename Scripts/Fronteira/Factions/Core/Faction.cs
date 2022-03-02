@@ -74,7 +74,7 @@ namespace Server.Factions
         }
     }
 
-    [CustomEnum(new string[] { "Minax", "Concelho dos Magos", "Bretoes Reais", "Senhores das Sombras" })]
+    [CustomEnum(new string[] { "Minax", "Conselho dos Magos", "Bretoes Reais", "Senhores das Sombras" })]
     public abstract class Faction : IComparable
     {
         public int ZeroRankOffset;
