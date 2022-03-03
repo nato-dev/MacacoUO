@@ -42,6 +42,7 @@ namespace Server.Items
         [Constructable]
         public ElvenForgeDeed()
         {
+            Name = "Forja Elfica";
         }
 
         public ElvenForgeDeed(Serial serial)

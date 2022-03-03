@@ -1,4 +1,6 @@
 using Server.Fronteira.Elementos;
+using Server.Gumps;
+using Server.Mobiles;
 
 namespace Server.Items
 {
@@ -91,8 +93,15 @@ namespace Server.Items
 
         public override void OnDoubleClick(Mobile from)
         {
-            var tipoEssencia = BaseEssencia.GetEssencia(Elemento);
-            var naMochila = from.Backpack.FindItemByType(tipoEssencia);
+            if (Nivel >= 50)
+                return;
+
+            if(!ColarElementalGump.CheckForja(from, 4))
+            {
+                from.SendMessage("Voce precisa de uma forja elfica para aprimorar seu colar elemental. Dizem que forjas elficas foram abandonadas na dungeon Caverna de Cristal, em Nujelm.");
+                return;
+            }
+            from.SendGump(new ColarElementalGump(from as PlayerMobile, this));
         }
 
         public ColarElemental(Serial serial)

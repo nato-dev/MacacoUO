@@ -72,6 +72,7 @@ namespace Server.Mobiles
             SorteiaItem(BaseEssencia.RandomEssencia());
             SorteiaItem(BaseEssencia.RandomEssencia());
             SorteiaItem(new ShimmeringCrystals());
+            SorteiaItem(new ElvenForgeDeed());
 
             switch (Utility.Random(4))
             {
