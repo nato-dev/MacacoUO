@@ -451,6 +451,15 @@ namespace Server.Items
             }
             #endregion
 
+            #region Special Lock Pick
+            if (isSos || level >= 4)
+            {
+                Item specialLockPick = new SpecialLockPick();
+                specialLockPick.Amount = level;
+                cont.DropItem(specialLockPick);
+            }
+            #endregion
+
             Item arty = null;
             Item special = null;
 
