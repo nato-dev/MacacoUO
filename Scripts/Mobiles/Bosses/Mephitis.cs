@@ -37,8 +37,8 @@ namespace Server.Mobiles
             SetSkill(SkillName.Tactics, 97.6, 100.0);
             SetSkill(SkillName.Wrestling, 97.6, 100.0);
 
-            Fame = 22500;
-            Karma = -22500;
+            Fame = 122500;
+            Karma = -122500;
 
             VirtualArmor = 80;
 
@@ -48,6 +48,13 @@ namespace Server.Mobiles
         public Mephitis(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (to is BaseCreature)
+                damage *= 3;
         }
 
         public override ChampionSkullType SkullType
@@ -68,7 +75,7 @@ namespace Server.Mobiles
         {
             get
             {
-                return new Type[] { typeof(OblivionsNeedle), typeof(ANecromancerShroud) };
+                return new Type[] { typeof(ANecromancerShroud) };
             }
         }
         public override Type[] DecorativeList
@@ -101,7 +108,16 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV4, 1);
+            AddLoot(LootPack.LV7, 1);
+        }
+
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(new StoneStatueDeed());
+            SorteiaItem(new WarriorStatueEastDeed());
+            SorteiaItem(new HalloweenSpiderForestAddonDeed());
         }
 
         public override void Serialize(GenericWriter writer)

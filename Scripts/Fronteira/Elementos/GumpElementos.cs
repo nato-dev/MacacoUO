@@ -4,6 +4,7 @@ using Server.Mobiles;
 using Server.Items;
 using Server.Fronteira.Elementos;
 using Server.Leilaum;
+using System;
 
 namespace Server.Gumps
 {
@@ -42,7 +43,6 @@ namespace Server.Gumps
             pct = (pl.Elementos.GetExp(ElementoPvM.Raio) / CustosUPElementos.CustoUpExp(pl.Elementos.GetNivel(ElementoPvM.Raio))) * 100;
             AddImageTiled(518, 200, (int)(pct * 1.1), 10, 2054);
             AddHtml(521, 172, 71, 19, @"Raio", (bool)false, (bool)false);
-
 
             AddImageTiled(674, 201, 110, 10, 2053);
             pct = (pl.Elementos.GetExp(ElementoPvM.Gelo) / CustosUPElementos.CustoUpExp(pl.Elementos.GetNivel(ElementoPvM.Gelo))) * 100;
@@ -104,7 +104,9 @@ namespace Server.Gumps
                 var str = "";
                 for (var x = 0; x < efeitos.Length; x++)
                 {
-                    str += Gump.Cor(bonusAtual.ToString("0.00") + "%", "brown") + " -> " + Gump.Cor(proximoNivel.ToString("0.00") + "% ", "green") + efeitos[x] + "<br>";
+                    var efs = efeitos[x].Split(':');
+                    var ratio = Double.Parse(efs[0]);
+                    str += Gump.Cor((bonusAtual*ratio).ToString("0.00") + "%", "brown") + " -> " + Gump.Cor((proximoNivel*ratio).ToString("0.00") + "% ", "green") + efs[1] + "<br>";
                 }
                 AddHtml(355, 342, 249, 73, str, (bool)false, (bool)false);
                 AddHtml(404, 316, 124, 20, @"Prox Nivel:", (bool)false, (bool)false);

@@ -23,59 +23,59 @@ namespace Server.Fronteira.Elementos
             {
                 case ElementoPvM.Fogo:
                     efeitos = new string[] {
-                        "Dano de Fogo",
-                        "Esquiva",
-                        "Fogo Queima"
+                        "1: Dano de Fogo",
+                        "1: Esquiva",
+                        "1: Fogo Queima"
                     };
                     break;
                 case ElementoPvM.Agua:
                     efeitos = new string[] {
-                        "Dano Pocoes",
-                        "Magic Resist",
-                        "Dano Eletrico",
+                        "1: Dano Pocoes",
+                        "1: Magic Resist",
+                        "1: Dano Eletrico",
                     };
                     break;
                 case ElementoPvM.Terra:
                     efeitos = new string[] {
-                        "Dano & Resist de Venenos",
-                        "Armadura",
-                        "Dano Fisico"
+                        "1: Dano & Resist de Venenos",
+                        "1: Armadura",
+                        "1: Dano Fisico"
                     };
                     break;
                 case ElementoPvM.Raio:
                     efeitos = new string[] {
-                        "Dano Eletrico",
-                        "Dano Fisico",
-                        "Esquiva"
+                        "1: Dano Eletrico",
+                        "1: Dano Fisico",
+                        "1: Esquiva"
                     };
                     break;
                 case ElementoPvM.Luz:
                     efeitos = new string[] {
-                        "Cura ao Atacar",
-                        "Resistencia Magica",
-                        "Armadura"
+                        "0.5: Cura ao Atacar",
+                        "1: Resistencia Magica",
+                        "1: Armadura"
                     };
                     break;
                 case ElementoPvM.Escuridao:
                     efeitos = new string[] {
-                        "Penetr. Magica",
+                        "1: Penetr. Magica",
                         //"Dano Magias Proibidas",
-                        "Resistencia Magica",
-                        "LifeSteal Magico"
+                        "1: Resistencia Magica",
+                        "1: LifeSteal Magico"
                     };
                     break;
                 case ElementoPvM.Gelo:
                     efeitos = new string[] {
-                        "Esquiva",
-                        "Resistencia Magica",
-                        "Bonus Coleta Recursos"
+                        "1: Esquiva",
+                        "1: Resistencia Magica",
+                        "1: Bonus Coleta Recursos"
                     };
                     break;
                 case ElementoPvM.Vento:
                     efeitos = new string[] {
-                        "Velocidade Ataque",
-                        "Penetr. Armadura",
-                        "Esquiva"
+                        "1: Velocidade Ataque",
+                        "1: Penetr. Armadura",
+                        "0.5: Esquiva"
                     };
                     break;
                 default:

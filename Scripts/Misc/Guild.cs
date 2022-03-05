@@ -762,6 +762,10 @@ namespace Server.Guilds
 			PlayerMobile pm = args.Mobile as PlayerMobile;
 			if (!NewGuildSystem || pm == null)
 			{
+                if(!NewGuildSystem && pm != null)
+                {
+                    pm.SendMessage("Procure um vendedor de utilidades para comprar a deed de guilda");
+                }
 				return;
 			}
 
@@ -1039,10 +1043,10 @@ namespace Server.Guilds
 
 		public static void HandleDeath(Mobile victim, Mobile killer)
 		{
-			if (!NewGuildSystem)
-			{
-				return;
-			}
+			//if (!NewGuildSystem)
+			//{
+			//	return;
+			//}
 
 			if (killer == null)
 			{

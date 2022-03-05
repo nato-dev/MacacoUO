@@ -19,7 +19,7 @@ namespace Server.Mobiles
                 b.HitsMaxSeed += 800;
                 b.Hits += 800;
                 b.VirtualArmor += 60;
-                b.Fame *= 4;
+                b.Fame *= 2;
                 foreach(var skill in b.Skills)
                 {
                     if (skill.Base > 30 && skill.Base < 120)

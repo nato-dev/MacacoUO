@@ -40,7 +40,7 @@ namespace Server.Mobiles
             this.VirtualArmor = 24;
 
             this.Tamable = true;
-            this.ControlSlots = 2;
+            this.ControlSlots = 1;
             this.MinTameSkill = 50.1;
 
             SetSpecialAbility(SpecialAbility.Rage);

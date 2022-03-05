@@ -33,7 +33,8 @@ namespace Server.Mobiles
             b.HitsMaxSeed = 1000;
             b.Hits = 1000;
             b.VirtualArmor = 60;
-            b.Fame *= 4;
+            b.Fame += 1000;
+            b.Fame *= 6;
             if (Utility.RandomDouble() < 0.45)
                 b.AddItem(BaseEssencia.RandomEssencia());
 

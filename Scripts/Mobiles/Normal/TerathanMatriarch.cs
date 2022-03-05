@@ -58,6 +58,13 @@ namespace Server.Mobiles
                 damage *= 4;
         }
 
+        public override void AlterSpellDamageTo(Mobile to, ref int damage, ElementoPvM elemento)
+        {
+            base.AlterSpellDamageTo(to, ref damage, elemento);
+            if (to is BaseCreature)
+                damage *= 4;
+        }
+
         public override int TreasureMapLevel
         {
             get

@@ -479,6 +479,7 @@ namespace Server
                     new LootPackEntry(true, Gold, 100.00, "5d10+25"), new LootPackEntry(false, Instruments, 0.10, 1),
                     new LootPackEntry(false, OldMagicItems, 5.00, 1, 1, 0, 60),
                     new LootPackEntry(false, OldMagicItems, 1.20, 1, 1, 10, 70),
+                    new LootPackEntry(false, GemItems, 5, 1, 1, 1, 100),
 
                 });
 
@@ -490,6 +491,7 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 5.00, 1, 1, 20, 80),
                     new LootPackEntry(false, OldMagicItems, 2.00, 1, 1, 30, 90),
                     new LootPackEntry(false, OldMagicItems, 0.50, 1, 1, 40, 100),
+                    new LootPackEntry(false, GemItems, 8, 1, 1, 1, 100),
 
                 });
 
@@ -500,7 +502,7 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 20.00, 1, 1, 10, 20),
                     new LootPackEntry(false, OldMagicItems, 2.00, 1, 1, 30, 90),
                     new LootPackEntry(false, OldMagicItems, 0.50, 1, 1, 40, 100),
-                    new LootPackEntry(false, GemItems, 8.00, 1, 1, 1, 100),
+                    new LootPackEntry(false, GemItems, 10.00, 1, 1, 1, 100),
                 });
 
         public static readonly LootPack OldRich =

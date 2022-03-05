@@ -39,7 +39,7 @@ namespace Server.Mobiles
             this.VirtualArmor = 24;
 
             this.Tamable = true;
-            this.ControlSlots = 3;
+            this.ControlSlots = 1;
             this.MinTameSkill = 55.0;
 
             SetSpecialAbility(SpecialAbility.SearingWounds);

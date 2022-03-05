@@ -79,7 +79,7 @@ namespace Server.Mobiles
         {
             get
             {
-                return new Type[] { typeof(FangOfRactus) };
+                return new Type[] { };
             }
         }
 

@@ -1943,12 +1943,12 @@ namespace Server.Mobiles
             }
             else
             {
-                OppositionGroup g = OppositionGroup;
+                //OppositionGroup g = OppositionGroup;
 
-                if (g != null && g.IsEnemy(this, m))
-                {
-                    return true;
-                }
+                //if (g != null && g.IsEnemy(this, m))
+                //{
+                //   return true;
+                //}
             }
 
             BaseCreature c = m as BaseCreature;

@@ -53,6 +53,14 @@ namespace Server.Mobiles
             Tamable = true;
             ControlSlots = 3;
             MinTameSkill = 105;
+
+            SetSpecialAbility(SpecialAbility.Webbing);
+        }
+
+        public override void OnAfterTame(Mobile tamer)
+        {
+            base.OnAfterTame(tamer);
+            this.SetHits(50, 100);
         }
 
         public GreaterGiantSpider(Serial serial)
