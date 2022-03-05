@@ -4,6 +4,7 @@ using Server.Gumps;
 using Server.Misc;
 using Server.Mobiles;
 using Server.Scripts.New.Adam.NewGuild;
+using Server.Ziden.Tutorial;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,13 +47,29 @@ namespace Server.Fronteira
             if (CharacterCreation.Novos.Contains(e.Mobile))
             {
                 CharacterCreation.Novos.Remove(e.Mobile);
-                if(pm.RP && pm.Profession == 0)
+                if (pm.RP && pm.Profession == 0)
                 {
                     GumpClasse.Mostra(pm);
                 }
                 else if (pm.Profession == 0)
                 {
-                    pm.SendGump(new GumpLore(pm));
+                    if (pm.Young)
+                    {
+                        pm.SendGump(new GumpFala((n) =>
+                        {
+                            pm.SendGump(new GumpFala((n2) =>
+                            {
+                                pm.SendGump(new GumpFala((n3) =>
+                                {
+                                    TutorialNoob.InicializaWisp(pm);
+                                }, Faces.GM_PRETO, "Voce agora recebera uma fada guia dos newbies.", "Caso nao queira fazer o tutorial, clique 2x nela e mande ela embora!"));
+                            }, Faces.GM_PRETO, "Rates de upar skills sao faceis no shard !", "", "UP de skills em Macro: Hard.", "Up de skills matando Monstro: EASY !!!"));
+                        }, Faces.GM_PRETO, "Bem vindo ao Dragonic Age !", "", "Quests sao opcionais, porem recomendamos o tutorial !", "Fique sempre atento a mensagens !"));
+                    }
+                    else
+                    {
+                        pm.SendGump(new GumpFala((n2) => { }, Faces.GM_PRETO, "Bem vindo...novamente ! Voce nao e mais um novato !", "Tera de re-escrever a historia com suas proprias pernas!"));
+                    }
                 }
             }
         }

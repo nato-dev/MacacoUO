@@ -48,9 +48,9 @@ namespace Server.Mobiles
             Female = true;
 
             Item shroud = new HoodedShroudOfShadows();
+         
             AddItem(shroud);
-            if (Utility.RandomBool())
-                shroud.Movable = false;
+            shroud.Movable = false;
 
             Scimitar weapon = new Scimitar();
 
@@ -183,9 +183,35 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            NecromancerSpellbook book = new NecromancerSpellbook();
+            //NecromancerSpellbook book = new NecromancerSpellbook();
             //book.Content = (1ul << book.BookCount) - 1;
-            c.DropItem(book);
+            //c.DropItem(book);
+
+            switch(Utility.Random(3))
+            {
+                case 0: SorteiaItem(new AbbygifttobaleAddonDeed()); break;
+                case 1: SorteiaItem(new BBQEastAddonDeed()); break;
+                case 2: SorteiaItem(new CherryBlossomTree2cAddonDeed()); break;
+                case 3: SorteiaItem(new ForestHomeAddonDeed()); break;
+            }
+            var shroud = new HoodedShroudOfShadows();
+            shroud.Name = "[Boss:Neira] Manto dos Mortos";
+            SorteiaItem(shroud);
+
+            var mount = new Eowmu();
+            mount.MoveToWorld(c.Location, c.Map);
+            mount.Hue = TintaPreta.COR;
+            mount.Name = "Ave da Morte";
+            mount.OverheadMessage("* se transformou *");
+            mount.OverheadMessage("[2H Para Domar]");
+            Timer.DelayCall(TimeSpan.FromHours(2), () =>
+            {
+                if (this.Deleted || !this.Alive || this.ControlMaster != null || this.Map == Map.Internal)
+                {
+                    return;
+                }
+                this.Delete();
+            });
         }
 
         public override void OnDamage(int amount, Mobile from, bool willKill)

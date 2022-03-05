@@ -1,5 +1,6 @@
 using Server.Network;
 using Server.Mobiles;
+using Server.Fronteira.Tutorial.WispGuia;
 
 namespace Server.Gumps
 {
@@ -23,7 +24,7 @@ namespace Server.Gumps
             AddPage(0);
             AddBackground(127, 124, 351, 203, 9200);
             AddHtml(201, 174, 200, 23, @"Remover sua Fada Guia", (bool)false, (bool)false);
-            AddHtml(201, 202, 198, 70, @"Voce perdera todos bonus de novato. (Nao Recomendado)", (bool)false, (bool)false);
+            AddHtml(201, 202, 198, 70, @"Voce nao ira ganhar alguns items de iniciante. (Nao Recomendado)", (bool)false, (bool)false);
             AddItem(415, 211, 8448);
             AddHtml(139, 134, 327, 23, @"<CENTER>Fada Guia Dragonic Age</CENTER>", (bool)true, (bool)false);
             AddHtml(203, 291, 200, 23, @"Conversar", (bool)false, (bool)false);
@@ -50,6 +51,7 @@ namespace Server.Gumps
                         from.Wisp.Delete();
                         from.Wisp = null;
                         from.SendMessage("Sua Fada foi embora resmungando...");
+                        from.PassoWispGuia = (int)PassoTutorial.FIM;
                         if(from.Profession==0)
                         {
                             from.SendGump(new NonRPClassGump());

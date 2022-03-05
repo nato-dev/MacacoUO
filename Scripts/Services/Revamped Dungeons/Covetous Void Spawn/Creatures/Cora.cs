@@ -291,10 +291,13 @@ namespace Server.Mobiles
             if (m != null)
             {
                 BaseWeapon artifact = Loot.RandomWeapon();
-                artifact.WeaponAttributes.HitFireArea = 20;
+                artifact.WeaponAttributes.HitFireArea = 35;
                 if (artifact.Name != null)
                     artifact.Name += " de fogo de Cora";
-                artifact.Resource = CraftResource.Bronze;
+                if(artifact is BaseRanged)
+                    artifact.Resource = CraftResource.Mogno;
+                else
+                    artifact.Resource = CraftResource.Bronze;
                 artifact.Quality = ItemQuality.Exceptional;
 
                 if (artifact != null)
@@ -331,7 +334,7 @@ namespace Server.Mobiles
                             if (pack == null || !pack.TryDropItem(mob, arty, false))
                             {
                                 mob.BankBox.DropItem(arty);
-                                mob.SendMessage("An artifact has been placed in your bankbox!");
+                                mob.SendMessage("Um artefato foi colocado no seu banco!");
                             }
                             else
                                 mob.SendLocalizedMessage(1153440); // An artifact has been placed in your backpack!

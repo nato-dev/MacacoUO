@@ -218,12 +218,16 @@ namespace Server.Misc
             int points = AosAttributes.GetValue(from, AosAttribute.RegenHits);
             if (from is PlayerMobile && ((PlayerMobile)from).Talentos.Tem(Talento.Regeneracao))
                 points += 2;
+
+            if (from is BaseCreature)
+                points += ((BaseCreature)from).DefaultHitsRegen;
+
+            points += CombatTrainingSpell.RegenBonus(from)/2;
+
             return points;
             /*
             int points = AosAttributes.GetValue(from, AosAttribute.RegenHits);
 
-            if (from is BaseCreature)
-                points += ((BaseCreature)from).DefaultHitsRegen;
 
             if (Core.ML && from is PlayerMobile && from.Race == Race.Human)	//Is this affected by the cap?
                 points += 2;

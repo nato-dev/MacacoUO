@@ -109,9 +109,6 @@ namespace Server.Ziden.Kills
             if (bc is BaseChampion)
                 exp *= 5;
 
-            if (StuckMenu.IsInSecondAgeArea(bc))
-                exp *= 4;
-
             if (Shard.DebugEnabled)
             {
                 Shard.Debug("Rolando XP " + exp);

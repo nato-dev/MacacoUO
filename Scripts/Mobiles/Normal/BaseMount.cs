@@ -335,9 +335,6 @@ namespace Server.Mobiles
             if (mob.Region is DungeonRegion || mob.Region is DungeonGuardedRegion)
                 return false;
 
-            if (mob.Player && StuckMenu.IsInSecondAgeArea(mob))
-                return false;
-
             if (type == BlockMountType.None)
                 return true;
 

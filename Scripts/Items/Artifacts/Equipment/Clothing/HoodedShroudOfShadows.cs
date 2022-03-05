@@ -15,6 +15,7 @@ namespace Server.Items
         public HoodedShroudOfShadows(int hue)
             : base(0x2684, hue)
         {
+            Name = "Manto dos Mortos";
             //LootType = LootType.Blessed;
             Weight = 3.0;
         }

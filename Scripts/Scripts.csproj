@@ -117,6 +117,7 @@
     <Compile Include="Commands\Custom\Remover.cs" />
     <Compile Include="Commands\Custom\Secure.cs" />
     <Compile Include="Commands\Custom\Trancar.cs" />
+    <Compile Include="Fronteira\Achievements\AchieveTypes\ElementoAchievement.cs" />
     <Compile Include="Fronteira\Armarios\BaseArmario.cs" />
     <Compile Include="Fronteira\Armarios\FurnitureCont.cs" />
     <Compile Include="Fronteira\Bancos\BancoConta.cs" />
@@ -370,6 +371,8 @@
     <Compile Include="Fronteira\Quests\MatarDeceit.cs" />
     <Compile Include="Fronteira\Rankings\RanksTrampo.cs" />
     <Compile Include="Fronteira\RecompensaLogin\RecompensasGuilda.cs" />
+    <Compile Include="Fronteira\RP\GumpLoreThirdAge.cs" />
+    <Compile Include="Fronteira\RP\GumpFala.cs" />
     <Compile Include="Fronteira\Skills\Informacoes.cs" />
     <Compile Include="Fronteira\Storages\MasterStorage.cs" />
     <Compile Include="Fronteira\Storages\MasterStorageContextMenus.cs" />

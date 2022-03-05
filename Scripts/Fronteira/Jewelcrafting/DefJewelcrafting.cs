@@ -283,34 +283,34 @@ namespace Server.Engines.Craft
             AddRecipe(index, (int)JewelRecipes.AnelDeOuro);
 
             // Pedra JC
-            index = AddCraft(typeof(BlueDiamond), "Pedras", "Diamante Azul", 25, 100, typeof(Diamond), "Diamante", 10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(BlueDiamond), "Pedras", "Diamante Azul", 25, 100, typeof(Diamond), "Diamante", 3, "Faltam pedras para criar isto");
             SetNeedForno(index, true);
             AddRecipe(index, (int)JewelRecipes.DiamanteAzul);
 
-            index = AddCraft(typeof(FireRuby), "Pedras", "Rubi de Fogo", 25, 100, typeof(Ruby), "Ruby", 10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(FireRuby), "Pedras", "Rubi de Fogo", 25, 100, typeof(Ruby), "Ruby", 3, "Faltam pedras para criar isto");
             SetNeedForno(index, true);
             AddRecipe(index, (int)JewelRecipes.RubyDeFogo);
 
-            index = AddCraft(typeof(WhitePearl), "Pedras", "Perola Branca", 25, 100, typeof(StarSapphire), "Safira Estrela", 10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(WhitePearl), "Pedras", "Perola Branca", 25, 100, typeof(StarSapphire), "Safira Estrela", 3, "Faltam pedras para criar isto");
             SetNeedForno(index, true);
             AddRecipe(index, (int)JewelRecipes.SafiraEstrela);
 
-            index = AddCraft(typeof(Turquoise), "Pedras", "Turquesa", 25, 100, typeof(Amethyst), "Ametista", 10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(Turquoise), "Pedras", "Turquesa", 25, 100, typeof(Amethyst), "Ametista", 3, "Faltam pedras para criar isto");
             SetNeedForno(index, true);
             AddRecipe(index, (int)JewelRecipes.Turqueza);
 
-            index = AddCraft(typeof(PerfectEmerald), "Pedras", "Esmeralda Perfeita", 25, 100, typeof(Emerald), "Esmeralda",10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(PerfectEmerald), "Pedras", "Esmeralda Perfeita", 25, 100, typeof(Emerald), "Esmeralda",3, "Faltam pedras para criar isto");
             AddRecipe(index, (int)JewelRecipes.Esmeralda);
 
-            index = AddCraft(typeof(EcruCitrine), "Pedras", "Citrino Ecru", 25, 100, typeof(Citrine), "Cirtino", 10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(EcruCitrine), "Pedras", "Citrino Ecru", 25, 100, typeof(Citrine), "Cirtino", 3, "Faltam pedras para criar isto");
             SetNeedForno(index, true);
             AddRecipe(index, (int)JewelRecipes.Citrino);
 
-            index = AddCraft(typeof(DarkSapphire), "Pedras", "Safira Negra", 25, 100, typeof(Sapphire), "Safira", 10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(DarkSapphire), "Pedras", "Safira Negra", 25, 100, typeof(Sapphire), "Safira", 3, "Faltam pedras para criar isto");
             SetNeedForno(index, true);
             AddRecipe(index, (int)JewelRecipes.Safira);
 
-            index = AddCraft(typeof(BrilliantAmber), "Pedras", "Ambar Brilhante", 25, 100, typeof(Amber), "Ambar", 10, "Faltam pedras para criar isto");
+            index = AddCraft(typeof(BrilliantAmber), "Pedras", "Ambar Brilhante", 25, 100, typeof(Amber), "Ambar", 3, "Faltam pedras para criar isto");
             SetNeedForno(index, true);
             AddRecipe(index, (int)JewelRecipes.Ambar);
 

@@ -23,8 +23,6 @@ namespace Server.Commands
         private static void OrganizeMe_OnCommand(CommandEventArgs arg)
         {
             OrganizePouch weaponPouch = null;
-            OrganizePouch armorPouch = null;
-            OrganizePouch clothingPouch = null;
             OrganizePouch jewelPouch = null;
             OrganizePouch potionPouch = null;
             OrganizePouch currencyPouch = null;
@@ -50,7 +48,7 @@ namespace Server.Commands
                 return;
             }
 
-            if (bp.TotalItems >= (bp.MaxItems - 10)  && from.AccessLevel < AccessLevel.GameMaster)
+            if (bp.TotalItems >= (bp.MaxItems - 10) && from.AccessLevel < AccessLevel.GameMaster)
             {
                 if (from is PlayerMobile && from.NetState != null)
                 {
@@ -62,7 +60,7 @@ namespace Server.Commands
             var backpackitems = new List<Item>(bp.Items);
             var subcontaineritems = new List<Item>();
 
-            foreach (var item in backpackitems.OfType<BaseContainer>())
+            foreach (var item in new List<BaseContainer>(backpackitems.OfType<BaseContainer>()))
             {
                 var lockable = item as LockableContainer;
                 if (lockable != null)
@@ -84,22 +82,17 @@ namespace Server.Commands
 
                 // Skip the pouches that are already created
                 if (item is OrganizePouch)
-                {    
-                    if (item.Name == "Armas")
+                {
+                    if (item.Name == "Equips")
                     {
-                        weaponPouch = item as OrganizePouch;
-                    }
-                    if (item.Name == "Armaduras")
-                    {
-                        armorPouch = item as OrganizePouch;
-                    }
-                    if (item.Name == "Roupas")
-                    {
-                        clothingPouch = item as OrganizePouch;
-                    }
-                    if (item.Name == "Joias")
-                    {
-                        jewelPouch = item as OrganizePouch;
+                        if (weaponPouch != null)
+                        {
+                            foreach (var i in new List<Item>(item.Items))
+                                weaponPouch.AddItem(i);
+                            item.Delete();
+                        }
+                        else
+                            weaponPouch = item as OrganizePouch;
                     }
                     if (item.Name == "Pocoes")
                     {
@@ -107,23 +100,58 @@ namespace Server.Commands
                     }
                     if (item.Name == "Moedas")
                     {
-                        currencyPouch = item as OrganizePouch;
+                        if (currencyPouch != null)
+                        {
+                            foreach (var i in new List<Item>(item.Items))
+                                currencyPouch.AddItem(i);
+                            item.Delete();
+                        }
+                        else
+                            currencyPouch = item as OrganizePouch;
                     }
                     if (item.Name == "Recursos")
                     {
-                        resourcePouch = item as OrganizePouch;
+                        if (resourcePouch != null)
+                        {
+                            foreach (var i in new List<Item>(item.Items))
+                                resourcePouch.AddItem(i);
+                            item.Delete();
+                        }
+                        else
+                            resourcePouch = item as OrganizePouch;
                     }
                     if (item.Name == "Ferramentas")
                     {
-                        toolPouch = item as OrganizePouch;
+                        if (toolPouch != null)
+                        {
+                            foreach (var i in new List<Item>(item.Items))
+                                toolPouch.AddItem(i);
+                            item.Delete();
+                        }
+                        else
+                            toolPouch = item as OrganizePouch;
                     }
                     if (item.Name == "Reagents")
                     {
-                        regsPouch = item as OrganizePouch;
+                        if (regsPouch != null)
+                        {
+                            foreach (var i in new List<Item>(item.Items))
+                                regsPouch.AddItem(i);
+                            item.Delete();
+                        }
+                        else
+                            regsPouch = item as OrganizePouch;
                     }
                     if (item.Name == "Misc")
                     {
-                        miscPouch = item as OrganizePouch;
+                        if (miscPouch != null)
+                        {
+                            foreach (var i in new List<Item>(item.Items))
+                                miscPouch.AddItem(i);
+                            item.Delete();
+                        }
+                        else
+                            miscPouch = item as OrganizePouch;
                     }
 
                     // Skip all the items in the pouches since they should already be organized
@@ -138,39 +166,31 @@ namespace Server.Commands
 
             if (weaponPouch == null)
             {
-                weaponPouch = new OrganizePouch { Name = "Armas", Hue =92 };
-            }
-            if (armorPouch == null)
-            {
-                armorPouch = new OrganizePouch { Name = "Armaduras", Hue = 82 };
-            }
-            if (clothingPouch == null)
-            {
-                clothingPouch = new OrganizePouch { Name = "Roupas", Hue = 72 };
+                weaponPouch = new OrganizePouch { Name = "Equips", Hue = 92 };
             }
             if (jewelPouch == null)
             {
-                jewelPouch = new OrganizePouch { Name = "Joias", Hue =62 };
+                jewelPouch = new OrganizePouch { Name = "Joias", Hue = 62 };
             }
             if (potionPouch == null)
             {
-                potionPouch = new OrganizePouch {Name = "Pocoes", Hue =52};
+                potionPouch = new OrganizePouch { Name = "Pocoes", Hue = 52 };
             }
             if (currencyPouch == null)
             {
-                currencyPouch = new OrganizePouch {Name = "Moedas", Hue =42};
+                currencyPouch = new OrganizePouch { Name = "Moedas", Hue = 42 };
             }
             if (resourcePouch == null)
             {
-                resourcePouch = new OrganizePouch {Name = "Recursos", Hue = 32};
+                resourcePouch = new OrganizePouch { Name = "Recursos", Hue = 32 };
             }
             if (toolPouch == null)
             {
-                toolPouch = new OrganizePouch {Name = "Ferramentas", Hue = 22};
+                toolPouch = new OrganizePouch { Name = "Ferramentas", Hue = 22 };
             }
             if (regsPouch == null)
             {
-                regsPouch = new OrganizePouch {Name = "Reagents", Hue = 12};
+                regsPouch = new OrganizePouch { Name = "Reagents", Hue = 12 };
             }
             if (miscPouch == null)
             {
@@ -179,8 +199,6 @@ namespace Server.Commands
             var pouches = new List<OrganizePouch>
             {
                 weaponPouch,
-                armorPouch,
-                clothingPouch,
                 jewelPouch,
                 potionPouch,
                 currencyPouch,
@@ -194,12 +212,12 @@ namespace Server.Commands
                 Item item in
                     backpackitems.Where(
                         item =>
-                            item.LootType != LootType.Blessed && 
+                            item.LootType != LootType.Blessed &&
                             !(item is Runebook) &&
                             !(item is RecallRune) &&
                             !(item is Key) &&
-                            !(item is Spellbook) && 
-                            item.Movable && 
+                            !(item is Spellbook) &&
+                            item.Movable &&
                             item.LootType != LootType.Blessed))
             {
                 // Lets not add the pouches to themselves
@@ -208,21 +226,9 @@ namespace Server.Commands
                     continue;
                 }
 
-                if (item is BaseWeapon)
+                if (item is BaseWeapon || item is BaseArmor || item is BaseClothing || item is BaseJewel)
                 {
                     weaponPouch.TryDropItem(from, item, false);
-                }
-                else if (item is BaseArmor)
-                {
-                    armorPouch.TryDropItem(from, item, false);
-                }
-                else if (item is BaseClothing)
-                {
-                    clothingPouch.TryDropItem(from, item, false);
-                }
-                else if (item is BaseJewel)
-                {
-                    jewelPouch.TryDropItem(from, item, false);
                 }
                 else if (item is BasePotion)
                 {
@@ -257,13 +263,13 @@ namespace Server.Commands
             foreach (var pouch in pouches)
             {
                 if (pouch.TotalItems <= 0)
-                { 
+                {
                     continue;
                 }
-                
+
                 // AddToBackpack doesnt do anything if the item is already in the backpack
                 // calls DropItem internally
-                
+
                 if (!from.Backpack.Items.Contains(pouch))
                 {
                     from.AddToBackpack(pouch);
@@ -274,6 +280,9 @@ namespace Server.Commands
 
                 x += 10;
             }
+            regsPouch.DisplayTo(from);
+            potionPouch.DisplayTo(from);
+            from.CloseAllGumps();
         }
     }
 }

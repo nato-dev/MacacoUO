@@ -80,6 +80,7 @@ namespace Scripts.Mythik.Systems.Achievements
             Categories.Add(new AchievementCategory(3000, 0, "PvM"));
             Categories.Add(new AchievementCategory(4000, 0, "Personagem"));
             Categories.Add(new AchievementCategory(5000, 0, "Outro"));
+            Categories.Add(new AchievementCategory(6000, 0, "Elementos PvM"));
 
             //Achievements.Add(new DiscoveryAchievement(8888, 1, 0x14EB, false, null, "General expo!", "General expo!", 5, "Green Acres"));
             /*
@@ -103,7 +104,7 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new DiscoveryAchievement(3, 1, 0x14EB, false, null, "Ratown", "Va a vila dos Ratos", 5, "SavageCamp"));
             Achievements.Add(new DiscoveryAchievement(4, 1, 0x14EB, false, null, "Tretonia", "Encontre Tretonia", 5, "Tretonia"));
             */
-           
+
             Achievements.Add(new DiscoveryAchievement(1, 2, 0x14EB, false, null, "Britain!", "Descubra brit", 5, "Britain"));
             Achievements.Add(new DiscoveryAchievement(2, 2, 0x14EB, false, null, "Minoc!", "Descubra Minoc", 5, "Minoc"));
             Achievements.Add(new DiscoveryAchievement(3, 2, 0x14EB, false, null, "Ocllo!", "Descubra Ocllo", 5, "Ocllo"));
@@ -227,6 +228,7 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new HunterAchievement(1037, 3000, 0x2602, false, null, 500, "Nao aguento mais formigas pretas", "Mate 500 Formigas Guerreiras Pretas", 50, typeof(BlackSolenWarrior), typeof(SacolaDeOuro3000)));
             Achievements.Add(new HunterAchievement(1038, 3000, 0x20EC, false, null, 1, "O Primeiro de Muitos", "Mate 1 Zumbi", 10, typeof(Zombie)));
             Achievements.Add(new HunterAchievement(1039, 3000, 0x20EC, false, null, 1, "[BOSS] Matador de Dragao Anciao", "Mate 1 Dragao Anciao", 10, typeof(AncientWyrm)));
+            Achievements.Add(new HunterAchievement(1040, 3000, 0x20EC, false, null, 1, "[BOSS] Anthony, o Assassino Ninja", "Mate Anthony", 10, typeof(AnthonyErtsem)));
 
             // SKILLS
             // BS
@@ -449,7 +451,14 @@ namespace Scripts.Mythik.Systems.Achievements
             skillName = SkillName.Wrestling;
             Achievements.Add(new SkillProgressAchievement(id++, 4000, icone, false, ach, 100, "Grande Mestre em " + skillName.ToString(), "Obtenha 100 " + skillName.ToString(), skillName, 10));
 
-            //Achievements = Achievements.OrderBy(a => a.RewardPoints).ToList();
+            foreach(var e in new ElementoPvM[] { ElementoPvM.Agua, ElementoPvM.Fogo, ElementoPvM.Terra, ElementoPvM.Gelo, ElementoPvM.Vento, ElementoPvM.Raio, ElementoPvM.Luz, ElementoPvM.Escuridao })
+            {
+                for(var lvl = 1; lvl < 100; lvl+=5)
+                {
+                    Achievements.Add(new ElementoAchievement(id++, 6000, icone, false, ach, lvl, $"{e.ToString()} lvl {lvl}", $"Mate um monstro estando {e.ToString()} lvl {lvl}", e, 10));
+                }
+            }
+
 
             CommandSystem.Register("conquistas", AccessLevel.Player, new CommandEventHandler(OpenGumpCommand));
             EventSink.WorldSave += EventSink_WorldSave;

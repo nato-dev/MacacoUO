@@ -12,6 +12,7 @@ namespace Server.Items
             : base(0x1940)
         {
             UpdateWeight();
+            
         }
 
         public PotionKeg(Serial serial)

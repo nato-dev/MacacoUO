@@ -96,7 +96,7 @@ namespace Server.Spells.Fourth
 
                                 AddEntry(m, val);
                                 new InternalTimer(m, this.Caster).Start();
-
+                                BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.Protection, 1075816, String.Format("{0}\t{1}", 0, 0).ToString()));
                                 m.FixedParticles(0x375A, 9, 20, 5027, EffectLayer.Waist);
                                 m.PlaySound(0x1F7);
                             }
@@ -121,6 +121,7 @@ namespace Server.Spells.Fourth
             {
                 int v = _Table[m];
                 _Table.Remove(m);
+                BuffInfo.RemoveBuff(m, BuffIcon.Protection);
                 m.EndAction(typeof(ArchProtectionSpell));
                 m.VirtualArmorMod -= v;
                 if (m.VirtualArmorMod < 0)

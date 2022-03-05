@@ -45,9 +45,9 @@ namespace Server.Mobiles
             SetDex(100);
             SetInt(500);
 
-            SetHits(200);
+            SetHits(30);
 
-            SetDamage(7, 20);
+            SetDamage(1, 3);
 
             SetDamageType(ResistanceType.Physical, 100);
 
@@ -65,7 +65,7 @@ namespace Server.Mobiles
             Karma = -4000;
 
             Tamable = true;
-            ControlSlots = 3;
+            ControlSlots = 5;
             MinTameSkill = 70;
 
             Container pack = Backpack;

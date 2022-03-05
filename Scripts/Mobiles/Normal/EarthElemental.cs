@@ -109,11 +109,24 @@ namespace Server.Mobiles
                 this.bc = c;
                 this.alvo = alvo;
                 rect = new Rectangle2D(c.X - 1, c.Y - 1, 3, 3);
+               
             }
 
             protected override void OnTick()
             {
-                if (bc.Deleted || bc == null)
+                if (bc == null)
+                    return;
+
+                if (!bc.Alive && bc.Corpse != null && ct != 666)
+                {
+                    if (ct > 10)
+                        ct /= 2;
+                    bc.Corpse.MoveToWorld(new Point3D(bc.Location.X, bc.Location.Y, bc.Location.Z + 2 * ct), bc.Map);
+                    ct = 666;
+                    return;
+                }
+
+                if (bc.Deleted || ct == 666)
                     return;
 
                 ct++;

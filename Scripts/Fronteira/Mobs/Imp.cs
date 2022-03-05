@@ -1,4 +1,5 @@
 using System;
+using Server.Engines.Craft;
 using Server.Items;
 using Server.Menus.Questions;
 
@@ -52,7 +53,11 @@ namespace Server.Mobiles
                 {
                     gold.Amount = (int)gold.Amount * 5;
                 }
-                
+
+                if(Utility.RandomDouble() < 0.1)
+                {
+                    b.PackItem(DefJewelcrafting.GetReceitaPower());
+                }
                 b.DamageMin = (int)(b.DamageMin * 1.5);
                 b.DamageMax = (int)(b.DamageMax * 1.5);
             });

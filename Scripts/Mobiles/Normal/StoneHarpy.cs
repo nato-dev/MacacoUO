@@ -129,7 +129,7 @@ namespace Server.Mobiles
 
             if (!bonus)
             {
-                totalDamage /= 10;
+                totalDamage /= 2;
                 if (!from.IsCooldown("dicabas2"))
                 {
                     from.SetCooldown("dicabas2", TimeSpan.FromMinutes(10));

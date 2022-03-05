@@ -25,7 +25,6 @@ namespace Server.Items
             CommandSystem.Register("verfactions", AccessLevel.Player, new CommandEventHandler(_OnCommand));
         }
 
-
         [Usage("verfactions")]
         [Description("Visualiza um gump mostrando as factions e como chegar nelas.")]
         public static void _OnCommand(CommandEventArgs e)
@@ -214,21 +213,33 @@ namespace Server.Items
             {
                 var idx = index - 100;
                 var faction = m_List[idx];
-                if(from.Map != Map.Trammel)
+                if (from.Map != Map.Trammel)
                 {
                     from.SendMessage("Voce nao esta no mapa correto para isto");
                     return;
                 }
-                if(from.IsStaff())
-                {
-                    from.SendMessage("Como vc eh staff... ja te teleportei pra la !");
-                    from.MoveToWorld(faction.Definition.Stronghold.JoinStone, Map.Trammel);
-                } else
-                {
-                    from.QuestArrow = new QuestArrow(from, faction.Definition.Stronghold.JoinStone);
-                    from.QuestArrow.Update();
-                    from.SendMessage("Voce esta indo para o forte que percente a " + faction.Name);
-                }
+
+                from.SendGump(new GumpOpcoes("Onde ?", (opt) => {
+
+                    var loc = faction.Definition.Stronghold.JoinStone;
+                    if (opt == 0)
+                        loc = faction.Definition.Stronghold.FactionStone;
+                    if (from.IsStaff())
+                    {
+                        from.SendMessage("Como vc eh staff... ja te teleportei pra la !");
+                        from.MoveToWorld(loc, Map.Trammel);
+                    }
+                    else
+                    {
+                        from.QuestArrow = new QuestArrow(from, loc);
+                        from.QuestArrow.Update();
+                        from.SendMessage("Voce esta indo para o forte que percente a " + faction.Name);
+                    }
+
+
+                }, 0xEDC, 0, "Fortaleza", "Recrutamento"));
+                    //0xEDC
+                
               
             }
 

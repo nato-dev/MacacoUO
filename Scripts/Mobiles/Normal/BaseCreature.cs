@@ -1323,7 +1323,7 @@ namespace Server.Mobiles
         public virtual double BreathEffectDelay { get { return 1.3; } }
 
         // Damage is given 1.0 seconds after effect is sent
-        public virtual double BreathDamageDelay { get { return 1.0; } }
+        public virtual double BreathDamageDelay { get { return 0.7; } }
 
         // Damage types
         public virtual int BreathChaosDamage { get { return 0; } }
@@ -1395,6 +1395,9 @@ namespace Server.Mobiles
         {
             RevealingAction();
             IDamageable target = (IDamageable)state;
+
+            if (!this.CanSee(target) || !this.InLOS(target))
+                return;
 
             if (!target.Alive || !CanBeHarmful(target))
             {

@@ -345,7 +345,6 @@ namespace Server.Mobiles
                 {
                     var ethy = (EtherealMount)Mount;
                     ethy.Rider = null;
-                    DungeonMount = null;
                 }
             }
 
@@ -387,12 +386,24 @@ namespace Server.Mobiles
                 return;
             }
 
-            if (DungeonMount != null && this.Alive)
+            if (this.Alive)
             {
-                DungeonMount.MoveToWorld(Location, Map);
-                ((BaseMount)DungeonMount).Rider = this;
-                DungeonMount = null;
-                LocalOverheadMessage(MessageType.Regular, 0, false, "Voce pegou sua montaria novamente");
+                if(DungeonMount != null)
+                {
+                    DungeonMount.MoveToWorld(Location, Map);
+                    ((BaseMount)DungeonMount).Rider = this;
+                    DungeonMount = null;
+                    LocalOverheadMessage(MessageType.Regular, 0, false, "Voce pegou sua montaria novamente");
+                } else
+                {
+                    var ethy = Backpack.FindItemByType<EtherealMount>();
+                    if(ethy != null)
+                    {
+                        ethy.Rider = this;
+                        LocalOverheadMessage(MessageType.Regular, 0, false, "Voce invocou sua montaria magica novamente");
+                    }
+                }
+               
             }
         }
 

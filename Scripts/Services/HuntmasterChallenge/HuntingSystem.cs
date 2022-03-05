@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using Server.Items;
 using Server.Gumps;
 using Server.Engines.Quests;
+using System.Globalization;
+using System.Threading;
 
 namespace Server.Engines.HuntsmasterChallenge
 {
@@ -48,7 +50,8 @@ namespace Server.Engines.HuntsmasterChallenge
 		{
 			if(m_Instance == null)
 				m_Instance = new HuntingSystem();
-		}
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+        }
 		
 		public HuntingSystem() : base(17603)
 		{

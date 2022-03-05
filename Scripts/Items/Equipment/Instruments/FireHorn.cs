@@ -200,7 +200,7 @@ namespace Server.Items
         {
             private readonly FireHorn m_Horn;
             public InternalTarget(FireHorn horn)
-                : base(Core.AOS ? 3 : 2, true, TargetFlags.Harmful)
+                : base(4, true, TargetFlags.Harmful)
             {
                 this.m_Horn = horn;
             }

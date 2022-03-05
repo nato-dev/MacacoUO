@@ -53,6 +53,8 @@ namespace Server.Fronteira.Tutorial.WispGuia
         FIM,
 
         ALCHEMIST,
+        MOONGATE,
+       
 
         // NOVOS
 
@@ -218,6 +220,15 @@ namespace Server.Fronteira.Tutorial.WispGuia
                 FraseProgresso = "Vamos vamos, dentro da dungeon deve ter algum monstro poderoso...",
                 FraseCompletar = "Eca que nojo !",
                 Proximo = PassoTutorial.JILL
+            });
+
+            Objetivos.Add(PassoTutorial.JILL, new ObjetivoGuia()
+            {
+                PrecisaEvento = true,
+                FraseIniciar = "Hmm voce viu o livro que tinha dentro do monstro ? Vamos procurar essa Jill perto do Banco...",
+                FraseProgresso = "Vamos procurar a tal Jill perto do banco...",
+                FraseCompletar = "Que diferente esse mapa que te deram ! Que tal tentar usar ele ?",
+                Proximo = PassoTutorial.FIM
             });
 
             Objetivos.Add(PassoTutorial.JILL, new ObjetivoGuia()

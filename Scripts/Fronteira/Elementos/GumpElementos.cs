@@ -121,9 +121,9 @@ namespace Server.Gumps
 
                 AddBackground(784, 335, 111, 101, 3500);
                 AddHtml(827, 350, 83, 22, qtdItems.ToString(), (bool)false, (bool)false);
-                AddHtml(793, 405, 100, 22, custos[0].name, (bool)true, (bool)false);
+                AddHtml(793, 405, 100, 22, custos[nivel <= 20 ? 0 : 1].name, (bool)true, (bool)false);
                 //AddItem(811, 367, 576);
-                NewAuctionGump.AddItemCentered(784, 335, 111, 101, custos[0].itemID, custos[0].hue, this);
+                NewAuctionGump.AddItemCentered(784, 335, 111, 101, custos[nivel <= 20 ? 0 : 1].itemID, custos[nivel <= 20 ? 0 : 1].hue, this);
 
                 AddHtml(534, 317, 324, 20, "Exp: " + pl.Elementos.GetExp(elemento) + " / " + CustosUPElementos.CustoUpExp(nivel), (bool)false, (bool)false);
                 AddButton(804, 435, 247, 248, (int)ElementoButtons.Upar, GumpButtonType.Reply, 0);
@@ -199,6 +199,11 @@ namespace Server.Gumps
                             return;
                         }
                         var itemPrecisa = CustosUPElementos.GetCustos(e)[0];
+                        var itemPrecisaPower = CustosUPElementos.GetCustos(e)[1];
+
+                        if (nivel > 20)
+                            itemPrecisa = itemPrecisaPower;
+
                         var qtdPrecisa = CustosUPElementos.QuantidadeItems(nivel);
 
                         if (!sender.Mobile.Backpack.HasItem(itemPrecisa.type, qtdPrecisa, true))
@@ -215,7 +220,6 @@ namespace Server.Gumps
                         {
                             from.Backpack.ConsumeTotal(new System.Type[] { itemPrecisa.type }, new int[] { qtdPrecisa });
                         }
-
 
                         Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
                         Effects.PlaySound(from.Location, from.Map, 0x243);

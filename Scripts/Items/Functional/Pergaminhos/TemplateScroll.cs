@@ -110,7 +110,7 @@ namespace Server.Items.Functional.Pergaminhos
             if (pl == null)
                 return;
 
-            if(!pl.Young || pl.Wisp == null)
+            if(!pl.Young)
             {
                 pl.SendMessage("Voce precisa ser um novato para usar isto");
                 return;

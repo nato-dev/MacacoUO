@@ -194,7 +194,6 @@ namespace Server.Spells.Second
             protected override void OnTick()
             {
                 ArchProtectionSpell.RemoveEntry(this.m_Caster);
-                BuffInfo.RemoveBuff(this.m_Caster, BuffIcon.Protection);
             }
         }
     }

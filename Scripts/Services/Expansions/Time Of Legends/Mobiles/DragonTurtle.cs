@@ -71,6 +71,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
             SorteiaItem(new PergaminhoSkillcap());
             SorteiaItem(new PergaminhoSkillcap());
+            SorteiaItem(new DragonTurtleFountainAddonDeed());
             var a = new CarpenterApron();
             a.Bonus = Utility.Random(5, 10);
             a.Skill = SkillName.Tailoring;

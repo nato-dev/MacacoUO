@@ -588,7 +588,7 @@ namespace Server.Mobiles
 
             bool newVendorSystem = false;
 
-            switch ( version )
+            switch (version)
             {
                 case 1:
                     {
@@ -626,7 +626,7 @@ namespace Server.Mobiles
                             }
                         }
 
-                        break;	
+                        break;
                     }
             }
 
@@ -1019,12 +1019,7 @@ namespace Server.Mobiles
             if (IsOwner(from))
             {
                 SendOwnerGump(from);
-                if(!from.IsCooldown("dicacoleta"))
-                {
-                    from.SendMessage(78, "Diga 'coletar' para seu vendedor para que ele lhe entregue os lucros da loja.");
-                    from.SetCooldown("dicacoleta", TimeSpan.FromHours(3));
-                }
-                
+                from.SendMessage(78, "Diga 'coletar' para seu vendedor para que ele lhe entregue os lucros da loja.");
             }
             else if (CanInteractWith(from, false))
             {
@@ -1244,14 +1239,14 @@ namespace Server.Mobiles
                     else
                     {
                         IPooledEnumerable mobiles = e.Mobile.GetMobilesInRange(2);
-						
+
                         foreach (Mobile m in mobiles)
                             if (m is PlayerVendor && m.CanSee(e.Mobile) && m.InLOS(e.Mobile))
                                 ((PlayerVendor)m).OpenBackpack(from);
-						
+
                         mobiles.Free();
                     }
-					
+
                     e.Handled = true;
                 }
             }
@@ -1448,7 +1443,7 @@ namespace Server.Mobiles
                 else
                     name = "#" + item.LabelNumber.ToString();
 
-                from.SendMessage("Digite um preco e uma descricao do item "+name+". ESC para cancelar"); // Type in a price and description for ~1_ITEM~ (ESC=not for sale)
+                from.SendMessage("Digite um preco e uma descricao do item " + name + ". ESC para cancelar"); // Type in a price and description for ~1_ITEM~ (ESC=not for sale)
                 from.Prompt = new VendorPricePrompt(this, vi);
             }
         }

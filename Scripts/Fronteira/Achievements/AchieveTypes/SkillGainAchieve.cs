@@ -37,3 +37,4 @@ namespace Scripts.Mythik.Systems.Achievements.AchieveTypes
 
     }
 }
+

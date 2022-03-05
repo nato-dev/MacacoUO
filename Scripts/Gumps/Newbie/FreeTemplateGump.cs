@@ -141,9 +141,6 @@ namespace Server.Gumps
             }
             else if (info.ButtonID == 10)
             {
-
-
-
                 var pl = from as PlayerMobile;
 
                 var deed = pl.Backpack.FindItemByType(typeof(TemplateDeed));
@@ -152,9 +149,6 @@ namespace Server.Gumps
                     return;
                 }
                 deed.Consume();
-
-                pl.Young = false;
-                pl.Account.Young = false;
                 if (pl.Wisp != null)
                     pl.Wisp.Delete();
                 pl.Wisp = null;

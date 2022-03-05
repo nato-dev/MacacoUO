@@ -48,7 +48,7 @@ namespace Server.Mobiles
             this.Fame = 22500;
             this.Karma = -22500;
 
-            this.VirtualArmor = 150;
+            this.VirtualArmor = 90;
         }
 
         public AncientWyrm(Serial serial)

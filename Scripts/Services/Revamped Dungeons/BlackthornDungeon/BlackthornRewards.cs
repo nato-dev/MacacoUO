@@ -19,6 +19,7 @@ namespace Server.Engines.Blackthorn
             Rewards.Add(new CollectionItem(typeof(BlackthornPainting2), 0x4C65, 1023744, 0, 10));
 
             // RuneBeetleCarapaceBase
+            
             Rewards.Add(new CollectionItem(typeof(GargishStoneChestBearingTheCrestOfBlackthorn), 0x286, 0, 0, 25));
             Rewards.Add(new CollectionItem(typeof(GargishPlatemailChestBearingTheCrestOfBlackthorn), 0x030A, 0, 0, 25));
             Rewards.Add(new CollectionItem(typeof(DragonBreastplateBearingTheCrestOfBlackthorn), 0x2641, 0, 0, 25));
