@@ -12,10 +12,10 @@ namespace Server.Ziden
         [Constructable]
         public SpecialLockPick() : base(0x14fc)
         {
-            this.Name = "Lock Pick Especial";
+            this.Name = "Chave Mestra";
             this.Stackable = true;
             this.Weight = 1.0;
-            this.Hue = (0xAA7);
+            this.Hue = (0x37);
         }
 
         public SpecialLockPick(Serial s) : base(s) { }
@@ -46,7 +46,7 @@ namespace Server.Ziden
 
                 Timer.DelayCall(TimeSpan.FromMilliseconds(200.0), EndLockpick, new object[] { item, from });
                 this.Consume();
-                
+
             }
             else
             {
@@ -62,10 +62,23 @@ namespace Server.Ziden
 
             Item item = (Item)lockpickable;
 
-            if (!from.InRange(item.GetWorldLocation(), 1))
+            if ((!(lockpickable is BaseTreasureChestMod) && lockpickable.LockLevel == 0) || lockpickable.LockLevel == -255)
+            {
+                // LockLevel of 0 means that the door can't be picklocked
+                // LockLevel of -255 means it's magic locked
+                from.SendMessage("Estra tranca... parece ter algo diferente nela..."); // This lock cannot be picked by normal means
+                return;
+            }
 
-            
-            from.Animate(AnimationType.Attack, 4);
+            if (lockpickable is BaseTreasureChestMod)
+            {
+
+            }
+
+            else if (!from.InRange(item.GetWorldLocation(), 1))
+
+
+                from.Animate(AnimationType.Attack, 4);
             from.OverheadMessage("*Essa Ferramenta e boa mesmo*");
             from.MovingEffect(item, 0x374A, 2, 0, false, false);
             from.SendMessage("Você conseguiu destrancar o item");
@@ -102,9 +115,9 @@ namespace Server.Ziden
                 else
                 {
                     m_Item.BeginLockpick(from, (ILockpickable)targeted);
-                    
+
                 }
-                                
+
             }
         }
     }
