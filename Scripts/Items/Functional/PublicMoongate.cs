@@ -777,6 +777,13 @@ namespace Server.Items
 
             m_Mobile.MoveToWorld(entry.Location, list.Map);
 
+            var pl = m_Mobile as PlayerMobile;
+            if(pl != null && pl.Wisp != null)
+            {
+                pl.Wisp.MoveToWorld(entry.Location, list.Map);
+                pl.Wisp.Moongate();
+            }
+
             Effects.PlaySound(entry.Location, list.Map, 0x1FE);
 
             CityTradeSystem.OnPublicMoongateUsed(m_Mobile);

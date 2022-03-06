@@ -84,6 +84,11 @@ selado, o local que o mapa que lhe dei indica, e fazer o ritual. Como fazer o ri
         public override void OnCompleted()
         {
             Points.PointsSystem.Exp.AwardPoints(this.Owner, 600);
+            var pl = Owner as PlayerMobile;
+            if (pl != null && pl.Wisp != null)
+            {
+                pl.Wisp.CompletaJill();
+            }
             this.Owner.PlaySound(this.CompleteSound);
         }
 

@@ -1777,6 +1777,7 @@ namespace Server.Items
                 }
             }
 
+
             if (attacker.RP && !attacker.TemTalento(Talento.Curandeiro) && Utility.RandomDouble() < 0.5)
             {
                 BandageContext c = BandageContext.GetContext(attacker);
@@ -1831,6 +1832,20 @@ namespace Server.Items
                         }
                     }
                 }
+
+                var defender = damageable as Mobile;
+                if (attacker != null && defender != null && defender.Player)
+                {
+                    if(defender.Weapon.MaxRange <= defender.GetDistance(attacker))
+                    {
+                        if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange))
+                        {
+                            defender.AggressiveAction(attacker, false);
+                            defender.Combatant = attacker;
+                        }
+                    }
+                }
+
                 if (Shard.SPHERE_STYLE)
                     SphereSwing(attacker, damageable, damageBonus);
                 else
@@ -1946,7 +1961,7 @@ namespace Server.Items
 
                 if (defender.Player && parry > 70 && attacker is BaseCreature)
                 {
-                    chance += parry / 200; // +50%
+                    chance += parry / 180; // +60%
                 }
 
                 if (shield is WoodenShield || shield is WoodenKiteShield)

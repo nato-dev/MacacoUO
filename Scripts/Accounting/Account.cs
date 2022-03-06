@@ -20,7 +20,7 @@ namespace Server.Accounting
 	[PropertyObject]
 	public class Account : IAccount, IComparable, IComparable<Account>
 	{
-
+        public bool Casa = false;
         public bool Checou = false;
 
 		public static readonly TimeSpan YoungDuration = TimeSpan.FromHours(24*15);

@@ -54,7 +54,8 @@ namespace Server.Fronteira.Tutorial.WispGuia
 
         ALCHEMIST,
         MOONGATE,
-       
+        QUEST_CASA,
+        COMPLETA_JILL,
 
         // NOVOS
 
@@ -228,6 +229,35 @@ namespace Server.Fronteira.Tutorial.WispGuia
                 FraseIniciar = "Hmm voce viu o livro que tinha dentro do monstro ? Vamos procurar essa Jill perto do Banco...",
                 FraseProgresso = "Vamos procurar a tal Jill perto do banco...",
                 FraseCompletar = "Que diferente esse mapa que te deram ! Que tal tentar usar ele ?",
+                Proximo = PassoTutorial.COMPLETA_JILL
+            });
+
+
+            Objetivos.Add(PassoTutorial.COMPLETA_JILL, new ObjetivoGuia()
+            {
+                PrecisaEvento = true,
+                FraseIniciar = "Uma fada Ma ? Vamos acha-la !",
+                FraseProgresso = "Encontre essa fada ma, o mapa que a Jill te deu parece que indica para o local",
+                FraseCompletar = "Muito bom ! O que acha agora de ir para uma dungeon ?",
+                Proximo = PassoTutorial.MOONGATE
+            });
+
+            Objetivos.Add(PassoTutorial.MOONGATE, new ObjetivoGuia()
+            {
+                Local = new Point3D(3471, 2599, 10),
+                PrecisaEvento = true,
+                FraseIniciar = "Vamos agora usar o Portal Publico para Deceit !!",
+                FraseProgresso = "Va ate o portal publico e vamos para Deceit !",
+                FraseCompletar = "Otimo, agora fale com Silvio para pegar a missao !",
+                Proximo = PassoTutorial.QUEST_CASA
+            });
+
+            Objetivos.Add(PassoTutorial.QUEST_CASA, new ObjetivoGuia()
+            {
+                PrecisaEvento = true,
+                FraseIniciar = "Fale com o Silvio para fazer a missao !",
+                FraseProgresso = "Vamos, Silvio esta te esperando ! Fale com ele para pegar a missao !",
+                FraseCompletar = "Muito bom, agora voce sabe o que fazer !!",
                 Proximo = PassoTutorial.FIM
             });
         }

@@ -288,6 +288,24 @@ namespace Server.Mobiles
                 Completa(Guia.Objetivos[PassoTutorial.MATAR_MAGO]);
         }
 
+        public override void Moongate()
+        {
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.MOONGATE)
+                Completa(Guia.Objetivos[PassoTutorial.MOONGATE]);
+        }
+
+        public override void QuestCasa()
+        {
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.QUEST_CASA)
+                Completa(Guia.Objetivos[PassoTutorial.QUEST_CASA]);
+        }
+
+        public override void CompletaJill()
+        {
+            if (Jogador.PassoWispGuia == (int)PassoTutorial.COMPLETA_JILL)
+                Completa(Guia.Objetivos[PassoTutorial.COMPLETA_JILL]);
+        }
+
         public NovoWispGuia(Serial serial)
             : base(serial)
         {

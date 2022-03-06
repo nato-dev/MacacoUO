@@ -2378,6 +2378,11 @@ namespace Server
 
         public List<AggressorInfo> Aggressed { get { return m_Aggressed; } }
 
+        public bool IsAgressor(Mobile m)
+        {
+            return Aggressors.Any(a => a.Attacker == m);
+        }
+
         private int m_ChangingCombatant;
 
         public bool ChangingCombatant { get { return (m_ChangingCombatant > 0); } }

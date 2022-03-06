@@ -793,11 +793,11 @@ namespace Server.Mobiles
             get
             {
                 var habs = new StringBuilder();
-                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).SpecialAbilities)
+                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true)?.SpecialAbilities)
                     habs.Append(h.GetType().Name + ",");
-                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).WeaponAbilities)
+                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true)?.WeaponAbilities)
                     habs.Append(h.GetType().Name + ",");
-                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true).AreaEffects)
+                foreach (var h in PetTrainingHelper.GetAbilityProfile(this, true)?.AreaEffects)
                     habs.Append(h.GetType().Name + ",");
                 return habs.ToString();
             }

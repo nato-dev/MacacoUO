@@ -23,6 +23,11 @@ namespace Server.Mobiles
             EventSink.CraftSuccess += EventSink_CraftSuccess;
         }
 
+        public virtual void Moongate() { }
+        public virtual void QuestCasa() { }
+        public virtual void CompletaJill() { }
+
+
         private static void EventSink_CraftSuccess(CraftSuccessEventArgs e)
         {
             if (e.Crafter is PlayerMobile)

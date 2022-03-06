@@ -49,6 +49,7 @@ namespace Server.Items
         }
     }
 
+    
     public class SmithyHammer : BaseBashing, ITool
     {
         [Constructable]
@@ -187,5 +188,6 @@ namespace Server.Items
 
             int version = reader.ReadInt();
         }
+
     }
 }

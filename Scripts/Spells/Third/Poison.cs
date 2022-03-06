@@ -1,4 +1,5 @@
 using System;
+using Server.Regions;
 using Server.Targeting;
 
 namespace Server.Spells.Third
@@ -115,9 +116,9 @@ namespace Server.Spells.Third
                             level = 0;
                             */
                         level = 0;
-                        if(!Shard.SPHERE_STYLE && Caster.Skills[SkillName.Poisoning].Value > 80)
+                        if (!Shard.SPHERE_STYLE && Caster.Skills[SkillName.Poisoning].Value > 80)
                         {
-                            if(!m.IsCooldown("poisonop"))
+                            if (!m.IsCooldown("poisonop"))
                             {
                                 m.SetCooldown("poisonop");
                                 m.SendMessage(78, "O mago inimigo tinha um conhecimento de envenamentos avancado e conseguiu te envenenar de uma maneira mais forte");
@@ -129,14 +130,20 @@ namespace Server.Spells.Third
 
                     }
                     var p = Poison.GetPoison(level);
-                    Shard.Debug("Toca "+p, m);
+                    Shard.Debug("Toca " + p, m);
                     var result = m.ApplyPoison(Caster, p);
-
                     Shard.Debug("Poison Result: " + result.ToString(), m);
                 }
                 Caster.MovingParticles(m, 0x374A, 12, 10, false, false, 9502, 0x374A, 0x205);
                 m.PlaySound(0x205);
                 HarmfulSpell(m);
+
+                if (Caster.Criminal && Caster.Region is GuardedRegion)
+                {
+                    ((GuardedRegion)Caster.Region).MakeGuard(Caster);
+                    if (m.Poisoned)
+                        m.CurePoison(m);
+                }
             }
 
             FinishSequence();

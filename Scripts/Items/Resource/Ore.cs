@@ -271,26 +271,26 @@ namespace Server.Items
                     difficulty = 80.0;
                     break;
                 case CraftResource.Lazurita:
-                    difficulty = 85.0;
+                    difficulty = 90;
                     break;
                 case CraftResource.Quartzo:
-                    difficulty = 95;
+                    difficulty = 100;
                     break;
                 case CraftResource.Berilo:
-                    difficulty = 95;
+                    difficulty = 100;
                     break;
                 case CraftResource.Vibranium:
-                    difficulty = 100;
+                    difficulty = 110;
                     break;
                 case CraftResource.Adamantium:
-                    difficulty = 100;
+                    difficulty = 110;
                     break;
             }
 
             /*double minSkill = difficulty - 25.0;
             double maxSkill = difficulty + 25.0;*/
 
-            double minSkill = difficulty - 10.0;
+            double minSkill = difficulty - 20.0;
             double maxSkill = difficulty + 25.0;
 
             if (difficulty > 50.0 && difficulty > from.Skills[SkillName.Mining].Value && !talisman)
