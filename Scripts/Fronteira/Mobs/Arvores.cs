@@ -52,6 +52,9 @@ namespace Server.Mobiles
                 Hue = 1154;
                 this.SetDamage(20, 40);
                 this.PackItem(new FrostwoodLog(5));
+            } else
+            {
+                Imp.Converte(this);
             }
           
             this.PackItem(new Log(10));
@@ -63,6 +66,15 @@ namespace Server.Mobiles
         public Reaper(Serial serial)
             : base(serial)
         {
+        }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (!MortalStrike.IsWounded(to))
+            {
+                MortalStrike.BeginWound(to, TimeSpan.FromSeconds(5));
+            }
         }
 
         public override void OnThink()

@@ -9,7 +9,7 @@ namespace Server.Items
             : base()
         {
             Hue = Reward.SatchelHue();
-			
+            Name = "Mochila do Artesao";
             int count = 1;
 			
             if (0.015 > Utility.RandomDouble())
@@ -70,6 +70,7 @@ namespace Server.Items
         public AlchemistCraftsmanSatchel()
             : base()
         {
+            Name = "Mochila do Alquimista";
             if (Items.Count < 2)
             {
                 var recipe = Reward.AlchemyRecipe();
@@ -112,6 +113,7 @@ namespace Server.Items
         public FletcherCraftsmanSatchel()
             : base()
         {
+            Name = "Mochila do Arqueiro";
             if (Items.Count < 2)
             {
                 var recipe = Reward.FletcherRecipe();
@@ -161,6 +163,7 @@ namespace Server.Items
         public TailorsCraftsmanSatchel()
             : base()
         {
+            Name = "Mochila do Alfaiate";
             if (Items.Count < 2)
             {
                 var recipe = Reward.TailorRecipe();
@@ -203,6 +206,7 @@ namespace Server.Items
         public SmithsCraftsmanSatchel()
             : base()
         {
+            Name = "Mochila do Ferreiro";
             if (Items.Count < 2)
             {
                 var recipe = Reward.SmithRecipe();
@@ -246,6 +250,7 @@ namespace Server.Items
         public TinkersCraftsmanSatchel()
             : base()
         {
+            Name = "Mochila do Funileiro";
             if (Items.Count < 2)
             {
                 var recipe = Reward.TinkerRecipe();
@@ -288,6 +293,7 @@ namespace Server.Items
         public CarpentersCraftsmanSatchel()
             : base()
         {
+            Name = "Mochila do Carpinteiro";
             if (Items.Count < 2)
             {
                 var recipe = Reward.CarpentryRecipe();

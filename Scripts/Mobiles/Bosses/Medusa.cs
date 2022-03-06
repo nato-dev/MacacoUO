@@ -544,7 +544,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV6);
+            AddLoot(LootPack.LV5);
 
         }
 
@@ -554,19 +554,6 @@ namespace Server.Mobiles
 
             SorteiaItem(new TemplateDeed());
             SorteiaItem(Carnage.GetRandomPS(105));
-           
-            var wind = new LobsterMount();
-            wind.MoveToWorld(c.Location, c.Map);
-            wind.OverheadMessage("* se transformou *");
-            wind.OverheadMessage("[2H Para Domar]");
-            Timer.DelayCall(TimeSpan.FromHours(2), () =>
-            {
-                if (wind.Deleted || !wind.Alive || wind.ControlMaster != null || wind.Map == Map.Internal)
-                {
-                    return;
-                }
-                wind.Delete();
-            });
 
             SorteiaItem(new DecoRelPor());
             SorteiaItem(new DecoRelPor());

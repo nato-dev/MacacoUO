@@ -539,6 +539,9 @@ namespace Server
     public class Mobile : IEntity, IHued, IComparable<Mobile>, ISerializable, ISpawnable, IDamageable
     {
 
+        public Mobile LastCaster;
+        public DateTime LastCast = DateTime.UtcNow;
+
         public static bool BypassInit = false;
 
         public bool HitPronto = false;
@@ -2308,7 +2311,7 @@ namespace Server
             private readonly Mobile m_Mobile;
 
             public ExpireCombatantTimer(Mobile m)
-                : base(TimeSpan.FromMinutes(1.0))
+                : base(TimeSpan.FromMinutes(10.0))
             {
                 Priority = TimerPriority.FiveSeconds;
                 m_Mobile = m;
@@ -2612,6 +2615,10 @@ namespace Server
 
             if (addAggressor)
             {
+                if(Shard.DebugEnabled)
+                {
+                    Shard.Debug("Adicionando agressor " + aggressor.Name, this);
+                }
                 m_Aggressors.Add(AggressorInfo.Create(aggressor, this, criminal));
 
                 if (CanSee(aggressor) && m_NetState != null)
@@ -2620,13 +2627,22 @@ namespace Server
                 }
 
                 if (Combatant == null)
+                {
                     setCombatant = true;
+                }
+
+                
 
                 UpdateAggrExpire();
             }
 
             if (addAggressed)
             {
+                if (Shard.DebugEnabled)
+                {
+                    Shard.Debug("Adicionando agressed " + aggressor.Name, this);
+                }
+
                 aggressor.m_Aggressed.Add(AggressorInfo.Create(aggressor, this, criminal));
 
                 if (CanSee(aggressor) && m_NetState != null)
@@ -2640,8 +2656,14 @@ namespace Server
                 UpdateAggrExpire();
             }
 
-            if (setCombatant && !Hidden)
+            if (setCombatant && !Hidden) {
                 Combatant = aggressor;
+                if(Shard.DebugEnabled && Combatant != null)
+                {
+                    Shard.Debug("Setando combatant: " + Combatant.Name, this);
+                }
+            }
+               
 
             Region.OnAggressed(aggressor, this, criminal);
         }

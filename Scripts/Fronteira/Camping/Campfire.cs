@@ -217,7 +217,6 @@ namespace Server.Items
                     entry.Safe = true;
                     this.Safe = true;
                     entry.Player.SendMessage("O Acampamento esta seguro");
-
                     Acampamento.Acampa(entry.Player);
                 }
             }

@@ -97,7 +97,7 @@ namespace Server.Engines.HuntsmasterChallenge
             new CollectionItem(typeof(HornOfPlenty), 18080, 1153503, 0, 1.0),
             new CollectionItem(typeof(HuntmastersRewardTitleDeed), 0x14EF, 0, 0, 1.0),
             new CollectionItem(typeof(RangersGuildSash), 0x1541, 0, 0, 1.0),
-            new CollectionItem(typeof(GargishRangersGuildSash), 0x46B5, 0, 0, 1.0),
+            //new CollectionItem(typeof(GargishRangersGuildSash), 0x46B5, 0, 0, 1.0),
             new CollectionItem(typeof(RecipeScroll), 0x2831, 1158769, 0, 1.0), // hamburger recipe
             new CollectionItem(typeof(RecipeScroll), 0x2831, 1158770, 0, 1.0), // hot dog recipe
             new CollectionItem(typeof(RecipeScroll), 0x2831, 1158771, 0, 1.0), // sausage recipe

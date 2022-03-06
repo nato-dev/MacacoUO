@@ -10,7 +10,7 @@ namespace Server.Items
         [Constructable]
         public LieutenantOfTheBritannianRoyalGuard()
         {
-            Name = "Faixa da Guarda Real de Rhodes";
+            Name = "Faixa da Guarda Real de Haven";
             Hue = 0xe8;
             Attributes.BonusInt = 2;
             //Attributes.RegenMana = 2;

@@ -4,7 +4,7 @@ using Server.Engines.BulkOrders;
 
 namespace Server.Mobiles
 {
-    public class Tailor : BaseVendor
+    public class ElfTailor : BaseVendor
     {
         private readonly List<SBInfo> m_SBInfos = new List<SBInfo>();
         protected override List<SBInfo> SBInfos
@@ -24,17 +24,18 @@ namespace Server.Mobiles
         }
 
         [Constructable]
-        public Tailor()
-            : base("o alfaiate")
+        public ElfTailor()
+            : base("o alfaiate capitalista elfico")
         {
             this.SetSkill(SkillName.Tailoring, 64.0, 100.0);
+            Falas = "Quer andar no pantano tranquilo sem pisar em coisas estranhas ? Vem que tem !";
         }
 
         public override void InitSBInfo()
         {
             if(!IsStygianVendor)
             { 
-                this.m_SBInfos.Add(new SBTailor());
+                this.m_SBInfos.Add(new SBElfTailor());
             }
             else
             {
@@ -103,7 +104,7 @@ namespace Server.Mobiles
 
         #endregion
 
-        public Tailor(Serial serial)
+        public ElfTailor(Serial serial)
             : base(serial)
         {
         }

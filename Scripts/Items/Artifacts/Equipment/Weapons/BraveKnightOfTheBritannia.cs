@@ -9,8 +9,7 @@ namespace Server.Items
         public BraveKnightOfTheBritannia()
         {
             Hue = 0x47e;
-            Attributes.WeaponSpeed = 30;
-            Attributes.WeaponDamage = 35;
+            Resource = CraftResource.Bronze;
             WeaponAttributes.HitLeechStam = 48;
             WeaponAttributes.HitHarm = 26;
             WeaponAttributes.HitLeechHits = 22;

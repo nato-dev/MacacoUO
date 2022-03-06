@@ -6970,13 +6970,13 @@ namespace Server.Mobiles
             }
 
             string prefix = "";
-
+            bool lord = Fame >= 15000;
             if (RP)
             {
                 prefix = FichaRP.Patente.ToString() + " ";
             }
 
-            if (Famoso || Fame >= 15000)
+            if (Famoso || lord)
             {
                 DaFama();
                 prefix += Female ? "Lady" : "Lord";
@@ -6985,6 +6985,9 @@ namespace Server.Mobiles
                     prefix = (Female ? "A Famosa " : "O Famoso ") + prefix;
                 }
             }
+
+            if (lord)
+                list.Add(Female ? "Poderosa Lady" : "Poderoso Lord");
 
             string suffix = "";
 

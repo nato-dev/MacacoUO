@@ -17,7 +17,7 @@ namespace Server.Mobiles
             this.SetDex(58, 74);
             this.SetInt(46, 58);
 
-            this.SetHits(2468, 2733);
+            this.SetHits(5468, 5733);
 
             this.SetDamage(15, 28);
 
@@ -38,11 +38,6 @@ namespace Server.Mobiles
             this.Karma = -16000;
 
             this.VirtualArmor = 54;
-
-            for (int i = 0; i < Utility.RandomMinMax(1, 3); i++)
-            {
-                this.PackItem(Loot.RandomScroll(0, Loot.ArcanistScrollTypes.Length, SpellbookType.Arcanist));
-            }
         }
 
         public Tangle(Serial serial)
@@ -72,14 +67,13 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.AosUltraRich, 3);
+            this.AddLoot(LootPack.Gems, 30);
         }
 
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-
-            if (Utility.RandomDouble() < 0.3)
-                c.DropItem(new TaintedSeeds());
+            SorteiaItem(new TaintedSeeds());
         }
 
         public override void Serialize(GenericWriter writer)

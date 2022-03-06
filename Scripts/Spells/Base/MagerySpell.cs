@@ -135,6 +135,8 @@ namespace Server.Spells
             return m_ManaTable[(int)Circle];
         }
 
+   
+
         public virtual bool CheckResisted(Mobile target)
         {
             if (target == Caster)
@@ -157,6 +159,16 @@ namespace Server.Spells
            
             }
 
+            if(target.IsPlayer() && target.LastCast + TimeSpan.FromSeconds(1) > DateTime.UtcNow)
+            {
+                if(target.LastCaster != Caster)
+                {
+                    target.LastCaster = Caster;
+                    return true;
+                }
+            }
+            target.LastCast = DateTime.UtcNow;
+            target.LastCaster = Caster;
 
             double n = GetResistPercent(target);
 

@@ -856,6 +856,7 @@
     <Compile Include="Mobiles\NPCs\Insurer.cs" />
     <Compile Include="Mobiles\NPCs\Muambeiro.cs" />
     <Compile Include="Mobiles\NPCs\ComissionPlayerVendor.cs" />
+    <Compile Include="Mobiles\NPCs\ElfTailor.cs" />
     <Compile Include="Mobiles\NPCs\Taverneiro.cs" />
     <Compile Include="Rage\Custom\Items\BaseIntelligencePotion.cs" />
     <Compile Include="Rage\Custom\Items\BaseManaPotion.cs" />
@@ -911,6 +912,7 @@
     <Compile Include="Services\Underworld\Navrey%27s Lair\NavreysPillar.cs" />
     <Compile Include="Services\XmlSpawner\XmlSpawner Core\SpawnEvents.cs" />
     <Compile Include="Services\XmlSpawner\XmlSpawner Core\XmlAttachments\XmlCast.cs" />
+    <Compile Include="VendorInfo\SBTailor - Copy.cs" />
     <Compile Include="VendorInfo\SBWs.cs" />
     <Compile Include="VendorInfo\SBMuambeiro.cs" />
     <Compile Include="Fronteira\Achievements\Achievement.cs" />

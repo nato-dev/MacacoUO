@@ -7,6 +7,10 @@ namespace Server.Mobiles
 {
     public class Rikktor : BaseChampion
     {
+        public override bool ReduceSpeedWithDamage => false;
+        public override bool IsSmart => true;
+        public override bool UseSmartAI => true;
+
         [Constructable]
         public Rikktor()
             : base(AIType.AI_Melee)
@@ -18,7 +22,7 @@ namespace Server.Mobiles
             SetDex(201, 350);
             SetInt(51, 100);
 
-            SetHits(15000);
+            SetHits(55000);
             SetStam(203, 650);
 
             SetDamage(28, 55);
@@ -43,11 +47,8 @@ namespace Server.Mobiles
 
             VirtualArmor = 130;
 
-            AddItem(new TheMostKnowledgePerson());
-            var capa = new HumilityCloak();
-            capa.Hue = 1154;
-            capa.Name = "Capa do Rikktor";
-            AddItem(capa);
+            //AddItem(new TheMostKnowledgePerson());
+            SetWeaponAbility(WeaponAbility.BleedAttack);
         }
 
         public Rikktor(Serial serial)
@@ -125,9 +126,24 @@ namespace Server.Mobiles
                 return 20;
             }
         }
+
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV6, 4);
+        }
+
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            if (Utility.RandomDouble() < 0.2)
+                SorteiaItem(Carnage.GetRandomPS(120));
+            else
+                SorteiaItem(Carnage.GetRandomPS(115));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            var capa = new HumilityCloak();
+            capa.Hue = 2753;
+            capa.Name = "[BOSS] Capa do Rikktor";
+            SorteiaItem(capa);
         }
 
         public override void OnGaveMeleeAttack(Mobile defender)
@@ -145,9 +161,11 @@ namespace Server.Mobiles
             if (map == null)
                 return;
 
+            OverheadMessage("* treme-chao *");
+
             ArrayList targets = new ArrayList();
 
-            IPooledEnumerable eable = GetMobilesInRange(8);
+            IPooledEnumerable eable = GetMobilesInRange(17);
 
             foreach (Mobile m in eable)
             {
@@ -180,9 +198,16 @@ namespace Server.Mobiles
                 AOS.Damage(m, this, (int)damage, 100, 0, 0, 0, 0);
 
                 if (m.Alive && m.Body.IsHuman && !m.Mounted)
+                {
+                    m.Paralyze(TimeSpan.FromSeconds(0.5));
                     m.Animate(20, 7, 1, true, false, 0); // take hit
+                }
             }
         }
+
+        public override bool HasBreath { get { return true; } } // fire breath enabled
+        public override int BreathFireDamage { get { return 100; } }
+        public override bool AutoDispel { get { return !Controlled; } }
 
         public override int GetAngerSound()
         {

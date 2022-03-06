@@ -51,7 +51,7 @@ namespace Server.Mobiles
                 var gold = b.Backpack.FindItemByType(typeof(Gold));
                 if(gold != null)
                 {
-                    gold.Amount = (int)gold.Amount * 5;
+                    gold.Amount = (int)gold.Amount * 3;
                 }
 
                 if(Utility.RandomDouble() < 0.1)
@@ -59,7 +59,9 @@ namespace Server.Mobiles
                     b.PackItem(DefJewelcrafting.GetReceitaPower());
                 }
                 b.DamageMin = (int)(b.DamageMin * 1.5);
-                b.DamageMax = (int)(b.DamageMax * 1.5);
+                b.DamageMax = (int)(b.DamageMax * 2);
+                if (b.DamageMax > 65)
+                    b.DamageMax = 65;
             });
         }
 

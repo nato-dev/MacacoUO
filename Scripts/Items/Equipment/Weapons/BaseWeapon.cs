@@ -1958,7 +1958,6 @@ namespace Server.Items
                 if (attacker is PlayerMobile && ((PlayerMobile)attacker).Talentos.Tem(Talento.Finta))
                     chance -= 0.2;
 
-
                 if (attacker != null)
                 {
                     var armaAtk = attacker.FindItemOnLayer(Layer.TwoHanded) as BaseRanged;
@@ -1995,7 +1994,7 @@ namespace Server.Items
                 //if (defender.Player && defender.Dex < 80)
                 //{
                 if (defender.Player)
-                    chance = chance * (defender.Dex * 1.09) / 100;
+                    chance = chance * (defender.RawDex * 1.00) / 100;
                 //}
 
                 Shard.Debug("Chance Parry: " + chance, defender);

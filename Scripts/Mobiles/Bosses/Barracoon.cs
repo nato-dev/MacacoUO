@@ -233,7 +233,7 @@ namespace Server.Mobiles
                 case 4: SorteiaItem(new SmallPersonalGardenFieldAddonDeed()); break;
             }
 
-            if (Utility.RandomDouble() < 0.25)
+            if (Utility.RandomDouble() < 0.2)
                 SorteiaItem(Carnage.GetRandomPS(110));
             else
                 SorteiaItem(Carnage.GetRandomPS(105));

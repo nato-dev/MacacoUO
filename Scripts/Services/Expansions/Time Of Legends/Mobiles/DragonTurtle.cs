@@ -319,7 +319,14 @@ namespace Server.Mobiles
             int hue = (int)o[1];
 
             ResistanceType type = GetResistanceFromHue(hue);
-            int damage = Utility.RandomMinMax(60, 80);
+            int damage = Utility.RandomMinMax(50, 70);
+            damage += (int)(35 - mob.Skills.MagicResist.Value / 3);
+
+            if (!Core.AOS)
+            {
+                AOS.Damage(mob, this, damage, 100, 0, 0, 0, 0);
+                return;
+            }
 
             switch (type)
             {

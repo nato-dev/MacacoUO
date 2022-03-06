@@ -53,6 +53,7 @@ namespace Server.Items
 		public RangersGuildSash()
 		{
             LootType = LootType.Blessed;
+            Name = "Faixa da guilda ranger";
 		}
 	
 		public RangersGuildSash(Serial serial) : base(serial)
@@ -107,6 +108,7 @@ namespace Server.Items
         [Constructable]
         public HuntmastersRewardTitleDeed()
         {
+
         }
 
         public HuntmastersRewardTitleDeed(Serial serial)
@@ -156,6 +158,7 @@ namespace Server.Items
         public HornOfPlenty() : base(18080)
         {
             UsesRemaining = 10;
+            Name = "Chifre da Plenitude";
         }
 
         //TODO: add pub 84, 88 and 95 shit
@@ -287,7 +290,8 @@ namespace Server.Items
 		[Constructable]
 		public HarvestersAxe()
 		{
-            Charges = 1000;
+            Charges = 2000;
+            Name = "Machado Cortador De Toras";
 		}
 
         public override void AddWeightProperty(ObjectPropertyList list)

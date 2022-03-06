@@ -811,6 +811,8 @@ namespace Server.Mobiles
                 PetTrainingHelper.GetAbilityProfile(this, true).WeaponAbilities.Clear();
                 PetTrainingHelper.GetAbilityProfile(this, true).AreaEffects.Clear();
 
+                if (!value.Contains(","))
+                    value += ",";
                 var skills = value.Split(',');
                 foreach (var skill in skills)
                 {

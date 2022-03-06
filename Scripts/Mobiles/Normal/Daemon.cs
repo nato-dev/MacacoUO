@@ -43,6 +43,8 @@ namespace Server.Mobiles
 
             VirtualArmor = 58;
 
+            Imp.Converte(this);
+
             if(Shard.NECRO)
             {
                 switch (Utility.Random(30))

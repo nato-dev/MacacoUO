@@ -6,6 +6,7 @@ using System.IO;
 using Server.ContextMenus;
 using Server.Engines.CannedEvil;
 using Server.Engines.Harvest;
+using Server.Misc;
 using Server.Mobiles;
 using Server.Multis;
 using Server.Network;
@@ -837,10 +838,11 @@ namespace Server.Items
                 AddWorldPin(ChestLocation.X, ChestLocation.Y);
             }
 
-            if(from.Skills.Cartography.Base > 60 && from.GetDistance(ChestLocation) < 30)
+            if (from.Map == this.Facet && from.GetDistance(ChestLocation) < 100)
             {
                 from.QuestArrow = new QuestArrow(from, ChestLocation.ToPoint3D());
                 from.QuestArrow.Update();
+                from.SendMessage("Voce esta proximo do tesouro e uma seta aponta para o local");
             }
 
             from.SendMessage(78, "Voce deve usar uma picareta no mapa quando estiver no local certo");
@@ -1116,12 +1118,12 @@ namespace Server.Items
                 {
                     from.SendLocalizedMessage(503028); // The treasure for this map has already been found.
                 }
-                /*
-            else if ( from != m_Map.m_Decoder )
-            {
-            from.SendLocalizedMessage( 503016 ); // Only the person who decoded this map may actually dig up the treasure.
-            }
-            */
+
+                else if (from != m_Map.m_Decoder)
+                {
+                    from.SendLocalizedMessage(503016); // Only the person who decoded this map may actually dig up the treasure.
+                }
+
                 else if (m_Map.m_Decoder != from && !m_Map.HasRequiredSkill(from))
                 {
                     from.SendLocalizedMessage(503031); // You did not decode this map and have no clue where to look for the treasure.
@@ -1133,7 +1135,7 @@ namespace Server.Items
                 }
                 else if (!HasDiggingTool(from))
                 {
-                    from.SendMessage("You must have a digging tool to dig for treasure.");
+                    from.SendMessage("Voce precisa de uma picareta para isto.");
                 }
                 else if (from.Map != map)
                 {
@@ -1218,7 +1220,7 @@ namespace Server.Items
                     {
                         if (Utility.InRange(targ3D, chest3D0, 8)) // We're close, but not quite
                         {
-                            from.SendAsciiMessage(0x44, "The treasure chest is very close!");
+                            from.SendAsciiMessage(0x44, "O tesouro esta perto!");
                         }
                         else
                         {
@@ -1253,7 +1255,7 @@ namespace Server.Items
                                     break;
                             }
 
-                            from.SendAsciiMessage(0x44, "Try looking for the treasure chest more to the {0}.", sDir);
+                            from.SendAsciiMessage(0x44, "Tenta ver mais para {0}.", sDir);
                         }
                     }
                 }
@@ -1379,6 +1381,9 @@ namespace Server.Items
 
                     m_TreasureMap.OnMapComplete(m_From, m_Chest);
 
+                    var ganho = 51; // 5 pontos
+                    ganho -= (int)(m_From.Skills.Cartography.Base / 2);
+                    SkillCheck.Gain(m_From, m_From.Skills.Cartography, 100 - 10);
                     int spawns;
                     switch (m_TreasureMap.Level)
                     {

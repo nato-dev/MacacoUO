@@ -85,7 +85,7 @@ namespace Server.Items
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool Locked
+        public bool T2A
         {
             get { return locked; }
             set
@@ -370,8 +370,19 @@ namespace Server.Items
         {
             if(locked && !m.IsStaff())
             {
-                m.SendMessage("Este local ainda nao foi liberado. Aguarde :)");
-                return true;
+                if(!Shard.T2A)
+                {
+                    m.SendMessage("Este local ainda nao foi liberado. Aguarde :)");
+                    return false;
+                } else
+                {
+                    if(m.Guild == null || m.Elemento == ElementoPvM.None)
+                    {
+                        m.SendMessage("Voce precisa de um elemento PvM e uma Guilda para poder entrar aqui");
+                        return false;
+                    }
+                }
+               
             }
             StartTeleport(m);
             

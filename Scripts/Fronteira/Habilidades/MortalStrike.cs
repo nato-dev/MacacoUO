@@ -64,12 +64,14 @@ namespace Server.Items
 
             t.Start();
 
+            m.SendMessage("Voce sobfreu um golpe mortal e nao podera se curar por " + duration.TotalSeconds + " segundos");
             var ctx = BandageContext.GetContext(m);
             if(ctx != null)
             {
                 ctx.StopHeal();
                 m.SendMessage("Suas bandagens foram interrompidas por um golpe mortal");
             }
+            
 
             m.YellowHealthbar = true;
             BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.MortalStrike, 1075810, 1075811, duration, m));

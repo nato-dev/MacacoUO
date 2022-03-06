@@ -8,7 +8,7 @@ namespace Server.Mobiles
     {
         [Constructable]
         public Nightmare()
-            : this("pesadelo")
+            : this("potro da tormenta")
         {
         }
 
@@ -24,7 +24,7 @@ namespace Server.Mobiles
 
             this.SetHits(80, 100);
 
-            this.SetDamage(16, 22);
+            this.SetDamage(1, 3);
 
             this.SetDamageType(ResistanceType.Physical, 40);
             this.SetDamageType(ResistanceType.Fire, 40);
@@ -48,7 +48,7 @@ namespace Server.Mobiles
             this.VirtualArmor = 60;
 
             this.Tamable = true;
-            this.ControlSlots = 2;
+            this.ControlSlots = 4;
             this.MinTameSkill = 95.1;
 
 			switch (Utility.Random(12))

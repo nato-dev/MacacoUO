@@ -35,7 +35,7 @@ namespace Server.Engines.BulkOrders
         public override int Lifespan { get { return 60 * 60 * 24 * DuracaoDias; } }
         public override bool UseSeconds { get { return false; } }
 
-        public BodTamer(Tamavel tamavel, int quantidade)
+        public BodTamer(Tamavel tamavel, int quantidade, double skill)
             : base(0x2258)
         {
             Weight = 1.0;
@@ -44,7 +44,7 @@ namespace Server.Engines.BulkOrders
             Quantidade = quantidade;
             Cor = tamavel.Hue;
             Nome = tamavel.Name;
-            Skill = tamavel.Skill;
+            Skill = skill;
             DuracaoDias = 5;
         }
 
@@ -142,7 +142,7 @@ namespace Server.Engines.BulkOrders
         {
             var skill = tamer.Skills.AnimalTaming.Value;
             var tamavel = Tamavel.Sorteia(skill);
-            var bod = new BodTamer(tamavel.Item1, tamavel.Item2);
+            var bod = new BodTamer(tamavel.Item1, tamavel.Item2, tamer.Skills.AnimalTaming.Value);
             if (skill <= 70)
                 bod.DuracaoDias = 3;
             else if (skill <= 80)

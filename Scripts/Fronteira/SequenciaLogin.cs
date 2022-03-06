@@ -68,7 +68,9 @@ namespace Server.Fronteira
                     }
                     else
                     {
-                        pm.SendGump(new GumpFala((n2) => { }, Faces.GM_PRETO, "Bem vindo...novamente ! Voce nao e mais um novato !", "Tera de re-escrever a historia com suas proprias pernas!"));
+                        pm.SendGump(new GumpFala((n2) => {
+                            GumpClasse.Mostra(pm);
+                        }, Faces.GM_PRETO, "Bem vindo...novamente ! Voce nao e mais um novato !", "Tera de re-escrever a historia com suas proprias pernas!"));
                     }
                 }
             }

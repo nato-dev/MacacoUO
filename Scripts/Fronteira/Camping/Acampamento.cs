@@ -1,4 +1,5 @@
 using Server.Items;
+using Server.Misc;
 using Server.Mobiles;
 using Server.Ziden;
 using System.Collections.Generic;
@@ -66,6 +67,7 @@ namespace Server.Multis
                 m.Emote("Local de Camping Descoberto: " + nomeCamp);
                 m.SendMessage(78, "Clique duas vezes em uma fogueira segura para se teleportar a este acampamento");
                 m.SendMessage("Acampamentos Descobertos: " +qtd+"/" + Points.Count);
+                SkillCheck.Gain(m, m.Skills.Camping, 100);
                 if(qtd == Points.Count)
                 {
                     var k = new Kasa(1161);
