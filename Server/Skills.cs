@@ -887,6 +887,11 @@ namespace Server
             set;
         }
 
+        public static HashSet<SkillName> IgnoraCap = new HashSet<SkillName>(new SkillName[] {
+            SkillName.Blacksmith, SkillName.Carpentry, SkillName.Imbuing, SkillName.Cooking, SkillName.Fishing, SkillName.Tailoring,
+            SkillName.Tinkering, SkillName.ItemID, SkillName.Fletching, SkillName.Herding
+        });
+
         public int Total { get { return m_Total; } set { m_Total = value; } }
 
         public Mobile Owner { get { return m_Owner; } }
@@ -1023,9 +1028,15 @@ namespace Server
                 else
                 {
                     sk.Serialize(writer);
-                    m_Total += sk.BaseFixedPoint;
+                    if(!PassaCap(sk.SkillName))
+                        m_Total += sk.BaseFixedPoint;
                 }
             }
+        }
+
+        public static bool PassaCap(SkillName s)
+        {
+            return IgnoraCap.Contains(s);
         }
 
         public Skills(Mobile owner)
@@ -1087,7 +1098,8 @@ namespace Server
                                 if (sk.BaseFixedPoint != 0 || sk.CapFixedPoint != 1000 || sk.Lock != SkillLock.Up || sk.VolumeLearned != 0)
                                 {
                                     m_Skills[i] = sk;
-                                    m_Total += sk.BaseFixedPoint;
+                                    if (!IgnoraCap.Contains(sk.SkillName))
+                                        m_Total += sk.BaseFixedPoint;
                                 }
                             }
                             else

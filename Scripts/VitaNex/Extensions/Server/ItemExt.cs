@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  ItemExt.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -334,16 +334,16 @@ namespace Server
 			switch (result)
 			{
 				case GiveFlags.Pack:
-					m.SendMessage("{0}{1} {2} been placed in your pack.", amount, name, p ? "have" : "has");
+					m.SendMessage("{0}{1} {2} foi colocado em sua mochila.", amount, name, p ? "" : "");
 					break;
 				case GiveFlags.Bank:
-					m.SendMessage("{0}{1} {2} been placed in your bank.", amount, name, p ? "have" : "has");
+					m.SendMessage("{0}{1} {2} foi colocado em seu banco.", amount, name, p ? "" : "");
 					break;
 				case GiveFlags.Corpse:
-					m.SendMessage("{0}{1} {2} been placed in your corpse.", amount, name, p ? "have" : "has");
+					m.SendMessage("{0}{1} {2} foi colocado em seu corpo.", amount, name, p ? "" : "");
 					break;
 				case GiveFlags.Feet:
-					m.SendMessage("{0}{1} {2} been placed at your feet.", amount, name, p ? "have" : "has");
+					m.SendMessage("{0}{1} {2} foi colocado no seu pe.", amount, name, p ? "" : "");
 					break;
 			}
 

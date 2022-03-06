@@ -30,6 +30,77 @@ namespace Server.Ziden.Achievements
         }
     }
 
+    public class Trofeu : Item
+    {
+        [CommandProperty(AccessLevel.Administrator)]
+        public String[] Textos { get; set; }
+
+        [Constructable]
+        public Trofeu(): base(0x1227)
+        {
+            Name = "Trofeu";
+            Textos = new string[] { "Apenas um trofeu", "Nada importante" };
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            if (Textos == null)
+                return;
+            foreach(var s in Textos)
+            {
+                list.Add(s);
+            }
+        }
+
+        public Trofeu(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(Textos == null ? 0 : Textos.Count());
+            if(Textos != null)
+            {
+                foreach (var s in Textos)
+                    writer.Write(s);
+            }
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            var ct = reader.ReadInt();
+            var t = new List<String>();
+            for (var x = 0; x < ct; x++)
+                t.Add(reader.ReadString());
+            if (t.Count() > 0)
+                Textos = t.ToArray();
+
+        }
+    }
+
+
+    public class SacolaFFA : Bag
+    {
+        [Constructable]
+        public SacolaFFA()
+        {
+            Name = "Sacola";
+        }
+
+        public SacolaFFA(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
+
     public class SacolaCristais : Bag
     {
         [Constructable]

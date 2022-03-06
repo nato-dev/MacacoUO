@@ -1,3 +1,4 @@
+using Server.Items;
 using System;
 using System.Collections.Generic;
 
@@ -35,6 +36,35 @@ namespace Server.Mobiles
         public override void InitSBInfo()
         {
             this.m_SBInfos.Add(new SBFisherman());
+        }
+
+        public override void VendorSell(Mobile from)
+        {
+            var valor = 0;
+            foreach(var item in new List<Item>(from.Backpack.Items))
+            {
+                if(item is Fish ||item is BigFish || item is BaseHighseasFish || item is BaseMagicFish)
+                {
+                    valor += 1;
+                    item.Delete();
+                }
+            }
+            if(valor > 0)
+            {
+                SayTo(from, true, "Opa, posso comprar todos esses peixes. Para um pescador, nunca se tem peixes demais !");
+                from.SendMessage("Voce vendeu todos seus peixes para o pescador por "+valor+" moedas de ouro");
+                if(valor > 200)
+                {
+                    from.SendMessage("Mais de 200 moedas em peixe... voce fica espantado com o pescador comprando tanto peixe.");
+                }
+                from.PlaySound(0x5B5);
+                from.PlaceInBackpack(new Gold(valor));
+                return;
+            } else
+            {
+                SayTo(from, true, "Se tiver peixes, posso comprar !");
+            }
+            base.VendorSell(from);
         }
 
         public override void InitOutfit()

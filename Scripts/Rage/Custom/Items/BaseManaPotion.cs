@@ -8,15 +8,18 @@ namespace Server.Items
     public abstract class BaseManaPotion : BasePotion
     {
         public BaseManaPotion(PotionEffect effect)
-            : base(0x0F01, effect)
+            : base(3848, effect) // 0x0F01
         {
-            Stackable = false;
+            Stackable = true;
+            Hue = 1926;
         }
 
         public BaseManaPotion(Serial serial)
             : base(serial)
         {
-            Stackable = false;
+            ItemID = 3848;
+            Stackable = true;
+            Hue = 1926;
         }
 
         public abstract int MinMana { get; }

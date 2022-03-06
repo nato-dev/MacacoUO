@@ -13862,6 +13862,7 @@
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\CTF\Objects\CTFPodium.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\CTF\Objects\CTFTeam.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\FFA\FFABattle.cs" />
+    <Compile Include="VitaNex\Modules\AutoPVP\Battles\FFA\Objects\FFATeam.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\Generic.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\Tourney\Archives\TournamentArchive.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\Tourney\Archives\TournamentArchives.cs" />

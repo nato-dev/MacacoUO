@@ -59,7 +59,11 @@ namespace Server.Mobiles
             { 
                 Add(typeof(RawFishSteak), 1);
                 Add(typeof(Fish), 1);
-                //TODO: Add( typeof( SmallFish ), 1 );
+                Add(typeof(BigFish), 1);
+                Add(typeof(PrizedFish), 1);
+                Add(typeof(WondrousFish), 1);
+                Add(typeof(PeculiarFish), 1);
+                Add(typeof(TrulyRareFish), 1);
                 Add(typeof(FishingPole), 7);
             }
         }

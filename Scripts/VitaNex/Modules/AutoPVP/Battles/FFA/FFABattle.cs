@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  FFABattle.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -13,7 +13,8 @@
 using System;
 
 using Server;
-
+using Server.Mobiles;
+using Server.Ziden.Achievements;
 using VitaNex.Schedules;
 #endregion
 
@@ -54,13 +55,38 @@ namespace VitaNex.Modules.AutoPvP.Battles
 			Options.Rules.CanFly = false;
 			Options.Rules.CanResurrect = false;
 			Options.Rules.CanUseStuckMenu = false;
+
 		}
 
 		public FFABattle(GenericReader reader)
 			: base(reader)
 		{ }
 
-		public override void Serialize(GenericWriter writer)
+        public override void GiveWinnerReward(PlayerMobile pm)
+        {
+            base.GiveWinnerReward(pm);
+            var trofeu = new Trofeu();
+            trofeu.Hue = 0x8A5;
+            var data = DateTime.UtcNow;
+            trofeu.Textos = new string[]
+            {
+                "Arena Free For All",
+                $"{data.Day}/{data.Month}/{data.Year}",
+                pm.Female ? "Campea" : "Campeao",
+                pm.Name
+            };
+            trofeu.Name = "[OURO] Trofeu de Arena PvP";
+            trofeu.Hue = Paragon.Hue;
+            pm.PlaceInBackpack(trofeu);
+        }
+
+        public override bool AddTeam(string name, int minCapacity, int capacity, int color)
+        {
+            return AddTeam(new FFATeam(this, name, minCapacity, capacity, color));
+        }
+
+
+        public override void Serialize(GenericWriter writer)
 		{
 			base.Serialize(writer);
 
