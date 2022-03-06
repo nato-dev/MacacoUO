@@ -1,5 +1,6 @@
 using System;
 using Server.Items;
+using Server.Menus.Questions;
 using Server.Spells;
 using Server.Ziden;
 
@@ -71,7 +72,7 @@ namespace Server.Mobiles
         public override void AlterMeleeDamageTo(Mobile to, ref int damage)
         {
             base.AlterMeleeDamageTo(to, ref damage);
-            if (!MortalStrike.IsWounded(to))
+            if (StuckMenu.IsInSecondAgeArea(this) && !MortalStrike.IsWounded(to))
             {
                 MortalStrike.BeginWound(to, TimeSpan.FromSeconds(5));
             }
