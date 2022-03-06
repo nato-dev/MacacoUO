@@ -261,8 +261,11 @@ namespace Server.Items
         public TimeSpan delay;
         public Corpse corpse;
 
+        public bool FullPower = true;
+
         public void Slip(bool pvm = false, int dano = 0)
         {
+            FullPower = false;
             ++m_Slips;
             //if (pvm)
             //    ++m_Slips;

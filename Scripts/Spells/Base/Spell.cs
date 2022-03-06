@@ -1083,7 +1083,13 @@ namespace Server.Spells
             }
             */
 
-            if (this.Caster.Meditating)
+            var bdg = BandageContext.GetContext(m_Caster);
+            if (bdg != null)
+            {
+                bdg.FullPower = false;
+            }
+
+                if (this.Caster.Meditating)
             {
                 this.Caster.Meditating = false;
                 this.Caster.SendMessage(12, "Você parou de meditar");

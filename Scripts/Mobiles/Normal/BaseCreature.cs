@@ -1501,9 +1501,9 @@ namespace Server.Mobiles
                 damage = (int)(damage / Paragon.HitsBuff);
             }
 
-            if (damage > 200)
+            if (damage > 90)
             {
-                damage = 200;
+                damage = 90;
             }
 
             return damage;
@@ -7546,8 +7546,11 @@ namespace Server.Mobiles
                         {
                             foreach (var item in partyItems)
                             {
-                                ds.m_Mobile.PlaceInBackpack(Dupe.DupeItem(item));
-                                ds.m_Mobile.SendMessage("Voce ganhou " + item.Amount + " " + (item.Name == null ? item.GetType().Name : item.Name));
+                                if(ds != null && ds.m_Mobile != null && item != null)
+                                {
+                                    ds.m_Mobile.PlaceInBackpack(Dupe.DupeItem(item));
+                                    ds.m_Mobile.SendMessage("Voce ganhou " + item.Amount + " " + (item.Name == null ? item.GetType().Name : item.Name));
+                                }
                             }
                         }
 
