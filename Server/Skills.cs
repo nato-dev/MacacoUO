@@ -888,8 +888,8 @@ namespace Server
         }
 
         public static HashSet<SkillName> IgnoraCap = new HashSet<SkillName>(new SkillName[] {
-            SkillName.Blacksmith, SkillName.Carpentry, SkillName.Imbuing, SkillName.Cooking, SkillName.Fishing, SkillName.Tailoring,
-            SkillName.Tinkering, SkillName.ItemID, SkillName.Fletching, SkillName.Herding
+         //   SkillName.Blacksmith, SkillName.Carpentry, SkillName.Imbuing, SkillName.Cooking, SkillName.Fishing, SkillName.Tailoring,
+         //   SkillName.Tinkering, SkillName.ItemID, SkillName.Fletching, SkillName.Herding
         });
 
         public int Total { get { return m_Total; } set { m_Total = value; } }
