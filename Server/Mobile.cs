@@ -11173,7 +11173,7 @@ namespace Server
 
         public bool PlaceInBackpack(Item item)
         {
-            if (item.Deleted)
+            if (item == null || item.Deleted)
             {
                 return false;
             }

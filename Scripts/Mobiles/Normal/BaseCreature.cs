@@ -7546,9 +7546,10 @@ namespace Server.Mobiles
                         {
                             foreach (var item in partyItems)
                             {
-                                if(ds != null && ds.m_Mobile != null && item != null)
+                                if(ds != null && ds.m_Mobile != null && item != null && ds.m_Mobile.Backpack != null)
                                 {
-                                    ds.m_Mobile.PlaceInBackpack(Dupe.DupeItem(item));
+                                    var iti = Dupe.DupeItem(item);
+                                    ds.m_Mobile.PlaceInBackpack(iti);
                                     ds.m_Mobile.SendMessage("Voce ganhou " + item.Amount + " " + (item.Name == null ? item.GetType().Name : item.Name));
                                 }
                             }
