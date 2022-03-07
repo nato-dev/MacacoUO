@@ -32,7 +32,7 @@ namespace Server.Items
             AddLoot(Loot.RandomProvision());
             AddLoot(Loot.RandomProvision());
             AddLoot(Loot.RandomProvision());
-            AddLoot(new Coal(5));
+            AddLoot(new Coal());
             if (Utility.Random(3) == 1)
                 AddLoot(new BagOfReagents());
             if (Utility.Random(5) == 1)
@@ -116,7 +116,7 @@ namespace Server.Items
             MaxLockLevel = 40 + 25;
             TrapType = TrapType.MagicTrap;
             TrapPower = 2 * Utility.Random(1, 25);
-            AddLoot(new Coal(5));
+            AddLoot(new Coal());
             if (Utility.Random(2) == 1)
                 AddLoot(new BagOfReagents(20));
             if (Utility.Random(5) == 1)
@@ -211,7 +211,7 @@ namespace Server.Items
             TrapPower = 1 * Utility.Random(1, 25);
             if (Utility.Random(3) == 1)
                 AddLoot(new Bandage(6));
-            AddLoot(new Coal(8));
+            AddLoot(new Coal());
             if (Utility.Random(3) == 1)
                 AddLoot(new BagOfReagents());
             if (Utility.Random(5) == 1)
@@ -313,7 +313,7 @@ namespace Server.Items
             MaxLockLevel = this.RequiredSkill + 25;
             TrapType = TrapType.MagicTrap;
             TrapPower = 2 * Utility.Random(1, 25);
-            AddLoot(new Coal(10));
+            AddLoot(new Coal());
             DropItem(Loot.RandomSeed());
             DropItem(Loot.RandomSeed());
             AddLoot(Loot.RandomProvision());
@@ -426,7 +426,7 @@ namespace Server.Items
         {
             AddLoot(new BagOfReagents());
             AddLoot(new BagOfNecroReagents());
-            AddLoot(new Coal(15));
+            AddLoot(new Coal());
             var t = Utility.Random(100);
             var amt = Utility.Random(300, 200);
             if (t <= 1)
@@ -591,7 +591,7 @@ namespace Server.Items
             MaxLockLevel = this.RequiredSkill + 25;
             TrapType = TrapType.MagicTrap;
             TrapPower = 4 * Utility.Random(1, 27);
-            AddLoot(new Coal(20));
+            AddLoot(new Coal());
             var t = Utility.Random(100);
             var amt = Utility.Random(25, 25);
             if (t <= 1)
