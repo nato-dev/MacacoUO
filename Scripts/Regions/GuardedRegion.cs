@@ -213,7 +213,20 @@ namespace Server.Regions
 				CheckGuardCandidate(aggressor, aggressor is BaseCreature && ((BaseCreature)aggressor).IsAggressiveMonster);
 			}
 		}
-      
+
+        public override bool AllowHarmful(Mobile from, IDamageable target)
+        {
+            if(from != null && target != null)
+            {
+                bool isCriminal = from.IsHarmfulCriminal(target);
+                if (isCriminal)
+                {
+                    return false;
+                }
+            }
+            return base.AllowHarmful(from, target);
+        }
+
         /*
 		public override void OnGotBeneficialAction(Mobile helper, Mobile helped)
 		{
@@ -233,7 +246,7 @@ namespace Server.Regions
 		}
         */
 
-		public override void OnCriminalAction(Mobile m, bool message)
+        public override void OnCriminalAction(Mobile m, bool message)
 		{
             if (m is PlayerMobile)
                 return;
