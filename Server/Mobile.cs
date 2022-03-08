@@ -1597,7 +1597,7 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int MeleeDamageAbsorb { get; set; } 
+        public int MeleeDamageAbsorb { get; set; }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int MagicDamageAbsorb { get { return m_MagicDamageAbsorb; } set { m_MagicDamageAbsorb = value; } }
@@ -2251,7 +2251,52 @@ namespace Server
 
             long aux;
 
+            protected bool Bate(IDamageable combatant)
+            {
 
+                if (combatant == null)
+                    return false;
+
+                if(Shard.DebugEnabled)
+                {
+                    Shard.Debug("Tentando bater em " + combatant.Name, m_Mobile);
+                }
+
+                // If no combatant, wrong map, one of us is a ghost, or cannot see, or deleted, then stop combat
+                if (combatant == null || combatant.Deleted || m_Mobile.m_Deleted || combatant.Map != m_Mobile.m_Map ||
+                    !combatant.Alive || !m_Mobile.Alive || !m_Mobile.CanSee(combatant) || (combatant is Mobile && ((Mobile)combatant).IsDeadBondedPet) ||
+                    m_Mobile.IsDeadBondedPet)
+                {
+                    return false;
+                }
+
+                IWeapon weapon = m_Mobile.Weapon;
+
+                if (!m_Mobile.InRange(combatant, weapon.MaxRange))
+                {
+                    return false;
+                }
+
+                if (m_Mobile.InLOS(combatant) && combatant is Mobile)
+                {
+                    m_Mobile.OnBeforeAttack((Mobile)combatant);
+                    weapon.OnBeforeSwing(m_Mobile, combatant); //OnBeforeSwing for checking in regards to being hidden and whatnot
+                    m_Mobile.RevealingAction();
+
+                    if (Shard.TROCA_ARMA_RAPIDA)
+                    {
+                        //Shard.Debug("Hit setando combat time");
+                        m_Mobile.NextCombatTimes[m_Mobile.Weapon.GetType()] = Core.TickCount + (int)weapon.OnSwing(m_Mobile, combatant).TotalMilliseconds;
+                    }
+                    else
+                    {
+                        m_Mobile.m_NextCombatTime = Core.TickCount + (int)weapon.OnSwing(m_Mobile, combatant).TotalMilliseconds;
+                    }
+                    return true;
+                }
+
+                return false;
+            }
 
             protected override void OnTick()
             {
@@ -2266,6 +2311,7 @@ namespace Server
 
                 if (Core.TickCount - m_Mobile.m_NextCombatTime >= 0)
                 {
+
                     IDamageable combatant = m_Mobile.Combatant;
 
                     // If no combatant, wrong map, one of us is a ghost, or cannot see, or deleted, then stop combat
@@ -2277,27 +2323,14 @@ namespace Server
                         return;
                     }
 
-                    IWeapon weapon = m_Mobile.Weapon;
 
-                    if (!m_Mobile.InRange(combatant, weapon.MaxRange))
+                    if (!Bate(m_Mobile.Combatant) && m_Mobile.GetDistanceToSqrt(m_Mobile.Combatant) > m_Mobile.Weapon.MaxRange + 3)
                     {
-                        return;
-                    }
-
-                    if (m_Mobile.InLOS(combatant) && combatant is Mobile)
-                    {
-                        m_Mobile.OnBeforeAttack((Mobile)combatant);
-                        weapon.OnBeforeSwing(m_Mobile, combatant); //OnBeforeSwing for checking in regards to being hidden and whatnot
-                        m_Mobile.RevealingAction();
-
-                        if (Shard.TROCA_ARMA_RAPIDA)
+                        foreach (var ag in m_Mobile.Aggressors)
                         {
-                            //Shard.Debug("Hit setando combat time");
-                            m_Mobile.NextCombatTimes[m_Mobile.Weapon.GetType()] = Core.TickCount + (int)weapon.OnSwing(m_Mobile, combatant).TotalMilliseconds;
-                        }
-                        else
-                        {
-                            m_Mobile.m_NextCombatTime = Core.TickCount + (int)weapon.OnSwing(m_Mobile, combatant).TotalMilliseconds;
+                            var c = ag.Attacker;
+                            if (Bate(c))
+                                return;
                         }
                     }
                 }
@@ -2620,7 +2653,7 @@ namespace Server
 
             if (addAggressor)
             {
-                if(Shard.DebugEnabled)
+                if (Shard.DebugEnabled)
                 {
                     Shard.Debug("Adicionando agressor " + aggressor.Name, this);
                 }
@@ -2636,7 +2669,7 @@ namespace Server
                     setCombatant = true;
                 }
 
-                
+
 
                 UpdateAggrExpire();
             }
@@ -2661,14 +2694,15 @@ namespace Server
                 UpdateAggrExpire();
             }
 
-            if (setCombatant && !Hidden) {
+            if (setCombatant && !Hidden)
+            {
                 Combatant = aggressor;
-                if(Shard.DebugEnabled && Combatant != null)
+                if (Shard.DebugEnabled && Combatant != null)
                 {
                     Shard.Debug("Setando combatant: " + Combatant.Name, this);
                 }
             }
-               
+
 
             Region.OnAggressed(aggressor, this, criminal);
         }
@@ -7444,7 +7478,7 @@ namespace Server
         #region Say/SayTo/Emote/Whisper/Yell
         public void SayTo(Mobile to, bool ascii, string text)
         {
-            PrivateOverheadMessage( text, to.NetState.Mobile, m_SpeechHue);
+            PrivateOverheadMessage(text, to.NetState.Mobile, m_SpeechHue);
         }
 
         public void SayTo(Mobile to, string text)
@@ -8152,7 +8186,7 @@ namespace Server
                     return Region.FLORESTA;
                 return r.Music;
             }
-                
+
             return MusicName.Invalid;
         }
 
@@ -8169,7 +8203,8 @@ namespace Server
                     return Region.FLORESTA;
                 else
                     return Region.CAVERNA;
-            } else
+            }
+            else
             {
                 return musica;
             }
@@ -8190,27 +8225,28 @@ namespace Server
             var m = this;
             if (!m.Player)
                 return;
-            
+
             var musicaNova = GetMusic(this, newRegion);
             var musicaVelha = GetMusic(this, oldRegion);
 
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
                 Shard.Debug("Musica nova " + musicaNova + " velha " + musicaVelha);
 
-            if(musicaNova != MusicName.Invalid)
+            if (musicaNova != MusicName.Invalid)
             {
-                if(musicaNova == Region.FLORESTA)
+                if (musicaNova == Region.FLORESTA)
                 {
                     if (Utility.RandomBool())
                         PlayGameMusic(MusicName.ParoxysmusLair);
                     else
                         PlayGameMusic(musicaNova);
-                } else
+                }
+                else
                 {
                     PlayGameMusic(musicaNova);
                 }
             }
-            
+
 
         }
 
@@ -8891,7 +8927,7 @@ namespace Server
         [CommandProperty(AccessLevel.GameMaster)]
         public int Hits
         {
-           
+
             get { return m_Hits; }
             set
             {
@@ -8913,7 +8949,7 @@ namespace Server
                         m_HitsTimer.Stop();
                     }
 
-                    if(m_Aggressors==null)
+                    if (m_Aggressors == null)
                     {
                         Shard.Debug("Mob bugado: ", this);
                         this.Delete();
@@ -13150,7 +13186,7 @@ namespace Server
         {
             if (hue == 78)
             {
-                
+
             }
             if (OnSendMessage != null)
             {

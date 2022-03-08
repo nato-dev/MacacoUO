@@ -1838,8 +1838,12 @@ namespace Server.Items
                 {
                     if(defender.Weapon.MaxRange <= defender.GetDistance(attacker))
                     {
-                        if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 5))
+                        if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 18))
                         {
+                            if(Shard.DebugEnabled)
+                            {
+                                Shard.Debug("Trocando alvo", defender);
+                            }
                             defender.AggressiveAction(attacker, false);
                             defender.Combatant = attacker;
                         }
