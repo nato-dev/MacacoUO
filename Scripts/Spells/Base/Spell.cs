@@ -653,6 +653,16 @@ namespace Server.Spells
                 Shard.Debug("Bonus elemento PvM: " + bonus, m_Caster);
                 scalar += bonus;
             }
+
+            if(!target.Player && m_Caster.Player)
+            {
+                Spellbook atkBook = Spellbook.FindEquippedSpellbook(m_Caster);
+                if(atkBook.SpellCount == 64)
+                {
+                    scalar += 0.1;
+                }
+            }
+
             Shard.Debug("Scalar da magia final: " + scalar, m_Caster);
             return scalar;
         }

@@ -455,7 +455,6 @@ namespace Server.Items
             if (isSos || level >= 4)
             {
                 Item specialLockPick = new SpecialLockPick();
-                specialLockPick.Amount = level;
                 cont.DropItem(specialLockPick);
             }
             #endregion

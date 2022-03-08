@@ -297,7 +297,7 @@ namespace Server.Spells
                 }
 
                 if(Shard.POL_STYLE)
-                    return TimeSpan.FromSeconds(0.5 + (0.45 * (int)Circle));
+                    return TimeSpan.FromSeconds(0.5 + (0.4 * (int)Circle));
                 else if(Shard.SPHERE_STYLE)
                     return TimeSpan.FromSeconds(1 + (0.5 * (int)Circle));
                 else

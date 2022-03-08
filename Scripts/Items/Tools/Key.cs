@@ -15,7 +15,7 @@ namespace Server.Items
         Rusty = 0x1013
     }
 
-    public interface ILockable 
+    public interface ILockable
     {
         bool Locked { get; set; }
         uint KeyValue { get; set; }
@@ -196,7 +196,6 @@ namespace Server.Items
                 else
                 {
                     KeyRing keyRing = (KeyRing)item;
-
                     if (keyRing.ContainsKey(keyValue))
                         return true;
                 }
@@ -229,7 +228,7 @@ namespace Server.Items
 
             int version = reader.ReadInt();
 
-            switch ( version )
+            switch (version)
             {
                 case 3:
                     {
@@ -392,14 +391,17 @@ namespace Server.Items
                         }
 
                         if (o.Locked)
+                        {
                             item.PrivateOverheadMessage(MessageType.Regular, 0, true, "* trancado *", from.NetState);
+                        }
                         else
+                        {
                             item.PrivateOverheadMessage(MessageType.Regular, 0, true, "* destrancado *", from.NetState);
+                        }
 
                         if (item is LockableContainer)
                         {
                             LockableContainer cont = (LockableContainer)item;
-
                             if (cont.TrapType != TrapType.None && cont.TrapOnLockpick)
                             {
                                 if (o.Locked)
@@ -432,7 +434,7 @@ namespace Server.Items
                             porta.PrivateOverheadMessage(MessageType.Regular, 0, true, "* destrancado *", from.NetState);
                             return true;
                         }
-                           
+
                     }
                 }
                 return false;
@@ -495,7 +497,7 @@ namespace Server.Items
                     {
                         number = 501668; // This key doesn't seem to unlock that.
                     }
-                      
+
                 }
                 else
                 {

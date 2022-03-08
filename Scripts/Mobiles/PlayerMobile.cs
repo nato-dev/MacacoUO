@@ -151,8 +151,12 @@ namespace Server.Mobiles
         private ElementoPvM _e;
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public override ElementoPvM Elemento { get { return _e; } set {
-                if(NetState != null)
+        public override ElementoPvM Elemento
+        {
+            get { return _e; }
+            set
+            {
+                if (NetState != null)
                 {
                     InvalidateProperties();
                 }
@@ -388,29 +392,30 @@ namespace Server.Mobiles
 
             if (this.Alive)
             {
-                if(DungeonMount != null)
+                if (DungeonMount != null)
                 {
                     DungeonMount.MoveToWorld(Location, Map);
                     ((BaseMount)DungeonMount).Rider = this;
                     DungeonMount = null;
                     LocalOverheadMessage(MessageType.Regular, 0, false, "Voce pegou sua montaria novamente");
-                } else
+                }
+                else
                 {
                     var ethy = Backpack.FindItemByType<EtherealMount>();
-                    if(ethy != null)
+                    if (ethy != null)
                     {
                         ethy.Rider = this;
                         LocalOverheadMessage(MessageType.Regular, 0, false, "Voce invocou sua montaria magica novamente");
                     }
                 }
-               
+
             }
         }
 
         private bool DicaCombate = true;
         private bool DicaBands = true;
 
-        public override bool Warmode { get { return base.Warmode; }  set { base.Warmode = value; if (value) DicaCombate = false; } }
+        public override bool Warmode { get { return base.Warmode; } set { base.Warmode = value; if (value) DicaCombate = false; } }
 
         public override void OnRegionChange(Region Old, Region New)
         {
@@ -419,7 +424,7 @@ namespace Server.Mobiles
             var newDungeon = New is DungeonRegion || New is DungeonGuardedRegion;
             var oldDungeon = Old is DungeonRegion || Old is DungeonGuardedRegion;
 
-            if(oldDungeon != null && StuckMenu.IsInSecondAgeArea(this))
+            if (oldDungeon != null && StuckMenu.IsInSecondAgeArea(this))
             {
                 PrivateOverheadMessage("* perigo *", 32);
                 SendMessage(32, "[PERIGO] Voce esta nas terras perdidas. Volte se nao quiser morrer.");
@@ -437,7 +442,7 @@ namespace Server.Mobiles
                     }
                 }
             });
-            
+
 
             DecideMusic(Old, New);
 
@@ -1225,9 +1230,14 @@ namespace Server.Mobiles
             {
                 if (!this.IsCooldown("msgcasa"))
                 {
-                    this.SetCooldown("msgcasa", TimeSpan.FromHours(6));
+                    this.SetCooldown("msgcasa");
                     this.SendMessage(78, "Use .trancar em items no chao de casas para eles nao sumirem.");
                     this.SendMessage(78, "Para trancar um bau e torna-lo seguro, use .secure. Mais informacoes na nossa wiki");
+                    if (this.Young && !this.IsCooldown("msgcasa2"))
+                    {
+                        this.SendGump(new GumpFala(n => { }, Faces.GM_PRETO, "Voce botou um item em uma casa.", "Para tornar baus seguros use o comando .secure", "Para trancar items use .trancar", "", "Items nao seguros e nao trancados VAO SUMIR"));
+                        this.SetCooldown("msgcasa2");
+                    }
                 }
             }
             return true;
@@ -2807,7 +2817,7 @@ namespace Server.Mobiles
                 return;
             }
 
-            if(Young && DicaBands && item is Bandage)
+            if (Young && DicaBands && item is Bandage)
             {
                 DicaBands = false;
             }
@@ -3291,7 +3301,7 @@ namespace Server.Mobiles
 
             if (item is BaseHat)
                 return 1000;
- 
+
             return 3000;
         }
 
@@ -3950,7 +3960,7 @@ namespace Server.Mobiles
             if (item.PartyLoot && !item.IsChildOf(this.Backpack) && !item.IsChildOf(this))
             {
 
-                if(item.Parent is Bag)
+                if (item.Parent is Bag)
                 {
                     SendMessage("Items de grupo em sacolas nao podem ser arrastados. Arraste a sacola !");
                     return false;
@@ -4297,7 +4307,8 @@ namespace Server.Mobiles
                     SetCooldown("dicacbt", TimeSpan.FromSeconds(10));
                     Wisp.Fala("Aperte ALT+P e clique em PEACE para entrar em modo guerra. Clique nos monstros 2x para bater neles.");
 
-                } else if (!IsCooldown("dicabands") && DicaBands)
+                }
+                else if (!IsCooldown("dicabands") && DicaBands)
                 {
                     SetCooldown("dicabands", TimeSpan.FromSeconds(10));
                     Wisp.Fala("Clique 2x nas bandagens em sua mochila e em vc para se curar, mas evite tomar dano enquanto se cura !");
@@ -4447,7 +4458,7 @@ namespace Server.Mobiles
 
         public bool IsResProtected()
         {
-            return DateTime.Now < lastRes + TimeSpan.FromSeconds(5); 
+            return DateTime.Now < lastRes + TimeSpan.FromSeconds(5);
         }
 
         public override void Resurrect()
@@ -4857,11 +4868,11 @@ namespace Server.Mobiles
             if (killer == null && bc != null)
             {
                 killer = bc.GetMaster() as PlayerMobile;
-                if(killer == null)
+                if (killer == null)
                 {
-                    if(bc.IsParagon)
+                    if (bc.IsParagon)
                     {
-                        if(bc.DeleteTimeLeft == TimeSpan.Zero)
+                        if (bc.DeleteTimeLeft == TimeSpan.Zero)
                         {
                             bc.BeginDeleteTimer(6);
                         }
@@ -5368,10 +5379,10 @@ namespace Server.Mobiles
                 poison = PoisonImpl.IncreaseLevel(poison);
             }
 
-            if(Shard.SPHERE_STYLE)
+            if (Shard.SPHERE_STYLE)
             {
                 var ctx = BandageContext.GetContext(this);
-                if(ctx != null)
+                if (ctx != null)
                 {
                     ctx.StopHeal();
                 }
@@ -5565,7 +5576,7 @@ namespace Server.Mobiles
             base.Deserialize(reader);
 
             int version = reader.ReadInt();
-    
+
             switch (version)
             {
                 case 53:
@@ -6302,7 +6313,7 @@ namespace Server.Mobiles
             }
         }
 
-     
+
         public void ResetKillTime()
         {
             m_ShortTermElapse = GameTime + TimeSpan.FromHours(8);
@@ -7060,7 +7071,7 @@ namespace Server.Mobiles
                 list.Add(Gump.Cor("<CENTER>[ Amarrad" + GetLetraSexo() + " ]</CENTER>", "red"));
 
             if (Elemento != ElementoPvM.None)
-                list.Add(Gump.Cor(Elemento.ToString()+" level "+Elementos.GetNivel(Elemento), BaseArmor.CorElemento(Elemento)));
+                list.Add(Gump.Cor(Elemento.ToString() + " level " + Elementos.GetNivel(Elemento), BaseArmor.CorElemento(Elemento)));
 
             if (Shard.TITULOS_RP && RP && !Shard.RP)
             {
@@ -7097,10 +7108,10 @@ namespace Server.Mobiles
 
         public override void OnExpGain(SkillName skill, ushort exp)
         {
-            if(this.Skills[skill].Value < this.Skills[skill].Cap)
+            if (this.Skills[skill].Value < this.Skills[skill].Cap)
             {
-                
-                if(!SkillExpGump.NaoMostra.Contains(skill))
+
+                if (!SkillExpGump.NaoMostra.Contains(skill))
                 {
                     var gump = typeof(SkillExperienceGump);
                     if (this.HasGump(gump))
@@ -7109,7 +7120,7 @@ namespace Server.Mobiles
                 }
             }
 
-            if(Young && Wisp != null && Skills.Magery.Value >= 50 && !IsCooldown("dicamagia") && Region is DungeonGuardedRegion)
+            if (Young && Wisp != null && Skills.Magery.Value >= 50 && !IsCooldown("dicamagia") && Region is DungeonGuardedRegion)
             {
                 SetCooldown("dicamagia", TimeSpan.FromSeconds(600));
                 Wisp.Fala("Voce pode clicar 2x no seu livro de magias e arrastar icones de magia para fora para usa-las.");
@@ -7118,7 +7129,7 @@ namespace Server.Mobiles
 
         public override void OnSkillChange(SkillName skill, double oldBase)
         {
-            if(skill == SkillName.Camping)
+            if (skill == SkillName.Camping)
             {
                 Delta(MobileDelta.Weight);
             }
@@ -8197,9 +8208,9 @@ namespace Server.Mobiles
         {
             if (Region is GuardedRegion && !PetAutoStable || !Region.AllowAutoClaim(this) || m_AutoStabled.Count <= 0)
             {
-                if(m_AutoStabled.Count > 0)
+                if (m_AutoStabled.Count > 0)
                 {
-                    SendMessage(78, "Voce tem "+ m_AutoStabled.Count + " pets guardados no estabulo");
+                    SendMessage(78, "Voce tem " + m_AutoStabled.Count + " pets guardados no estabulo");
                 }
                 return;
             }

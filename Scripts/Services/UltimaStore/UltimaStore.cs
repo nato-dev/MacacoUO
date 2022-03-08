@@ -166,7 +166,7 @@ namespace Server.Engines.UOStore
 
             Register<HitchingPost>("Poste de Estabulo", "Permite estabular e retirar animais em casa. </br>Tem 30 cargas mas pode ser recarregado com cordas de estabulo.", 0x14E7, 0, 0, 5000, cat, ConstructHitchingPost);
             Register<HitchingRope>("Corda de Estabulo", "Recarrega o poste de estabulo", 0x14F8, 0, 0, 100, cat, ConstructHitchingPost);
-            
+
             cat = StoreCategory.Mounts;
             Register<EtherealHorse>(new TextDefinition("Cavalo Magico"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um cavalo magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x20DD, 0, 0, 1000, cat, CavaloEthy);
             Register<EtherealRidgeback>(new TextDefinition("Ridgeback Magico [20/03/2022]"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um ostard magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x2615, 0, 0, 5000, cat, OstardEthy);
@@ -579,7 +579,7 @@ namespace Server.Engines.UOStore
         public static Item ConstructNewbie(Mobile m, StoreEntry entry)
         {
             var item = (Item)Activator.CreateInstance(entry.ItemType);
-            if(item.Name != null)
+            if (item.Name != null)
             {
                 if (item.Name.Substring(item.Name.Length - 1) == "o")
                     item.Name += " sofisticado";
@@ -588,6 +588,16 @@ namespace Server.Engines.UOStore
             }
             item.LootType = LootType.Blessed;
             return item;
+        }
+
+        public static Item ConstructRobeMorto(Mobile m, StoreEntry entry)
+        {
+            var shroud = new HoodedShroudOfShadows();
+            shroud.LootType = LootType.Blessed;
+            shroud.Name = "Manto dos Mortos";
+            shroud.Hue = TintaPreta.COR;
+            shroud.BoundTo = m.RawName;
+            return shroud;
         }
 
         public static Item ConstructHairDye(Mobile m, StoreEntry entry)

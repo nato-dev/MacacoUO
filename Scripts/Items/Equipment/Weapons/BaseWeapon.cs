@@ -1838,7 +1838,7 @@ namespace Server.Items
                 {
                     if(defender.Weapon.MaxRange <= defender.GetDistance(attacker))
                     {
-                        if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange))
+                        if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 20))
                         {
                             defender.AggressiveAction(attacker, false);
                             defender.Combatant = attacker;

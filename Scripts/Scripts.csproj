@@ -122,6 +122,7 @@
     <Compile Include="Fronteira\Armarios\FurnitureCont.cs" />
     <Compile Include="Fronteira\Bancos\BancoConta.cs" />
     <Compile Include="Fronteira\Classes\Gumps\RPClassGump.cs" />
+    <Compile Include="Fronteira\Comandos\BancoGuilda.cs" />
     <Compile Include="Fronteira\Comandos\Disarm.cs" />
     <Compile Include="Fronteira\Comandos\docbixo.cs" />
     <Compile Include="Fronteira\Comandos\GenPlantas.cs" />
@@ -372,6 +373,7 @@
     <Compile Include="Fronteira\Quests\QuestDaCasa.cs" />
     <Compile Include="Fronteira\Rankings\RanksTrampo.cs" />
     <Compile Include="Fronteira\RecompensaLogin\RecompensasGuilda.cs" />
+    <Compile Include="Fronteira\RopaGuilda.cs" />
     <Compile Include="Fronteira\RP\GumpLoreThirdAge.cs" />
     <Compile Include="Fronteira\RP\GumpFala.cs" />
     <Compile Include="Fronteira\Skills\Informacoes.cs" />

@@ -1028,9 +1028,15 @@ namespace Server.Items
 
 			list.Add(m_Count.ToString()+" Magias"); // ~1_NUMBERS_OF_SPELLS~ Spells
 
+            if(SpellbookType==SpellbookType.Regular && m_Count==64)
+            {
+                list.Add("Bonus Fullbook: +10% Dano PvM");
+            }
+
             if (this.m_MaxHitPoints > 0)
                 list.Add(1060639, "{0}\t{1}", this.m_HitPoints, this.m_MaxHitPoints); // durability ~1_val~ / ~2_val~
 		}
+        
 
         public virtual void AddProperty(ObjectPropertyList list)
         {

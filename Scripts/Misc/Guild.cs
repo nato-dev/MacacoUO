@@ -5,6 +5,7 @@ using System.Linq;
 
 using Server.Commands;
 using Server.Commands.Generic;
+using Server.Fronteira.Guildas;
 using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
@@ -800,6 +801,8 @@ namespace Server.Guilds
 		public static readonly int MajorityPercentage = 66;
 		public static readonly TimeSpan InactiveTime = TimeSpan.FromDays(30);
 
+        public BauDeGuilda Banco; 
+
 		#region New Alliances
 		public AllianceInfo Alliance
 		{
@@ -1145,7 +1148,7 @@ namespace Server.Guilds
 
 			m_AcceptedWars = new List<WarDeclaration>();
 			m_PendingWars = new List<WarDeclaration>();
-			#endregion
+            #endregion
 		}
 
 		public Guild(int id)
@@ -1377,7 +1380,9 @@ namespace Server.Guilds
 				Alliance.CheckLeader();
 			}
 
-			writer.Write(5); //version
+			writer.Write(6); //version
+
+            writer.WriteItem(Banco);
 
 			#region War Serialization
 			writer.Write(m_PendingWars.Count);
@@ -1446,7 +1451,10 @@ namespace Server.Guilds
 
 			switch (version)
 			{
-				case 5:
+                case 6:
+                    Banco = (BauDeGuilda)reader.ReadItem();
+                    goto case 5;
+                case 5:
 					{
 						int count = reader.ReadInt();
 

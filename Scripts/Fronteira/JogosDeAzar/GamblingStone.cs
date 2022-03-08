@@ -1,3 +1,4 @@
+using Server.Commands;
 using Server.Mobiles;
 
 namespace Server.Items
@@ -43,6 +44,7 @@ namespace Server.Items
             base.GetProperties(list);
 
             list.Add("Acumulado: {0} moedas", m_GamblePot);
+            list.Add("Apostas: Apenas 250 moedas de ouro");
         }
 
         public override void OnSingleClick(Mobile from)
@@ -67,6 +69,8 @@ namespace Server.Items
                     int maxCheck = 1000000;
 
                     from.SendMessage(0x35, "Voce ganhou {0} moedas !", m_GamblePot);
+
+                    Anuncio.Anuncia(from.Name + " ganhou " + m_GamblePot + " moedas na pedra de aposta !");
 
                     while (m_GamblePot > maxCheck)
                     {

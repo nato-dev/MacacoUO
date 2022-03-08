@@ -25,7 +25,7 @@ namespace Server.Mobiles
 
         [Constructable]
         public Weaver()
-            : base("the weaver")
+            : base("o coureiro")
         {
             this.SetSkill(SkillName.Tailoring, 65.0, 88.0);
         }
