@@ -390,11 +390,13 @@ namespace VitaNex.Modules.AutoPvP
 		{
 			if (CheckDeath(m))
 			{
+                Shard.Debug("Aceitando morte no evento");
 				OnDeathAccept(m);
 				return true;
 			}
 
-			OnDeathDeny(m);
+            Shard.Debug("Negando morte no evento");
+            OnDeathDeny(m);
 			return false;
 		}
 

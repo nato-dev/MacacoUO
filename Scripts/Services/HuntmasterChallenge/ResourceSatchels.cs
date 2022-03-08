@@ -117,7 +117,6 @@ namespace Server.Items
     [Flipable(0xA272, 0xA273)]
     public class MinersSatchel : BaseResourceSatchel
     {
-        public override int LabelNumber { get { return 1158773; } } // Miner's Satchel
 
         public override Type[] HoldTypes { get { return new Type[] { typeof(BaseOre), typeof(BaseIngot), typeof(Granite), typeof(Saltpeter) }; } }
 
@@ -131,6 +130,7 @@ namespace Server.Items
         public MinersSatchel(Serial serial)
             : base(serial)
         {
+            Name = "Mochila do Lenhador";
         }
 
         public override void Serialize(GenericWriter writer)
@@ -149,7 +149,6 @@ namespace Server.Items
     [Flipable(0xA274, 0xA275)]
     public class LumbjacksSatchel : BaseResourceSatchel
     {
-        public override int LabelNumber { get { return 1158772; } } // Lumberjack's Satchel
 
         public override Type[] HoldTypes { get { return new Type[] { typeof(BaseLog), typeof(Board) }; } }
 
@@ -163,6 +162,7 @@ namespace Server.Items
         public LumbjacksSatchel(Serial serial)
             : base(serial)
         {
+            Name = "Mochila do Lenhador";
         }
 
         public override void Serialize(GenericWriter writer)

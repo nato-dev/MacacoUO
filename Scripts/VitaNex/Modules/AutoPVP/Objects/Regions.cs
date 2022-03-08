@@ -271,7 +271,10 @@ namespace VitaNex.Modules.AutoPvP
 
 		protected virtual void OnDamage(Mobile m, Mobile damager, int damage)
 		{
-			if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden)
+            if (Shard.DebugEnabled)
+                Shard.Debug("Battle OnDamage", m);
+
+            if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden)
 			{
 				Battle.OnDamage(damager, m, damage);
 			}
@@ -279,6 +282,8 @@ namespace VitaNex.Modules.AutoPvP
 
 		public override bool OnBeforeDeath(Mobile m)
 		{
+            if (Shard.DebugEnabled)
+                Shard.Debug("Battle OnBeforeDeath", m);
 			if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden && !Battle.OnBeforeDeath(m))
 			{
 				return false;
@@ -289,7 +294,9 @@ namespace VitaNex.Modules.AutoPvP
 
 		public override void OnDeath(Mobile m)
 		{
-			if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden)
+            if (Shard.DebugEnabled)
+                Shard.Debug("Battle OnDeath", m);
+            if (Battle != null && Battle.State != PvPBattleState.Internal && !Battle.Hidden)
 			{
 				Battle.OnDeath(m);
 			}

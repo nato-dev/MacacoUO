@@ -38,6 +38,10 @@ namespace VitaNex.Modules.AutoPvP.Battles
 
         public override void OnMemberRemoved(PlayerMobile pm)
         {
+            if(Shard.DebugEnabled)
+            {
+                Shard.Debug("Member count: " + this.Members.Count());
+            }
             if(this.Members.Count() == 1 && this.Battle.State == PvPBattleState.Batalhando)
             {
                 this.Battle.State = PvPBattleState.Terminando;

@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  PvPSpectatorGate.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -91,9 +91,9 @@ namespace VitaNex.Modules.AutoPvP
 					{
 						new ConfirmDialogGump(mob)
 						{
-							Title = "Join as Spectator?",
-							Html = "Join " + Battle.Name +
-								   " as a spectator.\nYou will be teleported to a safe area where you can watch the battle.\nClick OK to join!",
+							Title = "Ir para plateia ?",
+							Html = "Entrar em " + Battle.Name +
+								   " na plateia.\nVoce sera teleportado para uma area segura.\nClick OK para entrar!",
 							AcceptHandler = b => Battle.AddSpectator(mob, true)
 						}.Send();
 					}

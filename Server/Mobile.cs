@@ -2323,7 +2323,6 @@ namespace Server
                         return;
                     }
 
-
                     if (!Bate(m_Mobile.Combatant) && m_Mobile.GetDistanceToSqrt(m_Mobile.Combatant) > m_Mobile.Weapon.MaxRange + 3)
                     {
                         foreach (var ag in m_Mobile.Aggressors)

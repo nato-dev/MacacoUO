@@ -657,7 +657,7 @@ namespace Server.Spells
             if(!target.Player && m_Caster.Player)
             {
                 Spellbook atkBook = Spellbook.FindEquippedSpellbook(m_Caster);
-                if(atkBook.SpellCount == 64)
+                if(atkBook != null && atkBook.SpellCount == 64)
                 {
                     scalar += 0.1;
                 }
