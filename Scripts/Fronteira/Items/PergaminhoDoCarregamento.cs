@@ -77,7 +77,7 @@ namespace Server.Ziden
         {
             base.AddNameProperties(list);
             list.Add("Usar aumenta a quantidade peso carregado");
-            list.Add("+5 Peso carregado na mochila");
+            list.Add("+2 Peso carregado na mochila");
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -96,7 +96,7 @@ namespace Server.Ziden
                 return;
             }
 
-            pl.BonusPeso += 5;
+            pl.BonusPeso += 2;
             Consume(1);
 
             Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
