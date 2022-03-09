@@ -105,6 +105,7 @@ namespace Server.Items
             set
             {
                 m_CurCharges = value;
+                InvalidateProperties();
             }
         }
 
@@ -118,6 +119,7 @@ namespace Server.Items
             set
             {
                 m_MaxCharges = value;
+                InvalidateProperties();
             }
         }
 		
@@ -352,6 +354,8 @@ namespace Server.Items
 
             if (m_Crafter != null)
 				list.Add(1050043, m_Crafter.TitleName); // crafted by ~1_NAME~
+
+            list.Add($"Cargas: {m_CurCharges}/{m_MaxCharges}");
 
             if (m_Description != null && m_Description.Length > 0)
                 list.Add(m_Description);

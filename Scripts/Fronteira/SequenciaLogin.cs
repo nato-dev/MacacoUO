@@ -69,7 +69,7 @@ namespace Server.Fronteira
                     else
                     {
                         pm.SendGump(new GumpFala((n2) => {
-                            GumpClasse.Mostra(pm);
+                            pm.SendGump(new NonRPClassGump());
                         }, Faces.GM_PRETO, "Bem vindo...novamente ! Voce nao e mais um novato !", "Tera de re-escrever a historia com suas proprias pernas!"));
                     }
                 }

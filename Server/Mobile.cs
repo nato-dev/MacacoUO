@@ -541,6 +541,7 @@ namespace Server
 
         public Mobile LastCaster;
         public DateTime LastCast = DateTime.UtcNow;
+        public DateTime LastResist = DateTime.MinValue;
 
         public static bool BypassInit = false;
 
@@ -2257,10 +2258,6 @@ namespace Server
                 if (combatant == null)
                     return false;
 
-                if(Shard.DebugEnabled)
-                {
-                    Shard.Debug("Tentando bater em " + combatant.Name, m_Mobile);
-                }
 
                 // If no combatant, wrong map, one of us is a ghost, or cannot see, or deleted, then stop combat
                 if (combatant == null || combatant.Deleted || m_Mobile.m_Deleted || combatant.Map != m_Mobile.m_Map ||

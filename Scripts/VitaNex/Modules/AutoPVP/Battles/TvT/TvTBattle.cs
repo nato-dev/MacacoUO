@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  TvTBattle.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -72,7 +72,13 @@ namespace VitaNex.Modules.AutoPvP.Battles
 			writer.SetVersion(1);
 		}
 
-		public override void Deserialize(GenericReader reader)
+        public override bool AddTeam(string name, int minCapacity, int capacity, int color)
+        {
+            return AddTeam(new TvTTeam(this, name, minCapacity, capacity, color));
+        }
+
+
+        public override void Deserialize(GenericReader reader)
 		{
 			base.Deserialize(reader);
 

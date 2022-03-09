@@ -2,6 +2,7 @@ using Server.Engines.Points;
 using Server.Items;
 using Server.Misc;
 using Server.Mobiles;
+using Server.Multis;
 using Server.Services.Harvest;
 using System;
 using System.Collections.Generic;
@@ -49,6 +50,13 @@ namespace Server.Fronteira.Recursos
             Constroi(Utility.RandomBool() ? CraftResourceType.Metal : CraftResourceType.Wood);
         }
 
+        public void Valida()
+        {
+            var casa = BaseHouse.FindHouseAt(this);
+            if (casa != null)
+                this.Delete();
+        }
+
         [Constructable]
         public Recurso(CraftResourceType type)
         {
@@ -76,6 +84,8 @@ namespace Server.Fronteira.Recursos
             {
                 Registra(this);
             });
+
+            Timer.DelayCall(TimeSpan.FromMilliseconds(500), this.Valida);
 
             Timer.DelayCall(TimeSpan.FromHours(Utility.Random(3, 3)), () =>
             {

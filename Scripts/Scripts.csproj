@@ -362,6 +362,7 @@
     <Compile Include="Fronteira\Items\HairStyle.cs" />
     <Compile Include="Fronteira\Jewelcrafting\BasePedraPreciosa.cs" />
     <Compile Include="Fronteira\Pvm\CustomDungeons.cs" />
+    <Compile Include="Fronteira\Pvm\DungeonRotativa.cs" />
     <Compile Include="Fronteira\Pvm\DungeonSelect.cs" />
     <Compile Include="Fronteira\Pvm\Dungeons\Esgoto\LanternaAmarela.cs" />
     <Compile Include="Fronteira\Pvm\Dungeons\Noob\FadaMa.cs" />
@@ -458,7 +459,8 @@
     <Compile Include="Fronteira\Tutorial\WispGuia\Guia.cs" />
     <Compile Include="Fronteira\Tutorial\WispGuia\NovoWispGuia.cs" />
     <Compile Include="Fronteira\Tutorial\WispGump.cs" />
-    <Compile Include="Fronteira\Weeklies\QuestNewbie.cs" />
+    <Compile Include="Fronteira\Weeklies\Save.cs" />
+    <Compile Include="Fronteira\Weeklies\Weekly.cs" />
     <Compile Include="Fronteira\XML\XmlSiege\BaseSiegeProjectile.cs" />
     <Compile Include="Fronteira\XML\XmlSiege\BaseSiegeWeapon.cs" />
     <Compile Include="Fronteira\XML\XmlSiege\HandSiegeAttack.cs" />
@@ -13875,6 +13877,7 @@
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\Tourney\Objects\TournamentMatch.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\Tourney\Objects\TournamentTeam.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\Tourney\TournamentBattle.cs" />
+    <Compile Include="VitaNex\Modules\AutoPVP\Battles\TvT\TvTTeam.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\TvT\TvTBattle.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\TvT\TvTBattle1v1.cs" />
     <Compile Include="VitaNex\Modules\AutoPVP\Battles\TvT\TvTBattle2v2.cs" />

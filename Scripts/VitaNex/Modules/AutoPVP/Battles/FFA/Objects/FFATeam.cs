@@ -42,10 +42,12 @@ namespace VitaNex.Modules.AutoPvP.Battles
             {
                 Shard.Debug("Member count: " + this.Members.Count());
             }
-            if(this.Members.Count() == 1 && this.Battle.State == PvPBattleState.Batalhando)
+            base.OnMemberRemoved(pm);
+            if (this.Members.Count() == 1 && this.Battle.State == PvPBattleState.Batalhando)
             {
                 this.Battle.State = PvPBattleState.Terminando;
             }
+            
         }
     }
 }

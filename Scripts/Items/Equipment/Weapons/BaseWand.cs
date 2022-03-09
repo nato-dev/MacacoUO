@@ -22,10 +22,8 @@ namespace Server.Items
         None
     }
 
-
     public abstract class BaseWand : BaseBashing
     {
-
         public static int FORTE1 = 0xDF2;
         public static int FORTE2 = 0xDF3;
         public static int FRACO1 = 0xDF4;

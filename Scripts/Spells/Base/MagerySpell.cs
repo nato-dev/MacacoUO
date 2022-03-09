@@ -164,6 +164,7 @@ namespace Server.Spells
                 if(target.LastCaster != Caster)
                 {
                     target.LastCaster = Caster;
+                    target.LastResist = DateTime.UtcNow;
                     return true;
                 }
             }
@@ -180,7 +181,10 @@ namespace Server.Spells
                 return false;
 
             if (n >= 1.0)
+            {
+                target.LastResist = DateTime.UtcNow;
                 return true;
+            }
 
             int maxSkill = (1 + (int)Circle) * 10;
             maxSkill += (1 + ((int)Circle / 6)) * 25;
@@ -194,6 +198,7 @@ namespace Server.Spells
             {
                 Caster.PlaySound(0x1E6);
                 target.FixedEffect(0x42CF, 10, 5);
+                target.LastResist = DateTime.UtcNow;
             }
             return resisted;
         }

@@ -47,11 +47,13 @@ namespace Server.Fronteira.Guildas
                 return;
             }
             g.Banco = new BauDeGuilda();
+            g.Banco.MoveToWorld(from.Location);
+            g.Banco.HonestyItem = true;
         }
 
         public virtual void AddNameProperties(ObjectPropertyList list)
         {
-            list.Add("Pergaminho Sagrado");
+            list.Add("Pergaminho de Banco de Guilda");
         }
 
         public override void Serialize(GenericWriter writer)

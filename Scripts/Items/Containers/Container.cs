@@ -505,10 +505,10 @@ namespace Server.Items
             get
             {
 
-                Mobile m = ParentEntity as Mobile;
+                var m = ParentEntity as PlayerMobile;
                 if (m != null && m.Player && m.Backpack == this)
                 {
-                    return base.DefaultMaxWeight + (int)(m.Skills.Camping.Value * 1.1);
+                    return m.MaxWeight;
 
                 }
                 else

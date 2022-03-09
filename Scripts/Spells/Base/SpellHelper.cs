@@ -547,6 +547,7 @@ namespace Server.Spells
                 to = ((BaseCreature)to).GetMaster();
             }
 
+            /*
             Guild fromGuild = GetGuildFor(from);
             Guild toGuild = GetGuildFor(to);
 
@@ -554,6 +555,7 @@ namespace Server.Spells
             {
                 return false;
             }
+            */
 
             Party p = Party.Get(from);
 

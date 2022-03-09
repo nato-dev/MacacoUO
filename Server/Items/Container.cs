@@ -165,6 +165,7 @@ namespace Server.Items
                 }
                 else
                 {
+
                     if (PesoMaximoOverride != 0)
                         return PesoMaximoOverride;
                     return PesoMaximo;

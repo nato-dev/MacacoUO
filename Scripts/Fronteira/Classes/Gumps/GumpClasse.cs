@@ -19,7 +19,6 @@ namespace Server.Gumps
         public static void _OnCommand(CommandEventArgs e)
         {
             var caller = e.Mobile;
-
             Mostra(caller);
         }
 

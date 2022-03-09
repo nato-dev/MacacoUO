@@ -15,11 +15,11 @@ namespace Server.SkillHandlers
 
         public static TimeSpan OnUse(Mobile m)
         {
-            Target target = new InternalTargetSrc();
-            m.Target = target;
-            m.SendLocalizedMessage(1046295); // Target the book you wish to copy.
-            target.BeginTimeout(m, TimeSpan.FromMinutes(1.0));
-
+            //Target target = new InternalTargetSrc();
+            //m.Target = target;
+            //m.SendLocalizedMessage("Selecione um livr); // Target the book you wish to copy.
+            //target.BeginTimeout(m, TimeSpan.FromMinutes(1.0));
+            m.SendMessage("Voce pode comprar uma pena e pergaminhos para escrever em escribas talvez");
             return TimeSpan.FromSeconds(1.0);
         }
 

@@ -1571,13 +1571,16 @@ namespace Server.Mobiles
         {
             get
             {
-                return 10 + (int)(4 * Str) + (int)(Skills[SkillName.Camping].Value * 2);
+                return 10 + (int)(4 * Str) + (int)(Skills[SkillName.Camping].Value * 2) + BonusPeso;
             }
         }
 
 
         [CommandProperty(AccessLevel.Administrator)]
         public int PropMaxWeigt { get { return MaxWeight; } set { } }
+
+        [CommandProperty(AccessLevel.Administrator)]
+        public int BonusPeso { get; set; }
 
         private int m_LastGlobalLight = -1, m_LastPersonalLight = -1;
 
@@ -5579,6 +5582,9 @@ namespace Server.Mobiles
 
             switch (version)
             {
+                case 54:
+                    BonusPeso = reader.ReadInt();
+                    goto case 53;
                 case 53:
                     PassoWispGuia = reader.ReadInt();
                     goto case 52;
@@ -6089,7 +6095,8 @@ namespace Server.Mobiles
             CheckKillDecay();
             CheckAtrophies(this);
             base.Serialize(writer);
-            writer.Write(53); // version
+            writer.Write(54); // version
+            writer.Write(BonusPeso);
             writer.Write(PassoWispGuia);
             DungeonsCompletasSerializer.Serialize(this, writer);
             Elementos.Serialize(writer);

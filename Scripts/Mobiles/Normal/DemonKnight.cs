@@ -12,6 +12,11 @@ namespace Server.Mobiles
         private DateTime m_NextArea;
         private bool m_InHere;
 
+         public override bool IsBoss => true;
+        public override bool ReduceSpeedWithDamage => false;
+        public override bool IsSmart => true;
+        public override bool UseSmartAI => true;
+
         public static Type[] DoomArtifact { get { return m_DoomArtifact; } }
         private static Type[] m_DoomArtifact = new Type[]
         {
@@ -227,7 +232,7 @@ namespace Server.Mobiles
                         i = Activator.CreateInstance(t) as Item;
                     }
                 }
-                else
+                else if(Core.AOS)
                 {
                     i = Activator.CreateInstance(m_DoomArtifact[Utility.Random(m_DoomArtifact.Length)]) as Item;
                 }

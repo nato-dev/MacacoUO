@@ -29,6 +29,24 @@ namespace Server.Items
             this.Amount = amount;
 
             this.m_SpellID = spellID;
+            Timer.DelayCall(TimeSpan.FromMilliseconds(100), () =>
+            {
+                var spell = SpellRegistry.NewSpell(this.m_SpellID, null, this) as MagerySpell;
+                if(spell != null)
+                {
+                    switch((int)spell.Circle)
+                    {
+                        case 0: Hue = 0; break;
+                        case 1: Hue = 300; break;
+                        case 2: Hue = 310; break;
+                        case 3: Hue = 320; break;
+                        case 4: Hue = 330; break;
+                        case 5: Hue = 340; break;
+                        case 6: Hue = TintaPreta.COR; break;
+                        case 7: Hue = TintaBranca.COR; break;
+                    }
+                }
+            });
         }
 
         public int SpellID

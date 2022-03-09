@@ -359,9 +359,16 @@ namespace Server.Spells
 
                 if (disturb)
                 {
-                    Disturb(DisturbType.Hurt, false, true);
+                    if((DateTime.UtcNow - Caster.LastResist).TotalSeconds > 2)
+                    {
+                        Disturb(DisturbType.Hurt, false, true);
+                    } else
+                    {
+                        Shard.Debug("Resist n toma disturb");
+                    }
                 }
             }
+            Caster.LastResist = DateTime.MinValue;
         }
 
         public virtual bool PunishSpellMovementIfRepeated { get { return false; } }
@@ -776,7 +783,7 @@ namespace Server.Spells
 
             if (m_State == SpellState.Casting)
             {
-                Shard.Debug("Disturb em casting", m_Caster);
+                Shard.Debug($"Disturb {type.ToString()} em casting", m_Caster);
                 if (!firstCircle && !Core.AOS && this is MagerySpell && ((MagerySpell)this).Circle == SpellCircle.First)
                 {
                     Shard.Debug("First");
