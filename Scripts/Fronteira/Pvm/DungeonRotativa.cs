@@ -26,7 +26,8 @@ namespace Server.Commands
 
         public static void Initialize()
         {
- 
+            return;
+
             var dateNow = DateTime.Now;
             var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 23, 0, 0);
             TimeSpan ts;

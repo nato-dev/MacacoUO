@@ -52,6 +52,9 @@ namespace Server.Fronteira.Recursos
 
         public void Valida()
         {
+            if (this.Deleted)
+                return;
+
             var casa = BaseHouse.FindHouseAt(this);
             if (casa != null)
                 this.Delete();
