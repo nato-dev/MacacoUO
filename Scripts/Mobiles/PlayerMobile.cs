@@ -4795,7 +4795,7 @@ namespace Server.Mobiles
 
             DeathMoveResult res = base.GetParentMoveResultFor(item);
 
-            if (res == DeathMoveResult.MoveToCorpse && item.Movable && Young && Wisp != null)
+            if (res == DeathMoveResult.MoveToCorpse && item.Movable && Young)
             {
                 res = DeathMoveResult.MoveToBackpack;
             }
@@ -4812,7 +4812,7 @@ namespace Server.Mobiles
 
             DeathMoveResult res = base.GetInventoryMoveResultFor(item);
 
-            if (res == DeathMoveResult.MoveToCorpse && item.Movable && Young && Wisp != null)
+            if (res == DeathMoveResult.MoveToCorpse && item.Movable && Young)
             {
                 res = DeathMoveResult.MoveToBackpack;
             }
@@ -6988,13 +6988,13 @@ namespace Server.Mobiles
             }
 
             string prefix = "";
-            bool lord = Fame >= 15000;
+            bool lord = Fame >= 25000;
             if (RP)
             {
                 prefix = FichaRP.Patente.ToString() + " ";
             }
 
-            if (Famoso || lord)
+            if (lord)
             {
                 DaFama();
                 prefix += Female ? "Lady" : "Lord";

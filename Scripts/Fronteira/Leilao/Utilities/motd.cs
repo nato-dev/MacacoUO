@@ -323,7 +323,7 @@ namespace Leilaum.Utilities
             mobile.CloseGump(typeof(NewsGump));
             m_Body = body;
             m_Player = (PlayerMobile)mobile;
-            m_UserCount = string.Format("{0}", NetState.GetOnlinePlayers());
+            m_UserCount = "?";//string.Format("{0}", NetState.GetOnlinePlayers());
             m_ItemCount = World.Items.Count.ToString();
             m_MobileCount = World.Mobiles.Count.ToString();
             m_ArchiveList = archiveList;

@@ -93,17 +93,17 @@ namespace Server.Engines.HuntsmasterChallenge
 
         private static List<CollectionItem> _Collections = new List<CollectionItem>
         {
-            new CollectionItem(typeof(HarvestersBlade), 0x2D20, 1114096, 0, 1.0),
-            new CollectionItem(typeof(HornOfPlenty), 18080, 1153503, 0, 1.0),
-            new CollectionItem(typeof(HuntmastersRewardTitleDeed), 0x14EF, 0, 0, 1.0),
-            new CollectionItem(typeof(RangersGuildSash), 0x1541, 0, 0, 1.0),
+            new CollectionItem(typeof(HarvestersBlade), 0x2D20, 1114096, 0, 5.0),
+            new CollectionItem(typeof(HornOfPlenty), 18080, 1153503, 0, 3.0),
+            new CollectionItem(typeof(HuntmastersRewardTitleDeed), 0x14EF, 0, 0, 3.0),
+            new CollectionItem(typeof(RangersGuildSash), 0x1541, 0, 0, 3.0),
             //new CollectionItem(typeof(GargishRangersGuildSash), 0x46B5, 0, 0, 1.0),
             new CollectionItem(typeof(RecipeScroll), 0x2831, 1158769, 0, 1.0), // hamburger recipe
             new CollectionItem(typeof(RecipeScroll), 0x2831, 1158770, 0, 1.0), // hot dog recipe
             new CollectionItem(typeof(RecipeScroll), 0x2831, 1158771, 0, 1.0), // sausage recipe
-            new CollectionItem(typeof(MinersSatchel), 0xA272, 1158773, 0, 1.0),
-            new CollectionItem(typeof(LumbjacksSatchel), 0xA274, 1158772, 0, 1.0),
-            new CollectionItem(typeof(HarvestersAxe), 0x1443, 1158774, 0, 1.0),
+            new CollectionItem(typeof(MinersSatchel), 0xA272, 1158773, 0, 10.0),
+            new CollectionItem(typeof(LumbjacksSatchel), 0xA274, 1158772, 0, 10.0),
+            new CollectionItem(typeof(HarvestersAxe), 0x1443, 1158774, 0, 5.0),
         };
 	}
 }

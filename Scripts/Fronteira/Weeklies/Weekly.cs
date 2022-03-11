@@ -1,9 +1,12 @@
 using System;
 using System.Collections.Generic;
+using Fronteira.Discord;
+using Server.Commands;
 using Server.Engines.Points;
 using Server.Engines.Quests;
 using Server.Items;
 using Server.Mobiles;
+using Server.Ziden;
 
 namespace Server.Fronteira.Weeklies
 {
@@ -22,7 +25,7 @@ namespace Server.Fronteira.Weeklies
         {
             get
             {
-                return "Desafio Semanal: Mate monstros e colete items para completar a missao e ganhar recompensas ! </br></br>Recompensa em Exp: 2500</br>Ouro: 10000</br>Recompensas: Pergaminho +1 Item na bag, Pergaminho +5 Peso na Bag, Pergaminho +1 Skillcap";
+                return "Desafio Semanal: Mate monstros e colete items para completar a missao e ganhar recompensas !";
             }
         }
         public override object Refuse
@@ -47,22 +50,67 @@ namespace Server.Fronteira.Weeklies
             }
         }
 
-        public CombinacaoKill[] PossiveisMonstros = new CombinacaoKill[] {
-            new CombinacaoKill("Aranha do Gelo", typeof(FrostSpider), 300),
-            new CombinacaoKill("Lagarto de Fogo", typeof(LavaLizard), 300),
-            new CombinacaoKill("Elemental do Fogo", typeof(FireElemental), 300),
-            new CombinacaoKill("Elemental da Agua", typeof(WaterElemental), 300),
-            new CombinacaoKill("Demonio ", typeof(Daemon), 400),
-            new CombinacaoKill("Gargula", typeof(Gargoyle), 300),
-            new CombinacaoKill("Lich", typeof(Lich), 150),
-            new CombinacaoKill("Dragao", typeof(Dragon), 50),
-            new CombinacaoKill("Caum", typeof(HellHound), 300),
-            new CombinacaoKill("Caum", typeof(HellHound), 300),
+
+        public KillCombo[][] Possiveis = new KillCombo[][]
+        {
+            // Ice
+            new KillCombo [] {
+                 new KillCombo("Aranha do Gelo", typeof(FrostSpider), 400),
+                 new KillCombo("Elemental da Neve", typeof(SnowElemental), 400),
+            },
+
+            // Fire
+            new KillCombo [] {
+                 new KillCombo("Aranha do Gelo", typeof(LavaLizard), 400),
+                 new KillCombo("Elemental da Neve", typeof(LavaSerpent), 400),
+            },
+
+            // Shame
+            new KillCombo [] {
+                 new KillCombo("Grande Elemental da Terra", typeof(GreaterEarthElemental), 400),
+                 new KillCombo("Magolho Anciao", typeof(ElderGazer), 200),
+            },
+
+            // Destard
+            new KillCombo [] {
+                 new KillCombo("Dragao", typeof(Dragon), 150),
+                 new KillCombo("Drake", typeof(Drake), 300),
+            },
+
+            // Hythloth
+            new KillCombo [] {
+                 new KillCombo("Capeta", typeof(CrystalDaemon), 100),
+                 new KillCombo("Demonio", typeof(Daemon), 500),
+            },
+
+            // Wrong
+            new KillCombo [] {
+                 new KillCombo("Lagarto Defensor", typeof(LizardmanDefender), 400),
+                 new KillCombo("Lagarto Agressivo", typeof(LizardmanSquatter), 400),
+            },
+
+            // Despise
+            new KillCombo [] {
+                 new KillCombo("Rotting Corpse", typeof(RottingCorpse), 300),
+                 new KillCombo("Elfo Anarquista", typeof(ElfBrigand), 300),
+            },
+
+            // Orc Cave
+            new KillCombo [] {
+                 new KillCombo("Orc", typeof(Orc), 600),
+                 new KillCombo("Orc Mago", typeof(OrcishMage), 200),
+            },
+
+            // Goblins
+            new KillCombo [] {
+                 new KillCombo("Goblin Alquimista", typeof(GreenGoblinAlchemist), 400),
+                 new KillCombo("Goblin Mago", typeof(GreenGoblinMage), 400),
+            }
         };
 
-        public class CombinacaoKill
+        public class KillCombo
         {
-            public CombinacaoKill(String n, Type t, int q)
+            public KillCombo(String n, Type t, int q)
             {
                 Monstro = t;
                 qtd = q;
@@ -82,35 +130,48 @@ namespace Server.Fronteira.Weeklies
             : base()
         {
             var semana = GetSemana();
+           
             if(semana != SaveWeekly.SEMANA_ATUAL)
             {
-                var r = new List<CombinacaoKill>(PossiveisMonstros);
-                var random = r[Utility.Random(r.Count)];
-                r.Remove(random);
-                var random2 = r[Utility.Random(r.Count)];
-                SaveWeekly.Kills.Add(random);
-                SaveWeekly.Kills.Add(random2);
+                Shard.Debug("!!!! Novos desafios semanais sendo gerados !!!");
+                var sorteado = Possiveis[Utility.Random(Possiveis.Length)];
+                SaveWeekly.Kills.Clear();
+                SaveWeekly.Kills.Add(sorteado[1]);
+                SaveWeekly.Kills.Add(sorteado[0]);
                 SaveWeekly.SEMANA_ATUAL = semana;
+                SaveWeekly.JaCompletou.Clear();
+                this.Objectives.Clear();
+                Anuncio.Anuncia($"Semana {semana}: Desafio Semanal Recarregado !!");
+                foreach (var i in SaveWeekly.Kills)
+                    DiscordBot.SendMessage($":star: Matar {i.qtd} {i.n}");
             }
 
             foreach(var obj in SaveWeekly.Kills)
             {
                 this.AddObjective(obj.GetObj());
             }
+            this.AddReward(new BaseReward("2500 EXP"));
+            this.AddReward(new BaseReward(typeof(PergaminhoSkillcap), 1, "Pergaminho +1 Skillcap"));
+            this.AddReward(new BaseReward(typeof(PergaminhoPeso), 1, "Pergaminho +3 Peso na Bag"));
         }
 
         public static int DiasFaltam()
         {
-            return (int)(TimeSpan.FromTicks(DateTime.Now.Ticks).TotalDays % 7);
+            return 7 - (int)(TimeSpan.FromTicks(DateTime.Now.Ticks).TotalDays % 7);
         }
 
         public static int GetSemana()
         {
-            return (int)Math.Ceiling(TimeSpan.FromTicks(DateTime.Now.Ticks).TotalDays / 7);
+            return (int)Math.Floor(TimeSpan.FromTicks(DateTime.Now.Ticks).TotalDays / 7d);
         }
 
         public override bool CanOffer()
         {
+            if(SaveWeekly.JaCompletou.Contains(this.Owner.Serial.Value))
+            {
+                this.Owner.SendMessage($"Voce ja completou o desafio semanal. Aguarde {DiasFaltam()} dias.");
+                return false;
+            }
             return base.CanOffer();
         }
 
@@ -118,6 +179,7 @@ namespace Server.Fronteira.Weeklies
         {
             PointsSystem.Exp.AwardPoints(this.Owner, 2500);
             this.Owner.PlaySound(this.CompleteSound);
+            SaveWeekly.JaCompletou.Add(this.Owner.Serial.Value);
         }
 
         public override void Serialize(GenericWriter writer)
@@ -258,6 +320,8 @@ namespace Server.Fronteira.Weeklies
             base.Deserialize(reader);
 
             int version = reader.ReadInt();
+
+
         }
     }
 }

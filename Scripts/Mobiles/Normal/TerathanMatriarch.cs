@@ -36,8 +36,8 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 50.1, 70.0);
             this.SetSkill(SkillName.Wrestling, 60.1, 80.0);
 
-            this.Fame = 10000;
-            this.Karma = -10000;
+            this.Fame = 15000;
+            this.Karma = -15000;
 
             this.PackItem(new SpidersSilk(5));
             this.PackNecroReg(Utility.RandomMinMax(4, 10));

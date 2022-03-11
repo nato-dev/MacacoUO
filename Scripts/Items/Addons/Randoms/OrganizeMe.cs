@@ -282,7 +282,6 @@ namespace Server.Commands
             }
             regsPouch.DisplayTo(from);
             potionPouch.DisplayTo(from);
-            from.CloseAllGumps();
         }
     }
 }

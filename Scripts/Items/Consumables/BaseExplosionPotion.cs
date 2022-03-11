@@ -190,7 +190,10 @@ namespace Server.Items
             Effects.SendLocationEffect(loc, map, 0x36B0, 9, 10, 0, 0);
             int alchemyBonus = 0;
 
-            alchemyBonus = (int)(from.Skills.Alchemy.Value / 10);
+            var skill = from.Skills.Alchemy.Value;
+            if (skill > 100)
+                skill = 100;
+            alchemyBonus = (int)(skill / 10);
 
             int min = Scale(from, MinDamage);
             int max = Scale(from, MaxDamage);

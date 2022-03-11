@@ -29,7 +29,7 @@ namespace Server.Ziden.Rankingss
         public static void Termina()
         {
             var rankWork = PointsSystem.PontosTrabalho.GetOrCalculateRank();
-            var rankPvm = PointsSystem.PontosPvmEterno.GetOrCalculateRank();
+            var rankPvm = PointsSystem.PontosPvmEterno.GetOrCalculateRank(); 
 
             PrimeiroLugar(rankWork, "Worker");
             PrimeiroLugar(rankPvm, "PvM");

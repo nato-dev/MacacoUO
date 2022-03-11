@@ -20,7 +20,7 @@ namespace Server.Engines.BulkOrders
 
             if (entries.Length > 0)
             {
-                int amountMax = Utility.RandomList(10, 15, 20);
+                int amountMax = Utility.RandomList(25, 30, 35);
 
                 BulkMaterialType material;
                 material = BulkMaterialType.None;
@@ -77,12 +77,7 @@ namespace Server.Engines.BulkOrders
             {
                 int amountMax;
 
-                if (theirSkill >= 70.1)
-                    amountMax = Utility.RandomList(10, 15, 20, 20);
-                else if (theirSkill >= 50.1)
-                    amountMax = Utility.RandomList(10, 15, 15, 20);
-                else
-                    amountMax = Utility.RandomList(10, 10, 15, 20);
+                amountMax = Utility.RandomList(25, 30, 35);
 
                 CraftSystem system = DefAlchemy.CraftSystem;
 

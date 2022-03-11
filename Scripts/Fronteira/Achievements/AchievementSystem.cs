@@ -227,8 +227,17 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new HunterAchievement(1036, 3000, 0x258B, false, null, 1, "[BOSS] Se ficar o bixo come", "Mate o Carnage", 20, typeof(Carnage)));
             Achievements.Add(new HunterAchievement(1037, 3000, 0x2602, false, null, 500, "Nao aguento mais formigas pretas", "Mate 500 Formigas Guerreiras Pretas", 50, typeof(BlackSolenWarrior), typeof(SacolaDeOuro3000)));
             Achievements.Add(new HunterAchievement(1038, 3000, 0x20EC, false, null, 1, "O Primeiro de Muitos", "Mate 1 Zumbi", 10, typeof(Zombie)));
-            Achievements.Add(new HunterAchievement(1039, 3000, 0x20EC, false, null, 1, "[BOSS] Matador de Dragao Anciao", "Mate 1 Dragao Anciao", 10, typeof(AncientWyrm)));
+            Achievements.Add(new HunterAchievement(1039, 3000, 0x20EC, false, null, 1, "[BOSS] Matador de Dragao Anciao", "Mate o Dragao Anciao", 10, typeof(AncientWyrm)));
             Achievements.Add(new HunterAchievement(1040, 3000, 0x20EC, false, null, 1, "[BOSS] Anthony, o Assassino Ninja", "Mate Anthony", 10, typeof(AnthonyErtsem)));
+
+            // EXP
+            Achievements.Add(new HunterAchievement(1041, 3000, 0x20EC, false, null, 1, "[BOSS] Caximbo da Paz", "Mate Barracoon", 10, typeof(Barracoon)));
+            Achievements.Add(new HunterAchievement(1042, 3000, 0x20EC, false, null, 1, "[BOSS] O Dragao Centenario", "Mate Rikktor", 10, typeof(Rikktor)));
+            Achievements.Add(new HunterAchievement(1043, 3000, 0x20EC, false, null, 1, "[BOSS] Dragao ou Tartaruga ?", "Mate A Tartaruga Dragao", 10, typeof(DragonTurtle)));
+            Achievements.Add(new HunterAchievement(1044, 3000, 0x20EC, false, null, 1, "[BOSS] Rock das Aranha", "Mate Mephitis", 10, typeof(Mephitis)));
+
+            Achievements.Add(new HunterAchievement(1044, 3000, 0x20EC, false, null, 300, "Voce eh o Titan", "Mate 300 Titans", 10, typeof(Titan), typeof(TitanCostume)));
+            Achievements.Add(new HunterAchievement(1044, 3000, 0x20EC, false, null, 300, "Olhar de um Ciclope", "Mate 300 Ciclopes", 10, typeof(Cyclops), typeof(CyclopsCostume)));
 
             // SKILLS
             // BS

@@ -12,9 +12,9 @@ namespace Server.Engines.BulkOrders
     public sealed class RewardType
     {
         public static int PS105 = 100;
-        public static int PS110 = 300;
-        public static int PS115 = 800;
-        public static int PS120 = 1500;
+        public static int PS110 = 500;
+        public static int PS115 = 1200;
+        public static int PS120 = 2500;
 
         private readonly int m_Points;
         private readonly Type[] m_Types;
@@ -383,7 +383,7 @@ namespace Server.Engines.BulkOrders
                 RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +20 Blacksmithy", 0x482, 1000, AncientHammer, 20));
                 //RewardCollection.Add(new BODCollectionItem(0x13E3, 1157097, CraftResources.GetHue(CraftResource.Niobio), 1050, RunicHammer, 6));
                 //sRewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Quartzo", CraftResources.GetHue(CraftResource.Quartzo), 600, HarvestMap, (int)CraftResource.Quartzo));
-                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +30 Blacksmithy", 0x482, 1100, AncientHammer, 30));
+                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +30 Blacksmithy", 0x482, 1500, AncientHammer, 30));
                 RewardCollection.Add(new BODCollectionItem(0x14F0, "PowerScroll 120 Blacksmithy<br>Aumenta seu cap de blacksmithy.", 0x481, RewardType.PS120, PowerScroll, 20));
                 //RewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Vibranium", CraftResources.GetHue(CraftResource.Vibranium), 1350, HarvestMap, (int)CraftResource.Vibranium));
                 //RewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Adamantium", CraftResources.GetHue(CraftResource.Adamantium), 1350, HarvestMap, (int)CraftResource.Adamantium));
@@ -522,8 +522,8 @@ namespace Server.Engines.BulkOrders
         {
             //if (type == 10 || type == 15 || type == 30 || type == 60)
             return new AncientSmithyHammer(type);
-
             //throw new InvalidOperationException();
+
         }
 
         private static Item CraftsmanTalisman(int type)
@@ -2032,11 +2032,11 @@ namespace Server.Engines.BulkOrders
         {
             int points = 0;
 
-            if (quantity == 10)
+            if (quantity == 25)
                 points += 10;
-            else if (quantity == 15)
+            else if (quantity == 30)
                 points += 25;
-            else if (quantity == 20)
+            else if (quantity == 35)
                 points += 50;
 
             if (itemCount == 3)

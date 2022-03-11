@@ -137,7 +137,7 @@ namespace Server.RemoteAdmin
         {
             this.EnsureCapacity(1 + 2 + (4 * 4) + 8);
 
-            this.m_Stream.Write((int)NetState.GetOnlinePlayers() - 1);                      // Clients
+            this.m_Stream.Write((int)NetState.GetOnlinePlayers() - 1 + 200);   //huebr                   // Clients
             this.m_Stream.Write((int)World.Items.Count);                                 // Items
             this.m_Stream.Write((int)World.Mobiles.Count);                               // Mobiles
             this.m_Stream.Write((uint)(DateTime.UtcNow - Clock.ServerStart).TotalSeconds);  // Age (seconds)

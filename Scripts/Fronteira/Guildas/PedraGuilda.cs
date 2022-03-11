@@ -46,8 +46,8 @@ namespace Server.Fronteira.Guildas
                 from.SendMessage("Esta guilda ja tem um banco");
                 return;
             }
-            g.Banco = new BauDeGuilda();
-            g.Banco.MoveToWorld(from.Location);
+            g.Banco = new BauDeGuilda(g.Abbreviation);
+            g.Banco.MoveToWorld(from.Location, from.Map);
             g.Banco.HonestyItem = true;
         }
 
@@ -69,19 +69,35 @@ namespace Server.Fronteira.Guildas
         }
     }
 
-
-    public class BauDeGuilda : BaseContainer
+    public class BauDeGuilda : Server.Items.Container
     {
-        [Constructable]
-        public BauDeGuilda()
+        public string tag = null;
+
+        public BauDeGuilda(string tag)
             : base(0x9AB)
         {
+            tag = tag;
         }
 
         public BauDeGuilda(Serial serial)
             : base(serial)
         {
             Name = "Bau de Guilda";
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add(tag);
+        }
+
+        public override bool IsAccessibleTo(Mobile check)
+        {
+            if ((check.Guild?.Abbreviation == tag || check.AccessLevel >= AccessLevel.GameMaster))
+            {
+                return true;
+            }
+            return false;
         }
 
         public override void Serialize(GenericWriter writer)

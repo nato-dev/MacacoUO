@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Server.Engines.Craft;
 using Server.Engines.Quests;
 using Server.Items;
 
@@ -116,8 +117,14 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
             SorteiaItem(new BagOfSending());
+            SorteiaItem(DefJewelcrafting.GetReceitaPower());
+            SorteiaItem(DefJewelcrafting.GetReceitaPower());
+            SorteiaItem(DefJewelcrafting.GetRandomReceitaNoob());
+
             if (m_Spawner != null)
                 m_Spawner.OnNavreyKilled();
+
+
 
             if (Utility.RandomBool())
                 SorteiaItem(new UntranslatedAncientTome());

@@ -297,6 +297,9 @@ namespace Server.Items
 
         public static int EnhancePotions(Mobile m)
         {
+            if (!Core.AOS)
+                return 0;
+
             int EP = AosAttributes.GetValue(m, AosAttribute.EnhancePotions);
             int skillBonus = m.Skills.Alchemy.Fixed / 330 * 10;
 

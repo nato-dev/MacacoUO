@@ -440,7 +440,7 @@ namespace Server.Engines.Craft
 			0x92B, 0x93F, // Stone oven
 			0x2DDB, 0x2DDC, //Elven stove
 		};
-
+         
         private static readonly int[] m_Makers = new[]
         {
             0x9A96, 0x9A96 // steam powered beverage maker

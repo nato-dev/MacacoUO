@@ -21,7 +21,7 @@ namespace Server.Mobiles
             this.SetHits(2100, 2129);
             this.SetMana(0);
 
-            this.SetDamage(17, 37);
+            this.SetDamage(37, 57);
 
             this.SetDamageType(ResistanceType.Physical, 100);
 
@@ -41,7 +41,7 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 30;
 
-            PackItem(BaseEssencia.RandomEssencia());
+            PackItem(new CristalTherathan());
 
             if (Utility.RandomDouble() < .33)
                 this.PackItem(Engines.Plants.Seed.RandomPeculiarSeed(4));

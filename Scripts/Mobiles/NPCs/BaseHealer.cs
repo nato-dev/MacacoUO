@@ -82,7 +82,7 @@ namespace Server.Mobiles
         {
             get
             {
-                return false;
+                return true;
             }
         }
         public override VendorShoeType ShoeType

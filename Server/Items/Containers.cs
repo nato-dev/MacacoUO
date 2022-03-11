@@ -20,7 +20,7 @@ namespace Server.Items
         public override int DefaultMaxWeight { get { return 0; } }
 
         public override bool IsVirtualItem { get { return true; } }
-
+         
         public Mobile Owner { get { return m_Owner; } }
 
         public bool Opened { get { return m_Open; } }
@@ -113,6 +113,7 @@ namespace Server.Items
             {
                 return base.OnDragDropInto(from, item, p);
             }
+
 
             return false;
         }

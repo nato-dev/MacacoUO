@@ -36,7 +36,7 @@ namespace Server.Mobiles
 			
 			SetDamage( 35, 47 );
 			
-			SetHits(60000);
+			SetHits(65000);
 			
 			SetResistance( ResistanceType.Physical, 75, 85 );
 			SetResistance( ResistanceType.Fire, 65, 75 );
@@ -69,7 +69,7 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            SorteiaItem(new PergaminhoSkillcap());
+            //SorteiaItem(new PergaminhoSkillcap());
             SorteiaItem(new PergaminhoSkillcap());
             SorteiaItem(new DragonTurtleFountainAddonDeed());
             var a = new CarpenterApron();

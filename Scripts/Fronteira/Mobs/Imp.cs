@@ -51,10 +51,10 @@ namespace Server.Mobiles
                 var gold = b.Backpack.FindItemByType(typeof(Gold));
                 if(gold != null)
                 {
-                    gold.Amount = (int)gold.Amount * 3;
+                    gold.Amount += 100;
                 }
 
-                if(Utility.RandomDouble() < 0.1)
+                if(Utility.RandomDouble() < 0.01)
                 {
                     b.PackItem(DefJewelcrafting.GetReceitaPower());
                 }

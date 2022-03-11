@@ -31,7 +31,7 @@ namespace Server.Commands
             }
 
             var g = guilda as Guild;
-            g.Banco.ProcessOpeners(arg.Mobile);
+            g.Banco.DisplayTo(arg.Mobile);
             arg.Mobile.SendMessage("ABrindo");
         }
     }

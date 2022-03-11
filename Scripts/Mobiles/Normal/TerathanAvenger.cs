@@ -105,7 +105,7 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV5, 2);
+            this.AddLoot(LootPack.LV5, 1);
         }
 
         public override void Serialize(GenericWriter writer)

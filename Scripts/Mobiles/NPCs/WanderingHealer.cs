@@ -17,7 +17,6 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.SpiritSpeak, 80.0, 100.0);
 
             BaseHealer.healers.Add(this);
-
         }
 
         public WanderingHealer(Serial serial)

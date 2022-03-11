@@ -869,7 +869,7 @@ namespace Server.Network
                     if (byteCount == 1 && buffer[0] == 34)
                     {
                         Console.WriteLine("Respondendo HideBot"); // bot da comu de sphererianos
-                        var str = "==="+(GetOnlinePlayers()+80)+",";
+                        var str = "==="+(GetOnlinePlayers()+180)+",";
                         s.Send(new UTF8Encoding().GetBytes(str));
                         Dispose(false);
                         return;

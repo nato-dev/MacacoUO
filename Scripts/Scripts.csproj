@@ -235,6 +235,7 @@
     <Compile Include="Fronteira\Guia\DungeonsGump.cs" />
     <Compile Include="Fronteira\Guildas\PedraGuilda.cs" />
     <Compile Include="Fronteira\Imbuing\Essencias\EssLuz.cs" />
+    <Compile Include="Fronteira\Items\MailboxGatinho.cs" />
     <Compile Include="Fronteira\Items\PergaminhoSkillcap.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZeFoguinho.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZumbiPalmares.cs" />

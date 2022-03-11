@@ -547,7 +547,7 @@ namespace Server.Items
                 else if (this.Owner is BaseCreature)
                 {
                     var bc = (BaseCreature)this.Owner;
-                
+
                     if (bc.ControlMaster is PlayerMobile && !bc.Summoned && bc.IsDeadPet && bc is IMount)
                     {
                         bc.ControlMaster.SendMessage(78, "Sua montaria " + bc.Name + " se foi.");
@@ -1262,6 +1262,12 @@ namespace Server.Items
                 }
             }
 
+            if (this.Owner != null && from != null && this.Owner.IsYoung() && this.Owner != from)
+            {
+                from.SendMessage(38, "Voce nao pode lootear este jogador por ele ser um Novato.");
+                return false;
+            }
+
             if (!IsCriminalAction(from))
             {
                 return true;
@@ -1316,7 +1322,7 @@ namespace Server.Items
             {
 
                 var corda = Rope.GetCordaAmarrada(this.Owner);
-                if(corda != null && from != this.Owner)
+                if (corda != null && from != this.Owner)
                 {
                     corda.OnDoubleClick(from);
                 }
@@ -1588,7 +1594,7 @@ namespace Server.Items
                 }
 
                 from.PlaySound(0x3E3);
-                if(msg)
+                if (msg)
                 {
                     from.OverheadMessage("* pegou pertences *");
                     from.SendLocalizedMessage("Voce pegou seus pertences"); // You quickly gather all of your belongings.
