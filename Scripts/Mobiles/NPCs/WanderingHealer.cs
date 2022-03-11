@@ -54,17 +54,17 @@ namespace Server.Mobiles
         {
             if (m.Criminal)
             {
-                this.Say(501222); // Thou art a criminal.  I shall not resurrect thee.
+                this.Say(501222); // you are a criminal. I will not resurrect you.
                 return false;
             }
             else if (m.Murderer)
             {
-                this.Say(501223); // Thou'rt not a decent and good person. I shall not resurrect thee.
+                this.Say(501223); // You are not a decent and good person. I will not resurrect you.
                 return false;
             }
             else if (m.Karma < 0)
             {
-                this.Say(501224); // Thou hast strayed from the path of virtue, but thou still deservest a second chance.
+                this.Say(501224); // You have strayed from the path of virtue, but you still deserve a second chance.
             }
 
             return true;
