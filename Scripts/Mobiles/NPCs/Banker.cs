@@ -321,7 +321,7 @@ namespace Server.Mobiles
         {
             if (!e.Handled && e.Mobile.InRange(vendor, 12))
             {
-                foreach (var keyword in e.Speech.Split(' '))
+                foreach (var keyword in e.Speech.ToLower().Split(' '))
                 {
                     switch (keyword)
                     {

@@ -175,7 +175,7 @@ namespace Server.Items
                             from.SendMessage("A criatura nao esta morta");
                             return;
                         }
-                        if (from != bc.ControlMaster)
+                        if (from != bc.ControlMaster && bc.ControlMaster != null)
                         {
                             bc.ControlMaster.SendMessage(from.Name + " esta revivendo sua criatura");
                             from.SendMessage("Voce comeca a reviver a criatura de " + bc.ControlMaster.Name);
