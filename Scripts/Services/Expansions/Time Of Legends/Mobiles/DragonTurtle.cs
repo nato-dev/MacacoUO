@@ -5,6 +5,7 @@ using Server.Engines.CannedEvil;
 using System.Collections.Generic;
 using System.Linq;
 using Server.Ziden;
+using Server.Fronteira.Elementos;
 
 namespace Server.Mobiles
 {
@@ -32,13 +33,15 @@ namespace Server.Mobiles
 			
 			SetStr(750, 800);
 			SetDex(185, 240);
-			SetInt(487, 562);
+			SetInt(99999);
 			
 			SetDamage( 35, 47 );
 			
-			SetHits(65000);
-			
-			SetResistance( ResistanceType.Physical, 75, 85 );
+			SetHits(75000);
+            SetStam(99999);
+            SetMana(99999);
+
+            SetResistance( ResistanceType.Physical, 75, 85 );
 			SetResistance( ResistanceType.Fire, 65, 75 );
 			SetResistance( ResistanceType.Cold, 70, 75 );
 			SetResistance( ResistanceType.Poison, 100 );
@@ -64,20 +67,36 @@ namespace Server.Mobiles
 		public override void GenerateLoot()
         {
 			AddLoot(LootPack.LV7, 3);
+            AddLoot(LootPack.Gems, 50);
         }
 
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            //SorteiaItem(new PergaminhoSkillcap());
+            SorteiaItem(new PersonalTelescope());
+            SorteiaItem(new LegacyGuildstone());
             SorteiaItem(new PergaminhoSkillcap());
             SorteiaItem(new DragonTurtleFountainAddonDeed());
+            DistribuiItem(Decos.RandomDeco());
+            if (Utility.RandomDouble() < 0.2)
+                SorteiaItem(Carnage.GetRandomPS(110));
+            else
+                SorteiaItem(Carnage.GetRandomPS(105));
+
+            for (var x = 0; x < 5; x++)
+            {
+                SorteiaItem(BaseEssencia.RandomEssencia(10));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(10));
+            }
+
             var a = new CarpenterApron();
-            a.Bonus = Utility.Random(5, 10);
+            a.Bonus = Utility.Random(5, 25);
             a.Skill = SkillName.Tailoring;
             a.Name = "Avental do Artesao da Tartaruga Dragao";
             SorteiaItem(a);
         }
+
+        public virtual int BonusExp => 1900;
 
         public override int Meat{ get{ return 1; } }
 		public override int Hides{ get{ return 33; } }

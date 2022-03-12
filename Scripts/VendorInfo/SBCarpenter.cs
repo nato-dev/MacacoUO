@@ -31,6 +31,8 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
+                Add(new GenericBuyInfo(typeof(MailboxEastAddonDeed), 50000, 20, 0x4141, 0));
+                Add(new GenericBuyInfo(typeof(FurnitureDyeTub), 50000, 20, 0xFAB, 0));
                 Add(new GenericBuyInfo(typeof(Nails), 3, 20, 0x102E, 0));
                 Add(new GenericBuyInfo(typeof(Axle), 2, 20, 0x105B, 0, true));
                 Add(new GenericBuyInfo(typeof(Board), 3, 20, 0x1BD7, 0, true));

@@ -125,6 +125,7 @@ namespace Server.Items
             : base(0xA272)
         {
             Name = "Mochila do Minerador";
+            this.WeightReduction = 35;
         }
 
         public MinersSatchel(Serial serial)
@@ -157,6 +158,7 @@ namespace Server.Items
             : base(0xA274)
         {
             Name = "Mochila do Lenhador";
+            this.WeightReduction = 35;
         }
 
         public LumbjacksSatchel(Serial serial)

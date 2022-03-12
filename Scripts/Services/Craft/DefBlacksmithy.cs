@@ -72,8 +72,9 @@ namespace Server.Engines.Craft
         DoubleBladedStaff = 1006,
         Lance = 1007,
         Scythe = 1008,
-        Pike = 1009
+        Pike = 1009,
 
+        TalismanElemental = 1010
     }
     #endregion
 
@@ -314,24 +315,14 @@ namespace Server.Engines.Craft
 
         public override void InitCraftList()
         {
-            /*
-            Synthax for a SIMPLE craft item
-            AddCraft( ObjectType, Group, MinSkill, MaxSkill, ResourceType, Amount, Message )
-            ObjectType		: The type of the object you want to add to the build list.
-            Group			: The group in wich the object will be showed in the craft menu.
-            MinSkill		: The minimum of skill value
-            MaxSkill		: The maximum of skill value
-            ResourceType	: The type of the resource the mobile need to create the item
-            Amount			: The amount of the ResourceType it need to create the item
-            Message			: String or Int for Localized.  The message that will be sent to the mobile, if the specified resource is missing.
-            Synthax for a COMPLEXE craft item.  A complexe item is an item that need either more than
-            only one skill, or more than only one resource.
-            Coming soon....
-            */
-
             int index;
 
             index = AddCraft(typeof(TalismanDragao), "Talismans", "Talisman do Dragao de Quartzo", 90, 110, typeof(QuartzoIngot), "Lingote de Quartzo", 8, "Voce precisa de lingotes de quartzo");
+
+            index = AddCraft(typeof(TalismanElemental), "Talismans", "Talisman Elemental", 80, 120, typeof(QuartzoIngot), "Lingote de Quartzo", 20, "Voce precisa de lingotes de quartzo");
+            AddRes(index, typeof(CristalElemental), "Cristal Elemental", 100, "Voce precisa de cristais elementais para isto");
+            AddRes(index, typeof(CristalElemental), "Cristal Terathan", 100, "Voce precisa de cristais terathan para isto");
+            AddRecipe(index, (int)SmithRecipes.BritchesOfWarding);
 
             #region Metal Armor
 

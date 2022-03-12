@@ -169,7 +169,7 @@ namespace Server.Mobiles
             from.AddToBackpack(new SpidersSilk(17 + Utility.Random(10)));
             PlaySound(0x57);
 
-            if (Utility.RandomDouble() < 0.2)
+            if (Utility.RandomDouble() < 0.05)
             {
                 from.AddToBackpack(BaseEssencia.RandomEssencia());
                 from.SendMessage("Voce encontrou uma essencia magica no corpo da aranha");

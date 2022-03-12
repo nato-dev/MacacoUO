@@ -28,10 +28,12 @@ namespace Server.Items
             return null;
         }
 
-        public static Item RandomEssencia()
+        public static Item RandomEssencia(int amt = 1)
         {
             var tipoRandom = Elementos[Utility.Random(Elementos.Length)];
-            return (Item)Activator.CreateInstance(tipoRandom);
+            var i = (Item)Activator.CreateInstance(tipoRandom);
+            i.Amount = amt;
+            return i;
         }
 
         [Constructable]

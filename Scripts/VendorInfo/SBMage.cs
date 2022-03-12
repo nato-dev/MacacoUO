@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Items;
+using Server.Ziden.RecompensaLogin;
 
 namespace Server.Mobiles
 {
@@ -53,6 +54,9 @@ namespace Server.Mobiles
             public InternalBuyInfo()
             {
                 Add(new GenericBuyInfo(typeof(Spellbook), 18, 10, 0xEFA, 0));
+
+                Add(new GenericBuyInfo(typeof(SpellbookPreto),  300000, 10, 0xEFA, TintaPreta.COR));
+                Add(new GenericBuyInfo(typeof(SpellbookBranco), 500000, 10, 0xEFA, TintaBranca.COR));
 
                 if (Core.AOS)
                     Add(new GenericBuyInfo(typeof(NecromancerSpellbook), 115, 10, 0x2253, 0));

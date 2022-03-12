@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Server.Fronteira.Elementos
 {
-    public class CustosUPElementos
+    public class ElementoUtils
     {
         public class Custo
         {
@@ -47,6 +47,20 @@ namespace Server.Fronteira.Elementos
         }
 
         private static Dictionary<ElementoPvM, Custo[]> _custos = new Dictionary<ElementoPvM, Custo[]>();
+
+        public static Item GetRandomPedraSuperior(int amt = 1)
+        {
+            var r = Utility.Random(8);
+            if (r == 0) return new FireRuby(amt);
+            if (r == 1) return new Turquoise(amt);
+            if (r == 2) return new PerfectEmerald(amt);
+            if (r == 3) return new BrilliantAmber(amt);
+            if (r == 4) return new WhitePearl(amt);
+            if (r == 5) return new DarkSapphire(amt);
+            if (r == 6) return new EcruCitrine(amt);
+            if (r == 7) return new BlueDiamond(amt);
+            return null;
+        }
 
         public static Custo[] GetCustos(ElementoPvM elemento)
         {

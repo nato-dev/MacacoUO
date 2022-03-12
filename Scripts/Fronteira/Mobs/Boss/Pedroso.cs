@@ -334,8 +334,11 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
+            this.AddLoot(LootPack.Gems, 20);
             AddLoot(LootPack.OldRich, 2);
         }
+
+        public virtual int BonusExp => 500;
 
         public override void OnDamagedBySpell(Mobile attacker)
         {

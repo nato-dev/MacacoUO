@@ -22,8 +22,6 @@ namespace Server.Engines.CityLoyalty
         SkaraBrae,
         NewMagincia,
         Vesper,
-
-        Rhodes
     }
 
     public enum LoyaltyRating
@@ -102,7 +100,7 @@ namespace Server.Engines.CityLoyalty
         public static readonly TimeSpan LoveAtrophyDuration = TimeSpan.FromHours(40);
         public static Map SystemMap { get { return Siege.SiegeShard ? Map.Felucca : Map.Trammel; } }
 
-        public override TextDefinition Name { get { return new TextDefinition("Lealdade a Rhodes"); } }
+        public override TextDefinition Name { get { return new TextDefinition("Lealdade"); } }
         public override bool AutoAdd { get { return false; } }
         public override double MaxPoints { get { return double.MaxValue; } }
         public override PointsType Loyalty { get { return PointsType.None; } }
@@ -939,8 +937,6 @@ namespace Server.Engines.CityLoyalty
 
         public static City GetRandomCity()
         {
-            return City.Rhodes;
-            /*
             switch(Utility.Random(11))
             {
                 default:
@@ -954,7 +950,6 @@ namespace Server.Engines.CityLoyalty
                 case 7: return City.NewMagincia;
                 case 10: return City.Vesper;
             }
-            */
         }
 
         public static int GetTitleLocalization(Mobile from, CityTitle title, City city)
@@ -992,8 +987,6 @@ namespace Server.Engines.CityLoyalty
                 case City.SkaraBrae: return 1098178;
                 case City.NewMagincia: return 1098177;
                 case City.Vesper: return 1098176;
-
-                case City.Rhodes: return 1098176;
             }
         }
 
@@ -1011,8 +1004,6 @@ namespace Server.Engines.CityLoyalty
                 case City.SkaraBrae: return 1011347;
                 case City.NewMagincia: return 1011345;
                 case City.Vesper: return 1011030;
-
-                case City.Rhodes: return 1098176;
             }
         }
 
@@ -1122,8 +1113,6 @@ namespace Server.Engines.CityLoyalty
                 case City.SkaraBrae: return SkaraBrae;
                 case City.NewMagincia: return NewMagincia;
                 case City.Vesper: return Vesper;
-
-                case City.Rhodes: return Rhodes;
             }
         }
 
@@ -1174,8 +1163,6 @@ namespace Server.Engines.CityLoyalty
         public static SkaraBrae SkaraBrae { get; set; }
         public static NewMagincia NewMagincia { get; set; }
         public static Vesper Vesper { get; set; }
-
-        public static Rhodes Rhodes { get; set; }
 
         public static CityTradeSystem CityTrading { get; set; }
 
@@ -1507,27 +1494,6 @@ namespace Server.Engines.CityLoyalty
                              new Point3D(3004, 822, 0),
                              new Point3D(2899, 685, 0),
                              "Vesper",
-                             1114140,
-                             1154528
-                             );
-        }
-    }
-
-    public class Rhodes : CityLoyaltySystem
-    {
-        public override PointsType Loyalty { get { return PointsType.Vesper; } }
-
-        public Rhodes() : base(City.Rhodes)
-        {
-            CityLoyaltySystem.Rhodes = this;
-            Definition = new CityDefinition(
-                             City.Rhodes,
-                             new Point3D(1338, 1386, 0),
-                             new Point3D(1363, 1374, 0),
-                             new Point3D(1370, 1348, 0),
-                             new Point3D(1384, 1340, 0),
-                             new Point3D(1380, 1333, 0),
-                             "Rhodes",
                              1114140,
                              1154528
                              );

@@ -1,4 +1,5 @@
 using System;
+using Server.Fronteira.Elementos;
 using Server.Items;
 using Server.Items.Functional.Pergaminhos;
 using Server.Ziden;
@@ -83,6 +84,10 @@ namespace Server.Mobiles
             book.Hue = TintaPreta.COR;
             book.Name = "Livro do Lich Rei";
             SorteiaItem(book);
+            for (var x = 0; x < 4; x++)
+            {
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior());
+            }
         }
 
         public override OppositionGroup OppositionGroup
@@ -154,8 +159,10 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV5, 3);
-            
+            this.AddLoot(LootPack.Gems, 20);
         }
+
+        public virtual int BonusExp => 400;
 
         public override void Serialize(GenericWriter writer)
         {

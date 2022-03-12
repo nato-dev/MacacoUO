@@ -62,7 +62,10 @@ namespace Server.Ziden.Tutorial
                 player.Wisp.Jogador = null;
                 player.Wisp.Delete();                
                 player.Wisp = null;
-            } 
+            } else if(player.Young && player.Wisp != null)
+            {
+                player.Wisp.MoveToWorld(player.Location, player.Map);
+            }
         }
         
         public static void InicializaWisp(PlayerMobile player)

@@ -16,7 +16,7 @@ namespace Server.Mobiles
                 if (b == null || !b.Alive || b.Deleted || !StuckMenu.IsInSecondAgeArea(b))
                     return;
 
-                if (Utility.RandomDouble() < 0.2)
+                if (Utility.RandomDouble() < 0.05)
                     b.AddItem(BaseEssencia.RandomEssencia());
 
                 if (b is BaseOrc || b is BaseRatman)
@@ -28,6 +28,8 @@ namespace Server.Mobiles
                 }
                 else if (b is Gazer)
                 {
+                    if(Utility.RandomBool())
+                        b.PackItem(new RecipeScroll((int)SmithRecipes.TalismanElemental));
                     b.Name += " do sol";
                     b.Hue = 1161;
                     b.Skills.Magery.Base = 180;
@@ -54,7 +56,7 @@ namespace Server.Mobiles
                     gold.Amount += 100;
                 }
 
-                if(Utility.RandomDouble() < 0.01)
+                if (Utility.RandomDouble() < 0.01)
                 {
                     b.PackItem(DefJewelcrafting.GetReceitaPower());
                 }

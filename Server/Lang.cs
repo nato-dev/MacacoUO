@@ -1905,6 +1905,8 @@ namespace Server
                     return "Voce precisa marcar a runa para inserir no runebook";
                 case 500169:
                     return "Voce nao pode pegar isto";
+                case 1114298:
+                    return "Isto precisa estar trancado em uma casa";
                 case 502503:
                     return "A porta esta trancada";
                 case 502421:

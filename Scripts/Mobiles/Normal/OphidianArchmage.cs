@@ -28,7 +28,7 @@ namespace Server.Mobiles
                 b.Backpack.DropItem(new Gold(Utility.Random(300, 300)));
                 b.DamageMin = (int)(b.DamageMin * 1.5);
                 b.DamageMax = (int)(b.DamageMax * 1.5);
-                if (Utility.RandomDouble() < 0.2)
+                if (Utility.RandomDouble() < 0.05)
                     b.AddItem(BaseEssencia.RandomEssencia());
             });
         }

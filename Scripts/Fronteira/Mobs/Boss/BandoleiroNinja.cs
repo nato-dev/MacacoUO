@@ -42,6 +42,8 @@ namespace Server.Mobiles
 
         public override bool IsBoss => true;
 
+        public virtual int BonusExp => 800;
+
         private DateTime m_NextWeaponChange;
 
         [Constructable]
@@ -138,7 +140,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV6);
-            AddLoot(LootPack.Gems, 2);
+            AddLoot(LootPack.Gems, 30);
         }
         public class PotTimer : Timer
         {

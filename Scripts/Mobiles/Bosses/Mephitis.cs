@@ -1,5 +1,6 @@
 using System;
 using Server.Engines.CannedEvil;
+using Server.Fronteira.Elementos;
 using Server.Items;
 
 namespace Server.Mobiles
@@ -109,7 +110,9 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV7, 1);
+            this.AddLoot(LootPack.Gems, 20);
         }
+        public virtual int BonusExp => 900;
 
         public override void OnDeath(Container c)
         {
@@ -118,6 +121,25 @@ namespace Server.Mobiles
             SorteiaItem(new StoneStatueDeed());
             SorteiaItem(new WarriorStatueEastDeed());
             SorteiaItem(new HalloweenSpiderForestAddonDeed());
+            DistribuiItem(new Web());
+            if (Utility.RandomBool())
+            {
+                var s = new MinersSatchel();
+                s.WeightReduction = 50;
+                SorteiaItem(s);
+            }
+            else
+            {
+                var s = new LumbjacksSatchel();
+                s.WeightReduction = 50;
+                SorteiaItem(s);
+            }
+
+            for (var x = 0; x < 5; x++)
+            {
+                SorteiaItem(BaseEssencia.RandomEssencia(5));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
+            }
         }
 
         public override void Serialize(GenericWriter writer)

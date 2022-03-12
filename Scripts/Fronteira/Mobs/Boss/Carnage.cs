@@ -75,6 +75,8 @@ namespace Server.Mobiles
             SorteiaItem(Decos.RandomDeco());
         }
 
+        public virtual int BonusExp => 300;
+
         public override void OnDamagedBySpell(Mobile from)
         {
             base.OnDamagedBySpell(from);
@@ -186,6 +188,7 @@ namespace Server.Mobiles
         {
             ;
             AddLoot(LootPack.LV5, 3);
+            this.AddLoot(LootPack.Gems, 20);
         }
 
         public override void Serialize(GenericWriter writer)

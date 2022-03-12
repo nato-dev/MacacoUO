@@ -373,8 +373,9 @@ namespace Server.Engines.Craft
             }
 
             int index;
-
-            index = AddCraft(typeof(GateTravelScroll), 1111694, "Pergaminho de Portal", 80, 100, typeof(RecallScroll), "Pergaminho de Recall", 10);
+            index = AddCraft(typeof(GateTravelScroll), 1111694, "Pergaminho de Portal", 80, 100, typeof(BlankScroll), "Pergaminho em Branco", 50);
+            AddRes(index, typeof(SpidersSilk), "Spider Silk", 100, "Voce precisa de Spider Silk");
+            AddRes(index, typeof(RecallScroll), "Pergaminho de Recall", 20, "Voce precisa de 20 Pergaminhos de Recall");
 
             index = AddCraft(typeof(EnchantedSwitch), 1044294, 1072893, 45.0, 95.0, typeof(BlankScroll), 1044377, 1, 1044378);
             AddRes(index, typeof(SpidersSilk), 1044360, 1, 1044253);
@@ -396,16 +397,11 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(Beeswax), 1025154, 5, 1044253);
             AddRes(index, typeof(EstruturaDeLivro), "Estrutura de Livro", 1, "Voce precisa de uma estrutura de livro");
 
-            #region TOL
-            if (Core.TOL)
-            {
-                index = AddCraft(typeof(RunicAtlas), 1044294, 1156443, 45.0, 95.0, typeof(BlankScroll), 1044377, 24, 1044378);
-                AddRes(index, typeof(RecallRune), 1044447, 3, 1044253);
-                AddRes(index, typeof(RecallScroll), 1044445, 3, 1044253);
-                AddRes(index, typeof(GateTravelScroll), 1044446, 3, 1044253);
-                AddRecipe(index, (int)InscriptionRecipes.RunicAtlas);
-            }
-            #endregion
+            index = AddCraft(typeof(RunicAtlas), "Runebook Atlas", 1156443, 45.0, 95.0, typeof(BlankScroll), 1044377, 24, 1044378);
+            AddRes(index, typeof(Runebook), "Runebook", 1, "Voce precisa de um runebook para isto");
+            AddRes(index, typeof(Saltpeter), "Salpiro", 50, "Voce precisa de 50 Salpiro");
+            AddRes(index, typeof(CristalElemental), "Cristal Elemental", 100, "Voce precisa de 100 cristais elementais para isto");
+            AddRecipe(index, (int)InscriptionRecipes.RunicAtlas);
 
             index = AddCraft(typeof(Engines.BulkOrders.BulkOrderBook), 1044294, 1028793, 65.0, 115.0, typeof(BlankScroll), 1044377, 10, 1044378);
             AddRes(index, typeof(Beeswax), 1025154, 5, 1044253);

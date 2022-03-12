@@ -217,6 +217,8 @@ namespace Server.Mobiles
     {
         public static bool BypassConstructor = false;
 
+        public virtual int BonusExp => 0;
+
         public virtual bool IsBoss => false;
 
         public override bool SendGump(Gump g)
@@ -499,6 +501,24 @@ namespace Server.Mobiles
                         p.m_Mobile.SendMessage(ganhou.m_Mobile.Name + " ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                 }
             }
+        }
+
+        public void DistribuiItem(Item i)
+        {
+            try
+            {
+                var disputando = GetLootingRights(); //.Where(l => l.m_Mobile.Alive).ToList();
+                if (disputando.Count > 0)
+                {
+                    foreach (var ganhou in disputando)
+                    {
+                        ganhou.m_Mobile.PlaceInBackpack(Dupe.DupeItem(i));
+                        ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
+                    }
+
+                }
+            }
+            catch (Exception e) { }
         }
 
         public virtual int DefaultStamRegen
@@ -2680,28 +2700,28 @@ namespace Server.Mobiles
 
         }
 
-        public virtual void AlterSpellDamageFrom(Mobile from, ref int damage, ElementoPvM elemento)
+        public virtual void AlterSpellDamageFrom(Mobile from, ref int damage, ElementoPvM elementoBatendo)
         {
             if (m_TempDamageAbsorb > 0 && VialofArmorEssence.UnderInfluence(this))
                 damage -= damage / m_TempDamageAbsorb;
 
             if (TalismanElemental.Tem(from))
             {
-                if (elemento.ForteContra(this.Elemento))
+                if (elementoBatendo.ForteContra(this.Elemento))
                 {
-                    damage = (int)(damage * 1.2);
+                    damage = (int)(damage * 1.5);
                     if (Shard.DebugEnabled) Shard.Debug("Recebido dano de elemento mais forte", this);
                 }
 
-                if (elemento.FracoContra(this.Elemento))
+                if (elementoBatendo.FracoContra(this.Elemento))
                 {
-                    damage = (int)(damage * 0.85);
+                    damage = (int)(damage * 0.5);
                     if (Shard.DebugEnabled) Shard.Debug("Recebido dano de elemento mais fraco", this);
                 }
             }
         }
 
-        public virtual void AlterSpellDamageTo(Mobile to, ref int damage, ElementoPvM elemento)
+        public virtual void AlterSpellDamageTo(Mobile to, ref int damage, ElementoPvM elementoBatendo)
         {
             if (to is PlayerMobile)
             {
@@ -2715,7 +2735,7 @@ namespace Server.Mobiles
             {
                 if (to.Elemento.ForteContra(this.Elemento))
                 {
-                    damage = (int)(damage * 0.9);
+                    damage = (int)(damage * 0.8);
                 }
                 else if (to.Elemento.FracoContra(this.Elemento))
                 {
@@ -2776,6 +2796,11 @@ namespace Server.Mobiles
 
             if (from != null && from.Elemento != ElementoPvM.None && from.Weapon is BaseWeapon && from.Elemento == ((BaseWeapon)from.Weapon).Elemento)
             {
+                if(!from.IsCooldown("msgel"))
+                {
+                    from.SetCooldown("msgel");
+                    from.SendMessage("Com armas elementais voce bate mais forte ou mais fraco em certos elementos, depende do elemento da arma");
+                }
                 EfeitosElementos.Effect(this, from.Elemento);
                 if (from.Elemento.ForteContra(this.Elemento))
                 {
@@ -2825,7 +2850,7 @@ namespace Server.Mobiles
                 {
                     if (!to.IsCooldown("efmsg"))
                     {
-                        to.SetCooldown("efmsg");
+                        to.SetCooldown("efmsg", TimeSpan.FromMinutes(5));
                         to.SendMessage(78, "Este monstro causa mais dano a voce pois o elemento dele eh forte contra o seu");
                     }
                     EfeitosElementos.Effect(to, this.Elemento);
@@ -3176,7 +3201,7 @@ namespace Server.Mobiles
                 }
             }
 
-            if(!BypassTimerInicial)
+            if (!BypassTimerInicial)
                 Timer.DelayCall(TimeSpan.FromMilliseconds(100), () =>
                 {
                     if (!Deleted && Alive)
@@ -6740,12 +6765,12 @@ namespace Server.Mobiles
             if (this.Tribe != TribeType.None)
                 list.Add(this.Tribe.ToString());
 
-            if(ControlMaster is PlayerMobile)
+            if (ControlMaster is PlayerMobile)
             {
                 list.Add("Pet de " + ControlMaster.Name);
             }
 
-            if(IsBoss || this is BaseChampion || this is BaseRenowned)
+            if (IsBoss || this is BaseChampion || this is BaseRenowned)
             {
                 list.Add("[ BOSS ]");
             }
@@ -7443,11 +7468,11 @@ namespace Server.Mobiles
                     lapide.MoveToWorld(c.Location, c.Map);
                 }
 
-                if(IsBoss || this is BaseChampion || this is BaseRenowned)
+                if (IsBoss || this is BaseChampion || this is BaseRenowned)
                 {
                     SorteiaItem(new PowderOfTranslocation());
                 }
-                
+
                 var dels = new List<Item>();
                 foreach (var i in new List<Item>(c.Items))
                 {
@@ -7546,7 +7571,7 @@ namespace Server.Mobiles
                         {
                             foreach (var item in partyItems)
                             {
-                                if(ds != null && ds.m_Mobile != null && item != null && ds.m_Mobile.Backpack != null)
+                                if (ds != null && ds.m_Mobile != null && item != null && ds.m_Mobile.Backpack != null)
                                 {
                                     var iti = Dupe.DupeItem(item);
                                     ds.m_Mobile.PlaceInBackpack(iti);

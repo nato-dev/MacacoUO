@@ -433,7 +433,7 @@ namespace Server.Items
             if (level == 0)
                 count = 2;
             else
-                count = (level * 3) + 1;
+                count = (level * 10) + level;
 
             for (int i = 0; i < count; i++)
             {
@@ -507,6 +507,15 @@ namespace Server.Items
                 }
             }
 
+            if(isSos)
+                for (var x = 0; x < level; x++)
+                    cont.DropItem(new CombatSkillBook());
+
+            if (isSos && level > 3)
+            {
+                cont.DropItem(new SkillBook());
+            }
+          
             if (arty != null)
             {
                 Container pack = new Backpack();

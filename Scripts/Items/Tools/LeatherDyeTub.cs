@@ -9,7 +9,6 @@ namespace Server.Items
         public LeatherDyeTub()
         {
             Name = "Tubo de Tintas de Couro";
-            this.LootType = LootType.Blessed;
         }
 
         public LeatherDyeTub(Serial serial)

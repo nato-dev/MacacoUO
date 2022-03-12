@@ -35,7 +35,7 @@ namespace Server.Mobiles
             b.VirtualArmor = 60;
             b.Fame += 1000;
             b.Fame *= 6;
-            if (Utility.RandomDouble() < 0.45)
+            if (Utility.RandomDouble() < 0.05)
                 b.AddItem(BaseEssencia.RandomEssencia());
 
             if (b.Skills.Parry.Base < 25)

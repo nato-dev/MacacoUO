@@ -792,6 +792,11 @@ namespace Server.Engines.Craft
             }
             #endregion
 
+            index = AddCraft(typeof(PersonalTelescope), 1044051, 1125284, 85.0, 126.0, typeof(IronIngot), 1044036, 1000, 1044037);
+            AddRes(index, typeof(WorkableGlass), 1154170, 1, 1154171);
+            AddRes(index, typeof(SextantParts), 1044175, 5, 1044253);
+            AddRes(index, typeof(CopperIngot), "Lingotes de Cobre", 100, "Lingotes de Cobre");
+
             // Set the overridable material
             SetSubRes(typeof(IronIngot), 1044022);
 

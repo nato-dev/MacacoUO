@@ -2,7 +2,10 @@ using System;
 using System.Collections.Generic;
 using Server.Engines.Craft;
 using Server.Engines.Quests;
+using Server.Fronteira.Elementos;
 using Server.Items;
+using Server.Ziden;
+using Server.Ziden.Dungeons.Goblins.Quest;
 
 namespace Server.Mobiles
 {
@@ -120,11 +123,18 @@ namespace Server.Mobiles
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetRandomReceitaNoob());
+            SorteiaItem(new PergaminhoPeso());
+
+            GolemMecanico.JorraOuro(this.Location, this.Map, 1000);
+            DistribuiItem(new CaixaDeGold());
+            for (var x= 0; x < 10; x++)
+            {
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
+            }
+            DistribuiItem(Decos.RandomDeco());
 
             if (m_Spawner != null)
                 m_Spawner.OnNavreyKilled();
-
-
 
             if (Utility.RandomBool())
                 SorteiaItem(new UntranslatedAncientTome());
@@ -135,7 +145,7 @@ namespace Server.Mobiles
             if (0.1 >= Utility.RandomDouble())
                 SorteiaItem(new TatteredAncientScroll());
 
-            if (Utility.RandomDouble() < 0.10)
+            if (Utility.RandomDouble() < 0.50)
                 SorteiaItem(new LuckyCoin());
 
             if (Utility.RandomDouble() < 0.025)

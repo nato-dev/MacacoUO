@@ -1,5 +1,6 @@
 using System;
 using Server.Engines.CannedEvil;
+using Server.Fronteira.Elementos;
 using Server.Items;
 using Server.Spells.Fifth;
 using Server.Spells.Seventh;
@@ -26,7 +27,7 @@ namespace Server.Mobiles
             SetDex(72, 150);
             SetInt(505, 750);
 
-            SetHits(22000);
+            SetHits(82000);
             SetStam(102, 300);
             SetMana(505, 750);
 
@@ -184,7 +185,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV4, 1);
+            AddLoot(LootPack.LV7, 1);
+            AddLoot(LootPack.Gems, 30);
             //AddItem(new WindrunnerStatue());
             //Carnage.GetRandomPS(110);
         }
@@ -218,13 +220,17 @@ namespace Server.Mobiles
             }
         }
 
+        public virtual int BonusExp => 1800;
+
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            SorteiaItem(new T2ARecallRune());
-            SorteiaItem(new T2ARecallRune());
+            DistribuiItem(new T2ARecallRune());
+            DistribuiItem(new DirtPatch());
+            SorteiaItem(new GrapeVine());
+            SorteiaItem(new WhiteHangingLantern());
 
-            switch(Utility.Random(5))
+            switch (Utility.Random(5))
             {
                 case 0: SorteiaItem(new GrayBrickFireplaceEastDeedExp()); break;
                 case 1: SorteiaItem(new SandstoneFireplaceEastDeedExp()); break;
@@ -237,6 +243,12 @@ namespace Server.Mobiles
                 SorteiaItem(Carnage.GetRandomPS(110));
             else
                 SorteiaItem(Carnage.GetRandomPS(105));
+
+            for (var x = 0; x < 10; x++)
+            {
+                SorteiaItem(BaseEssencia.RandomEssencia(5));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
+            }
             var wind = new Windrunner();
             wind.MoveToWorld(c.Location, c.Map);
             wind.OverheadMessage("* se transformou *");

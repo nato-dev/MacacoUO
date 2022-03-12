@@ -100,6 +100,8 @@ namespace Server.Ziden.Kills
             if (bc.IsParagon)
                 exp *= 3;
 
+            exp += bc.BonusExp;
+
             if (exp == 0)
                 return;
 
@@ -185,7 +187,7 @@ namespace Server.Ziden.Kills
                 var expElem = pl.Elementos.GetExp(pl.Elemento);
                 expElem += (int)exp;
                 var lvl = pl.Elementos.GetNivel(pl.Elemento);
-                var maxExp = CustosUPElementos.CustoUpExp(lvl);
+                var maxExp = ElementoUtils.CustoUpExp(lvl);
                 if (expElem > maxExp)
                 {
                     expElem = (int)maxExp;

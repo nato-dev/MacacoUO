@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Server.Fronteira.Elementos;
 using Server.Items;
 using Server.Network;
 
@@ -372,6 +373,8 @@ namespace Server.Mobiles
         public override Poison PoisonImmune { get { return Poison.Lethal; } }
         public override bool DoesColossalBlow { get { return true; } }
 
+        public virtual int BonusExp => 800;
+
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
@@ -383,6 +386,12 @@ namespace Server.Mobiles
             Item pot = null;
             this.SorteiaItem(new AutomatonActuator());
             this.SorteiaItem(Decos.RandomDeco());
+            this.SorteiaItem(Decos.RandomDeco());
+            for (var x = 0; x < 10; x++)
+            {
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(2));
+            }
+
             switch (Utility.Random(4))
             {
                 case 0: pot = new HealPotion(); break;

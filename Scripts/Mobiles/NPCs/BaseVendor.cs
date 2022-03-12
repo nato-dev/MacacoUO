@@ -1401,9 +1401,9 @@ namespace Server.Mobiles
                         if (from.Skills[skill].Value < 60)
                             exp += 43000;
                         else if (from.Skills[skill].Value < 70)
-                            exp += 23000;
-                        if (from.Skills[skill].Value < 80)
                             exp += 13000;
+                        if (from.Skills[skill].Value < 80)
+                            exp += 6000;
                         else if (from.Skills[skill].Value < 90)
                             exp += 3000;
                         else if (from.Skills[skill].Value < 100)

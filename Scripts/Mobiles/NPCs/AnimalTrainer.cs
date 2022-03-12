@@ -1008,6 +1008,29 @@ namespace Server.Mobiles
 			return true;
 		}
 
+        public void Bonda(Mobile m)
+        {
+            if(!Banker.Withdraw(m, 100000))
+            {
+                m.SendMessage("Voce precisa de 100k no banco para isto");
+                return;
+            }
+
+            m.BeginTarget(-1, true, TargetFlags.None, new TargetCallback((mob, o) =>
+            {
+                var bc = o as BaseCreature;
+                if (bc == null)
+                    return;
+                if(bc.ControlMaster != m)
+                {
+                    m.SendMessage("O pet nao eh seu");
+                    return;
+                }
+                bc.IsBonded = true;
+
+            }));
+        }
+
 		public override void OnSpeech(SpeechEventArgs e)
 		{
             if ((!e.Handled && (e.Speech.ToLower() == "vender")))//was sellpet
@@ -1027,8 +1050,19 @@ namespace Server.Mobiles
                     } else if(opt==1)
                     {
                         BeginClaimList(e.Mobile);
+                    } else if(opt==2)
+                    {
+                        e.Mobile.SendGump(new GumpOpcoes("50.000 Moedas", (o) =>
+                        {
+                            if (o == 0)
+                            {
+                                CloseClaimList(e.Mobile);
+                                BeginStable(e.Mobile);
+                            }                  
+                        }, 0xE81, 0, new string[] { "Bondar Animal", "Cancelar" }));
+
                     }
-                }, 0xE81, 0, new string[] { "Estabular", "Ver Lista"}));   
+                }, 0xE81, 0, new string[] { "Estabular", "Ver Lista", "Bondar" }));   
 			}
 			else if (!e.Handled && e.HasKeyword(0x0009)) // *claim*
 			{

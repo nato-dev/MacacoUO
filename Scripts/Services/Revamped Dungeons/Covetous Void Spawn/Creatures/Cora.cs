@@ -4,6 +4,7 @@ using Server.Items;
 using Server.Engines.VoidPool;
 using Server.Gumps;
 using Server.Items.Functional.Pergaminhos;
+using Server.Fronteira.Elementos;
 
 namespace Server.Mobiles
 {
@@ -76,7 +77,10 @@ namespace Server.Mobiles
         {
             AddLoot(LootPack.LV6, 1);
             AddLoot(LootPack.LV7, 1);
+            this.AddLoot(LootPack.Gems, 30);
         }
+
+        public virtual int BonusExp => 900;
 
         private void AddAndEquip(Item item, int hue = 0)
         {
@@ -285,13 +289,18 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-
             Mobile m = DemonKnight.FindRandomPlayer(this);
+
+            for (var x = 0; x < 15; x++)
+            {
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior());
+            }
+            SorteiaItem(Decos.RandomDeco());
 
             if (m != null)
             {
                 BaseWeapon artifact = Loot.RandomWeapon();
-                artifact.WeaponAttributes.HitFireArea = 35;
+                artifact.WeaponAttributes.HitFireArea = 100;
                 if (artifact.Name != null)
                     artifact.Name += " de fogo de Cora";
                 if(artifact is BaseRanged)

@@ -17,7 +17,7 @@ namespace Server.Mobiles
         public List<Mobile> AffectedMobiles { get { return m_TurnedToStone; } }
 
         public override bool IsBoss => true;
-
+        public virtual int BonusExp => 300;
         public List<Mobile> m_Helpers = new List<Mobile>();
 
         private int m_Scales;

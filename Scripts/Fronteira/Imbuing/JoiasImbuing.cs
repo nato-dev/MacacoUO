@@ -68,6 +68,17 @@ namespace Server.Items
             return 0;
         }
 
+        public override bool CanEquip(Mobile from)
+        {
+            var pl = from as PlayerMobile;
+            if(pl != null && pl.Elementos.GetNivel(Elemento) < 20)
+            {
+                pl.SendMessage("Voce precisa estar pelo menos " + Elemento.ToString() + " lvl 20 para equipar isto");
+                return false;
+            }
+            return base.CanEquip(from);
+        }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public int Nivel { get { return _nivel; } set { _nivel = value; InvalidateProperties(); } }
 
@@ -76,6 +87,7 @@ namespace Server.Items
             base.AddNameProperties(list);
             list.Add("Colar de " + Elemento.ToString());
             list.Add("Nivel: "+Nivel+"/50");
+
             foreach (var e in EfeitosElementos.GetEfeitosColar(Elemento))
                 list.Add(e);
         }
@@ -124,4 +136,5 @@ namespace Server.Items
             Nivel = reader.ReadInt();
         }
     }
+
 }

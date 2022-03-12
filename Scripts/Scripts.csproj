@@ -120,6 +120,16 @@
     <Compile Include="Fronteira\Achievements\AchieveTypes\ElementoAchievement.cs" />
     <Compile Include="Fronteira\Armarios\BaseArmario.cs" />
     <Compile Include="Fronteira\Armarios\FurnitureCont.cs" />
+    <Compile Include="Fronteira\Astronomy\AstronomerTitleDeed.cs" />
+    <Compile Include="Fronteira\Astronomy\AstronomySystem.cs" />
+    <Compile Include="Fronteira\Astronomy\BrassOrrery.cs" />
+    <Compile Include="Fronteira\Astronomy\ConstellationInfo.cs" />
+    <Compile Include="Fronteira\Astronomy\ConstellationLedger.cs" />
+    <Compile Include="Fronteira\Astronomy\PrimerOnBritannianAstronomy.cs" />
+    <Compile Include="Fronteira\Astronomy\StarChart.cs" />
+    <Compile Include="Fronteira\Astronomy\Telescope.cs" />
+    <Compile Include="Fronteira\Astronomy\Tent.cs" />
+    <Compile Include="Fronteira\Astronomy\Willebrord.cs" />
     <Compile Include="Fronteira\Bancos\BancoConta.cs" />
     <Compile Include="Fronteira\Classes\Gumps\RPClassGump.cs" />
     <Compile Include="Fronteira\Comandos\BancoGuilda.cs" />
@@ -235,8 +245,10 @@
     <Compile Include="Fronteira\Guia\DungeonsGump.cs" />
     <Compile Include="Fronteira\Guildas\PedraGuilda.cs" />
     <Compile Include="Fronteira\Imbuing\Essencias\EssLuz.cs" />
+    <Compile Include="Fronteira\Items\EstatuaDecoGuilda.cs" />
     <Compile Include="Fronteira\Items\MailboxGatinho.cs" />
     <Compile Include="Fronteira\Items\PergaminhoSkillcap.cs" />
+    <Compile Include="Fronteira\Items\SecretChest.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZeFoguinho.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZumbiPalmares.cs" />
     <Compile Include="Fronteira\Mobs\GoblinDoTesouro.cs" />

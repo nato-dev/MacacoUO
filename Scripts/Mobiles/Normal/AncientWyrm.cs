@@ -49,6 +49,7 @@ namespace Server.Mobiles
             this.Karma = -22500;
 
             this.VirtualArmor = 90;
+            Tamable = false;
         }
 
         public AncientWyrm(Serial serial)
@@ -59,12 +60,14 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            SorteiaItem(new TemplateDeed());
+            DistribuiItem(new TemplateDeed());
             SorteiaItem(new DragonWolfCostume());
             SorteiaItem(new SnapdragonSeed(3));
-            c.AddItem(new CottonSeed(20));
+            DistribuiItem(new CottonSeed(20));
 
-            switch(Utility.Random(4))
+            GolemMecanico.JorraOuro(this.Location, this.Map, 500);
+
+            switch (Utility.Random(4))
             {
                 case 0: SorteiaItem(new VinyardGroundAddonDeed()); break;
                 case 1: SorteiaItem(new kegstorageAddonDeed()); break;
@@ -184,8 +187,10 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV5, 3);
-            this.AddLoot(LootPack.Gems, 5);
+            this.AddLoot(LootPack.Gems, 25);
         }
+
+        public virtual int BonusExp => 500;
 
         public override int GetIdleSound()
         {

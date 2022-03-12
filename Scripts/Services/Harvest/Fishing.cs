@@ -136,8 +136,8 @@ namespace Server.Engines.Harvest
         private static MutateEntry[] m_MutateTable = new MutateEntry[]
         {
             new MutateEntry( 80.0,  80.0,  1865.0,  true, typeof( SpecialFishingNet ) ),
-            new MutateEntry( 90.0,  80.0,  1875.0,  true, typeof( TreasureMap ) ),
-            new MutateEntry( 100.0,  80.0,  750.0,  true, typeof( MessageInABottle ) ),
+            new MutateEntry( 101,  80.0,  1875.0,  true, typeof( TreasureMap ) ),
+            new MutateEntry( 105.0,  80.0,  750.0,  true, typeof( MessageInABottle ) ),
             new MutateEntry( 80.0,  80.0,  4080.0,  true, typeof( BigFish ) ),
             new MutateEntry( 0.0, 125.0, -2375.0, false, typeof( PrizedFish ), typeof( WondrousFish ), typeof( TrulyRareFish ), typeof( PeculiarFish ) ),
             new MutateEntry( 0.0, 125.0,  -420.0, false, typeof( Boots ), typeof( Shoes ), typeof( Sandals ), typeof( ThighBoots ) ),

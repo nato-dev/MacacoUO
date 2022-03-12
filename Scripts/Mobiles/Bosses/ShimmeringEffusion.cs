@@ -1,4 +1,5 @@
 using System;
+using Server.Fronteira.Elementos;
 using Server.Items;
 using Server.Items.Functional.Pergaminhos;
 
@@ -57,10 +58,13 @@ namespace Server.Mobiles
             SetSpecialAbility(SpecialAbility.StickySkin);
         }
 
+        public virtual int BonusExp => 800;
+
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV7, 8);
             AddLoot(LootPack.Parrot, 2);
+            this.AddLoot(LootPack.Gems, 20);
             AddLoot(LootPack.HighScrolls, 3);
             AddLoot(LootPack.MedScrolls, 3);
         }
@@ -70,9 +74,13 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             SorteiaItem(BaseEssencia.RandomEssencia());
-            SorteiaItem(BaseEssencia.RandomEssencia());
             SorteiaItem(new ShimmeringCrystals());
             SorteiaItem(new ElvenForgeDeed());
+            for (var x = 0; x < 20; x++)
+            {
+                SorteiaItem(BaseEssencia.RandomEssencia());
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior());
+            }
 
             switch (Utility.Random(4))
             {

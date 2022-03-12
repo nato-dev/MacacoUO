@@ -1,4 +1,5 @@
 using System;
+using Server.Fronteira.Elementos;
 using Server.Items;
 
 namespace Server.Mobiles
@@ -159,6 +160,10 @@ namespace Server.Mobiles
             SorteiaItem(Loot.JoiaRaraRandom(this.Map));
             SorteiaItem(Loot.JoiaRaraRandom(this.Map));
             SorteiaItem(Loot.JoiaRaraRandom(this.Map));
+            for (var x = 0; x < 5; x++)
+            {
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior());
+            }
             var r = Utility.Random(5);
             switch (r)
             {
@@ -177,7 +182,10 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             this.AddLoot(LootPack.LV4, 3);
+            this.AddLoot(LootPack.Gems, 30);
         }
+
+        public virtual int BonusExp => 500;
 
         public override void Serialize(GenericWriter writer)
         {

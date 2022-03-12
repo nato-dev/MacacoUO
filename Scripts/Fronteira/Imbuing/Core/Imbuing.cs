@@ -65,6 +65,9 @@ namespace Server.SkillHandlers
 
             public void Recebe(Mobile from, int cristais, bool id, Item i)
             {
+
+                
+
                 var skill = (10 + from.Skills[SkillName.Imbuing].Value * 0.9d) / 100d;
                 cristais = (int)(cristais * skill);
 
@@ -94,6 +97,11 @@ namespace Server.SkillHandlers
                     cristais += (int)w.DamageLevel * (int)w.DamageLevel;
                     cristais += (int)w.DurabilityLevel * (int)w.DurabilityLevel;
                     cristais += (int)w.AccuracyLevel * (int)w.AccuracyLevel;
+                    if(cristais == 0)
+                    {
+                        from.SendMessage("Este item nao parece ter nada de magico para ser desencantado");
+                        return;
+                    }
                     Recebe(from, cristais, w.Identified, w);
                 }
                 else if (targeted is BaseArmor)
@@ -106,6 +114,12 @@ namespace Server.SkillHandlers
                     }
                     cristais += (int)w.Durability * (int)w.Durability;
                     cristais += (int)w.ProtectionLevel * (int)w.ProtectionLevel;
+                    if (cristais == 0)
+                    {
+                        from.SendMessage("Este item nao parece ter nada de magico para ser desencantado");
+                        return;
+                    }
+
                     Recebe(from, cristais, w.Identified, w);
                 }
                 else

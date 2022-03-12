@@ -16,7 +16,7 @@ namespace Server.Ziden.RecompensaLogin
         [Constructable]
         public SpellbookPreto() : base()
         {
-            Name = "Spellbook Negro";
+            Name = "Spellbook Preto";
             Hue = TintaPreta.COR;
         }
 
@@ -24,6 +24,21 @@ namespace Server.Ziden.RecompensaLogin
 
         public override void Serialize(GenericWriter writer) => base.Serialize(writer);
         public override void Deserialize(GenericReader reader) =>base.Deserialize(reader);
+    }
+
+    public class SpellbookBranco : Spellbook
+    {
+        [Constructable]
+        public SpellbookBranco() : base()
+        {
+            Name = "Spellbook Branco";
+            Hue = TintaBranca.COR;
+        }
+
+        public SpellbookBranco(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer) => base.Serialize(writer);
+        public override void Deserialize(GenericReader reader) => base.Deserialize(reader);
     }
 
     public static class RecompensasLogin

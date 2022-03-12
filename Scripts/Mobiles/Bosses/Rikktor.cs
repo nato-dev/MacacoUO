@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using Server.Engines.CannedEvil;
+using Server.Fronteira.Elementos;
 using Server.Items;
 
 namespace Server.Mobiles
@@ -10,6 +11,8 @@ namespace Server.Mobiles
         public override bool ReduceSpeedWithDamage => false;
         public override bool IsSmart => true;
         public override bool UseSmartAI => true;
+
+        public virtual int BonusExp => 2900;
 
         [Constructable]
         public Rikktor()
@@ -22,10 +25,10 @@ namespace Server.Mobiles
             SetDex(201, 350);
             SetInt(51, 100);
 
-            SetHits(55000);
-            SetStam(203, 650);
+            SetHits(65000);
+            SetStam(99999);
 
-            SetDamage(28, 55);
+            SetDamage(38, 55);
 
             SetDamageType(ResistanceType.Physical, 25);
             SetDamageType(ResistanceType.Fire, 50);
@@ -63,6 +66,21 @@ namespace Server.Mobiles
                 return ChampionSkullType.Power;
             }
         }
+
+        public override void AlterSpellDamageTo(Mobile to, ref int damage, ElementoPvM elemento)
+        {
+            base.AlterSpellDamageTo(to, ref damage, elemento);
+            if (to is BaseCreature)
+                damage *= 4;
+        }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (to is BaseCreature)
+                damage *= 4;
+        }
+
         public override Type[] UniqueList
         {
             get
@@ -130,20 +148,33 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV6, 4);
+            AddLoot(LootPack.Gems, 30);
         }
 
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
+
+            GolemMecanico.JorraOuro(this.Location, this.Map, 500);
+
             if (Utility.RandomDouble() < 0.2)
                 SorteiaItem(Carnage.GetRandomPS(120));
             else
                 SorteiaItem(Carnage.GetRandomPS(115));
             SorteiaItem(Carnage.GetRandomPS(105));
+
+            for (var x = 0; x < 5; x++)
+            {
+                SorteiaItem(BaseEssencia.RandomEssencia(10));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(10));
+            }
+
             var capa = new HumilityCloak();
             capa.Hue = 2753;
             capa.Name = "[BOSS] Capa do Rikktor";
             SorteiaItem(capa);
+
+
         }
 
         public override void OnGaveMeleeAttack(Mobile defender)

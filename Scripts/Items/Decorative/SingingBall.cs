@@ -52,6 +52,8 @@ namespace Server.Items
                 list.Add(502695); // turned on
             else
                 list.Add(502696); // turned off
+
+            list.Add("Precisa estar trancada em casa");
         }
 
         public bool IsOwner(Mobile mob)
