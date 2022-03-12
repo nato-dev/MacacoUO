@@ -23,7 +23,7 @@ namespace Server.Ziden
         }
 
         public BolaDeNeve(Serial s) : base(s) { }
-               
+
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
@@ -39,7 +39,7 @@ namespace Server.Ziden
             {
                 from.SendMessage("Precisa estar em sua mochila"); // The BolaDeNeve must be in your pack to use it.
             }
-                        
+
         }
 
         private class IT : Target
@@ -52,21 +52,10 @@ namespace Server.Ziden
 
             }
 
-            private Dictionary<string, DateTime> cooldowns = new Dictionary<string, DateTime>();
-
-            public void SetCooldown(string name, TimeSpan span)
-            {
-                if (cooldowns.ContainsKey(name))
-                    cooldowns.Remove(name);
-
-                var data = DateTime.UtcNow + span;
-                cooldowns.Add(name, data);
-            }
-
             protected override void OnTarget(Mobile from, object targeted)
             {
                 var target = targeted as Mobile;
-                
+
 
                 if (!(targeted is Mobile))
                 {
@@ -80,17 +69,16 @@ namespace Server.Ziden
 
                     if (!this.BolaDeNeve.IsChildOf(from.Backpack))
                     {
-                        from.OverheadMessage("* A Bola De Neve deve estar na sua mochila *"); // The bola must be in your pack to use it.
+                        from.OverheadMessage("* Deve estar na mochila *"); // The bola must be in your pack to use it.
                     }
 
                     else if (from == to)
                     {
                         from.SendMessage("Você não pode jogar em você mesmo"); // You can't throw this at yourself.
                     }
-                    
+
                     else
                     {
-
                         Item one = from.FindItemOnLayer(Layer.OneHanded);
                         Item two = from.FindItemOnLayer(Layer.TwoHanded);
 
@@ -100,18 +88,26 @@ namespace Server.Ziden
                         if (two != null)
                             from.AddToBackpack(two);
 
-                        if (target is BaseCreature && !target.IsCooldown("BolaDeNeve"))
+                        if (target is BaseCreature && !target.IsCooldown("BolaDeNeve") || target.Player)
                         {
-                            target.Paralyze(TimeSpan.FromSeconds(3));
-                            target.SetCooldown("BolaDeNeve", TimeSpan.FromSeconds(12));
-                            target.OverheadMessage("* Urghhhh *");
-
                             BolaDeNeve.Consume();
 
                             from.Animate(AnimationType.Attack, 4);
                             from.PlaySound(0x13C);
                             from.OverheadMessage("* Jogou *");
                             from.MovingEffect(target, 0x3729, 10, 0, false, false);
+
+                            if (target.Player)
+                            {
+                                target.OverheadMessage("* Voce nao pode me congelar *");
+                            }
+
+                            else if (target is BaseCreature && !target.IsCooldown("BolaDeNeve"))
+                            {
+                                target.Paralyze(TimeSpan.FromSeconds(3));
+                                target.SetCooldown("BolaDeNeve", TimeSpan.FromSeconds(12));
+                                target.OverheadMessage("* Urghhhh *");
+                            }
                         }
 
                         else if (target.IsCooldown("BolaDeNeve"))
@@ -120,21 +116,9 @@ namespace Server.Ziden
                             return;
                         }
 
-                        else
-                        {
-                            BolaDeNeve.Consume();
-
-                            from.Animate(AnimationType.Attack, 4);
-                            from.PlaySound(0x13C);
-                            from.OverheadMessage("* Jogou *");
-                            from.MovingEffect(target, 0x3729, 10, 0, false, false);
-                            target.OverheadMessage("* Voce nao pode me congelar *");
-                        }
-
-
-                    }                   
-                }         
-            }           
-        }                     
+                    }
+                }
+            }
+        }
     }
-  }
+}
