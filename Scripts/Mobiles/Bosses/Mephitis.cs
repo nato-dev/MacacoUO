@@ -110,7 +110,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV7, 1);
-            this.AddLoot(LootPack.Gems, 20);
+            this.AddLoot(LootPack.Gems, 50);
         }
         public virtual int BonusExp => 900;
 

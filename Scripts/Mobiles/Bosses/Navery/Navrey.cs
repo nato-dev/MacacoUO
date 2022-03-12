@@ -139,16 +139,16 @@ namespace Server.Mobiles
             if (Utility.RandomBool())
                 SorteiaItem(new UntranslatedAncientTome());
 
-            if (0.1 >= Utility.RandomDouble())
+            if (0.3 >= Utility.RandomDouble())
                 SorteiaItem(ScrollOfTranscendence.CreateRandom(30, 30));
 
-            if (0.1 >= Utility.RandomDouble())
+            if (0.3 >= Utility.RandomDouble())
                 SorteiaItem(new TatteredAncientScroll());
 
-            if (Utility.RandomDouble() < 0.50)
+            if (Utility.RandomDouble() < 0.1)
                 SorteiaItem(new LuckyCoin());
 
-            if (Utility.RandomDouble() < 0.025)
+            if (Utility.RandomDouble() < 0.2)
                 DistributeRandomArtifact(this, m_Artifact);
 
             // distribute quest items for the 'Green with Envy' quest given by Vernix

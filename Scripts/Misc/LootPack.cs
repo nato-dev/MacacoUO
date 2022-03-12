@@ -513,7 +513,7 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 50.00, 1, 1, 60, 100),
                     new LootPackEntry(false, OldMagicItems, 10.00, 1, 1, 65, 100),
                     new LootPackEntry(false, OldMagicItems, 1.00, 1, 1, 70, 100),
-                    new LootPackEntry(false, GemItems, 20, 1, 1, 1, 100),
+                    //new LootPackEntry(false, GemItems, 20, 1, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 0.01, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.01, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.01, 1,1,60,100),

@@ -1010,12 +1010,6 @@ namespace Server.Mobiles
 
         public void Bonda(Mobile m)
         {
-            if(!Banker.Withdraw(m, 100000))
-            {
-                m.SendMessage("Voce precisa de 100k no banco para isto");
-                return;
-            }
-
             m.BeginTarget(-1, true, TargetFlags.None, new TargetCallback((mob, o) =>
             {
                 var bc = o as BaseCreature;
@@ -1026,8 +1020,13 @@ namespace Server.Mobiles
                     m.SendMessage("O pet nao eh seu");
                     return;
                 }
+                if (!Banker.Withdraw(m, 100000))
+                {
+                    m.SendMessage("Voce precisa de 100k no banco para isto");
+                    return;
+                }
                 bc.IsBonded = true;
-
+                m.SendMessage("Voce bondou o animal");
             }));
         }
 
@@ -1052,12 +1051,11 @@ namespace Server.Mobiles
                         BeginClaimList(e.Mobile);
                     } else if(opt==2)
                     {
-                        e.Mobile.SendGump(new GumpOpcoes("50.000 Moedas", (o) =>
+                        e.Mobile.SendGump(new GumpOpcoes("100K Moedas", (o) =>
                         {
                             if (o == 0)
                             {
-                                CloseClaimList(e.Mobile);
-                                BeginStable(e.Mobile);
+                                Bonda(e.Mobile);
                             }                  
                         }, 0xE81, 0, new string[] { "Bondar Animal", "Cancelar" }));
 
