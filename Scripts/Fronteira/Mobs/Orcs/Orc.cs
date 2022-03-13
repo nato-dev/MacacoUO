@@ -66,6 +66,9 @@ namespace Server.Mobiles
         {
             TentaAtacarMaster(this, from);
 
+            if (this.Backpack == null)
+                return;
+
             var bands = this.Backpack.FindItemByType(typeof(Bandage));
             if (!IsCooldown("bands") && bands != null)
             {
