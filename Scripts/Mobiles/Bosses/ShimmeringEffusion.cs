@@ -64,7 +64,7 @@ namespace Server.Mobiles
         {
             AddLoot(LootPack.LV7, 8);
             AddLoot(LootPack.Parrot, 2);
-            this.AddLoot(LootPack.Gems, 20);
+            this.AddLoot(LootPack.Gems, 40);
             AddLoot(LootPack.HighScrolls, 3);
             AddLoot(LootPack.MedScrolls, 3);
         }

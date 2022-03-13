@@ -166,6 +166,7 @@ namespace Server.Engines.Craft
 
             index = AddCraft(typeof(GreaterHealPotion), 1116348, 1044545, 55.0, 105.0, typeof(Ginseng), 1044356, 7, 1044364);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
+            AddRes(index, typeof(BatWing), "Asa de Morcego", 1, "Voce precisa de uma asa de morcego");
 
             index = AddCraft(typeof(LesserCurePotion), 1116348, 1044552, -10.0, 40.0, typeof(Garlic), 1044355, 1, 1044363);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);

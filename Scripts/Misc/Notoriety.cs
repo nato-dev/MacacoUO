@@ -143,6 +143,9 @@ namespace Server.Misc
                     return true; // Guild allies or enemies can be harmful
             }
 
+            if (defender != null && defender.Region != null && defender.Region.IsPartOf("New Haven"))
+                return false;
+
             // Factions vs Factions
             if (Settings.Enabled)
             {

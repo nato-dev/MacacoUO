@@ -19,6 +19,7 @@ namespace Server.Items.Functional.Pergaminhos
         {
             this.Hue = 54;
             this.Name = "Pergaminho de Double Gold";
+            this.LootType = LootType.Newbied;
         }
 
         public DoubleGoldDeed(Serial serial)
@@ -74,11 +75,13 @@ namespace Server.Items.Functional.Pergaminhos
             
             this.Hue = 356;
             this.Name = "Pergaminho de Double Exp";
+          
         }
 
         public DoubleExpDeed(int itemID)
            : base(itemID)
         {
+            this.LootType = LootType.Newbied;
             this.Hue = 356;
             this.Name = "Pergaminho de Double Exp";
         }

@@ -10,7 +10,7 @@ namespace Server.Mobiles
         [Constructable]
         public FrostDragon() : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "a frost dragon";
+            Name = "dragao de gelo";
             Body = Utility.RandomList(12, 59);
             BaseSoundID = 362;
 
@@ -47,7 +47,7 @@ namespace Server.Mobiles
 
             Tamable = true;
             ControlSlots = 5;
-            MinTameSkill = 105.0;
+            MinTameSkill = 120;
 
             SetWeaponAbility(WeaponAbility.BleedAttack);
         }
@@ -61,7 +61,6 @@ namespace Server.Mobiles
         public override void OnAfterTame(Mobile tamer)
         {
             Title = null;
-
             base.OnAfterTame(tamer);
         }
 

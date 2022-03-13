@@ -447,6 +447,21 @@ namespace Server.Gumps
             }
             else
             {
+                var tenta = true;
+                while(tenta && gain > 0)
+                {
+                    gain--;
+                    SkillCheck.Gain(from, from.Skills[skill], gain);
+                    nw = from.Skills[skill].Value;
+                    if (nw > old)
+                    {
+                        from.FixedParticles(0x375A, 9, 20, 5016, EffectLayer.Waist);
+                        from.PlaySound(0x1FD);
+                        PointsSystem.Exp.DeductPoints(from, exp, false);
+                        from.SendGump(new SkillExpGump(from));
+                        return;
+                    }
+                }
                 from.SendMessage("A skill chegou no limite ou voce chegou no seu cap e precisa setar alguma skill para baixar na janela de skills.");
             }
             from.SendGump(new SkillExpGump(from));

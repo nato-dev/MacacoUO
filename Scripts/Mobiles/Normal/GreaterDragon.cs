@@ -1,4 +1,5 @@
 using System;
+using Server.Engines.Craft;
 using Server.Items;
 
 namespace Server.Mobiles
@@ -49,6 +50,32 @@ namespace Server.Mobiles
             MinTameSkill = 104.7;
 
             SetWeaponAbility(WeaponAbility.BleedAttack);
+
+
+            if (Utility.RandomDouble() < 0.1)
+            {
+                AddItem(new PetBrandingIron());
+            }
+
+            if (Hue == 1153 || Utility.RandomDouble() < 0.2)
+            {
+                AddItem(DefJewelcrafting.GetReceitaPower());
+            }
+            else
+            {
+                AddItem(DefJewelcrafting.GetRandomReceitaNoob());
+            }
+            if (Utility.Random(10) == 1)
+            {
+                AddItem(new DecoWyrmsHeart());
+            }
+            if (Utility.Random(6) == 1)
+            {
+                var cloth = new UncutCloth(Utility.Random(10, 10));
+                cloth.Hue = Loot.RandomRareDye();
+                cloth.Name = "Tecido Raro";
+                AddItem(cloth);
+            }
         }
 
         public GreaterDragon(Serial serial)

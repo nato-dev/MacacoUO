@@ -146,6 +146,7 @@ namespace Server.Mobiles
                 var loc = this.Location;
                 var map = this.Map;
                 Effects.ItemToFloor(this, bandage, Effects.TryGetNearRandomLoc(this), this.Map);
+                bandage.PublicOverheadMessage("* caiu *");
 
             }
         }

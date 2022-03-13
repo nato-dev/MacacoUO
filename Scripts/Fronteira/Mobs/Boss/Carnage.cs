@@ -77,6 +77,15 @@ namespace Server.Mobiles
 
         public virtual int BonusExp => 300;
 
+      
+        DateTime last;
+
+        public override void OnGaveMeleeAttack(Mobile defender)
+        {
+            last = DateTime.UtcNow;
+            base.OnGaveMeleeAttack(defender);
+        }
+
         public override void OnDamagedBySpell(Mobile from)
         {
             base.OnDamagedBySpell(from);
@@ -92,13 +101,6 @@ namespace Server.Mobiles
             }
         }
 
-        DateTime last;
-
-        public override void OnGaveMeleeAttack(Mobile defender)
-        {
-            last = DateTime.UtcNow;
-            base.OnGaveMeleeAttack(defender);
-        }
 
         public override void OnDamage(int amount, Mobile from, bool willKill)
         {

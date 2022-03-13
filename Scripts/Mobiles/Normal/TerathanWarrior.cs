@@ -101,21 +101,21 @@ namespace Server.Mobiles
 
                 if (from.Map.CanFit(loc1, 16))
                 {
-                    Item acid1 = NewAcido(49, "vomito de zumbi");
+                    Item acid1 = NewAcido(49, "acido terathan");
                     acid1.MoveToWorld(loc1, from.Map);
                     Effects.SendMovingEffect(this, acid1, acid1.ItemID, 15, 10, true, false, acid1.Hue, 0);
                 }
 
                 if (from.Map.CanFit(loc2, 16))
                 {
-                    Item acid1 = NewAcido(49, "vomito de zumbi");
+                    Item acid1 = NewAcido(49, "acido terathan");
                     acid1.MoveToWorld(loc2, from.Map);
                     Effects.SendMovingEffect(this, acid1, acid1.ItemID, 15, 10, true, false, acid1.Hue, 0);
                 }
 
-                OverheadMessage("* vomita restos podres *");
+                OverheadMessage("* jorra acido *");
 
-                this.SpillAcid(2, power: 20, name: "Vomito de zumbi");
+                this.SpillAcid(2, power: 20, name: "acido");
             }
         }
 

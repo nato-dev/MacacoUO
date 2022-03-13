@@ -246,6 +246,7 @@
     <Compile Include="Fronteira\Guildas\PedraGuilda.cs" />
     <Compile Include="Fronteira\Imbuing\Essencias\EssLuz.cs" />
     <Compile Include="Fronteira\Items\EstatuaDecoGuilda.cs" />
+    <Compile Include="Fronteira\Items\KegGigante.cs" />
     <Compile Include="Fronteira\Items\MailboxGatinho.cs" />
     <Compile Include="Fronteira\Items\PergaminhoSkillcap.cs" />
     <Compile Include="Fronteira\Items\SecretChest.cs" />

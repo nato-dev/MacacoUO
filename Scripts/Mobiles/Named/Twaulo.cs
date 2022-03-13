@@ -1,18 +1,22 @@
 using System;
 using Server.Engines.CannedEvil;
 using Server.Items;
+using Server.Items.Functional.Pergaminhos;
+using Server.Ziden.Items;
 
 namespace Server.Mobiles
 {
     [CorpseName("a corpse of Twaulo")]
     public class Twaulo : BaseChampion
     {
+        public override int BonusExp => 500;
+
         [Constructable]
         public Twaulo()
             : base(AIType.AI_Melee)
         {
             this.Name = "Twaulo";
-            this.Title = "of the Glade";
+            this.Title = "do bosque";
             this.Body = 101;
             this.BaseSoundID = 679;
             this.Hue = 0x455;
@@ -38,14 +42,14 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Meditation, 0); // Per Stratics?!?
             this.SetSkill(SkillName.Anatomy, 95.1, 115.0);
             this.SetSkill(SkillName.Archery, 95.1, 100.0);
-            this.SetSkill(SkillName.MagicResist, 50.3, 80.0);
+            this.SetSkill(SkillName.MagicResist, 0);
             this.SetSkill(SkillName.Tactics, 90.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 95.1, 100.0);
 
             this.Fame = 50000;
             this.Karma = 50000;
 
-            this.VirtualArmor = 50;
+            this.VirtualArmor = 0;
 
             this.AddItem(new Bow());
             this.PackItem(new Arrow(Utility.RandomMinMax(500, 700)));
@@ -142,9 +146,39 @@ namespace Server.Mobiles
         }
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV6, 2);
+            this.AddLoot(LootPack.LV4, 2);
             this.AddLoot(LootPack.LV3);
-            this.AddLoot(LootPack.Gems);
+            this.AddLoot(LootPack.Gems, 10);
+        }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (to is BaseCreature)
+                damage *= 5;
+        }
+
+        public override void OnDeath(Container c)
+        {
+            base.OnDeath(c);
+            SorteiaItem(Decos.RandomDeco());
+            SorteiaItem(new EnhancedBandage(10));
+            var a = new CarpenterApron();
+            a.Bonus = Utility.Random(1, 1);
+            a.Name = "Avental de Twaulo";
+            a.Skill = SkillName.Fletching;
+            SorteiaItem(a);
+            DistribuiItem(new Gold(1000));
+            SorteiaItem(new CombatSkillBook());
+            SorteiaItem(new LivroAntigo());
+            SorteiaItem(new TemplateDeed());
+            var arco = Loot.RandomRangedWeapon();
+            arco.Resource = CraftResource.Pinho;
+            arco.Quality = ItemQuality.Exceptional;
+            if (arco.Name != null)
+                arco.Name += " Twauloado";
+            SorteiaItem(arco);
+            GolemMecanico.JorraOuro(this.Location, this.Map, 150);
         }
 
         public void SpawnPixies(Mobile target)

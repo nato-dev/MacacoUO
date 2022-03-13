@@ -5078,8 +5078,8 @@ namespace Server.Mobiles
         private readonly List<Mobile> m_VisList;
         private readonly Hashtable m_AntiMacroTable;
         private TimeSpan m_GameTime;
-        private TimeSpan m_ShortTermElapse;
-        private TimeSpan m_LongTermElapse;
+        public TimeSpan m_ShortTermElapse;
+        public TimeSpan m_LongTermElapse;
         private DateTime m_SessionStart;
         private DateTime m_SavagePaintExpiration;
         private SkillName m_Learning = (SkillName)(-1);

@@ -401,6 +401,7 @@ namespace Server.Mobiles
             }
             pot.Amount = 50;
             SorteiaItem(pot);
+            SorteiaItem(new KegGrande());
             SorteiaItem(new PowerCrystal());
             if (Utility.RandomBool())
                 SorteiaItem(new PowerCrystal());

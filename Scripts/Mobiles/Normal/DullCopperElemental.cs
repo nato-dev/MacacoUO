@@ -128,7 +128,7 @@ namespace Server.Mobiles
         public override void GenerateLoot()
         {
             AddLoot(LootPack.LV3);
-            AddLoot(LootPack.Gems, 2);
+            AddLoot(LootPack.Gems, 1);
         }
 
         public override void Serialize(GenericWriter writer)

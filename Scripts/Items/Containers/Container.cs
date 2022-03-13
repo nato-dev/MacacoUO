@@ -864,6 +864,86 @@ namespace Server.Items
         }
     }
 
+    public class KegGrande : BaseContainer, IResource
+    {
+        [Constructable]
+        public KegGrande()
+            : base(0xE7F)
+        {
+            Weight = 15.0;
+            this.Name = "Barril de Pocoes Gigante";
+        }
+
+        public KegGrande(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Usado por Tinker");
+        }
+
+        private CraftResource m_Resource;
+        [CommandProperty(AccessLevel.GameMaster)]
+        public CraftResource Resource
+        {
+            get { return m_Resource; }
+            set
+            {
+                m_Resource = value;
+                Hue = CraftResources.GetHue(m_Resource);
+                InvalidateProperties();
+            }
+        }
+
+        public ItemQuality Quality { get { return ItemQuality.Normal; } set { } }
+
+        public bool PlayerConstructed { get { return false; } }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)1); // version
+            writer.Write((int)Resource);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+            if (version >= 1)
+            {
+                m_Resource = (CraftResource)reader.ReadInt();
+            }
+        }
+
+        public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
+        {
+            if (typeRes != null)
+            {
+                CraftResource thisResource = CraftResources.GetFromType(typeRes);
+                Shard.Debug(thisResource.ToString());
+                if (thisResource == CraftResource.Eucalipto && this.GetType().Name.Contains("Chest") || this.GetType().Name.Contains("Armario"))
+                {
+                    this.MaxItems += 100;
+
+                    if (this.Quality == ItemQuality.Exceptional)
+                        this.MaxItems += 50;
+
+                    if (from.Skills.Carpentry.Value >= 100)
+                    {
+                        this.MaxItems += 100;
+                    }
+                }
+            }
+            return quality;
+        }
+    }
+
     public class PicnicBasket : BaseContainer
     {
         [Constructable]

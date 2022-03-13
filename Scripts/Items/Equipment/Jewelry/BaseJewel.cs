@@ -736,7 +736,7 @@ namespace Server.Items
                 if (BaseJewel.GetNumberComboPieces(from, this) == 3)
                 {
                     var stat = this.SkillBonuses.Skill_1_Name;
-                    m_AosSkillBonuses.Skill_1_Value += 3;
+                    m_AosSkillBonuses.Skill_1_Value += 7;
                     from.SendMessage("Voce fechou um combo de joias");
                 }
                 m_AosSkillBonuses.AddTo(from);

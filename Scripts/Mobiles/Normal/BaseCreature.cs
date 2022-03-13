@@ -427,7 +427,7 @@ namespace Server.Mobiles
 
         public int FollowRange { get; set; }
 
-        public virtual bool CanBeParagon { get { return !(this.Region is DungeonProtectedRegion); } }
+        public virtual bool CanBeParagon { get { return !IsBoss && !(this is BaseChampion) && !(this is BaseRenowned) && !(this.Region is DungeonProtectedRegion); } }
 
         /* Do not serialize this till the code is finalized */
 
@@ -7461,12 +7461,14 @@ namespace Server.Mobiles
 
                 var t2a = StuckMenu.IsInSecondAgeArea(c);
 
+                /*
                 if (IsBoss && Spawner is XmlSpawner)
                 {
                     Shard.Debug("Botando lapide", this);
                     var lapide = new LapideBoss(this);
                     lapide.MoveToWorld(c.Location, c.Map);
                 }
+                */
 
                 if (IsBoss || this is BaseChampion || this is BaseRenowned)
                 {

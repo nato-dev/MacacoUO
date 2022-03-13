@@ -19,6 +19,17 @@ namespace Server.Misc.Custom
             this.Cargas = cargas;
         }
 
+        [Constructable]
+        public ElementalBall()
+            : base(3630)
+        {
+            Cargas = 1000;
+            this.Hue = 386;
+            Weight = 10.0;
+            this.Name = "Bola de Cristal Elemental";
+            this.LootType = LootType.Blessed;
+        }
+
         public ElementalBall(Serial serial) : base(serial)
         {
 
@@ -85,7 +96,7 @@ namespace Server.Misc.Custom
         {
             this.Name += " feita por "+from.Name;
             this.LootType = LootType.Blessed;
-            this.Cargas = 10000;
+            this.Cargas = 2000;
             return quality;
         }
     }

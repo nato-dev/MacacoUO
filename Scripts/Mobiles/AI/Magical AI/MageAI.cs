@@ -223,7 +223,7 @@ namespace Server.Mobiles
 				}
 			}
 
-			if (m_Mobile.Spell == null && DateTime.UtcNow > NextCastTime && m_Mobile.InRange(c, Core.ML ? 10 : 12))
+            if (!(m_Mobile.ControlMaster != null && m_Mobile.ControlMaster.Player && (c is PlayerMobile)) && m_Mobile.Spell == null && DateTime.UtcNow > NextCastTime && m_Mobile.InRange(c, Core.ML ? 10 : 12))
 			{
 				Spell spell = null;
 

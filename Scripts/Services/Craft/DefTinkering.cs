@@ -603,6 +603,10 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(BarrelLid), 1044251, 1, 1044253);
             AddRes(index, typeof(BarrelTap), 1044252, 1, 1044253);
 
+            index = AddCraft(typeof(KegGigante), 1044051, "Barril de Pocoes Gigante", 75.0, 100.0, typeof(KegGrande), "Keg Gigante", 1, "Voce precisa de um Keg gigante");
+            AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 50, "Voce precisa de lingotes de cobre");
+            AddRes(index, typeof(YewBoard), "Tabuas de Mogno", 50, "Voce precisa de lingotes de cobre");
+
             index = AddCraft(typeof(ModifiedClockworkAssembly), 1044051, "Engenhoca 1", 65.0, 115.0, typeof(ClockworkAssembly), 1073426, 1, 502910);
             AddRes(index, typeof(PowerCrystal), 1112811, 1, 502910);
             AddRes(index, typeof(CopperIngot), "Lingote de Cobre", 2, "Voce precisa de lingotes de cobre");
