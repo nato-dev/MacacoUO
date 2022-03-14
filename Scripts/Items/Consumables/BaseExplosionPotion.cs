@@ -72,13 +72,19 @@ namespace Server.Items
 
         public static bool Throwing(Mobile from)
         {
+            if (from.Region.IsPartOf("New Haven"))
+            {
+                from.SendMessage("Voce nao pode fazer isto aqui");
+                return false;
+            }
+
             return Using.ContainsKey(from); ;
         }
 
         public override void Drink(Mobile from)
         {
 
-            if (from.Region.IsPartOf("Haven"))
+            if (from.Region.IsPartOf("New Haven"))
             {
                 from.SendMessage("Voce nao pode fazer isto aqui");
                 return;
