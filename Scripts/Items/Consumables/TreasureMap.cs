@@ -707,11 +707,12 @@ namespace Server.Items
             {
                 from.SendLocalizedMessage("Apenas um novato pode fazer isto"); // Only a young player may use this treasure map.
             }
-
+            /*
             else if (from != m_Decoder)
             {
                 from.SendLocalizedMessage("Apenas quem decodificou o mapa pode fazer isto"); // Only the person who decoded this map may actually dig up the treasure.
             }
+            */
 
             else if (m_Decoder != from && !HasRequiredSkill(from))
             {

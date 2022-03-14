@@ -239,6 +239,9 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new HunterAchievement(1044, 3000, 0x20EC, false, null, 300, "Voce eh o Titan", "Mate 300 Titans", 10, typeof(Titan), typeof(TitanCostume)));
             Achievements.Add(new HunterAchievement(1044, 3000, 0x20EC, false, null, 300, "Olhar de um Ciclope", "Mate 300 Ciclopes", 10, typeof(Cyclops), typeof(CyclopsCostume)));
 
+            Achievements.Add(new HunterAchievement(1045, 3000, 0x2602, false, null, 1, "[BOSS] Pequena mas Brava", "Mate a Formiga Atomica", 10, typeof(SolenLouca)));
+            Achievements.Add(new HunterAchievement(1045, 3000, 0x2602, false, null, 1, "[BOSS] Twualo e suas fadas", "Mate Twualo", 10, typeof(Twaulo)));
+
             // SKILLS
             // BS
             var ach = new SkillProgressAchievement(2001, 4000, 0x13E3, false, null, 60, "Ferreiro Noob", "Obtenha 60 Blacksmithy", SkillName.Blacksmith, 5, typeof(SacolaMinerios));

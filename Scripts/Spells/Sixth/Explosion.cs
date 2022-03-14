@@ -76,7 +76,7 @@ namespace Server.Spells.Sixth
             private readonly Mobile m_Attacker;
 
             public InternalTimer(MagerySpell spell, Mobile attacker, IDamageable target)
-                : base(TimeSpan.FromSeconds(Utility.Random(Shard.SPHERE_STYLE ? 3 : Shard.POL_STYLE ? 2 : 2, 1)))
+                : base(spell.GetCastDelay() + TimeSpan.FromMilliseconds(Mobile.EquipItemDelay))
             {
                 m_Spell = spell;
                 m_Attacker = attacker;

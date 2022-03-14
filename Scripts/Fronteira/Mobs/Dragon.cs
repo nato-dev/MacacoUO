@@ -163,6 +163,7 @@ namespace Server.Mobiles
 
             if (PetTrainingHelper.Enabled)
             {
+                SetDamage(8, 12);
                 SetHits(500);
                 SetInt(100);
                 SetStr(250);

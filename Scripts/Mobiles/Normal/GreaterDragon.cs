@@ -78,6 +78,8 @@ namespace Server.Mobiles
             }
         }
 
+
+
         public GreaterDragon(Serial serial)
             : base(serial)
         {
@@ -153,6 +155,8 @@ namespace Server.Mobiles
                 return (Body == 12 ? ScaleType.Yellow : ScaleType.Red);
             }
         }
+
+
         public override FoodType FavoriteFood
         {
             get

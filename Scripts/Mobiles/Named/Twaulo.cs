@@ -21,8 +21,8 @@ namespace Server.Mobiles
             this.BaseSoundID = 679;
             this.Hue = 0x455;
 
-            this.SetStr(1751, 1950);
-            this.SetDex(251, 450);
+            this.SetStr(400, 400);
+            this.SetDex(20);
             this.SetInt(801, 1000);
 
             this.SetHits(7500);
@@ -47,7 +47,7 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Wrestling, 95.1, 100.0);
 
             this.Fame = 50000;
-            this.Karma = 50000;
+            this.Karma = -5000;
 
             this.VirtualArmor = 0;
 
@@ -155,7 +155,7 @@ namespace Server.Mobiles
         {
             base.AlterMeleeDamageTo(to, ref damage);
             if (to is BaseCreature)
-                damage *= 5;
+                damage *= 4;
         }
 
         public override void OnDeath(Container c)
@@ -169,6 +169,7 @@ namespace Server.Mobiles
             a.Skill = SkillName.Fletching;
             SorteiaItem(a);
             DistribuiItem(new Gold(1000));
+
             SorteiaItem(new CombatSkillBook());
             SorteiaItem(new LivroAntigo());
             SorteiaItem(new TemplateDeed());

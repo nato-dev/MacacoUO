@@ -372,18 +372,18 @@ namespace Server.Engines.BulkOrders
                 //RewardCollection.Add(new BODCollectionItem(0x13E3, 1157094, CraftResources.GetHue(CraftResource.Cobre), 650, RunicHammer, 3));
                 RewardCollection.Add(new BODCollectionItem(0x14F0, "PowerScroll 110 Blacksmithy<br>Aumenta seu cap de blacksmithy.", 0x481, RewardType.PS110, PowerScroll, 10));
                 //RewardCollection.Add(new BODCollectionItem(0x13E3, 1157095, CraftResources.GetHue(CraftResource.Bronze), 700, RunicHammer, 4));
-                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +5 Blacksmithy", 0x482, 750, AncientHammer, 5));
+                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +5 Blacksmithy<br>Apenas aumenta chance de craft/exp", 0x482, 750, AncientHammer, 5));
                 
                 RewardCollection.Add(new BODCollectionItem(0x14F0, "PowerScroll 115 Blacksmithy<br>Aumenta seu cap de blacksmithy.", 0x481, RewardType.PS115, PowerScroll, 15));
-                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +10 Blacksmithy", 0x482, 850, AncientHammer, 10));
+                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +10 Blacksmithy<br>Apenas aumenta chance de craft/exp", 0x482, 850, AncientHammer, 10));
                 //RewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Niobio", CraftResources.GetHue(CraftResource.Niobio), 200, HarvestMap, (int)CraftResource.Niobio));
                 RewardCollection.Add(new BODCollectionItem(0x9E2A, "Talisman do De Crafting +50", 0, 900, CraftsmanTalisman, 50));
                 //RewardCollection.Add(new BODCollectionItem(0x13E3, 1157096, CraftResources.GetHue(CraftResource.Prata), 950, RunicHammer, 5));
                 //RewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Lazurita", CraftResources.GetHue(CraftResource.Lazurita), 400, HarvestMap, (int)CraftResource.Lazurita));
-                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +20 Blacksmithy", 0x482, 1000, AncientHammer, 20));
+                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +20 Blacksmithy<br>Apenas aumenta chance de craft/exp", 0x482, 1000, AncientHammer, 20));
                 //RewardCollection.Add(new BODCollectionItem(0x13E3, 1157097, CraftResources.GetHue(CraftResource.Niobio), 1050, RunicHammer, 6));
                 //sRewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Quartzo", CraftResources.GetHue(CraftResource.Quartzo), 600, HarvestMap, (int)CraftResource.Quartzo));
-                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +30 Blacksmithy", 0x482, 1500, AncientHammer, 30));
+                RewardCollection.Add(new BODCollectionItem(0x13E3, "Martelo +30 Blacksmithy<br>Apenas aumenta chance de craft/exp", 0x482, 1500, AncientHammer, 30));
                 RewardCollection.Add(new BODCollectionItem(0x14F0, "PowerScroll 120 Blacksmithy<br>Aumenta seu cap de blacksmithy.", 0x481, RewardType.PS120, PowerScroll, 20));
                 //RewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Vibranium", CraftResources.GetHue(CraftResource.Vibranium), 1350, HarvestMap, (int)CraftResource.Vibranium));
                 //RewardCollection.Add(new BODCollectionItem(0x14EC, "Mapa de Minerar Adamantium", CraftResources.GetHue(CraftResource.Adamantium), 1350, HarvestMap, (int)CraftResource.Adamantium));

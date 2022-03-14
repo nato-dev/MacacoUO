@@ -34,7 +34,7 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Poisoning, 60.1, 80.0);
             this.SetSkill(SkillName.MagicResist, 60.1, 75.0);
             this.SetSkill(SkillName.Tactics, 80.1, 100.0);
-            this.SetSkill(SkillName.Wrestling, 80.1, 90.0);
+            this.SetSkill(SkillName.Wrestling, 100, 100);
 
             this.Fame = 34000;
             this.Karma = -34000;
@@ -131,6 +131,14 @@ namespace Server.Mobiles
                 return 1;
             }
         }
+
+        public override void AlterMeleeDamageTo(Mobile to, ref int damage)
+        {
+            base.AlterMeleeDamageTo(to, ref damage);
+            if (to is BaseCreature)
+                damage *= 5;
+        }
+
         public override int Meat
         {
             get

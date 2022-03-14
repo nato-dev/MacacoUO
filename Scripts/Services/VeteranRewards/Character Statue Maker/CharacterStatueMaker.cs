@@ -10,8 +10,21 @@ namespace Server.Items
         private StatueType m_Type;
 
         [Constructable]
+        public CharacterStatueMaker()
+       : base(0x32F0)
+        {
+            builda(StatueType.Bronze);
+        }
+
+
+        [Constructable]
         public CharacterStatueMaker(StatueType type)
             : base(0x32F0)
+        {
+            builda(type);
+        }
+
+        public void builda(StatueType type)
         {
             this.m_Type = type;
 

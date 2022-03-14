@@ -122,13 +122,13 @@ namespace Server.Mobiles
 		{
 			return new DragonTurtleEgg();
 		}
-		
-        public override void OnMovement( Mobile m, Point3D oldLocation )
-		{
-			base.OnMovement(m, oldLocation);
-			
-			if(!_DoingBubbles || _BubbleLocs == null)
-				return;
+
+        public override void OnMovement(Mobile m, Point3D oldLocation)
+        {
+            base.OnMovement(m, oldLocation);
+
+            if (!_DoingBubbles || _BubbleLocs == null)
+                return;
 
             List<Tuple<Point3D, int>> copy = new List<Tuple<Point3D, int>>(_BubbleLocs.Where(tup => tup.Item1 == m.Location));
 
@@ -151,65 +151,64 @@ namespace Server.Mobiles
             }
 
             ColUtility.Free(copy);
-		}
-			
-		private long _NextBubbleWander;
-		private long _NextBubbleAttack;
-		private bool _DoingBubbles;
-		public List<Tuple<Point3D, int>> _BubbleLocs { get; set; }
+        }
+
+        private long _NextBubbleWander;
+        private long _NextBubbleAttack;
+        private bool _DoingBubbles;
+        public List<Tuple<Point3D, int>> _BubbleLocs { get; set; }
         public Dictionary<Mobile, int> _Affected { get; set; }
-		
-		private Direction[] _Directions = { Direction.North, Direction.Right, Direction.East, Direction.Down, Direction.South, Direction.Left, Direction.West, Direction.Up };
-		private int[] _Hues = { 0, 33, 44, 9, 63, 53, 117 };
-		
-		public override void OnThink()
-		{
-			base.OnThink();
-			
-			if(Combatant != null && Core.TickCount - _NextBubbleWander >= 0)
-			{
-				DoBubble();
-				_NextBubbleWander = Core.TickCount + Utility.RandomMinMax(25000, 35000);
-			}
-			
-			if(Combatant != null && Core.TickCount - _NextBubbleAttack >= 0)
-			{
-				DoBubbleAttack();
-				_NextBubbleAttack = Core.TickCount + Utility.RandomMinMax(40000, 60000);
-			}
-		}
-		
-		public void DoBubble()
-		{
-			if(!this.Alive || this.Map == Map.Internal || this.Map == null)
-				return;
-			
-			int pathLength = Utility.RandomMinMax(5, 11);
-			_DoingBubbles = true;
-			_BubbleLocs = new List<Tuple<Point3D, int>>();
+
+        private readonly Direction[] _Directions = { Direction.North, Direction.Right, Direction.East, Direction.Down, Direction.South, Direction.Left, Direction.West, Direction.Up };
+        private readonly int[] _Hues = { 0, 33, 44, 9, 63, 53, 117 };
+
+        public override void OnThink()
+        {
+            base.OnThink();
+
+            if (Combatant != null && Core.TickCount - _NextBubbleWander >= 0)
+            {
+                DoBubble();
+                _NextBubbleWander = Core.TickCount + Utility.RandomMinMax(25000, 35000);
+            }
+
+            if (Combatant != null && Core.TickCount - _NextBubbleAttack >= 0)
+            {
+                DoBubbleAttack();
+                _NextBubbleAttack = Core.TickCount + Utility.RandomMinMax(40000, 60000);
+            }
+        }
+
+        public void DoBubble()
+        {
+            if (!Alive || Map == Map.Internal || Map == null)
+                return;
+
+            int pathLength = Utility.RandomMinMax(5, 11);
+            _DoingBubbles = true;
+            _BubbleLocs = new List<Tuple<Point3D, int>>();
 
             for (int i = 0; i < 8; i++)
             {
-                _BubbleLocs.Add(new Tuple<Point3D, int>(this.Location, _Hues[Utility.Random(_Hues.Length)]));
+                _BubbleLocs.Add(new Tuple<Point3D, int>(Location, _Hues[Utility.Random(_Hues.Length)]));
             }
 
-			for(int i = 0; i < pathLength; i++)
-			{
-				Timer.DelayCall(TimeSpan.FromSeconds((double)i + 1.0), () =>
-				{
-					for(int j = 0; j < _BubbleLocs.Count; j++)
-					{
-                        Map map = this.Map;
+            for (int i = 0; i < pathLength; i++)
+            {
+                Timer.DelayCall(TimeSpan.FromSeconds(i + 1.0), () =>
+                {
+                    for (int j = 0; j < _BubbleLocs.Count; j++)
+                    {
+                        Map map = Map;
 
-						if(!this.Alive || map == null || (i > 0 && _BubbleLocs[j].Item1 == Point3D.Zero))
-							continue;
-						
-						Point3D newLoc;
-						Direction d = _Directions[j];
-				
-						int hue = _BubbleLocs[j].Item2;
-						int x = _BubbleLocs[j].Item1.X;
-						int y = _BubbleLocs[j].Item1.Y;
+                        if (!Alive || map == null || (i > 0 && _BubbleLocs[j].Item1 == Point3D.Zero))
+                            continue;
+
+                        Direction d = _Directions[j];
+
+                        int hue = _BubbleLocs[j].Item2;
+                        int x = _BubbleLocs[j].Item1.X;
+                        int y = _BubbleLocs[j].Item1.Y;
 
                         if (i > 2 && 0.4 > Utility.RandomDouble())
                         {
@@ -221,15 +220,15 @@ namespace Server.Mobiles
                             Movement.Movement.Offset(d, ref x, ref y);
                         }
                         else
-						    Movement.Movement.Offset(d, ref x, ref y);
-							
-						IPoint3D p = new Point3D(x, y, this.Map.GetAverageZ(x, y)) as IPoint3D;
-						Server.Spells.SpellHelper.GetSurfaceTop(ref p);
-							
-						newLoc = new Point3D(p);
-						
+                            Movement.Movement.Offset(d, ref x, ref y);
+
+                        IPoint3D p = new Point3D(x, y, Map.GetAverageZ(x, y));
+                        Spells.SpellHelper.GetSurfaceTop(ref p);
+
+                        var newLoc = new Point3D(p);
+
                         bool hasMobile = false;
-                        IPooledEnumerable eable = this.Map.GetMobilesInRange(newLoc, 0);
+                        IPooledEnumerable eable = Map.GetMobilesInRange(newLoc, 0);
 
                         foreach (Mobile m in eable)
                         {
@@ -246,55 +245,55 @@ namespace Server.Mobiles
 
                         if (!hasMobile)
                         {
-                            Effects.SendLocationEffect(newLoc, this.Map, 13920, 20, 10, hue == 0 ? 0 : hue - 1, 5);
+                            Effects.SendLocationEffect(newLoc, Map, 13920, 20, 10, hue == 0 ? 0 : hue - 1, 5);
                             _BubbleLocs[j] = new Tuple<Point3D, int>(newLoc, hue);
                         }
-					}
-					
-					if(i == pathLength - 1)
-					{
-						Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
-						{
-							_DoingBubbles = false;
-							_BubbleLocs.Clear();
-							_BubbleLocs = null;
-						});
-					}
-				});
-			}
-		}
-		
-		public void DoBubbleAttack()
-		{
-			if(!this.Alive || this.Map == Map.Internal || this.Map == null)
-				return;
-			
-			List<Mobile> toget = new List<Mobile>();
+                    }
 
-            IPooledEnumerable eable = this.Map.GetMobilesInRange(this.Location, 11);
-			
-			foreach(Mobile m in eable)
-			{
-				if(m != this && CanBeHarmful(m) && InLOS(m) && (m is PlayerMobile || (m is BaseCreature && ((BaseCreature)m).GetMaster() is PlayerMobile)))
-					toget.Add(m);
-			}
-			
-			eable.Free();
-			
-			toget.ForEach(mob =>
-			{
+                    if (i == pathLength - 1)
+                    {
+                        Timer.DelayCall(TimeSpan.FromSeconds(1), () =>
+                        {
+                            _DoingBubbles = false;
+                            _BubbleLocs.Clear();
+                            _BubbleLocs = null;
+                        });
+                    }
+                });
+            }
+        }
+
+        public void DoBubbleAttack()
+        {
+            if (!Alive || Map == Map.Internal || Map == null)
+                return;
+
+            List<Mobile> toget = new List<Mobile>();
+
+            IPooledEnumerable eable = Map.GetMobilesInRange(Location, 11);
+
+            foreach (Mobile m in eable)
+            {
+                if (m != this && CanBeHarmful(m) && InLOS(m) && (m is PlayerMobile || (m is BaseCreature && ((BaseCreature)m).GetMaster() is PlayerMobile)))
+                    toget.Add(m);
+            }
+
+            eable.Free();
+
+            toget.ForEach(mob =>
+            {
                 int hue;
 
                 if (_Affected != null && _Affected.ContainsKey(mob))
                     hue = _Affected[mob];
                 else
-				    hue = _Hues[Utility.Random(_Hues.Length)];
+                    hue = _Hues[Utility.Random(_Hues.Length)];
 
-                this.MovingParticles(mob, 13920, 10, 0, false, true, hue == 0 ? 0 : hue - 1, 5, 9502, 14120, 0, 0);
-				
-				Timer.DelayCall(TimeSpan.FromSeconds(.7), DoAttack_Callback, new object[] { mob, hue } );
-			});
-		}
+                MovingParticles(mob, 13920, 10, 0, false, true, hue == 0 ? 0 : hue - 1, 5, 9502, 14120, 0, 0);
+
+                Timer.DelayCall(TimeSpan.FromSeconds(.7), DoAttack_Callback, new object[] { mob, hue });
+            });
+        }
 
         private void ApplyMod(Mobile m, int hue)
         {
@@ -302,6 +301,9 @@ namespace Server.Mobiles
 
             if (_Affected == null)
                 _Affected = new Dictionary<Mobile, int>();
+
+            if (_Affected.ContainsKey(m))
+                return;
 
             _Affected[m] = hue;
 
@@ -321,6 +323,8 @@ namespace Server.Mobiles
             object[] o = obj as object[];
             Mobile m = o[0] as Mobile;
             m.VirtualArmorMod += 30;
+
+            m.SendMessage("Suas resistencias voltaram ao normal");
 
             BuffInfo.RemoveBuff(m, BuffIcon.DragonTurtleDebuff);
 

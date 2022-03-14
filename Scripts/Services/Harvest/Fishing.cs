@@ -559,7 +559,7 @@ namespace Server.Engines.Harvest
             var item = base.Construct(type, from, tool);
             if (item is BaseShoes)
             {
-                if (Utility.Random(10) == 1)
+                if (Utility.Random(20) == 1)
                 {
                     item.Hue = Loot.RandomRareDye();
                 }
@@ -642,7 +642,7 @@ namespace Server.Engines.Harvest
             }
             #endregion
 
-            return base.Give(m, item, placeAtFeet);
+            return base.Give(m, item, true);
         }
 
         public override void SendSuccessTo(Mobile from, Item item, HarvestResource resource)
@@ -823,12 +823,6 @@ namespace Server.Engines.Harvest
         {
             if (!base.CheckHarvest(from, tool))
                 return false;
-
-            if (from.Mounted || from.Flying)
-            {
-                from.SendMessage("Nao pode fazer isto montado ou voando");// You can't fish while riding!
-                return false;
-            }
 
             return true;
         }

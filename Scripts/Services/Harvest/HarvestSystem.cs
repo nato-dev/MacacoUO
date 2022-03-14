@@ -326,7 +326,7 @@ namespace Server.Engines.Harvest
                             bank.Consume(gasto, from);
                         }
 
-                        if (Give(from, item, def.PlaceAtFeetIfFull))
+                        if (Give(from, item, true))
                         {
                             if (def.Skill == SkillName.Fishing)
                                 PointsSystem.PontosPescador.AwardPoints(from, resource.MaxSkill / 10, false, false);

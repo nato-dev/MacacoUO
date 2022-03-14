@@ -55,7 +55,7 @@ namespace Server.Mobiles
         {
             base.AlterMeleeDamageTo(to, ref damage);
             if (to is BaseCreature)
-                damage *= 4;
+                damage *= 3;
         }
 
         public override int Meat

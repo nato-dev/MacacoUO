@@ -73,6 +73,12 @@ namespace Server.Mobiles
             }
         }
 
+        public override void OnAfterTame(Mobile tamer)
+        {
+            base.OnAfterTame(tamer);
+            SetDamage(3, 6);
+        }
+
         public override Spell ChooseSpell()
         {
             if (this.MagicDamageAbsorb == 0)

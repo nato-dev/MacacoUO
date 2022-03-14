@@ -1,4 +1,5 @@
 using Server.Engines.Craft;
+using Server.Misc;
 using System;
 
 namespace Server.Items
@@ -99,6 +100,7 @@ namespace Server.Items
             colar.OwnerName = from.Name;
             from.PlaceInBackpack(colar);
             from.SendMessage("Voce criou um colar elemental elemental");
+            SkillCheck.Gain(from, from.Skills.Imbuing, 5);
             from.Animate(AnimationType.Attack, 3);
             from.PlaySound(0x2A);
 

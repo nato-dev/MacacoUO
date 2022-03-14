@@ -497,6 +497,9 @@ namespace Server.Items
 
             double toHeal = (min + (Utility.RandomDouble() * (max - min))) * 0.8;
 
+            if (this is EnhancedBandage)
+                toHeal += 5;
+
             if (healing < 100)
                 toHeal *= 0.9;
 

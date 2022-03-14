@@ -31,6 +31,7 @@ namespace Server.Mobiles
         { 
             public InternalBuyInfo() 
             {
+                Add(new GenericBuyInfo(typeof(LeatherDyeTub), 50000, 20, 0xFAB, 0));
                 Add(new GenericBuyInfo(typeof(Hides), 4, 999, 0x1078, 0, true)); 
                 Add(new GenericBuyInfo(typeof(ThighBoots), 56, 10, 0x1711, 0)); 
             }

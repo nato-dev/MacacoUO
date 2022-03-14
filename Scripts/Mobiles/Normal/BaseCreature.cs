@@ -7461,14 +7461,13 @@ namespace Server.Mobiles
 
                 var t2a = StuckMenu.IsInSecondAgeArea(c);
 
-                /*
+
                 if (IsBoss && Spawner is XmlSpawner)
                 {
                     Shard.Debug("Botando lapide", this);
                     var lapide = new LapideBoss(this);
                     lapide.MoveToWorld(c.Location, c.Map);
                 }
-                */
 
                 if (IsBoss || this is BaseChampion || this is BaseRenowned)
                 {

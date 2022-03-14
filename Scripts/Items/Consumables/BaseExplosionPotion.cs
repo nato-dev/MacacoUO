@@ -77,6 +77,13 @@ namespace Server.Items
 
         public override void Drink(Mobile from)
         {
+
+            if (from.Region.IsPartOf("Haven"))
+            {
+                from.SendMessage("Voce nao pode fazer isto aqui");
+                return;
+            }
+
             if (from.Spell != null && from.Spell.IsCasting)
             {
                 from.SendMessage("Voce nao pode usar uma pocao de explosao enquanto conjura magias"); // You can not use a purple potion while paralyzed.
