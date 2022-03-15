@@ -51,8 +51,10 @@ namespace Server.Mobiles
 
                 if (buyInfo != null)
                 {
+                    if(price == 0)
+                        return 1;
                     int sold = buyInfo.TotalSold;
-                    price = (int)((double)buyInfo.Price * .5) / 3;
+                    price = (int)((double)buyInfo.Price * .5);
                     if (Shard.DebugEnabled)
                         Shard.Debug("Preco de venda " + price + " item " + item.GetType().Name);
                     return Math.Max(1, price);
@@ -84,7 +86,7 @@ namespace Server.Mobiles
                 if (weapon.Quality == ItemQuality.Low)
                     price = (int)(price * 0.60);
                 else if (weapon.Quality == ItemQuality.Exceptional)
-                    price = (int)(price * 1.25);
+                    price = (int)(price * 1.1);
 
                 price += 100 * (int)weapon.DurabilityLevel;
 
@@ -121,7 +123,7 @@ namespace Server.Mobiles
                     price = price2;
             }
 
-            return price / 3;
+            return (int)(price * 0.8);
         }
 
         public int GetBuyPriceFor(Item item)

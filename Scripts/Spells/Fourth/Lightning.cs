@@ -72,7 +72,7 @@ namespace Server.Spells.Fourth
                 }
 
 
-                if (!((Mobile)m).Player)
+                if (mob != null && !mob.Player)
                 {
                     var nivel = ColarElemental.GetNivel(Caster, ElementoPvM.Raio);
                     damage *= 1 + (nivel / 14);

@@ -12,6 +12,18 @@ namespace Server.Mobiles
     {
         public override bool IsBoss => true;
 
+
+        public override Spell ChooseSpell()
+        {
+            var alvo = Combatant as Mobile;
+            if (alvo != null && Utility.RandomBool())
+            {
+                return new FireFieldSpell(this, null);
+            }
+            return null;
+        }
+
+
         [Constructable]
         public AncientWyrm()
             : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.4)
@@ -31,7 +43,6 @@ namespace Server.Mobiles
             this.SetDamageType(ResistanceType.Physical, 75);
             this.SetDamageType(ResistanceType.Fire, 25);
 
-            this.SetResistance(ResistanceType.Physical, 65, 75);
             this.SetResistance(ResistanceType.Fire, 80, 90);
             this.SetResistance(ResistanceType.Cold, 70, 80);
             this.SetResistance(ResistanceType.Poison, 60, 70);
@@ -43,12 +54,12 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.MagicResist, 100.5, 150.0);
             this.SetSkill(SkillName.Tactics, 97.6, 100.0);
             this.SetSkill(SkillName.Wrestling, 120, 120);
-            this.SetSkill(SkillName.Parry, 120, 120);
+            this.SetSkill(SkillName.Parry, 60, 60);
 
             this.Fame = 22500;
             this.Karma = -22500;
 
-            this.VirtualArmor = 90;
+            this.VirtualArmor = 30;
             Tamable = false;
         }
 

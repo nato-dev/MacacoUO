@@ -389,7 +389,7 @@ namespace Server.Mobiles
             this.SorteiaItem(Decos.RandomDeco());
             for (var x = 0; x < 10; x++)
             {
-                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(2));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
             }
 
             switch (Utility.Random(4))

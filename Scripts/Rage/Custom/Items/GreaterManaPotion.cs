@@ -13,7 +13,7 @@ namespace Server.Items
         public GreaterManaPotion()
             : base(PotionEffect.ManaForte)
         {
-            this.ItemID = 0x0EFB;
+        
         }
 
         public GreaterManaPotion(Serial serial)

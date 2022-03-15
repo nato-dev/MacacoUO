@@ -14,6 +14,7 @@ using Server.Multis;
 using Server.Items.Functional.Pergaminhos;
 using Server.Multis.Deeds;
 using Server.Ziden.Achievements;
+using Server.Ziden;
 
 namespace Server.Engines.UOStore
 {
@@ -85,6 +86,7 @@ namespace Server.Engines.UOStore
             StoreCategory cat = StoreCategory.Featured;
             //CharacterStatueMaker
             Register<CharacterStatueMaker>("Estatua de Jogador", "Construa uma estatua do seu personagem.<br>Se eternalize !.", 0x32F0, 0, 0, 20000, cat);
+            Register<PergaminhoPerdao>("Pergaminho do Perdao", "Remove 1 long count.", 0x1F35, 0, 55, 500, cat);
             Register<SacolaCristais>("100 Cristais Elementais", "Sacola com 100 cristais elementais.", 16395, 0, 2611, 25000, cat);
 
             Register<DoubleExpDeed>("PowerHour 2x Exp", "Ativa double exp para o shard todo por 1h.</ br > Todos vao te amar um pouco mais.", 0x14F0, 0, 256, 500, cat);

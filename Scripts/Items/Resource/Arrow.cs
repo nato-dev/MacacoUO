@@ -27,7 +27,7 @@ namespace Server.Items
         {
             get
             {
-                return 0.1;
+                return 0.08;
             }
         }
         TextDefinition ICommodity.Description

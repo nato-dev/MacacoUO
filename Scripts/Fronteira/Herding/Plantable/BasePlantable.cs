@@ -140,6 +140,11 @@ namespace Server.Items
                         from.Emote("* plantando *");
                         from.Animate(AnimationType.Attack, 3);
 
+                        if(!from.IsCooldown("dp"))
+                        {
+                            from.SetCooldown("dp", TimeSpan.FromMinutes(10));
+                            from.SendMessage(78, "Uma planta demora horas para crescer, porem retorna muitos recursos !");
+                        }
                         var tipo = toPlant.GetType();
                        
                         var semente = (BasePlantable)Activator.CreateInstance(tipo);
@@ -161,7 +166,6 @@ namespace Server.Items
                                 fada.Planta();
                             }
                         }
-
                     }
                     else
                     {
@@ -232,7 +236,7 @@ namespace Server.Items
 
             private int count;
 
-            public GrowTimer(BasePlantable plantable, Mobile plantador, string nomeDono) : base(TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(5), 2)
+            public GrowTimer(BasePlantable plantable, Mobile plantador, string nomeDono) : base(TimeSpan.FromMinutes(2), TimeSpan.FromMinutes(2), 2)
             {
                 this.nomeDono = nomeDono;
                 this.plantable = plantable;

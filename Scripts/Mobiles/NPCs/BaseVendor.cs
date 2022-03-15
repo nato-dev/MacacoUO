@@ -41,9 +41,6 @@ namespace Server.Mobiles
         public static TimeSpan DelayRestock = TimeSpan.FromMinutes(Config.Get("Vendors.RestockDelay", 60));
         public static int MaxSell = Config.Get("Vendors.MaxSell", 500);
 
-
-
-
         public static void PegaRecompensa(Mobile from, BaseVendor vendor)
         {
             if (!BulkOrderSystem.CanClaimRewards(from, vendor.BODType))

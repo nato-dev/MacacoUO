@@ -28,6 +28,7 @@ namespace Server.Mobiles
             : base("o alfaiate")
         {
             this.SetSkill(SkillName.Tailoring, 64.0, 100.0);
+            this.SetSkill(SkillName.Herding, 64.0, 100.0);
         }
 
         public override void InitSBInfo()

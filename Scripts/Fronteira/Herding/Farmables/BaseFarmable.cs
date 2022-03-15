@@ -205,7 +205,7 @@ namespace Server.Items
             Item spawn = this.GetCropObject();
 
             var Skill = (int)from.Skills[SkillName.Herding].Value;
-            var amt = Skill / 8 + Utility.Random(Skill / 10) / 4;
+            var amt = Skill / 30 + Utility.Random(Skill / 30);
             if (nomeQuemPlantou == null)
             {
                 amt /= 2;
@@ -247,23 +247,12 @@ namespace Server.Items
                 {
                     if (nomeQuemPlantou != null)
                     {
-                        if (Colhidas < 2 + Utility.Random(5))
-                        {
-                            Colhidas++;
-                            seed.ItemID = seed.ItemIDCrescendo;
-                            seed.MoveToWorld(this.Location, this.Map);
-                            seed.colhidas = Colhidas;
-                            seed.Planta(from, this.nomeQuemPlantou);
-                        }
-                        else
-                        {
-                            if(seed != null)
-                                seed.Consume();
-                        }
+                        if (seed != null)
+                            seed.Consume();
                     }
                     else
                     {
-                        if(seed != null)
+                        if (seed != null)
                             seed.Consume();
                     }
                 }

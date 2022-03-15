@@ -55,7 +55,6 @@ namespace Server.Items
             {
                 new PickWheelTarget((Cotton)player.LastItem).Invoke(from, player.LastTarget);
             }
-
         }
 
 

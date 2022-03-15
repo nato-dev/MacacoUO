@@ -1249,8 +1249,11 @@ namespace Server.Mobiles
                     base.Combatant = initialFocus;
                     return;
                 }
-                OnStartCombat((Mobile)value);
-                base.Combatant = value;
+                if (value is Mobile)
+                {
+                    OnStartCombat((Mobile)value);
+                    base.Combatant = value;
+                }
 
             }
         }

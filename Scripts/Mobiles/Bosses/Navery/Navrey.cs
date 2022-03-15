@@ -129,7 +129,7 @@ namespace Server.Mobiles
             DistribuiItem(new CaixaDeGold());
             for (var x= 0; x < 10; x++)
             {
-                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(10));
             }
             DistribuiItem(Decos.RandomDeco());
 
