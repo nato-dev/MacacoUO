@@ -79,6 +79,18 @@ namespace Server.Mobiles
                 if (price < 1)
                     price = 1;
             }
+            else if (item is BaseClothing)
+            {
+                BaseClothing armor = (BaseClothing)item;
+
+                if (armor.Quality == ItemQuality.Low)
+                    price = (int)(price * 0.60);
+                else if (armor.Quality == ItemQuality.Exceptional)
+                    price = (int)(price * 1.1);
+
+                if (price < 1)
+                    price = 1;
+            }
             else if (item is BaseWeapon)
             {
                 BaseWeapon weapon = (BaseWeapon)item;
@@ -123,7 +135,7 @@ namespace Server.Mobiles
                     price = price2;
             }
 
-            return (int)(price * 0.8);
+            return (int)(price * 0.6);
         }
 
         public int GetBuyPriceFor(Item item)
