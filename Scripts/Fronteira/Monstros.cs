@@ -16,14 +16,12 @@ namespace Server.Fronteira
             List<string> erros = new List<string>();
             using (StreamWriter outputFile = new StreamWriter("C:/monstros/monstros.html"))
             {
-           
-
                 LootPack.OldMagicItems.Clear();
                 LootPack.GemItems.Clear();
 
                 outputFile.WriteLine("<html><body>");
                 BaseCreature.BypassTimerInicial = true;
-                var docs = new Dictionary<string, string>();
+                var docs = new Dictionary<string, HashSet<string>>();
                 foreach (Assembly a in ScriptCompiler.Assemblies)
                 {
                     var delay = 0;
@@ -92,8 +90,9 @@ namespace Server.Fronteira
                                 Console.WriteLine("Terminando");
                                 if(loots.Count > 0)
                                 {
-                                    docs[nome] = string.Join("", loots.Select(l => $"<li>{l}</li>"));
-                                    outputFile.WriteLine($"<div class='mob'><span>{nome}</span><div class='loots'><ul>{docs[nome]}</ul></div></div>");
+                                    var s = string.Join("", loots.Select(l => $"<li>{l}</li>"));
+                                    docs[nome] = loots;
+                                    outputFile.WriteLine($"<div class='mob'><div class='stats'></div><span>{nome}</span><div class='loots'><ul>{s}</ul></div></div>");
                                 }
                             }
                             catch (Exception e)

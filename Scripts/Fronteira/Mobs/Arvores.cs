@@ -106,7 +106,7 @@ namespace Server.Mobiles
 
                 SpellHelper.Turn(this, defender);
                 var locPlayerGo = Corpser.GetPoint(defender, this.Direction);
-                if (defender.Map.CanFit(locPlayerGo, locPlayerGo.Z))
+                if (defender != null && defender.Map != null && defender.Map.CanFit(locPlayerGo, locPlayerGo.Z))
                 {
                     this.PlayAttackAnimation();
                     this.MovingParticles(defender, 0x0D3B, 15, 0, false, false, 9502, 4019, 0x160);

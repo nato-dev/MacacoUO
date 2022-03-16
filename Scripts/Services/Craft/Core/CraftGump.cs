@@ -28,10 +28,6 @@ namespace Server.Engines.Craft
             PickResource2
         }
 
-        /*public CraftGump( Mobile from, CraftSystem craftSystem, ITool tool ): this( from, craftSystem, -1, -1, tool, null )
-        {
-        }*/
-
         public CraftGump(Mobile from, CraftSystem craftSystem, ITool tool, object notice)
             : this(from, craftSystem, tool, notice, CraftPage.None)
         {
@@ -79,9 +75,9 @@ namespace Server.Engines.Craft
             else
                 AddHtml(10, 12, 510, 20, craftSystem.GumpTitleString, false, false);
 
-            AddHtml(10, 37, 200, 22, "Categorias", false, false); // <CENTER>CATEGORIES</CENTER>
-            AddHtml(215, 37, 305, 22, "Selecoes", false, false); // <CENTER>SELECTIONS</CENTER>
-            AddHtml(10, 302, 150, 25, "Opcoes", false, false); // <CENTER>NOTICES</CENTER>
+            AddHtml(10, 37, 200, 22, "<CENTER>Categorias</CENTER>", false, false); // <CENTER>CATEGORIES</CENTER>
+            AddHtml(215, 37, 305, 22, "<CENTER>Selecoes</CENTER>", false, false); // <CENTER>SELECTIONS</CENTER>
+            AddHtml(10, 302, 150, 25, "<CENTER>Opcoes</CENTER>", false, false); // <CENTER>NOTICES</CENTER>
 
             AddButton(15, 442, 4017, 4019, 0, GumpButtonType.Reply, 0);
             AddHtml(50, 445, 150, 18, "Sair", false, false); // EXIT

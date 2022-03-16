@@ -487,6 +487,7 @@ namespace Server.Mobiles
             SetStr(400, 550);
             SetHits(400, 500);
             SetDamage(17, 19);
+            SetHits(200);
 
             SetDamageType(ResistanceType.Physical, 50);
             SetDamageType(ResistanceType.Fire, 50);
@@ -500,7 +501,7 @@ namespace Server.Mobiles
             SetSkill(SkillName.MagicResist, 100);
             SetSkill(SkillName.Tactics, 100);
             SetSkill(SkillName.Wrestling, 120);
-            SetSkill(SkillName.Parry, 120);
+            SetSkill(SkillName.Parry, 30);
 
             Fame = 3500;
             Karma = -3500;
@@ -519,7 +520,7 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            this.AddLoot(LootPack.LV4, 2);
+            this.AddLoot(LootPack.LV2, 2);
         }
 
         public override bool CanDoRage { get { return Hits < (HitsMax / 3); } }

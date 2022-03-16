@@ -195,10 +195,10 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
             AddRecipe(index, (int)AlchemyRecipes.Encolhimento);
 
-            index = AddCraft(typeof(AgilityPotion), 1116349, 1044540, 15.0, 65.0, typeof(Bloodmoss), 1044354, 1, 1044362);
+            index = AddCraft(typeof(AgilityPotion), 1116349, 1044540, 15.0, 65.0, typeof(Bloodmoss), 1044354, 2, 1044362);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            index = AddCraft(typeof(GreaterAgilityPotion), 1116349, 1044541, 35.0, 85.0, typeof(Bloodmoss), 1044354, 3, 1044362);
+            index = AddCraft(typeof(GreaterAgilityPotion), 1116349, 1044541, 35.0, 85.0, typeof(Bloodmoss), 1044354, 10, 1044362);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
             AddRecipe(index, (int)AlchemyRecipes.Dex);
 
@@ -212,7 +212,7 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(StrengthPotion), 1116349, 1044546, 25.0, 75.0, typeof(MandrakeRoot), 1044357, 2, 1044365);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            index = AddCraft(typeof(GreaterStrengthPotion), 1116349, 1044547, 45.0, 95.0, typeof(MandrakeRoot), 1044357, 5, 1044365);
+            index = AddCraft(typeof(GreaterStrengthPotion), 1116349, 1044547, 45.0, 95.0, typeof(MandrakeRoot), 1044357, 10, 1044365);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
             AddRecipe(index, (int)AlchemyRecipes.Str);
 
@@ -237,7 +237,7 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(IntelligencePotion), 1116349, new TextDefinition("Poção de Inteligência"), 25, 75, typeof(DaemonBlood), 1044529, 2, "Voce precisa de sangue de demonio");
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            index = AddCraft(typeof(GreaterIntelligencePotion), 1116349, new TextDefinition("Poção de Inteligência Maior"), 45, 95, typeof(DaemonBlood), 1044529, 4, "Voce precisa de sangue de demonio");
+            index = AddCraft(typeof(GreaterIntelligencePotion), 1116349, new TextDefinition("Poção de Inteligência Maior"), 45, 95, typeof(DaemonBlood), 1044529, 10, "Voce precisa de sangue de demonio");
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
             AddRecipe(index, (int)AlchemyRecipes.InteligenciaMaior);
 

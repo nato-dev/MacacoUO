@@ -26,7 +26,7 @@ namespace Server.Items
         {
             get
             {
-                return TimeSpan.FromMinutes(2.0);
+                return TimeSpan.FromMinutes(3.0);
             }
         }
         public override void Serialize(GenericWriter writer)

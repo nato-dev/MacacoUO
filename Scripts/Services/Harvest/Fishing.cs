@@ -137,7 +137,7 @@ namespace Server.Engines.Harvest
         {
             new MutateEntry( 80.0,  80.0,  1865.0,  true, typeof( SpecialFishingNet ) ),
             new MutateEntry( 101,  80.0,  1875.0,  true, typeof( TreasureMap ) ),
-            new MutateEntry( 105.0,  80.0,  750.0,  true, typeof( MessageInABottle ) ),
+            new MutateEntry( 105.0,  80.0,  950.0,  true, typeof( MessageInABottle ) ),
             new MutateEntry( 80.0,  80.0,  4080.0,  true, typeof( BigFish ) ),
             new MutateEntry( 0.0, 125.0, -2375.0, false, typeof( PrizedFish ), typeof( WondrousFish ), typeof( TrulyRareFish ), typeof( PeculiarFish ) ),
             new MutateEntry( 0.0, 125.0,  -420.0, false, typeof( Boots ), typeof( Shoes ), typeof( Sandals ), typeof( ThighBoots ) ),
@@ -334,11 +334,11 @@ namespace Server.Engines.Harvest
                 else
                     level = 1;
 
-                return new TreasureMap(level, Map.Felucca);
+                return new TreasureMap(level, Map.Trammel);
             }
             else if (type == typeof(MessageInABottle))
             {
-                return new MessageInABottle(Map.Felucca);
+                return new MessageInABottle(Map.Trammel);
             }
             else if (type == typeof(WhitePearl))
             {
@@ -583,6 +583,20 @@ namespace Server.Engines.Harvest
 
         public override bool Give(Mobile m, Item item, bool placeAtFeet)
         {
+            if (item is MessageInABottle)
+            {
+                if (m.IsCooldown("sos"))
+                    return false;
+                m.SetCooldown("sos", TimeSpan.FromHours(4));
+            }
+
+            if (item is TreasureMap)
+            {
+                if (m.IsCooldown("mapa"))
+                    return false;
+                m.SetCooldown("mapa", TimeSpan.FromHours(4));
+            }
+
             if (item is TreasureMap || item is MessageInABottle || item is SpecialFishingNet)
             {
                 BaseCreature serp;

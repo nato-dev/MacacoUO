@@ -220,7 +220,7 @@ namespace Server.Mobiles
 
         public override void AlterDamageScalarFrom(Mobile caster, ref double scalar)
         {
-            if (0.1 >= Utility.RandomDouble())
+            if (0.01 >= Utility.RandomDouble())
                 this.SpawnPixies(caster);
         }
 
@@ -237,7 +237,7 @@ namespace Server.Mobiles
         {
             base.OnGotMeleeAttack(attacker);
 
-            if (0.1 >= Utility.RandomDouble())
+            if (0.01 >= Utility.RandomDouble())
                 this.SpawnPixies(attacker);
         }
 

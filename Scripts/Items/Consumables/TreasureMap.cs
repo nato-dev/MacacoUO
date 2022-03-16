@@ -328,6 +328,7 @@ namespace Server.Items
 
         public Map GetRandomMap()
         {
+            /*
             switch (Utility.Random(8))
             {
                 default:
@@ -340,6 +341,8 @@ namespace Server.Items
                 case 6:
                 case 7: return Map.Tokuno;
             }
+            */
+            return Map.Trammel;
         }
 
         public static Point2D GetRandomLocation(Map map)
@@ -826,7 +829,7 @@ namespace Server.Items
             }
             else if (m_Decoder != from && !HasRequiredSkill(from))
             {
-                from.SendLocalizedMessage(503031); // You did not decode this map and have no clue where to look for the treasure.
+                from.SendLocalizedMessage("Voce nao tem habilidade suficiente para entender isto"); // You did not decode this map and have no clue where to look for the treasure.
                 return;
             }
             else

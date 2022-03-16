@@ -1,13 +1,30 @@
+using Server.Engines.Craft;
 using System;
 
 namespace Server.Items
 {
-    public class Arrow : Item, ICommodity
+    public class Arrow : Item, ICommodity, ICraftable
     {
         [Constructable]
         public Arrow()
             : this(1)
         {
+        }
+
+        public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
+        {
+
+            if (from.Skills[SkillName.Fletching].Value >= 100)
+            {
+                this.Amount += 1;
+            }
+
+            if (from.Skills[SkillName.Fletching].Value >= 120)
+            {
+                this.Amount += 1;
+            }
+
+            return 0;
         }
 
         [Constructable]

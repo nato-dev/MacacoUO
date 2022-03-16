@@ -138,7 +138,7 @@ namespace Server.Items
 
         public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
         {
-            this.Amount += 9;
+            this.Amount += (int)(from.Skills[SkillName.Tailoring].Value / 10);
             if (from.Skills[SkillName.Tailoring].Value >= 100)
             {
                 this.Amount += 10;

@@ -917,11 +917,8 @@ namespace Server.Items
             if (m_Crafter != null)
                 list.Add("Criado por " + m_Crafter.TitleName); // crafted by ~1_NAME~
 
-
             if (m_GemType != GemType.None)
                 list.Add("Combine com 3 joias (bracelete anel brinco) da mesma pedra e skill para bonus");
-            else
-                list.Add("Joia sem Pedra Preciosa");
 
             if (m_AosSkillBonuses.Skill_1_Value > 3)
             {

@@ -2826,18 +2826,24 @@ namespace Server.Mobiles
                 damage += damage / m_TempDamageBonus;
 
             // pet batendo em monstro
-            if (ControlMaster != null && ControlMaster.Player && !to.Player)
+            if (ControlMaster != null && ControlMaster.Player)
             {
-                if (StuckMenu.IsInSecondAgeArea(this))
-                    damage = (int)(damage * 0.5);
-                else
-                    damage = (int)(damage * 0.9);
-
-                var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
-                if (nivel > 0)
+                if(!to.Player)
                 {
-                    var redux = nivel / 25; // max 50%
-                    damage += damage * redux;
+                    if (StuckMenu.IsInSecondAgeArea(this))
+                        damage = (int)(damage * 0.5);
+                    else
+                        damage = (int)(damage * 0.9);
+
+                    var nivel = ColarElemental.GetNivel(ControlMaster, ElementoPvM.Terra);
+                    if (nivel > 0)
+                    {
+                        var redux = nivel / 25; // max 50%
+                        damage += damage * redux;
+                    }
+                } else
+                {
+                    damage = 1; // pets pvp batem 1
                 }
             }
 

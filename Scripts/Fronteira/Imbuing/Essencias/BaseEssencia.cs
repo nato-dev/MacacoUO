@@ -97,7 +97,6 @@ namespace Server.Items
             }
             this.Consume(QTD);
             var colar = new ColarElemental(this.Elemento);
-            colar.OwnerName = from.Name;
             from.PlaceInBackpack(colar);
             from.SendMessage("Voce criou um colar elemental elemental");
             SkillCheck.Gain(from, from.Skills.Imbuing, 5);

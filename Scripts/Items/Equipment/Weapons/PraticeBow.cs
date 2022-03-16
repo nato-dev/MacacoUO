@@ -114,7 +114,7 @@ namespace Server.Items
         {
             get
             {
-                return 42;
+                return 40;
             }
         }
         public override int DefMaxRange
