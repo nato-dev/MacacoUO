@@ -197,6 +197,11 @@ namespace Server.Items
 
                 from.CloseGump(typeof(MessageGump));
                 from.SendGump(new MessageGump(entry, m_TargetMap, m_TargetLocation));
+                if(from.Backpack.FindItemByType<Sextant>()==null && !from.IsCooldown("dicasex"))
+                {
+                    from.SendMessage(78, "Voce poderia usar um Sextante para encontrar o local da garrafa");
+                    from.SetCooldown("dicasex", TimeSpan.FromMinutes(10));
+                }
             }
             else
             {

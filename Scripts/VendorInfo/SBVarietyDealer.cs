@@ -44,8 +44,8 @@ namespace Server.Mobiles
                 Add(new GenericBuyInfo(typeof(LesserPoisonPotion), 15, 10, 0xF0A, 0, true));
                 Add(new GenericBuyInfo(typeof(LesserExplosionPotion), 21, 10, 0xF0D, 0, true));
 
-                Add(new GenericBuyInfo(typeof(Bolt), 15, Utility.Random(30, 60), 0x1BFB, 0, true));
-                Add(new GenericBuyInfo(typeof(Arrow), 10, Utility.Random(30, 60), 0xF3F, 0, true));
+                Add(new GenericBuyInfo(typeof(Bolt), 6, Utility.Random(30, 60), 0x1BFB, 0, true));
+                Add(new GenericBuyInfo(typeof(Arrow), 4, Utility.Random(30, 60), 0xF3F, 0, true));
 
                 Add(new GenericBuyInfo(typeof(BreadLoaf), 7, 10, 0x103B, 0, true));
                 Add(new GenericBuyInfo(typeof(Backpack), 15, 20, 0x9B2, 0));

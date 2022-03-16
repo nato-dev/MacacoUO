@@ -37,9 +37,9 @@ namespace Server.Mobiles
                 Add(new GenericBuyInfo(typeof(RepeatingCrossbow), 45, 20, 0x26C3, 0));
                 Add(new GenericBuyInfo(typeof(CompositeBow), 45, 20, 0x26C2, 0));
 
-                Add(new GenericBuyInfo(typeof(Bolt), 10, 999, 0x1BFB, 0, true));
+                Add(new GenericBuyInfo(typeof(Bolt), 6, 999, 0x1BFB, 0, true));
                 Add(new GenericBuyInfo(typeof(Bow), 40, 20, 0x13B2, 0));
-                Add(new GenericBuyInfo(typeof(Arrow), 8, 999, 0xF3F, 0, true));
+                Add(new GenericBuyInfo(typeof(Arrow), 4, 999, 0xF3F, 0, true));
                 Add(new GenericBuyInfo(typeof(Feather), 2, Utility.Random(30, 150), 0x1BD1, 0, true));
                 Add(new GenericBuyInfo(typeof(Shaft), 3, Utility.Random(30, 150), 0x1BD4, 0, true));
             }
