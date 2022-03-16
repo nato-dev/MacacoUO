@@ -1,4 +1,13 @@
+using Server.Items;
+using Server.Misc.Custom;
 using Server.Targeting;
+using Server.Mobiles;
+using Server.Network;
+using Server.Targeting;
+using Server.Spells.Ninjitsu;
+using System.IO;
+using System;
+using System.Collections.Generic;
 
 namespace Server.Ziden
 {
@@ -18,7 +27,7 @@ namespace Server.Ziden
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
-            list.Add("Uma bola feita de neve");
+            list.Add("Você pode congelar monstros com isso");
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -29,10 +38,6 @@ namespace Server.Ziden
             if (!IsChildOf(from.Backpack))
             {
                 from.SendMessage("Precisa estar em sua mochila"); // The BolaDeNeve must be in your pack to use it.
-            }
-            else if (from.Target is IT)
-            {
-                from.OverheadMessage("* pegou bola de neve *");
             }
 
         }
@@ -49,9 +54,12 @@ namespace Server.Ziden
 
             protected override void OnTarget(Mobile from, object targeted)
             {
+                var target = targeted as Mobile;
+
+
                 if (!(targeted is Mobile))
                 {
-                    from.SendMessage("Isto nao eh um Mobile");
+                    from.SendMessage("Você não pode jogar ai");
                     return;
                 }
 
@@ -61,12 +69,14 @@ namespace Server.Ziden
 
                     if (!this.BolaDeNeve.IsChildOf(from.Backpack))
                     {
-                        from.OverheadMessage("* A Bola De Neve deve estar na sua mochila *"); // The bola must be in your pack to use it.
+                        from.PrivateOverheadMessage("Deve estar na mochila"); // The bola must be in your pack to use it.
                     }
+
                     else if (from == to)
                     {
                         from.SendMessage("Você não pode jogar em você mesmo"); // You can't throw this at yourself.
                     }
+
                     else
                     {
                         Item one = from.FindItemOnLayer(Layer.OneHanded);
@@ -78,15 +88,43 @@ namespace Server.Ziden
                         if (two != null)
                             from.AddToBackpack(two);
 
-                        var target = targeted as Mobile;
+                        if (!(from.IsCooldown("BolaDeNeve")))
+                        {
+                            if (target is BaseCreature && !target.IsCooldown("BolaDeNeve") || target.Player)
+                            {
+                                BolaDeNeve.Consume();
 
-                        BolaDeNeve.Consume();
+                                from.Animate(AnimationType.Attack, 4);
+                                from.PlaySound(0x13C);
+                                from.OverheadMessage("* Jogou *");
+                                from.MovingEffect(target, 0x3729, 10, 0, false, false);
+                                from.SetCooldown("BolaDeNeve", TimeSpan.FromSeconds(3));
 
-                        from.Animate(AnimationType.Attack, 4);
-                        from.PlaySound(0x13C);
-                        from.OverheadMessage("* jogou *");
-                        from.MovingEffect(target, 0x3729, 10, 0, false, false);
+                                if (target.Player)
+                                {
+                                    target.SendMessage("Você não pode congelar Players");
+                                }
 
+                                else if (target is BaseCreature && !target.IsCooldown("BolaDeNeve"))
+                                {
+                                    target.Paralyze(TimeSpan.FromSeconds(3));
+                                    target.SetCooldown("BolaDeNeve", TimeSpan.FromSeconds(12));
+                                    target.OverheadMessage("* Urghhhh *");
+                                }
+                            }
+
+                            else if (target.IsCooldown("BolaDeNeve"))
+                            {
+                                from.SendMessage("Aguarde alguns segundos");
+                                return;
+                            }
+                        }
+
+                        else if (from.IsCooldown("BolaDeNeve"))
+                        {
+                            from.SendMessage("Aguarde alguns segundos");
+                            return;
+                        }
                     }
                 }
             }
