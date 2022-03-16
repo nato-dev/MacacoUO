@@ -45,6 +45,7 @@ namespace Server.Items
 
             list.Add("Acumulado: {0} moedas", m_GamblePot);
             list.Add("Apostas: Apenas 250 moedas de ouro");
+            list.Add("Chance de ganhar: 1 em 1200");
         }
 
         public override void OnSingleClick(Mobile from)

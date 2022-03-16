@@ -104,7 +104,7 @@ namespace Server.Engines.Harvest
             {
                     new BonusHarvestResource(0, 97.0, null, null), //set to same chance as mining ml gems
 			        new BonusHarvestResource(80.0, 2.0, 1113764, typeof(DelicateScales)),
-                    new BonusHarvestResource(80.0, 1.0, 1072597, typeof(WhitePearl))
+                    new BonusHarvestResource(80.0, 1.0, 1072597, typeof(BlackPearl))
             };
 
             this.m_Definition = fish;
@@ -340,9 +340,9 @@ namespace Server.Engines.Harvest
             {
                 return new MessageInABottle(Map.Trammel);
             }
-            else if (type == typeof(WhitePearl))
+            else if (type == typeof(BlackPearl))
             {
-                return new WhitePearl();
+                return new BlackPearl(50);
             }
 
             Container pack = from.Backpack;
