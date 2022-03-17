@@ -165,6 +165,12 @@ namespace Server.SkillHandlers
                 {
                     Mobile targ = (Mobile)target;
 
+                    if(targ==from)
+                    {
+                        from.SendMessage("Voce nao pode fazer isto em si mesmo");
+                        return;
+                    }
+
                     if (
                         (targ is BaseCreature && (((BaseCreature)targ).BardImmune || !from.CanBeHarmful(targ, false)) &&
                          ((BaseCreature)targ).ControlMaster != from))

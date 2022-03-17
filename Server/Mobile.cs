@@ -2340,7 +2340,7 @@ namespace Server
             private readonly Mobile m_Mobile;
 
             public ExpireCombatantTimer(Mobile m)
-                : base(TimeSpan.FromMinutes(10.0))
+                : base(TimeSpan.FromMinutes(1))
             {
                 Priority = TimerPriority.FiveSeconds;
                 m_Mobile = m;

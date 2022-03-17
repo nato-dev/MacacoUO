@@ -484,8 +484,10 @@ namespace Server.Items
                 Shard.Debug("Heal " + healing + " anat " + anatomy);
             }
 
+            bool vet = false;
             if (m_Patient is BaseCreature && !(m_Patient is BaseHire))
             {
+                vet = true;
                 healing = m_Healer.Skills[SkillName.Veterinary].Value;
                 anatomy = (m_Healer.Skills[SkillName.AnimalLore].Value * 0.8) + (m_Healer.Skills[SkillName.Healing].Value + 0.2);
             }
@@ -496,6 +498,9 @@ namespace Server.Items
             max = (anatomy / 6.0) + (healing / 3.0) + 10.0;
 
             double toHeal = (min + (Utility.RandomDouble() * (max - min))) * 0.8;
+
+            if (vet && m_Healer.Skills[SkillName.Veterinary].Value > 100)
+                toHeal += 20;
 
             if (this is EnhancedBandage)
                 toHeal += 5;
@@ -511,9 +516,17 @@ namespace Server.Items
                 toHeal += m_Patient.HitsMax / 170;
                 if(this is EnhancedBandage)
                     toHeal += m_Patient.HitsMax / 10;
+
+                if (Shard.DebugEnabled)
+                    Shard.Debug("Bonus Enhanced: " +(this is EnhancedBandage), m_Patient);
+
+                toHeal -= m_Slips * SLIP_MULT * 3;
+            } else
+            {
+                toHeal -= m_Slips * SLIP_MULT;
             }
 
-            toHeal -= m_Slips * SLIP_MULT;
+           
             if (toHeal < 5)
                 toHeal = 5;
             if (Shard.DebugEnabled)
