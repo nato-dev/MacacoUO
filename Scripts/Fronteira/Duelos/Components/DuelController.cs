@@ -15,10 +15,10 @@ namespace Server.Dueling
 {
     public class DuelController
     {
-        private int _MaxDistance = 30;
+        private int _MaxDistance = 60;
         private int _DuelLengthInSeconds = 1800;
 
-        private static bool _Enabled = false;
+        private static bool _Enabled = true;
 
         [CommandProperty(AccessLevel.Administrator)]
         public static bool Enabled { get { return _Enabled; } set { _Enabled = value; } }
@@ -51,9 +51,9 @@ namespace Server.Dueling
             EventSink.Movement += new MovementEventHandler( EventSink_Movement );
             EventSink.WorldSave += new WorldSaveEventHandler( EventSink_WorldSave );
 
-            //PlayerMobile.AllowBeneficialHandler = new AllowBeneficialHandler( PlayerMobile_AllowBenificial );
-            //PlayerMobile.AllowHarmfulHandler = new AllowHarmfulHandler( PlayerMobile_AllowHarmful );
-            //Notoriety.Handler = new NotorietyHandler( Notoriety_HandleNotoriety );
+            PlayerMobile.AllowBeneficialHandler = new AllowBeneficialHandler( PlayerMobile_AllowBenificial );
+            PlayerMobile.AllowHarmfulHandler = new AllowHarmfulHandler( PlayerMobile_AllowHarmful );
+            Notoriety.Handler = new NotorietyHandler( Notoriety_HandleNotoriety );
             
             CommandSystem.Register( "OnsiteConfig", AccessLevel.Administrator, new CommandEventHandler( OnCommand_OnsiteConfig ) );
             CommandSystem.Register( "Duel", AccessLevel.Player, new CommandEventHandler( OnCommand_Duel ) );
@@ -100,7 +100,7 @@ namespace Server.Dueling
 
             if( m.Criminal )
             {
-                m.SendMessage( "You may not start a duel while flagged criminal." );
+                m.SendMessage( "Voce nao pode duelar criminoso." );
                 return false;
             }
             /*else if( _DeclineDuelList.Contains( m ) )
@@ -110,22 +110,22 @@ namespace Server.Dueling
             }*/
             else if( Spells.SpellHelper.CheckCombat( m ) )
             {
-                m.SendMessage( "You cannot start a duel while in combat." );
+                m.SendMessage( "Esta em combate." );
                 return false;
             }           
             else if( IsInDuel( m, out duel) )
             {
-                m.SendMessage( "You are currently in a duel." );
+                m.SendMessage( "Ja esta duelando." );
                 return false;
             }
             else if( m.Hits != m.HitsMax )
             {
-                m.SendMessage( "Try again when you have full health." );
+                m.SendMessage( "Voce precisa estar com a vida cheia." );
                 return false;
             }
             else if( Factions.Sigil.ExistsOn( m ) )
             {
-                m.SendMessage( "You may not challenge someone while you have a faction sigil." );
+                m.SendMessage( "Nao pode fazer isso com um sigilo." );
                 return false;
             }
 
@@ -305,8 +305,9 @@ namespace Server.Dueling
                 return ConsoleColor.Blue;
         }
 
-        private static int Notoriety_HandleNotoriety( Mobile from, Mobile target )
+        private static int Notoriety_HandleNotoriety( Mobile from, IDamageable alvo )
         {
+            var target = alvo as Mobile;
             if( from == null || target == null )
                 return NotorietyHandlers.MobileNotoriety( from, target );
 
@@ -350,8 +351,9 @@ namespace Server.Dueling
                 return NotorietyHandlers.MobileNotoriety( from, target );
         }
 
-        private static bool PlayerMobile_AllowHarmful( Mobile from, Mobile target )
+        private static bool PlayerMobile_AllowHarmful( Mobile from, IDamageable alvo)
         {
+            var target = alvo as Mobile;
             if( from == null || target == null )
                return NotorietyHandlers.Mobile_AllowHarmful( from, target ); ;
 
@@ -373,9 +375,10 @@ namespace Server.Dueling
             return NotorietyHandlers.Mobile_AllowHarmful( from, target );
         }
 
-        private static bool PlayerMobile_AllowBenificial( Mobile from, Mobile target )
+        private static bool PlayerMobile_AllowBenificial( Mobile from, IDamageable alvo )
         {
-            if( from == null || target == null )
+            var target = alvo as Mobile;
+            if ( from == null || target == null )
                 return NotorietyHandlers.Mobile_AllowBeneficial( from, target ); ;
 
             Duel fromDuel, targetDuel;

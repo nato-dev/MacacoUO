@@ -14,6 +14,8 @@ namespace Server.Mobiles
 
         public TimeSpan ManaDrainInterval { get { return TimeSpan.FromSeconds(Utility.RandomMinMax(15, 120)); } }
 
+        public override int BonusExp => 500;
+
         [Constructable]
         public CoraTheSorceress() : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.1)
         {
@@ -290,10 +292,10 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             Mobile m = DemonKnight.FindRandomPlayer(this);
-
-            for (var x = 0; x < 15; x++)
+        
+            for (var x = 0; x < 10; x++)
             {
-                SorteiaItem(ElementoUtils.GetRandomPedraSuperior());
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(3));
             }
             SorteiaItem(Decos.RandomDeco());
 
@@ -321,6 +323,13 @@ namespace Server.Mobiles
             }
 
         }
+
+        public override bool OnBeforeDeath()
+        {
+            GolemMecanico.JorraOuro(this.Location, this.Map, 550);
+            return base.OnBeforeDeath();
+        }
+
 
         public override void OnKilledBy(Mobile mob)
         {

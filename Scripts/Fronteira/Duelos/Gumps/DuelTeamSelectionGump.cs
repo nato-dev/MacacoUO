@@ -94,7 +94,7 @@ namespace Server.Dueling
             {
                 case Buttons.closeBtn:
                     {
-                        _Duel.Broadcast( "The duel was canceled" );
+                        _Duel.Broadcast( "Duelo cancelado" );
                         DuelController.DestroyDuel( _Duel );
                         break;
                     }

@@ -1,7 +1,7 @@
 #region References
 using System;
 using System.Collections.Generic;
-
+using Server.Dueling;
 using Server.Engines.ArenaSystem;
 using Server.Engines.PartySystem;
 using Server.Engines.Quests;
@@ -144,7 +144,11 @@ namespace Server.Misc
             }
 
             if (defender != null && defender.Region != null && defender.Region.IsPartOf("New Haven") && attacker != null && attacker.Player)
-                return false;
+            {
+                if (!DuelController.IsInDuel(defender));
+                    return false;
+            }
+                
 
             // Factions vs Factions
             if (Settings.Enabled)
@@ -401,12 +405,16 @@ namespace Server.Misc
             }
         }
 
+  
+
         public static int MobileNotoriety(Mobile source, IDamageable damageable)
         {
             if (damageable is PublicMoongate)
             {
                 return Notoriety.Innocent;
             }
+
+
 
             var target = damageable as Mobile;
 

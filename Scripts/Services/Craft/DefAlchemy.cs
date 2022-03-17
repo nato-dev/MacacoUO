@@ -314,7 +314,9 @@ namespace Server.Engines.Craft
             AddRecipe(index, (int)AlchemyRecipes.Expl);
 
             index = AddCraft(typeof(GreaterExplosionPotion), 1116351, 1044557, 65.0, 115.0, typeof(SulfurousAsh), 1044359, 10, 1044367);
+            AddRes(index, typeof(ZoogiFungus), "Fungo de Formiga", 1, "Voce precisa de 1 Fungo de Formiga");
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
+
             AddRecipe(index, (int)AlchemyRecipes.Expl2);
 
             index = AddCraft(typeof(ConflagrationPotion), 1116351, 1072096, 70.0, 110.0, typeof(Bottle), 1044529, 1, 500315);

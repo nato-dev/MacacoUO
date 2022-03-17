@@ -155,7 +155,7 @@ namespace Server.Dueling
             m.Combatant = null;
             m.InvalidateProperties();
 
-            m.SendMessage( "The duel has ended." );
+            m.SendMessage( "O duelo terminou." );
         }
 
         internal void Begin()
@@ -236,7 +236,7 @@ namespace Server.Dueling
 
                 c.Delete();
 
-                from.SendMessage( 1161, "The contents of your corpse have been safely placed into your backpack" );
+                from.SendMessage( 1161, "Voce pegou seus pertences" );
             }
         }
 
@@ -278,7 +278,7 @@ namespace Server.Dueling
                 {
                     _Statemate = true;
 
-                    Broadcast( "It's a draw!!!" );
+                    Broadcast( "Empate !!!" );
                 }
             }
 
@@ -289,7 +289,7 @@ namespace Server.Dueling
         {
             if( _Contestants.Count == _Contestants.Capacity )
             {
-                Broadcast( "Please wait while the duel creator sets the teams." );
+                Broadcast( "Aguarde o criador do duelo setar o time." );
                 _Creator.SendGump( new DuelTeamSelectionGump( this ) );
             }
 

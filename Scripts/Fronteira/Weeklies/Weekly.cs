@@ -126,12 +126,10 @@ namespace Server.Fronteira.Weeklies
             }
         }
 
-        public Weekly()
-            : base()
+        private void Check()
         {
             var semana = GetSemana();
-           
-            if(semana != SaveWeekly.SEMANA_ATUAL)
+            if (semana != SaveWeekly.SEMANA_ATUAL)
             {
                 Shard.Debug("!!!! Novos desafios semanais sendo gerados !!!");
                 var sorteado = Possiveis[Utility.Random(Possiveis.Length)];
@@ -140,13 +138,19 @@ namespace Server.Fronteira.Weeklies
                 SaveWeekly.Kills.Add(sorteado[0]);
                 SaveWeekly.SEMANA_ATUAL = semana;
                 SaveWeekly.JaCompletou.Clear();
-                this.Objectives.Clear();
                 Anuncio.Anuncia($"Semana {semana}: Desafio Semanal Recarregado !!");
                 foreach (var i in SaveWeekly.Kills)
                     DiscordBot.SendMessage($":star: Matar {i.qtd} {i.n}");
             }
+        }
 
-            foreach(var obj in SaveWeekly.Kills)
+        public Weekly()
+            : base()
+        {
+
+            Check();
+            this.Objectives.Clear();
+            foreach (var obj in SaveWeekly.Kills)
             {
                 this.AddObjective(obj.GetObj());
             }
@@ -167,7 +171,8 @@ namespace Server.Fronteira.Weeklies
 
         public override bool CanOffer()
         {
-            if(SaveWeekly.JaCompletou.Contains(this.Owner.Serial.Value))
+            Check();
+            if (SaveWeekly.JaCompletou.Contains(this.Owner.Serial.Value))
             {
                 this.Owner.SendMessage($"Voce ja completou o desafio semanal. Aguarde {DiasFaltam()} dias.");
                 return false;
@@ -180,6 +185,7 @@ namespace Server.Fronteira.Weeklies
             PointsSystem.Exp.AwardPoints(this.Owner, 2500);
             this.Owner.PlaySound(this.CompleteSound);
             SaveWeekly.JaCompletou.Add(this.Owner.Serial.Value);
+            DiscordBot.SendMessage($":star: {Owner.Name} completou o desafio semanal !");
         }
 
         public override void Serialize(GenericWriter writer)

@@ -225,31 +225,31 @@ namespace Server
                         damage += 2;
                     }
                 }
-
-                // PACTO DE SANGUE
-                Mobile necromanteLinkado = BloodOathSpell.GetBloodOath(damageDealer);
-                if (necromanteLinkado != null)
-                {
-                    // necro tomando o dano
-                    if (necromanteLinkado == m)
-                    {
-                        damage = (int)Math.Round(damage * 1.25);
-
-                        // Alvo toma um pouco tb
-                        damageDealer.SendMessage("O pacto de sangue do necromante causa o dano em voce tambem");
-                        AOS.Damage(damageDealer, damage / 2, DamageType.Spell, m);
-                    }
-                }
-
+                
                 // PRESSAGIO
-                if (EvilOmenSpell.TryEndEffect(m))
+                if (m != null && EvilOmenSpell.TryEndEffect(m))
                 {
                     damage = (int)(damage * 1.25);
                 }
 
-                // WRAITH FORM
                 if (damageDealer != null)
                 {
+                    // PACTO DE SANGUE
+                    Mobile necromanteLinkado = BloodOathSpell.GetBloodOath(damageDealer);
+                    if (necromanteLinkado != null)
+                    {
+                        // necro tomando o dano
+                        if (necromanteLinkado == m)
+                        {
+                            damage = (int)Math.Round(damage * 1.25);
+
+                            // Alvo toma um pouco tb
+                            damageDealer.SendMessage("O pacto de sangue do necromante causa o dano em voce tambem");
+                            AOS.Damage(damageDealer, damage / 2, DamageType.Spell, m);
+                        }
+                    }
+
+                    // WRAITH FORM
                     DoLeech(damage, damageDealer, m);
                 }
 

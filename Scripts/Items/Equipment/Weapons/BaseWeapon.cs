@@ -1836,16 +1836,20 @@ namespace Server.Items
                 var defender = damageable as Mobile;
                 if (attacker != null && defender != null && defender.Player)
                 {
-                    if(defender.Weapon.MaxRange <= defender.GetDistance(attacker))
+                    var bc = attacker as BaseCreature;
+                    if(bc == null || bc.ControlMaster == null || !bc.IsControlled())
                     {
-                        if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 18))
+                        if (defender.Weapon.MaxRange <= defender.GetDistance(attacker))
                         {
-                            if(Shard.DebugEnabled)
+                            if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 18))
                             {
-                                Shard.Debug("Trocando alvo", defender);
+                                if (Shard.DebugEnabled)
+                                {
+                                    Shard.Debug("Trocando alvo", defender);
+                                }
+                                defender.AggressiveAction(attacker, false);
+                                defender.Combatant = attacker;
                             }
-                            defender.AggressiveAction(attacker, false);
-                            defender.Combatant = attacker;
                         }
                     }
                 }

@@ -70,7 +70,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            if (0.1 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
+            if (0.2 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
                 c.DropItem(new CristalElemental());
         }
 
@@ -304,7 +304,7 @@ namespace Server.Mobiles
             if (Wall != null)
                 Wall.OnTrollKilled();
 
-            if (0.20 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
+            if (0.60 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
                 c.DropItem(new CristalElemental());
         }
 
@@ -384,7 +384,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            if (0.2 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
+            if (0.4 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
                 c.DropItem(new CristalElemental());
         }
 
@@ -445,7 +445,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            if (0.2 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
+            if (0.4 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
                 c.DropItem(new CristalElemental());
         }
 
@@ -513,7 +513,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            if (0.2 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
+            if (0.4 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
                 c.DropItem(new CristalElemental());
         }
 
@@ -583,7 +583,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            if (0.20 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
+            if (0.40 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
                 c.DropItem(new CristalElemental());
         }
 

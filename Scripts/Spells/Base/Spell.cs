@@ -325,8 +325,19 @@ namespace Server.Spells
                     if (focus > 12)
                         focus = 12;
 
-                    focus += m_Caster.Skills[SkillName.Focus].Value >= 50 ? m_Caster.Skills[SkillName.Focus].Fixed / 200 : 0;
-
+                    if(m_Caster.Skills[SkillName.Focus].Value >= 50)
+                    {
+                        focus += (int)(m_Caster.Skills[SkillName.Focus].Fixed / 400d);
+                        focus += (int)(m_Caster.Skills[SkillName.Meditation].Fixed / 400d);
+                    } else
+                    {
+                       if(!m_Caster.IsCooldown("dicafocus"))
+                        {
+                            m_Caster.SetCooldown("dicafocus");
+                            m_Caster.SendMessage(78, "Tendo pelo menos 50 de focus vc pode diminuir suas chances de tomar disturb.");
+                        }
+                    }
+                   
                     if (focus > 0 && focus > Utility.Random(100))
                     {
                         disturb = false;
@@ -443,7 +454,7 @@ namespace Server.Spells
                     return true;
                 }
 
-                if(Caster.Skills.Focus.Value < 90)
+                if(Caster.Skills.Focus.Value < 80)
                 {
                     Disturb(DisturbType.EquipRequest);
                     if (!Caster.IsCooldown("dicasp"))

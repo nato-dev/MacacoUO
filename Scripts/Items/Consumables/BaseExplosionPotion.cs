@@ -8,6 +8,7 @@ using Server.Spells;
 using Server.Targeting;
 using System.Collections.Generic;
 using Server.Mobiles;
+using Server.Dueling;
 #endregion
 
 namespace Server.Items
@@ -72,7 +73,7 @@ namespace Server.Items
 
         public static bool Throwing(Mobile from)
         {
-            if (from.Region.IsPartOf("New Haven"))
+            if (from.Region.IsPartOf("New Haven") && !DuelController.IsInDuel(from))
             {
                 from.SendMessage("Voce nao pode fazer isto aqui");
                 return false;

@@ -288,12 +288,14 @@ namespace Server.Items
         public ThighBoots()
             : this(0)
         {
+            Name = "Botas Apertadas";
         }
 
         [Constructable]
         public ThighBoots(int hue)
             : base(0x1711, hue)
         {
+            Name = "Botas Apertadas";
             this.Weight = 4.0;
         }
 

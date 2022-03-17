@@ -14,9 +14,9 @@ namespace Server.Commands
         {
             var pl = t.Mobile as PlayerMobile;
             t.Mobile.SendMessage(0x00FE, $"Assinatos recentes: (Shorts) { t.Mobile.ShortTermMurders }");
-            t.Mobile.SendMessage(0x00FE, $"Assassinatos Em Aberto: (Longs) {0}", t.Mobile.Kills);
+            t.Mobile.SendMessage(0x00FE, $"Assassinatos Em Aberto: (Longs) {t.Mobile.Kills}");
             if(t.Mobile.Kills > 0)
-                t.Mobile.SendMessage(0x00FE, $"Proximo decay de long: {0} horas", (pl.m_LongTermElapse - pl.GameTime).TotalHours);
+                t.Mobile.SendMessage(0x00FE, $"Proximo decay de long: { (pl.m_LongTermElapse - pl.GameTime).TotalHours} horas");
         }
     }
 }
