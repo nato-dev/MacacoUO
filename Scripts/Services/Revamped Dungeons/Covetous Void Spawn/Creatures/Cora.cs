@@ -14,7 +14,7 @@ namespace Server.Mobiles
 
         public TimeSpan ManaDrainInterval { get { return TimeSpan.FromSeconds(Utility.RandomMinMax(15, 120)); } }
 
-        public override int BonusExp => 500;
+        public override int BonusExp => 900;
 
         [Constructable]
         public CoraTheSorceress() : base(AIType.AI_Mage, FightMode.Closest, 10, 1, 0.2, 0.1)
@@ -81,8 +81,6 @@ namespace Server.Mobiles
             AddLoot(LootPack.LV7, 1);
             this.AddLoot(LootPack.Gems, 30);
         }
-
-        public virtual int BonusExp => 900;
 
         private void AddAndEquip(Item item, int hue = 0)
         {
