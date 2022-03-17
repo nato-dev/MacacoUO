@@ -128,6 +128,9 @@ namespace Server.Fronteira.Weeklies
 
         private void Check()
         {
+            if (!SaveWeekly.Carregado)
+                SaveWeekly.OnLoad();
+
             var semana = GetSemana();
             if (semana != SaveWeekly.SEMANA_ATUAL)
             {
