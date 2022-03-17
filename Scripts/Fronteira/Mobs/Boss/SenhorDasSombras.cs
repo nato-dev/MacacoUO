@@ -15,7 +15,7 @@ namespace Server.Mobiles
     public class SenhorDasSombras : BaseCreature
     {
         public override bool IsBoss => true;
-        public virtual int BonusExp => 500;
+        public override int BonusExp => 1000;
 
         [Constructable]
         public SenhorDasSombras()
@@ -59,7 +59,7 @@ namespace Server.Mobiles
             Fame = 26000;
             Karma = -26000;
 
-            VirtualArmor = 40;
+            VirtualArmor = 0;
 
             Tamable = false;
 
@@ -71,7 +71,7 @@ namespace Server.Mobiles
         public SenhorDasSombras(Serial serial)
             : base(serial)
         {
-        }
+        }               
 
         public override bool IgnoreYoungProtection
         {
@@ -108,6 +108,14 @@ namespace Server.Mobiles
                 return Poison.Lesser;
             }
         }
+
+        public override void AlterMeleeDamageFrom(Mobile from, ref int damage)
+        {
+            base.AlterMeleeDamageFrom(from, ref damage);
+            if (from is BaseCreature)
+                damage /= 3;
+        }
+
         public override int GetIdleSound() { return 0x47F; }
         public override int GetAngerSound() { return 0x482; }
         public override int GetDeathSound() { return 0x167; }
@@ -116,20 +124,23 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV6, 3);         
+            AddLoot(LootPack.LV6, 3);          
 
         }
 
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
+            c.DropItem(new Gold(2000));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(new TintaSombras());
             SorteiaItem(new PergaminhoCarregamento());
-            SorteiaItem(new SkillBook(2));            
+            SorteiaItem(new SkillBook());
+            SorteiaItem(new SkillBook());
             SorteiaItem(new TemplateDeed());
             SorteiaItem(new LivroAntigo());
+            SorteiaItem(new TreasureMap(7, Map));
             SorteiaItem(Decos.RandomDeco());
             SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
             GolemMecanico.JorraOuro(c.Location, c.Map, 550);
@@ -148,9 +159,9 @@ namespace Server.Mobiles
                     this.PlaySound(0x1AD);
                 }
 
-                if (rnd < 0.2)
+                if (rnd < 0.5)
                 {
-                    var sombra = new Shade();
+                    var sombra = new Wraith();
                     sombra.MoveToWorld(from.Location, from.Map);
                     if (from != this)
                     sombra.Combatant = from;
