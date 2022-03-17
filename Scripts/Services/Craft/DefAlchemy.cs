@@ -174,7 +174,7 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(CurePotion), 1116348, 1044553, 25.0, 75.0, typeof(Garlic), 1044355, 3, 1044363);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            index = AddCraft(typeof(GreaterCurePotion), 1116348, 1044554, 65.0, 105.0, typeof(Garlic), 1044355, 6, 1044363);
+            index = AddCraft(typeof(GreaterCurePotion), 1116348, 1044554, 65.0, 105.0, typeof(Garlic), 1044355, 10, 1044363);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
             index = AddCraft(typeof(ElixirOfRebirth), 1116348, 1112762, 65.0, 115.0, typeof(MedusaBlood), 1031702, 1, 1044253);
