@@ -61,7 +61,7 @@ namespace Server.Items
                 return 0;
 
             var colar = from.NeckArmor as ColarElemental;
-            if(colar != null && colar.Elemento == elemento && from.Elemento == elemento)
+            if (colar != null && colar.Elemento == elemento && from.Elemento == elemento)
             {
                 return colar.Nivel;
             }
@@ -71,7 +71,7 @@ namespace Server.Items
         public override bool CanEquip(Mobile from)
         {
             var pl = from as PlayerMobile;
-            if(pl != null && pl.Elementos.GetNivel(Elemento) < 20)
+            if (pl != null && pl.Elementos.GetNivel(Elemento) < 20)
             {
                 pl.SendMessage("Voce precisa estar pelo menos " + Elemento.ToString() + " lvl 20 para equipar isto");
                 return false;
@@ -84,9 +84,9 @@ namespace Server.Items
 
         public override void AddNameProperties(ObjectPropertyList list)
         {
-            base.AddNameProperties(list);
-            list.Add("Colar de " + Elemento.ToString());
-            list.Add("Nivel: "+Nivel+"/50");
+            // base.AddNameProperties(list);
+            list.Add("Colar elemental de " + Elemento.ToString());
+            list.Add("Nivel: " + Nivel + "/50");
 
             foreach (var e in EfeitosElementos.GetEfeitosColar(Elemento))
                 list.Add(e);
@@ -97,8 +97,8 @@ namespace Server.Items
             : base(0x3BB5)
         {
             this.Elemento = elemento;
-            Name = "Colar de "+Elemento.ToString();
-             
+            Name = "Colar de " + Elemento.ToString();
+
             Hue = BaseArmor.HueElemento(Elemento);
             Nivel = 1;
         }
@@ -108,7 +108,7 @@ namespace Server.Items
             if (Nivel >= 50)
                 return;
 
-            if(!ColarElementalGump.CheckForja(from, 4))
+            if (!ColarElementalGump.CheckForja(from, 4))
             {
                 from.SendMessage("Voce precisa de uma forja elfica para aprimorar seu colar elemental. Dizem que forjas elficas foram abandonadas na dungeon Caverna de Cristal, em Nujelm.");
                 return;

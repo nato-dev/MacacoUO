@@ -41,11 +41,11 @@ namespace Server.Gumps
             AddButton(353, 104, 5553, 5554, 3, GumpButtonType.Reply, 0);
             //if (newCharacter)
             //    AddButton(473, 185, 5545, 5546, 8, GumpButtonType.Reply, 0);
-            AddButton(107, 103, 5577, 5578, 1, GumpButtonType.Reply, 0);
-            AddButton(227, 102, 5555, 5556, 2, GumpButtonType.Reply, 0);
-            AddButton(472, 103, 5551, 5552, 4, GumpButtonType.Reply, 0);
-            AddButton(107, 181, 5549, 5550, 5, GumpButtonType.Reply, 0);
-            AddButton(228, 183, 5569, 5570, 6, GumpButtonType.Reply, 0);
+            AddButton(107, 103, 5553, 5554, 1, GumpButtonType.Reply, 0);
+            AddButton(227, 102, 5553, 5554, 2, GumpButtonType.Reply, 0);
+            AddButton(472, 103, 5553, 5554, 4, GumpButtonType.Reply, 0);
+            AddButton(107, 181, 5553, 5554, 5, GumpButtonType.Reply, 0);
+            AddButton(228, 183, 5553, 5554, 6, GumpButtonType.Reply, 0);
             //AddButton(355, 183, 5571, 5572, 7, GumpButtonType.Reply, 0);
             AddImage(29, 13, 10440);
             AddImage(540, 14, 10441);

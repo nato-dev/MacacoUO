@@ -2258,6 +2258,11 @@ namespace Server
                 if (combatant == null)
                     return false;
 
+                if(Shard.DebugEnabled)
+                {
+                    Shard.Debug("Tentando bater em " + combatant.Name, m_Mobile);
+                    Shard.Debug("Combatant do mob: " + m_Mobile.Combatant?.Name, m_Mobile);
+                }
 
                 // If no combatant, wrong map, one of us is a ghost, or cannot see, or deleted, then stop combat
                 if (combatant == null || combatant.Deleted || m_Mobile.m_Deleted || combatant.Map != m_Mobile.m_Map ||
@@ -2308,6 +2313,8 @@ namespace Server
 
                 if (Core.TickCount - m_Mobile.m_NextCombatTime >= 0)
                 {
+                    if (m_Mobile.Player && m_Mobile.Spell != null && m_Mobile.Spell.IsCasting)
+                        return;
 
                     IDamageable combatant = m_Mobile.Combatant;
 
@@ -2325,8 +2332,15 @@ namespace Server
                         foreach (var ag in m_Mobile.Aggressors)
                         {
                             var c = ag.Attacker;
-                            if (Bate(c))
-                                return;
+                            if(c.Combatant == m_Mobile)
+                            {
+                                if(Shard.DebugEnabled)
+                                    Shard.Debug("Revidando em " + c.Name, m_Mobile);
+
+                                if (Bate(c))
+                                    return;
+                            }
+                          
                         }
                     }
                 }

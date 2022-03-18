@@ -72,15 +72,17 @@ namespace Server.Dueling
             else
                 _Wins.Add( numPerTeam, 1 );
 
-            if( _FastestWins.ContainsKey( numPerTeam ) && _FastestWins[numPerTeam].DuelTime.Seconds > duelInfo.DuelTime.Seconds )
-                _FastestWins[numPerTeam] = duelInfo;
+            if( _FastestWins.ContainsKey( numPerTeam ))
+                if(_FastestWins[numPerTeam].DuelTime.Seconds > duelInfo.DuelTime.Seconds)
+                    _FastestWins[numPerTeam] = duelInfo;
             else
-                _FastestWins.Add( numPerTeam, duelInfo );
+                _FastestWins[numPerTeam] = duelInfo ;
 
-            if( _LongestWins.ContainsKey( numPerTeam ) && _LongestWins[numPerTeam].DuelTime.Seconds < duelInfo.DuelTime.Seconds )
-                _LongestWins[numPerTeam] = duelInfo;
+            if( _LongestWins.ContainsKey( numPerTeam ))
+                if(_LongestWins[numPerTeam].DuelTime.Seconds < duelInfo.DuelTime.Seconds)
+                    _LongestWins[numPerTeam] = duelInfo;
             else
-                _LongestWins.Add( numPerTeam, duelInfo );
+                _LongestWins[numPerTeam] = duelInfo;
         }
 
         public void AddLoss( int numPerTeam, DuelInfo duelInfo )
@@ -90,13 +92,15 @@ namespace Server.Dueling
             else
                 _Wins.Add( numPerTeam, 1 );
 
-            if( _FastestLoses.ContainsKey( numPerTeam ) && _FastestLoses[numPerTeam].DuelTime.Seconds > duelInfo.DuelTime.Seconds )
-                _FastestLoses[numPerTeam] = duelInfo;
+            if( _FastestLoses.ContainsKey( numPerTeam ))
+                if(_FastestLoses[numPerTeam].DuelTime.Seconds > duelInfo.DuelTime.Seconds)
+                    _FastestLoses[numPerTeam] = duelInfo;
             else
-                _FastestLoses.Add( numPerTeam, duelInfo );
+                _FastestLoses[numPerTeam] = duelInfo;
 
-            if( _LongestLoses.ContainsKey( numPerTeam ) && _LongestLoses[numPerTeam].DuelTime.Seconds < duelInfo.DuelTime.Seconds )
-                _LongestLoses[numPerTeam] = duelInfo;
+            if( _LongestLoses.ContainsKey( numPerTeam ))
+                if(_LongestLoses[numPerTeam].DuelTime.Seconds < duelInfo.DuelTime.Seconds)
+                    _LongestLoses[numPerTeam] = duelInfo;
             else
                 _LongestLoses.Add( numPerTeam, duelInfo );
         }

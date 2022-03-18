@@ -57,10 +57,10 @@ namespace Server.Dueling
             this.AddItem( 262, 222, 7437 );
             this.AddItem( 236, 251, 7438 );
             this.AddItem( 212, 204, 7960 );
-            this.AddLabel( 166, 40, 36, @"Onsite Duel System 2.0" );
-            this.AddLabel( 166, 39, 36, @"Onsite Duel System 2.0" );
-            this.AddLabel( 136, 62, 36, @"Please choose the size of the duel." );
-            this.AddLabel( 136, 61, 36, @"Please choose the size of the duel." ); 
+            this.AddLabel( 166, 40, 36, @"Duelos Dragonic Age" );
+            this.AddLabel( 166, 39, 36, @"Duelos Dragonic Age");
+            this.AddLabel( 136, 62, 36, @"Escolha o tamanho do duelo." );
+            this.AddLabel( 136, 61, 36, @"Escolha o tamanho do duelo."); 
             this.AddLabel( 154, 116, 36, @"1vs1" );
             this.AddLabel( 154, 115, 36, @"1vs1" );
             this.AddLabel( 287, 116, 36, @"2vs2" );
@@ -71,10 +71,10 @@ namespace Server.Dueling
             this.AddLabel( 348, 226, 36, @"4vs4" );
             this.AddLabel( 223, 307, 36, @"5vs5" );
             this.AddLabel( 223, 306, 36, @"5vs5" );
-            this.AddLabel( 65, 424, 36, @"ver. 2.00" );
-            this.AddLabel( 65, 423, 36, @"ver. 2.00" );
-            this.AddLabel( 79, 392, 36, @"Allow Duel Invites" );
-            this.AddLabel( 79, 391, 36, @"Allow Duel Invites" );
+            this.AddLabel( 65, 424, 36, @"" );
+            this.AddLabel( 65, 423, 36, @"" );
+            this.AddLabel( 79, 392, 36, @"Aceitar Convites" );
+            this.AddLabel( 79, 391, 36, @"Aceitar Convites");
             this.AddButton( 401, 46, 3, 4, ( int )Buttons.closeBtn, GumpButtonType.Reply, 0 );
             this.AddButton( 159, 137, 4034, 4034, ( int )Buttons.oneBtn, GumpButtonType.Reply, 0 );
             this.AddButton( 294, 137, 4034, 4034, ( int )Buttons.twoBtn, GumpButtonType.Reply, 0 );
@@ -103,10 +103,9 @@ namespace Server.Dueling
             if( m == null || _Duel == null )
                 return;
 
-            if( _DeclinesDuels && ( (Buttons)info.ButtonID != Buttons.toggleBtn || (Buttons)info.ButtonID != Buttons.closeBtn ) )
+            if( _DeclinesDuels && ( (Buttons)info.ButtonID != Buttons.toggleBtn && (Buttons)info.ButtonID != Buttons.closeBtn ) )
             {
-                m.SendMessage( "You cant start a duel if you have chosen to not accept duel invites." );
-                m.SendMessage( "Check the allow duel invites box before you start a duel." );
+                m.SendMessage( "Selecione para aceitar duelos antes de iniciar um duelo." );
                 m.SendGump( new DuelConfigGump( _Duel ) );
                 return;
             }
@@ -116,7 +115,7 @@ namespace Server.Dueling
                 case Buttons.closeBtn:
                     {
                         DuelController.DestroyDuel( _Duel );
-                        m.SendMessage( "The duel was not created." );
+                        m.SendMessage( "Duelo nao criado." );
                         break;
                     }
                 case Buttons.oneBtn:
@@ -125,7 +124,7 @@ namespace Server.Dueling
                         _Duel.Configure( 1 );
                         _Duel.Contestants.Add( _Duel.Creator );
 
-                        m.SendMessage( "Please select the player you wish to duel." );
+                        m.SendMessage( "Escolha o jogador." );
                         m.Target = new DuelTarget( m, _Duel );
 
                         break;
@@ -136,8 +135,7 @@ namespace Server.Dueling
                         _Duel.Configure( 2 );
                         _Duel.Contestants.Add( _Duel.Creator );
 
-                        m.SendMessage( "Please select a player to add to the duel." );
-                        m.SendMessage( "Do not be concerned with what side they will be on at this point." );
+                        m.SendMessage( "Escolha o jogador." );
                         m.Target = new DuelTarget( m, _Duel );
                         break;
                     }
@@ -147,8 +145,7 @@ namespace Server.Dueling
                         _Duel.Configure( 3 );
                         _Duel.Contestants.Add( _Duel.Creator );
 
-                        m.SendMessage( "Please select a player to add to the duel." );
-                        m.SendMessage( "Do not be concerned with what side they will be on at this point." );
+                        m.SendMessage("Escolha o jogador.");
                         m.Target = new DuelTarget( m, _Duel );
                         break;
                     }
@@ -158,8 +155,7 @@ namespace Server.Dueling
                         _Duel.Configure( 4 );
                         _Duel.Contestants.Add( _Duel.Creator );
 
-                        m.SendMessage( "Please select a player to add to the duel." );
-                        m.SendMessage( "Do not be concerned with what side they will be on at this point." );
+                        m.SendMessage("Escolha o jogador.");
                         m.Target = new DuelTarget( m, _Duel );
                         break;
                     }
@@ -169,8 +165,7 @@ namespace Server.Dueling
                         _Duel.Configure( 5 );
                         _Duel.Contestants.Add( _Duel.Creator );
 
-                        m.SendMessage( "Please select a player to add to the duel." );
-                        m.SendMessage( "Do not be concerned with what side they will be on at this point." );
+                        m.SendMessage("Escolha o jogador.");
                         m.Target = new DuelTarget( m, _Duel );
                         break;
                     }

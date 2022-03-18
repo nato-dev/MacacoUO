@@ -9,7 +9,7 @@ namespace Server.Mobiles
     public class SolenLouca : BaseCreature
     {
         public bool IsBoss => true;
-        public int BonusExp => 400;
+        public override int BonusExp => 400;
         public override bool ReduceSpeedWithDamage => false;
 
         [Constructable]

@@ -22,7 +22,7 @@ namespace Server.Commands
             Anuncia(msg);
         }
 
-        public static void Anuncia(string msg)
+        public static void Anuncia(string msg, bool discord = true)
         {
             foreach (var mobile in PlayerMobile.Instances)
             {
@@ -31,7 +31,8 @@ namespace Server.Commands
                     mobile.SendGump(new AnuncioGump(mobile as PlayerMobile, msg));
                 }
             }
-            DiscordBot.SendMessage(":boom:"+msg);
+            if(discord)
+                DiscordBot.SendMessage(":boom:"+msg);
         }
     }
 }

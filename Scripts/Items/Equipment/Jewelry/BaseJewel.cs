@@ -1096,6 +1096,7 @@ namespace Server.Items
             }
         }
 
+        /*
         public override void AddItemPowerProperties(ObjectPropertyList list)
         {
             if (m_ItemPower != ElementoPvM.None)
@@ -1106,6 +1107,7 @@ namespace Server.Items
                     list.Add(1152281 + ((int)m_ItemPower - 9));
             }
         }
+        */
 
         public override void OnSingleClick(Mobile from)
         {

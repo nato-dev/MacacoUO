@@ -27,13 +27,13 @@ namespace Server.Dueling
                 if( _Seconds == DuelController.Instance.DuelLengthInSeconds )
                 {
                     _Duel.Started = true;
-                    _Duel.Broadcast( "The duel has begun" );
+                    _Duel.Broadcast( "O Duelo iniciou" );
                 }
                 if( _Seconds % 300 == 0 )
                 {
                     int min = _Seconds / 60;
 
-                    _Duel.Broadcast( String.Format( "{0} minutes remaining in the duel.", min ) );
+                    _Duel.Broadcast( String.Format( "{0} minutos restantes no duelo.", min ) );
                 }
 
                 if( _Seconds == 0 )
@@ -46,12 +46,12 @@ namespace Server.Dueling
             }
             else
             {
-                _Duel.Broadcast( String.Format( "Duel will begin in {0} seconds", _Countdown ) );
+                _Duel.Broadcast( String.Format( "Duelo vai iniciar em {0} segundos", _Countdown ) );
                 _Countdown--;
 
                 if (_Countdown == 0)
                 {
-                    _Duel.Broadcast("Fight!");
+                    _Duel.Broadcast("Lutel!");
 
                     for (int i = 0; i < _Duel.Attackers.Count; i++)
                     {
@@ -59,6 +59,8 @@ namespace Server.Dueling
                         _Duel.Defenders[i].Delta(MobileDelta.Noto);
                         _Duel.Attackers[i].InvalidateProperties();
                         _Duel.Defenders[i].InvalidateProperties();
+                        ((PlayerMobile)_Duel.Attackers[i]).SolidHueOverride = 338;
+                        ((PlayerMobile)_Duel.Defenders[i]).SolidHueOverride = 200;
                     }
                 }
             }

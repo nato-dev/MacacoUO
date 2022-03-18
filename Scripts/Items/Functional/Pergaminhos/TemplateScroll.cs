@@ -24,7 +24,7 @@ namespace Server.Items.Functional.Pergaminhos
         {
             return new SkillName[]
             {
-                SkillName.Swords, SkillName.Lumberjacking, SkillName.Anatomy,
+                SkillName.Fencing, SkillName.Focus, SkillName.Anatomy,
                 SkillName.Healing, SkillName.Tactics, SkillName.MagicResist,
                 SkillName.Magery
             };
@@ -44,8 +44,8 @@ namespace Server.Items.Functional.Pergaminhos
         {
             return new SkillName[]
             {
-                SkillName.Wrestling, SkillName.Magery, SkillName.EvalInt,
-                SkillName.Focus, SkillName.Inscribe, SkillName.MagicResist,
+                SkillName.Macing, SkillName.Magery, SkillName.EvalInt,
+                SkillName.Tactics, SkillName.Inscribe, SkillName.MagicResist,
                 SkillName.Meditation
             };
         }

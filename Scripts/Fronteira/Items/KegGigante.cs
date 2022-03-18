@@ -9,7 +9,7 @@ namespace Server.Items
         private int m_Held;
         [Constructable]
         public KegGigante()
-            : base(0x1940)
+            : base()
         {
             UpdateWeight();
             Name = "Barril de Pocoes Gigante";

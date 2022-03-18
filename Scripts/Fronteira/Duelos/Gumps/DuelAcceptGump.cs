@@ -25,16 +25,16 @@ namespace Server.Dueling
 			this.Resizable=false;
 			this.AddPage(0);
 			this.AddBackground(40, 25, 324, 167, 3500);
-            this.AddLabel( 130, 40, 36, @"Onsite Duel System 2.0" ); 
-            this.AddLabel( 130, 39, 36, @"Onsite Duel System 2.0" );
-			this.AddLabel( 60, 73, 36, m.Name + " has invited you to their duel" );
-            this.AddLabel( 60, 72, 36, m.Name + " has invited you to their duel" );
-            this.AddLabel( 60, 96, 36, @"Do you wish to join?" );
-            this.AddLabel( 60, 95, 36, @"Do you wish to join?" );
-            this.AddLabel( 162, 146, 36, @"Yes" );
-            this.AddLabel( 162, 145, 36, @"Yes" );
-            this.AddLabel( 222, 146, 36, @"No" );
-            this.AddLabel( 222, 145, 36, @"No" ); 
+            this.AddLabel( 130, 40, 36, @"Duelos" ); 
+            this.AddLabel( 130, 39, 36, @"Duelos");
+			this.AddLabel( 60, 73, 36, m.Name + " te convidou para um duelo" );
+            this.AddLabel( 60, 72, 36, m.Name + " te convidou para um duelo");
+            this.AddLabel( 60, 96, 36, @"Quer duelar?" );
+            this.AddLabel( 60, 95, 36, @"Quer duelar?");
+            this.AddLabel( 162, 146, 36, @"S" );
+            this.AddLabel( 162, 145, 36, @"S" );
+            this.AddLabel( 222, 146, 36, @"N" );
+            this.AddLabel( 222, 145, 36, @"N" ); 
             this.AddButton( 327, 44, 3, 4, ( int )Buttons.closeBtn, GumpButtonType.Reply, 0 );
 			this.AddButton(144, 149, 4034, 4034, (int)Buttons.yesBtn, GumpButtonType.Reply, 0);
 			this.AddButton(204, 149, 4034, 4034, (int)Buttons.noBtn, GumpButtonType.Reply, 0);
@@ -62,14 +62,14 @@ namespace Server.Dueling
                 case Buttons.closeBtn:
                     {
                         _Duel.SpotsRemaing++;
-                        _Duel.Broadcast( m.Name + " declined to join the duel" );
+                        _Duel.Broadcast( m.Name + " rejeitou o duelo" );
                         CheckTarget();
                         break;
                     }
                 case Buttons.noBtn:
                     {
                         _Duel.SpotsRemaing++;
-                        _Duel.Broadcast( m.Name + " declined to join the duel" );
+                        _Duel.Broadcast( m.Name + " rejeitou o duelo" );
                         CheckTarget();
                         break;
                     }
@@ -77,7 +77,7 @@ namespace Server.Dueling
                     {
                         _Duel.Contestants.Add( m );
                         DuelController.DuelTable.Add( m.Serial, _Duel );
-                        _Duel.Broadcast( m.Name + " has joined the duel." );
+                        _Duel.Broadcast( m.Name + " entrou no duelo." );
                         _Duel.CheckBegin();
                         break;
                     }
@@ -88,7 +88,7 @@ namespace Server.Dueling
         {
             if( !( _Duel.Creator.Target is DuelTarget ) )
             {
-                _Duel.Creator.SendMessage( "Please select another player to join the duel." );
+                _Duel.Creator.SendMessage( "Escolha outro jogador para duelar." );
                 _Duel.Creator.Target = new DuelTarget( _Duel.Creator, _Duel );
             }
         }

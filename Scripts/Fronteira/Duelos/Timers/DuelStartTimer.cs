@@ -18,7 +18,7 @@ namespace Server.Dueling
 
         protected override void OnTick()
         {
-            _Duel.Broadcast( "The duel has timed out..." );
+            _Duel.Broadcast( "O duelo demorou demais..." );
             
             if( _Duel != null )
                 DuelController.DestroyDuel( _Duel );

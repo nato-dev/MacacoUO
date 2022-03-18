@@ -333,6 +333,7 @@ namespace Server.Engines.Quests
                                 player.SendMessage("Sua missao esta completa"); // Your quest is complete.												
                                 player.PlaySound(quest.CompleteSound);
 
+               
                                 quest.OnCompleted();
 
                                 if (vendor is MondainQuester)

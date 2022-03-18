@@ -23,19 +23,19 @@ namespace Server.Dueling
 			this.Resizable=false;
 			this.AddPage(0);
 			this.AddBackground(36, 25, 402, 375, 3500);
-            this.AddLabel( 166, 40, 36, @"Onsite Duel System 2.0" );
-            this.AddLabel( 166, 39, 36, @"Onsite Duel System 2.0" );
+            this.AddLabel( 166, 40, 36, @"Duelos Dragonic" );
+            this.AddLabel( 166, 39, 36, @"Duelos Dragonic");
 			this.AddButton(401, 46, 3, 4, (int)Buttons.closeBtn, GumpButtonType.Reply, 0);
-            this.AddLabel( 129, 56, 36, @"Please select the team for each player" );
-            this.AddLabel( 129, 55, 36, @"Please select the team for each player" );
-            this.AddLabel( 100, 80, 36, @"Players" );
-            this.AddLabel( 100, 79, 36, @"Players" );
-            this.AddLabel( 263, 80, 36, @"Team 1" );
-            this.AddLabel( 263, 79, 36, @"Team 1" );
-            this.AddLabel( 327, 80, 36, @"Team 2" );
-            this.AddLabel( 327, 79, 36, @"Team 2" );
-            this.AddLabel( 121, 360, 36, @"Start" );
-            this.AddLabel( 121, 359, 36, @"Start" );
+            this.AddLabel( 129, 56, 36, @"Selecione o time de cada jogador" );
+            this.AddLabel( 129, 55, 36, @"Selecione o time de cada jogador");
+            this.AddLabel( 100, 80, 36, @"Jogadores" );
+            this.AddLabel( 100, 79, 36, @"Jogadores");
+            this.AddLabel( 263, 80, 36, @"Time 1" );
+            this.AddLabel( 263, 79, 36, @"Time 1");
+            this.AddLabel( 327, 80, 36, @"Time 2" );
+            this.AddLabel( 327, 79, 36, @"Time 2");
+            this.AddLabel( 121, 360, 36, @"Iniciar" );
+            this.AddLabel( 121, 359, 36, @"Iniciar");
             this.AddButton( 103, 363, 4034, 4034, ( int )Buttons.startBtn, GumpButtonType.Reply, 0 );
 
             for( int i = 0; i < duel.Contestants.Count; i++ )
@@ -82,7 +82,7 @@ namespace Server.Dueling
 
             if( sw.Length != ( _Duel.Attackers.Capacity + _Duel.Defenders.Capacity ) )
             {
-                _Duel.Creator.SendMessage( "Some players were not assigned to a team. Please try again." );
+                _Duel.Creator.SendMessage( "Alguns jogadores estavam sem time." );
                 _Duel.Creator.CloseGump( typeof( DuelTeamSelectionGump ) );
                 _Duel.Creator.SendGump( new DuelTeamSelectionGump( _Duel ) );
                 return;
@@ -111,7 +111,7 @@ namespace Server.Dueling
 
                         if( teamCheckOne != teamCheckTwo )
                         {
-                            _Duel.Creator.SendMessage( "The two teams were not even, please try again." );
+                            _Duel.Creator.SendMessage( "Times desbalanceados." );
                             _Duel.Creator.CloseGump( typeof( DuelTeamSelectionGump ) );
                             _Duel.Creator.SendGump( new DuelTeamSelectionGump( _Duel ) );
                             return;

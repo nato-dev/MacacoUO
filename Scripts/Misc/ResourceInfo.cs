@@ -693,7 +693,7 @@ namespace Server.Items
             new CraftResourceInfo(95, 1053104,    "Lazurita", CraftAttributeInfo.Verite, CraftResource.Lazurita, typeof(LazuritaIngot), typeof(LazuritaOre), typeof(VeriteGranite)),
             new CraftResourceInfo(778, 1053103,   "Quartzo", CraftAttributeInfo.Valorite,   CraftResource.Quartzo, typeof(QuartzoIngot),   typeof(QuartzoOre), typeof(ValoriteGranite)),
             new CraftResourceInfo(333, 1053102,    "Berilo",    CraftAttributeInfo.DullCopper,  CraftResource.Berilo, typeof(BeriloIngot), typeof(BeriloOre)), //typeof(DullCopperGranite)),
-            new CraftResourceInfo(2969, 1053101,    "Vibranium",  CraftAttributeInfo.ShadowIron,  CraftResource.Vibranium, typeof(VibraniumIngot),  typeof(VibraniumOre)), //typeof(ShadowIronGranite)),
+            new CraftResourceInfo(2952, 1053101,    "Vibranium",  CraftAttributeInfo.ShadowIron,  CraftResource.Vibranium, typeof(VibraniumIngot),  typeof(VibraniumOre)), //typeof(ShadowIronGranite)),
             new CraftResourceInfo(1150, 1053100,  "Adamantium",  CraftAttributeInfo.ShadowIron,  CraftResource.Adamantium, typeof(AdamantiumIngot),  typeof(AdamantiumOre)),
         };
 

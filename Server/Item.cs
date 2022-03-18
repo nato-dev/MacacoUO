@@ -1345,15 +1345,14 @@ namespace Server
 
             if (m_LootType == LootType.Blessed)
             {
-
                 var dias = GetBlessedExpiryDays();
                 if (dias < 0)
                 {
-                    list.Add("Pertence Pessoal"); // blessed
+                    list.Add("Newbie"); // blessed
                 }
                 else
                 {
-                    list.Add("Pertence Pessoal por " + (dias + 1) + " dias");
+                    list.Add("Newbie por " + (dias + 1) + " dias");
                 }
             }
             else if (m_LootType == LootType.Cursed)

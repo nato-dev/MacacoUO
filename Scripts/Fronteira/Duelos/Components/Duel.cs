@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
-
+using System.Linq;
+using Fronteira.Discord;
 using Server;
+using Server.Commands;
 using Server.Items;
 using Server.Mobiles;
 using Server.Targeting;
@@ -91,7 +93,13 @@ namespace Server.Dueling
                 List<Mobile> winners = _Attackers;
                 List<Mobile> losers = _Defenders;
 
-                for( int i = 0; i < winners.Count; i++ )
+                var atk = winners.First();
+                var atkS = string.Join(",", winners.Select(a => a.Name));
+                foreach (var m in atk.FindPlayersInRange(atk.Map, 40))
+                    m.SendMessage($"[Duelo] Vitoria de {atkS}");
+                DiscordBot.SendMessage($":crossed_swords: Vitoria de {atkS}");
+
+                for ( int i = 0; i < winners.Count; i++ )
                 {
                     HandlePoints( winners[i], true );
                     HandlePoints( losers[i], false );
@@ -130,8 +138,14 @@ namespace Server.Dueling
             {
                 List<Mobile> winners = _Defenders;
                 List<Mobile> losers = _Attackers;
-                
-                for( int i = 0; i < winners.Count; i++ )
+
+                var atk = winners.First();
+                var atkS = string.Join(",", winners.Select(a => a.Name));
+                foreach (var m in atk.FindPlayersInRange(atk.Map, 40))
+                    m.SendMessage($"[Duelo] Vitoria de {atkS}");
+                DiscordBot.SendMessage($":crossed_swords: Vitoria de {atkS}");
+
+                for ( int i = 0; i < winners.Count; i++ )
                 {
                     HandlePoints( winners[i], true );
                     HandlePoints( losers[i], false );
@@ -145,7 +159,7 @@ namespace Server.Dueling
                 m.Resurrect();
 
             HandleCorpse( m );
-
+            ((PlayerMobile)m).SolidHueOverride = 0;
             m.Aggressed.Clear();
             m.Aggressors.Clear();
             m.Hits = m.HitsMax;
@@ -161,7 +175,12 @@ namespace Server.Dueling
         internal void Begin()
         {
             InternalBegin();
-
+            var atk = Attackers.First();
+            var atkS = string.Join(",", Attackers.Select(a => a.Name));
+            var defS = string.Join(",", Defenders.Select(a => a.Name));
+            foreach (var m in atk.FindPlayersInRange(atk.Map, 40))
+                m.SendMessage($"Duelo iniciando em 10 segundos: {atkS} vs {defS}");
+            DiscordBot.SendMessage($":crossed_swords: Duelo iniciando em 10 segundos - {atkS} vs {defS}");
             _DuelTimer = new DuelTimer(this, DuelController.Instance.DuelLengthInSeconds );
             _DuelTimer.Start();
         }
@@ -217,6 +236,10 @@ namespace Server.Dueling
             if( from.Corpse != null )
             {
                 Corpse c = ( Corpse )from.Corpse;
+                c.AutoLoot(from);
+                c.Delete();
+                /*
+
                 Container b = from.Backpack;
                 List<Item> toAdd = new List<Item>();
                 
@@ -235,7 +258,7 @@ namespace Server.Dueling
                 toAdd = null;
 
                 c.Delete();
-
+                */
                 from.SendMessage( 1161, "Voce pegou seus pertences" );
             }
         }
@@ -264,11 +287,17 @@ namespace Server.Dueling
                 int attackersHealth = 0;
                 int defendersHealth = 0;
 
-                for( int i = 0; i < _Attackers.Count; i++ )
+                for (int i = 0; i < _Attackers.Count; i++)
+                {
+  
                     attackersHealth += _Attackers[i].Hits;
+                }
 
-                for( int i = 0; i < _Defenders.Count; i++ )
+                for (int i = 0; i < _Defenders.Count; i++)
+                {
+                  
                     defendersHealth += _Defenders[i].Hits;
+                }
 
                 if( attackersHealth > defendersHealth )
                     AttackersWin();

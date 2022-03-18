@@ -57,6 +57,7 @@ namespace Server.Dueling
             
             CommandSystem.Register( "OnsiteConfig", AccessLevel.Administrator, new CommandEventHandler( OnCommand_OnsiteConfig ) );
             CommandSystem.Register( "Duel", AccessLevel.Player, new CommandEventHandler( OnCommand_Duel ) );
+            CommandSystem.Register("Duelo", AccessLevel.Player, new CommandEventHandler(OnCommand_Duel));
 
             _Instance = new DuelController();
             _TimeoutTable = new Dictionary<Serial, LogoutTimeoutTimer>();
@@ -176,6 +177,7 @@ namespace Server.Dueling
                 case 1:
                     {
                         _Enabled = reader.ReadBool();
+                        
                         _Instance._DuelLengthInSeconds = reader.ReadInt();
                         _Instance._MaxDistance = reader.ReadInt();
                         goto case 0;
@@ -591,6 +593,7 @@ namespace Server.Dueling
 
         internal static void AddWin( Duel duel, Mobile m )
         {
+
             if( _PointsTable.ContainsKey( m.Serial ) )
             {
                 DuelPoints dPoints = _PointsTable[m.Serial];

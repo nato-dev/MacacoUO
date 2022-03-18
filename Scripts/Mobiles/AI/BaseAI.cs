@@ -639,6 +639,7 @@ namespace Server.Mobiles
                         {
                             if (m_Mobile.CheckControlChance(e.Mobile))
                             {
+                                m_Mobile.Combatant = null;
                                 m_Mobile.ControlTarget = null;
                                 m_Mobile.ControlOrder = OrderType.Stay;
                             }
@@ -698,6 +699,7 @@ namespace Server.Mobiles
                                 {
                                     if (m_Mobile.CheckControlChance(e.Mobile))
                                     {
+                                        m_Mobile.Combatant = null;
                                         m_Mobile.ControlTarget = null;
                                         m_Mobile.ControlOrder = OrderType.Stop;
                                     }

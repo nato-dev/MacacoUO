@@ -30,6 +30,90 @@ namespace Server.Ziden.Achievements
         }
     }
 
+
+    public class VitoriaFFA : Bag
+    {
+        [Constructable]
+        public VitoriaFFA()
+        {
+            AddItem(new SacolaJoias(10));
+            AddItem(new SacolaPots());
+            AddItem(new Gold(5000));
+            Name = "Sacola";
+        }
+
+        public VitoriaFFA(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
+
+    public class ParticipacaoPvP : Bag
+    {
+        [Constructable]
+        public ParticipacaoPvP()
+        {
+            AddItem(new CombatSkillBook());
+            AddItem(new CombatSkillBook());
+            AddItem(new SacolaJoias(3 + Utility.Random(3)));
+            this.AddItem(new GreaterHealPotion(5 + Utility.Random(5)));
+            this.AddItem(new GreaterCurePotion(1 + Utility.Random(5)));
+            this.AddItem(new GreaterExplosionPotion(1 + Utility.Random(5)));
+            this.AddItem(new GreaterManaPotion(5 + Utility.Random(5)));
+            this.AddItem(new RefreshPotion(1 + Utility.Random(2)));
+            this.AddItem(new InvisibilityPotion(1 + Utility.Random(2)));
+            AddItem(new Gold(3000));
+            Name = "Sacola";
+        }
+
+        public ParticipacaoPvP(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
+
+    public class SacolaPots : Bag
+    {
+        [Constructable]
+        public SacolaPots()
+        {
+            this.AddItem(new GreaterHealPotion(20+Utility.Random(5)));
+            this.AddItem(new GreaterCurePotion(5 + Utility.Random(5)));
+            this.AddItem(new GreaterExplosionPotion(5 + Utility.Random(5)));
+            this.AddItem(new GreaterManaPotion(20 + Utility.Random(5)));
+            this.AddItem(new RefreshPotion(5 + Utility.Random(5)));
+            this.AddItem(new InvisibilityPotion(2 + Utility.Random(5)));
+            AddItem(new Gold(3000));
+            Name = "Sacola";
+        }
+
+        public SacolaPots(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
+
     public class Trofeu : Item
     {
         [CommandProperty(AccessLevel.Administrator)]
