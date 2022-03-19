@@ -4849,7 +4849,7 @@ namespace Server
             }
         }
 
-        private static int m_ActionDelay = 500;
+        private static int m_ActionDelay = 200;
 
         public static int EquipItemDelay { get { return m_ActionDelay; } set { m_ActionDelay = value; } }
         public static int MoveItemDelay = -1;
@@ -13237,9 +13237,9 @@ namespace Server
 
         public void SendMessage(int hue, string text)
         {
-            if (hue == 78)
+            if (hue == 78 && !text.StartsWith("[DICA]"))
             {
-
+                text = "[DICA] " + text;
             }
             if (OnSendMessage != null)
             {

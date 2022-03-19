@@ -27,7 +27,7 @@ namespace Server.Engines.VvV
                 int button = ViceVsVirtueSystem.Instance.ExemptCities.Contains(city) ? 211 : 210;
 
                 AddButton(20, 80 + (i * 23), button, button, i + 1, GumpButtonType.Reply, 0);
-                AddHtml(44, 80 + (i * 23), 200, 20, ViceVsVirtueSystem.GetCityLocalization(city), 0xFFFF, false, false);
+                AddHtml(44, 80 + (i * 23), 200, 20, city.ToString(), 0xFFFF, false, false);
             }
         }
 

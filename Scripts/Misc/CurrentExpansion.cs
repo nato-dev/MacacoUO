@@ -31,7 +31,7 @@ namespace Server
 			Mobile.VisibleDamageType = VisibleDamageType.None;
 			Mobile.GuildClickMessage = !Core.AOS;
 			Mobile.AsciiClickMessage = !Core.AOS;
-            Mobile.EquipItemDelay = 500; // Core.TOL ? 500 : Core.AOS ? 1000 : 500;
+            Mobile.EquipItemDelay = 0; // Core.TOL ? 500 : Core.AOS ? 1000 : 500;
 
             if (!Core.AOS)
 			{

@@ -82,7 +82,7 @@ namespace Server.Engines.VvV
         {
             get
             {
-                Region r = Region.Regions.FirstOrDefault(reg => reg.Name == Name && reg.Map == Map.Felucca);
+                Region r = Region.Regions.FirstOrDefault(reg => reg.Name == Name && reg.Map == Map.Trammel);
 
                 if (r == null)
                     Console.WriteLine("WARNING: Region for {0} not found.", Name);

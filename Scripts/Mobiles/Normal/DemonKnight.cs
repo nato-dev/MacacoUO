@@ -188,7 +188,7 @@ namespace Server.Mobiles
             if (Utility.RandomDouble() < 0.2)
             {
                 pm.PlaySound(0x5B4);
-                pm.PlaceInBackpack(DecoRelPor.RandomArty());
+                pm.PlaceInBackpack(new ValeDecoracaoRara());
             }
 
             pm.PlaceInBackpack(new CombatSkillBook());
@@ -274,7 +274,7 @@ namespace Server.Mobiles
             int top = 0;
             Item blood = null;
 
-            c.DropItem(DecoRelPor.RandomArty());
+            c.DropItem(new ValeDecoracaoRara());
             c.DropItem(Decos.RandomDeco());
             c.DropItem(new SoulForgeDeed());
 

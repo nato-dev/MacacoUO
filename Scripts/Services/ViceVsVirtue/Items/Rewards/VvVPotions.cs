@@ -437,11 +437,6 @@ namespace Server.Engines.VvV
 
         public override void Use(Mobile m)
         {
-            if (!m.Region.IsPartOf("Tretonia"))
-            {
-                m.SendMessage("Voce apenas pode usar isto em Tretonia (por enquanto)");
-                return;
-            }
 
             Effects.SendMovingEffect(m, new Entity(Serial.Zero, new Point3D(m.X, m.Y, m.Z + 25), m.Map), this.ItemID, 3, 0, false, false, this.Hue, 0);
             

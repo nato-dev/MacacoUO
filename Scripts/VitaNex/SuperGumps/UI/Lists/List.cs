@@ -24,7 +24,7 @@ namespace VitaNex.SuperGumps.UI
 {
 	public class ListGump<T> : SuperGumpList<T>
 	{
-		public const string DefaultTitle = "List View";
+		public const string DefaultTitle = "Lista";
 		public const string DefaultEmptyText = "No entries to display.";
 
 		protected bool WasModal { get; set; }
@@ -191,8 +191,8 @@ namespace VitaNex.SuperGumps.UI
 
 			var sup = SupportsUltimaStore;
 			var ec = IsEnhancedClient;
-			var bgID = ec ? 83 : sup ? 40000 : 9270;
-			var fillID = ec ? 87 : sup ? 40004 : 2624;
+			var bgID = ec ? 83 : sup ? 9250 : 9250;
+			var fillID = ec ? 87 : sup ? 3000 : 3000;
 
 			layout.Add(
 				"background/header/base",

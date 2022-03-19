@@ -34,7 +34,7 @@ namespace Server.Items
             Slayer = BaseTalisman.GetRandomSlayer();
             Protection = BaseTalisman.GetRandomProtection();
             Killer = BaseTalisman.GetRandomKiller();
-            Skill = BaseTalisman.GetRandomSkill();
+            //Skill = BaseTalisman.GetRandomSkill();
             ExceptionalBonus = BaseTalisman.GetRandomExceptional();
             SuccessBonus = BaseTalisman.GetRandomSuccessful();
             Charges = MaxCharges;

@@ -26,7 +26,7 @@ namespace Server.Engines.VvV
                 {
                     if (m.Kills <= 0)
                     {
-                        m.SendMessage("You have no use for this item.");
+                        m.SendMessage("Voce nao tem usos para isto.");
                     }
                     else if (Server.Spells.SpellHelper.CheckCombat(m))
                     {

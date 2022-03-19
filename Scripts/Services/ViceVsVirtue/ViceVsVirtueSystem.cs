@@ -40,7 +40,7 @@ namespace Server.Engines.VvV
         public static int VirtueHue = 2124;
         public static int ViceHue = 2118;
 
-        public static bool Enabled = true; // Config.Get("VvV.Enabled", true);
+        public static bool Enabled = false; // Config.Get("VvV.Enabled", true);
         public static int StartSilver = 0;//Config.Get("VvV.StartSilver", 1000);
         public static bool EnhancedRules = false; //  Config.Get("VvV.EnhancedRules", false);
 
@@ -225,13 +225,12 @@ namespace Server.Engines.VvV
 
             if (!IsVvV(pm) || !Enabled)
             {
-                Shard.Debug("Batalha Inativa " + Enabled + " - " + IsVvV(pm));
                 return;
             }
 
             if (Battle.OnGoing)
             {
-                SendVvVMessageTo(pm, "A batalha se inicia em " + GetCityLocalization(Battle.City).ToString());
+                SendVvVMessageTo(pm, "A batalha se inicia em " + Battle.City.ToString());
                 // A Battle between Vice and Virtue is active! To Arms! The City of ~1_CITY~ is besieged!
 
                 if (Battle != null && Battle.IsInActiveBattle(pm))
@@ -507,8 +506,6 @@ namespace Server.Engines.VvV
 
         public static bool IsEnemy(Mobile from, Mobile to)
         {
-            if (!to.Region.IsPartOf("Tretonia"))
-                return false;
 
             if (!Enabled || from == to)
                 return false;
@@ -714,9 +711,21 @@ namespace Server.Engines.VvV
             return Instance.Battle.OnGoing && r.IsPartOf(Instance.Battle.Region);
         }
 
-        public static string GetCityLocalization(VvVCity city)
+        public static int GetCityLocalization(City city)
         {
-            return city.ToString();
+            switch (city)
+            {
+                default: return 0;
+                case City.Moonglow: return 1011344;
+                case City.Britain: return 1011028;
+                case City.Jhelom: return 1011343;
+                case City.Yew: return 1011032;
+                case City.Minoc: return 1011031;
+                case City.Trinsic: return 1011029;
+                case City.SkaraBrae: return 1011347;
+                case City.NewMagincia: return 1011345;
+                case City.Vesper: return 1011030;
+            }
         }
 
         public override void Serialize(GenericWriter writer)
@@ -872,7 +881,7 @@ namespace Server.Engines.VvV
             if (!Enabled)
                 return;
 
-            Map map = Map.Felucca;
+            Map map = Map.Trammel;
 
             foreach (CityInfo info in CityInfo.Infos.Values)
             {
@@ -1015,7 +1024,7 @@ namespace Server.Engines.VvV
         {
             if (!ViceVsVirtueSystem.RestrictSilver(Player, victim))
             {
-                Player.SendMessage("You cannot earn silver from killing {0}!", victim.Name);
+                Player.SendMessage("Voce nao pode ganhar pratinha matando {0}!", victim.Name);
                 return;
             }
 
@@ -1039,7 +1048,7 @@ namespace Server.Engines.VvV
 
             if (entry.TimesKilled > EnemyKilledEntry.MaxKillsForSilver)
             {
-                Player.SendMessage("You cannot earn any more silver from killing {0}.", victim.Name);
+                Player.SendMessage("Voce nao pode ganhar mais pratinhas matando {0}.", victim.Name);
             }
 
             int silver = (int)((double)EnemyKilledEntry.KillSilver / (double)entry.TimesKilled);
@@ -1055,8 +1064,8 @@ namespace Server.Engines.VvV
 
         public class EnemyKilledEntry
         {
-            public static int KillSilver = 20;
-            public static int MaxKillsForSilver = 5;
+            public static int KillSilver = 40;
+            public static int MaxKillsForSilver = 3;
             public static TimeSpan ExpireTime = TimeSpan.FromHours(3);
 
             public Mobile Killed { get; set; }

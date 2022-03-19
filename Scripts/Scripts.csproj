@@ -135,6 +135,8 @@
     <Compile Include="Fronteira\Astronomy\Tent.cs" />
     <Compile Include="Fronteira\Astronomy\Willebrord.cs" />
     <Compile Include="Fronteira\Bancos\BancoConta.cs" />
+    <Compile Include="Fronteira\Calendario\CalendarGump.cs" />
+    <Compile Include="Fronteira\Calendario\Persistencia.cs" />
     <Compile Include="Fronteira\Classes\Gumps\RPClassGump.cs" />
     <Compile Include="Fronteira\Comandos\BancoGuilda.cs" />
     <Compile Include="Fronteira\Comandos\Disarm.cs" />
@@ -151,6 +153,9 @@
     <Compile Include="Fronteira\Comandos\WipeTudo.cs" />
     <Compile Include="Fronteira\Cooking\CookingLoader.cs" />
     <Compile Include="Fronteira\Cooking\PlantaRandom.cs" />
+    <Compile Include="Fronteira\CraftRaros\DefRaros.cs" />
+    <Compile Include="Fronteira\CraftRaros\Items.cs" />
+    <Compile Include="Fronteira\CraftRaros\Sistema.cs" />
     <Compile Include="Fronteira\Discord\DiscordBot.cs" />
     <Compile Include="Fronteira\Elementos\GumpColar.cs" />
     <Compile Include="Fronteira\Elementos\JoiasElementais.cs" />

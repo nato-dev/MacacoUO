@@ -583,7 +583,7 @@ namespace Scripts.Mythik.Systems.Achievements
 
             if (achieves[ach.ID].Progress >= ach.CompletionTotal)
             {
-                player.SendMessage(78, "Voce completou uma conquista ! Digite .conquistas para ver suas conquistas !");
+                player.SendMessage(78, "[DICA] Voce completou uma conquista ! Digite .conquistas para ver suas conquistas !");
                 player.SendGump(new AchievementObtainedGump(ach), false);
                 achieves[ach.ID].CompletedOn = DateTime.UtcNow;
 

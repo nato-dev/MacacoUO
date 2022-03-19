@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  Profile.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -300,41 +300,41 @@ namespace VitaNex.Modules.AutoPvP
 
 			if (Deleted)
 			{
-				html.Append("<B>This profile has been deleted.</B>");
+				html.Append("<B>Este perfil foi deletado.</B>");
 				return;
 			}
 
-			html.AppendLine("<B>PvP Profile for {0}</B>", Owner.RawName);
+			html.AppendLine("<B>Perfil PvP de {0}</B>", Owner.RawName);
 			html.AppendLine();
 
 			html.Append("".WrapUOHtmlColor(Color.YellowGreen, false));
-			html.AppendLine("<B>Statistics</B>");
+			html.AppendLine("<B>Estatisticas</B>");
 			html.AppendLine();
 
-			html.AppendLine("* Overall Points: {0}", _Points.ToString("#,0"));
+			html.AppendLine("* Pontos: {0}", _Points.ToString("#,0"));
 			html.AppendLine();
 
 			Statistics.GetHtmlString(viewer, html);
 
 			html.Append("".WrapUOHtmlColor(Color.Cyan, false));
-			html.AppendLine("<B>Statisctics For All Seasons:</B>");
+			html.AppendLine("<B>Estatisticas de Todas Temporadas:</B>");
 			html.AppendLine();
 
-			html.AppendLine("<B>Main Statistic Totals</B>");
+			html.AppendLine("<B>Estatisticas Totais</B>");
 			html.AppendLine();
 
-			html.AppendLine("* Battles Attended: {0}", TotalBattles.ToString("#,0"));
-			html.AppendLine("* Battles Won: {0}", TotalWins.ToString("#,0"));
-			html.AppendLine("* Battles Lost: {0}", TotalLosses.ToString("#,0"));
-			html.AppendLine("* Points Gained: {0}", TotalPointsGained.ToString("#,0"));
-			html.AppendLine("* Points Lost: {0}", TotalPointsLost.ToString("#,0"));
+			html.AppendLine("* Participou: {0}", TotalBattles.ToString("#,0"));
+			html.AppendLine("* Vitorias: {0}", TotalWins.ToString("#,0"));
+			html.AppendLine("* Derrotas: {0}", TotalLosses.ToString("#,0"));
+			html.AppendLine("* Pontos: {0}", TotalPointsGained.ToString("#,0"));
+			html.AppendLine("* Pontos Perdidos: {0}", TotalPointsLost.ToString("#,0"));
 			html.AppendLine("* Kills: {0}", TotalKills.ToString("#,0"));
-			html.AppendLine("* Deaths: {0}", TotalDeaths.ToString("#,0"));
+			html.AppendLine("* Mortes: {0}", TotalDeaths.ToString("#,0"));
 			html.AppendLine("* Resurrections: {0}", TotalResurrections.ToString("#,0"));
-			html.AppendLine("* Damage Taken: {0}", TotalDamageTaken.ToString("#,0"));
-			html.AppendLine("* Damage Done: {0}", TotalDamageDone.ToString("#,0"));
-			html.AppendLine("* Healing Taken: {0}", TotalHealingTaken.ToString("#,0"));
-			html.AppendLine("* Healing Done: {0}", TotalHealingDone.ToString("#,0"));
+			html.AppendLine("* Dano Recebido: {0}", TotalDamageTaken.ToString("#,0"));
+			html.AppendLine("* Dano Dado: {0}", TotalDamageDone.ToString("#,0"));
+			html.AppendLine("* Cura Recebida: {0}", TotalHealingTaken.ToString("#,0"));
+			html.AppendLine("* Cura dada: {0}", TotalHealingDone.ToString("#,0"));
 			html.AppendLine();
 
 			html.Append("".WrapUOHtmlColor(Color.GreenYellow, false));

@@ -84,6 +84,12 @@ namespace Server.Items
                 var arma = targeted as BaseWeapon;
                 var ropa = targeted as BaseHat;
                 Item item = armadura == null ? (Item)arma : armadura;
+                if (item == null)
+                    item = ropa;
+
+                if (item == null)
+                    return;
+
                 if(armadura == null && arma == null && ropa == null)
                 {
                     from.SendMessage("Voce apenas pode colocar isto assim em armas e armaduras.");

@@ -630,6 +630,12 @@ namespace Server.Items
             return CheckLoot(from, true) && base.CheckLift(from, item, ref reject);
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add($"Nivel: {this.Level}/7");
+        }
+
         public override void OnItemLifted(Mobile from, Item item)
         {
             bool notYetLifted = !m_Lifted.Contains(item);

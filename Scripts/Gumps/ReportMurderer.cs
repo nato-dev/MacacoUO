@@ -36,9 +36,6 @@ namespace Server.Gumps
             if (Shard.WARSHARD)
                 return;
 
-            if (e.Mobile.Region != null && e.Mobile.Region.IsPartOf("Tretonia"))
-                return;
-
             Mobile m = e.Mobile;
 
             List<Mobile> killers = new List<Mobile>();

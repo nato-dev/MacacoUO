@@ -1,6 +1,7 @@
 #region References
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 
 using Server.Commands;
@@ -651,12 +652,30 @@ namespace Server.Guilds
 
 	public class Guild : BaseGuild
 	{
-		public static void Configure()
+        private static string FilePath = Path.Combine("Saves", "HistoricoGuerras.bin");
+
+        public static void Configure()
 		{
 			EventSink.CreateGuild += EventSink_CreateGuild;
 			EventSink.GuildGumpRequest += EventSink_GuildGumpRequest;
 
-			CommandSystem.Register("GuildProps", AccessLevel.Counselor, GuildProps_OnCommand);
+            EventSink.WorldLoad += () => {
+                Persistence.Deserialize(FilePath, (GenericReader reader) => {
+                    var count = reader.ReadInt();
+                    for (var x = 0; x < count; x++)
+                        Guild.History.Add(new WarDeclaration(reader));
+                });
+            };
+
+            EventSink.WorldSave += (WorldSaveEventArgs a) => {
+                Persistence.Serialize(FilePath, (GenericWriter writer) => {
+                    writer.Write(Guild.History.Count);
+                    foreach (var h in History)
+                        h.Serialize(writer);
+                });
+            };
+
+            CommandSystem.Register("GuildProps", AccessLevel.Counselor, GuildProps_OnCommand);
 		}
 
 		#region GuildProps
@@ -935,6 +954,7 @@ namespace Server.Guilds
 		#region New Wars
 		public List<WarDeclaration> PendingWars { get { return m_PendingWars; } }
 		public List<WarDeclaration> AcceptedWars { get { return m_AcceptedWars; } }
+        public static HashSet<WarDeclaration> History { get; set; }
 
 		public WarDeclaration FindPendingWar(Guild g)
 		{

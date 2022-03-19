@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Server.Items;
 using Server.Items.Holiday;
 
@@ -11,7 +11,7 @@ namespace Server.Mobiles
         public PumpkinHead()
             : base(Utility.RandomBool() ? AIType.AI_Melee : AIType.AI_Mage, FightMode.Closest, 10, 1, 0.05, 0.1)
         {
-            this.Name = "a killer pumpkin";
+            this.Name = "abobora assassina";
             this.Body = 1246 + Utility.Random(2);
 
             this.BaseSoundID = 268;

@@ -50,6 +50,8 @@ namespace Server.Mobiles
                 Add(new GenericBuyInfo(typeof(Tourmaline), 5000, 5, 0x0F18, 0, true));
                 Add(new GenericBuyInfo(typeof(Amber), 5000, 5, 0xF25, 0, true));
                 Add(new GenericBuyInfo(typeof(Diamond), 5000, 5, 0xF26, 0, true));
+
+                Add(new GenericBuyInfo(typeof(TransformationDust), 5000, 100, 0x5745, 0, true));
             }
         }
 

@@ -39,7 +39,8 @@ namespace Server.Mobiles
                     b.Name += " das terras perdidas";
                     b.Hue = hue;
                 }
-              
+
+
                 b.HitsMaxSeed += 1000;
                 b.Hits += 1000;
                 b.VirtualArmor += 60;

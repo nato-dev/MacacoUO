@@ -57,7 +57,7 @@ namespace VitaNex.Modules.AutoPvP
 		{
 			if (AutoPvP.SeasonSchedule.Enabled)
 			{
-				Title = "PvP Profiles (Season " + (Season != null ? Season.Number : AutoPvP.CurrentSeason.Number) + ")";
+				Title = "Perfis PvP (Temporada " + (Season != null ? Season.Number : AutoPvP.CurrentSeason.Number) + ")";
 			}
 
 			base.Compile();
@@ -96,13 +96,13 @@ namespace VitaNex.Modules.AutoPvP
 			list.AppendEntry(new ListGumpEntry("My Profile", OnMyProfile));
 
 			list.AppendEntry(
-				new ListGumpEntry("Sort By (" + SortOrder + ")", b => new PvPProfilesSortUI(User, this, this, b).Send()));
+				new ListGumpEntry("Ordenar Por (" + SortOrder + ")", b => new PvPProfilesSortUI(User, this, this, b).Send()));
 
 			if (Season != null)
 			{
 				list.AppendEntry(
 					new ListGumpEntry(
-						"Overall Ranks",
+						"Ranks",
 						b =>
 						{
 							Season = null;
@@ -116,7 +116,7 @@ namespace VitaNex.Modules.AutoPvP
 			{
 				list.AppendEntry(
 					new ListGumpEntry(
-						String.Format("Season {0:#,0} Ranks", season.Number),
+						String.Format("Ranking Temporada {0:#,0}", season.Number),
 						b =>
 						{
 							Season = season;
@@ -128,11 +128,11 @@ namespace VitaNex.Modules.AutoPvP
 			{
 				list.AppendEntry(
 					new ListGumpEntry(
-						"Select Season",
+						"Selecionar Temporada",
 						b => new InputDialogGump(User, this)
 						{
-							Title = "Select Season",
-							Html = "Enter the number for the season you wish to view rankings for.\nSeasons 1 to " + season.Number,
+							Title = "Selecione a temporada",
+							Html = "Escolha entre temporada 1 ate " + season.Number,
 							InputText = Season == null ? "" : Season.Number.ToString(CultureInfo.InvariantCulture),
 							Callback = (ib, text) =>
 							{
@@ -144,7 +144,7 @@ namespace VitaNex.Modules.AutoPvP
 
 									if (!AutoPvP.Seasons.TryGetValue(num, out s) || s == null)
 									{
-										User.SendMessage(ErrorHue, "Invalid Season selection.");
+										User.SendMessage(ErrorHue, "Temporada invalida.");
 									}
 									else
 									{
@@ -239,9 +239,9 @@ namespace VitaNex.Modules.AutoPvP
 		protected virtual string GetHelpText()
 		{
 			return String.Format(
-							 "PvP profiles store all of your battle statistics.\n" +
-							 "They can be ranked in order of total points, wins or kills.\n" +
-							 "Do you think you have what it takes to earn the top rank in {0}?",
+							 "Seu perfil PvP eh salvo toda temporada PvP.\n" +
+							 "Ele sera classificado conforme seus pontos, vitorias e derrotas.\n" +
+							 "Acha que tem o que precisa pra ser top 10 ?",
 							 ServerList.ServerName)
 						 .WrapUOHtmlColor(DefaultHtmlColor, false);
 		}

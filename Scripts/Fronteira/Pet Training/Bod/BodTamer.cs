@@ -55,7 +55,7 @@ namespace Server.Engines.BulkOrders
                 Bodies = new Dictionary<Type, List<int>>();
                 Bodies[typeof(Drake)] = new List<int>(new int[] { 60, 61 });
                 Bodies[typeof(Dragon)] = new List<int>(new int[] { 12, 59 });
-                Bodies[typeof(Horse)] = new List<int>(new int[] { 0xC8,
+                Bodies[typeof(Horse)] = new List<int>(new int[] { 0xC8, 0xcc,
                 0xE2,
                 0xE4,
                 0xCC });

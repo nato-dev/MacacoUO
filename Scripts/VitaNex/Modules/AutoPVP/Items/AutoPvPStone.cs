@@ -68,17 +68,17 @@ namespace VitaNex.Modules.AutoPvP
 			{
 				case AutoPvPStoneCommand.ViewBattles:
 				{
-					list.Add("<basefont color=#{0:X6}>Opens the PvP battles menu<basefont color=#ffffff>", color);
+					list.Add("<basefont color=#{0:X6}>Abre o menu de PvP<basefont color=#ffffff>", color);
 				}
 					break;
 				case AutoPvPStoneCommand.ViewProfiles:
 				{
-					list.Add("<basefont color=#{0:X6}>Opens the PvP profiles menu<basefont color=#ffffff>", color);
+					list.Add("<basefont color=#{0:X6}>Abre o menu de PvP<basefont color=#ffffff>", color);
 				}
 					break;
 				case AutoPvPStoneCommand.GlobalConfig:
 				{
-					list.Add("<basefont color=#{0:X6}>Use: Opens the PvP control panel<basefont color=#ffffff>", color);
+					list.Add("<basefont color=#{0:X6}>Abre o menu de PvP<basefont color=#ffffff>", color);
 				}
 					break;
 			}

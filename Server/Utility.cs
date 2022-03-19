@@ -18,7 +18,121 @@ namespace Server
 	{
 		private static Encoding m_UTF8, m_UTF8WithEncoding;
 
-		public static Encoding UTF8
+        public static string CreateTimeRemainingString(DateTime start, DateTime end, bool abbreviated, bool useDays, bool useHours, bool useMinutes, bool useSeconds)
+        {
+            int days;
+            int hours;
+            int minutes;
+            int seconds;
+
+            string sTimeRemaining = "";
+
+            days = Math.Abs((end - start).Days);
+            hours = Math.Abs((end - start).Hours);
+            minutes = Math.Abs((end - start).Minutes);
+            seconds = Math.Abs((end - start).Seconds);
+
+            if (hours >= 24)
+                days++;
+
+            if (minutes >= 60)
+                hours++;
+
+            if (seconds >= 60)
+                minutes++;
+
+            sTimeRemaining = "";
+
+            if (useDays)
+            {
+                if (days > 0)
+                {
+                    if (abbreviated)
+                        sTimeRemaining += days.ToString() + "d ";
+                    else
+                    {
+                        if (days > 1)
+                            sTimeRemaining += days.ToString() + " dias ";
+
+                        else if (days == 1)
+                            sTimeRemaining += days.ToString() + " dia ";
+                    }
+                }
+            }
+
+            if (useHours)
+            {
+                if (hours > 0)
+                {
+                    if (abbreviated)
+                        sTimeRemaining += hours.ToString() + "h ";
+                    else
+                    {
+                        if (hours > 1)
+                            sTimeRemaining += hours.ToString() + " horas ";
+
+                        else if (hours == 1)
+                            sTimeRemaining += hours.ToString() + " hora ";
+                    }
+                }
+            }
+
+            if (useMinutes)
+            {
+                if (minutes > 0)
+                {
+                    if (abbreviated)
+                        sTimeRemaining += minutes.ToString() + "m ";
+                    else
+                    {
+                        if (minutes > 1)
+                            sTimeRemaining += minutes.ToString() + " minutos ";
+
+                        else if (minutes == 1)
+                            sTimeRemaining += minutes.ToString() + " minuto ";
+                    }
+                }
+            }
+
+            if (useSeconds)
+            {
+                if (seconds > 0)
+                {
+                    if (abbreviated)
+                        sTimeRemaining += seconds.ToString() + "s ";
+                    else
+                    {
+                        if (seconds > 1)
+                            sTimeRemaining += seconds.ToString() + " segundos ";
+
+                        else if (seconds == 1)
+                            sTimeRemaining += seconds.ToString() + " segundo ";
+                        else
+                            sTimeRemaining += " 1 segundo ";
+                    }
+                }
+            }
+
+            sTimeRemaining = sTimeRemaining.Trim();
+
+            if (sTimeRemaining == "")
+                sTimeRemaining = "1 segundo";
+
+            return sTimeRemaining;
+        }
+
+        public static int CenteredTextOffset(int textCenterX, string text)
+        {
+            if (text == null)
+                text = "";
+
+            int textOffsetX = (int)(Math.Round(textCenterX - ((double)text.Length * 3.6)));
+
+            return textOffsetX;
+        }
+
+
+        public static Encoding UTF8
 		{
 			get
 			{

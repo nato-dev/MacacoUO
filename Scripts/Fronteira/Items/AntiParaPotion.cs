@@ -41,7 +41,8 @@ public class AntiParaPotion : BasePotion
         if (m.Paralyzed)
             m.OverheadMessage("* bebeu uma pocao *");
         m.Paralyzed = false;
-        m.Stam /= 2;
+        m.Stam = 1;
+        m.Hits -= m.Hits / 10;
         Consume();
         m.FixedEffect(0x375A, 10, 15);
         m.PlaySound(0x1E7);

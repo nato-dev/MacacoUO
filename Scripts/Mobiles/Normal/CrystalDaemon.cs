@@ -51,9 +51,9 @@ namespace Server.Mobiles
             this.Fame = 15000;
             this.Karma = -15000;
 
-            if(Utility.RandomDouble() > 0.1)
+            if(Utility.RandomDouble() < 0.1)
             {
-                PackItem(DecoRelPor.RandomArty());
+                PackItem(new ValeDecoracaoRara());
             }
 
             if (Utility.RandomDouble() > 0.05)

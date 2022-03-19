@@ -15,10 +15,17 @@ namespace Server.Engines.Craft
             Timer.DelayCall(TimeSpan.FromSeconds(10), () =>
             {
                 var deco = ScriptCompiler.GetAllItemsOfBase(typeof(BaseDecorationArtifact));
-                foreach(var de in deco)
+                foreach (var de in deco)
                 {
-                    if(!(de is RandomDecoArt))
+                    if (!(de is RandomDecoArt))
                         Arties.Add(de);
+                }
+
+                deco = ScriptCompiler.GetAllItemsOfBase(typeof(BaseDecorationContainerArtifact));
+                foreach (var de in deco)
+                {
+
+                    Arties.Add(de);
                 }
             });
         }
@@ -29,9 +36,12 @@ namespace Server.Engines.Craft
             {
                 var type = Arties[Utility.Random(Arties.Count)];
                 return (Item)Activator.CreateInstance(type);
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
-                return new BlankScroll();
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                return RandomArty();
             }
         }
     }
@@ -54,7 +64,7 @@ namespace Server.Engines.Craft
                 var arty = DecoLoader.RandomArty();
                 this.ItemID = arty.ItemID;
                 this.Name = arty.Name;
-                if(this.Name == null)
+                if (this.Name == null)
                 {
                     this.Name = "Artefato de Dungeon";
                 }
@@ -87,7 +97,7 @@ namespace Server.Engines.Craft
     [FlipableAttribute(0x1BF1, 0x1BF4)]
     public class StackofIngots : Item
     {
-      
+
 
         [Constructable]
         public StackofIngots()

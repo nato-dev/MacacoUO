@@ -79,7 +79,7 @@ namespace Server.Engines.VvV
 
         public void ReturnToHome()
         {
-            MoveToWorld(HomeLocation, Map.Felucca);
+            MoveToWorld(HomeLocation, Map.Trammel);
             Visible = false;
             Movable = false;
         }

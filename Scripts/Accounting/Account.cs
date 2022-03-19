@@ -1185,7 +1185,7 @@ namespace Server.Accounting
 					m.SendMessage("Voce nao eh mais um novato por ter skills muito altas");
 				}
 
-				m.SendMessage(78, "Por deixar de ser um novato, os monstros te atacarao e os limites de PK / PVP nao sao mais aplicaveis");
+				m.SendMessage(78, "[DICA] Por deixar de ser um novato, os monstros te atacarao e os limites de PK / PVP nao sao mais aplicaveis");
 				// You are no longer considered a young player of Ultima Online, and are no longer subject to the limitations and benefits of being in that caste.
 			}
 		}

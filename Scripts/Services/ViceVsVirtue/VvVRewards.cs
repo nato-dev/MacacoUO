@@ -29,7 +29,7 @@ namespace Server.Engines.VvV
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094764, 437, 500));  // Greater Stam
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094718, 13, 500));   // Supernova
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1155541, 2500, 500)); // Stat Loss Removal
-            Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1155543, 2543, 500)); // ANti Paralysis
+            //Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1155543, 2543, 500)); // ANti Paralysis
 
             Rewards.Add(new CollectionItem(typeof(EssenceOfCourage), 3838, 1155554, 2718, 250)); // Essence of Courage
 
@@ -42,13 +42,10 @@ namespace Server.Engines.VvV
             Rewards.Add(new CollectionItem(typeof(VvVHairDye), 3838, "Tinta do Caos", ViceVsVirtueSystem.ViceHue, 2500));   // Vice Hair DYe
 
             Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, "Armadilha de Veneno", 0, 250));    // Poison Trap Kit
-
-            /*
             Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155528, 0, 250));    // Freezing Trap Kit
             Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155529, 0, 250));    // Shocking Trap Kit
             Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155530, 0, 250));    // Blades Trap Kit
             Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155531, 0, 250));    // Explosion Trap Kit
-            */
 
             Rewards.Add(new CollectionItem(typeof(CannonTurretPlans), 5360, "Canhao", 0, 3000));    // Cannon Turret
             Rewards.Add(new CollectionItem(typeof(ManaSpike), 2308, "Espinho de Mana", 0, 1000));            // Mana Spike
@@ -60,8 +57,8 @@ namespace Server.Engines.VvV
             Rewards.Add(new CollectionItem(typeof(GoldBraceletBonito), 0x1086, "Bracelete de Ouro Elegante (+Stat)", 0, 2000));
             Rewards.Add(new CollectionItem(typeof(GoldRingElegante), 0x108a, "Anel de Ouro Elegante (+Stat)", 0, 2000));
 
-            //Rewards.Add(new CollectionItem(typeof(ForgedRoyalPardon), 18098, 1155524, 0, 10000));        // Royal Forged Pardon
-            // Rewards.Add(new CollectionItem(typeof(ScrollOfTranscendence), 5360, "Pergaminho de Skill", 0x490, 8000));   // Scroll of Transcendence
+            Rewards.Add(new CollectionItem(typeof(ForgedRoyalPardon), 18098, 1155524, 0, 10000));        // Royal Forged Pardon
+            Rewards.Add(new CollectionItem(typeof(ScrollOfTranscendence), 5360, "Pergaminho de Skill", 0x490, 8000));   // Scroll of Transcendence
 
             Rewards.Add(new CollectionItem(typeof(VvVRobe), 9859, "Sobretudo da Virtude", ViceVsVirtueSystem.VirtueHue, 5000)); // virtue robe
             Rewards.Add(new CollectionItem(typeof(VvVRobe), 9859, "Sobretudo do Caos", ViceVsVirtueSystem.ViceHue, 5000)); // virtue robe
@@ -74,6 +71,11 @@ namespace Server.Engines.VvV
             Rewards.Add(new CollectionItem(typeof(PrideTileDeed), 5360, 1155521, 0, 5000)); // Pride Tile
             Rewards.Add(new CollectionItem(typeof(ShameTileDeed), 5360, 1155522, 0, 5000)); // Shame Tile
             Rewards.Add(new CollectionItem(typeof(WrongTileDeed), 5360, 1155523, 0, 5000)); // Wrong Tile
+
+            Rewards.Add(new CollectionItem(typeof(VvVWand1), 3571, 0, 0, 500));
+            Rewards.Add(new CollectionItem(typeof(VvVWand2), 3571, 0, 0, 500));
+            Rewards.Add(new CollectionItem(typeof(VvVWizardsHat), 5912, 0, 0, 500));
+            Rewards.Add(new CollectionItem(typeof(VvVWand1), 3571, 0, 0, 500));
 
             /*
             Rewards.Add(new CollectionItem(typeof(MorphEarrings), 4231, 0, 0, 500));
@@ -98,10 +100,7 @@ namespace Server.Engines.VvV
             Rewards.Add(new CollectionItem(typeof(KasaOfTheRajin), 10136, 0, 0, 500));
           
 
-            Rewards.Add(new CollectionItem(typeof(VvVWand1), 3571, 0, 0, 500));
-            Rewards.Add(new CollectionItem(typeof(VvVWand2), 3571, 0, 0, 500));
-            Rewards.Add(new CollectionItem(typeof(VvVWizardsHat), 5912, 0, 0, 500));
-            Rewards.Add(new CollectionItem(typeof(VvVWand1), 3571, 0, 0, 500));
+ 
             Rewards.Add(new CollectionItem(typeof(VvVWoodlandArms), 11116, 0, 0, 500));
             Rewards.Add(new CollectionItem(typeof(VvVDragonArms), 9815, 0, 0, 500));
             Rewards.Add(new CollectionItem(typeof(VvVGargishPlateArms), 776, 0, 0, 500));

@@ -31,7 +31,9 @@ namespace Server.Scripts.Custom.Items
             }
             catch (Exception e)
             {
-                return new BlankScroll();
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.StackTrace);
+                return RandomArty();
             }
         }
 

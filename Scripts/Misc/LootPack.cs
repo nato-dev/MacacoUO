@@ -208,6 +208,50 @@ namespace Server
         };
         #endregion
 
+        public static readonly LootPackItem[] RareCraftingIngredients = new LootPackItem[]
+      {
+            // only one of each entry
+
+            new LootPackItem(typeof(RareArrowBundle), 1),
+            new LootPackItem(typeof(RareBoltBundle), 1),
+
+            // alchemy
+            new LootPackItem(typeof(RareVial), 1),
+            new LootPackItem(typeof(RareFlask), 1),
+
+            // blacksmith
+            new LootPackItem(typeof(Rope), 1),
+            new LootPackItem(typeof(RarePegboard), 1),
+            new LootPackItem(typeof(RareChains), 1),
+            new LootPackItem(typeof(RareGoldIngotBundle), 1),
+            new LootPackItem(typeof(RareBeeswax), 1),
+            new LootPackItem(typeof(RareCopperIngotBundle), 1),
+            // carpentry
+            new LootPackItem(typeof(RareDartboard), 1),
+            new LootPackItem(typeof(RareFoldedSheets), 1),
+            new LootPackItem(typeof(RareBrokenChair), 1),
+            new LootPackItem(typeof(RareLogPile), 1),
+            // cooking
+            new LootPackItem(typeof(RarePot), 1),
+            new LootPackItem(typeof(RareHorseDung), 1),
+            new LootPackItem(typeof(RareBerries), 5),
+            // inscription
+            new LootPackItem(typeof(RareOpenBook), 1),
+            new LootPackItem(typeof(RareBook), 1),
+            new LootPackItem(typeof(RareNecroScroll), 1),
+            // tailoring
+            new LootPackItem(typeof(RareFishnetLarge), 1),
+            new LootPackItem(typeof(RareFishnetSmall), 1),
+            // tinkering
+            new LootPackItem(typeof(IronWire), 1),
+      };
+
+
+        public static readonly LootPack RareCrafting = new LootPack(new LootPackEntry[]
+        {
+                new LootPackEntry(false, RareCraftingIngredients, 0.25, 1),
+        });
+
         #region AOS Magic Items
         public static readonly LootPackItem[] AosMagicItemsPoor = new[]
         {
@@ -516,7 +560,8 @@ namespace Server
                     //new LootPackEntry(false, GemItems, 20, 1, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 0.01, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.01, 1,1,60,100),
-                    new LootPackEntry(false, TintaBranca, 0.01, 1,1,60,100),
+                    //new LootPackEntry(false, TintaBranca, 0.01, 1,1,60,100),
+                    new LootPackEntry(false, RareCraftingIngredients, 0.01, 1,1,60,100),
                 });
 
         public static readonly LootPack OldFilthyRich =
@@ -531,6 +576,7 @@ namespace Server
                     new LootPackEntry(false, GemItems, 100, 3, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 0.1, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.1, 1,1,60,100),
+                     new LootPackEntry(false, RareCraftingIngredients, 0.1, 1,1,60,100),
                 });
 
         public static readonly LootPack OldUltraRich =
@@ -544,9 +590,10 @@ namespace Server
                     new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 50, 100),
                     new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 60, 100),
                     new LootPackEntry(false, OldMagicItems, 100.00, 1, 1, 60, 100),
-                     new LootPackEntry(false, GemItems, 50.00, 10, 1, 1, 100),
+                    new LootPackEntry(false, GemItems, 50.00, 10, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 0.5, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 0.5, 1,1,60,100),
+                    new LootPackEntry(false, RareCraftingIngredients, 100, 1,1,60,100),
                 });
 
         public static readonly LootPack OldSuperBoss =
@@ -567,6 +614,7 @@ namespace Server
                     new LootPackEntry(false, GemItems, 100.00, 20, 1, 1, 100),
                     new LootPackEntry(false, TintaPreta, 1, 1,1,60,100),
                     new LootPackEntry(false, TintaBranca, 1, 1,1,60,100),
+                     new LootPackEntry(false, RareCraftingIngredients, 100, 1,1,60,100),
                 });
         #endregion
 
@@ -832,7 +880,7 @@ namespace Server
                     }
                     else // not aos
                     {
-                        if(item is Spellbook)
+                        if (item is Spellbook)
                         {
                             ((Spellbook)item).Slayer = SlayerGroup.GetLootSlayerType(from.GetType());
                         }
@@ -853,7 +901,7 @@ namespace Server
                             if (80 > Utility.Random(100))
                             {
                                 weapon.DurabilityLevel = (WeaponDurabilityLevel)GetRandomOldBonus();
-                               
+
                             }
 
                             if (60 > Utility.Random(100))
@@ -1113,7 +1161,7 @@ namespace Server
             // Magery scrolls are weighted at 4 because there are four times as many magery
             // spells as other scolls of magic
             rndMax = 4;
-         
+
             rnd = Utility.Random(rndMax);
             rnd -= 3;
             if (rnd < 0)

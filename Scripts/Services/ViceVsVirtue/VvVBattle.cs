@@ -100,14 +100,14 @@ namespace Server.Engines.VvV
         public static readonly double KillPoints = 600;
         public static readonly double TurnInPoints = 500;
 
-        public static readonly int AltarSilver = 80;
-        public static readonly int TurnInSilver = 30;
-        public static readonly int KillSilver = 100;
+        public static readonly int AltarSilver = 100;
+        public static readonly int TurnInSilver = 100;
+        public static readonly int KillSilver = 50;
         public static readonly int WinSilver = 500;
-        public static readonly int DisarmSilver = 10;
+        public static readonly int DisarmSilver = 50;
 
         // silver penalty in the event the battle is uncontested
-        public static readonly double Penalty = 0.1;
+        public static readonly double Penalty = 0.5;
 
         [CommandProperty(AccessLevel.GameMaster)]
         public double SilverPenalty
@@ -284,7 +284,7 @@ namespace Server.Engines.VvV
 
             NextAltarActivate = DateTime.UtcNow + TimeSpan.FromMinutes(1);
 
-            Anuncio.Anuncia("A Guerra Infinita Se Inicia em Tretonia");
+            Anuncio.Anuncia("A Guerra Infinita Se Inicia na cidade de " + City.ToString());
             //System.SendVvVMessage("A guerra infinita se inicia na cidade " + ViceVsVirtueSystem.GetCityLocalization(City).ToString());
             // A Battle between Vice and Virtue is active! To Arms! The City of ~1_CITY~ is besieged!
         }
@@ -295,7 +295,7 @@ namespace Server.Engines.VvV
             foreach (Point3D p in CityInfo.Infos[City].AltarLocs)
             {
                 VvVAltar altar = new VvVAltar(this);
-                altar.MoveToWorld(p, Map.Felucca);
+                altar.MoveToWorld(p, Map.Trammel);
 
                 Altars.Add(altar);
             }
@@ -315,19 +315,19 @@ namespace Server.Engines.VvV
 
                 do
                 {
-                    p = Map.Felucca.GetRandomSpawnPoint(CityInfo.Infos[City].PriestLocation);
+                    p = Map.Trammel.GetRandomSpawnPoint(CityInfo.Infos[City].PriestLocation);
                 }
-                while (!Map.Felucca.CanSpawnMobile(p));
+                while (!Map.Trammel.CanSpawnMobile(p));
 
-                VicePriest.MoveToWorld(p, Map.Felucca);
+                VicePriest.MoveToWorld(p, Map.Trammel);
 
                 do
                 {
-                    p = Map.Felucca.GetRandomSpawnPoint(CityInfo.Infos[City].PriestLocation);
+                    p = Map.Trammel.GetRandomSpawnPoint(CityInfo.Infos[City].PriestLocation);
                 }
-                while (!Map.Felucca.CanSpawnMobile(p));
+                while (!Map.Trammel.CanSpawnMobile(p));
 
-                VirtuePriest.MoveToWorld(p, Map.Felucca);
+                VirtuePriest.MoveToWorld(p, Map.Trammel);
             }
         }
 
@@ -679,7 +679,7 @@ namespace Server.Engines.VvV
             Point3D p = CityInfo.Infos[City].SigilLocs[Utility.Random(CityInfo.Infos[City].SigilLocs.Length)];
             Sigil = new VvVSigil(this, p);
 
-            Sigil.MoveToWorld(p, Map.Felucca);
+            Sigil.MoveToWorld(p, Map.Trammel);
 
             UpdateAllGumps();
         }
@@ -1038,7 +1038,6 @@ namespace Server.Engines.VvV
 
         public void OnEnterRegion(Mobile m)
         {
-            Shard.Debug("Entrou Tretonia", m);
             if (m is PlayerMobile && OnGoing)
             {
                 if (m.HasGump(typeof(VvVBattleStatusGump)))

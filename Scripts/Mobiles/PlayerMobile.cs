@@ -172,6 +172,8 @@ namespace Server.Mobiles
         }
 
 
+        public EventCalendarAccount m_EventCalendarAccount = null;
+
         [CommandProperty(AccessLevel.GameMaster)]
         public byte PontosTalento { get; set; }
 
@@ -445,23 +447,6 @@ namespace Server.Mobiles
 
 
             DecideMusic(Old, New);
-
-            if (!Old.IsPartOf("Tretonia") && New.IsPartOf("Tretonia"))
-            {
-                SendMessage(38, "Voce entrou em Tretonia - domine os altares PvP e ganhe premios. A guerra ocorre a cada 2h.");
-                Delta(MobileDelta.Noto);
-                InvalidateProperties();
-
-                if (!IsCooldown("msgtreta"))
-                {
-                    SetCooldown("msgtreta", TimeSpan.FromDays(1));
-                    foreach (var pl in NetState.Instances)
-                    {
-                        if (pl != null && pl.Mobile != null)
-                            pl.Mobile.SendMessage(38, this.Name + " pisou nas terras de Tretonia");
-                    }
-                }
-            }
 
             if (newDungeon)
             {
@@ -5582,6 +5567,9 @@ namespace Server.Mobiles
 
             switch (version)
             {
+                case 55:
+                    m_EventCalendarAccount = reader.ReadItem() as EventCalendarAccount;
+                    goto case 54;
                 case 54:
                     BonusPeso = reader.ReadInt();
                     goto case 53;
@@ -6095,7 +6083,8 @@ namespace Server.Mobiles
             CheckKillDecay();
             CheckAtrophies(this);
             base.Serialize(writer);
-            writer.Write(54); // version
+            writer.Write(55); // version
+            writer.Write(m_EventCalendarAccount);
             writer.Write(BonusPeso);
             writer.Write(PassoWispGuia);
             DungeonsCompletasSerializer.Serialize(this, writer);

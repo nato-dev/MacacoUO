@@ -19,11 +19,8 @@ namespace Server.Engines.VvV
 
         public VvVWizardsHat()
         {
-            Attributes.BonusHits = 5;
-            Attributes.RegenMana = 3;
-            Attributes.DefendChance = 4;
-            Attributes.SpellDamage = 10;
-            Attributes.LowerRegCost = 20;
+            Attributes.BonusInt = 10;
+            Attributes.BonusMana = 10;
         }
 
         public VvVWizardsHat(Serial serial)
