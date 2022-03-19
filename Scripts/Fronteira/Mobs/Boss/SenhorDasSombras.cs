@@ -130,13 +130,17 @@ namespace Server.Mobiles
 
         public override void OnDeath(Container c)
         {
+
+            var tinta = new DyeTub();
+            tinta.DyedHue = 1910;
+            tinta.Name = "Tinta do Senhor das Sombras";
+
             base.OnDeath(c);
             c.DropItem(new Gold(2000));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(110));
-            SorteiaItem(new TintaSombras());
-            SorteiaItem(new PergaminhoCarregamento());
-            SorteiaItem(new SkillBook());
+            SorteiaItem(tinta);
+            SorteiaItem(new PergaminhoCarregamento());            
             SorteiaItem(new SkillBook());
             SorteiaItem(new TemplateDeed());
             SorteiaItem(new LivroAntigo());

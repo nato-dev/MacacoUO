@@ -79,7 +79,7 @@ namespace Server.Items
 
         public void Setup()
         {
-            this.Name = "Tinta do Senhor das Sombras";
+            this.Name = "Tinta Rara do Senhor das Sombras";
             this.Hue = 2071;
             this.DyedHue = 2071;
             this.charges = 6;
