@@ -73,4 +73,38 @@ namespace Server.Items
             base.Deserialize(reader);
         }
     }
+    public class TintaSombras : DyeTub
+    {
+        public static int COR = 2071;
+
+        public void Setup()
+        {
+            this.Name = "Tinta Rara do Senhor das Sombras";
+            this.Hue = 2071;
+            this.DyedHue = 2071;
+            this.charges = 6;
+        }
+
+        [Constructable]
+        public TintaSombras()
+        {
+            Setup();
+        }
+
+        public TintaSombras(Serial serial)
+           : base(serial)
+        {
+            Setup();
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
 }
