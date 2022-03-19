@@ -1,15 +1,11 @@
-using System;
-using Server;
-using System.Collections.Generic;
-using Server.Mobiles;
 using Server.Items;
 
 namespace Server.Engines.VvV
 {
     public class VvVWand1 : BaseWand, IArcaneEquip
-	{
-        public override int InitMinHits { get { return 255; } }
-        public override int InitMaxHits { get { return 255; } }
+    {
+        public override int InitMinHits => 255;
+        public override int InitMaxHits => 255;
 
         #region Arcane Impl
         private int m_MaxArcaneCharges, m_CurArcaneCharges;
@@ -19,12 +15,12 @@ namespace Server.Engines.VvV
         {
             get
             {
-                return this.m_MaxArcaneCharges;
+                return m_MaxArcaneCharges;
             }
             set
             {
-                this.m_MaxArcaneCharges = value;
-                this.InvalidateProperties();
+                m_MaxArcaneCharges = value;
+                InvalidateProperties();
             }
         }
 
@@ -33,41 +29,33 @@ namespace Server.Engines.VvV
         {
             get
             {
-                return this.m_CurArcaneCharges;
+                return m_CurArcaneCharges;
             }
             set
             {
-                this.m_CurArcaneCharges = value;
-                this.InvalidateProperties();
+                m_CurArcaneCharges = value;
+                InvalidateProperties();
             }
         }
+
+        public int TempHue { get; set; }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool IsArcane
-        {
-            get
-            {
-                return (this.m_MaxArcaneCharges > 0 && this.m_CurArcaneCharges >= 0);
-            }
-        }
+        public bool IsArcane => m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0;
 
-        public override void AddWeightProperty(ObjectPropertyList list)
+        public override void AddCraftedProperties(ObjectPropertyList list)
         {
-            base.AddWeightProperty(list);
+            base.AddCraftedProperties(list);
 
-            list.Add(1061837, "{0}\t{1}", this.m_CurArcaneCharges, this.m_MaxArcaneCharges); // arcane charges: ~1_val~ / ~2_val~
+            if (IsArcane)
+                list.Add(1061837, "{0}\t{1}", m_CurArcaneCharges, m_MaxArcaneCharges); // arcane charges: ~1_val~ / ~2_val~
         }
         #endregion
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1023570; // Wand
-            }
-        }
+        public override int LabelNumber => 1023570; // Wand
 
-        public VvVWand1() : base(WandEffect.None, 0, 0)
+        public VvVWand1()
+            : base(WandEffect.None, 0, 0)
         {
             ItemID = 3571;
 
@@ -80,46 +68,66 @@ namespace Server.Engines.VvV
 
         public VvVWand1(Serial serial)
             : base(serial)
-		{
-		}
-		
-		public override void Serialize(GenericWriter writer)
-		{
-			base.Serialize(writer);
-			writer.Write(1);
+        {
+        }
 
-            if (this.IsArcane)
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(2); // version
+
+            if (IsArcane)
             {
                 writer.Write(true);
-                writer.Write((int)m_CurArcaneCharges);
-                writer.Write((int)m_MaxArcaneCharges);
+                writer.Write(TempHue);
+                writer.Write(m_CurArcaneCharges);
+                writer.Write(m_MaxArcaneCharges);
             }
             else
             {
                 writer.Write(false);
             }
-		}
-		
-		public override void Deserialize(GenericReader reader)
-		{
-			base.Deserialize(reader);
-			int version = reader.ReadInt();
+        }
 
-            if (reader.ReadBool())
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+
+            switch (version)
             {
-                m_CurArcaneCharges = reader.ReadInt();
-                m_MaxArcaneCharges = reader.ReadInt();
+                case 2:
+                    {
+                        if (reader.ReadBool())
+                        {
+                            TempHue = reader.ReadInt();
+                            m_CurArcaneCharges = reader.ReadInt();
+                            m_MaxArcaneCharges = reader.ReadInt();
+                        }
+
+                        break;
+                    }
+                case 1:
+                    {
+                        if (reader.ReadBool())
+                        {
+                            m_CurArcaneCharges = reader.ReadInt();
+                            m_MaxArcaneCharges = reader.ReadInt();
+                        }
+
+                        break;
+                    }
             }
 
             if (version == 0)
                 Timer.DelayCall(() => ViceVsVirtueSystem.Instance.AddVvVItem(this));
-		}
-	}
+        }
+    }
 
     public class VvVWand2 : BaseWand, IArcaneEquip
     {
-        public override int InitMinHits { get { return 255; } }
-        public override int InitMaxHits { get { return 255; } }
+        public override int InitMinHits => 255;
+        public override int InitMaxHits => 255;
 
         #region Arcane Impl
         private int m_MaxArcaneCharges, m_CurArcaneCharges;
@@ -127,55 +135,40 @@ namespace Server.Engines.VvV
         [CommandProperty(AccessLevel.GameMaster)]
         public int MaxArcaneCharges
         {
-            get
-            {
-                return this.m_MaxArcaneCharges;
-            }
+            get { return m_MaxArcaneCharges; }
             set
             {
-                this.m_MaxArcaneCharges = value;
-                this.InvalidateProperties();
+                m_MaxArcaneCharges = value;
+                InvalidateProperties();
             }
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public int CurArcaneCharges
         {
-            get
-            {
-                return this.m_CurArcaneCharges;
-            }
+            get { return m_CurArcaneCharges; }
             set
             {
-                this.m_CurArcaneCharges = value;
-                this.InvalidateProperties();
+                m_CurArcaneCharges = value;
+                InvalidateProperties();
             }
         }
+
+        public int TempHue { get; set; }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool IsArcane
-        {
-            get
-            {
-                return (this.m_MaxArcaneCharges > 0 && this.m_CurArcaneCharges >= 0);
-            }
-        }
+        public bool IsArcane => m_MaxArcaneCharges > 0 && m_CurArcaneCharges >= 0;
 
-        public override void AddWeightProperty(ObjectPropertyList list)
+        public override void AddCraftedProperties(ObjectPropertyList list)
         {
-            base.AddWeightProperty(list);
+            base.AddCraftedProperties(list);
 
-            list.Add(1061837, "{0}\t{1}", this.m_CurArcaneCharges, this.m_MaxArcaneCharges); // arcane charges: ~1_val~ / ~2_val~
+            if (IsArcane)
+                list.Add(1061837, "{0}\t{1}", m_CurArcaneCharges, m_MaxArcaneCharges); // arcane charges: ~1_val~ / ~2_val~
         }
         #endregion
 
-        public override int LabelNumber
-        {
-            get
-            {
-                return 1023570; // Wand
-            }
-        }
+        public override int LabelNumber => 1023570; // Wand
 
         public VvVWand2()
             : base(WandEffect.None, 0, 0)
@@ -197,13 +190,14 @@ namespace Server.Engines.VvV
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write(1);
+            writer.Write(2); // version
 
-            if (this.IsArcane)
+            if (IsArcane)
             {
                 writer.Write(true);
-                writer.Write((int)m_CurArcaneCharges);
-                writer.Write((int)m_MaxArcaneCharges);
+                writer.Write(TempHue);
+                writer.Write(m_CurArcaneCharges);
+                writer.Write(m_MaxArcaneCharges);
             }
             else
             {
@@ -216,12 +210,30 @@ namespace Server.Engines.VvV
             base.Deserialize(reader);
             int version = reader.ReadInt();
 
-            if (reader.ReadBool())
+            switch (version)
             {
-                m_CurArcaneCharges = reader.ReadInt();
-                m_MaxArcaneCharges = reader.ReadInt();
-            }
+                case 2:
+                    {
+                        if (reader.ReadBool())
+                        {
+                            TempHue = reader.ReadInt();
+                            m_CurArcaneCharges = reader.ReadInt();
+                            m_MaxArcaneCharges = reader.ReadInt();
+                        }
 
+                        break;
+                    }
+                case 1:
+                    {
+                        if (reader.ReadBool())
+                        {
+                            m_CurArcaneCharges = reader.ReadInt();
+                            m_MaxArcaneCharges = reader.ReadInt();
+                        }
+
+                        break;
+                    }
+            }
 
             if (version == 0)
                 Timer.DelayCall(() => ViceVsVirtueSystem.Instance.AddVvVItem(this));

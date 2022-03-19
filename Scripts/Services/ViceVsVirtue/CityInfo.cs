@@ -1,4 +1,3 @@
-using Server;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +10,8 @@ namespace Server.Engines.VvV
 
         public static void Configure()
         {
-            Shard.Debug("=== CONFIGURANDO TRETOPOLIS ====");
             Infos = new Dictionary<VvVCity, CityInfo>();
-          
+
             Infos[VvVCity.Britain] = new CityInfo(
                 "Britain",
                 new Point3D[] { new Point3D(1453, 1554, 30), new Point3D(1462, 1650, 10), new Point3D(1514, 1640, 20), new Point3D(1490, 1740, 0) },

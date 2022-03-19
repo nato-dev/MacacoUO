@@ -1,12 +1,8 @@
-using System;
-using Server;
+using Server.Engines.Points;
+using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
-using Server.Gumps;
-using Server.Guilds;
-using Server.Network;
-using Server.Engines.Points;
-using System.Collections.Generic;
+using System;
 
 namespace Server.Engines.VvV
 {
@@ -60,6 +56,7 @@ namespace Server.Engines.VvV
                     case 3: type = VvVTrapType.Blade; break;
                     case 4: type = VvVTrapType.Explosion; break;
                 }
+
                 item = new VvVTrapKit(type);
             }
             else if (citem.Type == typeof(VvVRobe) || citem.Type == typeof(VvVHairDye))
@@ -84,7 +81,7 @@ namespace Server.Engines.VvV
                 }
                 else
                 {
-                    if (User.AccessLevel <= AccessLevel.VIP)
+                    if (User.AccessLevel == AccessLevel.Player)
                         PointsSystem.ViceVsVirtue.DeductPoints(User, citem.Points);
 
                     User.SendLocalizedMessage(1073621); // Your reward has been placed in your backpack.

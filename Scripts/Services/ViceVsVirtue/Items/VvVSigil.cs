@@ -1,13 +1,7 @@
-using System;
-using Server;
 using Server.Items;
 using Server.Mobiles;
-using Server.Gumps;
-using System.Collections.Generic;
 using Server.Network;
-using Server.Guilds;
-using System.Linq;
-using Server.Engines.Points;
+using System;
 
 namespace Server.Engines.VvV
 {
@@ -24,21 +18,29 @@ namespace Server.Engines.VvV
         [CommandProperty(AccessLevel.GameMaster)]
         public DateTime LastStolen { get; set; }
 
-        public override bool HandlesOnMovement { get { return !Visible; } }
-        public bool CheckWhenHidden { get { return true; } }
+        public override int LabelNumber => 1123391;  // Sigil
+        public override bool HandlesOnMovement => !Visible;
+        public bool CheckWhenHidden => true;
 
         public VvVSigil(VvVBattle battle, Point3D home)
             : base(0x99C7)
         {
-
-            Name = "Sigilo";
-
             Battle = battle;
             Visible = false;
 
             Hue = 2721;
 
             LootType = LootType.Cursed;
+        }
+
+        public static bool ExistsOn(Mobile mob, bool vvvOnly = false)
+        {
+            if (mob == null || mob.Backpack == null)
+                return false;
+
+            Container pack = mob.Backpack;
+
+            return ViceVsVirtueSystem.Enabled && vvvOnly && pack.FindItemByType(typeof(VvVSigil)) != null;
         }
 
         public void OnStolen(VvVPlayerEntry entry)
@@ -59,7 +61,7 @@ namespace Server.Engines.VvV
         {
             if (LastStolen == DateTime.MinValue)
             {
-                from.SendLocalizedMessage("Voce precisa usar Stealing no sigilo"); // You must use the stealing skill to pick up the sigil
+                from.SendLocalizedMessage(1005225); // You must use the stealing skill to pick up the sigil
                 return false;
             }
 
@@ -106,20 +108,21 @@ namespace Server.Engines.VvV
             if (!ViceVsVirtueSystem.IsVvV(m))
                 return false;
 
-            return Utility.Random(100) <= 30;
+            return Utility.Random(100) <= m.Skills[SkillName.DetectHidden].Value;
         }
 
         public virtual void OnRevealed(Mobile m)
         {
             Visible = true;
-            PublicOverheadMessage(MessageType.Regular, 0, true, "* revelado *");
         }
 
         public virtual bool CheckPassiveDetect(Mobile m)
         {
-            if (m.InRange(this.Location, 4))
+            if (m.InRange(Location, 4))
             {
-                if (Utility.Random(300) < 20)
+                int skill = (int)m.Skills[SkillName.DetectHidden].Value;
+
+                if (skill >= 80 && Utility.Random(300) < skill)
                     return true;
             }
 

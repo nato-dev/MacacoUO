@@ -1,20 +1,12 @@
+using Server.Guilds;
+using Server.Gumps;
+using Server.Misc;
+using Server.Mobiles;
+using Server.Multis;
+using Server.Regions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
-using Server;
-using Server.Items;
-using Server.Mobiles;
-using Server.Gumps;
-using Server.Network;
-using Server.Guilds;
-using Server.Engines.Points;
-using Server.Engines.CityLoyalty;
-using Server.SkillHandlers;
-using Server.Multis;
-using Server.Regions;
-using Server.Misc;
-using Server.Commands;
 
 namespace Server.Engines.VvV
 {
@@ -31,63 +23,8 @@ namespace Server.Engines.VvV
     [PropertyObject]
     public class VvVBattle
     {
-        public static TimeSpan ultimoCd = TimeSpan.Zero;
-
         public static readonly int Duration = 30;
-        public static int TempoAteProxima
-        {
-            get
-            {
-                /*
-                if(ultimoCd != TimeSpan.Zero)
-                {
-                    ultimoCd.Add(TimeSpan.FromHours(24));
-                    return (int)ultimoCd.TotalMinutes;
-                }
-                */
-
-                var dateNow = DateTime.Now;
-                var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 20, 0, 0);
-                TimeSpan ts;
-                if (date > dateNow)
-                    ts = date - dateNow;
-                else
-                {
-                    date = date.AddDays(1);
-                    ts = date - dateNow;
-                }
-                var cooldown = ts;
-                /*
-                var today = DateTime.Today;
-                var agora = DateTime.Now;
-                var proximaGuerra = today.AddHours(20);
-
-                var cooldown = proximaGuerra - agora;
-                if (proximaGuerra < agora)
-                {
-                    cooldown = agora - proximaGuerra;
-                    cooldown.Add(TimeSpan.FromHours(24));
-                } else
-                {
-                     cooldown = proximaGuerra - agora;
-                }
-                */
-                /*
-                var ult = today.Subtract(TimeSpan.FromHours(4));
-
-                var cooldown = agora - ult;
-                if (agora > ult)
-                {
-                    ult = today.AddHours(20);
-                    cooldown = ult - agora;
-                }
-                */
-                Shard.Debug("-------------- COOLDOWN VVV ------------------");
-                //Shard.Debug("Horas: " + cooldown.TotalHours);
-                //ultimoCd = cooldown;
-                return (int)cooldown.TotalMinutes;
-            }
-        }
+        public static readonly int Cooldown = 5;
         public static readonly int Announcement = 2;
         public static readonly int KillCooldownDuration = 5;
         public static readonly int MaxTraps = 20;
@@ -100,14 +37,14 @@ namespace Server.Engines.VvV
         public static readonly double KillPoints = 600;
         public static readonly double TurnInPoints = 500;
 
-        public static readonly int AltarSilver = 80;
-        public static readonly int TurnInSilver = 30;
-        public static readonly int KillSilver = 100;
-        public static readonly int WinSilver = 500;
-        public static readonly int DisarmSilver = 10;
+        public static readonly int AltarSilver = 100;
+        public static readonly int TurnInSilver = 100;
+        public static readonly int KillSilver = 50;
+        public static readonly int WinSilver = 100;
+        public static readonly int DisarmSilver = 50;
 
         // silver penalty in the event the battle is uncontested
-        public static readonly double Penalty = 0.1;
+        public static readonly double Penalty = 0.5;
 
         [CommandProperty(AccessLevel.GameMaster)]
         public double SilverPenalty
@@ -217,14 +154,11 @@ namespace Server.Engines.VvV
 
         public Timer Timer { get; private set; }
 
-        public int TrapCount { get { return Traps.Where(t => !t.Deleted).Count(); } }
-        public int TurretCount { get { return Turrets.Where(t => !t.Deleted).Count(); } }
+        public int TrapCount => Traps.Where(t => !t.Deleted).Count();
+        public int TurretCount => Turrets.Where(t => !t.Deleted).Count();
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public bool InCooldown
-        {
-            get { return CooldownEnds > DateTime.UtcNow; }
-        }
+        public bool InCooldown => CooldownEnds > DateTime.UtcNow;
 
         public DateTime NextCombatHeatCycle { get; private set; }
 
@@ -254,15 +188,13 @@ namespace Server.Engines.VvV
                     cities.Add((VvVCity)i);
             }
 
-            //cities.Add(VvVCity.Tretonia);
-
             if (cities.Count > 0)
             {
                 newCity = cities[Utility.Random(cities.Count)];
             }
             else if (System.ExemptCities.Contains(newCity))
             {
-                System.SendVvVMessage("As cidades estao vazias.");
+                System.SendVvVMessage("All VvV cities are currently exempt.");
                 return;
             }
 
@@ -284,14 +216,12 @@ namespace Server.Engines.VvV
 
             NextAltarActivate = DateTime.UtcNow + TimeSpan.FromMinutes(1);
 
-            Anuncio.Anuncia("A Guerra Infinita Se Inicia em Tretonia");
-            //System.SendVvVMessage("A guerra infinita se inicia na cidade " + ViceVsVirtueSystem.GetCityLocalization(City).ToString());
+            System.SendVvVMessage(1154721, string.Format("#{0}", ViceVsVirtueSystem.GetCityLocalization(City).ToString()));
             // A Battle between Vice and Virtue is active! To Arms! The City of ~1_CITY~ is besieged!
         }
 
         public void SpawnAltars()
         {
-
             foreach (Point3D p in CityInfo.Infos[City].AltarLocs)
             {
                 VvVAltar altar = new VvVAltar(this);
@@ -412,11 +342,11 @@ namespace Server.Engines.VvV
             UnContested = true;
             bool checkAggression = ViceVsVirtueSystem.EnhancedRules && NextCombatHeatCycle < DateTime.UtcNow;
 
-            foreach (PlayerMobile pm in this.Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
+            foreach (PlayerMobile pm in Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
             {
                 bool vvv = ViceVsVirtueSystem.IsVvV(pm);
 
-                if (!vvv && !Warned.Contains(pm) && pm.AccessLevel <= AccessLevel.VIP)
+                if (!vvv && !Warned.Contains(pm) && pm.AccessLevel == AccessLevel.Player)
                 {
                     pm.SendGump(new BattleWarningGump(pm));
                     Warned.Add(pm);
@@ -427,7 +357,7 @@ namespace Server.Engines.VvV
 
                     if (g != null)
                     {
-                        var t = GetTeam(g);
+                        BattleTeam t = GetTeam(g);
 
                         if (team == null)
                         {
@@ -473,9 +403,9 @@ namespace Server.Engines.VvV
             if (BattleAggression == null)
                 return;
 
-            var list = new List<Mobile>(BattleAggression.Keys);
+            List<Mobile> list = new List<Mobile>(BattleAggression.Keys);
 
-            foreach (var m in list)
+            foreach (Mobile m in list)
             {
                 if (BattleAggression[m] < DateTime.UtcNow && !m.Region.IsPartOf(Region))
                 {
@@ -556,7 +486,7 @@ namespace Server.Engines.VvV
             TallyStats();
             SendBattleStatsGump();
 
-            System.SendVvVMessage("A Guerra Infinita terminou !"); // A VvV battle has just concluded. The next battle will begin in less than five minutes!
+            System.SendVvVMessage(1154722); // A VvV battle has just concluded. The next battle will begin in less than five minutes!
 
             if (BattleAggression != null)
             {
@@ -584,37 +514,12 @@ namespace Server.Engines.VvV
             ManaSpikeEndEffects = DateTime.MinValue;
             NextManaSpike = DateTime.MinValue;
 
-            var cooldown = TempoAteProxima;
-            CooldownEnds = DateTime.UtcNow + TimeSpan.FromMinutes(cooldown);
+            CooldownEnds = DateTime.UtcNow + TimeSpan.FromMinutes(Cooldown);
 
-            Timer.DelayCall(TimeSpan.FromMinutes(cooldown), () =>
+            Timer.DelayCall(TimeSpan.FromMinutes(Cooldown), () =>
                 {
                     System.CheckBattleStatus();
                 });
-
-            var msg1 = cooldown - 60;
-            Timer.DelayCall(TimeSpan.FromMinutes(msg1), () =>
-            {
-                Anuncio.Anuncia("Guerra Infinita inicia em 1 hora");
-            });
-
-            var msg2 = cooldown - 30;
-            Timer.DelayCall(TimeSpan.FromMinutes(msg2), () =>
-            {
-                Anuncio.Anuncia("Guerra Infinita inicia em meia hora");
-            });
-
-            var msg3 = cooldown - 10;
-            Timer.DelayCall(TimeSpan.FromMinutes(msg3), () =>
-            {
-                Anuncio.Anuncia("Guerra Infinita inicia em 10 minutos");
-            });
-
-            var msg4 = cooldown - 3;
-            Timer.DelayCall(TimeSpan.FromMinutes(msg4), () =>
-            {
-                Anuncio.Anuncia("Guerra Infinita inicia em 3 minutos");
-            });
         }
 
         public void TallyStats()
@@ -625,10 +530,9 @@ namespace Server.Engines.VvV
             if (leader == null || leader.Guild == null)
                 return;
 
-            var oposition = OppositionCount(leader.Guild);
-            leader.Silver += AwardSilver(WinSilver + (oposition * 50));
+            leader.Silver += AwardSilver(WinSilver + (OppositionCount(leader.Guild) * 50));
 
-            foreach (Mobile m in this.Region.GetEnumeratedMobiles())
+            foreach (Mobile m in Region.GetEnumeratedMobiles())
             {
                 Guild g = m.Guild as Guild;
 
@@ -694,7 +598,7 @@ namespace Server.Engines.VvV
             Altars[AltarIndex].Activate();
             ActivateArrows();
 
-            SendStatusMessage("Lute pelos altares !", true);
+            SendStatusMessage("Fight for the altar!", true);
         }
 
         public void CheckArrow(PlayerMobile pm)
@@ -717,7 +621,7 @@ namespace Server.Engines.VvV
             if (Altars == null || Region == null)
                 return;
 
-            foreach (PlayerMobile pm in this.Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
+            foreach (PlayerMobile pm in Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
             {
                 if (pm.NetState != null && pm.QuestArrow == null)
                 {
@@ -808,10 +712,10 @@ namespace Server.Engines.VvV
                             if (killerTeam != null)
                             {
                                 killerTeam.Score += (int)KillPoints;
-                                killerTeam.Silver += AwardSilver(KillSilver + (OppositionCount(killer.Guild) * 30));
+                                killerTeam.Silver += AwardSilver(KillSilver + (OppositionCount(killer.Guild) * 50));
                             }
 
-                            SendStatusMessage(String.Format("{0} matou {1}!", killer.Player.Name, victim.Player.Name));
+                            SendStatusMessage(string.Format("{0} has killed {1}!", killer.Player.Name, victim.Player.Name));
                             KillCooldown[victim.Player] = DateTime.UtcNow + TimeSpan.FromMinutes(KillCooldownDuration);
                         }
                     }
@@ -829,7 +733,7 @@ namespace Server.Engines.VvV
                     if (killerStats != null)
                     {
                         killerStats.Stolen++;
-                        SendStatusMessage(String.Format("{0} roubou o sigilo !", killer.Player.Name));
+                        SendStatusMessage(string.Format("{0} has stolen the sigil!", killer.Player.Name));
                     }
 
                     if (killerTeam != null)
@@ -841,7 +745,7 @@ namespace Server.Engines.VvV
                     if (killerTeam != null)
                     {
                         killerTeam.Score += (int)TurnInPoints;
-                        killerTeam.Silver += AwardSilver(TurnInSilver + (OppositionCount(killer.Guild) * 30));
+                        killerTeam.Silver += AwardSilver(TurnInSilver + (OppositionCount(killer.Guild) * 50));
                     }
 
                     if (killerStats != null && killerTeam != null)
@@ -858,14 +762,14 @@ namespace Server.Engines.VvV
                         }
                     }
 
-                    SendStatusMessage(String.Format("{0} retornou o sigilo!", killer.Player.Name));
+                    SendStatusMessage(string.Format("{0} has returned the sigil!", killer.Player.Name));
 
                     NextSigilSpawn = DateTime.UtcNow + TimeSpan.FromMinutes(1);
                     RemovePriests();
 
                     break;
                 case UpdateType.Disarm:
-                    SendStatusMessage(String.Format("{0} disarmou a armadilha!", killer.Player.Name));
+                    SendStatusMessage(string.Format("{0} has disarmed a trap!", killer.Player.Name));
 
                     if (killerStats != null)
                     {
@@ -885,7 +789,7 @@ namespace Server.Engines.VvV
 
         public int AwardSilver(int amount)
         {
-            return (int)((double)amount * SilverPenalty);
+            return (int)(amount * SilverPenalty);
         }
 
         public void RemovePriests()
@@ -908,9 +812,9 @@ namespace Server.Engines.VvV
             BattleTeam team = GetTeam(g);
 
             team.Score += (int)AltarPoints;
-            team.Silver += AwardSilver(AltarSilver + (OppositionCount(g) * 30));
+            team.Silver += AwardSilver(AltarSilver + (OppositionCount(g) * 50));
 
-            SendStatusMessage(String.Format("{0} conquistou um altar!", g != null ? g.Abbreviation : "somebody"));
+            SendStatusMessage(string.Format("{0} claimed the altar!", g != null ? g.Abbreviation : "somebody"));
 
             foreach (PlayerMobile p in Region.GetEnumeratedMobiles().Where(player => player is PlayerMobile))
             {
@@ -937,7 +841,15 @@ namespace Server.Engines.VvV
 
                 if (OnGoing && NextAnnouncement < DateTime.UtcNow)
                 {
-                    System.SendVvVMessage(team.Guild.Name + " esta dominando a cidade"); // ~1_NAME~ is occupying the city!
+                    if (ViceVsVirtueSystem.EnhancedRules)
+                    {
+                        System.SendVvVMessage(string.Format("{0} is occupying {1}!", team.Guild.Name, City == VvVCity.SkaraBrae ? "Skara Brae" : City.ToString()));
+                    }
+                    else
+                    {
+                        System.SendVvVMessage(1154957, team.Guild.Name); // ~1_NAME~ is occupying the city!
+                    }
+
                     NextAnnouncement = DateTime.UtcNow + TimeSpan.FromMinutes(Announcement);
                 }
             }
@@ -945,10 +857,19 @@ namespace Server.Engines.VvV
             {
                 if (NextAnnouncement < DateTime.UtcNow)
                 {
-                    System.SendVvVMessage("A cidade esta sem dominio !"); // The City is unoccupied! Slay opposing forces to claim the city for your guild!
+                    if (ViceVsVirtueSystem.EnhancedRules)
+                    {
+                        System.SendVvVMessage(1050039, string.Format("#{0}\tis unoccupied! Slay opposing forces to claim the city for your guild!", ViceVsVirtueSystem.GetCityLocalization(City).ToString()));
+                    }
+                    else
+                    {
+                        System.SendVvVMessage(1154958); // The City is unoccupied! Slay opposing forces to claim the city for your guild!
+                    }
+
                     NextAnnouncement = DateTime.UtcNow + TimeSpan.FromMinutes(Announcement);
                 }
             }
+
         }
 
         public void CheckScore()
@@ -1033,12 +954,11 @@ namespace Server.Engines.VvV
 
             Region r = Region.Find(m.Location, m.Map);
 
-            return r == this.Region;
+            return r == Region;
         }
 
         public void OnEnterRegion(Mobile m)
         {
-            Shard.Debug("Entrou Tretonia", m);
             if (m is PlayerMobile && OnGoing)
             {
                 if (m.HasGump(typeof(VvVBattleStatusGump)))
@@ -1061,7 +981,7 @@ namespace Server.Engines.VvV
             if (Region == null)
                 return;
 
-            foreach (PlayerMobile m in this.Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
+            foreach (PlayerMobile m in Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
             {
                 if (!ViceVsVirtueSystem.IsVvV(m) || m.NetState == null)
                     continue;
@@ -1084,12 +1004,12 @@ namespace Server.Engines.VvV
             if (Region == null)
                 return;
 
-            foreach (PlayerMobile m in this.Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
+            foreach (PlayerMobile m in Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
             {
                 if (ViceVsVirtueSystem.IsVvV(m))
                 {
                     m.CloseGump(typeof(VvVBattleStatusGump));
-                    m.SendGump(new BattleStatsGump((PlayerMobile)m, this));
+                    m.SendGump(new BattleStatsGump(m, this));
                 }
             }
         }
