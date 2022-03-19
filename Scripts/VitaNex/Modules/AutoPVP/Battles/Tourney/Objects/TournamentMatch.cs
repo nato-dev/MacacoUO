@@ -306,7 +306,7 @@ namespace VitaNex.Modules.AutoPvP.Battles
 						Players[i] = null;
 						Dead[i] = false;
 						Statistics[i].SetAll(0);
-						Broadcast(0x22, "{0} has left the match! [{1} / {2}]", pm.RawName, Count, Capacity);
+						Broadcast(0x22, "{0} saiu do torneio! [{1} / {2}]", pm.RawName, Count, Capacity);
 					}
 				}
 
@@ -324,7 +324,7 @@ namespace VitaNex.Modules.AutoPvP.Battles
 							Dead[i] = false;
 							Statistics[i].SetAll(0);
 
-							Broadcast(0x55, "{0} has joined the match! [{1} / {2}]", pm.RawName, Count, Capacity);
+							Broadcast(0x55, "{0} entrou no torneio! [{1} / {2}]", pm.RawName, Count, Capacity);
 						}
 					}
 
@@ -333,7 +333,7 @@ namespace VitaNex.Modules.AutoPvP.Battles
 
 				if (IsFull)
 				{
-					Broadcast("The match is now full, prepare to fight!");
+					Broadcast("Torneio cheio, iniciando!");
 
 					Start(b, t);
 				}

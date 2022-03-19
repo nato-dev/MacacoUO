@@ -76,7 +76,7 @@ namespace Server.Items
 
     public enum TipoBracelete
     {
-        Arma, Arco, Magia
+        Arma, Arco, Magia, Escudo
     }
 
     public class BraceleteDoPoder : BaseBracelet
@@ -119,6 +119,8 @@ namespace Server.Items
                 list.Add($"Bonus Dano Hab. Arcos PvM");
             else if (Tipo == TipoBracelete.Magia)
                 list.Add($"Bonus Dano Hab. Magias PvM");
+            else if (Tipo == TipoBracelete.Escudo)
+                list.Add($"Bonus Parry PvM");
             list.Add($"+{Bonus}%");
         }
 

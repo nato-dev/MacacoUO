@@ -1,3 +1,6 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using Server.Gumps;
 using Server.Mobiles;
 using System;
 using System.Collections.Generic;
@@ -9,17 +12,99 @@ using System.Threading.Tasks;
 
 namespace Server.Fronteira
 {
+    public class Configuracao
+    {
+        public static string FilePathMonstros = Path.Combine("Saves/Help", "monstros.json");
+
+        public static void Configure()
+        {
+            EventSink.WorldLoad += Carrega;
+        }
+
+        public static void Carrega()
+        {
+            Console.WriteLine("Carregando dados do shard");
+            try
+            {
+                Monstros.Configs = JsonConvert.DeserializeObject<Dictionary<string, Monstros>>(File.ReadAllText(FilePathMonstros));
+            } catch(Exception e)
+            {
+
+            }
+            Console.WriteLine("Carregado " + Monstros.Configs.Count + " monstros");
+        }
+    }
+
+    [Serializable]
+    public class ItemLoot
+    {
+        public int Grafico;
+        public int Cor;
+        public int Qtd;
+        public string Nome;
+        public string Type;
+        public bool Sorteado;
+
+        public ItemLoot(Item i, bool sorteio = false)
+        {
+            Grafico = i.ItemID;
+            Cor = Gump.ToRgb(Gump.HueToColor((short)i.Hue));
+            Qtd = i.Amount;
+            Nome = i.Name;
+            Type = i.GetType().Name;
+            Sorteado = sorteio;
+        }
+    }
+
+   
+
+    [Serializable]
     public class Monstros
     {
+        public int Grafico;
+        public string Type;
+        public string Name;
+        public int Hits;
+        public int Mana;
+        public int Stam;
+        public int DanoMax;
+        public int DanoMin;
+        public int Str;
+        public int Dex;
+        public int Int;
+
+        public double TameSkill;
+        public List<ItemLoot> Loots;
+
+        public Monstros(BaseCreature bc)
+        {
+            this.Grafico = bc.Body;
+            this.Type = bc.GetType().Name;
+            this.Name = bc.Name;
+            Hits = bc.HitsMax;
+            Mana = bc.ManaMax;
+            Stam = bc.StamMax;
+            DanoMax = bc.DamageMax;
+            DanoMin = bc.DamageMin;
+            Str = bc.Str;
+            Dex = bc.Dex;
+            Int = bc.Int;
+            if (bc.Tamable)
+                TameSkill = bc.MinTameSkill;
+
+        }
+
+        public static Dictionary<string, Monstros> Configs = new Dictionary<string, Monstros>();
+
+
         public static void GeraDocMonstros()
         {
             List<string> erros = new List<string>();
-            using (StreamWriter outputFile = new StreamWriter("C:/monstros/monstros.html"))
+            using (StreamWriter outputFile = new StreamWriter(Configuracao.FilePathMonstros))
             {
                 LootPack.OldMagicItems.Clear();
                 LootPack.GemItems.Clear();
 
-                outputFile.WriteLine("<html><body>");
                 BaseCreature.BypassTimerInicial = true;
                 var docs = new Dictionary<string, HashSet<string>>();
                 foreach (Assembly a in ScriptCompiler.Assemblies)
@@ -52,47 +137,46 @@ namespace Server.Fronteira
                                 var c1 = bc1.Corpse;
                                 var c2 = bc2.Corpse;
 
+                                var itemLoots = new List<ItemLoot>();
                                 var loots = new HashSet<string>();
                                 if (c1 != null)
                                     foreach (var i in c1.Items)
                                     {
                                         Console.WriteLine($"Loot {i.GetType()}");
-                                        loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}");
+                                        if (loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}"))
+                                            itemLoots.Add(new ItemLoot(i));
                                     }
 
                                 if (c2 != null)
                                     foreach (var i in c2.Items)
                                     {
-                                        loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}");
+                                        if(loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}"))
+                                            itemLoots.Add(new ItemLoot(i));
                                         Console.WriteLine($"Loot {i.GetType()}");
                                     }
 
 
                                 foreach (var i in bc1.Sorteado)
                                 {
-                                    Console.WriteLine($"Sorteio {i.GetType()}");
-                                    loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}");
+                                    if(loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}"))
+                                        itemLoots.Add(new ItemLoot(i, true));
                                 }
 
                                 foreach (var i in bc2.Sorteado)
                                 {
-                                    Console.WriteLine($"Sorteio {i.GetType()}");
-                                    loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}");
+                                    if(loots.Add($"{i.Amount}x {i.Name ?? i.GetType().Name}"))
+                                        itemLoots.Add(new ItemLoot(i, true));
                                 }
 
-                                var nome = bc1.GetType().Name;
-                                if (bc1.Name != null)
-                                {
-                                    nome = $"{bc1.Name} ({nome})";
-                                }
+                               
                                 c1.Delete();
                                 c2.Delete();
                                 Console.WriteLine("Terminando");
                                 if(loots.Count > 0)
                                 {
                                     var s = string.Join("", loots.Select(l => $"<li>{l}</li>"));
-                                    docs[nome] = loots;
-                                    outputFile.WriteLine($"<div class='mob'><div class='stats'></div><span>{nome}</span><div class='loots'><ul>{s}</ul></div></div>");
+                                    Monstros.Configs[tipo.Name] = new Monstros(bc1);
+                                    //outputFile.WriteLine($"<div class='mob'><div class='stats'></div><span>{nome}</span><div class='loots'><ul>{s}</ul></div></div>");
                                 }
                             }
                             catch (Exception e)
@@ -109,8 +193,11 @@ namespace Server.Fronteira
                     }
                     Utility.FIX = -1;
                 }
+
+                outputFile.WriteLine(JsonConvert.SerializeObject(Monstros.Configs));
+               
+
                 Console.WriteLine("----- FIM -----");
-                outputFile.WriteLine("</body></html>");
             }
 
             using (StreamWriter outputFile = new StreamWriter("C:/monstros/erros.html"))

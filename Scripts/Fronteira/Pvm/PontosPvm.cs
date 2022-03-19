@@ -2,6 +2,7 @@ using Felladrin.Automations;
 using Server.Commands;
 using Server.Engines.Points;
 using Server.Engines.VvV;
+using Server.Factions;
 using Server.Fronteira.Elementos;
 using Server.Gumps;
 using Server.Items;
@@ -82,7 +83,8 @@ namespace Server.Ziden.Kills
             if (bc.NoKillAwards || bc.NoLootOnDeath)
                 return;
 
-            var exp = Math.Ceiling(pontos * 1.5);
+            var exp = Math.Ceiling(pontos * 1.5);   
+
             if (!(bc.Region is DungeonRegion))
             {
                 dg = false;
@@ -144,11 +146,17 @@ namespace Server.Ziden.Kills
                                     }
                                 }
 
-                                DaXpElementos(pl, exp);
+                                var xpJogador = exp;
+                                var targetFaction = Faction.Find(pl, true);
+                                if(targetFaction != null)
+                                {
+                                    xpJogador = xpJogador * 1.2;
+                                }
+                                DaXpElementos(pl, xpJogador);
 
                                 //pl.SendMessage(78, "Bonus de XP: Semana FULL EXP");
-                                c.PrivateOverheadMessage(Network.MessageType.Regular, 66, false, string.Format("+{0} EXP", exp), pl.NetState);
-                                PointsSystem.Exp.AwardPoints(pl, exp, false, false);
+                                c.PrivateOverheadMessage(Network.MessageType.Regular, 66, false, string.Format("+{0} EXP", xpJogador), pl.NetState);
+                                PointsSystem.Exp.AwardPoints(pl, xpJogador, false, false);
                                 if (!pl.IsCooldown("xpp") && pl.IsYoung())
                                 {
                                     pl.SetCooldown("xpp", TimeSpan.FromMinutes(10));

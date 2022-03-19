@@ -85,9 +85,15 @@ namespace Server.Engines.UOStore
         {
             StoreCategory cat = StoreCategory.Featured;
             //CharacterStatueMaker
+           
             Register<CharacterStatueMaker>("Estatua de Jogador", "Construa uma estatua do seu personagem.<br>Se eternalize !.", 0x32F0, 0, 0, 20000, cat);
             Register<PergaminhoPerdao>("Pergaminho do Perdao", "Remove 1 long count.", 0x1F35, 0, 55, 500, cat);
             Register<SacolaCristais>("100 Cristais Elementais", "Sacola com 100 cristais elementais.", 16395, 0, 2611, 25000, cat);
+
+            Register<Sobrado11x11>("Sobrado Custom 7x7", "Sobrado Custom 7x7.<br>Custa gold para construir partes.", 0x14F0, 0, 0, 10000, cat);
+            Register<Sobrado11x11>("Sobrado Custom 11x11", "Sobrado Custom 11x11.<br>Custa gold para construir partes.", 0x14F0, 0, 0, 30000, cat);
+            Register<TorreMansao>("Torre Custom 18x18", "Torre Custom 18x18.<br>Custa gold para construir partes.", 0xEFA, 0, 0, 50000, cat);
+            Register<Spellbook>("Fullbook", "Fullbook.<br>Tem todas as magias.", 0x14F0, 0, 0, 5000, cat, ConstructSpellbook);
 
             Register<DoubleExpDeed>("PowerHour 2x Exp", "Ativa double exp para o shard todo por 1h.</ br > Todos vao te amar um pouco mais.", 0x14F0, 0, 256, 500, cat);
             Register<DoubleGoldDeed>("Power Hour 2x Gold", "Ativa double gold para o shard todo por 1h.</br>Todos vao te amar um pouco mais.", 0x14F0, 0, 54, 500, cat);
@@ -101,6 +107,10 @@ namespace Server.Engines.UOStore
             Register<KeepDeed>("Keep", "Deed de Keep.<br>Moradia chique para lords.", 0x14F0, 0, 0, 7500, cat);
             Register<TowerDeed>("Torre", "Deed de Torre.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
             Register<LargeMarbleDeed>("Marble", "Deed de Marble.<br>Moradia chique para lords.", 0x14F0, 0, 0, 5000, cat);
+
+            Register<Sobrado11x11>("Sobrado Custom 7x7", "Sobrado Custom 7x7.<br>Custa gold para construir partes.", 0x14F0, 0, 0, 10000, cat);
+            Register<Sobrado11x11>("Sobrado Custom 11x11", "Sobrado Custom 11x11.<br>Custa gold para construir partes.", 0x14F0, 0, 0, 30000, cat);
+            Register<TorreMansao>("Torre Custom 18x18", "Torre Custom 18x18.<br>Custa gold para construir partes.", 0x14F0, 0, 0, 50000, cat);
 
             Register<DoubleExpDeed>("PowerHour 2x Exp", "Ativa double exp para o shard todo por 1h.</ br > Todos vao te amar um pouco mais.", 0x14F0, 0, 256, 500, cat);
             Register<DoubleGoldDeed>("Power Hour 2x Gold", "Ativa double gold para o shard todo por 1h.</br>Todos vao te amar um pouco mais.", 0x14F0, 0, 54, 500, cat);
@@ -165,8 +175,8 @@ namespace Server.Engines.UOStore
             Register<HitchingRope>("Corda de Estabulo", "Recarrega o poste de estabulo", 0x14F8, 0, 0, 100, cat, ConstructHitchingPost);
 
             cat = StoreCategory.Mounts;
-            Register<EtherealHorse>(new TextDefinition("Cavalo Magico"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um cavalo magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x20DD, 0, 0, 1000, cat, CavaloEthy);
-            Register<EtherealRidgeback>(new TextDefinition("Ridgeback Magico [20/03/2022]"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um ostard magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x2615, 0, 0, 5000, cat, OstardEthy);
+            Register<EtherealHorse>(new TextDefinition("Cavalo Magico"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um cavalo magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x20DD, 0, 0, 2000, cat, CavaloEthy);
+            Register<EtherealBoura>(new TextDefinition("Boura Magico [20/04/2022]"), "Item pertence pessoal que nao se perde ao morrer. <br>Pode ser usado a qualquer momento para invocar um ostard magico.<br>Pode ser usado para sempre.<br>Nao consome slots de animais<br>Intransferivel", 0x2615, 0, 0, 10000, cat, OstardEthy);
             // Register<WindrunnerStatue>(new TextDefinition("Windrunner"), "Montaria. <br>Esta montaria vem Bound e pode ser ressada com Veterinary.<br>", 0x9ED5, 0, 0, 3000, cat, WindRunner);
 
             /*
@@ -560,7 +570,7 @@ namespace Server.Engines.UOStore
 
         public static Item OstardEthy(Mobile m, StoreEntry entry)
         {
-            var cavalo = new EtherealRidgeback();
+            var cavalo = new EtherealBoura();
             cavalo.Transparent = false;
             cavalo.BoundTo = m.RawName;
             return cavalo;
@@ -594,6 +604,13 @@ namespace Server.Engines.UOStore
             shroud.Name = "Manto dos Mortos";
             shroud.Hue = TintaPreta.COR;
             shroud.BoundTo = m.RawName;
+            return shroud;
+        }
+
+        public static Item ConstructSpellbook(Mobile m, StoreEntry entry)
+        {
+            var shroud = new Spellbook();
+            shroud.Content = ulong.MaxValue;
             return shroud;
         }
 

@@ -11,6 +11,7 @@ using Server.Gumps;
 using Server.Network;
 using Server.Commands;
 using Server.Items;
+using Server.Factions;
 
 namespace Server.Gumps
 {
@@ -57,8 +58,11 @@ namespace Server.Gumps
             AddHtml(483, 343, 152, 23, @"<CENTER>DUNGEONS</CENTER>", (bool)true, (bool)false);
             AddButton(541, 373, 2151, 2151, (int)Buttons.Dungeons, GumpButtonType.Reply, 0);
 
-            AddHtml(483, 343+100, 152, 23, @"<CENTER>FACTIONS</CENTER>", (bool)true, (bool)false);
-            AddButton(541, 373+100, 2151, 2151, (int)Buttons.Factions, GumpButtonType.Reply, 0);
+            if (Settings.Enabled)
+            {
+                AddHtml(483, 343 + 100, 152, 23, @"<CENTER>FACTIONS</CENTER>", (bool)true, (bool)false);
+                AddButton(541, 373 + 100, 2151, 2151, (int)Buttons.Factions, GumpButtonType.Reply, 0);
+            }
 
             AddHtml(700, 343 + 100, 152, 23, @"<CENTER>ACAMPAMENTOS</CENTER>", (bool)true, (bool)false);
             AddButton(763, 373 + 100, 2151, 2151, (int)Buttons.Acampamentos, GumpButtonType.Reply, 0);

@@ -147,6 +147,12 @@ namespace Server.Mobiles
                 SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
+            var b = new BraceleteDoPoder();
+            b.Tipo = TipoBracelete.Escudo;
+            b.Bonus = 10 + Utility.Random(91);
+            b.Hue = 2076;
+            b.Name = "Bracelete de Corgul";
+            SorteiaItem(b);
             SorteiaItem(new CustomizableSquaredDoorMatDeed());
             SorteiaItem(new eviltreeAddonDeed());
             for (var x = 0; x < 10; x++)

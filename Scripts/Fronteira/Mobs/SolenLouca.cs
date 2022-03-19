@@ -80,6 +80,9 @@ namespace Server.Mobiles
             bola.Cargas = 100;
             SorteiaItem(bola);
             DistribuiItem(Decos.RandomDeco());
+            var b = new BraceleteDoPoder();
+            b.Bonus = 10;
+            SorteiaItem(b);
             var arco = Loot.RandomWeapon();
             arco.Resource = CraftResource.Bronze;
             arco.Quality = ItemQuality.Exceptional;

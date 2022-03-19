@@ -163,6 +163,10 @@ namespace Server.Mobiles
             base.OnDeath(c);
             SorteiaItem(Decos.RandomDeco());
             SorteiaItem(new EnhancedBandage(10));
+
+            var b = new BraceleteDoPoder();
+            b.Bonus = 10;
+            SorteiaItem(b);
             var a = new CarpenterApron();
             a.Bonus = Utility.Random(1, 1);
             a.Name = "Avental de Twaulo";

@@ -1970,6 +1970,9 @@ namespace Server.Items
                 if (defender.Player && parry > 70 && attacker is BaseCreature)
                 {
                     chance += parry / 180; // +60%
+                    var brace = defender.FindItemOnLayer(Layer.Bracelet) as BraceleteDoPoder;
+                    if (brace != null && brace.Tipo == TipoBracelete.Escudo)
+                        chance += brace.Bonus / 400;
                 }
 
                 if (shield is WoodenShield || shield is WoodenKiteShield)
@@ -2099,6 +2102,7 @@ namespace Server.Items
                 defender.FixedEffect(0x37B9, 10, 16);
                 defender.Animate(AnimationType.Parry, 0);
 
+                var ratioBloqueio = (attacker is BaseCreature ? 2 : attackerWeapon is BaseRanged ? 1.5 : 1.2);
                 var bloqueado = 0;
                 if (shield != null)
                     bloqueado = (int)(shield.ArmorRating * (attacker is BaseCreature ? 2 : attackerWeapon is BaseRanged ? 1.5 : 1.2));
