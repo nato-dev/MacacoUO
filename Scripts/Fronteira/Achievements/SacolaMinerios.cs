@@ -36,6 +36,7 @@ namespace Server.Ziden.Achievements
         [Constructable]
         public VitoriaFFA()
         {
+            AddItem(new PergaminhoCarregamento());
             AddItem(new SacolaJoias(10));
             AddItem(new SacolaPots());
             AddItem(new Gold(5000));

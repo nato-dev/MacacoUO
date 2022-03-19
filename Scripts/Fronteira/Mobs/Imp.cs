@@ -50,6 +50,9 @@ namespace Server.Mobiles
                         skill.Base = 100;
                 }
 
+                if(Utility.RandomBool())
+                    b.AddToBackpack(new CristalDoPoder());
+
                 var gold = b.Backpack.FindItemByType(typeof(Gold));
                 if(gold != null)
                 {

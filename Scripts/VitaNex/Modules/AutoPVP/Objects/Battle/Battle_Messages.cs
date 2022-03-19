@@ -288,7 +288,7 @@ namespace VitaNex.Modules.AutoPvP
 
             if (Options.Broadcasts.World.EndNotify && timeLeft.Minutes > 0)
             {
-                WorldBroadcast("{0} vai terminar em {1}", Name, msg);
+                //WorldBroadcast("{0} vai terminar em {1}", Name, msg);
             }
         }
     }

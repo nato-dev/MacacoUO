@@ -496,7 +496,7 @@ namespace Server.Mobiles
                 if (BeginAction(typeof(FlySpell)))
                 {
                     if (this.Spell is Spell)
-                        ((Spell)this.Spell).Disturb(DisturbType.Unspecified, false, false);
+                        ((Spell)this.Spell).Disturb(DisturbType.Algo, false, false);
 
                     Spell spell = new FlySpell(this);
                     spell.Cast();
@@ -513,7 +513,7 @@ namespace Server.Mobiles
                 if (BeginAction(typeof(FlySpell)))
                 {
                     if (this.Spell is Spell)
-                        ((Spell)this.Spell).Disturb(DisturbType.Unspecified, false, false);
+                        ((Spell)this.Spell).Disturb(DisturbType.Algo, false, false);
 
                     Animate(AnimationType.Land, 0);
                     Flying = false;
@@ -2353,7 +2353,6 @@ namespace Server.Mobiles
                         if (h != null && h.Map != null)
                             target.MoveToWorld(h.BanLocation, h.Map);
                     }
-                    this.SendMessage("Nao pode lutar com criaturas em casas");
                     return false;
                 }
             }
@@ -2843,6 +2842,8 @@ namespace Server.Mobiles
             if ((item is FishingPole || item is BaseClothing || item is BaseWeapon || item is BaseArmor && !(item is Dagger)) && item.IsChildOf(Backpack))
             {
                 SmoothForceEquip(item);
+                if (item is BaseAxe || item is BaseTool)
+                    return;
             }
 
             if (item is Bandage)

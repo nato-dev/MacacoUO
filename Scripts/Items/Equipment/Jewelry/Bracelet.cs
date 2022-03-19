@@ -74,6 +74,73 @@ namespace Server.Items
         }
     }
 
+    public enum TipoBracelete
+    {
+        Arma, Arco, Magia
+    }
+
+    public class BraceleteDoPoder : BaseBracelet
+    {
+        [CommandProperty(AccessLevel.Administrator)]
+        public int Bonus { get; set; }
+
+        [CommandProperty(AccessLevel.Administrator)]
+        public TipoBracelete Tipo { get; set; }
+
+        [Constructable]
+        public BraceleteDoPoder()
+            : base(0x1086)
+        {
+            //Weight = 0.1;
+            Name = "Bracelete do Poder";
+            Bonus = 10;
+            Hue = 1151;
+            Tipo = TipoBracelete.Arma;
+        }
+
+        public BraceleteDoPoder(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            base.OnDoubleClick(from);
+            from.SendMessage("Este bracelete ajuda com bonus nas habilidades das armas em PvM.");
+            from.SendMessage("Para aprender sobre as habilidades das armas, veja nossa wiki.");
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            if(Tipo==TipoBracelete.Arma)
+                list.Add($"Bonus Dano Hab. Armas Fisicas PvM");
+            else if (Tipo == TipoBracelete.Arco)
+                list.Add($"Bonus Dano Hab. Arcos PvM");
+            else if (Tipo == TipoBracelete.Magia)
+                list.Add($"Bonus Dano Hab. Magias PvM");
+            list.Add($"+{Bonus}%");
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+            writer.Write(Bonus);
+            writer.Write((int)Tipo);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+            Bonus = reader.ReadInt();
+            Tipo = (TipoBracelete)reader.ReadInt();
+        }
+    }
+
     public class GoldBraceletMagico : BaseBracelet
     {
         [Constructable]

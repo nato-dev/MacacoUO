@@ -35,8 +35,16 @@ namespace Server.Mobiles
             b.VirtualArmor = 60;
             b.Fame += 1000;
             b.Fame *= 6;
-            if (Utility.RandomDouble() < 0.05)
-                b.AddItem(BaseEssencia.RandomEssencia());
+
+            if(Utility.RandomDouble() < 0.09)
+            {
+                var esse = BaseEssencia.RandomEssencia();
+                b.AddToBackpack(esse);
+                b.Hue = esse.Hue;
+            }
+
+            if (Utility.RandomBool())
+                b.AddToBackpack(new CristalDoPoder());
 
             if (b.Skills.Parry.Base < 25)
                 b.Skills.Parry.Base = 25;

@@ -645,7 +645,7 @@
 			<logoutDelay active="false" />
 		</region>
 	</region>
-    <region type="TownRegion" priority="50" name="Buccaneer's Den">
+    <region type="NoHousingRegion" priority="50" name="Buccaneer's Den">
       <rect x="2612" y="2057" width="164" height="210" />
       <rect x="2604" y="2065" width="8" height="189" zmin="0" />
       <go x="2706" y="2163" z="0" />
@@ -1773,7 +1773,7 @@
 			<logoutDelay active="false" />
 		</region>
 	</region>
-    <region type="TownRegion" priority="50" name="Buccaneer's Den">
+    <region type="NoHousingRegion" priority="50" name="Buccaneer's Den">
       <rect x="2612" y="2057" width="164" height="210" />
       <rect x="2604" y="2065" width="8" height="189" zmin="0" />
       <go x="2706" y="2163" z="0" />

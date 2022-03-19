@@ -484,6 +484,7 @@ namespace Server.SkillHandlers
                             m_Creature.IsBonded = false;
 
                             m_Creature.Combatant = null;
+                           
 
                             m_Creature.OnAfterTame(m_Tamer);
 

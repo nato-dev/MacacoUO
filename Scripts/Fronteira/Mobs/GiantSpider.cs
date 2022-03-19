@@ -5,7 +5,7 @@ namespace Server.Mobiles
 {
     public class Teia : Item
     {
-        Mobile preso;
+        public Mobile preso;
 
         [Constructable]
         public Teia(Mobile preso) : base(0x10D3)

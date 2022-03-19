@@ -437,6 +437,8 @@ namespace Server.Items
     {
         private bool m_IsShipwreckedItem;
 
+        public ElementoPvM Elelemento { get; set; }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public bool Naufragio
         {
@@ -478,8 +480,8 @@ namespace Server.Items
         {
             base.Serialize(writer);
 
-            writer.Write((int)2); // version
-
+            writer.Write((int)3); // version
+            writer.Write((int)Elemento);
             writer.Write(m_IsShipwreckedItem);
         }
 
@@ -491,6 +493,7 @@ namespace Server.Items
 
             switch ( version )
             {
+                case 3: Elemento = (ElementoPvM)reader.ReadInt(); goto case 2;
                 case 2: goto case 1;
                 case 1:
                     {
@@ -520,7 +523,10 @@ namespace Server.Items
             if (m_IsShipwreckedItem)
                 list.Add(1041645); // recovered from a shipwreck
 
-            if(TransmogItemID != 0)
+            if(Elemento != ElementoPvM.None)
+                list.Add(Gump.Cor(Elemento.ToString(), BaseArmor.CorElemento(Elemento)));
+
+            if (TransmogItemID != 0)
             {
                 list.Add(Gump.Cor("[ Transmoglificado ]", "purple"));
             }

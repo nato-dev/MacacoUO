@@ -14,7 +14,7 @@ namespace Server.Fronteira.QualidadeDefeitos.ListaDefeitos
 
         public static void Initialize()
         {
-            new AmaldicoadoTimer().Start();
+            //new AmaldicoadoTimer().Start();
         }
 
         protected override void OnTick()

@@ -694,8 +694,8 @@ namespace Server.Engines.Harvest
                 {
                     if (from.Skills[SkillName.Fishing].Value > 60 && Utility.RandomDouble() < from.Skills[SkillName.Fishing].Value / 5000)
                     {
-                        from.AddItem(new BagOfBlackPearl());
-                        from.SendMessage("Você pescou uma sacola velha");
+                        if(from.AddToBackpack(new BagOfBlackPearl()))
+                            from.SendMessage("Você pescou uma sacola velha");
                     }
                     number = 1008124;
                     name = "um peixe";

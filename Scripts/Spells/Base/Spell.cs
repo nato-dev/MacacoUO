@@ -372,7 +372,7 @@ namespace Server.Spells
                 {
                     if((DateTime.UtcNow - Caster.LastResist).TotalSeconds > 2)
                     {
-                        Disturb(DisturbType.Hurt, false, true);
+                        Disturb(DisturbType.Dano, false, true);
                     } else
                     {
                         Shard.Debug("Resist n toma disturb");
@@ -386,7 +386,7 @@ namespace Server.Spells
 
         public virtual void OnCasterKilled()
         {
-            Disturb(DisturbType.Kill);
+            Disturb(DisturbType.Morte);
         }
 
         public virtual void OnConnectionChanged()
@@ -402,7 +402,7 @@ namespace Server.Spells
 
             if (caster.SpellSteps > 1 && this is MarkSpell)
             {
-                Disturb(DisturbType.Moved);
+                Disturb(DisturbType.Movimentar);
                 Caster.SendMessage("Você não pode se movimentar usando esta magia");
                 return true;
             }
@@ -437,7 +437,7 @@ namespace Server.Spells
 
             if (m_State == SpellState.Casting && caster.SpellSteps > maxDistance && !((this is TeleportSpell) || caster.IsCooldown("tp")))
             {
-                Disturb(DisturbType.Moved);
+                Disturb(DisturbType.Movimentar);
                 if (repeatedNerf)
                     Caster.SendMessage("Por usar esta magia repetidamente, voce perdeu a concentracao mais facilmente");
                 Caster.SendMessage("Você se moveu muito e perdeu a concentração");
@@ -456,7 +456,7 @@ namespace Server.Spells
 
                 if(Caster.Skills.Focus.Value < 80)
                 {
-                    Disturb(DisturbType.EquipRequest);
+                    Disturb(DisturbType.Equipar);
                     if (!Caster.IsCooldown("dicasp"))
                     {
                         Caster.SetCooldown("dicasp");
@@ -473,7 +473,7 @@ namespace Server.Spells
         {
             if (m_State == SpellState.Sequencing)
             {
-                Disturb(DisturbType.UseRequest);
+                Disturb(DisturbType.Interagir);
             }
 
             return true;
@@ -805,6 +805,7 @@ namespace Server.Spells
                 m_Caster.Spell = null;
                 Caster.Delta(MobileDelta.Flags);
                 DoHurtFizzle();
+                m_Caster.SendMessage(32, "Voce perdeu a concentracao de sua magia por "+ type.ToString());
                 OnDisturb(type, true);
 
                 if (m_CastTimer != null)
@@ -831,6 +832,7 @@ namespace Server.Spells
                 m_Caster.Spell = null;
                 Caster.Delta(MobileDelta.Flags);
                 OnDisturb(type, false);
+                m_Caster.SendMessage(32, "Voce perdeu a concentracao de sua magia por " + type.ToString());
                 Target.Cancel(m_Caster);
                 DoHurtFizzle();
             } else
@@ -843,6 +845,7 @@ namespace Server.Spells
         {
             Effects.SendLocationParticles(EffectItem.Create(m_Caster.Location, m_Caster.Map, EffectItem.DefaultDuration), 0x3728, 10, 10, 2023);
             m_Caster.LocalOverheadMessage(MessageType.Regular, 0x3B2, true, "* Perdeu a concentracao *");
+            m_Caster.PlaySound(0x5C);
         }
 
         public virtual void OnDisturb(DisturbType type, bool message)

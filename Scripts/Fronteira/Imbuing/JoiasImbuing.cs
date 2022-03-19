@@ -90,6 +90,8 @@ namespace Server.Items
 
             foreach (var e in EfeitosElementos.GetEfeitosColar(Elemento))
                 list.Add(e);
+            if (Crafter != null)
+                list.Add("Feito por " + Crafter.Name);
         }
 
         [Constructable]

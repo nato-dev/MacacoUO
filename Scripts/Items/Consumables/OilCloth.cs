@@ -111,10 +111,28 @@ namespace Server.Items
 
                     Consume(1);
                 }
+                else if(pm.Frozen || pm.Paralyzed)
+                {
+                    var teias = pm.FindItemsInRange(pm.Map, 0);
+                    foreach(var teia in teias)
+                    {
+                        if(teia is Teia)
+                        {
+                            pm.Frozen = false;
+                            pm.SendMessage("Voce escapou da teia");
+                        }
+                    }
+                }
                 else
                 {
                     from.LocalOverheadMessage(Network.MessageType.Regular, 0x3B2, 1005422); // Hmmmm... this does not need to be cleaned.
                 }
+            } else if(obj is Teia)
+            {
+                var teia = obj as Teia;
+                teia.preso.Paralyzed = false;
+                teia.preso.Frozen = false;
+                from.SendMessage("Voce escapou da teia");
             }
             #region Firebomb
             else if (obj is BaseBeverage)

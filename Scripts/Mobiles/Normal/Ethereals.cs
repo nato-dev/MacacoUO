@@ -562,12 +562,12 @@ namespace Server.Mobiles
             public void Stop()
             {
                 m_Stop = true;
-                Disturb(DisturbType.Hurt, false, false);
+                Disturb(DisturbType.Dano, false, false);
             }
 
             public override bool CheckDisturb(DisturbType type, bool checkFirst, bool resistable)
             {
-                if (type == DisturbType.EquipRequest || type == DisturbType.UseRequest /* || type == DisturbType.Hurt*/)
+                if (type == DisturbType.Equipar || type == DisturbType.Interagir /* || type == DisturbType.Hurt*/)
                 {
                     return false;
                 }

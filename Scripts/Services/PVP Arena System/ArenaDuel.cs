@@ -381,7 +381,7 @@ namespace Server.Engines.ArenaSystem
 
             if (pm.Spell is Spell)
             {
-                ((Spell)pm.Spell).Disturb(DisturbType.Hurt);
+                ((Spell)pm.Spell).Disturb(DisturbType.Dano);
             }
 
             Server.Targeting.Target.Cancel(pm);

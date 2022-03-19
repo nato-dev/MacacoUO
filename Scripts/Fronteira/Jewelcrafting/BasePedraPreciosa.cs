@@ -82,8 +82,9 @@ namespace Server.Items
             {
                 var armadura = targeted as BaseArmor;
                 var arma = targeted as BaseWeapon;
+                var ropa = targeted as BaseHat;
                 Item item = armadura == null ? (Item)arma : armadura;
-                if(armadura == null && arma == null)
+                if(armadura == null && arma == null && ropa == null)
                 {
                     from.SendMessage("Voce apenas pode colocar isto assim em armas e armaduras.");
                     return;
@@ -141,6 +142,10 @@ namespace Server.Items
                 if (armadura != null)
                 {
                     armadura.Elemento = pedra.GetElemento();
+                }
+                if (ropa != null)
+                {
+                    ropa.Elemento = pedra.GetElemento();
                 }
                 //armadura.Hue = BaseArmor.HueElemento(armadura.Elemento);
                 from.OverheadMessage("* encantou *");

@@ -14,6 +14,7 @@ namespace Server.Mobiles
         public override bool ReduceSpeedWithDamage => false;
         public override bool IsSmart => true;
         public override bool UseSmartAI => true;
+        public override int BonusExp => 2000;
 
         private DateTime m_NextDismount;
         private DateTime m_NextArea;
@@ -138,8 +139,12 @@ namespace Server.Mobiles
             {
                 SorteiaItem(new BoatPaint(Utility.RandomBirdHue()));
             }
-        
-            SorteiaItem(Carnage.GetRandomPS(115));
+
+            if(Utility.RandomBool())
+                SorteiaItem(Carnage.GetRandomPS(115));
+            else
+                SorteiaItem(Carnage.GetRandomPS(110));
+
             SorteiaItem(new CustomizableSquaredDoorMatDeed());
             SorteiaItem(new eviltreeAddonDeed());
 

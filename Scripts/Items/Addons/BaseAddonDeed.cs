@@ -219,6 +219,11 @@ namespace Server.Items
                         addon.Delete();
                     } else
                     {
+                        if(!from.IsCooldown("dicamaax"))
+                        {
+                            from.SetCooldown("dicamaax");
+                            from.SendGump(new GumpFala((int n) => { }, Faces.GM_PRETO, "Para retirar addons de sua casa, use um MACHADO neles !"));
+                        }
                         from.SendMessage(78, "Para voltar o addon de sua casa a ser uma escritura, use um machado");
                     }
                 }

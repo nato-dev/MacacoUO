@@ -156,14 +156,16 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             GolemMecanico.JorraOuro(this.Location, this.Map, 500);
-
-            if (Utility.RandomDouble() < 0.2)
+            var r = Utility.RandomDouble();
+            if (r < 0.05)
                 SorteiaItem(Carnage.GetRandomPS(120));
-            else
+            else if(r < 0.4)
                 SorteiaItem(Carnage.GetRandomPS(115));
+            else
+                SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(Carnage.GetRandomPS(105));
 
-            for (var x = 0; x < 5; x++)
+            for (var x = 0; x < 10; x++)
             {
                 SorteiaItem(BaseEssencia.RandomEssencia(10));
                 SorteiaItem(ElementoUtils.GetRandomPedraSuperior(10));

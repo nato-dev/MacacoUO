@@ -102,9 +102,9 @@ namespace Server.Misc
                 ((BaseCreature)target).Controlled)
                 return true;
 
-            if (from is PlayerMobile && ((PlayerMobile)from).Young &&
-                (!(target is PlayerMobile) || !((PlayerMobile)target).Young))
-                return false; // Young players cannot perform beneficial actions towards older players
+            //if (from is PlayerMobile && ((PlayerMobile)from).Young &&
+            //    (!(target is PlayerMobile) || !((PlayerMobile)target).Young))
+            //    return false; // Young players cannot perform beneficial actions towards older players
 
             var fromGuild = from.Guild as Guild;
             var targetGuild = target.Guild as Guild;

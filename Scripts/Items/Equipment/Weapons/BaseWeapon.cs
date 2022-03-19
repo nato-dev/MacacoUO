@@ -1595,7 +1595,7 @@ namespace Server.Items
 
             if (defender is BaseCreature && attacker is PlayerMobile)
             {
-                chance += 0.1; // +10% em PvM
+                chance += 0.15; // +10% em PvM
             }
             if (attacker is BaseCreature && defender is PlayerMobile)
             {
@@ -2870,7 +2870,19 @@ namespace Server.Items
 
             if (a != null)
             {
-                var bonus = defender.Player ? a.DamageScalar : a.DamageScalar * 1.3;
+                var bonus = defender.Player ? a.DamageScalar : (a.DamageScalar * 1.3);
+                if(!defender.Player)
+                {
+                    var bracelete = attacker.FindItemOnLayer(Layer.Bracelet) as BraceleteDoPoder;
+                    if (bracelete != null)
+                    {
+                        if(bracelete.Tipo == TipoBracelete.Arma && attacker.Weapon is BaseMeleeWeapon)
+                            bonus += bracelete.Bonus / 100;
+                        if (bracelete.Tipo == TipoBracelete.Arco && attacker.Weapon is BaseRanged)
+                            bonus += bracelete.Bonus / 100;
+                    }
+                        
+                }
                 percentageBonus += (int)(bonus * 100) - 100;
             }
 

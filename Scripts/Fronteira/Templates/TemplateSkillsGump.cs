@@ -91,7 +91,7 @@ namespace Server.Gumps
                 this.AddHtml(772, 640, 89, 27, @"Deletar", (bool)true, (bool)false);
             } else
             {
-                this.AddHtml(772, 640, 89, 27, @"Nova", (bool)true, (bool)false);
+                this.AddHtml(772, 640, 89, 27, @"Nova", (bool)false, (bool)false);
             }
 
             this.AddImage(486, 224, 10440);
@@ -115,7 +115,7 @@ namespace Server.Gumps
 
             this.AddHtml(669, 203, 200, 19, @"Templates", color, (bool)false, (bool)false);
 
-            this.AddButton(842, 644, 1209, 1210, (int)Buttons.NewTemplate, GumpButtonType.Reply, 0);
+            this.AddButton(802, 644, 1209, 1210, (int)Buttons.NewTemplate, GumpButtonType.Reply, 0);
    
             this.AddButton(868, 644, 1151, 1152, (int)Buttons.DeleteTemplate, GumpButtonType.Reply, 0);
         }

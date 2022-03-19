@@ -376,9 +376,9 @@ namespace Server.Items
                     return false;
                 } else
                 {
-                    if(m.Guild == null || m.Elemento == ElementoPvM.None)
+                    if(m.Guild == null )
                     {
-                        m.SendMessage("Voce precisa de um elemento PvM e uma Guilda para poder entrar aqui");
+                        m.SendMessage("Voce precisa de uma Guilda para poder entrar aqui");
                         return false;
                     }
                 }

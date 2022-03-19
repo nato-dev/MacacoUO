@@ -28,7 +28,7 @@ namespace Server.Items
         {
             get
             {
-                return Shard.POL_STYLE ? 10 : 9;
+                return Shard.POL_STYLE ? 20 : 9;
             }
         }
 
@@ -36,7 +36,7 @@ namespace Server.Items
         {
             get
             {
-                return Shard.POL_STYLE ? 70 : 30;
+                return Shard.POL_STYLE ? 60 : 30;
             }
         }
 

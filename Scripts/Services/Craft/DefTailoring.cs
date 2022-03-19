@@ -411,8 +411,10 @@ namespace Server.Engines.Craft
             }
             #endregion
 
-            AddCraft(typeof(OilCloth), 1015283, 1041498, 74.6, 98.6, typeof(Cloth), 1044455, 1, 1044287);
-            AddCraft(typeof(BoltOfOilCloth), 1015283, "Rolo de Tecido Oleoso", 64.6, 95.6, typeof(OilCloth), "Pano de Oleo", 50, "Voce precisa de panos de oleo para fazer isto");
+            index = AddCraft(typeof(OilCloth), 1015283, 1041498, 74.6, 98.6, typeof(Cloth), 1044455, 1, 1044287);
+            AddRes(index, typeof(BarkFragment), "Pedaco de Casca", 1, "Voce precisa de 1 pedaco de casca para isto");
+
+            //AddCraft(typeof(BoltOfOilCloth), 1015283, "Rolo de Tecido Oleoso", 64.6, 95.6, typeof(OilCloth), "Pano de Oleo", 50, "Voce precisa de panos de oleo para fazer isto");
 
             if (Core.SE)
             {

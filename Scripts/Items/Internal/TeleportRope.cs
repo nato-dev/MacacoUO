@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Server;
+using Server.Mobiles;
 
 namespace Server.Items
 {
@@ -36,7 +37,8 @@ namespace Server.Items
 				ToMap == Map.Internal)
 				return;
 
-			from.MoveToWorld(ToLocation, ToMap);
+            BaseCreature.TeleportPets(from, ToLocation, ToMap);
+            from.MoveToWorld(ToLocation, ToMap);
 		}
 
         public override void OnDoubleClickDead(Mobile from)

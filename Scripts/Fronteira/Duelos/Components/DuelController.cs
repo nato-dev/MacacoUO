@@ -398,7 +398,7 @@ namespace Server.Dueling
                 if( from.Player && target.Player )
                     return false;
                 
-            return NotorietyHandlers.Mobile_AllowHarmful( from, target );
+            return NotorietyHandlers.Mobile_AllowBeneficial( from, target );
         }
 
         private static void EventSink_Movement( MovementEventArgs e )

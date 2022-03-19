@@ -129,7 +129,7 @@ namespace Server.Mobiles
                 if (this.m_Defender == null || this.m_Defender.Deleted)
                     return;
 
-                if (this.m_Defender.Poisoned || BleedAttack.IsBleeding(this.m_Defender))
+                if (this.m_Defender.Poisoned || BleedAttack.IsBleeding(this.m_Defender) || MortalStrike.IsWounded(this.m_Defender))
                 {
                     this.m_Defender.PublicOverheadMessage(Network.MessageType.Emote, 0, false, "* todo perdido *");
                     return;

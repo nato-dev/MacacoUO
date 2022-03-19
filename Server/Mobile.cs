@@ -2439,6 +2439,9 @@ namespace Server
                     Warmode = true;
                 }
 
+                if (Shard.DebugEnabled)
+                    Shard.Debug("Atacando " + e.Name, this);
+
                 Combatant = e;
             }
         }
@@ -2466,6 +2469,11 @@ namespace Server
                     return;
                 }
 
+                if(Shard.DebugEnabled)
+                {
+                    Shard.Debug("Tentando setar combatant " + (value == null? "null" : value.Name), this);
+                }
+
                 if (m_Combatant != value && value != this)
                 {
                     IDamageable old = m_Combatant;
@@ -2477,6 +2485,10 @@ namespace Server
                     {
                         m_Combatant = old;
                         --m_ChangingCombatant;
+                        if(Shard.DebugEnabled)
+                        {
+                            Shard.Debug("Mantendo combatant antigo: Posso ser harmful no combatant novo ?", this);
+                        }
                         return;
                     }
 
@@ -2487,6 +2499,10 @@ namespace Server
 
                     if (m_Combatant == null)
                     {
+                        if (Shard.DebugEnabled)
+                        {
+                            Shard.Debug("Nao tinha combatant anterior", this);
+                        }
                         if (m_ExpireCombatant != null)
                         {
                             m_ExpireCombatant.Stop();
@@ -2505,6 +2521,11 @@ namespace Server
                         if (m_ExpireCombatant == null)
                         {
                             m_ExpireCombatant = new ExpireCombatantTimer(this);
+                        }
+
+                        if(Shard.DebugEnabled)
+                        {
+                            Shard.Debug($"Ja tinha combatant {m_Combatant.Name}, atualizando para " + (value==null? "null" :value.Name), this);
                         }
 
                         m_ExpireCombatant.Start();
@@ -2724,6 +2745,11 @@ namespace Server
                 return;
             }
 
+            if(Shard.DebugEnabled)
+            {
+                Shard.Debug("Removendo agressed " + aggressed.Name, this);
+            }
+
             var list = m_Aggressed;
 
             for (int i = 0; i < list.Count; ++i)
@@ -2732,6 +2758,11 @@ namespace Server
 
                 if (info.Defender == aggressed)
                 {
+                    if (Shard.DebugEnabled)
+                    {
+                        Shard.Debug("Removido agressed " + aggressed.Name, this);
+                    }
+
                     m_Aggressed.RemoveAt(i);
                     info.Free();
 
@@ -2754,6 +2785,11 @@ namespace Server
                 return;
             }
 
+            if (Shard.DebugEnabled)
+            {
+                Shard.Debug("Removendo agressor " + aggressor.Name, this);
+            }
+
             var list = m_Aggressors;
 
             for (int i = 0; i < list.Count; ++i)
@@ -2762,6 +2798,10 @@ namespace Server
 
                 if (info.Attacker == aggressor)
                 {
+                    if (Shard.DebugEnabled)
+                    {
+                        Shard.Debug("Removido agressor " + aggressor.Name, this);
+                    }
                     m_Aggressors.RemoveAt(i);
                     info.Free();
 
@@ -8495,6 +8535,9 @@ namespace Server
 
             if (!indirect)
             {
+                if (Shard.DebugEnabled)
+                    Shard.Debug("Harmful de " + target.Name, this);
+
                 Combatant = target;
             }
 

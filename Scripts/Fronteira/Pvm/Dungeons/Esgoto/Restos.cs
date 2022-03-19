@@ -107,6 +107,10 @@ namespace Server.Mobiles
                                 loot.Name = "Arco pegajoso";
                                 loot.Owner = p;
                                 AddItem(loot);
+                                var b = new BraceleteDoPoder();
+                                b.Bonus = 3;
+                                b.Tipo = TipoBracelete.Arco;
+                                AddItem(b);
                                 break;
                             case 3:// StarterKits.BARD:
                             case 5:// StarterKits.TAMER:
@@ -118,6 +122,9 @@ namespace Server.Mobiles
                                 spear.Name = "Lanca pegajosa";
                                 spear.Owner = p;
                                 AddItem(spear);
+                                var b2 = new BraceleteDoPoder();
+                                b2.Bonus = 3;
+                                AddItem(b2);
                                 break;
                             case 2://  StarterKits.BS:
                                 var marreta = new WarHammer();
@@ -128,6 +135,9 @@ namespace Server.Mobiles
                                 marreta.Name = "Marretona pegajosa";
                                 marreta.Owner = p;
                                 AddItem(marreta);
+                                var b3 = new BraceleteDoPoder();
+                                b3.Bonus = 3;
+                                AddItem(b3);
                                 break;
                             case 6:// StarterKits.MAGE
                                 var cajado = new QuarterStaff();
@@ -139,6 +149,9 @@ namespace Server.Mobiles
                                 cajado.Owner = p;
                                 AddItem(cajado);
                                 AddItem(new BagOfReagents());
+                                var b4 = new BraceleteDoPoder();
+                                b4.Bonus = 3;
+                                AddItem(b4);
                                 if (p.Young)
                                 {
                                     p.PlaceInBackpack(new EnergyBoltScroll());
@@ -153,6 +166,9 @@ namespace Server.Mobiles
                                 espada.Owner = p;
                                 AddItem(espada);
                                 AddItem(new BagOfReagents());
+                                var b5 = new BraceleteDoPoder();
+                                b5.Bonus = 3;
+                                AddItem(b5);
                                 break;
                         }
                     }

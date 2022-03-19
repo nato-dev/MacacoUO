@@ -1236,6 +1236,9 @@ namespace Server.Mobiles
             }
             set
             {
+                if (Shard.DebugEnabled)
+                    Shard.Debug("Setando combatant basecreature em " + (value == null ? "null" : value.Name));
+
                 Mobile initialFocus = InitialFocus;
 
                 if (base.Combatant == null)
@@ -1246,15 +1249,16 @@ namespace Server.Mobiles
                 else if (AttacksFocus && initialFocus != null && value != initialFocus && !initialFocus.Hidden && InRange(initialFocus.Location, RangePerception))
                 {
                     //Keeps focus
+                    if (Shard.DebugEnabled)
+                        Shard.Debug("Mantendo foco antigo", this);
                     base.Combatant = initialFocus;
                     return;
                 }
                 if (value is Mobile)
                 {
                     OnStartCombat((Mobile)value);
-                    base.Combatant = value;
                 }
-
+                base.Combatant = value;
             }
         }
 
@@ -2588,6 +2592,7 @@ namespace Server.Mobiles
 
         public virtual void CheckDistracted(Mobile from)
         {
+
             if (Utility.RandomDouble() < .10)
             {
                 this.DebugSay("Distrai e cai na porrada");
@@ -7932,6 +7937,18 @@ namespace Server.Mobiles
                     m_DeleteTimer.Stop();
                     m_DeleteTimer = null;
                 }
+
+                this.Warmode = false;
+
+                if (Combatant != null)
+                {
+                    if(Shard.DebugEnabled)
+                        Shard.Debug("Forca combatant null", this);
+                    Combatant = null;
+                }
+
+                if (m.Combatant == this)
+                    m.Combatant = null;
 
                 RemoveAggressed(m);
                 RemoveAggressor(m);

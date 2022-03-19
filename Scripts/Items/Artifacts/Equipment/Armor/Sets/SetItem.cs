@@ -194,7 +194,7 @@ namespace Server
             {
                 if (i is BaseShield)
                     continue;
-                if (i.Layer != Layer.Arms &&i.Layer != Layer.Neck && i is BaseArmor && ((BaseArmor)i).Elemento == e)
+                if (i.Layer != Layer.Arms &&i.Layer != Layer.Neck && ((i is BaseArmor && ((BaseArmor)i).Elemento == e) || i is BaseHat && ((BaseHat)i).Elemento == e))
                     c++;
             }
             return c;

@@ -53,7 +53,7 @@ namespace Server.Items
             Spell spell = defender.Spell as Spell;
 
             if (spell != null && spell.IsCasting)
-                spell.Disturb(DisturbType.Hurt, false, true);
+                spell.Disturb(DisturbType.Dano, false, true);
         }
 
         private static Dictionary<Mobile, List<ForceArrowInfo>> m_Table = new Dictionary<Mobile, List<ForceArrowInfo>>();

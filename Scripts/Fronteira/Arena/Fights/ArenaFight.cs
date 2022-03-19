@@ -339,7 +339,7 @@ namespace Server.TournamentSystem
                     else if (mob is PlayerMobile && mob.Flying)
                     {
                         if (mob.Spell is Spell)
-                            ((Spell)mob.Spell).Disturb(DisturbType.Unspecified, false, false);
+                            ((Spell)mob.Spell).Disturb(DisturbType.Algo, false, false);
 
                         mob.Animate(AnimationType.Land, 0);
                         mob.Flying = false;

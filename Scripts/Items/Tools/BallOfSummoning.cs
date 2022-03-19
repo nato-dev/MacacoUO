@@ -462,12 +462,12 @@ namespace Server.Items
             public void Stop()
             {
                 this.m_Stop = true;
-                this.Disturb(DisturbType.Hurt, false, false);
+                this.Disturb(DisturbType.Dano, false, false);
             }
 
             public override bool CheckDisturb(DisturbType type, bool checkFirst, bool resistable)
             {
-                if (type == DisturbType.EquipRequest || type == DisturbType.UseRequest/* || type == DisturbType.Hurt*/)
+                if (type == DisturbType.Equipar || type == DisturbType.Interagir/* || type == DisturbType.Hurt*/)
                     return false;
 
                 return true;

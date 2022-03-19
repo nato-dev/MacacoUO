@@ -4,12 +4,12 @@ namespace Server.Spells
 {
     public enum DisturbType
     {
-        Unspecified,
-        EquipRequest,
-        UseRequest,
-        Hurt,
-        Kill,
+        Algo,
+        Equipar,
+        Interagir,
+        Dano,
+        Morte,
         NewCast,
-        Moved
+        Movimentar
     }
 }

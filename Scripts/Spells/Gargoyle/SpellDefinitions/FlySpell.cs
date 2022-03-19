@@ -25,7 +25,7 @@ namespace Server.Spells
 
         public override bool CheckDisturb(DisturbType type, bool checkFirst, bool resistable)
         {
-            if (type == DisturbType.EquipRequest || type == DisturbType.UseRequest)
+            if (type == DisturbType.Equipar || type == DisturbType.Interagir)
                 return false;
 
             return true;

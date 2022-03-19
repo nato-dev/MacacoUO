@@ -539,7 +539,7 @@ namespace Server.Items
         public void EndHeal()
         {
             StopHeal();
-
+            var hue = 78;
             string healerNumber = null;
             string patientNumber = null;
             bool playSound = true;
@@ -707,6 +707,7 @@ namespace Server.Items
 
                 double chance = ((healing + 20.0) / 100.0) - (m_Slips * 0.02);
                 var toHeal = GetToHeal();
+              
                 if (chance > Utility.RandomDouble())
                 {
                     healerNumber = "Voce terminou de aplicar as bandagens"; // You finish applying the bandages.
@@ -732,6 +733,7 @@ namespace Server.Items
                     if (toHeal < 3)
                     {
                         toHeal = 3;
+                        hue = 32;
                         healerNumber = "Voce aplicou as bandagens, mas nao conseguiu curar muito"; // You apply the bandages, but they barely help.
                     }
                     else if (m_Patient != m_Healer && m_Patient is PlayerMobile && m_Healer is PlayerMobile)
@@ -744,6 +746,7 @@ namespace Server.Items
                 else
                 {
                     m_Patient.Heal(5, m_Healer, false);
+                    hue = 32;
                     healerNumber = "Voce aplicou as bandagens, mas nao conseguiu curar quase nada"; // You apply the bandages, but they barely help.
                     playSound = true;
                 }
@@ -751,7 +754,7 @@ namespace Server.Items
 
             if (healerNumber != null)
             {
-                m_Healer.SendMessage(healerNumber);
+                m_Healer.SendMessage(hue, healerNumber);
             }
 
             if (patientNumber != null)
