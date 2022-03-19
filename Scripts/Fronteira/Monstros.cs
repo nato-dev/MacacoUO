@@ -1,5 +1,5 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+//using Newtonsoft.Json;
+//using Newtonsoft.Json.Linq;
 using Server.Gumps;
 using Server.Mobiles;
 using System;
@@ -26,7 +26,7 @@ namespace Server.Fronteira
             Console.WriteLine("Carregando dados do shard");
             try
             {
-                Monstros.Configs = JsonConvert.DeserializeObject<Dictionary<string, Monstros>>(File.ReadAllText(FilePathMonstros));
+              // Monstros.Configs = JsonConvert.DeserializeObject<Dictionary<string, Monstros>>(File.ReadAllText(FilePathMonstros));
             } catch(Exception e)
             {
 
@@ -194,7 +194,7 @@ namespace Server.Fronteira
                     Utility.FIX = -1;
                 }
 
-                outputFile.WriteLine(JsonConvert.SerializeObject(Monstros.Configs));
+                //outputFile.WriteLine(JsonConvert.SerializeObject(Monstros.Configs));
                
 
                 Console.WriteLine("----- FIM -----");
