@@ -38,21 +38,21 @@ namespace Server.Engines.Craft
             AddPage(0);
             AddBackground(0, 0, 530, 417, 5054);
 
-            AddBackground(10, 10, 510, 22, 9350);
-            AddBackground(10, 37, 150, 148, 9350);
-            AddBackground(165, 37, 355, 90, 9350);
+            AddBackground(10, 10, 510, 22, 9350); // Titulo do Menu
+            AddBackground(10, 37, 150, 134, 9350); // Foto do Item
+            AddBackground(165, 37, 355, 70, 9350); // Item
             // AddBackground(10, 190, 155, 22, 9350);
             // AddBackground(10, 240, 150, 57, 9350);
-            AddBackground(165, 132, 355, 80, 9350);
+            AddBackground(165, 112, 355, 60, 9350); // Skill
             // AddBackground(10, 325, 150, 57, 9350);
-            AddBackground(165, 217, 355, 80, 9350);
-            AddBackground(165, 302, 355, 80, 9350);
-            AddBackground(10, 387, 510, 22, 9350);
-            
+            AddBackground(165, 177, 355, 120, 9350); // Materiais
+            AddBackground(165, 302, 355, 80, 9350);  // Outros
+            AddBackground(10, 387, 510, 22, 9350); // Botoes 
+
             //AddAlphaRegion(10, 10, 510, 399);
             //AddBackground(10, 10, 510, 399, 9350);
             AddHtml(170, 40, 150, 20, "Item", false, false); // ITEM
-            AddHtml(10, 217, 150, 22, "Materiais", false, false); // <CENTER>MATERIALS</CENTER>
+            AddHtml(10, 180, 150, 22, "Materiais", false, false); // <CENTER>MATERIALS</CENTER>
             AddHtml(10, 302, 150, 22, "Outros", false, false); // <CENTER>OTHER</CENTER>
 
             if (craftSystem.GumpTitleNumber > 0)
@@ -114,12 +114,12 @@ namespace Server.Engines.Craft
             }
 
             if (needsRecipe)
-                this.AddHtml(170, 302 + (this.m_OtherCount++ * 20), 310, 18, "!! Voce ainda nao aprendeu esta receita !!" ,false, false); // You have not learned this recipe.
+                this.AddHtml(170, 302 + (this.m_OtherCount++ * 20), 310, 18, "!! Voce ainda nao aprendeu esta receita !!", false, false); // You have not learned this recipe.
         }
 
         private TextDefinition RequiredExpansionMessage(Expansion expansion)
         {
-            switch( expansion )
+            switch (expansion)
             {
                 case Expansion.SE:
                     return 1063363; // * Requires the "Samurai Empire" expansion
@@ -178,15 +178,16 @@ namespace Server.Engines.Craft
                 if (minSkill < 0)
                     minSkill = 0;
 
-                if(skill.SkillToMake==SkillName.TasteID)
+                if (skill.SkillToMake == SkillName.TasteID)
                 {
-                    this.AddHtml(170, 132 + (i * 20), 200, 18, "Jewelcrafting", LabelColor, false, false);
-                } else
-                {
-                    this.AddHtmlLocalized(170, 132 + (i * 20), 200, 18, AosSkillBonuses.GetLabel(skill.SkillToMake), LabelColor, false, false);
+                    this.AddHtml(170, 114 + (i * 20), 200, 18, "Jewelcrafting", LabelColor, false, false);
                 }
-                
-                this.AddLabel(430, 132 + (i * 20), LabelHue, String.Format("{0:F1}", minSkill));
+                else
+                {
+                    this.AddHtmlLocalized(170, 114 + (i * 20), 200, 18, AosSkillBonuses.GetLabel(skill.SkillToMake), LabelColor, false, false);
+                }
+
+                this.AddLabel(430, 114 + (i * 20), LabelHue, String.Format("{0:F1}", minSkill));
             }
 
             CraftSubResCol res = (this.m_CraftItem.UseSubRes2 ? this.m_CraftSystem.CraftSubRes2 : this.m_CraftSystem.CraftSubRes);
@@ -206,8 +207,8 @@ namespace Server.Engines.Craft
             else if (chance > 1.0)
                 chance = 1.0;
 
-            this.AddHtml(170, 80, 250, 18, "Chance de Acerto:", false, false); // Success Chance:
-            this.AddLabel(430, 80, LabelHue, String.Format("{0:F1}%", chance * 100));
+            this.AddHtml(170, 63, 250, 18, "Chance de Acerto:", false, false); // Success Chance:
+            this.AddLabel(430, 63, LabelHue, String.Format("{0:F1}%", chance * 100));
 
             if (this.m_ShowExceptionalChance)
             {
@@ -216,8 +217,8 @@ namespace Server.Engines.Craft
                 else if (excepChance > 1.0)
                     excepChance = 1.0;
 
-                this.AddHtml(170, 100, 250, 18, "Chance Excepcional:", false, false); // Exceptional Chance:
-                this.AddLabel(430, 100, LabelHue, String.Format("{0:F1}%", excepChance * 100));
+                this.AddHtml(170, 83, 250, 18, "Chance Excepcional:", false, false); // Exceptional Chance:
+                this.AddLabel(430, 83, LabelHue, String.Format("{0:F1}%", excepChance * 100));
             }
         }
 
@@ -240,7 +241,7 @@ namespace Server.Engines.Craft
                               this.m_CraftItem.Resources.GetAt(this.m_CraftItem.Resources.Count - 1).ItemType == typeofBlankScroll &&
                               typeofSpellScroll.IsAssignableFrom(this.m_CraftItem.ItemType);
 
-            for (int i = 0; i < this.m_CraftItem.Resources.Count - (cropScroll ? 1 : 0) && i < 4; i++)
+            for (int i = 0; i < this.m_CraftItem.Resources.Count - (cropScroll ? 1 : 0) && i < 6; i++)
             {
                 Type type;
                 string nameString;
@@ -251,7 +252,7 @@ namespace Server.Engines.Craft
                 type = craftResource.ItemType;
                 nameString = craftResource.NameString;
                 nameNumber = craftResource.NameNumber;
-				
+
                 // Resource Mutation
                 if (type == res.ResType && resIndex > -1)
                 {
@@ -285,7 +286,8 @@ namespace Server.Engines.Craft
                     nameString = nome + resres.ToString();
                     nameNumber = 0;
 
-                } else
+                }
+                else
                 {
                     var trad = Trads.GetNome(type);
                     if (trad != null)
@@ -297,27 +299,27 @@ namespace Server.Engines.Craft
                     }
                 }
 
-               
+
 
                 if (!retainedColor && this.m_CraftItem.RetainsColorFrom(this.m_CraftSystem, type))
                 {
                     retainedColor = true;
                     this.AddHtml(170, 302 + (this.m_OtherCount++ * 20), 310, 18, "Mantem a cor do material", false, false); // * The item retains the color of this material
-                    this.AddLabel(500, 219 + (i * 20), LabelHue, "*");
+                    this.AddLabel(500, 180 + (i * 20), LabelHue, "*");
                 }
 
                 if (nameNumber > 0)
-                    this.AddHtmlLocalized(170, 219 + (i * 20), 310, 18, nameNumber, LabelColor, false, false);
+                    this.AddHtmlLocalized(170, 180 + (i * 20), 310, 18, nameNumber, LabelColor, false, false);
                 else
-                    this.AddLabel(170, 219 + (i * 20), LabelHue, nameString);
+                    this.AddLabel(170, 180 + (i * 20), LabelHue, nameString);
 
-                this.AddLabel(430, 219 + (i * 20), LabelHue, craftResource.Amount.ToString());
+                this.AddLabel(430, 180 + (i * 20), LabelHue, craftResource.Amount.ToString());
             }
 
             if (this.m_CraftItem.NameNumber == 1041267) // runebook
             {
-                this.AddHtmlLocalized(170, 219 + (this.m_CraftItem.Resources.Count * 20), 310, 18, 1044447, LabelColor, false, false);
-                this.AddLabel(430, 219 + (this.m_CraftItem.Resources.Count * 20), LabelHue, "1");
+                this.AddHtmlLocalized(170, 180 + (this.m_CraftItem.Resources.Count * 20), 310, 18, 1044447, LabelColor, false, false);
+                this.AddLabel(430, 180 + (this.m_CraftItem.Resources.Count * 20), LabelHue, "1");
             }
 
             if (cropScroll)
