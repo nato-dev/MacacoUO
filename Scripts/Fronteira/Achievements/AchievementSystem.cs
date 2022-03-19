@@ -193,8 +193,8 @@ namespace Scripts.Mythik.Systems.Achievements
             Achievements.Add(new HunterAchievement(1012, 3000, 0x429A, false, null, 1, "Quanto mais velho, mais sabio", "Mate um Lich Anciao", 8, typeof(LichLord), typeof(LivroAntigo)));
             Achievements.Add(new HunterAchievement(1013, 3000, 0x429A, false, null, 1, "[BOSS] WoW - A Ira do Lich Rei", "Mate o Lich Rei", 20, typeof(AncientLichRenowned), typeof(LivroAntigo)));
             Achievements.Add(new HunterAchievement(1013, 3000, 0x20CB, false, null, 50, "Ogro, logro ?", "Mate 50 Ogrologros", 20, typeof(Ettin)));
-            Achievements.Add(new HunterAchievement(1014, 3000, 0x42A0, false, null, 10, "[BOSS] O Selo do Mal", "Mate o boss EXODO", 30, typeof(ClockworkExodus)));
-            Achievements.Add(new HunterAchievement(1015, 3000, 0x42A0, false, null, 10, "[BOSS] Tick, Tak, Boom", "Mate o boss Goblinzord", 30, typeof(GolemMecanico)));
+            Achievements.Add(new HunterAchievement(1014, 3000, 0x42A0, false, null, 1, "[BOSS] O Selo do Mal", "Mate o boss EXODO", 30, typeof(ClockworkExodus)));
+            Achievements.Add(new HunterAchievement(1015, 3000, 0x42A0, false, null, 1, "[BOSS] Tick, Tak, Boom", "Mate o boss Goblinzord", 30, typeof(GolemMecanico)));
             Achievements.Add(new HunterAchievement(1016, 3000, 0x25B7, false, null, 100, "Squick Squick", "Mate 100 Ratosos", 20, typeof(Ratman)));
             Achievements.Add(new HunterAchievement(1017, 3000, 0x2608, false, sebo, 100, "Pra que santo sebo ?", "Mate 100 Sebos do Pantano ", 20, typeof(BogThing), typeof(BotaSebosa)));
             Achievements.Add(new HunterAchievement(1017, 3000, 0x2608, false, null, 50, "Toma um banho de Lama", "Mate 50 Restos Elementais", 20, typeof(MudPie), typeof(BagOfAllReagents)));
@@ -241,6 +241,9 @@ namespace Scripts.Mythik.Systems.Achievements
 
             Achievements.Add(new HunterAchievement(1045, 3000, 0x2602, false, null, 1, "[BOSS] Pequena mas Brava", "Mate a Formiga Atomica", 10, typeof(SolenLouca)));
             Achievements.Add(new HunterAchievement(1045, 3000, 0x2602, false, null, 1, "[BOSS] Twualo e suas fadas", "Mate Twualo", 10, typeof(Twaulo)));
+
+            Achievements.Add(new HunterAchievement(1046, 3000, 0x262B, false, null, 1, "[BOSS] Medo de Escuro?", "Mate o Senhor Das Sombras", 30, typeof(SenhorDasSombras)));
+            Achievements.Add(new HunterAchievement(1047, 3000, 0x262B, false, null, 10, "[BOSS] Medo de Escuro?", "Mate o Senhor Das Sombras", 300, typeof(SenhorDasSombras), typeof(TintaSombras), typeof(SacolaDeOuro3000)));
 
             // SKILLS
             // BS
