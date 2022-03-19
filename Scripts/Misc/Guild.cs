@@ -659,6 +659,7 @@ namespace Server.Guilds
 			EventSink.CreateGuild += EventSink_CreateGuild;
 			EventSink.GuildGumpRequest += EventSink_GuildGumpRequest;
 
+            /*
             EventSink.WorldLoad += () => {
                 Persistence.Deserialize(FilePath, (GenericReader reader) => {
                     var count = reader.ReadInt();
@@ -674,6 +675,7 @@ namespace Server.Guilds
                         h.Serialize(writer);
                 });
             };
+            */
 
             CommandSystem.Register("GuildProps", AccessLevel.Counselor, GuildProps_OnCommand);
 		}
