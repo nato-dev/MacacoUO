@@ -239,15 +239,16 @@ namespace Server.Mobiles
                 case 4: SorteiaItem(new SmallPersonalGardenFieldAddonDeed()); break;
             }
 
-            if (Utility.RandomDouble() < 0.2)
+            if (Utility.RandomDouble() < 0.3)
                 SorteiaItem(Carnage.GetRandomPS(110));
             else
                 SorteiaItem(Carnage.GetRandomPS(105));
-
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
             for (var x = 0; x < 10; x++)
             {
-                SorteiaItem(BaseEssencia.RandomEssencia(5));
-                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
+                SorteiaItem(BaseEssencia.RandomEssencia(7));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(7));
             }
             var wind = new Windrunner();
             wind.MoveToWorld(c.Location, c.Map);
