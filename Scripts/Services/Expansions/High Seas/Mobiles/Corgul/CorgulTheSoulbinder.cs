@@ -5,6 +5,7 @@ using Server.Items;
 using Server.Misc;
 using Server.Regions;
 using System.Linq;
+using Server.Fronteira.Elementos;
 
 namespace Server.Mobiles
 {
@@ -144,10 +145,15 @@ namespace Server.Mobiles
                 SorteiaItem(Carnage.GetRandomPS(115));
             else
                 SorteiaItem(Carnage.GetRandomPS(110));
-
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(new CustomizableSquaredDoorMatDeed());
             SorteiaItem(new eviltreeAddonDeed());
-
+            for (var x = 0; x < 10; x++)
+            {
+                SorteiaItem(BaseEssencia.RandomEssencia(20));
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(20));
+            }
             switch (Utility.Random(5))
             {
                 case 0: SorteiaItem(new PlumTreeAddonDeed()); break;

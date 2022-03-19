@@ -61,7 +61,7 @@ namespace Server.Mobiles
         {
             base.AlterSpellDamageTo(to, ref damage, elemento);
             if (to is BaseCreature)
-                damage *= 4;
+                damage *= 5;
         }
 
 
