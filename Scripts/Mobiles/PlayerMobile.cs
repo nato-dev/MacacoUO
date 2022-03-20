@@ -55,6 +55,7 @@ using Server.Fronteira.Talentos;
 using Server.Fronteira.Elementos;
 using Server.Fronteira.Pvm;
 using Server.Menus.Questions;
+using Fronteira.Discord;
 #endregion
 
 namespace Server.Mobiles
@@ -3945,7 +3946,7 @@ namespace Server.Mobiles
                 return false;
             }
 
-            if (item.PartyLoot && !item.IsChildOf(this.Backpack) && !item.IsChildOf(this))
+            if (item.BoundTo == null && item.PartyLoot && !item.IsChildOf(this.Backpack) && !item.IsChildOf(this))
             {
 
                 if (item.Parent is Bag)
@@ -3958,9 +3959,9 @@ namespace Server.Mobiles
                 {
                     PartyLoots.Add(item.GetType());
                     var copia = Dupe.DupeItem(item);
-                    item.PartyLoot = false;
-                    if (item.LootType == LootType.Blessed)
-                        item.BoundTo = this.RawName;
+                    copia.PartyLoot = false;
+                    if (copia.LootType == LootType.Blessed)
+                        copia.BoundTo = this.RawName;
 
                     if (item.Parent is Mobile)
                     {
@@ -3982,14 +3983,17 @@ namespace Server.Mobiles
                 }
             }
 
-            if (!item.IsChildOf(this.Backpack) && this.FindItemOnLayer(item.Layer) != item)
+            if(Shard.RP)
             {
-                var name = item.Name;
-                if (name == "" || name == null)
+                if (!item.IsChildOf(this.Backpack) && this.FindItemOnLayer(item.Layer) != item)
                 {
-                    name = item.GetType().Name;
+                    var name = item.Name;
+                    if (name == "" || name == null)
+                    {
+                        name = item.GetType().Name;
+                    }
+                    PublicOverheadMessage(MessageType.Emote, 0, false, "* pegou " + name + " *");
                 }
-                // PublicOverheadMessage(MessageType.Emote, 0, false, "* pegou " + name + " *");
             }
 
             return base.OnDragLift(item);
@@ -4850,6 +4854,23 @@ namespace Server.Mobiles
             }
 
             Mobile m = FindMostRecentDamager(false);
+            if(!this.IsCooldown("avisomorte") && m != null && m.Name != null)
+            {
+                this.SetCooldown("avisomorte", TimeSpan.FromMinutes(3));
+                if (m is PlayerMobile)
+                    DiscordBot.SendMessage($":crossed_swords:[PvP] {m.Name} matou {Name}");
+                else if(m is BaseCreature)
+                {
+                    if(((BaseCreature)m).IsBoss)
+                    {
+                        DiscordBot.SendMessage($":skull_crossbones: [BOSS] {Name} foi obliterado por um boss !");
+                    }
+                    else if (m.Name.Substring(m.Name.Length - 1) == "a")
+                        DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por uma {m.Name}");
+                    else
+                        DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por um {m.Name}");
+                }
+            }
             PlayerMobile killer = m as PlayerMobile;
             var bc = m as BaseCreature;
 

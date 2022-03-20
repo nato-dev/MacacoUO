@@ -35,11 +35,22 @@ namespace Server.Custom.RaresCrafting
         Random
     }
 
-    public class CraftableEntry
+    public class Ingr
     {
         public string m_Name;
         public int m_ItemId;
         public int m_AmountRequired;
+
+        public Ingr()
+        {
+        }
+
+        public Ingr(int item, int n, string nome)
+        {
+            m_Name = nome;
+            m_ItemId = item;
+            m_AmountRequired = n;
+        }
     }
 
     public abstract class ICraftableRare
@@ -52,87 +63,17 @@ namespace Server.Custom.RaresCrafting
 
         public abstract bool MeetsRequiredSkillLevel_1(Mobile mob);
         public abstract bool MeetsRequiredSkillLevel_2(Mobile mob);
-        public abstract CraftableEntry[] GetIngredients();
-        public abstract CraftableEntry GetResult();
+        public abstract Ingr[] GetIngredients();
+        public abstract Ingr GetResult();
         public abstract Item GenerateCraftedItem();
     }
 
     public static class RaresCraftingSystem
     {
-        public static void Initialize()
-        {
-            CommandSystem.Register("rctest", AccessLevel.Player, new CommandEventHandler(ShowRareCraftGump));
-
-            Random = new List<ICraftableRare>()
-            {
-                RareDefinitions.DecoRandom(),
-                RareDefinitions.DecoRandom2(),
-            };
-
-            AlchemyCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.AlchemyFlask1(),
-                RareDefinitions.AlchemyFlask2(),
-                RareDefinitions.AlchemyFlask3(),
-            };
-
-            BowcraftingCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.BundleOfArrows(),
-                RareDefinitions.BundleOfBolts(),
-                RareDefinitions.DecorativeBowAndArrows(),
-            };
-
-            BlacksmithingCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.DecorativeHalberd(),
-                RareDefinitions.HangingChainmailLeggings(),
-                RareDefinitions.GoldIngots(),
-                RareDefinitions.CopperIngots(),
-            };
-
-            CarpentryCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.DartboardWithAxe(),
-                RareDefinitions.RuinedBookcase(),
-                RareDefinitions.CoveredChair(),
-                RareDefinitions.LogPileLarge()
-            };
-
-            CookingCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.PotOfWax(),
-                RareDefinitions.KettleOfWax(),
-                RareDefinitions.DirtyPan(),
-            };
-
-            InscriptionCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.BookPile1(),
-                RareDefinitions.BookPile2(),
-                RareDefinitions.DamagedBooks(),
-                RareDefinitions.ForbiddenWritings()
-            };
-
-            TailoringCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.LargeFishingNet(),
-                RareDefinitions.DyeableCurtainEast(),
-                RareDefinitions.DyeableCurtainSouth(),
-            };
-
-            TinkeringCraftables = new List<ICraftableRare>()
-            {
-                RareDefinitions.Anchor(),
-                RareDefinitions.HangingSkeleton1(),
-                RareDefinitions.Hook(),
-                RareDefinitions.HangingCauldron(),
-            };
-        }
 
         [Usage("[rctest")]
         [Description("Shows the rare crafting gump")]
-        private static void ShowRareCraftGump(CommandEventArgs e)
+        public static void ShowRareCraftGump(CommandEventArgs e)
         {
             e.Mobile.SendGump(new RaresCraftingGump(e.Mobile, ECraftableRareCategory.None));
         }
@@ -169,7 +110,7 @@ namespace Server.Custom.RaresCrafting
         {
             Dictionary<Item, int> to_be_consumed = new Dictionary<Item, int>();
 
-            foreach (CraftableEntry ingredient in rare.GetIngredients())
+            foreach (Ingr ingredient in rare.GetIngredients())
             {
                 int found = 0;
                 int need = ingredient.m_AmountRequired;
@@ -177,7 +118,7 @@ namespace Server.Custom.RaresCrafting
                 {
                     if (bpitem.ItemID == ingredient.m_ItemId)
                     {
-                        if(Shard.DebugEnabled)
+                        if (Shard.DebugEnabled)
                         {
                             Shard.Debug($"Achei {bpitem.GetType().Name}");
                         }

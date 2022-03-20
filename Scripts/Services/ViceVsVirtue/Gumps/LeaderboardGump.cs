@@ -1,10 +1,8 @@
-using System;
-using Server;
-using Server.Items;
-using Server.Mobiles;
-using Server.Gumps;
 using Server.Guilds;
+using Server.Gumps;
+using Server.Mobiles;
 using Server.Network;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -30,21 +28,21 @@ namespace Server.Engines.VvV
             Filter = filter;
 
             AddPage(0);
-            AddBackground(0, 0, 920, 320, 5054);
-            AddImageTiled(10, 10, 900, 300, 2624);
+            AddBackground(0, 0, 920, 320, 9200);
+            AddBackground(10, 10, 900, 300, 3000);
 
-            AddHtml(0, 12, 920, 20, "<CENTER>Guerra Infinita</CENTER>", 0xFFFF, false, false); // <DIV ALIGN=CENTER>Vice Vs Virtue - Player Rankings</DIV>
+            AddHtml(0, 12, 920, 20, "<DIV ALIGN=CENTER>Guerra Infinita</DIV>", 0, false, false); // <DIV ALIGN=CENTER>Vice Vs Virtue - Player Rankings</DIV>
 
-            AddHtml(10, 55, 65, 20, Center("#"), 0xFFFF, false, false); // <DIV ALIGN=CENTER>#:</DIV>
-            AddHtml(70, 55, 160, 20, Center("Nome"), 0xFFFF, false, false); // <DIV ALIGN=LEFT>Name:</DIV>
-            AddHtml(230, 55, 70, 20, Center("Guilda"), 0xFFFF, false, false); // <DIV ALIGN=CENTER>Guild:</DIV>
-            AddHtml(300, 55, 100, 20, Center("Pontos"), Filter == Filter.Score ? Server.Engines.Quests.BaseQuestGump.C32216(0x00FA9A) : 0xFFFF, false, false); // <DIV ALIGN=RIGHT>Score:</DIV>
-            AddHtml(420, 55, 55, 20, Center("Kills"), Filter == Filter.Kills ? Server.Engines.Quests.BaseQuestGump.C32216(0x00FA9A) : 0xFFFF, false, false); // <DIV ALIGN=RIGHT>Kills:</DIV>
-            AddHtml(480, 55, 55, 20, Center("Mortes"), 0xFFFF, false, false); // <DIV ALIGN=RIGHT>Deaths:</DIV>
-            AddHtml(540, 55, 55, 20, Center("Assists"), 0xFFFF, false, false); // <DIV ALIGN=RIGHT>Assists:</DIV>
-            AddHtml(610, 55, 90, 20, Center("Sigilos"), Filter == Filter.ReturnedSigils ? Server.Engines.Quests.BaseQuestGump.C32216(0x00FA9A) : 0xFFFF, false, false); // <DIV ALIGN=RIGHT>Returned Sigil:</DIV>
-            AddHtml(710, 55, 100, 20, Center("Armadilhas"), 0xFFFF, false, false); // <DIV ALIGN=RIGHT>Disarmed Traps:</DIV>
-            AddHtml(810, 55, 80, 20, Center("Roubos"), 0xFFFF, false, false); // <DIV ALIGN=RIGHT>Stolen Sigil:</DIV>
+            AddHtmlLocalized(10, 55, 65, 20, 1114981, 0, false, false); // <DIV ALIGN=CENTER>#:</DIV>
+            AddHtmlLocalized(70, 55, 160, 20, 1114966, 0, false, false); // <DIV ALIGN=LEFT>Name:</DIV>
+            AddHtmlLocalized(230, 55, 70, 20, 1114978, 0, false, false); // <DIV ALIGN=CENTER>Guild:</DIV>
+            AddHtml(300, 55, 100, 20, "<DIV ALIGN=RIGHT>Pontos:</DIV>", Filter == Filter.Score ? 78 : 0, false, false); // <DIV ALIGN=RIGHT>Score:</DIV>
+            AddHtmlLocalized(420, 55, 55, 20, 1114975, Filter == Filter.Kills ? Quests.BaseQuestGump.C32216(0x00FA9A) : 0, false, false); // <DIV ALIGN=RIGHT>Kills:</DIV>
+            AddHtmlLocalized(480, 55, 55, 20, 1114893, 0, false, false); // <DIV ALIGN=RIGHT>Deaths:</DIV>
+            AddHtmlLocalized(540, 55, 55, 20, 1155572, 0, false, false); // <DIV ALIGN=RIGHT>Assists:</DIV>
+            AddHtmlLocalized(610, 55, 90, 20, 1155575, Filter == Filter.ReturnedSigils ? 78 : 0, false, false); // <DIV ALIGN=RIGHT>Returned Sigil:</DIV>
+            AddHtml(710, 55, 100, 20, "<DIV ALIGN=RIGHT>Disrm. Trap:</DIV>", 0, false, false); // <DIV ALIGN=RIGHT>Disarmed Traps:</DIV>
+            AddHtml(810, 55, 80, 20, "<DIV ALIGN=RIGHT>Roubo:</DIV>", 0, false, false); // <DIV ALIGN=RIGHT>Stolen Sigil:</DIV>
 
             if (Filter != Filter.Score)
                 AddButton(400, 55, 2437, 2438, 1, GumpButtonType.Reply, 0);
@@ -62,7 +60,7 @@ namespace Server.Engines.VvV
                 AddImage(700, 55, 10006);
 
             AddButton(280, 290, 4005, 4007, 4, GumpButtonType.Reply, 0);
-            AddHtml(315, 290, 150, 20, "Rank da Guilda", 0xFFFF, false, false); // Guild Rankings
+            AddHtml(315, 290, 150, 20, "Guildas", 0, false, false); // Guild Rankings
 
             List<VvVPlayerEntry> list = new List<VvVPlayerEntry>(ViceVsVirtueSystem.Instance.PlayerTable.OfType<VvVPlayerEntry>());
 
@@ -83,13 +81,13 @@ namespace Server.Engines.VvV
                 pages = 1;
 
             AddPage(page);
-            AddHtmlLocalized(60, 290, 150, 20, 1153561, String.Format("{0}\t{1}", page.ToString(), pages.ToString()), 0xFFFF, false, false); // Page ~1_CUR~ of ~2_MAX~
+            AddHtml(60, 290, 150, 20, $"Pag. {page.ToString()}/{pages.ToString()}", 0, false, false); // Page ~1_CUR~ of ~2_MAX~
 
             for (int i = 0; i < list.Count; i++)
             {
                 VvVPlayerEntry entry = list[i];
 
-                if(entry.Player == null)
+                if (entry.Player == null)
                     continue;
 
                 Guild g = entry.Player.Guild as Guild;
@@ -110,7 +108,7 @@ namespace Server.Engines.VvV
 
                 if (pageindex == PerPage)
                 {
-                    AddHtmlLocalized(60, 290, 150, 20, 1153561, String.Format("{0}\t{1}", page.ToString(), pages.ToString()), 0xFFFF, false, false); // Page ~1_CUR~ of ~2_MAX~
+                    AddHtmlLocalized(60, 290, 150, 20, 1153561, string.Format("{0}\t{1}", page.ToString(), pages.ToString()), 0, false, false); // Page ~1_CUR~ of ~2_MAX~
 
                     if (i > 0 && i < list.Count - 1)
                     {
@@ -147,29 +145,24 @@ namespace Server.Engines.VvV
             }
         }
 
-        private string Center(string format)
-        {
-            return String.Format("<DIV ALIGN=CENTER>{0}</DIV>", format);
-        }
-
         private string CenterGray(string format)
         {
-            return String.Format("<basefont color=#A9A9A9><DIV ALIGN=CENTER>{0}</DIV>", format);
+            return string.Format("<basefont color=#000000><DIV ALIGN=CENTER>{0}</DIV>", format);
         }
 
         private string RightGray(string format)
         {
-            return String.Format("<basefont color=#A9A9A9><DIV ALIGN=RIGHT>{0}</DIV>", format);
+            return string.Format("<basefont color=#000000><DIV ALIGN=RIGHT>{0}</DIV>", format);
         }
 
         private string LeftGray(string format)
         {
-            return String.Format("<basefont color=#A9A9A9><DIV ALIGN=LEFT>{0}</DIV>", format);
+            return string.Format("<basefont color=#000000><DIV ALIGN=LEFT>{0}</DIV>", format);
         }
 
         private string RightGreen(string format)
         {
-            return String.Format("<basefont color=#00FA9A><DIV ALIGN=RIGHT>{0}</DIV>", format);
+            return string.Format("<basefont color=#000000><DIV ALIGN=RIGHT>{0}</DIV>", format);
         }
     }
 }

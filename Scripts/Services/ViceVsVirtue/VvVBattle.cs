@@ -15,6 +15,7 @@ using Server.Multis;
 using Server.Regions;
 using Server.Misc;
 using Server.Commands;
+using Fronteira.Discord;
 
 namespace Server.Engines.VvV
 {
@@ -284,7 +285,8 @@ namespace Server.Engines.VvV
 
             NextAltarActivate = DateTime.UtcNow + TimeSpan.FromMinutes(1);
 
-            Anuncio.Anuncia("A Guerra Infinita Se Inicia na cidade de " + City.ToString());
+            Anuncio.Anuncia("A Guerra Infinita Se Inicia em " + City.ToString());
+            Anuncio.Anuncia("Guildas, lutem pelo dominio da cidade !");
             //System.SendVvVMessage("A guerra infinita se inicia na cidade " + ViceVsVirtueSystem.GetCityLocalization(City).ToString());
             // A Battle between Vice and Virtue is active! To Arms! The City of ~1_CITY~ is besieged!
         }
@@ -811,7 +813,7 @@ namespace Server.Engines.VvV
                                 killerTeam.Silver += AwardSilver(KillSilver + (OppositionCount(killer.Guild) * 30));
                             }
 
-                            SendStatusMessage(String.Format("{0} matou {1}!", killer.Player.Name, victim.Player.Name));
+                            SendStatusMessage(String.Format("{0} matou {1}!", killer.Player.Name, victim.Player.Name), false, true);
                             KillCooldown[victim.Player] = DateTime.UtcNow + TimeSpan.FromMinutes(KillCooldownDuration);
                         }
                     }
@@ -910,7 +912,7 @@ namespace Server.Engines.VvV
             team.Score += (int)AltarPoints;
             team.Silver += AwardSilver(AltarSilver + (OppositionCount(g) * 30));
 
-            SendStatusMessage(String.Format("{0} conquistou um altar!", g != null ? g.Abbreviation : "somebody"));
+            SendStatusMessage(String.Format("{0} conquistou um altar!", g != null ? g.Name : "alguem"));
 
             foreach (PlayerMobile p in Region.GetEnumeratedMobiles().Where(player => player is PlayerMobile))
             {
@@ -1093,8 +1095,10 @@ namespace Server.Engines.VvV
             }
         }
 
-        public void SendStatusMessage(string message, bool sendgumps = false)
+        public void SendStatusMessage(string message, bool sendgumps = false, bool disc=true)
         {
+            if(disc)
+                DiscordBot.SendMessage(":european_castle:[GW] " + message);
             Messages.Add(message);
 
             if (sendgumps)

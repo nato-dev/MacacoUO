@@ -303,7 +303,7 @@ namespace VitaNex.SuperGumps
 
 		public bool SupportsUltimaStore
 		{
-			get { return User != null && User.NetState != null && User.NetState.SupportsUltimaStore(); }
+            get { return false; } // return User != null && User.NetState != null && User.NetState.SupportsUltimaStore(); }
 		}
 
 		public bool SupportsEndlessJourney

@@ -29,7 +29,7 @@ namespace VitaNex.Modules.AutoPvP
 		public AutoPvPProfileOptions()
 		{
 			AllowPlayerSearch = true;
-			RankingOrder = PvPProfileRankOrder.Points;
+			RankingOrder = PvPProfileRankOrder.Pontos;
 		}
 
 		public AutoPvPProfileOptions(GenericReader reader)
@@ -52,7 +52,7 @@ namespace VitaNex.Modules.AutoPvP
 		{
 			AllowPlayerSearch = true;
 			AllowPlayerDelete = false;
-			RankingOrder = PvPProfileRankOrder.Points;
+			RankingOrder = PvPProfileRankOrder.Pontos;
 		}
 
 		public override void Serialize(GenericWriter writer)

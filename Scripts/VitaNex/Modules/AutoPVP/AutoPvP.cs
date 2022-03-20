@@ -240,7 +240,7 @@ namespace VitaNex.Modules.AutoPvP
 		{
 			switch (order)
 			{
-				case PvPProfileRankOrder.Points:
+				case PvPProfileRankOrder.Pontos:
 				{
 					if (season == null)
 					{
@@ -249,7 +249,7 @@ namespace VitaNex.Modules.AutoPvP
 
 					return profile.History.EnsureEntry(season).Points;
 				}
-				case PvPProfileRankOrder.Wins:
+				case PvPProfileRankOrder.Vitorias:
 				{
 					if (season == null)
 					{

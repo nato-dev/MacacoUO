@@ -14,8 +14,8 @@ namespace VitaNex.Modules.AutoPvP
 	public enum PvPProfileRankOrder
 	{
 		None,
-		Points,
-		Wins,
+		Pontos,
+		Vitorias,
 		Kills
 	}
 }

@@ -9,6 +9,7 @@ using Server.Guilds;
 using System.Linq;
 using Server.Engines.Points;
 using Server.Items.Functional.Pergaminhos;
+using Server.Misc.Custom;
 
 namespace Server.Engines.VvV
 {
@@ -25,6 +26,12 @@ namespace Server.Engines.VvV
         public static void Initialize()
         {
             Rewards = new List<CollectionItem>();
+
+            //Rewards.Add(new CollectionItem(typeof(GreaterManaPotion), 6870, 1094764, 437, 500));  // Greater Stam
+            //Rewards.Add(new CollectionItem(typeof(GreaterCurePotion), 6870, 1094764, 437, 500));  // Greater Stam
+            //Rewards.Add(new CollectionItem(typeof(GreaterExplosionPotion), 6870, 1094764, 437, 500));  // Greater Stam
+            Rewards.Add(new CollectionItem(typeof(ValeDecoracaoRara), 0x9F64, "Caixa Misteriosa", 0, 500));  // Greater Stam
+            Rewards.Add(new CollectionItem(typeof(ElementalBall), 3630, "Bola de Cristal Elemental", 0, 2000));  // Greater Stam
 
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094764, 437, 500));  // Greater Stam
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094718, 13, 500));   // Supernova

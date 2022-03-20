@@ -325,19 +325,20 @@ namespace Server.Spells
                     if (focus > 12)
                         focus = 12;
 
-                    if(m_Caster.Skills[SkillName.Focus].Value >= 50)
+                    if (m_Caster.Skills[SkillName.Focus].Value >= 50)
                     {
                         focus += (int)(m_Caster.Skills[SkillName.Focus].Fixed / 400d);
                         focus += (int)(m_Caster.Skills[SkillName.Meditation].Fixed / 400d);
-                    } else
+                    }
+                    else
                     {
-                       if(!m_Caster.IsCooldown("dicafocus"))
+                        if (!m_Caster.IsCooldown("dicafocus"))
                         {
                             m_Caster.SetCooldown("dicafocus");
                             m_Caster.SendMessage(78, "Tendo pelo menos 50 de focus vc pode diminuir suas chances de tomar disturb.");
                         }
                     }
-                   
+
                     if (focus > 0 && focus > Utility.Random(100))
                     {
                         disturb = false;
@@ -370,10 +371,11 @@ namespace Server.Spells
 
                 if (disturb)
                 {
-                    if((DateTime.UtcNow - Caster.LastResist).TotalSeconds > 2)
+                    if ((DateTime.UtcNow - Caster.LastResist).TotalSeconds > 2)
                     {
                         Disturb(DisturbType.Dano, false, true);
-                    } else
+                    }
+                    else
                     {
                         Shard.Debug("Resist n toma disturb");
                     }
@@ -454,16 +456,31 @@ namespace Server.Spells
                     return true;
                 }
 
-                if(Caster.Skills.Focus.Value < 80)
+
+
+                if(Shard.POL_STYLE)
                 {
-                    Disturb(DisturbType.Equipar);
-                    if (!Caster.IsCooldown("dicasp"))
+                    var tempoPassou = Core.TickCount - this.m_StartCastTime;
+                    if(Shard.DebugEnabled)
                     {
-                        Caster.SetCooldown("dicasp");
-                        Caster.SendMessage(78, "Voce ira perder o foco de magias se equipar armas durante o cast. Aguarde o cast terminar para nao perder o foco ou upe a skill Focus");
+                        Shard.Debug("Tempo passou: " + tempoPassou);
                     }
+                    if(tempoPassou < 500)
+                    {
+                        if (Caster.Skills.Focus.Value < 80)
+                        {
+                            Disturb(DisturbType.Equipar);
+                            if (!Caster.IsCooldown("dicasp"))
+                            {
+                                Caster.SetCooldown("dicasp");
+                                Caster.SendMessage(78, "Voce equipou sua arma muito rapido. Aguarde pelo menos 500ms para equipar sua arma depois de iniciar uma magia. Voce pode ter 80 ou mais da skill Focus para evitar isso.");
+                            }
+                        }
+                    }
+                   
                 }
-               
+             
+
             }
 
             return true;
@@ -563,7 +580,7 @@ namespace Server.Spells
 
             if (target == null)
                 return scalar;
-           
+
 
             double casterEI = m_Caster.Skills[DamageSkill].Value;
             double targetRS = target.Skills[SkillName.MagicResist].Value;
@@ -577,7 +594,7 @@ namespace Server.Spells
                 if (bonus > targetRS) bonus = targetRS;
                 targetRS -= bonus;
 
-                if(elemento==ElementoPvM.Escuridao)
+                if (elemento == ElementoPvM.Escuridao)
                 {
                     scalar += ColarElemental.GetNivel(m_Caster, ElementoPvM.Escuridao) / 15;
                 }
@@ -672,10 +689,10 @@ namespace Server.Spells
                 scalar += bonus;
             }
 
-            if(!target.Player && m_Caster.Player)
+            if (!target.Player && m_Caster.Player)
             {
                 Spellbook atkBook = Spellbook.FindEquippedSpellbook(m_Caster);
-                if(atkBook != null && atkBook.SpellCount == 64)
+                if (atkBook != null && atkBook.SpellCount == 64)
                 {
                     scalar += 0.1;
                 }
@@ -805,7 +822,7 @@ namespace Server.Spells
                 m_Caster.Spell = null;
                 Caster.Delta(MobileDelta.Flags);
                 DoHurtFizzle();
-                m_Caster.SendMessage(32, "Voce perdeu a concentracao de sua magia por "+ type.ToString());
+                m_Caster.SendMessage(32, "Voce perdeu a concentracao de sua magia por " + type.ToString());
                 OnDisturb(type, true);
 
                 if (m_CastTimer != null)
@@ -835,7 +852,8 @@ namespace Server.Spells
                 m_Caster.SendMessage(32, "Voce perdeu a concentracao de sua magia por " + type.ToString());
                 Target.Cancel(m_Caster);
                 DoHurtFizzle();
-            } else
+            }
+            else
             {
                 Shard.Debug("Disturb e magia tava no estado " + m_State);
             }
@@ -1024,7 +1042,7 @@ namespace Server.Spells
                 m_Caster.Region.OnBeginSpellCast(m_Caster, this))
             {
 
-               
+
 
 
                 m_State = SpellState.Casting;
@@ -1120,7 +1138,7 @@ namespace Server.Spells
                 bdg.FullPower = false;
             }
 
-                if (this.Caster.Meditating)
+            if (this.Caster.Meditating)
             {
                 this.Caster.Meditating = false;
                 this.Caster.SendMessage(12, "Você parou de meditar");
@@ -1177,7 +1195,7 @@ namespace Server.Spells
                         this.Caster.SendMessage("Você não pode conjurar magias com arma nas mãos");
                         return false;
                     }
-                    if(!Shard.SPHERE_STYLE)
+                    if (!Shard.SPHERE_STYLE)
                         m_Caster.ClearHand(item2);
                     //Caster.SendMessage("Você não pode conjurar magias com arma nas mãos");
                     //return false;
@@ -1207,11 +1225,12 @@ namespace Server.Spells
             else if (!(m_Scroll is BaseWand) && !(this is DispelSpell) && !Shard.SPHERE_STYLE && (m_Caster.Paralyzed || m_Caster.Frozen))
             {
                 m_Caster.SendMessage("Você não pode conjurar magias paralizado"); // You can not cast a spell while frozen.
-            } else if (SkillHandlers.SpiritSpeak.IsInSpiritSpeak(m_Caster))
+            }
+            else if (SkillHandlers.SpiritSpeak.IsInSpiritSpeak(m_Caster))
             {
                 m_Caster.SendMessage("Voce nao pode fazer isto agora");
             }
-          
+
             /*
             else if (BandageContext.GetContext(m_Caster) != null)
             {
@@ -1234,7 +1253,7 @@ namespace Server.Spells
             {
                 m_Caster.SendMessage("Você não pode usar magias estando acalmado"); // You cannot cast a spell while calmed.
             }
-            else if(m_Caster.Spell != null)
+            else if (m_Caster.Spell != null)
             {
                 m_Caster.SendMessage("Voce ja esta conjurando uma magia");
             }

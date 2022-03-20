@@ -40,7 +40,7 @@ namespace Server.Custom.RaresCrafting
             this.AddItem(66 + the_rare.DispOffsetX, 135 + the_rare.DispOffsetY, the_rare.GetResult().m_ItemId);
 
             // ingredients
-            CraftableEntry[] ingredients = the_rare.GetIngredients();
+            Ingr[] ingredients = the_rare.GetIngredients();
             this.AddLabel(158, 16, 53, "Ingredientes:");
 
             this.AddItem(190, 81, ingredients[0].m_ItemId);

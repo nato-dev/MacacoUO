@@ -939,18 +939,18 @@ namespace VitaNex.Modules.AutoPvP
 
 		public virtual void GetHtmlStatistics(Mobile viewer, StringBuilder html)
 		{
-			html.AppendLine("Points Total: {0:#,0}", GetTotalPoints());
-			html.AppendLine("Points Gained: {0:#,0}", GetTotalPointsGained());
-			html.AppendLine("Points Lost: {0:#,0}", GetTotalPointsLost());
+			html.AppendLine("Pontos Totais: {0:#,0}", GetTotalPoints());
+			html.AppendLine("Pontos Ganhos: {0:#,0}", GetTotalPointsGained());
+			html.AppendLine("Pontos Perdidos: {0:#,0}", GetTotalPointsLost());
 			html.AppendLine("----------");
 			html.AppendLine("Kills: {0:#,0}", GetTotalKills());
-			html.AppendLine("Deaths: {0:#,0}", GetTotalDeaths());
-			html.AppendLine("Resurrections: {0:#,0}", GetTotalResurrections());
+			html.AppendLine("Mortes: {0:#,0}", GetTotalDeaths());
+			html.AppendLine("Ress: {0:#,0}", GetTotalResurrections());
 			html.AppendLine("----------");
-			html.AppendLine("Damage Taken: {0:#,0}", GetTotalDamageTaken());
-			html.AppendLine("Damage Done: {0:#,0}", GetTotalDamageDone());
-			html.AppendLine("Healing Taken: {0:#,0}", GetTotalHealingTaken());
-			html.AppendLine("Healing Done: {0:#,0}", GetTotalHealingDone());
+			html.AppendLine("Dano Recebido: {0:#,0}", GetTotalDamageTaken());
+			html.AppendLine("Dano Concedido: {0:#,0}", GetTotalDamageDone());
+			html.AppendLine("Cura Recebida: {0:#,0}", GetTotalHealingTaken());
+			html.AppendLine("Cura Dada: {0:#,0}", GetTotalHealingDone());
 		}
 
 		public virtual void GetHtmlString(Mobile viewer, StringBuilder html)

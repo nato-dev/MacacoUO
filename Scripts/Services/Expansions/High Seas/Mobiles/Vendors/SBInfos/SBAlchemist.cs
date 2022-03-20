@@ -20,7 +20,7 @@ namespace Server.Mobiles
         {
             public InternalBuyInfo()
             {
-                Add(new GenericBuyInfo("1116302", typeof(Saltpeter), 167, 20, 16954, 1150));
+                Add(new GenericBuyInfo("1116302", typeof(Saltpeter), 2867, 20, 16954, 1150));
 
                 Add(new GenericBuyInfo(typeof(RefreshPotion), 50, 10, 0xF0B, 0));
                 Add(new GenericBuyInfo(typeof(AgilityPotion), 15, 10, 0xF08, 0));

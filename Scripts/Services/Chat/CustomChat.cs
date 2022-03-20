@@ -157,7 +157,7 @@ namespace Felladrin.Engines
             if (History.Count > Config.HistorySize)
                 History.RemoveAt(0);
 
-            History.Add(string.Format("<basefont size=5 color=#524759>[{0}] <basefont size=5 color=#{1}>{2}<basefont color=#14131A> {3}", System.DateTime.UtcNow.ToString("<basefont size=5 color=#151524>HH:mm"), (Config.AutoColoredNames ? (sender.Name.GetHashCode() >> 8).ToString() : "54432D"), sender.Name, Utility.FixHtml(message)));
+            History.Add(string.Format("<basefont size=5 color=#524759>[{0}] <basefont size=5 color=#{1}>{2}<basefont color=#14131A> {3}", (System.DateTime.UtcNow - TimeSpan.FromHours(3)).ToString("<basefont size=5 color=#151524>HH:mm"), (Config.AutoColoredNames ? (sender.Name.GetHashCode() >> 8).ToString() : "54432D"), sender.Name, Utility.FixHtml(message)));
             var mess = string.Format("[{0}] {1}", sender.Name, message);
             DiscordBot.SendMessage(":speaking_head:" + mess);
       

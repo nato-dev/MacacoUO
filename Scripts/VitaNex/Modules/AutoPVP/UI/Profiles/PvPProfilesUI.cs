@@ -12,6 +12,7 @@
 #region References
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 
@@ -40,7 +41,7 @@ namespace VitaNex.Modules.AutoPvP
 			Gump parent = null,
 			bool useConfirm = true,
 			PvPProfileRankOrder sortOrder = PvPProfileRankOrder.None)
-			: base(user, parent, emptyText: "There are no profiles to display.", title: "PvP Profiles")
+			: base(user, parent, emptyText: "There are no profiles to display.", title: "Perfil Arena PvP")
 		{
 			Season = season ?? AutoPvP.CurrentSeason;
 
@@ -187,8 +188,8 @@ namespace VitaNex.Modules.AutoPvP
 		protected override void CompileEntryLayout(SuperGumpLayout layout, Dictionary<int, PvPProfile> range)
 		{
 			var sup = SupportsUltimaStore;
-			var bgID = sup ? 40000 : 9270;
-			var fillID = sup ? 40004 : 2624;
+			var bgID = sup ? 40000 : 3500;
+			var fillID = sup ? 40004 : 3004;
 
 			var yOff = range.Count * 30;
 
@@ -243,7 +244,7 @@ namespace VitaNex.Modules.AutoPvP
 							 "Ele sera classificado conforme seus pontos, vitorias e derrotas.\n" +
 							 "Acha que tem o que precisa pra ser top 10 ?",
 							 ServerList.ServerName)
-						 .WrapUOHtmlColor(DefaultHtmlColor, false);
+						 .WrapUOHtmlColor(Color.Black, false);
 		}
 
 		protected override int GetLabelHue(int index, int pageIndex, PvPProfile entry)

@@ -19,8 +19,6 @@ namespace Server.Mobiles
 
         public override bool IsBoss => true;
 
-        public static List<GolemMecanico> Instances = new List<GolemMecanico>();
-
         public bool Escudo = true;
 
         public void SetSpeed(double speed)
@@ -59,16 +57,7 @@ namespace Server.Mobiles
             VirtualArmor = 0;
 
             SetDamage(20, 30);
-
-            if(Instances.Count > 0)
-            {
-                Instances.ForEach(i => i.Delete());
-            }
-
-           
-            Instances.Add(this);
-
-        
+   
             SetSpecialAbility(SpecialAbility.ManaDrain);
             SetWeaponAbility(WeaponAbility.ParalyzingBlow);
 
@@ -326,9 +315,6 @@ namespace Server.Mobiles
                 }
             }
 
-            if (Instances != null && Instances.Contains(this))
-                Instances.Remove(this);
-
             return base.OnBeforeDeath();
         }
 
@@ -475,7 +461,6 @@ namespace Server.Mobiles
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
-            Instances.Add(this);
         }
     }
 }

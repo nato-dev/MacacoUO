@@ -153,8 +153,12 @@
     <Compile Include="Fronteira\Comandos\WipeTudo.cs" />
     <Compile Include="Fronteira\Cooking\CookingLoader.cs" />
     <Compile Include="Fronteira\Cooking\PlantaRandom.cs" />
+    <Compile Include="Fronteira\CraftRaros\CaixaGump.cs" />
     <Compile Include="Fronteira\CraftRaros\DefRaros.cs" />
+    <Compile Include="Fronteira\CraftRaros\GumpCraftItemRaro.cs" />
+    <Compile Include="Fronteira\CraftRaros\GumpRaros.cs" />
     <Compile Include="Fronteira\CraftRaros\Items.cs" />
+    <Compile Include="Fronteira\CraftRaros\ListaCraft.cs" />
     <Compile Include="Fronteira\CraftRaros\Sistema.cs" />
     <Compile Include="Fronteira\Discord\DiscordBot.cs" />
     <Compile Include="Fronteira\Elementos\GumpColar.cs" />
@@ -940,6 +944,7 @@
     <Compile Include="Services\UltimaStore\Codigos.cs" />
     <Compile Include="Services\Underworld\Navrey%27s Lair\NavreysController.cs" />
     <Compile Include="Services\Underworld\Navrey%27s Lair\NavreysPillar.cs" />
+    <Compile Include="Services\ViceVsVirtue\Items\RankBoard.cs" />
     <Compile Include="Services\XmlSpawner\XmlSpawner Core\SpawnEvents.cs" />
     <Compile Include="Services\XmlSpawner\XmlSpawner Core\XmlAttachments\XmlCast.cs" />
     <Compile Include="VendorInfo\SBTailor - Copy.cs" />

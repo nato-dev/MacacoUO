@@ -259,7 +259,7 @@ namespace Server.Gumps.Newbie
                 mage.Skills.Add(SkillName.MagicResist, 50);
                 mage.Skills.Add(SkillName.Hiding, 50);
                 mage.items.Add(new BlankScroll(10));
-                mage.items.Add(new PenAndInk());
+                mage.items.Add(new ScribesPen());
                 mage.items.Add(new AlchemyBag());
                 mage.equips.Add(new QuarterStaff());
                 mage.items.Add(new Bandage(100));

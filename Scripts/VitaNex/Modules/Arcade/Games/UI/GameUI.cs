@@ -120,7 +120,7 @@ namespace VitaNex.Modules.Games
 				return String.Empty;
 			}
 
-			var p = String.Format("Points: {0:#,0.##}", Engine.Points);
+			var p = String.Format("Pontos: {0:#,0.##}", Engine.Points);
 
 			var t = new StringBuilder();
 

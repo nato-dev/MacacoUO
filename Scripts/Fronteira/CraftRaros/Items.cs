@@ -1,3 +1,4 @@
+using Server.Gumps;
 using System;
 
 namespace Server.Items
@@ -523,6 +524,11 @@ namespace Server.Items
         {
             base.Serialize(writer);
             writer.WriteEncodedInt(0); // version
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            from.SendGump(new CaixaGump());
         }
 
         public override void Deserialize(GenericReader reader)

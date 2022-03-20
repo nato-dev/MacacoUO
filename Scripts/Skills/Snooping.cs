@@ -61,7 +61,7 @@ namespace Server.SkillHandlers
                     return;
                 }
 
-                if (root != null && from.IsPlayer() && from.Skills[SkillName.Snooping].Value < Utility.Random(120))
+                if (root != null && from.IsPlayer() && from.Skills[SkillName.Snooping].Value < Utility.Random(100))
                 {
                     Map map = from.Map;
 

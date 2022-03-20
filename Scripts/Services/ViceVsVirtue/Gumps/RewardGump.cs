@@ -13,7 +13,7 @@ namespace Server.Engines.VvV
     public class VvVRewardGump : BaseRewardGump
     {
         public VvVRewardGump(Mobile owner, PlayerMobile user)
-            : base(owner, user, VvVRewards.Rewards, 1155512)
+            : base(owner, user, VvVRewards.Rewards, "Guerra Infinita")
         {
         }
 

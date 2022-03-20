@@ -35,7 +35,7 @@ namespace VitaNex.Modules.AutoPvP
 				if (ListGump.SortOrder != PvPProfileRankOrder.None)
 				{
 					list.AppendEntry(
-						"No Sorting",
+						"Sem Ordem",
 						button =>
 						{
 							ListGump.SortOrder = PvPProfileRankOrder.None;
@@ -54,24 +54,24 @@ namespace VitaNex.Modules.AutoPvP
 						});
 				}
 
-				if (ListGump.SortOrder != PvPProfileRankOrder.Points)
+				if (ListGump.SortOrder != PvPProfileRankOrder.Pontos)
 				{
 					list.AppendEntry(
-						"Points",
+						"Pontos",
 						button =>
 						{
-							ListGump.SortOrder = PvPProfileRankOrder.Points;
+							ListGump.SortOrder = PvPProfileRankOrder.Pontos;
 							ListGump.Refresh(true);
 						});
 				}
 
-				if (ListGump.SortOrder != PvPProfileRankOrder.Wins)
+				if (ListGump.SortOrder != PvPProfileRankOrder.Vitorias)
 				{
 					list.AppendEntry(
-						"Wins",
+						"Vitorias",
 						button =>
 						{
-							ListGump.SortOrder = PvPProfileRankOrder.Wins;
+							ListGump.SortOrder = PvPProfileRankOrder.Vitorias;
 							ListGump.Refresh(true);
 						});
 				}
