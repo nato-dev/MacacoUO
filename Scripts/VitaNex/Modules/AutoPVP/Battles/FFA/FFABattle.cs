@@ -63,16 +63,18 @@ namespace VitaNex.Modules.AutoPvP.Battles
 			: base(reader)
 		{ }
 
-        protected override void BroadcastOpenMessage(TimeSpan timeLeft)
+
+        protected override void BroadcastStartMessage(TimeSpan timeLeft)
         {
             foreach(var pl in NetState.GetOnlinePlayerMobiles())
             {
                 if(!pl.IsCooldown("dicaffa"))
                 {
                     pl.SetCooldown("dicaffa", TimeSpan.FromMinutes(10));
-                    pl.SendMessage(78, "No FFA nao se perde items nem fama, e ganham ouro e pocoes soh de participar !! Digite .pvp e escolha a batalha FFA para participar !");
+                    pl.SendMessage(78, "No PvP FFA nao se perde items nem fama, e ganham ouro e pocoes soh de participar !! Digite .pvp e escolha a batalha FFA para participar !");
                 }
             }
+            base.BroadcastStartMessage(timeLeft);
         }
 
         public override void GiveWinnerReward(PlayerMobile pm)

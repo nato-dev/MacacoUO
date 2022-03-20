@@ -5,8 +5,8 @@ namespace Server.Items
 {
     public class PotionKeg : Item, ICraftable
     {
-        private PotionEffect m_Type;
-        private int m_Held;
+        protected PotionEffect m_Type;
+        protected int m_Held;
         [Constructable]
         public PotionKeg()
             : base(0x1940)
@@ -207,7 +207,7 @@ namespace Server.Items
 
             if (m_Held > 0)
             {
-                list.Add(+m_Held + "% Cheio");
+                list.Add(m_Held + "% Cheio");
                 list.Add(m_Type.ToString());
             } else
             {

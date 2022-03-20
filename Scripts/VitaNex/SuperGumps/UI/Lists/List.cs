@@ -191,8 +191,8 @@ namespace VitaNex.SuperGumps.UI
 
 			var sup = SupportsUltimaStore;
 			var ec = IsEnhancedClient;
-			var bgID = ec ? 83 : sup ? 9250 : 9250;
-			var fillID = ec ? 87 : sup ? 3000 : 3000;
+			var bgID = ec ? 83 : sup ? 40000 : 9270;
+			var fillID = ec ? 87 : sup ? 40004 : 2624;
 
 			layout.Add(
 				"background/header/base",

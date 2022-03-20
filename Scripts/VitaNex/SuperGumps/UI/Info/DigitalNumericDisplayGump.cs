@@ -74,7 +74,7 @@ namespace VitaNex.SuperGumps.UI
 				width = 20 + (eachWidth * Numerics.Length),
 				height = 20 + NumericHeight;
 
-			layout.Add("background/body/base", () => AddBackground(0, 0, width, height, 9270));
+			layout.Add("background/body/base", () => AddBackground(0, 0, width, height, 3500));
 
 			CompileNumericEntries(layout, width, height, lineHeight, lineWidth, halfHeight, halfWidth, eachWidth);
 		}

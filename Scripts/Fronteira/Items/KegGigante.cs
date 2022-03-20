@@ -5,8 +5,7 @@ namespace Server.Items
 {
     public class KegGigante : PotionKeg, ICraftable
     {
-        private PotionEffect m_Type;
-        private int m_Held;
+
         [Constructable]
         public KegGigante()
             : base()
@@ -20,11 +19,11 @@ namespace Server.Items
         {
         }
 
-        public virtual void UpdateWeight()
+        public override void UpdateWeight()
         {
-            int held = Math.Max(0, Math.Min(m_Held, 100));
+            int held = Math.Max(0, Math.Min(m_Held, 1000));
 
-            Weight = 10 + ((held * 40) / 100);
+            Weight = 10 + ((held * 40) / 1000);
         }
 
         public override void Serialize(GenericWriter writer)

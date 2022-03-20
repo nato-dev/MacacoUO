@@ -44,6 +44,7 @@ namespace Server.Mobiles
 
                 Add(new GenericBuyInfo("Manual de Craft Vidros (Alchemy)", typeof(GlassblowingBook), 20000, 30, 0xFF4, 0));
                 Add(new GenericBuyInfo("Manual Minerar Areia (Mining)", typeof(SandMiningBook), 20000, 30, 0xFF4, 0));
+                Add(new GenericBuyInfo(typeof(TransformationDust), 5000, 100, 0x5745, 0, true));
             }
         }
 
