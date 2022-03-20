@@ -311,7 +311,7 @@ namespace Server.Items
 				new PMEntry(new Point3D(643, 2067, 5), 1012009, "Skara Brae"), // Skara Brae
 				/* Dynamic Z for Magincia to support both old and new maps. */
 				new PMEntry(new Point3D(3563, 2139, Map.Trammel.GetAverageZ(3563, 2139)), 1012010, "Magincia"), // (New) Magincia
-				new PMEntry(new Point3D(3500, 2582, 14), 1078098, "Haven") // New Haven
+				new PMEntry(new Point3D(3471, 2599, 10), 1078098, "Haven") // New Haven
 			}, cost: 50);
 
         public static readonly PMList Felucca = new PMList(
