@@ -220,8 +220,8 @@ namespace Server.Gumps
                         AddButton(135 + (half * 160), 158, 2103, 2104, 100 + index, GumpButtonType.Reply, 0);
                         AddHtmlLocalized(150 + (half * 160), 154, 110, 20, 1062723, false, false); // Gate Travel
 
-                        AddButton(135 + (half * 160), 176, 2103, 2104, 75 + index, GumpButtonType.Reply, 0);
-                        AddHtml(150 + (half * 160), 172, 110, 20, "Jornada Sagrada", false, false); // Sacred Journey
+                        //AddButton(135 + (half * 160), 176, 2103, 2104, 75 + index, GumpButtonType.Reply, 0);
+                        //AddHtml(150 + (half * 160), 172, 110, 20, "Jornada Sagrada", false, false); // Sacred Journey
                     }
                     else
                     {
