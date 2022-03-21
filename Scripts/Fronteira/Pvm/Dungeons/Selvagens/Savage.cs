@@ -36,11 +36,18 @@ namespace Server.Mobiles
             b.Fame += 1000;
             b.Fame *= 6;
 
-            if(Utility.RandomDouble() < 0.09)
+            if(Utility.RandomDouble() < 0.2)
             {
                 var esse = BaseEssencia.RandomEssencia();
                 b.AddToBackpack(esse);
-                b.Hue = esse.Hue;
+                //b.Hue = esse.Hue;
+                /*
+                b.HitsMaxSeed = 3000;
+                b.Hits = 3000;
+                b.DamageMin = (int)(b.DamageMin * 1.1);
+                b.DamageMax = (int)(b.DamageMax * 1.6);
+                b.Skills.Magery.Base = 200;
+                */
             }
 
             if (Utility.RandomBool())
@@ -51,7 +58,7 @@ namespace Server.Mobiles
             b.Skills.MagicResist.Base = 100;
             b.Backpack.DropItem(new Gold(Utility.Random(200, 200)));
             b.DamageMin = (int)(b.DamageMin * 1.2);
-            b.DamageMax = (int)(b.DamageMax * 1.2);
+            b.DamageMax = (int)(b.DamageMax * 1.4);
             if (Utility.RandomDouble() < 0.1)
                 b.AddItem(new RecipeScroll((int)CarpRecipes.AcidProofRope));
         }

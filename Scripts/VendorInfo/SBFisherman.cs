@@ -56,7 +56,7 @@ namespace Server.Mobiles
         public class InternalSellInfo : GenericSellInfo 
         { 
             public InternalSellInfo() 
-            { 
+            {
                 Add(typeof(RawFishSteak), 1);
                 Add(typeof(Fish), 1);
                 Add(typeof(BigFish), 1);

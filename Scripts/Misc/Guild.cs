@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
+using Fronteira.Discord;
 using Server.Commands;
 using Server.Commands.Generic;
 using Server.Fronteira.Guildas;
@@ -492,7 +492,7 @@ namespace Server.Guilds
     {
         private int m_Kills;
         private int m_MaxKills;
-
+        public int Pontos;
         private TimeSpan m_WarLength;
         private DateTime m_WarBeginning;
 
@@ -506,6 +506,7 @@ namespace Server.Guilds
         public TimeSpan WarLength { get { return m_WarLength; } set { m_WarLength = value; } }
         public Guild Opponent { get { return m_Opponent; } }
         public Guild Guild { get { return m_Guild; } }
+        public TimeSpan TimeRemaining => (WarBeginning + WarLength) - DateTime.UtcNow;
         public DateTime WarBeginning { get { return m_WarBeginning; } set { m_WarBeginning = value; } }
         public bool WarRequester { get { return m_WarRequester; } set { m_WarRequester = value; } }
 
@@ -652,6 +653,7 @@ namespace Server.Guilds
 
     public class Guild : BaseGuild
     {
+        public int PontosRank;
         private static string FilePath = Path.Combine("Saves", "HistoricoGuerras.bin");
 
         public static void Configure()
@@ -961,7 +963,8 @@ namespace Server.Guilds
         #region New Wars
         public List<WarDeclaration> PendingWars { get { return m_PendingWars; } }
         public List<WarDeclaration> AcceptedWars { get { return m_AcceptedWars; } }
-        public static HashSet<WarDeclaration> History { get; set; }
+        public static HashSet<WarDeclaration> History { get; set; } = new HashSet<WarDeclaration>();
+        public static HashSet<WarDeclaration> Ativas { get; set; } = new HashSet<WarDeclaration>();
 
         public WarDeclaration FindPendingWar(Guild g)
         {
@@ -1013,17 +1016,30 @@ namespace Server.Guilds
                     if (inAlliance)
                     {
                         myAlliance.AllianceMessage(
-                            1070739 + (int)status, (g == null) ? "a deleted opponent" : (otherInAlliance ? otherAlliance.Name : g.Name));
+                            1070739 + (int)status, (g == null) ? "guilda deletada" : (otherInAlliance ? otherAlliance.Name : g.Name));
                         myAlliance.InvalidateMemberProperties();
                     }
                     else
                     {
                         GuildMessage(
-                            1070739 + (int)status, (g == null) ? "a deleted opponent" : (otherInAlliance ? otherAlliance.Name : g.Name));
+                            1070739 + (int)status, (g == null) ? "guilda deletada" : (otherInAlliance ? otherAlliance.Name : g.Name));
                         InvalidateMemberProperties();
                     }
 
                     AcceptedWars.Remove(w);
+                    Guild.History.Add(w);
+
+                    if(w.Status == WarStatus.Win && w.WarRequester)
+                    {
+                        var msg = $"{(w.Guild == null ? "?" : w.Guild.Abbreviation)} venceu a guerra contra {(w.Opponent==null?"?":w.Opponent.Abbreviation)}";
+                        Anuncio.Anuncia(msg, false);
+                        DiscordBot.SendMessage(":crossed_swords:" + msg);
+                    } else if(w.Status == WarStatus.Lose && w.WarRequester)
+                    {
+                        var msg = $"{(w.Opponent == null ? "?" : w.Opponent.Abbreviation)} venceu a guerra contra {(w.Guild == null ? "?" : w.Guild.Abbreviation)}";
+                        Anuncio.Anuncia(msg, false);
+                        DiscordBot.SendMessage(":crossed_swords:" + msg);
+                    }
 
                     if (g != null)
                     {
@@ -1043,7 +1059,9 @@ namespace Server.Guilds
                             g.InvalidateMemberProperties();
                         }
 
-                        g.AcceptedWars.Remove(g.FindActiveWar(this));
+                        var other = g.FindActiveWar(this);
+                        g.AcceptedWars.Remove(other);
+                        Guild.History.Add(w);
                     }
                 }
             }
@@ -1495,7 +1513,9 @@ namespace Server.Guilds
                         m_AcceptedWars = new List<WarDeclaration>();
                         for (int i = 0; i < count; i++)
                         {
-                            m_AcceptedWars.Add(new WarDeclaration(reader));
+                            var w = new WarDeclaration(reader);
+                            m_AcceptedWars.Add(w);
+                            Guild.Ativas.Add(w);
                         }
 
                         bool isAllianceLeader = reader.ReadBool();

@@ -64,7 +64,7 @@ namespace Server.Items
             long nextShoot;
 
             if (attacker is PlayerMobile)
-                nextShoot = ((PlayerMobile)attacker).NextMovementTime + 650 - (attacker.Dex * 3);//(Core.SE ? 250 : Core.AOS ? 500 : 1000);
+                nextShoot = ((PlayerMobile)attacker).NextMovementTime + 850 - (attacker.Dex * 4);//(Core.SE ? 250 : Core.AOS ? 500 : 1000);
             else
                 nextShoot = attacker.LastMoveTime + attacker.ComputeMovementSpeed();
 

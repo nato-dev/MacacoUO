@@ -41,7 +41,7 @@ namespace Server.Items
 
         public static Type[] common_decos = new Type[] {
 
-            typeof(GoblinTopiary),
+            typeof(GoblinTopiary), typeof(WaterBarrel),
             typeof(Obelisk), typeof(PaperLantern), typeof(CopperWire), typeof(IronWire), typeof(RoseInAVase), typeof(RuinedTapestry), typeof(RuinedDrawers), typeof(RuinedPainting), typeof(RuinedClock),
             typeof(Globe), typeof(EmptyJars), typeof(GrimWarning), typeof(HeatingStand), typeof(Lever), typeof(MeltedWax), typeof(RandomMonsterStatuette),
             typeof(Brazier), typeof(DecoBridleSouth), typeof(BrokenChair), typeof(Cards), typeof(Cards2), typeof(Cards3), typeof(DecoBrimstone),

@@ -37,10 +37,10 @@ namespace Server.Ziden.Achievements
         public VitoriaFFA()
         {
             AddItem(new PergaminhoCarregamento());
-            AddItem(new SacolaJoias(10));
+            AddItem(new SacolaJoias());
             AddItem(new SacolaPots());
             AddItem(new Gold(5000));
-            Name = "Sacola";
+            Name = "Vitoria do FFA";
         }
 
         public VitoriaFFA(Serial s) : base(s) { }
@@ -63,13 +63,15 @@ namespace Server.Ziden.Achievements
         {
             AddItem(new CombatSkillBook());
             AddItem(new CombatSkillBook());
-            AddItem(new SacolaJoias(3 + Utility.Random(3)));
-            this.AddItem(new GreaterHealPotion(5 + Utility.Random(5)));
-            this.AddItem(new GreaterCurePotion(1 + Utility.Random(5)));
-            this.AddItem(new GreaterExplosionPotion(1 + Utility.Random(5)));
-            this.AddItem(new GreaterManaPotion(5 + Utility.Random(5)));
-            this.AddItem(new RefreshPotion(1 + Utility.Random(2)));
-            this.AddItem(new InvisibilityPotion(1 + Utility.Random(2)));
+            AddItem(new SacolaJoias());
+            for (var x = 0; x < 20; x++)
+            {
+                this.AddItem(new HealPotion());
+                this.AddItem(new CurePotion());
+                this.AddItem(new ExplosionPotion());
+                this.AddItem(new ManaPotion());
+                this.AddItem(new RefreshPotion());
+            }
             AddItem(new Gold(3000));
             Name = "Sacola";
         }
@@ -92,13 +94,16 @@ namespace Server.Ziden.Achievements
         [Constructable]
         public SacolaPots()
         {
-            this.AddItem(new GreaterHealPotion(20+Utility.Random(5)));
-            this.AddItem(new GreaterCurePotion(5 + Utility.Random(5)));
-            this.AddItem(new GreaterExplosionPotion(5 + Utility.Random(5)));
-            this.AddItem(new GreaterManaPotion(20 + Utility.Random(5)));
-            this.AddItem(new RefreshPotion(5 + Utility.Random(5)));
-            this.AddItem(new InvisibilityPotion(2 + Utility.Random(5)));
-            AddItem(new Gold(3000));
+            for (var x = 0; x < 10; x++)
+            {
+                this.AddItem(new HealPotion());
+                this.AddItem(new CurePotion());
+                this.AddItem(new ExplosionPotion());
+                this.AddItem(new ManaPotion());
+                this.AddItem(new RefreshPotion());
+            }
+
+           
             Name = "Sacola";
         }
 
@@ -121,7 +126,7 @@ namespace Server.Ziden.Achievements
         public String[] Textos { get; set; }
 
         [Constructable]
-        public Trofeu(): base(0x1227)
+        public Trofeu() : base(0x1227)
         {
             Name = "Trofeu";
             Textos = new string[] { "Apenas um trofeu", "Nada importante" };
@@ -132,7 +137,7 @@ namespace Server.Ziden.Achievements
             base.AddNameProperties(list);
             if (Textos == null)
                 return;
-            foreach(var s in Textos)
+            foreach (var s in Textos)
             {
                 list.Add(s);
             }
@@ -144,7 +149,7 @@ namespace Server.Ziden.Achievements
         {
             base.Serialize(writer);
             writer.Write(Textos == null ? 0 : Textos.Count());
-            if(Textos != null)
+            if (Textos != null)
             {
                 foreach (var s in Textos)
                     writer.Write(s);
@@ -213,7 +218,7 @@ namespace Server.Ziden.Achievements
         [Constructable]
         public ScolaJoias()
         {
-            foreach(var type in BasePedraPreciosa.Elementos.Keys)
+            foreach (var type in BasePedraPreciosa.Elementos.Keys)
             {
                 var joia = (BasePedraPreciosa)Activator.CreateInstance(type);
                 joia.Amount = 20;
@@ -238,7 +243,7 @@ namespace Server.Ziden.Achievements
     public class SacolaHalloween : Bag
     {
 
-        public static Type [] Tipos = new Type[]
+        public static Type[] Tipos = new Type[]
         {
             typeof(HalloweenBloodFountainAddonDeed), typeof(HalloweenCasketTempleAddonDeed), typeof(HalloweenGhoulPicnicAddonDeed), typeof(HalloweenGuillotinePatchAddonDeed),
             typeof(HalloweenHellPitAddonDeed), typeof(HalloweenSkullPostAddonDeed), typeof(HalloweenTortureChamberAddonDeed), typeof(HalloweenTreeRedAddonDeed), typeof(HalloweenTreeBlackAddonDeed)
@@ -254,7 +259,8 @@ namespace Server.Ziden.Achievements
                 var item = Tipos[Utility.Random(Tipos.Length)];
                 var i = Activator.CreateInstance(item) as Item;
                 AddItem(i);
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 Name = "Sacola de Halloween da Travessura";
             }

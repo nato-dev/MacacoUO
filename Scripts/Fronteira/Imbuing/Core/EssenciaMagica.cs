@@ -107,8 +107,9 @@ namespace Server.Ziden
     {
 
         [Constructable]
-        public PedraMagica() : base(0x0E48)
+        public PedraMagica() : base(0x0F09)
         {
+            Hue = TintaBranca.COR;
             Stackable = true;
             Name = "Jarro de Po Magico";
         }

@@ -2,13 +2,13 @@ using System;
 using Server.Engines.Craft;
 using Server.Items;
 using Server.Menus.Questions;
+using System;
 
 namespace Server.Mobiles
 {
     [CorpseName("an imp corpse")]
     public class Imp : BaseCreature
     {
-
         public static void Converte(BaseCreature b, int hue = 1175)
         {
             Timer.DelayCall(TimeSpan.FromSeconds(0.1), () =>

@@ -309,11 +309,13 @@ namespace Server.Items
             }
         }
 
+        private bool enhanced;
+
         public BandageContext(Mobile healer, Mobile patient, TimeSpan delay, bool enhanced, Corpse corpse = null)
         {
             m_Healer = healer;
             m_Patient = patient;
-
+            this.enhanced = enhanced;
             if (enhanced)
                 m_HealingBonus += EnhancedBandage.HealingBonus;
 
@@ -502,11 +504,11 @@ namespace Server.Items
             if (vet && m_Healer.Skills[SkillName.Veterinary].Value > 100)
                 toHeal += 20;
 
-            if (this is EnhancedBandage)
+            if (this.enhanced)
                 toHeal += 5;
 
-            if (healing < 100)
-                toHeal *= 0.9;
+            if (healing >= 100)
+                toHeal *= 1.1;
 
             if (toHeal < 20)
                 toHeal = 20;
@@ -514,11 +516,11 @@ namespace Server.Items
             if ((m_Patient.Body.IsMonster || m_Patient.Body.IsAnimal) && !m_Patient.Player)
             {
                 toHeal += m_Patient.HitsMax / 170;
-                if(this is EnhancedBandage)
-                    toHeal += m_Patient.HitsMax / 10;
+                if(this.enhanced)
+                    toHeal += m_Patient.HitsMax / 20;
 
                 if (Shard.DebugEnabled)
-                    Shard.Debug("Bonus Enhanced: " +(this is EnhancedBandage), m_Patient);
+                    Shard.Debug("Bonus Enhanced: " +(this.enhanced), m_Patient);
 
                 toHeal -= m_Slips * SLIP_MULT * 3;
             } else

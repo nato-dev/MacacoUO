@@ -1,10 +1,10 @@
-﻿using System;
+using System;
 using Server.Engines.Craft;
 using Server.Mobiles;
 
 namespace Server.Items
 {
-    public class CraftableFurniture : Item, IResource
+    public class CraftableFurniture : Item, IResource, IQuality
     {
         public virtual bool ShowCrafterName
         {
@@ -77,12 +77,12 @@ namespace Server.Items
         {
         }
 		
-        public override void AddWeightProperty(ObjectPropertyList list)
+        public override void AddNameProperties(ObjectPropertyList list)
         {
-            base.AddWeightProperty(list);
+            base.AddNameProperties(list);
 
             if (this.ShowCrafterName && this.m_Crafter != null)
-				list.Add(1050043, m_Crafter.TitleName); // crafted by ~1_NAME~
+				list.Add("Feito por "+ m_Crafter.TitleName); // crafted by ~1_NAME~
 
             if (this.m_Quality == ItemQuality.Exceptional)
                 list.Add(1060636); // exceptional

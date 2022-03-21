@@ -1,4 +1,6 @@
 using System;
+using Fronteira.Discord;
+using Server.Commands;
 using Server.Factions;
 using Server.Gumps;
 using Server.Mobiles;
@@ -95,7 +97,7 @@ namespace Server.Guilds
             {
                 kills = Color(String.Format("{0}/{1}", war.Kills, war.MaxKills), 0x990000);
                 //time = Color( String.Format( "{0}:{1}", war.WarLength.Hours, ((TimeSpan)(war.WarLength - TimeSpan.FromHours( war.WarLength.Hours ))).Minutes ), 0xFF0000 );
-                time = Color(String.Format("{0:D2}:{1:mm}", war.WarLength.Hours, DateTime.MinValue + war.WarLength), 0x990000);
+                time = Color(war.WarLength.TotalHours+" horas", 0x990000);
 
                 otherWar = this.m_Other.FindPendingWar(this.guild);
                 if (otherWar != null)
@@ -119,11 +121,11 @@ namespace Server.Guilds
             {
                 if (war.WarRequester)
                 {
-                    number = "Chamou pra treta"; // <div align=center>You have challenged this guild to war!</div>
+                    number = "Chamou para guerra"; // <div align=center>You have challenged this guild to war!</div>
                 }
                 else
                 {
-                    number = "Esta guilda te chamou pra treta"; // <div align=center>This guild has challenged you to war!</div>
+                    number = "Esta guilda te chamou para guerra"; // <div align=center>This guild has challenged you to war!</div>
 
                     this.AddButtonAndBackground(20, 260, 5, "Aceitar"); // Accept Challenge
                     this.AddButtonAndBackground(275, 260, 6, "Mudar termos"); //Modify Terms
@@ -232,6 +234,10 @@ namespace Server.Guilds
                                 this.guild.PendingWars.Remove(war);
                                 war.WarBeginning = DateTime.UtcNow;
                                 this.guild.AcceptedWars.Add(war);
+                                Guild.Ativas.Add(war);
+                                var m = $"Uma guerra se inicia, {war.Guild.Abbreviation} vs {war.Opponent.Abbreviation}";
+                                Anuncio.Anuncia(m, false);
+                                DiscordBot.SendMessage($":crossed_swords:Uma guerra se inicia, {war.Guild.Name} vs {war.Opponent.Name}");
 
                                 if (alliance != null && alliance.IsMember(this.guild))
                                 {
@@ -248,6 +254,7 @@ namespace Server.Guilds
                                 otherGuild.PendingWars.Remove(otherWar);
                                 otherWar.WarBeginning = DateTime.UtcNow;
                                 otherGuild.AcceptedWars.Add(otherWar);
+                                Guild.Ativas.Add(otherWar);
 
                                 if (otherAlliance != null && this.m_Other.Alliance.IsMember(this.m_Other))
                                 {
@@ -335,7 +342,12 @@ namespace Server.Guilds
                                 }
 	
                                 this.guild.AcceptedWars.Remove(activeWar);
-	
+                                Guild.History.Add(activeWar);
+
+                                var m = $"Fim de guerra, {this.guild.Abbreviation} se rendeu a {(activeWar.Opponent == null ? "?" : activeWar.Opponent.Abbreviation)}";
+                                Anuncio.Anuncia(m, false);
+                                DiscordBot.SendMessage($":crossed_swords: Fim de guerra, {this.guild.Name} se rendeu a {(activeWar.Opponent == null ? "?" : activeWar.Opponent.Name)}");
+
                                 if (otherAlliance != null && otherAlliance.IsMember(otherGuild))
                                 {
                                     otherAlliance.AllianceMessage(1070739, ((this.guild.Alliance != null) ? this.guild.Alliance.Name : this.guild.Name));// You have won the war against ~1_val~!
@@ -346,8 +358,10 @@ namespace Server.Guilds
                                     otherGuild.GuildMessage(1070739, ((this.guild.Alliance != null) ? this.guild.Alliance.Name : this.guild.Name));// You have won the war against ~1_val~!
                                     otherGuild.InvalidateMemberProperties();
                                 }
-	
-                                otherGuild.AcceptedWars.Remove(otherGuild.FindActiveWar(this.guild));
+
+                                var other = otherGuild.FindActiveWar(this.guild);
+                                otherGuild.AcceptedWars.Remove(other);
+                                Guild.History.Add(other);
                             }
                         }
                         break;

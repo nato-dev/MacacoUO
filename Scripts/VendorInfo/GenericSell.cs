@@ -135,7 +135,10 @@ namespace Server.Mobiles
                     price = price2;
             }
 
-            return (int)(price * 0.6);
+            var p = (int)(price * 0.6);
+            if (p < 1)
+                p = 1;
+            return p;
         }
 
         public int GetBuyPriceFor(Item item)

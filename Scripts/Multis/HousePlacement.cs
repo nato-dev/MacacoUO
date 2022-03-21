@@ -81,6 +81,7 @@ namespace Server.Multis
 
             // These are also storage lists. They hold location values indicating the yard and border locations.
             List<Point2D> yard = new List<Point2D>(), borders = new List<Point2D>();
+            HashSet<Point2D> fora = new HashSet<Point2D>();
 
             /* RULES:
             * 1) All tiles which are around the -outside- of the foundation must not have anything impassable.
@@ -169,7 +170,7 @@ namespace Server.Multis
                             hasFoundation = true;
                         else
                         {
-                            Console.WriteLine(addTile.X + " " + addTile.Y + " " + addTile.Z);
+                            //Console.WriteLine(addTile.X + " " + addTile.Y + " " + addTile.Z);
                         }
 
 
@@ -274,9 +275,13 @@ namespace Server.Multis
                             }
                         }
 
-                        for (int xOffset = -1; xOffset <= 1; ++xOffset)
+                        /*
+                       
+
+                
+                        for (int xOffset = 0; xOffset < 1; ++xOffset)
                         {
-                            for (int yOffset = -1; yOffset <= 1; ++yOffset)
+                            for (int yOffset = 0; yOffset < 1; ++yOffset)
                             {
                                 if (xOffset == 0 && yOffset == 0)
                                     continue;
@@ -306,9 +311,16 @@ namespace Server.Multis
                                 Point2D borderPoint = new Point2D(tileX + xOffset, tileY + yOffset);
 
                                 if (!borders.Contains(borderPoint))
+                                {
+                                    if(xOffset != 0 || yOffset!=0)
+                                    {
+                                        fora.Add(borderPoint);
+                                    }
                                     borders.Add(borderPoint);
+                                }
                             }
                         }
+                        */
                     }
                 }
             }
@@ -443,9 +455,9 @@ namespace Server.Multis
                 }
                 }
                 eable.Free();*/
-            }
+                    }
 
-            return HousePlacementResult.Valid;
+                    return HousePlacementResult.Valid;
         }
     }
 }

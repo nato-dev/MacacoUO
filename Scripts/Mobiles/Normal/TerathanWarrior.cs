@@ -41,7 +41,8 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 30;
 
-            PackItem(new CristalTherathan());
+            if (Utility.RandomDouble() < 0.33)
+                PackItem(new CristalTherathan());
 
             if (Utility.RandomDouble() < .33)
                 this.PackItem(Engines.Plants.Seed.RandomPeculiarSeed(4));

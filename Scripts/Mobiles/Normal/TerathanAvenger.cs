@@ -41,7 +41,8 @@ namespace Server.Mobiles
 
             this.Fame = 3500;
             this.Karma = -3500;
-            PackItem(new CristalTherathan());
+            if(Utility.RandomDouble() < 0.33)
+                PackItem(new CristalTherathan());
             this.VirtualArmor = 150;
         }
 

@@ -2177,6 +2177,7 @@ namespace Server
             m_LastMovedTime = DateTime.UtcNow;
         }
 
+        [CommandProperty(AccessLevel.Administrator)]
         public DateTime LastMoved { get { return m_LastMovedTime; } set { m_LastMovedTime = value; } }
 
         public virtual bool StackIgnoreItemID { get { return false; } }

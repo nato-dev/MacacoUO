@@ -1,4 +1,5 @@
 using Server.Engines.VvV;
+using Server.Fronteira.Guildas;
 using Server.Items;
 using Server.Mobiles;
 using System;
@@ -20,7 +21,7 @@ namespace Server.Services.ViceVsVirtue.Items
         [Constructable]
         public QuadroRankingVvV(int amount) : base(16395)
         {
-            Name = "Quadro GW";
+            Name = "Quadro Guerra Infinita";
             Stackable = true;
             Amount = amount;
 
@@ -33,6 +34,46 @@ namespace Server.Services.ViceVsVirtue.Items
         }
 
         public QuadroRankingVvV(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(0);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
+
+    public class QuadroGuerras : Item
+    {
+
+        [Constructable]
+        public QuadroGuerras() : this(1)
+        {
+        }
+
+        [Constructable]
+        public QuadroGuerras(int amount) : base(16395)
+        {
+            Name = "Quadro Guerras";
+            Stackable = true;
+            Amount = amount;
+
+            Hue = TintaPreta.COR;
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            from.SendGump(new GuerrasAtivas(from as PlayerMobile));
+        }
+
+        public QuadroGuerras(Serial serial) : base(serial)
         {
         }
 

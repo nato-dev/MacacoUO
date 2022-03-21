@@ -103,7 +103,7 @@ namespace Server.Items
                 }
                 else // Loser!
                 {
-                    from.SendMessage(0x22, "Voce perdeu!");
+                    from.SendMessage(0x22, $"Voce perdeu! (Sorte: {1200-roll}/1200)");
                 }
             }
             else

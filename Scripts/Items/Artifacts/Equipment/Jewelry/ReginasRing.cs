@@ -17,6 +17,14 @@ namespace Server.Items
         {
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Adornado");
+            list.Add("Lindo");
+            list.Add("Maravilhoso");
+        }
+
         public override int LabelNumber
         {
             get

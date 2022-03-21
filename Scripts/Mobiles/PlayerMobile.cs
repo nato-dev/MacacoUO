@@ -1214,6 +1214,14 @@ namespace Server.Mobiles
             var house = BaseHouse.FindHouseAt(this);
             if (house != null && (house.IsFriend(this) || house.IsOwner(this) || house.IsCoOwner(this)))
             {
+                Timer.DelayCall(TimeSpan.FromMilliseconds(5), () =>
+                {
+                    if (item is Container)
+                    {
+                        item.LastMoved = DateTime.UtcNow + TimeSpan.FromMinutes(int.MaxValue);
+                    }
+                });
+
                 if (!this.IsCooldown("msgcasa"))
                 {
                     this.SetCooldown("msgcasa");
@@ -2800,7 +2808,7 @@ namespace Server.Mobiles
 
         public override void Use(Item item)
         {
-            if (this.Frozen)
+            if (this.Frozen && !(item is OilCloth))
             {
                 return;
             }
@@ -2810,7 +2818,7 @@ namespace Server.Mobiles
                 DicaBands = false;
             }
 
-            
+
             if (this.Paralyzed)
             {
                 if (item is Container)
@@ -2822,7 +2830,7 @@ namespace Server.Mobiles
                     }
                     return;
                 }
-            }   
+            }
 
             // AUTO EQUIP SPHERE
             if ((item is FishingPole || item is BaseClothing || item is BaseWeapon || item is BaseArmor && !(item is Dagger)) && item.IsChildOf(Backpack))
@@ -3983,7 +3991,7 @@ namespace Server.Mobiles
                 }
             }
 
-            if(Shard.RP)
+            if (Shard.RP)
             {
                 if (!item.IsChildOf(this.Backpack) && this.FindItemOnLayer(item.Layer) != item)
                 {
@@ -4854,14 +4862,14 @@ namespace Server.Mobiles
             }
 
             Mobile m = FindMostRecentDamager(false);
-            if(!this.IsCooldown("avisomorte") && m != null && m.Name != null)
+            if (!this.IsCooldown("avisomorte") && m != null && m.Name != null)
             {
                 this.SetCooldown("avisomorte", TimeSpan.FromMinutes(3));
                 if (m is PlayerMobile)
                     DiscordBot.SendMessage($":crossed_swords:[PvP] {m.Name} matou {Name}");
-                else if(m is BaseCreature)
+                else if (m is BaseCreature)
                 {
-                    if(((BaseCreature)m).IsBoss)
+                    if (((BaseCreature)m).IsBoss)
                     {
                         DiscordBot.SendMessage($":skull_crossbones: [BOSS] {Name} foi obliterado por um boss !");
                     }

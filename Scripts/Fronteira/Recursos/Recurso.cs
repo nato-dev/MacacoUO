@@ -212,9 +212,9 @@ namespace Server.Fronteira.Recursos
                     else if (from.Skills[skill].Value < 95)
                         exp += 1000;
                     else if (from.Skills[skill].Value < 110)
-                        exp += 800;
-                    else
                         exp += 500;
+                    else
+                        exp += 100;
                 }
             }
 

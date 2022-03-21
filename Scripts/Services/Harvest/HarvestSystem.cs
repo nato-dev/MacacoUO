@@ -421,23 +421,27 @@ namespace Server.Engines.Harvest
                 if (from.Skills[def.Skill].Value >= 65)
                     mult = 0.5;
                 else if (from.Skills[def.Skill].Value >= 75)
-                    mult = 0.3;
+                    mult = 0.1;
                 else if (from.Skills[def.Skill].Value >= 85)
-                    mult = 0.08;
+                    mult = 0.05;
+                else if (from.Skills[def.Skill].Value >= 100)
+                    mult = 0;
             }
             else if (def.Skill == SkillName.Lumberjacking)
             {
                 if (from.Skills[def.Skill].Value >= 65)
                     mult = 0.5;
                 else if (from.Skills[def.Skill].Value >= 75)
-                    mult = 0.3;
+                    mult = 0.1;
                 else if (from.Skills[def.Skill].Value >= 85)
-                    mult = 0.08;
+                    mult = 0.05;
+                else if (from.Skills[def.Skill].Value >= 100)
+                    mult = 0;
             }
 
             if (mult < 1 && !from.IsCooldown("msgmult"))
             {
-                from.SetCooldown("msgmult", TimeSpan.FromMinutes(10));
+                from.SetCooldown("msgmult", TimeSpan.FromMinutes(3));
                 from.SendMessage(78, "Voce pode subir suas habilidades muito mais rapidamente procurando recursos pelo mapa");
             }
 

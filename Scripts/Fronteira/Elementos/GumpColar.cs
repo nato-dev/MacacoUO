@@ -8,6 +8,7 @@ using Server.Ziden;
 using Server.Engines.Craft;
 using Server.SkillHandlers;
 using System;
+using System.Linq;
 
 namespace Server.Gumps
 {
@@ -34,13 +35,13 @@ namespace Server.Gumps
             AddHtml(711 - 110, 350, 183, 22, 20.ToString(), (bool)false, (bool)false);
             AddHtml(678 - 110, 406, 100, 22, "Jarro de Po Magico", (bool)true, (bool)false);
             //AddItem(703, 374, custos.Item);
-            NewAuctionGump.AddItemCentered(673 - 100, 334, 111, 101, 3823, 0, this);
+            NewAuctionGump.AddItemCentered(673 - 100, 334, 111, 101, 0x0E48, 0, this);
 
             AddBackground(673, 334, 111, 101, 3500);
             AddHtml(711, 350, 183, 22, 50.ToString(), (bool)false, (bool)false);
             AddHtml(678, 406, 120, 22, "Crtl. Therathan", (bool)true, (bool)false);
             //AddItem(703, 374, custos.Item);
-            NewAuctionGump.AddItemCentered(673, 334, 111, 101, 3823, 0, this);
+            NewAuctionGump.AddItemCentered(673, 334, 111, 101, 16395, TintaPreta.COR, this);
 
             AddBackground(784, 335, 111, 101, 3500);
             AddHtml(827, 350, 83, 22, 30.ToString(), (bool)false, (bool)false);
@@ -102,6 +103,8 @@ namespace Server.Gumps
                 from.SendMessage("Voce precisa de uma forja elfica para fazer isto. Dizem que forjas elficas foram abandonadas na dungeon Caverna de Cristal, em Nujelm.");
                 return;
             }
+
+            var jarros = from.Backpack.Items.Where(i => i is PedraMagica);
 
             if(!from.Backpack.HasItems(new Type[] { typeof(PedraMagica) }, new int[] { 20 }))
             {

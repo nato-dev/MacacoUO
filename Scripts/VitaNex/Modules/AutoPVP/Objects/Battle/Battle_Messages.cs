@@ -179,7 +179,7 @@ namespace VitaNex.Modules.AutoPvP
 
         protected virtual void BroadcastOpenMessage(TimeSpan timeLeft)
         {
-            if (timeLeft.Minutes > 5 || timeLeft.Minutes == 0 || timeLeft.Seconds != 0)
+            if (timeLeft.Minutes > 10 || timeLeft.Minutes == 0 || timeLeft.Seconds != 0)
             {
                 return;
             }
@@ -193,7 +193,7 @@ namespace VitaNex.Modules.AutoPvP
 
             if (Options.Broadcasts.Local.OpenNotify)
             {
-                LocalBroadcast("{0} vai comecar em {1}!", Name, msg);
+                LocalBroadcast("{0} esta com a fila aberta ate {1}!", Name, msg);
             }
 
             if (Options.Broadcasts.World.OpenNotify)
@@ -203,7 +203,7 @@ namespace VitaNex.Modules.AutoPvP
                 if (QueueAllowed)
                 {
                     cmd = AutoPvP.CMOptions.Advanced.Commands.BattlesCommand;
-                    cmd = String.Format("Use {0}{1} para participar!", CommandSystem.Prefix, cmd);
+                    cmd = String.Format("Use {0}{1} para se inscrever!", CommandSystem.Prefix, cmd);
                 }
 
                 WorldBroadcast("{0} vai abrir em {1}! {2}", Name, msg, cmd);

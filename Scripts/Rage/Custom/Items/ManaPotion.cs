@@ -26,7 +26,7 @@ namespace Server.Items
         {
             get
             {
-                return 23; //(Core.AOS ? 20 : 20);
+                return 30; //(Core.AOS ? 20 : 20);
             }
         }
         public override double Delay

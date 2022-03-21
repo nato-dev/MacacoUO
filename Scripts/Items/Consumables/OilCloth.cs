@@ -120,6 +120,7 @@ namespace Server.Items
                         {
                             pm.Frozen = false;
                             pm.SendMessage("Voce escapou da teia");
+                            pm.OverheadMessage("* escapou *");
                         }
                     }
                 }
@@ -132,6 +133,7 @@ namespace Server.Items
                 var teia = obj as Teia;
                 teia.preso.Paralyzed = false;
                 teia.preso.Frozen = false;
+                from.OverheadMessage("* escapou *");
                 from.SendMessage("Voce escapou da teia");
             }
             #region Firebomb

@@ -24,14 +24,14 @@ namespace Server.Items
         {
             get
             {
-                return (Core.AOS ? 6 : 3);
+                return (Core.AOS ? 6 : 10);
             }
         }
         public override int MaxHeal
         {
             get
             {
-                return (Core.AOS ? 8 : 10);
+                return (Core.AOS ? 8 : 20);
             }
         }
         public override double Delay

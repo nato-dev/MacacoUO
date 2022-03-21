@@ -1,5 +1,6 @@
 using Server;
 using Server.Items;
+using System;
 
 public class AntiParaPotion : BasePotion
 {
@@ -38,13 +39,19 @@ public class AntiParaPotion : BasePotion
 
     public override void Drink(Mobile m)
     {
-        if (m.Paralyzed)
-            m.OverheadMessage("* bebeu uma pocao *");
-        m.Paralyzed = false;
-        m.Stam = 1;
-        m.Hits -= m.Hits / 10;
-        Consume();
-        m.FixedEffect(0x375A, 10, 15);
-        m.PlaySound(0x1E7);
+        m.OverheadMessage("* bebendo algo *");
+        Timer.DelayCall(TimeSpan.FromSeconds(2), () =>
+        {
+            if(m.Alive && m.Paralyzed)
+            {
+                m.SendMessage("Voce terminou de tomar uma pocao para paralizia");
+                m.Paralyzed = false;
+                m.Stam = 1;
+                m.Damage(m.Hits / 10);
+                Consume();
+                m.FixedEffect(0x375A, 10, 15);
+                m.PlaySound(0x1E7);
+            }
+        });
     }
 }

@@ -24,7 +24,7 @@ namespace Server.Items
         {
             get
             {
-                return 5;
+                return 8;
             }
         }
         public override int MaxDamage

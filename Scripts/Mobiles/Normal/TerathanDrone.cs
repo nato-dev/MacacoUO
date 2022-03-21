@@ -42,8 +42,8 @@ namespace Server.Mobiles
             this.VirtualArmor = 44;
 			
             this.PackItem(new SpidersSilk(2));
-
-            PackItem(new CristalTherathan());
+            if (Utility.RandomDouble() < 0.33)
+                PackItem(new CristalTherathan());
         }
 
         public TerathanDrone(Serial serial)
