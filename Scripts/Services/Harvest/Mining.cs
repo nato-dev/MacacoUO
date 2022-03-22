@@ -117,16 +117,16 @@ namespace Server.Engines.Harvest
 
             veins = new HarvestVein[]
             {
-                new HarvestVein(48.8, 0.0, res[0], null),   // Iron
-                new HarvestVein(11.4, 0.5, res[1], res[0]), // cobre
-                new HarvestVein(09.8, 0.5, res[2], res[0]), // bronze
-                new HarvestVein(08.4, 0.5, res[3], res[0]), // prata
-                new HarvestVein(07.0, 0.5, res[4], res[0]), // niobio               // aqui estão os rates que, a princípio, serão mantidos pro beta/realease. Desativados pro alfa.
-                new HarvestVein(05.5, 0.5, res[5], res[0]), // lazurita
-                new HarvestVein(04, 0.5, res[6], res[0]), // quartzo
-                new HarvestVein(02.6, 0.5, res[7], res[0]), // berillo
-                new HarvestVein(1.5, 0.5, res[8], res[0]),  // vibranium
-                new HarvestVein(1, 0.5, res[9], res[0])  // adamantium
+                new HarvestVein(93.9, 0.0, res[0], null),   // Iron
+                new HarvestVein(5, 0.5, res[1], res[0]), // cobre
+                new HarvestVein(0.5, 0.5, res[2], res[0]), // bronze
+                new HarvestVein(0.5, 0.5, res[3], res[0]), // prata
+                new HarvestVein(0.1, 0.5, res[4], res[0]), // niobio               // aqui estão os rates que, a princípio, serão mantidos pro beta/realease. Desativados pro alfa.
+                new HarvestVein(0, 0.5, res[5], res[0]), // lazurita
+                new HarvestVein(00, 0.5, res[6], res[0]), // quartzo
+                new HarvestVein(00, 0.5, res[7], res[0]), // berillo
+                new HarvestVein(0, 0.5, res[8], res[0]),  // vibranium
+                new HarvestVein(0, 0.5, res[9], res[0])  // adamantium
             };
 
             oreAndStone.Resources = res;

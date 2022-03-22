@@ -2401,7 +2401,7 @@ namespace Server.Items
                 virtualArmor -= bonus;
 
                 var nivel = AnelDano.GetNivel(attacker, false);
-                damage = (int)Math.Ceiling(damage * (nivel/100));
+                damage += (int)Math.Ceiling(damage * (nivel/100));
             }
 
             WeaponAbility a = WeaponAbility.GetCurrentAbility(attacker);

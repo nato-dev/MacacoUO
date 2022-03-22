@@ -86,7 +86,6 @@ namespace Server.Items
 
         public static Item RandomDeco()
         {
-
             return new ValeDecoracaoRara();
         }
 

@@ -11,9 +11,10 @@
 
 #region References
 using System;
-
+using Fronteira.Discord;
 using Server;
-
+using Server.Mobiles;
+using Server.Network;
 using VitaNex.Schedules;
 #endregion
 
@@ -75,6 +76,25 @@ namespace VitaNex.Modules.AutoPvP.Battles
         public override bool AddTeam(string name, int minCapacity, int capacity, int color)
         {
             return AddTeam(new TvTTeam(this, name, minCapacity, capacity, color));
+        }
+
+        protected override void OnQueueJoin(PlayerMobile pm, PvPTeam team)
+        {
+            base.OnQueueJoin(pm, team);
+            var msg = $"[Arena] {pm.Name} entrou na arena {Name};";
+            foreach(var pl in NetState.GetOnlinePlayerMobiles())
+            {
+                pl.SendMessage(msg);
+            }
+
+            foreach(var t in this.Teams)
+            {
+                if (team.Members.Count < team.MaxCapacity)
+                    return;
+            }
+
+            this.State = PvPBattleState.Preparando;
+
         }
 
 
