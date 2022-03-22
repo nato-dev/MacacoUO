@@ -30,31 +30,45 @@ namespace Server.Custom.RaresCrafting
             this.Resizable = false;
             this.AddPage(0);
             this.AddBackground(73, 41, 588, 523, 9200);
-            this.AddBackground(206, 75, 441, 488, 9200);
-            this.AddLabel(80, 258, 2036, "Inscription");
-            this.AddLabel(80, 156, 2036, "Blacksmithing");
-            this.AddLabel(80, 192, 2036, "Carpentry");
-            this.AddLabel(80, 88, 2036, "Alchemy");
-            this.AddLabel(80, 292, 2036, "Tailoring");
-            this.AddLabel(80, 326, 2036, "Tinkering");
-            this.AddLabel(80, 122, 2036, "Bowcrafting");
-            this.AddLabel(80, 224, 2036, "Cooking");
-            //this.AddLabel(80, 356, 78, "Vale Decoracao");
-            this.AddButton(172, 88, 4005, 4007, (int)Buttons.btnAlchemy, GumpButtonType.Reply, 0);
-            this.AddButton(172, 122, 4005, 4007, (int)Buttons.btnBowcrafting, GumpButtonType.Reply, 0);
-            this.AddButton(172, 156, 4005, 4007, (int)Buttons.btnBlacksmithing, GumpButtonType.Reply, 0);
-            this.AddButton(172, 190, 4005, 4007, (int)Buttons.btnCarpentry, GumpButtonType.Reply, 0);
-            this.AddButton(172, 224, 4005, 4007, (int)Buttons.btnCooking, GumpButtonType.Reply, 0);
-            this.AddButton(172, 258, 4005, 4007, (int)Buttons.btnInscription, GumpButtonType.Reply, 0);
-            this.AddButton(172, 292, 4005, 4007, (int)Buttons.btnTailoring, GumpButtonType.Reply, 0);
-            this.AddButton(172, 326, 4005, 4007, (int)Buttons.btnTinkering, GumpButtonType.Reply, 0);
-            //this.AddButton(172, 356, 4005, 4007, (int)Buttons.btnRandom, GumpButtonType.Reply, 0);
+            this.AddBackground(87, 75, 558, 488, 9200);
+            this.AddLabel(317, 52, 0, "CRAFT ITENS RAROS");
 
             if (m_Category == ECraftableRareCategory.None)
             {
-                AddLabel(222, 180, 53, "Leia !");
-                string s = " -Todos ingredientes precisam estar na sua mochila.\n -Ingredientes precisam ter o mesmo grafico.\n   -Isto inclui .virar mas nao cor do item\n -O resultado sera colocado em sua mochila e nao eh newbie.\n -Compre pozinho no alquimista ou no joalheiro !";
-                AddHtml(222, 200, 400, 140, s, true, false);
+                this.AddLabel(172, 88, 2036, "Alchemy");
+                this.AddLabel(340, 88, 2036, "Bowcrafting");
+                this.AddLabel(500, 88, 2036, "Blacksmithing");
+                this.AddLabel(172, 210, 2036, "Carpentry");
+                this.AddLabel(340, 210, 2036, "Cooking");
+                this.AddLabel(500, 210, 2036, "Inscription");            
+                this.AddLabel(172, 330, 2036, "Tailoring");
+                this.AddLabel(340, 330, 2036, "Tinkering");         
+                //this.AddLabel(80, 356, 78, "Vale Decoracao");
+
+                this.AddItem(152, 118, 0x9D83); // Alchemy
+                this.AddItem(320, 118, 0x9C35); // Bowcrafting
+                this.AddItem(320, 159, 0x1022); // Bowcrafting
+                this.AddItem(480, 113, 0x9A86); // Blacksmithing
+                this.AddItem(152, 240, 0x9C2D); // Carpentry
+                this.AddItem(320, 240, 0x9D9F); // Cooking
+                this.AddItem(480, 240, 0x0A9B); // Inscription
+                this.AddItem(152, 360, 0x101E); // Tayloring
+                this.AddItem(320, 360, 0x4CE7); // Tinkering
+
+                this.AddButton(212, 138, 2151, 2153, (int)Buttons.btnAlchemy, GumpButtonType.Reply, 0);            
+                this.AddButton(380, 138, 2151, 2153, (int)Buttons.btnBowcrafting, GumpButtonType.Reply, 0);
+                this.AddButton(545, 138, 2151, 2153, (int)Buttons.btnBlacksmithing, GumpButtonType.Reply, 0);
+                this.AddButton(212, 260, 2151, 2153, (int)Buttons.btnCarpentry, GumpButtonType.Reply, 0);
+                this.AddButton(380, 260, 2151, 2153, (int)Buttons.btnCooking, GumpButtonType.Reply, 0);
+                this.AddButton(545, 260, 2151, 2153, (int)Buttons.btnInscription, GumpButtonType.Reply, 0);
+                this.AddButton(212, 380, 2151, 2153, (int)Buttons.btnTailoring, GumpButtonType.Reply, 0);
+                this.AddButton(380, 380, 2151, 2153, (int)Buttons.btnTinkering, GumpButtonType.Reply, 0);
+                //this.AddButton(172, 356, 4005, 4007, (int)Buttons.btnRandom, GumpButtonType.Reply, 0);
+
+            
+                AddLabel(168, 438, 53, "Leia !");
+                string s = " -Todos ingredientes precisam estar na sua mochila.\n -Ingredientes precisam ter o mesmo grafico.\n -Isto inclui .virar mas nao cor do item\n -O resultado sera colocado em sua mochila e nao eh newbie.\n -Compre pozinho no alquimista ou no joalheiro !";
+                AddHtml(168, 458, 400, 100, s, true, false);
             }
 
             List<ICraftableRare> craftables = RaresCraftingSystem.GetCraftables(m_Category);
@@ -70,14 +84,20 @@ namespace Server.Custom.RaresCrafting
 
             if(iTo < craftables.Count - 1)
             {
-                this.AddLabel(548, 542, 0, "Proximo");
+                this.AddLabel(566, 542, 0, "Proximo");
                 this.AddButton(612, 540, 4005, 4007, (int)Buttons.Prox, GumpButtonType.Reply, 0);
             }
 
             if(iFrom > 0)
             {
-                this.AddLabel(241, 541, 0, "Anterior");
-                this.AddButton(210, 540, 4014, 4014, (int)Buttons.Anterior, GumpButtonType.Reply, 0);
+                this.AddLabel(121, 541, 0, "Anterior");
+                this.AddButton(91, 540, 4014, 4014, (int)Buttons.Anterior, GumpButtonType.Reply, 0);
+            }
+
+            if(iFrom == 0)
+            {
+                this.AddLabel(121, 541, 0, "Inicio");
+                this.AddButton(91, 540, 4014, 4014, (int)Buttons.Inicio, GumpButtonType.Reply, 0);
             }
 
             for (var x = 0d; x < 6; x++)
@@ -88,25 +108,22 @@ namespace Server.Custom.RaresCrafting
                     var coluna = x % 2; // 0 ou 1
                     var linha = Math.Ceiling((x + 1) / 2) - 1;
 
-                    var modX = (int)(coluna * 250) + 30;
-                    var modY = (int)(linha * 160);
+                    var modX = (int)(coluna * 160) + 10;
+                    var modY = (int)(linha * 140);
 
-                    this.AddBackground(212 + modX, 102 + modY, 100, 100, 3500);
+                    this.AddBackground(152 + modX, 102 + modY, 100, 100, 3500);
                     //this.AddBackground(209 + modX, 85 + modY, 108, 23, 3000);
-                    this.AddLabel(214 + modX, 85 + modY, 2036, craftables[index].GetResult().m_Name);
-                    this.AddButton(309 + modX, 139 + modY, 4005, 4007, index + (int)Buttons.btnCraftItemRangeStart, GumpButtonType.Reply, 0);
-                    NewAuctionGump.AddItemCentered(212 + modX, 102 + modY, 100, 100, craftables[index].GetResult().m_ItemId, 0, this);
-                }
-                   
-
-            
+                    this.AddLabel(154 + modX, 85 + modY, 2036, craftables[index].GetResult().m_Name);
+                    this.AddButton(255 + modX, 139 + modY, 4005, 4007, index + (int)Buttons.btnCraftItemRangeStart, GumpButtonType.Reply, 0);
+                    NewAuctionGump.AddItemCentered(152 + modX, 102 + modY, 100, 100, craftables[index].GetResult().m_ItemId, 0, this);
+                }                         
             }
         }
 
         public enum Buttons
         {
             None,
-            Prox, Anterior, Page,
+            Prox, Anterior, Inicio, Page, 
             btnAlchemy,
             btnBowcrafting,
             btnBlacksmithing,
@@ -129,6 +146,11 @@ namespace Server.Custom.RaresCrafting
             if (info.ButtonID == (int)Buttons.Anterior)
             {
                 state.Mobile.SendGump(new RaresCraftingGump(state.Mobile, m_Category, page - 1));
+            }
+
+            if (info.ButtonID == (int)Buttons.Inicio)
+            {
+                state.Mobile.SendGump(new RaresCraftingGump(state.Mobile, ECraftableRareCategory.None));
             }
 
             if (info.ButtonID >= (int)Buttons.btnCraftItemRangeStart && m_Category != ECraftableRareCategory.None)
