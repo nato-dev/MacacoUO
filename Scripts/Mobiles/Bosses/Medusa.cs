@@ -100,6 +100,7 @@ namespace Server.Mobiles
         {
             int amount = Utility.Random(5) + 1;
 
+
             corpse.DropItem(new MedusaDarkScales(amount));
 
             if (0.20 > Utility.RandomDouble())
@@ -558,9 +559,9 @@ namespace Server.Mobiles
             b.Bonus = 5;
             SorteiaItem(b);
             SorteiaItem(new FragmentosAntigos());
-
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
             SorteiaItem(Decos.RandomDeco());
-
             GolemMecanico.JorraOuro(c.Location, c.Map, 350);
 
             if (Utility.RandomDouble() < 0.1)

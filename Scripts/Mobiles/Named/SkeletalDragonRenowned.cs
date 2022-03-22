@@ -156,6 +156,9 @@ namespace Server.Mobiles
             q.Name = "Aljava de Ossos";
             q.Hue = 1154;
             SorteiaItem(q);
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
             SorteiaItem(Loot.JoiaRaraRandom(this.Map));
             SorteiaItem(Loot.JoiaRaraRandom(this.Map));
             SorteiaItem(Loot.JoiaRaraRandom(this.Map));

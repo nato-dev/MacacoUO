@@ -79,6 +79,9 @@ namespace Server.Mobiles
             base.OnDeath(c);
             SorteiaItem(Decos.RandomDeco());
             SorteiaItem(new LivroAntigo());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new PergaminhoSagradoDeRunebook());
             var book = new Spellbook();
             book.Hue = TintaPreta.COR;

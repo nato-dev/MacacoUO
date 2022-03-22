@@ -123,6 +123,9 @@ namespace Server.Mobiles
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetRandomReceitaNoob());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new PergaminhoPeso());
 
             GolemMecanico.JorraOuro(this.Location, this.Map, 1000);

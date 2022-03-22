@@ -75,7 +75,8 @@ namespace Server.Mobiles
             SorteiaItem(new DragonWolfCostume());
             SorteiaItem(new SnapdragonSeed(3));
             DistribuiItem(new CottonSeed(20));
-
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
             GolemMecanico.JorraOuro(this.Location, this.Map, 500);
 
             switch (Utility.Random(4))
