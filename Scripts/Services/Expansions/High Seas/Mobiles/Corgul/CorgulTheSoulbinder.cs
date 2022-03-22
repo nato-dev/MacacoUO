@@ -148,7 +148,7 @@ namespace Server.Mobiles
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
             var b = new BraceleteDoPoder();
-            b.Tipo = TipoBracelete.Escudo;
+            b.Tipo = TipoJoias.Escudo;
             b.Bonus = 10 + Utility.Random(91);
             b.Hue = 2076;
             b.Name = "Bracelete de Corgul";

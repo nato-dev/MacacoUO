@@ -1972,9 +1972,11 @@ namespace Server.Items
 
                 if (defender.Player && parry > 70 && attacker is BaseCreature)
                 {
-                    chance += parry / 180; // +60%
+                    chance += AnelDano.GetNivel(defender, true) / 100;
+
+                    chance += parry / 200; // +50%
                     var brace = defender.FindItemOnLayer(Layer.Bracelet) as BraceleteDoPoder;
-                    if (brace != null && brace.Tipo == TipoBracelete.Escudo)
+                    if (brace != null && brace.Tipo == TipoJoias.Escudo)
                         chance += brace.Bonus / 400;
                 }
 
@@ -2397,6 +2399,9 @@ namespace Server.Items
                 if (bonus > virtualArmor)
                     bonus = virtualArmor;
                 virtualArmor -= bonus;
+
+                var nivel = AnelDano.GetNivel(attacker, false);
+                damage = (int)Math.Ceiling(damage * (nivel/100));
             }
 
             WeaponAbility a = WeaponAbility.GetCurrentAbility(attacker);
@@ -2891,9 +2896,9 @@ namespace Server.Items
                     var bracelete = attacker.FindItemOnLayer(Layer.Bracelet) as BraceleteDoPoder;
                     if (bracelete != null)
                     {
-                        if(bracelete.Tipo == TipoBracelete.Arma && attacker.Weapon is BaseMeleeWeapon)
+                        if(bracelete.Tipo == TipoJoias.Arma && attacker.Weapon is BaseMeleeWeapon)
                             bonus += bracelete.Bonus / 100;
-                        if (bracelete.Tipo == TipoBracelete.Arco && attacker.Weapon is BaseRanged)
+                        if (bracelete.Tipo == TipoJoias.Arco && attacker.Weapon is BaseRanged)
                             bonus += bracelete.Bonus / 100;
                     }
                         

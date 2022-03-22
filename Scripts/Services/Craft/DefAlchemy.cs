@@ -289,13 +289,16 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(LesserPoisonPotion), 1116350, 1044548, -5.0, 45.0, typeof(Nightshade), 1044358, 1, 1044366);
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            index = AddCraft(typeof(PoisonPotion), 1116350, 1044549, 15.0, 65.0, typeof(Nightshade), 1044358, 2, 1044366);
+            index = AddCraft(typeof(PoisonPotion), 1116350, 1044549, 15.0, 65.0, typeof(Nightshade), 1044358, 5, 1044366);
+            AddRes(index, typeof(NoxCrystal), "Cristal Nox", 1, "Voce precisa de cristais nox");
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            index = AddCraft(typeof(GreaterPoisonPotion), 1116350, 1044550, 55.0, 105.0, typeof(Nightshade), 1044358, 4, 1044366);
+            index = AddCraft(typeof(GreaterPoisonPotion), 1116350, 1044550, 55.0, 105.0, typeof(Nightshade), 1044358, 10, 1044366);
+            AddRes(index, typeof(NoxCrystal), "Cristal Nox", 2, "Voce precisa de cristais nox");
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
-            index = AddCraft(typeof(DeadlyPoisonPotion), 1116350, 1044551, 90.0, 140.0, typeof(Nightshade), 1044358, 8, 1044366);
+            index = AddCraft(typeof(DeadlyPoisonPotion), 1116350, 1044551, 90.0, 140.0, typeof(Nightshade), 1044358, 20, 1044366);
+            AddRes(index, typeof(NoxCrystal), "Cristal Nox", 5, "Voce precisa de 2 cristais nox");
             AddRes(index, typeof(Bottle), 1044529, 1, 500315);
 
 

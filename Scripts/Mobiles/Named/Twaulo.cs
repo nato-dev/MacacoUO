@@ -173,6 +173,9 @@ namespace Server.Mobiles
             a.Skill = SkillName.Fletching;
             SorteiaItem(a);
             DistribuiItem(new Gold(1000));
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
 
             SorteiaItem(new CombatSkillBook());
             SorteiaItem(new LivroAntigo());

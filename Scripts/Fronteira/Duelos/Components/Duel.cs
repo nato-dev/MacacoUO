@@ -159,7 +159,7 @@ namespace Server.Dueling
                 m.Resurrect();
 
             HandleCorpse( m );
-            ((PlayerMobile)m).SolidHueOverride = 0;
+            ((PlayerMobile)m).SolidHueOverride = -1;
             m.Aggressed.Clear();
             m.Aggressors.Clear();
             m.Hits = m.HitsMax;

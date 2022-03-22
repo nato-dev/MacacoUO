@@ -35,7 +35,9 @@ namespace Server.Engines.VvV
         public static TimeSpan ultimoCd = TimeSpan.Zero;
 
         public static readonly int Duration = 30;
-        public static int TempoAteProxima
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int TempoAteProxima
         {
             get
             {
@@ -47,8 +49,8 @@ namespace Server.Engines.VvV
                 }
                 */
 
-                var dateNow = DateTime.Now;
-                var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 20, 0, 0);
+                var dateNow = DateTime.UtcNow;
+                var date = new DateTime(dateNow.Year, dateNow.Month, dateNow.Day, 23, 0, 0);
                 TimeSpan ts;
                 if (date > dateNow)
                     ts = date - dateNow;
@@ -188,6 +190,7 @@ namespace Server.Engines.VvV
                     Begin();
             }
         }
+
 
         [CommandProperty(AccessLevel.GameMaster)]
         public bool ForceEnd
@@ -586,13 +589,18 @@ namespace Server.Engines.VvV
             ManaSpikeEndEffects = DateTime.MinValue;
             NextManaSpike = DateTime.MinValue;
 
+            TimerRestart();
+        }
+
+        public void TimerRestart()
+        {
             var cooldown = TempoAteProxima;
             CooldownEnds = DateTime.UtcNow + TimeSpan.FromMinutes(cooldown);
 
             Timer.DelayCall(TimeSpan.FromMinutes(cooldown), () =>
-                {
-                    System.CheckBattleStatus();
-                });
+            {
+                System.CheckBattleStatus();
+            });
 
             var msg1 = cooldown - 60;
             Timer.DelayCall(TimeSpan.FromMinutes(msg1), () =>
@@ -616,6 +624,12 @@ namespace Server.Engines.VvV
             Timer.DelayCall(TimeSpan.FromMinutes(msg4), () =>
             {
                 Anuncio.Anuncia("Guerra Infinita inicia em 3 minutos");
+            });
+
+            var msg5 = cooldown - 1;
+            Timer.DelayCall(TimeSpan.FromMinutes(msg4), () =>
+            {
+                Anuncio.Anuncia("Guerra Infinita inicia em 1 minutos");
             });
         }
 

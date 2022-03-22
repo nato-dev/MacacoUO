@@ -31,6 +31,12 @@ namespace Server.Services.ViceVsVirtue.Items
         public override void OnDoubleClick(Mobile from)
         {
             from.SendGump(new GuildLeaderboardGump(from as PlayerMobile));
+
+            var data = ViceVsVirtueSystem.Instance?.Battle?.CooldownEnds;
+            var agora = DateTime.UtcNow;
+            var falta = (data - agora);
+
+            from.SendMessage($"Faltam {(int)Math.Floor(falta.Value.TotalHours)} horas para o inicio da guerra infinita");
         }
 
         public QuadroRankingVvV(Serial serial) : base(serial)

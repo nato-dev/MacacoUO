@@ -89,6 +89,10 @@ namespace Server.Mobiles
             SorteiaItem(arco);
             SorteiaItem(new TemplateDeed());
             DistribuiItem(new Gold(1000));
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+
             var r = Utility.Random(5);
             if (r == 0)
             {

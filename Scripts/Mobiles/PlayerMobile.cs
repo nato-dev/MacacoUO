@@ -4864,19 +4864,20 @@ namespace Server.Mobiles
             Mobile m = FindMostRecentDamager(false);
             if (!this.IsCooldown("avisomorte") && m != null && m.Name != null)
             {
-                this.SetCooldown("avisomorte", TimeSpan.FromMinutes(3));
+                this.SetCooldown("avisomorte", TimeSpan.FromMinutes(10));
                 if (m is PlayerMobile)
                     DiscordBot.SendMessage($":crossed_swords:[PvP] {m.Name} matou {Name}");
+
                 else if (m is BaseCreature)
                 {
                     if (((BaseCreature)m).IsBoss)
                     {
                         DiscordBot.SendMessage($":skull_crossbones: [BOSS] {Name} foi obliterado por um boss !");
                     }
-                    else if (m.Name.Substring(m.Name.Length - 1) == "a")
-                        DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por uma {m.Name}");
-                    else
-                        DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por um {m.Name}");
+                    //else if (m.Name.Substring(m.Name.Length - 1) == "a")
+                    //    DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por uma {m.Name}");
+                    //else
+                    //    DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por um {m.Name}");
                 }
             }
             PlayerMobile killer = m as PlayerMobile;

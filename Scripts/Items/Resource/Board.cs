@@ -62,7 +62,7 @@ namespace Server.Items
 		{
 			Stackable = true;
 			Amount = amount;
-            Weight = 0.1;
+            Weight = 0.05;
 			m_Resource = resource;
 			Hue = CraftResources.GetHue( resource );
 		}

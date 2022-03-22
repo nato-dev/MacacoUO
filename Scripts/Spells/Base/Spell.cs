@@ -594,6 +594,8 @@ namespace Server.Spells
                 if (bonus > targetRS) bonus = targetRS;
                 targetRS -= bonus;
 
+                scalar += AnelDano.GetNivel(m_Caster, false) / 100;
+
                 if (elemento == ElementoPvM.Escuridao)
                 {
                     scalar += ColarElemental.GetNivel(m_Caster, ElementoPvM.Escuridao) / 15;

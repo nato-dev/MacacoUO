@@ -74,7 +74,8 @@ namespace Server.Items
         }
     }
 
-    public enum TipoBracelete
+
+    public enum TipoJoias
     {
         Arma, Arco, Magia, Escudo
     }
@@ -85,7 +86,7 @@ namespace Server.Items
         public int Bonus { get; set; }
 
         [CommandProperty(AccessLevel.Administrator)]
-        public TipoBracelete Tipo { get; set; }
+        public TipoJoias Tipo { get; set; }
 
         [Constructable]
         public BraceleteDoPoder()
@@ -95,7 +96,7 @@ namespace Server.Items
             Name = "Bracelete do Poder";
             Bonus = 10;
             Hue = 1151;
-            Tipo = TipoBracelete.Arma;
+            Tipo = TipoJoias.Arma;
         }
 
         public BraceleteDoPoder(Serial serial)
@@ -113,13 +114,13 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
-            if(Tipo==TipoBracelete.Arma)
+            if(Tipo==TipoJoias.Arma)
                 list.Add($"Bonus Dano Hab. Armas Fisicas PvM");
-            else if (Tipo == TipoBracelete.Arco)
+            else if (Tipo == TipoJoias.Arco)
                 list.Add($"Bonus Dano Hab. Arcos PvM");
-            else if (Tipo == TipoBracelete.Magia)
+            else if (Tipo == TipoJoias.Magia)
                 list.Add($"Bonus Dano Hab. Magias PvM");
-            else if (Tipo == TipoBracelete.Escudo)
+            else if (Tipo == TipoJoias.Escudo)
                 list.Add($"Bonus Parry PvM");
             list.Add($"+{Bonus}%");
         }
@@ -139,7 +140,7 @@ namespace Server.Items
 
             int version = reader.ReadInt();
             Bonus = reader.ReadInt();
-            Tipo = (TipoBracelete)reader.ReadInt();
+            Tipo = (TipoJoias)reader.ReadInt();
         }
     }
 

@@ -260,7 +260,9 @@ namespace Server.Mobiles
 
                 }
             }
-
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
             GolemMecanico.JorraOuro(this.Location, this.Map, 150);
             return base.OnBeforeDeath();
         }

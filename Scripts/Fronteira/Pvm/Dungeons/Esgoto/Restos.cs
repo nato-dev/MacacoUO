@@ -109,7 +109,7 @@ namespace Server.Mobiles
                                 AddItem(loot);
                                 var b = new BraceleteDoPoder();
                                 b.Bonus = 3;
-                                b.Tipo = TipoBracelete.Arco;
+                                b.Tipo = TipoJoias.Arco;
                                 AddItem(b);
                                 break;
                             case 3:// StarterKits.BARD:

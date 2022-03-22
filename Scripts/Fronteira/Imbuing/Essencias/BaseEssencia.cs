@@ -63,7 +63,7 @@ namespace Server.Items
             else
                 brace.Bonus = 5 + Utility.Random(41);
             if (Utility.RandomDouble() < 0.1)
-                brace.Tipo = TipoBracelete.Arco;
+                brace.Tipo = TipoJoias.Arco;
             from.PlaceInBackpack(brace);
             brace.Crafter = from;
             tem.UsesRemaining -= 30;

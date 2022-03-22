@@ -69,9 +69,10 @@ namespace Server.Engines.VvV
         {
             Instance = this;
             Battle = new VvVBattle(this);
-
+      
             GuildStats = new Dictionary<Guild, VvVGuildStats>();
             ExemptCities = new List<VvVCity>();
+            Timer.DelayCall(TimeSpan.FromSeconds(10), () => { Battle.TimerRestart(); });
         }
 
         public override void SendMessage(PlayerMobile from, double old, double points, bool quest)
@@ -454,7 +455,7 @@ namespace Server.Engines.VvV
             }
         }
 
-        public static bool IsVvV(Mobile m, bool checkpet = true, bool guildedonly = false)
+        public static bool IsVvV(Mobile m, bool checkpet = true, bool guildedonly = true)
         {
             if (!Enabled)
                 return false;
@@ -470,7 +471,7 @@ namespace Server.Engines.VvV
             if (entry == null)
                 return false;
 
-            return entry.Active && (!guildedonly || entry.Guild != null);
+            return entry.Active && (!guildedonly || (entry.Guild != null));
         }
 
         public static bool IsVvV(Mobile m, out VvVPlayerEntry entry, bool checkpet = true, bool guildedonly = false)

@@ -76,7 +76,7 @@ namespace Server.Mobiles
                 b5.Bonus = 5;
                 if(Utility.RandomDouble() < 0.2)
                 {
-                    b5.Tipo = TipoBracelete.Arco;
+                    b5.Tipo = TipoJoias.Arco;
                 }
                 AddItem(b5);
             }

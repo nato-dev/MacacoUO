@@ -125,6 +125,10 @@ namespace Server.Mobiles
             SorteiaItem(new Granite());
             SorteiaItem(new Rock1Rand());
             SorteiaItem(new Rock2Rand());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new BronzeIngot(300));
             if (Utility.RandomBool())
             {

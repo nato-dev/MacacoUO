@@ -5392,7 +5392,7 @@ namespace Server.Mobiles
 
             if (m_AI != null)
             {
-                if (!Core.ML || (ct != OrderType.Follow && ct != OrderType.Stop && ct != OrderType.Stay))
+                if (ct != OrderType.Follow && ct != OrderType.Stop && ct != OrderType.Stay)
                 {
                     m_AI.OnAggressiveAction(aggressor);
                 }
@@ -5419,7 +5419,7 @@ namespace Server.Mobiles
             }
 
             if (aggressor.ChangingCombatant && (m_bControlled || m_bSummoned) &&
-                (ct == OrderType.Come || (!Core.ML && ct == OrderType.Stay) || ct == OrderType.Stop || ct == OrderType.None ||
+                (ct == OrderType.Come || ct == OrderType.Stop || ct == OrderType.None ||
                  ct == OrderType.Follow))
             {
                 if (!(this.ControlMaster is PlayerMobile))
@@ -5721,10 +5721,9 @@ namespace Server.Mobiles
 
             if (Warmode)
             {
-                if (Core.SA)
-                {
+               
                     Animate(AnimationType.Alert, 0);
-                }
+                
 
                 if (CanFly)
                 {
@@ -8293,7 +8292,7 @@ namespace Server.Mobiles
             if (from == null)
                 return;
 
-            if (Core.SA && amount > 0 && from != null && from != this)
+            if (amount > 0 && from != null && from != this)
             {
                 for (int i = Aggressed.Count - 1; i >= 0; i--)
                 {
@@ -8851,7 +8850,7 @@ namespace Server.Mobiles
                 AreaEffect.CheckThinkTrigger(this);
             }
 
-            if (Combatant != null && Core.TOL)
+            if (Combatant != null && Core.ML) // MASTERY
             {
                 CheckCastMastery();
             }
