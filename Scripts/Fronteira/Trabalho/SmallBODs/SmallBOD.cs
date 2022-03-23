@@ -466,28 +466,28 @@ namespace Server.Engines.BulkOrders
             switch (type)
             {
                 case BulkMaterialType.Cobre:
-                    skillReq = 65.0;
+                    skillReq = 70;
                     break;
                 case BulkMaterialType.Bronze:
-                    skillReq = 70.0;
+                    skillReq = 75;
                     break;
                 case BulkMaterialType.Dourado:
-                    skillReq = 75.0;
+                    skillReq = 80;
                     break;
                 case BulkMaterialType.Niobio:
-                    skillReq = 80.0;
+                    skillReq = 95;
                     break;
                 case BulkMaterialType.Lazurita:
-                    skillReq = 85.0;
+                    skillReq = 100;
                     break;
                 case BulkMaterialType.Quartzo:
-                    skillReq = 90.0;
+                    skillReq = 110;
                     break;
                 case BulkMaterialType.Berilo:
-                    skillReq = 95.0;
+                    skillReq = 110;
                     break;
                 case BulkMaterialType.Vibranium:
-                    skillReq = 100.0;
+                    skillReq = 115;
                     break;
                 case BulkMaterialType.Spined:
                     skillReq = 65.0;
