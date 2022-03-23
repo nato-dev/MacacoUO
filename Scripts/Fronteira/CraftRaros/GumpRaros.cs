@@ -77,8 +77,8 @@ namespace Server.Custom.RaresCrafting
                 return;
             }
 
-            var iFrom = page * 6;
-            var iTo = page * 6 + 5;
+            var iFrom = page * 9;
+            var iTo = page * 9 + 8;
             if (iTo >= craftables.Count)
                 iTo = craftables.Count - 1;
 
@@ -100,22 +100,22 @@ namespace Server.Custom.RaresCrafting
                 this.AddButton(91, 540, 4014, 4014, (int)Buttons.Inicio, GumpButtonType.Reply, 0);
             }
 
-            for (var x = 0d; x < 6; x++)
+            for (var x = 0d; x < 9; x++)
             {
                 int index = iFrom + (int)x;
                 if (index < craftables.Count)
                 {
-                    var coluna = x % 2; // 0 ou 1
-                    var linha = Math.Ceiling((x + 1) / 2) - 1;
+                    var coluna = x % 3; // 0 ou 1
+                    var linha = Math.Ceiling((x + 1) / 3) - 1;
 
-                    var modX = (int)(coluna * 160) + 10;
-                    var modY = (int)(linha * 140);
+                    var modX = (int)(coluna * 160) + 16;
+                    var modY = (int)(linha * 160);
 
-                    this.AddBackground(152 + modX, 102 + modY, 100, 100, 3500);
+                    this.AddBackground(132 + modX, 102 + modY, 100, 100, 3500);
                     //this.AddBackground(209 + modX, 85 + modY, 108, 23, 3000);
-                    this.AddLabel(154 + modX, 85 + modY, 2036, craftables[index].GetResult().m_Name);
-                    this.AddButton(255 + modX, 139 + modY, 4005, 4007, index + (int)Buttons.btnCraftItemRangeStart, GumpButtonType.Reply, 0);
-                    NewAuctionGump.AddItemCentered(152 + modX, 102 + modY, 100, 100, craftables[index].GetResult().m_ItemId, 0, this);
+                    this.AddLabel(134 + modX, 85 + modY, 2036, craftables[index].GetResult().m_Name);                    
+                    this.AddButton(228 + modX, 140 + modY, 2151, 2153, index + (int)Buttons.btnCraftItemRangeStart, GumpButtonType.Reply, 0);
+                    NewAuctionGump.AddItemCentered(134 + modX, 102 + modY, 100, 100, craftables[index].GetResult().m_ItemId, 0, this);
                 }                         
             }
         }
