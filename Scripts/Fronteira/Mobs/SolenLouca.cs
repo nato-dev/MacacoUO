@@ -87,7 +87,7 @@ namespace Server.Mobiles
             arco.Resource = CraftResource.Bronze;
             arco.Quality = ItemQuality.Exceptional;
             SorteiaItem(arco);
-            SorteiaItem(new TemplateDeed());
+            //SorteiaItem(new TemplateDeed());
             DistribuiItem(new Gold(1000));
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());

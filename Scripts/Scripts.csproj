@@ -134,6 +134,16 @@
     <Compile Include="Fronteira\Astronomy\Telescope.cs" />
     <Compile Include="Fronteira\Astronomy\Tent.cs" />
     <Compile Include="Fronteira\Astronomy\Willebrord.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\AccountVault.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\AuctionVault.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\ConfirmGump.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\ContainerDisplay.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\Gumps.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\Logs.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\SystemSettings.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\VaultManager.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\VaultTimer.cs" />
+    <Compile Include="Fronteira\Bancos\AccountVault\VaultToken.cs" />
     <Compile Include="Fronteira\Bancos\BancoConta.cs" />
     <Compile Include="Fronteira\Calendario\CalendarGump.cs" />
     <Compile Include="Fronteira\Calendario\Persistencia.cs" />

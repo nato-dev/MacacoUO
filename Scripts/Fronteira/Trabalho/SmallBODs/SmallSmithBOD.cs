@@ -12,10 +12,10 @@ namespace Server.Engines.BulkOrders
 
         public static double[] m_BlacksmithMaterialChances = new double[]
         {
-            0.401953125, // None
-            0.300000000, // Dull Copper
-            0.175000000, // Shadow Iron
-            0.062500000, // Copper
+            0.201953125, // None
+            0.200000000, // Dull Copper
+            0.275000000, // Shadow Iron
+            0.262500000, // Copper
             0.031250000, // Bronze
             0.015625000, // Gold
             0.007812500, // Agapite
@@ -134,11 +134,11 @@ namespace Server.Engines.BulkOrders
                 } else
                 {
                     if (theirSkill >= 110)
-                        amountMax = Utility.RandomList(45, 60, 55, 55);
+                        amountMax = Utility.RandomList(75, 70, 85, 85);
                     else if (theirSkill >= 100)
-                        amountMax = Utility.RandomList(35, 40, 45, 45);
+                        amountMax = Utility.RandomList(55, 70, 65, 75);
                     else if (theirSkill >= 70.1)
-                        amountMax = Utility.RandomList(20, 25, 30, 30);
+                        amountMax = Utility.RandomList(35, 35, 40, 40);
                     else if (theirSkill >= 50.1)
                         amountMax = Utility.RandomList(15, 20, 20, 25);
                     else

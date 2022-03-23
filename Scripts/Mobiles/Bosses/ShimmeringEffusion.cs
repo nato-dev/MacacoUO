@@ -47,7 +47,7 @@ namespace Server.Mobiles
             Karma = -30000;
 
             PackResources(8);
-            AddItem(new TemplateDeed());
+            //AddItem(new TemplateDeed());
             //PackTalismans(5);
 
             //for (int i = 0; i < Utility.RandomMinMax(1, 6); i++)

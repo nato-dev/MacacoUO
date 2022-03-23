@@ -71,7 +71,7 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            DistribuiItem(new TemplateDeed());
+            //DistribuiItem(new TemplateDeed());
             SorteiaItem(new DragonWolfCostume());
             SorteiaItem(new SnapdragonSeed(3));
             DistribuiItem(new CottonSeed(20));

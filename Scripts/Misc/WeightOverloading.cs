@@ -37,6 +37,8 @@ namespace Server.Misc
             }
 
             var reduction = BaseArmor.GetInherentStaminaLossReduction(m) + 1;
+            if (Shard.DebugEnabled)
+                Shard.Debug("Fatigue reduction " + reduction, m);
 
             if (reduction > 1)
             {

@@ -147,7 +147,10 @@ namespace Server.Mobiles
 
             if (message)
                 from.SendLocalizedMessage(amount + " moedas foram retiradas de seu banco"); // ~1_AMOUNT~ gold has been removed from your bank box.
-
+            else
+            {
+                from.SendMessage(55, $"[Banco] -{amount}");
+            }
             return true;
         }
 
@@ -489,7 +492,7 @@ namespace Server.Mobiles
                                         // We cannot create checks for such a paltry amount of gold!
                                         vendor.Say("Nao posso criar um cheque para uma quantidade tao pequena");
                                     }
-                                    else if (amount > 1000000)
+                                    else if (amount > int.MaxValue)
                                     {
                                         // Our policies prevent us from creating checks worth that much!
                                         vendor.Say("Nossa politica nao permitie criar cheques tao grandes");

@@ -160,9 +160,9 @@ namespace Server.Misc
                     return true;
             }
 
-            if (!defender.Criminal && defender.Player && attacker.Player && defender.Region is GuardedRegion)
+            if(ViceVsVirtueSystem.IsEnemy(attacker, defender))
             {
-                return false; // na cidade so pode tretar 
+                return true;
             }
 
             var map = attacker.Map;

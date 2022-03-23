@@ -64,7 +64,7 @@ namespace Server.Items
                 InvalidateProperties();
 
                 int roll = Utility.Random(1200);
-                from.SendMessage(79, $"Sorte: {1200 - roll}/1200)");
+                from.SendMessage(79, $"Sorte: {1200 - roll}/1200");
 
                 if (roll == 0) // Jackpot
                 {

@@ -17,6 +17,7 @@ namespace Server.Gumps
     {
         private Action<int> Callback;
 
+
         public GumpFala(Action<int> callback, Faces face = Faces.GM_PRETO, params string [] lines) : base(0, 0)
         {
             this.Callback = callback;
@@ -38,7 +39,8 @@ namespace Server.Gumps
         public override void OnResponse(NetState sender, RelayInfo info)
         {
             Mobile from = sender.Mobile;
-            this.Callback(info.ButtonID);
+            if(this.Callback != null)
+                this.Callback(info.ButtonID);
         }
     }
 }

@@ -295,6 +295,7 @@ namespace Server.Engines.Craft
             AddCraft(typeof(Nightstand), 1044291, 1044306, 42.1, 67.1, typeof(Board), 1044041, 17, 1044351);
             AddCraft(typeof(WritingTable), 1044291, 1022890, 63.1, 88.1, typeof(Board), 1044041, 17, 1044351);
             AddCraft(typeof(LargeTable), 1044291, 1044308, 84.2, 109.2, typeof(Board), 1044041, 27, 1044351);
+            AddCraft(typeof(CounterTable), 1044291, "Mesa de Balcao", 40, 100, typeof(Board), 1044041, 27, 1044351);
             AddCraft(typeof(YewWoodTable), 1044291, 1044307, 63.1, 88.1, typeof(Board), 1044041, 23, 1044351);
 
 

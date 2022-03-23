@@ -1,11 +1,9 @@
-using System;
-using System.Collections.Generic;
+using Server.ContextMenus;
+using Server.Engines.Auction;
 using Server.Gumps;
 using Server.Mobiles;
-using Server.ContextMenus;
 using Server.Multis;
-using Server.Engines.Auction;
-using Server.Network;
+using System.Collections.Generic;
 
 namespace Server.Items
 {
@@ -15,7 +13,7 @@ namespace Server.Items
         public readonly int DeleteDelayMinutes = 30;
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public AuctionSafe AuctionSafe { get; set; }
+        public IAuctionItem AuctionSafe { get; set; }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public Item AuctionItem { get; set; }
@@ -28,14 +26,14 @@ namespace Server.Items
 
         [CommandProperty(AccessLevel.GameMaster)]
         public string HouseName { get; set; }
-        
+
         [CommandProperty(AccessLevel.GameMaster)]
         public Point3D SetLocation { get; set; }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public Map SetMap { get; set; }
-        
-        public AuctionMap(AuctionSafe auctionsafe)
+
+        public AuctionMap(IAuctionItem auctionsafe)
             : base(auctionsafe.Map)
         {
             AuctionSafe = auctionsafe;
@@ -61,7 +59,7 @@ namespace Server.Items
             Height = 400;
 
             Bounds = new Rectangle2D(auctionsafe.X - 100, auctionsafe.Y - 100, 200, 200);
-            AddWorldPin(auctionsafe.X, auctionsafe.Y);            
+            AddWorldPin(auctionsafe.X, auctionsafe.Y);
         }
 
         public override bool DropToWorld(Mobile from, Point3D p)
@@ -81,15 +79,15 @@ namespace Server.Items
         {
             if (AuctionItem == null)
             {
-                list.Add(1156474, String.Format("{0}\t{1}", HouseName, "Unknown")); // Map to Auction ~1_ITEMNAME~: ~2_HOUSE~
+                list.Add(1156474, string.Format("{0}\t{1}", HouseName, "Unknown")); // Map to Auction ~1_ITEMNAME~: ~2_HOUSE~
             }
             else if (AuctionItem.LabelNumber != 0)
             {
-                list.Add(1156474, String.Format("{0}\t#{1}", HouseName, AuctionItem.LabelNumber)); // Map to Auction ~1_ITEMNAME~: ~2_HOUSE~
+                list.Add(1156474, string.Format("{0}\t#{1}", HouseName, AuctionItem.LabelNumber)); // Map to Auction ~1_ITEMNAME~: ~2_HOUSE~
             }
             else
             {
-                list.Add(1156474, String.Format("{0}\t{1}", HouseName, AuctionItem.Name)); // Map to Auction ~1_ITEMNAME~: ~2_HOUSE~
+                list.Add(1156474, string.Format("{0}\t{1}", HouseName, AuctionItem.Name)); // Map to Auction ~1_ITEMNAME~: ~2_HOUSE~
             }
         }
 
@@ -99,8 +97,8 @@ namespace Server.Items
 
             string[] coord = GetCoords();
 
-            list.Add(1154639, String.Format("{0}\t{1}", coord[0], coord[1])); //  Vendor Located at ~1_loc~ (~2_facet~)
-            
+            list.Add(1154639, string.Format("{0}\t{1}", coord[0], coord[1])); //  Vendor Located at ~1_loc~ (~2_facet~)
+
             if (!CheckItem())
             {
                 list.Add(1154700); // Item no longer for sale.
@@ -140,7 +138,7 @@ namespace Server.Items
 
                 if (Sextant.Format(new Point3D(x, y, z), map, ref xLong, ref yLat, ref xMins, ref yMins, ref xEast, ref ySouth))
                 {
-                    return new string[] { String.Format("{0}° {1}'{2}, {3}° {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W"), map.ToString() };
+                    return new string[] { string.Format("{0}° {1}'{2}, {3}° {4}'{5}", yLat, yMins, ySouth ? "S" : "N", xLong, xMins, xEast ? "E" : "W"), map.ToString() };
                 }
             }
 
@@ -150,7 +148,7 @@ namespace Server.Items
         public BaseHouse GetHouse()
         {
             if (AuctionSafe != null)
-                return BaseHouse.FindHouseAt(AuctionSafe);
+                return BaseHouse.FindHouseAt(AuctionSafe as Item);
 
             return null;
         }
@@ -163,7 +161,7 @@ namespace Server.Items
             if (SetLocation != Point3D.Zero)
             {
                 SetLocation = Point3D.Zero;
-                SetMap = null;                
+                SetMap = null;
             }
             else
             {
@@ -185,6 +183,41 @@ namespace Server.Items
         public bool CheckItem()
         {
             return GetHouse() != null && AuctionItem != null && AuctionSafe.CheckAuctionItem(AuctionItem);
+        }
+
+        public Point3D GetLocation(Mobile m)
+        {
+            BaseHouse h = null;
+
+            if (SetLocation != Point3D.Zero)
+            {
+                h = BaseHouse.FindHouseAt(SetLocation, SetMap, 16);
+            }
+            else if (AuctionSafe != null)
+            {
+                h = BaseHouse.FindHouseAt(AuctionSafe as Item);
+            }
+
+            if (h != null)
+            {
+                m.SendLocalizedMessage(1070905); // Strong magics have redirected you to a safer location!
+                return h.BanLocation;
+            }
+
+            return SetLocation != Point3D.Zero ? SetLocation : Point3D.Zero;
+        }
+
+        public Map GetMap()
+        {
+            if (SetLocation != Point3D.Zero)
+                return SetMap;
+
+            if (AuctionSafe != null)
+            {
+                return AuctionSafe.Map;
+            }
+
+            return null;
         }
 
         public class OpenMapEntry : ContextMenuEntry
@@ -230,15 +263,15 @@ namespace Server.Items
 
         public AuctionMap(Serial serial)
             : base(serial)
-		{
-		}
+        {
+        }
 
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.Write((int)0);
+            writer.Write(0);
 
-            writer.Write(AuctionSafe);
+            writer.Write(AuctionSafe as Item);
             writer.Write(AuctionItem);
             writer.Write(SafeLocation);
             writer.Write(SafeMap);
@@ -252,7 +285,7 @@ namespace Server.Items
             base.Deserialize(reader);
             int version = reader.ReadInt();
 
-            AuctionSafe = (AuctionSafe)reader.ReadItem();
+            AuctionSafe = reader.ReadItem() as IAuctionItem;
             AuctionItem = reader.ReadItem();
             SafeLocation = reader.ReadPoint3D();
             SafeMap = reader.ReadMap();
@@ -268,7 +301,7 @@ namespace Server.Items
             public ConfirmTeleportGump(AuctionMap map, PlayerMobile pm)
                 : base(pm, 10, 10)
             {
-                AuctionMap = map;                
+                AuctionMap = map;
             }
 
             public override void AddGumpLayout()
@@ -277,7 +310,7 @@ namespace Server.Items
 
                 AddBackground(0, 0, 414, 214, 0x7752);
 
-                AddHtmlLocalized(27, 47, 380, 80, 1156475, String.Format("@{0}@{1}@{2}", AuctionMap.TeleportCost.ToString(), AuctionMap.HouseName, AuctionMap.DeleteDelayMinutes.ToString()), 0xFFFF, false, false); // Please select 'Accept' if you would like to pay ~1_cost~ gold to teleport to auction house ~2_name~. For this price you will also be able to teleport back to this location within the next ~3_minutes~ minutes.
+                AddHtmlLocalized(27, 47, 380, 80, 1156475, string.Format("@{0}@{1}@{2}", AuctionMap.TeleportCost.ToString(), AuctionMap.HouseName, AuctionMap.DeleteDelayMinutes.ToString()), 0xFFFF, false, false); // Please select 'Accept' if you would like to pay ~1_cost~ gold to teleport to auction house ~2_name~. For this price you will also be able to teleport back to this location within the next ~3_minutes~ minutes.
 
                 AddButton(7, 167, 0x7747, 0x7747, 0, GumpButtonType.Reply, 0);
                 AddHtmlLocalized(47, 167, 100, 40, 1150300, 0x4E73, false, false); // CANCEL
@@ -307,7 +340,7 @@ namespace Server.Items
                             }
                             else
                             {
-                                new Server.Spells.Fourth.RecallSpell(User, AuctionMap, AuctionMap).Cast();
+                                new Spells.Fourth.RecallSpell(User, AuctionMap, AuctionMap).Cast();
                             }
 
                             break;

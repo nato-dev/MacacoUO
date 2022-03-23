@@ -166,7 +166,7 @@ namespace Server.Items
 
         [Constructable]
         public Runebook()
-            : this(Core.SE ? 12 : 6)
+            : this(12)
         {
         }
 
@@ -280,9 +280,12 @@ namespace Server.Items
                         m_CurCharges = reader.ReadInt();
                         m_MaxCharges = reader.ReadInt();
                         m_DefaultIndex = reader.ReadInt();
-
                         break;
                     }
+            }
+            if(MaxCharges == 6)
+            {
+                MaxCharges = 12;
             }
         }
 

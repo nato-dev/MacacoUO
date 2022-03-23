@@ -14,11 +14,11 @@ namespace Server.Misc.Custom
         public int Items;
         public int Preco;
 
-        public BankLevel(int s, int i, int p)
+        public BankLevel(int peso, int items, int preco)
         {
-            Stones = s;
-            Items = i;
-            Preco = p;
+            Stones = peso;
+            Items = items;
+            Preco = preco;
         }
     }
 
@@ -41,16 +41,18 @@ namespace Server.Misc.Custom
             // NOOBS
             _Nivels.Add(new BankLevel(500, 20, 0));
             _Nivels.Add(new BankLevel(750, 40, 100));
-            _Nivels.Add(new BankLevel(1000, 60, 500));
-            _Nivels.Add(new BankLevel(1500, 80, 1000));
-            _Nivels.Add(new BankLevel(2000, 100, 5000));
-            _Nivels.Add(new BankLevel(5000, 120, 10000));
+            _Nivels.Add(new BankLevel(1000, 60, 200));
+            _Nivels.Add(new BankLevel(1500, 80, 300));
+            _Nivels.Add(new BankLevel(2000, 100, 500));
+            _Nivels.Add(new BankLevel(5000, 120, 1000));
 
             // CAROS FODAS
             _Nivels.Add(new BankLevel(15000, 200, 10000));
             _Nivels.Add(new BankLevel(25000, 250, 20000));
             _Nivels.Add(new BankLevel(45000, 350, 50000));
             _Nivels.Add(new BankLevel(150000, 1000, 100000));
+            _Nivels.Add(new BankLevel(550000, 5000, 500000));
+            _Nivels.Add(new BankLevel(1550000, 15000, 1000000));
         }
 
         public static void OpenBank(Mobile m)

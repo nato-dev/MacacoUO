@@ -2025,7 +2025,7 @@ namespace Server.Items
                 //if (defender.Player && defender.Dex < 80)
                 //{
                 if (defender.Player)
-                    chance = chance * (defender.RawDex * 1.00) / 100;
+                    chance = chance * (defender.RawStr * 1.00) / 100;
                 //}
 
                 Shard.Debug("Chance Parry: " + chance, defender);
@@ -4364,14 +4364,14 @@ namespace Server.Items
 
                 if (Type == WeaponType.Axe)
                 {
-                    attacker.CheckSkillMult(SkillName.Lumberjacking, 0.0, 100.0); // Passively check Lumberjacking for gain
+                    attacker.CheckSkillMult(SkillName.Lumberjacking, 0.0, 80); // Passively check Lumberjacking for gain
                 }
 
                 if (Type == WeaponType.Bashing)
                 {
-                    attacker.CheckSkillMult(SkillName.Mining, 0.0, 70.0);
+                    attacker.CheckSkillMult(SkillName.Mining, 0.0, 80);
                 }
-                attacker.CheckSkillMult(SkillName.ArmsLore, 0.0, 100.0);
+                //attacker.CheckSkillMult(SkillName.ArmsLore, 0.0, 100.0);
             }
 
             if(this is BaseRanged)

@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  Rules.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -24,7 +24,10 @@ namespace VitaNex.Modules.AutoPvP
 		private readonly object _CopyLock = new object();
 		private PropertyList<PvPBattleRules> _CopyStore;
 
-		[CommandProperty(AutoPvP.Access)]
+        [CommandProperty(AutoPvP.Access)]
+        public bool AutoStart { get; set; }
+
+        [CommandProperty(AutoPvP.Access)]
 		public bool AllowSpeech { get; set; }
 
 		[CommandProperty(AutoPvP.Access)]
@@ -159,11 +162,14 @@ namespace VitaNex.Modules.AutoPvP
 		{
 			base.Serialize(writer);
 
-			var version = writer.SetVersion(3);
+			var version = writer.SetVersion(4);
 
 			switch (version)
 			{
-				case 3:
+                case 4:
+                    writer.Write(AutoStart);
+                    goto case 3;
+                case 3:
 					writer.Write(CanEquip);
 					goto case 2;
 				case 2:
@@ -206,7 +212,10 @@ namespace VitaNex.Modules.AutoPvP
 
 			switch (version)
 			{
-				case 3:
+                case 4:
+                    AutoStart = reader.ReadBool();
+                    goto case 3;
+                case 3:
 					CanEquip = reader.ReadBool();
 					goto case 2;
 				case 2:

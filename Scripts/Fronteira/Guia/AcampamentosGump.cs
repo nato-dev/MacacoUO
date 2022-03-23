@@ -191,7 +191,7 @@ namespace Server.Items
 
                 AddLabel(61, y, 0x480, String.Format("{0}", i));
 
-                AddHtml(103, y, 230, 32, element.Name, 0xFFFFFF, false, false); // ~1_val~
+                AddHtml(103, y, 230, 32, element.Nome, 0xFFFFFF, false, false); // ~1_val~
 
                 //AddLabel(235, y, 0x480, ""+recipe.RecipeID);
                 //var r = 

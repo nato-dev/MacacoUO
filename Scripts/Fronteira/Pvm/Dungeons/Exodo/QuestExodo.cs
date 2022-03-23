@@ -1,4 +1,5 @@
 using System;
+using Server.Gumps;
 using Server.Items;
 using Server.Mobiles;
 using Server.Ziden;
@@ -89,6 +90,7 @@ selado, o local que o mapa que lhe dei indica, e fazer o ritual. Como fazer o ri
             {
                 pl.Wisp.CompletaJill();
             }
+            Owner.SendGump(new GumpFala(null, Faces.GM_PRETO, "Voce pode conseguir uma CASA DE GRACA", "Siga a esquerda para o portal e va para Deceit, fale com o Silvio"));
             this.Owner.PlaySound(this.CompleteSound);
         }
 

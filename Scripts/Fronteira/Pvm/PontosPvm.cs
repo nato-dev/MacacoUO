@@ -159,10 +159,10 @@ namespace Server.Ziden.Kills
                                 PointsSystem.Exp.AwardPoints(pl, xpJogador, false, false);
                                 if (!pl.IsCooldown("xpp") && pl.IsYoung())
                                 {
-                                    pl.SetCooldown("xpp", TimeSpan.FromMinutes(10));
+                                    pl.SetCooldown("xpp", TimeSpan.FromMinutes(1));
                                     pl.SendMessage(78, "Digite .xp para usar sua EXP para subir skills");
                                     if(pl.Young)
-                                        pl.PrivateOverheadMessage("Comando: .xp", 222);
+                                        pl.PrivateOverheadMessage("Use o comando .xp", 222);
                                 }
                             } else
                             {

@@ -670,11 +670,7 @@ namespace Server.Items
 
         public static double GetInherentStaminaLossReduction(Mobile from)
         {
-            if (!Core.SA)
-            {
-                return 0.0;
-            }
-
+           
             double toReduce = 0.0;
             int count = 0;
 
@@ -702,9 +698,10 @@ namespace Server.Items
                 case ArmorMaterialType.Stone:
                 case ArmorMaterialType.Studded:
                 case ArmorMaterialType.Bone:
-                    return .5;
                 case ArmorMaterialType.Ringmail:
+                    return .2;
                 case ArmorMaterialType.Chainmail:
+                    return .5;
                 case ArmorMaterialType.Plate:
                 case ArmorMaterialType.Dragon:
                     return 1.0;

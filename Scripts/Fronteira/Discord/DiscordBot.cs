@@ -58,9 +58,14 @@ namespace Fronteira.Discord
 		}
         */
 
-        public static void SendMessage(string message)
+        public static void SendMessage(string message, int delay =0)
         {
-            SendMessage(message, true);
+            if(delay==0)
+                SendMessage(message, true);
+            else
+            {
+                Server.Timer.DelayCall(TimeSpan.FromSeconds(delay), () => { SendMessage(message, true); });
+            }
         }
 
         public static void SendMessage(string message, bool filtered)

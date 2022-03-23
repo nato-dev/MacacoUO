@@ -252,7 +252,7 @@ namespace Server.Engines.VvV
             Warned = new List<Mobile>();
             Turrets = new List<CannonTurret>();
 
-            for (int i = 0; i < 8; i++)
+            for (int i = 0; i < 7; i++)
             {
                 if (!System.ExemptCities.Contains((VvVCity)i) && (VvVCity)i != newCity)
                     cities.Add((VvVCity)i);

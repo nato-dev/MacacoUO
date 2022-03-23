@@ -7588,6 +7588,7 @@ namespace Server.Mobiles
                                 if (ds != null && ds.m_Mobile != null && item != null && ds.m_Mobile.Backpack != null)
                                 {
                                     var iti = Dupe.DupeItem(item);
+                                    iti.PartyLoot = false;
                                     ds.m_Mobile.PlaceInBackpack(iti);
                                     ds.m_Mobile.SendMessage("Voce ganhou " + item.Amount + " " + (item.Name == null ? item.GetType().Name : item.Name));
                                 }

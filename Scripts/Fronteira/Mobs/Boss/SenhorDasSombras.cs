@@ -142,7 +142,7 @@ namespace Server.Mobiles
             SorteiaItem(tinta);
             SorteiaItem(new PergaminhoCarregamento());            
             SorteiaItem(new SkillBook());
-            SorteiaItem(new TemplateDeed());
+            //SorteiaItem(new TemplateDeed());
             SorteiaItem(new LivroAntigo());
             SorteiaItem(new TreasureMap(7, Map));
             SorteiaItem(Decos.RandomDeco());

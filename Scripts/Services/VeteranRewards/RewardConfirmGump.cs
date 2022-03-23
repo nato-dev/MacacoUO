@@ -1,4 +1,5 @@
 using System;
+using Server.Engines.Auction;
 using Server.Gumps;
 using Server.Network;
 
@@ -59,7 +60,7 @@ namespace Server.Engines.VeteranRewards
                     if (RewardSystem.ConsumeRewardPoint(this.m_From))
                     {
                         #region TOL
-                        if (item is Server.Engines.Auction.AuctionSafeDeed)
+                        if (item is AuctionSafeDeed)
                         {
                             for (int i = 0; i < 2; i++)
                             {

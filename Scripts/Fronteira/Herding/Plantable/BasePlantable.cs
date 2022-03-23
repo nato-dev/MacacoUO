@@ -169,7 +169,7 @@ namespace Server.Items
                     }
                     else
                     {
-                        from.SendMessage("Voce nao conseguiu colocar a planta corretamente");
+                        from.SendMessage("Voce nao conseguiu colocar a planta corretamente, talvez com mais Herding voce consiga fazer isto");
                     }
                 }
             }

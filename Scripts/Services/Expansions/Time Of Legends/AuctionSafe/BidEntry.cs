@@ -1,21 +1,24 @@
-using Server;
-using System;
-using Server.Mobiles;
-using Server.Items;
-using Server.Multis;
 using Server.Accounting;
-using System.Collections.Generic;
+using Server.Mobiles;
+using System;
 
 namespace Server.Engines.Auction
 {
+    [PropertyObject]
     public class BidEntry : IComparable<BidEntry>
     {
+        [CommandProperty(AccessLevel.GameMaster)]
         public PlayerMobile Mobile { get; set; }
+
+        [CommandProperty(AccessLevel.GameMaster)]
         public long CurrentBid { get; set; }
 
         //Converts to gold/plat
-        public int TotalGoldBid { get { return (int)(CurrentBid >= Account.CurrencyThreshold ? CurrentBid - (TotalPlatBid * Account.CurrencyThreshold) : CurrentBid); } }
-        public int TotalPlatBid { get { return (int)(CurrentBid >= Account.CurrencyThreshold ? CurrentBid / Account.CurrencyThreshold : 0); } }
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int TotalGoldBid => (int)(CurrentBid >= Account.CurrencyThreshold ? CurrentBid - (TotalPlatBid * Account.CurrencyThreshold) : CurrentBid);
+
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int TotalPlatBid => (int)(CurrentBid >= Account.CurrencyThreshold ? CurrentBid / Account.CurrencyThreshold : 0);
 
         public BidEntry(PlayerMobile m, long bid = 0)
         {
@@ -29,6 +32,17 @@ namespace Server.Engines.Auction
 
             int version = reader.ReadInt();
             CurrentBid = reader.ReadLong();
+        }
+
+        public void Refund(Auction auction, long amount)
+        {
+            Account a = Mobile.Account as Account;
+
+            if (a != null)
+            {
+                a.DepositGold(amount);
+                VaultLogging.LogRefund(auction, Mobile, amount);
+            }
         }
 
         public void Serialize(GenericWriter writer)

@@ -329,12 +329,13 @@ namespace Server.SkillHandlers
                                         switch (m_Instrument.Resource)
                                         {
                                             case CraftResource.Carmesim:
-                                            case CraftResource.Gelo:
+                                            case CraftResource.Mogno:
                                                 danoBase = 2;
                                                 rng = 2;
                                                 break;
                                             case CraftResource.Eucalipto:
-                                            case CraftResource.Mogno:
+                                        
+                                            case CraftResource.Gelo:
                                                 danoBase = 2;
                                                 rng = 1;
                                                 break;

@@ -243,7 +243,6 @@ namespace Server.Items
         public void ScaleUses()
         {
             UsesRemaining = (UsesRemaining * GetUsesScalar()) / 100;
-            //InvalidateProperties();
         }
 
         public void UnscaleUses()
@@ -441,6 +440,22 @@ namespace Server.Items
             else if (m_Quality == ItemQuality.Low)
                 val += 5;
 
+            switch(this.Resource)
+            {
+                case CraftResource.Carmesim:
+                case CraftResource.Mogno:
+                    val -= 15;
+                    break;
+                case CraftResource.Eucalipto:
+                case CraftResource.Gelo:
+                    val -= 5;
+                    break;
+                case CraftResource.Pinho:
+                case CraftResource.Carvalho:
+                    val -= 1;
+                    break;
+            }
+
             if (m_Slayer != SlayerName.None)
             {
                 SlayerEntry entry = SlayerGroup.GetEntryByName(m_Slayer);
@@ -514,14 +529,42 @@ namespace Server.Items
             if (m_Crafter != null)
                 list.Add(1050043, m_Crafter.TitleName); // crafted by ~1_NAME~
 
+
+            var bonus = 0;
+
             if (m_Quality == ItemQuality.Exceptional)
+            {
                 list.Add(1060636); // exceptional
+                bonus += 5;
+            }
+
+               
             else if (m_Quality == ItemQuality.Low)
+            {
                 list.Add("Baixa Qualidade"); // exceptional
+                bonus -= 5;
+            }
+               
 
             if (Resource != CraftResource.None)
                 list.Add("Feito de "+Resource.ToString()); // exceptional
 
+            switch(Resource)
+            {
+                case CraftResource.Carmesim:
+                case CraftResource.Mogno:
+                    bonus += 15;
+                    break;
+                case CraftResource.Eucalipto:
+                case CraftResource.Gelo:
+                    bonus += 5;
+                    break;
+                case CraftResource.Pinho:
+                case CraftResource.Carvalho:
+                    bonus += 2;
+                    break;
+            }
+            list.Add("Efeitos: " + (bonus > 0 ? $"+{bonus}" : bonus.ToString()));
             list.Add(1060584, m_UsesRemaining.ToString()); // uses remaining: ~1_val~
 
             if (m_ReplenishesCharges)

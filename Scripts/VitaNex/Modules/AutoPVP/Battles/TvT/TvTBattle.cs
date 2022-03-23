@@ -60,7 +60,8 @@ namespace VitaNex.Modules.AutoPvP.Battles
 			Options.Rules.CanResurrect = false;
 			Options.Rules.CanUseStuckMenu = false;
 			Options.Rules.CanEquip = true;
-		}
+            Options.Rules.AutoStart = true;
+        }
 
 		public TvTBattle(GenericReader reader)
 			: base(reader)
@@ -78,25 +79,38 @@ namespace VitaNex.Modules.AutoPvP.Battles
             return AddTeam(new TvTTeam(this, name, minCapacity, capacity, color));
         }
 
+        protected override void OnBattleStarted()
+        {
+            base.OnBattleStarted();
+        }
+
+        protected override void OnBattlePreparing()
+        {
+            base.OnBattlePreparing();
+            var msg = $"[Arena] {Name} esta iniciando ! Use .pvp para assistir !";
+            foreach (var pl in NetState.GetOnlinePlayerMobiles())
+            {
+                pl.SendMessage(msg);
+            }
+            DiscordBot.SendMessage(":crossed_swords:" + msg);
+        }
+
         protected override void OnQueueJoin(PlayerMobile pm, PvPTeam team)
         {
             base.OnQueueJoin(pm, team);
-            var msg = $"[Arena] {pm.Name} entrou na arena {Name};";
+            var msg = $"[Arena] {pm.Name} entrou na fila para arena {Name};";
             foreach(var pl in NetState.GetOnlinePlayerMobiles())
             {
                 pl.SendMessage(msg);
             }
+            DiscordBot.SendMessage(":crossed_swords:" + msg);
 
-            foreach(var t in this.Teams)
+            if (Options.Rules.AutoStart)
             {
-                if (team.Members.Count < team.MaxCapacity)
-                    return;
+                if (Queue.Count >= this.MaxCapacity)
+                    this.State = PvPBattleState.Preparando;
             }
-
-            this.State = PvPBattleState.Preparando;
-
         }
-
 
         public override void Deserialize(GenericReader reader)
 		{

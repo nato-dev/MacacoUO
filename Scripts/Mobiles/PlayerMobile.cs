@@ -4866,18 +4866,17 @@ namespace Server.Mobiles
             {
                 this.SetCooldown("avisomorte", TimeSpan.FromMinutes(10));
                 if (m is PlayerMobile)
-                    DiscordBot.SendMessage($":crossed_swords:[PvP] {m.Name} matou {Name}");
+                {
+                    DiscordBot.SendMessage($":crossed_swords:[PvP] {m.Name} matou {Name} {(m.Region != null && m.Region.Name != null ? $" em {m.Region.Name}":"")}");
+                }
 
                 else if (m is BaseCreature)
                 {
                     if (((BaseCreature)m).IsBoss)
                     {
-                        DiscordBot.SendMessage($":skull_crossbones: [BOSS] {Name} foi obliterado por um boss !");
+                        DiscordBot.SendMessage($":skull_crossbones: [BOSS] {Name} foi obliterado pelo boss {m.Name} !", 60);
                     }
-                    //else if (m.Name.Substring(m.Name.Length - 1) == "a")
-                    //    DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por uma {m.Name}");
-                    //else
-                    //    DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por um {m.Name}");
+                        DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por um(a) {m.Name}", 60);
                 }
             }
             PlayerMobile killer = m as PlayerMobile;
@@ -7056,9 +7055,9 @@ namespace Server.Mobiles
                 if (vvv)
                 {
                     if (guild != null && DisplayGuildAbbr)
-                        suffix = String.Format("[{0}] [GI]", Utility.FixHtml(guild.Abbreviation));
+                        suffix = String.Format("[{0}] [GW]", Utility.FixHtml(guild.Abbreviation));
                     else
-                        suffix = "[GI]";
+                        suffix = "[GW]";
                 }
                 else if (suffix.Length > 0)
                     suffix = String.Format("{0} [{1}]", suffix, Utility.FixHtml(guild.Abbreviation));
@@ -8223,6 +8222,11 @@ namespace Server.Mobiles
                     pet.StabledBy = this;
 
                     //pet.Loyalty = BaseCreature.MaxLoyalty; // Wonderfully happy
+
+                    if(Shard.DebugEnabled)
+                    {
+                        Shard.Debug("Auto stable de " + pet.Name, this);
+                    }
 
                     Stabled.Add(pet);
                     m_AutoStabled.Add(pet);

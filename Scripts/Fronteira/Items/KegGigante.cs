@@ -60,8 +60,6 @@ namespace Server.Items
 
         public override void GetProperties(ObjectPropertyList list)
         {
-            base.GetProperties(list);
-
             string number;
 
             if (m_Held > 0)

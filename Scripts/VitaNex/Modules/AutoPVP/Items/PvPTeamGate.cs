@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  PvPTeamGate.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -56,9 +56,9 @@ namespace VitaNex.Modules.AutoPvP
 				return;
 			}
 
-			LabelTo(from, "Battle: {0}", Team.Battle.Name);
-			LabelTo(from, "Team: {0}", Team.Name);
-			LabelTo(from, "Status: {0} ({1})", Team.Battle.State, Team.Battle.GetStateTimeLeft().ToSimpleString("h:m:s"));
+			LabelTo(from, "Arena: {0}", Team.Battle.Name);
+			//LabelTo(from, "Team: {0}", Team.Name);
+			//LabelTo(from, "Status: {0} ({1})", Team.Battle.State, Team.Battle.GetStateTimeLeft().ToSimpleString("h:m:s"));
 		}
 
 		public override void GetProperties(ObjectPropertyList list)
@@ -68,7 +68,7 @@ namespace VitaNex.Modules.AutoPvP
 			if (Team != null && Team.Battle != null)
 			{
 				list.Add(
-					"Battle: {0}\nTeam: {1}\nStatus: {2} ({3})",
+					"Arena: {0}\nTime: {1}\nStatus: {2} ({3})",
 					Team.Battle.Name,
 					Team.Name,
 					Team.Battle.State,

@@ -19,7 +19,7 @@ namespace Server.Items
     public class TreasureMap : MapItem
     {
         public static bool NewChestLocations = Config.Get("TreasureMaps.Enabled", true);
-        public static double LootChance = Config.Get("TreasureMaps.LootChance", .01);
+        public static double LootChance = Config.Get("TreasureMaps.LootChance", .005);
         private static TimeSpan ResetTime = TimeSpan.FromDays(Config.Get("TreasureMaps.ResetTime", 30.0));
 
         #region Spawn Types
@@ -274,6 +274,16 @@ namespace Server.Items
 
         public TreasureMap()
         {
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            if(this.Decoder != null)
+            {
+                list.Add("Lido por " + this.Decoder.Name);
+                //list.Add("Nivel: " + this.Level+"/7");
+            }
         }
 
         [Constructable]

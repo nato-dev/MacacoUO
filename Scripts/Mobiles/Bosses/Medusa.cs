@@ -553,7 +553,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            SorteiaItem(new TemplateDeed());
+            //SorteiaItem(new TemplateDeed());
             SorteiaItem(Carnage.GetRandomPS(105));
             var b = new BraceleteDoPoder();
             b.Bonus = 5;

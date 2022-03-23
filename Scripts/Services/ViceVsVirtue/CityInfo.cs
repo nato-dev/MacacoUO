@@ -42,12 +42,14 @@ namespace Server.Engines.VvV
                 new Rectangle2D(4476, 1168, 8, 8),
                 new Point3D(4468, 1176, 0));
 
+            /*
             Infos[VvVCity.Ocllo] = new CityInfo(
                 "Ocllo",
                 new Point3D[] { new Point3D(3672, 2476, 6), new Point3D(3611, 2581, 0), new Point3D(3635, 2655, -2) },
                 new Point3D[] { new Point3D(3660, 2484, 0), new Point3D(3650, 2540, 0), new Point3D(3652, 2646, 0) },
                 new Rectangle2D(3614, 2593, 10, 10),
                 new Point3D(3697, 2522, 0));
+                */
 
             Infos[VvVCity.SkaraBrae] = new CityInfo(
                 "Skara Brae",

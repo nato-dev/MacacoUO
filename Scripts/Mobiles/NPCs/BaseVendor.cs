@@ -1400,9 +1400,9 @@ namespace Server.Mobiles
                         else if (from.Skills[skill].Value < 70)
                             exp += 13000;
                         if (from.Skills[skill].Value < 80)
-                            exp += 6000;
+                            exp += 5000;
                         else if (from.Skills[skill].Value < 90)
-                            exp += 3000;
+                            exp += 2000;
                         else if (from.Skills[skill].Value < 100)
                             exp += 1000;
                         else if (from.Skills[skill].Value > 100)
@@ -1448,23 +1448,24 @@ namespace Server.Mobiles
                                 exp += 1000;
                         }
 
-                        while (exp > 0)
+
+                        var ups = (int)Math.Floor(exp / 1000d);
+                        ushort resto = (ushort)(exp % 1000);
+
+                        if (ups > 0)
                         {
-                            if (exp >= 1000)
+                            SkillCheck.Gain(from, from.Skills[skill], ups);
+                        }
+
+                        if(resto > 0)
+                        {
+                            if (from.Skills[skill].IncreaseExp(resto))
                             {
-                                exp -= 1000;
                                 SkillCheck.Gain(from, from.Skills[skill]);
-                            }
-                            else
-                            {
-                                if (from.Skills[skill].IncreaseExp(exp))
-                                {
-                                    SkillCheck.Gain(from, from.Skills[skill]);
-                                }
-                                exp = 0;
                             }
                         }
                     }
+
                     else
                     {
                         from.SendMessage("Voce nao ganhou conhecimento em " + skill.ToString() + " pois esta ordem de trabalho nao era sua");
@@ -1660,8 +1661,8 @@ namespace Server.Mobiles
                         if (Bribes == null)
                             Bribes = new Dictionary<Mobile, PendingBribe>();
 
-                        // Per EA, new bribe replaced old pending bribe
-                        if (!Bribes.ContainsKey(m))
+                // Per EA, new bribe replaced old pending bribe
+                if (!Bribes.ContainsKey(m))
                         {
                             Bribes[m] = new PendingBribe(bod, amount);
                         }
@@ -1672,13 +1673,13 @@ namespace Server.Mobiles
                         }
 
                         SayTo(from, "Me ajuda q eu te ajudo. Eu troco sua ordem por uma melhor, por " + amount, 0x3B2);
-                        // If you help me out, I'll help you out. I can replace that bulk order with a better one, but it's gonna cost you ~1_amt~ gold coin. Payment is due immediately. Just hand me the order and I'll pull the old switcheroo.
-                    }
+                // If you help me out, I'll help you out. I can replace that bulk order with a better one, but it's gonna cost you ~1_amt~ gold coin. Payment is due immediately. Just hand me the order and I'll pull the old switcheroo.
+            }
                 }
                 else if (bod == null)
                 {
                     SayTo(from, "Isto nao eh uma ordem de compra", 0x3B2); // That is not a bulk order deed.
-                }
+        }
             });
         }
 
@@ -2800,11 +2801,11 @@ namespace Server.Mobiles
                         if (!InRange(m.Location, 3))
                         {
                             m.SendLocalizedMessage(1149654); // You are too far away.
-                        }
+                }
                         else if (!Banker.Withdraw(m, 250000, true))
                         {
                             m.SendLocalizedMessage(1019022); // You do not have enough gold.
-                        }
+                }
                         else
                         {
                             ConvertMageArmor(m, ar);

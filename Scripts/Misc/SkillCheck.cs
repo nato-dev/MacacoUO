@@ -223,7 +223,7 @@ namespace Server.Misc
                 if (craft)
                     gc /= 10;
 
-                if (skillDifficulty == SkillInfo.COMBAT && skill >= 80)
+                if (skillDifficulty == SkillInfo.COMBAT && skill >= 97)
                     gc /= 2;
 
                 if (gc < 0.0015)
@@ -241,10 +241,10 @@ namespace Server.Misc
                 }
                 if (skillDifficulty == SkillInfo.COMBAT)
                 {
-                    if (skill < 80 && gc < 0.009)
-                        gc = 0.005;
+                    if (skill < 80 && gc < 0.01)
+                        gc = 0.01;
                     else if (skill < 90 && gc < 0.006)
-                        gc = 0.003;
+                        gc = 0.006;
                 }
             }
 

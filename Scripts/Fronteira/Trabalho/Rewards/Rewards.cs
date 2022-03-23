@@ -553,11 +553,11 @@ namespace Server.Engines.BulkOrders
         {
             int points = 0;
 
-            if (quantity == 10)
+            if (quantity <= 30)
                 points += 10;
-            else if (quantity == 15)
+            else if (quantity <= 45)
                 points += 25;
-            else if (quantity >= 20)
+            else 
                 points += 50;
 
             if (exceptional)

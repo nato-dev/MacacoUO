@@ -179,7 +179,7 @@ namespace Server.Mobiles
 
             SorteiaItem(new CombatSkillBook());
             SorteiaItem(new LivroAntigo());
-            SorteiaItem(new TemplateDeed());
+            //SorteiaItem(new TemplateDeed());
             var arco = Loot.RandomRangedWeapon();
             arco.Resource = CraftResource.Pinho;
             arco.Quality = ItemQuality.Exceptional;

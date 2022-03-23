@@ -58,8 +58,8 @@ namespace Server.Mobiles
             AddAndEquip(new ChainLegs(), 1936);
             AddAndEquip(new LeatherGloves(), 1910);
             AddAndEquip(new LeatherBustierArms(), 1947);
-            AddItem(new TemplateDeed());
-            AddItem(new TemplateDeed());
+            //AddItem(new TemplateDeed());
+            //AddItem(new TemplateDeed());
         }
 
         public override int BreathChaosDamage { get { return 20; } }

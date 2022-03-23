@@ -29,7 +29,7 @@ namespace Server.Engines.VvV
         Jhelom,
         Minoc,
         Moonglow,
-        Ocllo, 
+      //  Ocllo, 
         SkaraBrae,
         Trinsic,
         Yew
@@ -244,6 +244,7 @@ namespace Server.Engines.VvV
             {
                 int count = EnemyGuildCount();
 
+                /*
                 if (count < 1)
                 {
                     SendVvVMessageTo(pm, "Para iniciar a guerra infinita precisa-se de mais jogadores"); // More players are needed before a VvV battle can begin! 
@@ -256,6 +257,7 @@ namespace Server.Engines.VvV
                 {
                     Battle.Begin();
                 }
+                */
             }
         }
 

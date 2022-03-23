@@ -625,7 +625,7 @@ namespace Server
 
         public static double HARD = Shard.SPHERE_STYLE ? 10 : 0.08f;
         public static double MEDIUM = Shard.SPHERE_STYLE ? 10 : 0.8f;
-        public static double EASY = Shard.SPHERE_STYLE ? 10 : 1.5f;
+        public static double EASY = 10f;
         public static double COMBAT = Shard.SPHERE_STYLE ? 10 : 0.21;
 
         private static SkillInfo[] m_Table = new SkillInfo[58]
@@ -668,7 +668,7 @@ namespace Server
             new SkillInfo(35, "Animal Taming", 14.0, 2.0, 4.0, "Domador", null, 1.4, 0.2, 0.4, HARD, StatCode.Str, StatCode.Int, true ),
             new SkillInfo(36, "Jewelcrafting", 0.0, 0.0, 0.0, "Joalheiro", null, 0.2, 0.0, 0.8, EASY, StatCode.Int, StatCode.Str),
             new SkillInfo(37, "Tinkering", 5.0, 2.0, 3.0, "Funileiro", null, 0.5, 0.2, 0.3, HARD, StatCode.Dex, StatCode.Int),
-            new SkillInfo(38, "Tracking", 0.0, 12.5, 12.5, "Ranger", null, 0.0, 1.25, 1.25, COMBAT, StatCode.Int, StatCode.Dex),
+            new SkillInfo(38, "Tracking", 0.0, 12.5, 12.5, "Ranger", null, 0.0, 1.25, 1.25, EASY, StatCode.Int, StatCode.Dex),
             new SkillInfo(39, "Veterinary", 8.0, 4.0, 8.0, "Veterinario", null, 0.8, 0.4, 0.8, EASY, StatCode.Int, StatCode.Dex),
             new SkillInfo(40, "Swordsmanship", 7.5, 2.5, 0.0, "Espacachim", null, 0.75, 0.25, 0.0, COMBAT, StatCode.Str, StatCode.Dex, true ),
             new SkillInfo(41, "Mace Fighting", 9.0, 1.0, 0.0, "Maceiro", null, 0.9, 0.1, 0.0, COMBAT, StatCode.Str, StatCode.Dex, true ),

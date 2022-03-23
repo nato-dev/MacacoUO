@@ -261,7 +261,7 @@ namespace Server.Items
             base.OnDoubleClick(from);
             if (this.Amount < 10)
             {
-                from.SendMessage("Junte 10 fragmentos antigos para criar um colar de dano PvM");
+                from.SendMessage("Junte 10 fragmentos antigos para criar um anel PvM");
                 return;
             }
 
