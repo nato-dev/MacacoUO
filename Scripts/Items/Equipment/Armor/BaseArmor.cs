@@ -693,18 +693,18 @@ namespace Server.Items
                 default: return 0.0;
                 case ArmorMaterialType.Cloth:
                 case ArmorMaterialType.Leather:
-                    return .1;
+                    return .2;
                 case ArmorMaterialType.Wood:
                 case ArmorMaterialType.Stone:
                 case ArmorMaterialType.Studded:
                 case ArmorMaterialType.Bone:
                 case ArmorMaterialType.Ringmail:
-                    return .2;
+                    return .3;
                 case ArmorMaterialType.Chainmail:
-                    return .5;
+                    return .9;
                 case ArmorMaterialType.Plate:
                 case ArmorMaterialType.Dragon:
-                    return 1.0;
+                    return 1.2;
             }
         }
         #endregion
