@@ -39,6 +39,8 @@ namespace VitaNex.Modules.AutoPvP.Battles
 		[CommandProperty(AutoPvP.Access, true)]
 		public CTFFlag Flag { get; private set; }
 
+        public int Captures = 0;
+
 		[CommandProperty(AutoPvP.Access)]
 		public virtual bool SolidHueOverride
 		{
@@ -138,7 +140,7 @@ namespace VitaNex.Modules.AutoPvP.Battles
 		public override void Reset()
 		{
 			base.Reset();
-
+            Captures = 0;
 			if (Flag != null)
 			{
 				Flag.Delete();

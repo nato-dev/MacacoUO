@@ -39,8 +39,8 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Tactics, 90.1, 100.0);
             this.SetSkill(SkillName.Wrestling, 90.1, 100.0);
 
-            this.Fame = 3500;
-            this.Karma = -3500;
+            this.Fame = 13500;
+            this.Karma = -13500;
             if(Utility.RandomDouble() < 0.33)
                 PackItem(new CristalTherathan());
             this.VirtualArmor = 150;
