@@ -8,7 +8,6 @@ namespace Server.Ziden
 {
     public class Catalizador : Item
     {
-
         [Constructable]
         public Catalizador() : base(7847)
         {
@@ -26,6 +25,16 @@ namespace Server.Ziden
         {
             base.AddNameProperties(list);
             list.Add("Usado para imbuing");
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
         }
 
     }

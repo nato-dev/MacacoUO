@@ -26,6 +26,50 @@ namespace Server.Gumps
             this.Dragable = true;
             this.Resizable = false;
 
+            this.Closable = true;
+            this.Disposable = true;
+            this.Dragable = true;
+            this.Resizable = false;
+
+            this.AddPage(0);
+            this.AddBackground(59, 76, 344, 199, 9200);
+            this.AddHtml(191, 82, 90, 19, @"Aprimorar Colar", (bool)false, (bool)false);
+
+            this.AddBackground(67, 112, 100, 100, 3500);
+
+            this.AddBackground(62, 192, 111, 24, 3000);
+
+
+            this.AddHtml(62, 192, 111, 24, $"<CENTER>Jarro de Po Magico</CENTER>", false, false);
+            NewAuctionGump.AddItemCentered(67, 112, 111, 101, 0x0E48, 0, this);
+            this.AddHtml(71, 125, 89, 21, $"<CENTER>20</CENTER>", false, false);
+
+            this.AddBackground(180, 112, 100, 100, 3500);
+
+            this.AddBackground(174, 192, 111, 24, 3000);
+            this.AddHtml(174, 192, 111, 24, $"<CENTER>Crtl Terathan</CENTER>", false, false);
+            NewAuctionGump.AddItemCentered(180, 112, 111, 101, 16395, TintaPreta.COR, this);
+            this.AddHtml(184, 125, 89, 21, $"<CENTER>50</CENTER>", false, false);
+
+            this.AddBackground(292, 112, 100, 100, 3500);
+            this.AddBackground(286, 192, 111, 24, 3000);
+            this.AddHtml(286, 192, 111, 24, $"<CENTER>Ess. " + colar.Elemento.ToString() + "</CENTER>", false, false);
+            NewAuctionGump.AddItemCentered(292, 112, 111, 101, 0x571C, colar.Hue, this);
+            this.AddHtml(296, 125, 89, 21, $"<CENTER>10</CENTER>", false, false);
+
+            this.AddImage(49, 61, 113);
+            this.AddImage(381, 63, 113);
+            this.AddImage(386, 259, 113);
+            this.AddImage(46, 254, 113);
+            this.AddHtml(310, 231, 85, 21, @"Aprimorar", (bool)false, (bool)false);
+            this.AddButton(282, 228, 2472, 2472, 1, GumpButtonType.Reply, 0);
+
+            this.AddImage(381, 63, 113);
+            this.AddImage(386, 259, 113);
+            this.AddImage(46, 254, 113);
+            this.AddImage(49, 61, 113);
+
+            /*
             AddPage(0);
             AddBackground(673 - 130, 334 - 20, 400, 150, 9200);
             AddHtml(673 - 125, 334 - 20, 100, 20, "Aprimorar Colar ?", false, false);
@@ -50,6 +94,7 @@ namespace Server.Gumps
             NewAuctionGump.AddItemCentered(784, 335, 111, 101, 0x571C, colar.Hue, this);
 
             AddButton(804, 435, 247, 248, (int)ElementoButtons.Upar, GumpButtonType.Reply, 0);
+            */
         }
 
         public static bool CheckForja(Mobile from, int range)

@@ -4,7 +4,7 @@ using System;
 
 namespace Server.Gumps
 {
-    public class PetTrainingStyleConfirmGump : BaseGump
+    public class ConfirmaGump : BaseGump
     {
         private readonly TextDefinition _Title;
         private readonly TextDefinition _Body;
@@ -12,8 +12,8 @@ namespace Server.Gumps
         private Action ConfirmCallback { get; }
         private Action CancelCallback { get; }
 
-        public PetTrainingStyleConfirmGump(PlayerMobile pm, TextDefinition title, TextDefinition body, Action confirmCallback, Action cancelCallback = null)
-            : base(pm, 250, 50)
+        public ConfirmaGump(PlayerMobile pm, TextDefinition title, TextDefinition body, Action confirmCallback, Action cancelCallback = null)
+            : base(pm, 10, 10)
         {
             pm.CloseGump(GetType());
 
@@ -21,10 +21,7 @@ namespace Server.Gumps
             _Body = body;
             ConfirmCallback = confirmCallback;
             CancelCallback = cancelCallback;
-        }
 
-        public override void AddGumpLayout()
-        {
             AddBackground(0, 0, 454, 240, 0x24A4);
 
             if (_Title.Number > 0)
@@ -48,16 +45,18 @@ namespace Server.Gumps
             AddECHandleInput();
 
             AddButton(70, 150, 0x9CC8, 0x9CC7, 1, GumpButtonType.Reply, 0);
-            AddHtmlLocalized(70, 153, 126, 25, 1114513, "#1046362", 0, false, false);
+            AddHtml(70, 153, 126, 25, Center("Sim"), 0, false, false);
 
             AddECHandleInput();
             AddECHandleInput();
 
             AddButton(235, 150, 0x9CC8, 0x9CC7, 2, GumpButtonType.Reply, 0);
-            AddHtmlLocalized(235, 153, 126, 25, 1114513, "#1006045", 0, false, false);
+            AddHtml(235, 153, 126, 25, Center("Nao"), 0, false, false);
 
             AddECHandleInput();
+
         }
+
 
         public override void OnResponse(RelayInfo info)
         {
@@ -87,6 +86,11 @@ namespace Server.Gumps
 
         public virtual void OnCancel()
         {
+        }
+
+        public override void AddGumpLayout()
+        {
+            
         }
     }
 }

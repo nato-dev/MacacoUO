@@ -11,7 +11,7 @@
 
 #region References
 using System;
-
+using Fronteira.Discord;
 using Server;
 using Server.Mobiles;
 using Server.Network;
@@ -75,6 +75,23 @@ namespace VitaNex.Modules.AutoPvP.Battles
                 }
             }
             base.BroadcastStartMessage(timeLeft);
+        }
+
+        protected override void OnQueueJoin(PlayerMobile pm, PvPTeam team)
+        {
+            base.OnQueueJoin(pm, team);
+            var msg = $"[Arena] {pm.Name} entrou na fila para arena {Name}";
+            foreach (var pl in NetState.GetOnlinePlayerMobiles())
+            {
+                pl.SendMessage(msg);
+            }
+            DiscordBot.SendMessage(":crossed_swords:" + msg);
+
+            if (Options.Rules.AutoStart)
+            {
+                if (Queue.Count >= this.MaxCapacity)
+                    this.State = PvPBattleState.Preparando;
+            }
         }
 
         public override void GiveWinnerReward(PlayerMobile pm)

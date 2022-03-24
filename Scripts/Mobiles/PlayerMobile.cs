@@ -427,6 +427,8 @@ namespace Server.Mobiles
             var newDungeon = New is DungeonRegion || New is DungeonGuardedRegion;
             var oldDungeon = Old is DungeonRegion || Old is DungeonGuardedRegion;
 
+            ViceVsVirtueSystem.OnRegionChange(this, Old, New);
+
             if (oldDungeon != null && StuckMenu.IsInSecondAgeArea(this))
             {
                 PrivateOverheadMessage("* perigo *", 32);
@@ -4867,16 +4869,15 @@ namespace Server.Mobiles
                 this.SetCooldown("avisomorte", TimeSpan.FromMinutes(10));
                 if (m is PlayerMobile)
                 {
-                    DiscordBot.SendMessage($":crossed_swords:[PvP] {m.Name} matou {Name} {(m.Region != null && m.Region.Name != null ? $" em {m.Region.Name}":"")}");
+                    DiscordBot.SendMessage($":crossed_swords:[PvP] {m.Name} matou {Name} {(m.Region != null && m.Region.Name != null ? $" em {m.Region.Name}" : "")}");
                 }
-
                 else if (m is BaseCreature)
                 {
                     if (((BaseCreature)m).IsBoss)
                     {
-                        DiscordBot.SendMessage($":skull_crossbones: [BOSS] {Name} foi obliterado pelo boss {m.Name} !", 60);
+                        DiscordBot.SendMessage($":skull_crossbones: [BOSS] {Name} foi obliterado pelo boss {m.Name} !");
                     }
-                        DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por um(a) {m.Name}", 60);
+                    DiscordBot.SendMessage($":skull_crossbones: {Name} foi morto por um(a) {m.Name}");
                 }
             }
             PlayerMobile killer = m as PlayerMobile;
@@ -8223,7 +8224,7 @@ namespace Server.Mobiles
 
                     //pet.Loyalty = BaseCreature.MaxLoyalty; // Wonderfully happy
 
-                    if(Shard.DebugEnabled)
+                    if (Shard.DebugEnabled)
                     {
                         Shard.Debug("Auto stable de " + pet.Name, this);
                     }

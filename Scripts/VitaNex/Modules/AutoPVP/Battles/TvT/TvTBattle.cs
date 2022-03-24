@@ -11,6 +11,7 @@
 
 #region References
 using System;
+using System.Linq;
 using Fronteira.Discord;
 using Server;
 using Server.Mobiles;
@@ -84,6 +85,23 @@ namespace VitaNex.Modules.AutoPvP.Battles
             base.OnBattleStarted();
         }
 
+        public override void OnTeamMemberDeath(PvPTeam team, PlayerMobile pm)
+        {
+            base.OnTeamMemberDeath(team, pm);
+        }
+
+        public override void OnAfterTeamMemberDeath(PvPTeam team, PlayerMobile pm)
+        {
+            base.OnAfterTeamMemberDeath(team, pm);
+            if(!team.Members.Keys.Any(m => m.Alive))
+            {
+                if (team.Battle.State == PvPBattleState.Batalhando)
+                {
+                    team.Battle.State = PvPBattleState.Terminando;
+                }
+            }
+        }
+
         protected override void OnBattlePreparing()
         {
             base.OnBattlePreparing();
@@ -98,7 +116,7 @@ namespace VitaNex.Modules.AutoPvP.Battles
         protected override void OnQueueJoin(PlayerMobile pm, PvPTeam team)
         {
             base.OnQueueJoin(pm, team);
-            var msg = $"[Arena] {pm.Name} entrou na fila para arena {Name};";
+            var msg = $"[Arena] {pm.Name} entrou na fila para arena {Name}";
             foreach(var pl in NetState.GetOnlinePlayerMobiles())
             {
                 pl.SendMessage(msg);

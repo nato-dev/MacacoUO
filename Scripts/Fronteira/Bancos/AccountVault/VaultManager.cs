@@ -192,7 +192,7 @@ namespace Server.AccountVault
                         /*Are you sure you want to claim this vault? Doing so will forfeit any rental
                          * time remaining and place your vault contents in your backpack.*/
 
-                        BaseGump.SendGump(new PetTrainingStyleConfirmGump(pm, 1074974, 1158037, () =>
+                        BaseGump.SendGump(new ConfirmaGump(pm, 1074974, 1158037, () =>
                         {
                             vault.ClaimVault(pm);
                         }));

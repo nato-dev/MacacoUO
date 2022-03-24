@@ -265,7 +265,7 @@ namespace Server.Spells
                 if (Shard.SPHERE_STYLE)
                     chance *= 0.35; // sem pre cast mais dificil de resistir
                 else 
-                    chance *= 0.80;
+                    chance *= 0.90;
 
                 if (Caster is BaseCreature && target is PlayerMobile)
                     chance /= 1.5;

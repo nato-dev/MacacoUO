@@ -13,10 +13,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Fronteira.Discord;
 using Server;
 using Server.Mobiles;
-
+using Server.Network;
 using VitaNex.Schedules;
 #endregion
 
@@ -183,7 +183,24 @@ namespace VitaNex.Modules.AutoPvP.Battles
 			LocalBroadcast("[{0}]: Bandeira retornada !", flag.Team.Name);
 		}
 
-		public override bool CheckDamage(Mobile damaged, ref int damage)
+        protected override void OnQueueJoin(PlayerMobile pm, PvPTeam team)
+        {
+            base.OnQueueJoin(pm, team);
+            var msg = $"[CTF] {pm.Name} entrou na fila. Use .pvp para participar !";
+            foreach (var pl in NetState.GetOnlinePlayerMobiles())
+            {
+                pl.SendMessage(msg);
+            }
+            DiscordBot.SendMessage(":crossed_swords:" + msg);
+
+            if (Options.Rules.AutoStart)
+            {
+                if (Queue.Count >= this.MaxCapacity)
+                    this.State = PvPBattleState.Preparando;
+            }
+        }
+
+        public override bool CheckDamage(Mobile damaged, ref int damage)
 		{
 			if (!base.CheckDamage(damaged, ref damage))
 			{

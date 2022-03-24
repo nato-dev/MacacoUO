@@ -56,7 +56,7 @@ namespace Server.Spells.Fourth
             if (Shard.SPHERE_STYLE && Caster.Player)
                 return TimeSpan.FromSeconds(3);
             if (Shard.POL_STYLE && Caster.Player)
-                return base.GetCastDelay() + TimeSpan.FromSeconds(0.1);
+                return base.GetCastDelay() + TimeSpan.FromSeconds(0.4);
             else 
                 return base.GetCastDelay();
         }

@@ -81,10 +81,14 @@ namespace Server.Spells.Seventh
                     else
                         damage = Utility.Random(27, 22);
 
-                    if (Core.AOS && count > 2)
-                        damage = (damage * 2) / count;
-                    else if (!Core.AOS && count > 2)
-                        damage /= (count/2);
+                    //if (Core.AOS && count > 2)
+                    //    damage = (damage * 2) / count;
+                    //else if (!Core.AOS && count > 2)
+                    //    damage /= (count/2);
+
+                    var danoMax = dam.Hits * 0.8;
+                    if (damage > danoMax)
+                        damage = danoMax;
 
                     if (!Core.AOS && m != null && CheckResisted(m))
                     {

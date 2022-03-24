@@ -654,7 +654,7 @@ namespace Server
             new SkillInfo(21, "Hiding", 0.0, 0.0, 0.0, "Gatuno", null, 0.0, 0.8, 0.2, EASY, StatCode.Dex, StatCode.Int),
             new SkillInfo(22, "Provocation", 0.0, 4.5, 0.5, "Provocador", null, 0.0, 0.45, 0.05, COMBAT, StatCode.Int, StatCode.Dex, true ),
             new SkillInfo(23, "Inscription", 0.0, 2.0, 8.0, "Escriba", null, 0.0, 0.2, 0.8, COMBAT, StatCode.Int, StatCode.Dex),
-            new SkillInfo(24, "Lockpicking", 0.0, 25.0, 0.0, "Infiltrador", null, 0.0, 2.0, 0.0, EASY, StatCode.Dex, StatCode.Int),
+            new SkillInfo(24, "Lockpicking", 0.0, 25.0, 0.0, "Infiltrador", null, 0.0, 2.0, 0.0, MEDIUM, StatCode.Dex, StatCode.Int),
             new SkillInfo(25, "Magery", 0.0, 0.0, 15.0, "Mago", null, 0.0, 0.0, 1.5, COMBAT, StatCode.Int, StatCode.Str, true ),
             new SkillInfo(26, "Resisting Spells", 0.0, 0.0, 0.0, "Resistente", null, 0.25, 0.25, 0.5, COMBAT, StatCode.Str, StatCode.Dex),
             new SkillInfo(27, "Tactics", 0.0, 0.0, 0.0, "Tatico", null, 0.0, 0.2, 0.0, COMBAT, StatCode.Str, StatCode.Dex),

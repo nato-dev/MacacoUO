@@ -409,9 +409,9 @@ namespace Server.Spells
                 return true;
             }
 
-            var maxDistance = 15;
+            var maxDistance = 17;
             if (!caster.Mounted)
-                maxDistance = 8;
+                maxDistance = 9;
             /*
             if (Caster.RP && Caster.Player)
             {

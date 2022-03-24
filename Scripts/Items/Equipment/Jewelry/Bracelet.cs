@@ -1,5 +1,7 @@
 using System;
 using Server.Engines.Craft;
+using Server.Gumps;
+using Server.Mobiles;
 
 namespace Server.Items
 {
@@ -109,6 +111,29 @@ namespace Server.Items
             base.OnDoubleClick(from);
             from.SendMessage("Este bracelete ajuda com bonus nas habilidades das armas em PvM.");
             from.SendMessage("Para aprender sobre as habilidades das armas, veja nossa wiki.");
+            if(Bonus > 5)
+            {
+                Shard.Debug("Abrindo gump");
+                from.SendGump(new ConfirmaGump(from as PlayerMobile, "Derreter Bracelete ?", "Voce gostaria de derreter este bracelete e recuperar parte do material ?", () =>
+                {
+                    var a = false;
+                    var f = false;
+                    DefBlacksmithy.CheckAnvilAndForge(from, 3, out a, out f);
+                    if(!a || !f)
+                    {
+                        from.SendMessage("Voce precisa estar proximo a uma bigorna e uma forja para isto");
+                        return;
+                    }
+                    this.Consume();
+                    from.PlayAttackAnimation();
+                    from.PlaySound(0x042);
+                    from.OverheadMessage("* derreteu *");
+                    var item = new CristalDoPoder();
+                    item.Amount = 20 + Utility.Random(10);
+                    from.AddToBackpack(item);
+                    from.SendMessage("Voce recuperou parte do material");
+                }));
+            }
         }
 
         public override void AddNameProperties(ObjectPropertyList list)

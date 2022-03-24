@@ -36,6 +36,8 @@ namespace VitaNex.Modules.AutoPvP.Battles
             : base(battle, reader)
         { }
 
+
+
         public override void OnMemberRemoved(PlayerMobile pm)
         {
             if(Shard.DebugEnabled)

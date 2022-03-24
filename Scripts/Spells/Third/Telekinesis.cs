@@ -26,7 +26,8 @@ namespace Server.Spells.Third
         }
         public override void OnCast()
         {
-            this.Caster.Target = new InternalTarget(this);
+            this.Caster.SendMessage("A magia parece nao ter efeito.");
+            //this.Caster.Target = new InternalTarget(this);
         }
 
         public void Target(ITelekinesisable obj)

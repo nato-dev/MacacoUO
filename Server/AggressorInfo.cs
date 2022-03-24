@@ -67,7 +67,7 @@ namespace Server
 			Refresh();
 		}
 
-		private static TimeSpan m_ExpireDelay = TimeSpan.FromMinutes(2.0);
+		private static TimeSpan m_ExpireDelay = TimeSpan.FromMinutes(1.0);
 
 		public static TimeSpan ExpireDelay { get { return m_ExpireDelay; } set { m_ExpireDelay = value; } }
 

@@ -1844,7 +1844,7 @@ namespace Server.Items
                     {
                         if (defender.Weapon.MaxRange <= defender.GetDistance(attacker))
                         {
-                            if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 18))
+                            if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 25))
                             {
                                 if (Shard.DebugEnabled)
                                 {

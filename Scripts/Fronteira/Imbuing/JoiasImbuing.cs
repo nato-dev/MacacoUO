@@ -56,6 +56,9 @@ namespace Server.Items
     {
         private int _nivel;
 
+        [CommandProperty(AccessLevel.GameMaster)]
+        public int Nivel { get { return _nivel; } set { _nivel = value; InvalidateProperties(); } }
+
         public static int GetNivel(Mobile from, ElementoPvM elemento)
         {
             if (from == null || from.Elemento != elemento)
@@ -79,9 +82,6 @@ namespace Server.Items
             }
             return base.CanEquip(from);
         }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int Nivel { get { return _nivel; } set { _nivel = value; InvalidateProperties(); } }
 
         public override void AddNameProperties(ObjectPropertyList list)
         {
@@ -129,7 +129,6 @@ namespace Server.Items
             base.Serialize(writer);
             writer.Write((int)0); // version
             writer.Write(Nivel);
-
         }
 
         public override void Deserialize(GenericReader reader)
@@ -254,6 +253,7 @@ namespace Server.Items
         {
             Name = "Fragmento Antigo";
             Hue = 1152;
+            Stackable = true;
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -261,7 +261,7 @@ namespace Server.Items
             base.OnDoubleClick(from);
             if (this.Amount < 10)
             {
-                from.SendMessage("Junte 10 fragmentos antigos para criar um anel PvM");
+                from.SendMessage("Junte 10 fragmentos antigos para criar um anel de dano PvM");
                 return;
             }
 
@@ -302,6 +302,7 @@ namespace Server.Items
         public override void Deserialize(GenericReader reader)
         {
             base.Deserialize(reader);
+            Stackable = true;
         }
     }
 

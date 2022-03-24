@@ -202,6 +202,11 @@ namespace Server.Misc
 
         public static double GetExp(double skill, double skillDifficulty, bool work, bool pvm, bool craft, double gcBonus = 0)
         {
+            if(skillDifficulty== SkillInfo.EASY)
+            {
+                return 1;
+            }
+
             // Formuleta simplona de up
             var gc = GC_INICIAL + (gcBonus * 4);
             Shard.Debug("GC INICIAL: " + gc);

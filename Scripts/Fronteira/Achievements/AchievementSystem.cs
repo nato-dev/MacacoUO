@@ -597,7 +597,7 @@ namespace Scripts.Mythik.Systems.Achievements
                     {
                         if(pl!=null && pl.NetState != null)
                         {
-                            pl.SendMessage(78, msg);
+                            pl.SendMessage(55, msg);
                         }
                     }
                     DiscordBot.SendMessage(":trophy:" + msg);

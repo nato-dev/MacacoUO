@@ -1556,6 +1556,7 @@ namespace Server.Spells
                 if(elemento == ElementoPvM.Fogo)
                 {
                     var burnDamage = (int)( (damageGiven/2) * from.GetBonusElemento(ElementoPvM.Fogo));
+                    
                     if(burnDamage > 0)
                         BurnAttack.BeginBurn(target, from, (int)burnDamage, false);
                 }

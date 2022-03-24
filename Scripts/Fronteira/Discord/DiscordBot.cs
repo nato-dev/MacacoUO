@@ -83,6 +83,7 @@ namespace Fronteira.Discord
             Requesta(message);
         }
 
+        // MIGRAR PRA UMA THREAD
         private static async void Requesta(string message)
         {
             var uri = GetWebhookUri();

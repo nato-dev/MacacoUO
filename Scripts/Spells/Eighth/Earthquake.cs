@@ -62,20 +62,20 @@ namespace Server.Spells.Eighth
                     }
                     else
                     {
-                        damage = (id.Hits * 6) / 10;
+                        damage = (int)(id.Hits * 0.8);
 
                         if ((m == null || !m.Player) && damage < 40)
                             damage = 40;
-                        else if (id is PlayerMobile && damage > 75)
-                            damage = 75;
-                        else if (damage > 100)
-                            damage = 100;
+                        else if (id is PlayerMobile && damage > 60)
+                            damage = 60;
+                        else if (damage > 120)
+                            damage = 120;
                     }
 
                     var mob = id as Mobile;
                     Timer.DelayCall(TimeSpan.FromSeconds(0.6), () =>
                     {
-                        mob.Freeze(TimeSpan.FromSeconds(1));
+                        mob.Freeze(TimeSpan.FromSeconds(mob.Player ? 1 : 2));
                         mob.OverheadMessage("* atordoado *");
                     });
 

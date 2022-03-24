@@ -143,7 +143,7 @@ namespace Server.Misc
                     return true; // Guild allies or enemies can be harmful
             }
 
-            if (defender != null && defender.Region != null && defender.Region.IsPartOf("New Haven") && attacker != null && attacker.Player)
+            if (defender != null && defender.Region != null && defender.Region.IsPartOf("New Haven") && attacker != null && (attacker.Player || attacker.IsControlled()))
             {
                 if (!DuelController.IsInDuel(defender));
                     return false;

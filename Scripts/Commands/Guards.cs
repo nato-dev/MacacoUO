@@ -34,10 +34,11 @@ namespace Server.Commands
                 e.Mobile.SendMessage("Os guardas nao podem ouvir os mortos");
                 return;
             }
-            var m = msg[rnd.Next(msg.Length)];
-            e.Mobile.Yell(m);
+           
             if(e.Mobile.Region != null && e.Mobile.Region is GuardedRegion)
             {
+                var m = msg[rnd.Next(msg.Length)];
+                e.Mobile.Yell(m);
                 var region = (GuardedRegion)e.Mobile.Region;
                 region.CallGuards(e.Mobile.Location);
             } else

@@ -472,7 +472,9 @@ namespace VitaNex.Modules.AutoPvP
 				return;
 			}
 
-			Dead.Remove(pm);
+            Shard.Debug("Remove member");
+
+            Dead.Remove(pm);
 			Idlers.Remove(pm);
 
 			Members.Remove(pm);

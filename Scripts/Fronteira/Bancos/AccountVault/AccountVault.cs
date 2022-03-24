@@ -597,7 +597,7 @@ namespace Server.AccountVault
                     }
                     else
                     {
-                        BaseGump.SendGump(new PetTrainingStyleConfirmGump(pm, 1074974, SystemSettings.RentMessage(), () =>
+                        BaseGump.SendGump(new ConfirmaGump(pm, 1074974, SystemSettings.RentMessage(), () =>
                         {
                             if (CanAssignVault(pm, vault))
                             {

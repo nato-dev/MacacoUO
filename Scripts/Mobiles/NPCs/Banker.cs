@@ -129,6 +129,7 @@ namespace Server.Mobiles
                 }
             }
 
+            var a = amount;
             for (var i = 0; amount > 0 && i < checks.Length; ++i)
             {
                 var check = (BankCheck)checks[i];
@@ -149,7 +150,7 @@ namespace Server.Mobiles
                 from.SendLocalizedMessage(amount + " moedas foram retiradas de seu banco"); // ~1_AMOUNT~ gold has been removed from your bank box.
             else
             {
-                from.SendMessage(55, $"[Banco] -{amount}");
+                from.SendMessage(55, $"[Banco] -{a} ({balance-a})");
             }
             return true;
         }

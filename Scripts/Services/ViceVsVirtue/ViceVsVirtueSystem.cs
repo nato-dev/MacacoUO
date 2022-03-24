@@ -160,7 +160,7 @@ namespace Server.Engines.VvV
                 entry.Active = true;
 
             pm.SendLocalizedMessage("Voce entrou na guerra infinita"); // You have joined Vice vs Virtue!
-            //pm.SendLocalizedMessage(1063156, g.Name); // The guild information for ~1_val~ has been updated.
+            pm.SendLocalizedMessage(1063156, g.Name); // The guild information for ~1_val~ has been updated.
 
             pm.Delta(MobileDelta.Noto);
             pm.ProcessDelta();
@@ -470,13 +470,38 @@ namespace Server.Engines.VvV
 
             VvVPlayerEntry entry = Instance.GetPlayerEntry<VvVPlayerEntry>(m as PlayerMobile);
 
-            if (entry == null)
+            var inRegion = m.Region.IsPartOf(ViceVsVirtueSystem.Instance.Battle.City.ToString());
+
+            if (entry == null || !inRegion)
                 return false;
 
             return entry.Active && (!guildedonly || (entry.Guild != null));
         }
 
-        public static bool IsVvV(Mobile m, out VvVPlayerEntry entry, bool checkpet = true, bool guildedonly = false)
+        public static void OnRegionChange(PlayerMobile pl, Region Old, Region New)
+        {
+            if (ViceVsVirtueSystem.Instance != null && ViceVsVirtueSystem.Enabled)
+            {
+                var oldVVV = Old.IsPartOf(ViceVsVirtueSystem.Instance.Battle.City.ToString());
+                var newVVV = New.IsPartOf(ViceVsVirtueSystem.Instance.Battle.City.ToString());
+                if (oldVVV && !newVVV)
+                {
+                    pl.Delta(MobileDelta.Noto);
+                    pl.SendMessage("Voce saiu da regiao da guerra infinita");
+                    foreach (var p in pl.FindPlayersInRange(pl.Map, 20))
+                        p.Delta(MobileDelta.Noto);
+                }
+                else if (!oldVVV && newVVV)
+                {
+                    pl.Delta(MobileDelta.Noto);
+                    pl.SendMessage("Voce entrou na regiao da guerra infinita");
+                    foreach (var p in pl.FindPlayersInRange(pl.Map, 20))
+                        p.Delta(MobileDelta.Noto);
+                }
+            }
+        }
+
+            public static bool IsVvV(Mobile m, out VvVPlayerEntry entry, bool checkpet = true, bool guildedonly = false)
         {
             if (!Enabled)
             {

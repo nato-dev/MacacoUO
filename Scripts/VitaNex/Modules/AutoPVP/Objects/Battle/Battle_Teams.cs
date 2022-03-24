@@ -305,7 +305,8 @@ namespace VitaNex.Modules.AutoPvP
 
 		public virtual void TeamEject(PvPTeam team)
 		{
-			if (team != null && !team.Deleted)
+            Shard.Debug("Ejected");
+            if (team != null && !team.Deleted)
 			{
 				team.ForEachMember(member => team.RemoveMember(member, true));
 			}
@@ -340,7 +341,9 @@ namespace VitaNex.Modules.AutoPvP
 
 		public virtual void OnTeamMemberDeath(PvPTeam team, PlayerMobile pm)
 		{
-			LocalBroadcast("{0} morreu.", pm.RawName);
+
+            Shard.Debug("Team death");
+            LocalBroadcast("{0} morreu.", pm.RawName);
 
 			UpdateStatistics(team, pm, s => ++s.Deaths);
 
@@ -434,6 +437,7 @@ namespace VitaNex.Modules.AutoPvP
 
 		public virtual bool TryKickOnDeath(PvPTeam team, PlayerMobile pm, bool isLoss)
 		{
+            Shard.Debug("Kick on death");
 			if (team.KickOnDeath)
 			{
 				if (isLoss)
@@ -451,7 +455,8 @@ namespace VitaNex.Modules.AutoPvP
 
 		public virtual bool TryRespawnOnDeath(PvPTeam team, PlayerMobile pm, bool isDelayed)
 		{
-			if (team.RespawnOnDeath)
+            Shard.Debug("Respawn on death");
+            if (team.RespawnOnDeath)
 			{
 				if (isDelayed && team.RespawnDelay > TimeSpan.Zero)
 				{

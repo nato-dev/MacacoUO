@@ -9,12 +9,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+
+
 namespace Server.Fronteira.Imbuing
 {
+
+
+
     public class ColarDanoGump : Gump
     {
         private AnelDano e;
-
 
         public ColarDanoGump(PlayerMobile pl, AnelDano colar) : base(0, 0)
         {
@@ -24,36 +29,50 @@ namespace Server.Fronteira.Imbuing
             this.Dragable = true;
             this.Resizable = false;
 
-            AddPage(0);
-            AddBackground(673 - 130, 334 - 20, 400, 150, 9200);
-            AddHtml(673 - 125, 334 - 20, 100, 20, "Aprimorar Anel ?", false, false);
-            var nivel = colar.Nivel;
+            this.AddPage(0);
+            this.AddBackground(59, 76, 344, 199, 9200);
+            this.AddHtml(191, 82, 90, 19, @"Aprimorar Anel", (bool)false, (bool)false);
 
-            AddBackground(673 - 110, 334, 111, 101, 3500);
-            AddHtml(711 - 110, 350, 183, 22, 5.ToString(), (bool)false, (bool)false);
-            AddHtml(678 - 110, 406, 100, 22, "Frg. Reliquia", (bool)true, (bool)false);
-            //AddItem(703, 374, custos.Item);
-            NewAuctionGump.AddItemCentered(673 - 100, 334, 111, 101, 0x2DB3, Paragon.Hue, this);
+            this.AddBackground(67, 112, 100, 100, 3500);
+           
+            this.AddBackground(62, 192, 111, 24, 3000);
+          
+           
+            this.AddHtml(62, 192, 111, 24, $"<CENTER>Frg. Reliquia</CENTER>", false, false);
+            NewAuctionGump.AddItemCentered(67, 112, 111, 101, 0x2DB3, Paragon.Hue, this);
+            this.AddHtml(71, 125, 89, 21, $"<CENTER>5</CENTER>", false, false);
 
-            AddBackground(673, 334, 111, 101, 3500);
-            AddHtml(711, 350, 183, 22, 20.ToString(), (bool)false, (bool)false);
-            AddHtml(678, 406, 120, 22, "Crtl. Elemental", (bool)true, (bool)false);
-            //AddItem(703, 374, custos.Item);
-            NewAuctionGump.AddItemCentered(673, 334, 111, 101, 16395, 2611, this);
+            this.AddBackground(180, 112, 100, 100, 3500);
+        
+            this.AddBackground(174, 192, 111, 24, 3000);
+            this.AddHtml(174, 192, 111, 24, $"<CENTER>Crtl Elemental</CENTER>", false, false);
+            NewAuctionGump.AddItemCentered(180, 112, 111, 101, 16395, 2611, this);
+            this.AddHtml(184, 125, 89, 21, $"<CENTER>20</CENTER>", false, false);
 
-            AddBackground(784, 335, 111, 101, 3500);
-            AddHtml(827, 350, 83, 22, 10.ToString(), (bool)false, (bool)false);
-            AddHtml(793, 405, 100, 22, "Frg. Antigo", (bool)true, (bool)false);
-            //AddItem(811, 367, 576);
-            NewAuctionGump.AddItemCentered(784, 335, 111, 101, 0x1053, 1152, this);
+            this.AddBackground(292, 112, 100, 100, 3500);
+            this.AddBackground(286, 192, 111, 24, 3000);
+            this.AddHtml(286, 192, 111, 24, $"<CENTER>Frg. Antigo</CENTER>", false, false);
+            NewAuctionGump.AddItemCentered(292, 112, 111, 101, 0x1053, 1152, this);
+            this.AddHtml(296, 125, 89, 21, $"<CENTER>10</CENTER>", false, false);
 
-            AddButton(804, 435, 247, 248, (int)ElementoButtons.Upar, GumpButtonType.Reply, 0);
+            this.AddImage(49, 61, 113);
+            this.AddImage(381, 63, 113);
+            this.AddImage(386, 259, 113);
+            this.AddImage(46, 254, 113);
+            this.AddHtml(310, 231, 85, 21, @"Aprimorar", (bool)false, (bool)false);
+            this.AddButton(282, 228, 2472, 2472, 1, GumpButtonType.Reply, 0);
+
+            this.AddImage(381, 63, 113);
+            this.AddImage(386, 259, 113);
+            this.AddImage(46, 254, 113);
+            this.AddImage(49, 61, 113);
         }
 
         public enum ElementoButtons
         {
             Nads,
             Upar,
+            Derreter
         }
 
 
@@ -63,6 +82,16 @@ namespace Server.Fronteira.Imbuing
 
             if (info.ButtonID != 1)
             {
+                return;
+            }
+
+            if(info.ButtonID == 2)
+            {
+                from.SendGump(new ConfirmaGump(from, "Confirmar Derreter?", "Voce deseja derreter este anel, assim destruindo-o e recuperando material ?", () => {
+                    e.Consume();
+                    //var i = new 
+                   // from.PlaceInBackpack()
+                }));
                 return;
             }
 
