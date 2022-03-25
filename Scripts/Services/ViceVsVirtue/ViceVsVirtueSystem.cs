@@ -502,12 +502,19 @@ namespace Server.Engines.VvV
             return entry.Active && entry.Guild != null;
         }
 
+        public static string GetRegionName(VvVCity city)
+        {
+            if (city == VvVCity.SkaraBrae)
+                return "Skara Brae";
+            return city.ToString();
+        }
+
         public static void OnRegionChange(PlayerMobile pl, Region Old, Region New)
         {
             if (ViceVsVirtueSystem.Instance != null && ViceVsVirtueSystem.Enabled)
             {
-                var oldVVV = Old.IsPartOf(ViceVsVirtueSystem.Instance.Battle.City.ToString());
-                var newVVV = New.IsPartOf(ViceVsVirtueSystem.Instance.Battle.City.ToString());
+                var oldVVV = Old.IsPartOf(GetRegionName(ViceVsVirtueSystem.Instance.Battle.City));
+                var newVVV = New.IsPartOf(GetRegionName(ViceVsVirtueSystem.Instance.Battle.City));
                 if (oldVVV && !newVVV)
                 {
                     pl.Delta(MobileDelta.Noto);

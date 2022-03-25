@@ -22,7 +22,7 @@ namespace Server.Engines.VvV
 
             AddBackground(0, 0, 500, 200, 83);
 
-            AddHtml(0, 25, 500, 20, "Atencao", Engines.Quests.BaseQuestGump.C32216(0xFF0000), false, false);
+            AddHtml(0, 25, 500, 20, "!!! ATENCAO !!!", Engines.Quests.BaseQuestGump.C32216(0xFF0000), false, false);
             AddHtml(10, 55, 480, 100, "Voce esta em uma zona de Guerra Infinita e pode ser atacado !", 0xFFFF, false, false); // You are in an active Vice vs Virtue battle region!  If you do not leave the City you will be open to attack!
 
             AddButton(463, 168, 4005, 4007, 1, GumpButtonType.Reply, 0);
