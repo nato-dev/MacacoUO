@@ -78,10 +78,13 @@ namespace Server.Mobiles
             SorteiaItem(new PergaminhoSkillcap());
             SorteiaItem(new DragonTurtleFountainAddonDeed());
             DistribuiItem(Decos.RandomDeco());
-            if (Utility.RandomDouble() < 0.2)
-                SorteiaItem(Carnage.GetRandomPS(110));
-            else
-                SorteiaItem(Carnage.GetRandomPS(105));
+            for (var i = 0; X < 10; i++)
+            {
+                if (Utility.RandomDouble() < 0.2)
+                    SorteiaItem(Carnage.GetRandomPS(115));
+                else
+                    SorteiaItem(Carnage.GetRandomPS(110));
+            }
 
             for (var x = 0; x < 5; x++)
             {

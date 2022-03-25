@@ -655,7 +655,7 @@ namespace Server.Engines.CannedEvil
                                         }
                                         else
                                         {
-                                            PowerScroll PS = PowerScroll.CreateRandomNoCraft(5, 5);
+                                            Item PS = PowerScroll.CreateRandomNoCraft(5, 5);
                                             GiveScrollTo(pm, (SpecialScroll)PS);
                                         }
                                     }

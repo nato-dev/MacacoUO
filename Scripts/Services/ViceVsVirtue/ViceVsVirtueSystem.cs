@@ -32,7 +32,8 @@ namespace Server.Engines.VvV
       //  Ocllo, 
         SkaraBrae,
         Trinsic,
-        Yew
+        Yew,
+        NIUMA
     }
 
     public class ViceVsVirtueSystem : PointsSystem
@@ -160,7 +161,7 @@ namespace Server.Engines.VvV
                 entry.Active = true;
 
             pm.SendLocalizedMessage("Voce entrou na guerra infinita"); // You have joined Vice vs Virtue!
-            pm.SendLocalizedMessage(1063156, g.Name); // The guild information for ~1_val~ has been updated.
+            //pm.SendLocalizedMessage(1063156, g.Name); // The guild information for ~1_val~ has been updated.
 
             pm.Delta(MobileDelta.Noto);
             pm.ProcessDelta();
@@ -206,7 +207,7 @@ namespace Server.Engines.VvV
             }
         }
 
-        public void CheckBattleStatus()
+        public void CheckBattleStatus(bool force=false)
         {
             Shard.Debug("Check Status Global");
             if (Battle.OnGoing)
@@ -214,7 +215,7 @@ namespace Server.Engines.VvV
 
             int count = EnemyGuildCount();
 
-            if (count > 0)
+            if (count > 0 || force)
             {
                 Battle.Begin();
             }
@@ -468,14 +469,37 @@ namespace Server.Engines.VvV
                     m = ((BaseCreature)m).GetMaster();
             }
 
+            if (m.IsYoung() || m.Guild == null)
+                return false;
+
             VvVPlayerEntry entry = Instance.GetPlayerEntry<VvVPlayerEntry>(m as PlayerMobile);
 
-            var inRegion = m.Region.IsPartOf(ViceVsVirtueSystem.Instance.Battle.City.ToString());
+            var cidade = ViceVsVirtueSystem.Instance.Battle.City.ToString();
+            if (ViceVsVirtueSystem.Instance.Battle.City == VvVCity.SkaraBrae)
+                cidade = "Skara Brae";
+            var inRegion = m.Region.IsPartOf(cidade);
+
+            /*
+            if (ViceVsVirtueSystem.Instance.Battle.OnGoing && m.Player)
+            {
+             
+                if (inRegion)
+                {
+                    //if(entry == null || !entry.Active)
+                    //{
+                    //    Instance.AddPlayer(m as PlayerMobile);
+                    //}
+                    //return true;
+                }
+            }
+            */
+
+           
 
             if (entry == null || !inRegion)
                 return false;
 
-            return entry.Active && (!guildedonly || (entry.Guild != null));
+            return entry.Active && entry.Guild != null;
         }
 
         public static void OnRegionChange(PlayerMobile pl, Region Old, Region New)

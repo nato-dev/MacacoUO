@@ -240,9 +240,10 @@ namespace Server.Items
                 {
                     damage += (int)(damage * from.GetBonusElemento(ElementoPvM.Agua));
                     var nivelColar = ColarElemental.GetNivel(from, ElementoPvM.Agua);
-                    damage += nivelColar * 3;
+                    if (nivelColar > 0)
+                        damage += 10;
+                    damage += nivelColar * 5;
                 }
-
 
                 if (damage > 35)
                 {

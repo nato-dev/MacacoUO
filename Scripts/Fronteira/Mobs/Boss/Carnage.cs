@@ -67,7 +67,15 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
+            DistribuiItem(GetRandomPS(105));
+            DistribuiItem(GetRandomPS(105));
+            DistribuiItem(GetRandomPS(105));
             SorteiaItem(GetRandomPS(105));
+            SorteiaItem(GetRandomPS(105));
+            SorteiaItem(GetRandomPS(105));
+            SorteiaItem(GetRandomPS(105));
+            SorteiaItem(GetRandomPS(105));
+            SorteiaItem(GetRandomPS(110));
             SorteiaItem(GetRandomPS(110));
             SorteiaItem(new PergaminhoCarregamento());
             SorteiaItem(new SkillBook());
@@ -137,27 +145,47 @@ namespace Server.Mobiles
 
         public static Item GetRandomPS(int skill)
         {
+            if(skill<= 105)
+            {
+                skill = 101 + Utility.Random(5);
+            } else if(skill <= 110)
+            {
+                skill = 106 + Utility.Random(5);
+            }
+            else if (skill <= 115)
+            {
+                skill = 111 + Utility.Random(5);
+            }
+            else if (skill <= 120)
+            {
+                skill = 116 + Utility.Random(5);
+            }
+            return _GetRandomPS(skill);
+        }
+
+        public static Item _GetRandomPS(int skill)
+        {
             switch (Utility.Random(19))
             {
-                case 0: return new PowerScroll(SkillName.Mining, skill);
-                case 1: return new PowerScroll(SkillName.Blacksmith, skill);
-                case 2: return new PowerScroll(SkillName.Tinkering, skill);
-                case 3: return new PowerScroll(SkillName.Cooking, skill);
-                case 4: return new PowerScroll(SkillName.Carpentry, skill);
-                case 5: return new PowerScroll(SkillName.Fletching, skill);
-                case 6: return new PowerScroll(SkillName.Tailoring, skill);
-                case 7: return new PowerScroll(SkillName.Fishing, skill);
-                case 8: return new PowerScroll(SkillName.Peacemaking, skill);
-                case 9: return new PowerScroll(SkillName.Provocation, skill);
-                case 10: return new PowerScroll(SkillName.Discordance, skill);
-                case 11: return new PowerScroll(SkillName.AnimalTaming, skill);
-                case 12: return new PowerScroll(SkillName.Lumberjacking, skill);
-                case 13: return new PowerScroll(SkillName.Alchemy, skill);
-                case 14: return new PowerScroll(SkillName.Fishing, skill);
-                case 15: return new PowerScroll(SkillName.Imbuing, skill);
-                case 16: return new PowerScroll(SkillName.Cartography, skill);
-                case 17: return new PowerScroll(SkillName.ArmsLore, skill);
-                case 18: return new PowerScroll(SkillName.RemoveTrap, skill);
+                case 0: return new PowerScrollNovo(SkillName.Mining, skill);
+                case 1: return new PowerScrollNovo(SkillName.Blacksmith, skill);
+                case 2: return new PowerScrollNovo(SkillName.Tinkering, skill);
+                case 3: return new PowerScrollNovo(SkillName.Cooking, skill);
+                case 4: return new PowerScrollNovo(SkillName.Carpentry, skill);
+                case 5: return new PowerScrollNovo(SkillName.Fletching, skill);
+                case 6: return new PowerScrollNovo(SkillName.Tailoring, skill);
+                case 7: return new PowerScrollNovo(SkillName.Fishing, skill);
+                case 8: return new PowerScrollNovo(SkillName.Peacemaking, skill);
+                case 9: return new PowerScrollNovo(SkillName.Provocation, skill);
+                case 10: return new PowerScrollNovo(SkillName.Discordance, skill);
+                case 11: return new PowerScrollNovo(SkillName.AnimalTaming, skill);
+                case 12: return new PowerScrollNovo(SkillName.Lumberjacking, skill);
+                case 13: return new PowerScrollNovo(SkillName.Alchemy, skill);
+                case 14: return new PowerScrollNovo(SkillName.Fishing, skill);
+                case 15: return new PowerScrollNovo(SkillName.Imbuing, skill);
+                case 16: return new PowerScrollNovo(SkillName.Cartography, skill);
+                case 17: return new PowerScrollNovo(SkillName.ArmsLore, skill);
+                case 18: return new PowerScrollNovo(SkillName.RemoveTrap, skill);
             }
             return null;
         }

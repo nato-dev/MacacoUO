@@ -36,10 +36,10 @@ namespace Server.Ziden.Achievements
         [Constructable]
         public VitoriaFFA()
         {
-            AddItem(new PergaminhoCarregamento());
-            AddItem(new SacolaJoias());
-            AddItem(new SacolaPots());
-            AddItem(new Gold(5000));
+            this.DropItem(new PergaminhoCarregamento());
+            this.DropItem(new SacolaJoias());
+            this.DropItem(new SacolaPots());
+            this.DropItem(new Gold(5000));
             Name = "Vitoria do FFA";
         }
 
@@ -61,18 +61,51 @@ namespace Server.Ziden.Achievements
         [Constructable]
         public ParticipacaoPvP()
         {
-            AddItem(new CombatSkillBook());
-            AddItem(new CombatSkillBook());
-            AddItem(new SacolaJoias());
-            for (var x = 0; x < 20; x++)
+            this.DropItem(new CombatSkillBook());
+            this.DropItem(new CombatSkillBook());
+            this.DropItem(new SacolaJoias(6));
+            for (var x = 0; x < 10; x++)
             {
-                this.AddItem(new HealPotion());
-                this.AddItem(new CurePotion());
-                this.AddItem(new ExplosionPotion());
-                this.AddItem(new ManaPotion());
-                this.AddItem(new RefreshPotion());
+                this.DropItem(new HealPotion());
+                this.DropItem(new CurePotion());
+                this.DropItem(new ExplosionPotion());
+                this.DropItem(new ManaPotion());
+                this.DropItem(new RefreshPotion());
             }
-            AddItem(new Gold(3000));
+            this.DropItem(new Gold(3000));
+            Name = "Sacola";
+        }
+
+        public ParticipacaoPvP(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
+
+    public class MiniParticipacaoPvP : Bag
+    {
+        [Constructable]
+        public MiniParticipacaoPvP()
+        {
+            this.DropItem(new CombatSkillBook());
+            this.DropItem(new CombatSkillBook());
+            this.DropItem(new SacolaJoias(3));
+            for (var x = 0; x < 3; x++)
+            {
+                this.DropItem(new HealPotion());
+                this.DropItem(new CurePotion());
+                this.DropItem(new ExplosionPotion());
+                this.DropItem(new ManaPotion());
+                this.DropItem(new RefreshPotion());
+            }
+            this.DropItem(new Gold(3000));
             Name = "Sacola";
         }
 
@@ -96,14 +129,12 @@ namespace Server.Ziden.Achievements
         {
             for (var x = 0; x < 10; x++)
             {
-                this.AddItem(new HealPotion());
-                this.AddItem(new CurePotion());
-                this.AddItem(new ExplosionPotion());
-                this.AddItem(new ManaPotion());
-                this.AddItem(new RefreshPotion());
+                this.DropItem(new HealPotion());
+                this.DropItem(new CurePotion());
+                this.DropItem(new ExplosionPotion());
+                this.DropItem(new ManaPotion());
+                this.DropItem(new RefreshPotion());
             }
-
-           
             Name = "Sacola";
         }
 
@@ -130,6 +161,13 @@ namespace Server.Ziden.Achievements
         {
             Name = "Trofeu";
             Textos = new string[] { "Apenas um trofeu", "Nada importante" };
+        }
+
+        [Constructable]
+        public Trofeu(string texto1, string texto2) : base(0x1227)
+        {
+            Name = "Trofeu";
+            Textos = new string[] { texto1, texto2 };
         }
 
         public override void AddNameProperties(ObjectPropertyList list)
@@ -337,7 +375,7 @@ namespace Server.Ziden.Achievements
         [Constructable]
         public SacolaBands()
         {
-            this.AddItem(new Bandage(50));
+            this.DropItem(new Bandage(50));
             Name = "Sacola";
         }
 
@@ -361,7 +399,17 @@ namespace Server.Ziden.Achievements
         {
             for (var i = 0; i < 20; i++)
             {
-                this.AddItem(Loot.RandomGem());
+                this.DropItem(Loot.RandomGem());
+            }
+            Name = "Sacola de Joias";
+        }
+
+        [Constructable]
+        public SacolaJoias(int qtd)
+        {
+            for (var i = 0; i < qtd; i++)
+            {
+                this.DropItem(Loot.RandomGem());
             }
             Name = "Sacola de Joias";
         }

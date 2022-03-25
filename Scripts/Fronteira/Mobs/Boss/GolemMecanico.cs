@@ -286,9 +286,6 @@ namespace Server.Mobiles
             {
                 if (e.m_HasRight && e.m_Mobile != null)
                 {
-                    if (Utility.RandomDouble() > 0.33)
-                        continue;
-
                     var ps = Carnage.GetRandomPS(105);
                     if (ps != null)
                     {

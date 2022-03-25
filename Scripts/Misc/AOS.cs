@@ -547,7 +547,7 @@ namespace Server
 
             totalDamage = m.Damage(totalDamage, damageDealer, true, false);
 
-            if (Core.SA && type == DamageType.Melee && damageDealer is BaseCreature &&
+            if (type == DamageType.Melee && damageDealer is BaseCreature &&
                 (m is PlayerMobile || (m is BaseCreature && !((BaseCreature)m).IsMonster)))
             {
                 damageDealer.RegisterDamage(totalDamage / 4, m);

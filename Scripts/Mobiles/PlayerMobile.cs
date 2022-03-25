@@ -2712,7 +2712,7 @@ namespace Server.Mobiles
 
             BestialSetHelper.OnHeal(this, from, ref amount);
 
-            if (Core.SA && amount > 0 && from != null && from != this)
+            if (amount > 0 && from != null && from != this)
             {
                 for (int i = Aggressed.Count - 1; i >= 0; i--)
                 {

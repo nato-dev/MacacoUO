@@ -83,6 +83,10 @@ namespace Server.Misc
                 }
             }
             */
+
+            if (Party.Get(from) == Party.Get(target))
+                return true;
+
             if (ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.IsEnemy(from, target))
             {
                 return false;

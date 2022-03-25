@@ -13,7 +13,7 @@ namespace Server.Engines.BulkOrders
     {
         public static int PS105 = 100;
         public static int PS110 = 500;
-        public static int PS115 = 1200;
+        public static int PS115 = 1500;
         public static int PS120 = 2500;
 
         private readonly int m_Points;
@@ -431,6 +431,7 @@ namespace Server.Engines.BulkOrders
         private static readonly ConstructCallback PowderOfTemperament = new ConstructCallback(CreatePowderOfTemperament);
         private static readonly ConstructCallback RunicHammer = new ConstructCallback(CreateRunicHammer);
         private static readonly ConstructCallback PowerScroll = new ConstructCallback(CreatePowerScroll);
+        private static readonly ConstructCallback PowerScrollNovo = new ConstructCallback(CreatePowerScrollNovo);
         private static readonly ConstructCallback PowerScroll2 = new ConstructCallback(CreatePowerScroll2);
         private static readonly ConstructCallback PowerScroll3 = new ConstructCallback(CreatePowerScroll3);
         private static readonly ConstructCallback ColoredAnvil = new ConstructCallback(CreateColoredAnvil);
@@ -493,6 +494,14 @@ namespace Server.Engines.BulkOrders
         {
             if (type == 5 || type == 10 || type == 15 || type == 20)
                 return new PowerScroll(SkillName.Blacksmith, 100 + type);
+
+            throw new InvalidOperationException();
+        }
+
+        private static Item CreatePowerScrollNovo(int type)
+        {
+            if (type == 5 || type == 10 || type == 15 || type == 20)
+                return new PowerScrollNovo(SkillName.Blacksmith, 100 + type);
 
             throw new InvalidOperationException();
         }

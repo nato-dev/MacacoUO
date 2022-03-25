@@ -238,10 +238,6 @@ namespace Server.Mobiles
             base.OnThink();
         }
 
-        public static Item GetRandomPS(int skill)
-        {
-            return Carnage.GetRandomPS(105);
-        }
 
         public override bool OnBeforeDeath()
         {
@@ -249,8 +245,8 @@ namespace Server.Mobiles
             {
                 if (e.m_HasRight && e.m_Mobile != null)
                 {
-                    if (Utility.RandomBool())
-                        e.m_Mobile.AddToBackpack(GetRandomPS(105));
+                    e.m_Mobile.AddToBackpack(Carnage.GetRandomPS(105));
+                    e.m_Mobile.AddToBackpack(Carnage.GetRandomPS(105));
 
                     e.m_Mobile.AddToBackpack(new CabecaAnthony());
                     e.m_Mobile.AddToBackpack(new LivroAntigo());

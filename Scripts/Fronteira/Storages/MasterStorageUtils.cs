@@ -27,7 +27,7 @@ namespace fronteira
 		{ 
 			typeof(Amber), 			typeof(Amethyst), 	typeof(Citrine), 	typeof(Diamond), 
 			typeof(Emerald), 		typeof(Ruby), 		typeof(Sapphire), 	typeof(StarSapphire), 
-			typeof(Tourmaline), 	typeof(Board),		typeof(PowerScroll)
+			typeof(Tourmaline), 	typeof(Board),		typeof(PowerScrollNovo)
 		};
 
 		//This is the currency items types

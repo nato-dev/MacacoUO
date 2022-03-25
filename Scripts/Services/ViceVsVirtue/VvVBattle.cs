@@ -237,7 +237,7 @@ namespace Server.Engines.VvV
             System = sys;
         }
 
-        public void Begin()
+        public void Begin(VvVCity cidade = VvVCity.NIUMA)
         {
             OnGoing = true;
             NextCombatHeatCycle = DateTime.UtcNow;
@@ -252,26 +252,11 @@ namespace Server.Engines.VvV
             Warned = new List<Mobile>();
             Turrets = new List<CannonTurret>();
 
-            for (int i = 0; i < 7; i++)
+            if(cidade != VvVCity.NIUMA)
             {
-                if (!System.ExemptCities.Contains((VvVCity)i) && (VvVCity)i != newCity)
-                    cities.Add((VvVCity)i);
-            }
 
-            //cities.Add(VvVCity.Tretonia);
-
-            if (cities.Count > 0)
-            {
-                newCity = cities[Utility.Random(cities.Count)];
             }
-            else if (System.ExemptCities.Contains(newCity))
-            {
-                System.SendVvVMessage("As cidades estao vazias.");
-                return;
-            }
-
-            ColUtility.Free(cities);
-            City = newCity;
+           
             BeginTimer();
 
             StartTime = DateTime.UtcNow;

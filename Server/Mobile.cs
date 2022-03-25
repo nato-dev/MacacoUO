@@ -59,6 +59,7 @@ namespace Server
         }
     }
 
+
     public class EquipedSkillMod : SkillMod
     {
         private readonly Item m_Item;
@@ -427,6 +428,8 @@ namespace Server
         Attributes = 0x0000001C
     }
 
+
+
     public enum AccessLevel
     {
         Player,
@@ -532,10 +535,77 @@ namespace Server
     #endregion
 
 
-    /// <summary>
-    ///     Base class representing players, npcs, and creatures.
-    /// </summary>
-    [System.Runtime.InteropServices.ComVisible(true)]
+    public enum SpecialAbilityEffect
+    {
+        Disorient, //Reduce Attack Skill
+        Debilitate, //Reduce Defense Slill
+
+        Hinder, //Full Paralysis
+        Petrify, //Full Paralysis (and Grey Hue)
+        Entangle, //Cannot Move  
+
+        Cripple, //Melee and Casting Speed Reduced
+
+        Pierce, //Reduce Target's Armor (or Gain +50% Damage if Target At 0 Armor)        
+
+        Expertise, //Increase Attack Skill
+        Evasion, //Increase Defense Skill
+        MagicResist, //Increase Magic Resist Skill
+
+        Prowess, //Increase Special Weapon Effect Chance
+
+        Fortitude, //Increase Armor Rating
+
+        Bleed, //Damage Dealt Over Time
+        Disease, //Unpreventable Damage Over Time        
+
+        Frenzy, //Attack Speed Increased
+        Enrage, //Damage Increased
+
+        Silence, //Unable to Cast Spells
+        Backlash, //Chance on Spellcast to Fizzle        
+
+        //UOACZ
+        Inspiration,
+        EmergencyRepairs,
+        IronFists,
+        Provider,
+        Scientist,
+        Technician,
+        Searcher,
+        Phalanx,
+        Hardy,
+        RapidTreatment,
+        SuperiorHealing,
+        Ignite,
+        Bile,
+        ShieldOfBones
+    }
+
+    public class SpecialAbilityEffectEntry
+    {
+        public SpecialAbilityEffect m_SpecialAbilityEffect;
+        public Mobile m_Owner;
+        public double m_Value;
+        public DateTime m_Expiration;
+
+        public SpecialAbilityEffectEntry(SpecialAbilityEffect specialAbilityEffect, Mobile owner, double value, DateTime expiration)
+        {
+            m_SpecialAbilityEffect = specialAbilityEffect;
+            m_Owner = owner;
+            m_Value = value;
+            m_Expiration = expiration;
+        }
+    }
+
+
+
+
+
+        /// <summary>
+        ///     Base class representing players, npcs, and creatures.
+        /// </summary>
+        [System.Runtime.InteropServices.ComVisible(true)]
     public class Mobile : IEntity, IHued, IComparable<Mobile>, ISerializable, ISpawnable, IDamageable
     {
 
@@ -653,6 +723,171 @@ namespace Server
         private static bool m_DragEffects = true;
 
         public static bool DragEffects { get { return m_DragEffects; } set { m_DragEffects = value; } }
+
+
+        public virtual void SpecialAbilityTimerTick()
+        {
+        }
+
+        #region Special Ability Effects
+
+        public bool SpecialAbilityEffectLookupInProgress = false;
+
+        public List<SpecialAbilityEffectEntry> m_SpecialAbilityEffectEntries = new List<SpecialAbilityEffectEntry>();
+        public List<SpecialAbilityEffectEntry> m_SpecialAbilityEffectEntriesToAdd = new List<SpecialAbilityEffectEntry>();
+        public List<SpecialAbilityEffectEntry> m_SpecialAbilityEffectEntriesToRemove = new List<SpecialAbilityEffectEntry>();
+
+        public SpecialAbilityEffectTimer m_SpecialAbilityEffectTimer;
+        public class SpecialAbilityEffectTimer : Timer
+        {
+            private Mobile m_Mobile;
+
+            public SpecialAbilityEffectTimer(Mobile mobile) : base(TimeSpan.Zero, TimeSpan.FromMilliseconds(100))
+            {
+                m_Mobile = mobile;
+                Priority = TimerPriority.TwentyFiveMS;
+            }
+
+            protected override void OnTick()
+            {
+                m_Mobile.SpecialAbilityTimerTick();
+            }
+        }
+
+        public AddSpecialAbilityEffectTimer m_AddSpecialAbilityEffectTimer;
+        public class AddSpecialAbilityEffectTimer : Timer
+        {
+            private Mobile m_Mobile;
+
+            public AddSpecialAbilityEffectTimer(Mobile mobile) : base(TimeSpan.Zero, TimeSpan.FromMilliseconds(50))
+            {
+                m_Mobile = mobile;
+                Priority = TimerPriority.TwentyFiveMS;
+            }
+
+            protected override void OnTick()
+            {
+                int entriesToAdd = m_Mobile.m_SpecialAbilityEffectEntriesToAdd.Count;
+
+                for (int a = 0; a < entriesToAdd; a++)
+                {
+                    if (m_Mobile.SpecialAbilityEffectLookupInProgress)
+                        break;
+
+                    m_Mobile.m_SpecialAbilityEffectEntries.Add(m_Mobile.m_SpecialAbilityEffectEntriesToAdd[0]);
+                    m_Mobile.m_SpecialAbilityEffectEntriesToAdd.RemoveAt(0);
+
+                    if (m_Mobile.m_SpecialAbilityEffectTimer == null)
+                    {
+                        m_Mobile.m_SpecialAbilityEffectTimer = new SpecialAbilityEffectTimer(m_Mobile);
+                        m_Mobile.m_SpecialAbilityEffectTimer.Start();
+                    }
+
+                    else
+                    {
+                        if (!m_Mobile.m_SpecialAbilityEffectTimer.Running)
+                            m_Mobile.m_SpecialAbilityEffectTimer.Start();
+                    }
+                }
+
+                if (m_Mobile.m_SpecialAbilityEffectEntriesToAdd.Count == 0)
+                    Stop();
+            }
+        }
+
+        public RemoveSpecialAbilityEffectTimer m_RemoveSpecialAbilityEffectTimer;
+        public class RemoveSpecialAbilityEffectTimer : Timer
+        {
+            private Mobile m_Mobile;
+
+            public RemoveSpecialAbilityEffectTimer(Mobile mobile) : base(TimeSpan.Zero, TimeSpan.FromMilliseconds(50))
+            {
+                m_Mobile = mobile;
+                Priority = TimerPriority.TwentyFiveMS;
+            }
+
+            protected override void OnTick()
+            {
+                int entriesToRemove = m_Mobile.m_SpecialAbilityEffectEntriesToRemove.Count;
+
+                for (int a = 0; a < entriesToRemove; a++)
+                {
+                    if (m_Mobile.SpecialAbilityEffectLookupInProgress)
+                        break;
+
+                    m_Mobile.m_SpecialAbilityEffectEntries.Remove(m_Mobile.m_SpecialAbilityEffectEntriesToRemove[0]);
+                    m_Mobile.m_SpecialAbilityEffectEntriesToRemove.RemoveAt(0);
+
+                    if (m_Mobile.m_SpecialAbilityEffectEntries.Count == 0)
+                    {
+                        if (m_Mobile.m_SpecialAbilityEffectTimer != null)
+                        {
+                            if (!m_Mobile.m_SpecialAbilityEffectTimer.Running)
+                                m_Mobile.m_SpecialAbilityEffectTimer.Stop();
+                        }
+                    }
+                }
+
+                if (m_Mobile.m_SpecialAbilityEffectEntriesToRemove.Count == 0)
+                    Stop();
+            }
+        }
+
+        public void AddSpecialAbilityEffectEntry(SpecialAbilityEffectEntry entryToAdd)
+        {
+            m_SpecialAbilityEffectEntriesToAdd.Add(entryToAdd);
+
+            if (m_AddSpecialAbilityEffectTimer == null)
+            {
+                m_AddSpecialAbilityEffectTimer = new AddSpecialAbilityEffectTimer(this);
+                m_AddSpecialAbilityEffectTimer.Start();
+            }
+
+            else
+            {
+                if (!m_AddSpecialAbilityEffectTimer.Running)
+                    m_AddSpecialAbilityEffectTimer.Start();
+            }
+        }
+
+        public void RemoveSpecialAbilityEffectEntry(SpecialAbilityEffectEntry entryToRemove)
+        {
+            m_SpecialAbilityEffectEntriesToRemove.Add(entryToRemove);
+
+            if (m_RemoveSpecialAbilityEffectTimer == null)
+            {
+                m_RemoveSpecialAbilityEffectTimer = new RemoveSpecialAbilityEffectTimer(this);
+                m_RemoveSpecialAbilityEffectTimer.Start();
+            }
+
+            else
+            {
+                if (!m_RemoveSpecialAbilityEffectTimer.Running)
+                    m_RemoveSpecialAbilityEffectTimer.Start();
+            }
+        }
+
+        public double GetSpecialAbilityEntryValue(SpecialAbilityEffect effectType)
+        {
+            double totalValue = 0;
+
+            if (m_SpecialAbilityEffectEntries != null)
+            {
+                SpecialAbilityEffectLookupInProgress = true;
+
+                foreach (SpecialAbilityEffectEntry entry in m_SpecialAbilityEffectEntries)
+                {
+                    if (entry.m_SpecialAbilityEffect == effectType && DateTime.UtcNow < entry.m_Expiration)
+                        totalValue += entry.m_Value;
+                }
+
+                SpecialAbilityEffectLookupInProgress = false;
+            }
+
+            return totalValue;
+        }
+
+        #endregion
 
         #region Handlers
         public static AllowBeneficialHandler AllowBeneficialHandler { get; set; }

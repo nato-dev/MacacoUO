@@ -516,7 +516,7 @@ namespace Server.Items
     public class ValeDecoracaoRara : RareCraftableItem
     {
         [Constructable]
-        public ValeDecoracaoRara() : base(0x9F64) { Weight = 0.1; }
+        public ValeDecoracaoRara() : base(0x9F64) { Weight = 0.1; Stackable = false; }
         public ValeDecoracaoRara(Serial serial) : base(serial) { }
         public override string DefaultName { get { return "caixa misteriosa"; } }
 
@@ -535,6 +535,7 @@ namespace Server.Items
         {
             base.Deserialize(reader);
             int version = reader.ReadEncodedInt();
+            Stackable = false;
         }
     }
 

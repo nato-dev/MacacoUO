@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 using System.Collections.Generic;
 using System.Collections;
@@ -81,7 +81,7 @@ namespace Server.Engines.Quests
 	            new Type[] { typeof(Bait) }, 
 	            new Type[] { typeof(LavaLobsterTrap) },
 	            new Type[] { typeof(FishingGuideBook1), typeof(FishingGuideBook2) },
-	            new Type[] { typeof(PowerScroll), typeof(FishingPole) },
+	            new Type[] { typeof(PowerScrollNovo), typeof(FishingPole) },
 	        },
 
 	        new Type[][]
@@ -89,7 +89,7 @@ namespace Server.Engines.Quests
 	            new Type[] { typeof(Bait) },
 	            new Type[] { typeof(LavaHook), typeof(LavaLobsterTrap), typeof(JunkProofHook) },
 	            new Type[] { typeof(FishingGuideBook1), typeof(FishingGuideBook2), typeof(FishingGuideBook3), typeof(FishingPole) },
-	            new Type[] { typeof(PowerScroll), typeof(OracleOfTheSea), typeof(DredgingHook) },
+	            new Type[] { typeof(PowerScrollNovo), typeof(OracleOfTheSea), typeof(DredgingHook) },
 	        },
 
 	        new Type[][]
@@ -97,7 +97,7 @@ namespace Server.Engines.Quests
 	            new Type[] { typeof(Bait) },
 	            new Type[] { typeof(LavaHook), typeof(DredgingHook), typeof(JunkProofHook), typeof(FishingPole) },
 	            new Type[] { typeof(FishingGuideBook3), typeof(FishingGuideBook4), typeof(FishingGuideBook5), },
-	            new Type[] { typeof(PowerScroll), typeof(OracleOfTheSea) },
+	            new Type[] { typeof(PowerScrollNovo), typeof(OracleOfTheSea) },
 	        },
 
 	        new Type[][]
@@ -105,7 +105,7 @@ namespace Server.Engines.Quests
 	            new Type[] { typeof(Bait),  typeof(JunkProofHook) },
 	            new Type[] { typeof(OracleOfTheSea), typeof(LavaHook), typeof(FishingPole) },
 	            new Type[] { typeof(FishingGuideBook4), typeof(FishingGuideBook5), typeof(FishingGuideBook6) },
-	            new Type[] { typeof(PowerScroll), typeof(PermanentBoatPaint) },
+	            new Type[] { typeof(PowerScrollNovo), typeof(PermanentBoatPaint) },
 	        }
 	    };
 
@@ -141,7 +141,7 @@ namespace Server.Engines.Quests
 
             if (item != null)
             {
-                if (item is PowerScroll)
+                if (item is PowerScrollNovo)
                 {
                     int value;
                     double chance = Utility.RandomDouble();
@@ -177,8 +177,8 @@ namespace Server.Engines.Quests
                             break;
                     }
 
-                    ((PowerScroll)item).Skill = SkillName.Fishing;
-                    ((PowerScroll)item).Value = value;
+                    ((PowerScrollNovo)item).Skill = SkillName.Fishing;
+                    ((PowerScrollNovo)item).Value = value;
                     from.SendLocalizedMessage(1149591); //
                 }
                 else if (item is BaseBook)

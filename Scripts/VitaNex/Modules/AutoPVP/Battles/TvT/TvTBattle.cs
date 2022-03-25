@@ -16,6 +16,7 @@ using Fronteira.Discord;
 using Server;
 using Server.Mobiles;
 using Server.Network;
+using Server.Ziden.Achievements;
 using VitaNex.Schedules;
 #endregion
 
@@ -64,7 +65,25 @@ namespace VitaNex.Modules.AutoPvP.Battles
             Options.Rules.AutoStart = true;
         }
 
-		public TvTBattle(GenericReader reader)
+        public override void GiveWinnerReward(PlayerMobile pm)
+        {
+            base.GiveWinnerReward(pm);
+            var trofeu = new Trofeu();
+            trofeu.Hue = 0x8A5;
+            var data = DateTime.UtcNow;
+            trofeu.Textos = new string[]
+            {
+                $"Arena {Name}",
+                $"{data.Day}/{data.Month}/{data.Year}",
+                pm.Female ? "Campea" : "Campeao",
+                pm.Name
+            };
+            trofeu.Name = "[OURO] Trofeu de Arena PvP";
+            trofeu.Hue = Paragon.Hue;
+            pm.PlaceInBackpack(trofeu);
+        }
+
+        public TvTBattle(GenericReader reader)
 			: base(reader)
 		{ }
 

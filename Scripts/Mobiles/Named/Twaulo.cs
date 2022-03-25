@@ -176,7 +176,7 @@ namespace Server.Mobiles
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
-
+            SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(new CombatSkillBook());
             SorteiaItem(new LivroAntigo());
             //SorteiaItem(new TemplateDeed());

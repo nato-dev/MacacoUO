@@ -274,8 +274,11 @@
     <Compile Include="Fronteira\Items\KegGigante.cs" />
     <Compile Include="Fronteira\Items\MailboxGatinho.cs" />
     <Compile Include="Fronteira\Items\PergaminhoSkillcap.cs" />
+    <Compile Include="Fronteira\Items\PowerScrollNovo.cs" />
     <Compile Include="Fronteira\Items\SecretChest.cs" />
+    <Compile Include="Fronteira\Mobs\Boss\DemonWeb.cs" />
     <Compile Include="Fronteira\Mobs\Boss\SenhorDasSombras.cs" />
+    <Compile Include="Fronteira\Mobs\Boss\SpecialAbility.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZeFoguinho.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZumbiPalmares.cs" />
     <Compile Include="Fronteira\Mobs\GoblinDoTesouro.cs" />
@@ -496,6 +499,7 @@
     <Compile Include="Fronteira\Talentos\TalentosGump.cs" />
     <Compile Include="Fronteira\Talentos\ValeTalento.cs" />
     <Compile Include="Fronteira\Talismans\TalismanMagico.cs" />
+    <Compile Include="Fronteira\TimedStatic.cs" />
     <Compile Include="Fronteira\Tutorial\WispGuia\Guia.cs" />
     <Compile Include="Fronteira\Tutorial\WispGuia\NovoWispGuia.cs" />
     <Compile Include="Fronteira\Tutorial\WispGump.cs" />

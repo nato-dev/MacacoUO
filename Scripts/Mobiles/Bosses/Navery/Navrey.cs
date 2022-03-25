@@ -120,6 +120,10 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
             SorteiaItem(new BagOfSending());
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetRandomReceitaNoob());

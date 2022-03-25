@@ -74,6 +74,8 @@ namespace Server.Mobiles
             if (NoKillAwards)
                 return base.OnBeforeDeath();
 
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
             GolemMecanico.JorraOuro(this.Location, this.Map, 150);
             var bola = new ElementalBall();
             bola.LootType = LootType.Regular;

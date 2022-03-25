@@ -141,15 +141,17 @@ namespace Server.Mobiles
                 SorteiaItem(new BoatPaint(Utility.RandomBirdHue()));
             }
 
-            if(Utility.RandomBool())
-                SorteiaItem(Carnage.GetRandomPS(115));
-            else
-                SorteiaItem(Carnage.GetRandomPS(110));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
+            for (var i = 0; X < 10; i++)
+            {
+                if (Utility.RandomBool())
+                    SorteiaItem(Carnage.GetRandomPS(115));
+                else
+                    SorteiaItem(Carnage.GetRandomPS(110));
+                SorteiaItem(Carnage.GetRandomPS(105));
+            }
             var b = new BraceleteDoPoder();
             b.Tipo = TipoJoias.Escudo;
-            b.Bonus = 10 + Utility.Random(91);
+            b.Bonus = 20 + Utility.Random(81);
             b.Hue = 2076;
             b.Name = "Bracelete de Corgul";
             SorteiaItem(b);

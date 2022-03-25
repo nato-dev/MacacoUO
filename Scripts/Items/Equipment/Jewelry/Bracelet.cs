@@ -148,6 +148,7 @@ namespace Server.Items
             else if (Tipo == TipoJoias.Escudo)
                 list.Add($"Bonus Parry PvM");
             list.Add($"+{Bonus}%");
+            list.Add("Apenas funciona com habilidades ativas de armas");
         }
 
         public override void Serialize(GenericWriter writer)

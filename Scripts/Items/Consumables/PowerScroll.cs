@@ -125,6 +125,7 @@ namespace Server.Items
         * When used, the effect is not immediately seen without a gain of points with that skill or statistics.
         * You can view your maximum skill values in your skills window.
         * You can view your maximum statistic value in your statistics window. */
+
         public override int Title
         {
             get
@@ -132,28 +133,19 @@ namespace Server.Items
                 return 0;
             }
         }
+
         public override string DefaultTitle
         {
             get
             {
-                return String.Format("<basefont color=#FFFFFF>Pergaminho do Poder ({0} Skill):</basefont>", this.Value);
+                return String.Format("<basefont color=#FFFFFF>Pergaminho do Poder Superior ({0} Skill):</basefont>", this.Value);
             }
         }
 
-        public static PowerScroll CreateRandom(int min, int max)
-        {
-            return Carnage.GetRandomPS(min) as PowerScroll;
-            /*
-            min /= 5;
-            max /= 5;
 
-            return new PowerScroll(Skills[Utility.Random(Skills.Count)], 100 + (Utility.RandomMinMax(min, max) * 5));
-            */
-        }
-
-        public static PowerScroll CreateRandomNoCraft(int min, int max)
+        public static PowerScrollNovo CreateRandomNoCraft(int min, int max)
         {
-            return Carnage.GetRandomPS(min) as PowerScroll;
+            return Carnage.GetRandomPS(min) as PowerScrollNovo;
             /*
             min /= 5;
             max /= 5;
@@ -183,7 +175,7 @@ namespace Server.Items
             if (level >= 0.0 && level <= 3.0 && this.Value % 5.0 == 0.0)
                 base.LabelTo(from, 1049639 + (int)level, this.GetNameLocalized());
             else
-                base.LabelTo(from, "pergaminho do poder de {0} ({1} Skill)", this.GetName(), this.Value);
+                base.LabelTo(from, "pergaminho do poder superior de {0} ({1} Skill)", this.GetName(), this.Value);
         }
 
         public override bool CanUse(Mobile from)
@@ -198,7 +190,7 @@ namespace Server.Items
 
             if(skill.Value < this.Value - 5)
             {
-                from.SendLocalizedMessage("Este pergaminho eh muito poderoso para voce, use antes pergaminhos mais fracos"); // Your ~1_type~ is too high for this power scroll.
+                from.SendLocalizedMessage($"Este pergaminho eh muito poderoso para voce, use antes pergaminhos mais fracos. Voce precisa ter pelo menos { this.Value - 5} na skill para usar isto."); // Your ~1_type~ is too high for this power scroll.
                 return false;
             }
 

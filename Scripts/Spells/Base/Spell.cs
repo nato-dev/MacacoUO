@@ -574,7 +574,7 @@ namespace Server.Spells
             return m.Skills[SkillName.MagicResist].Value - EvilOmenSpell.GetResistMalus(m);
         }
 
-        public virtual double GetDamageScalar(Mobile target, ElementoPvM elemento = ElementoPvM.None)
+        public virtual double GetDamageScalar(Mobile target, ElementoPvM elementoMagia = ElementoPvM.None)
         {
             double scalar = 1.0;
 
@@ -596,7 +596,7 @@ namespace Server.Spells
 
                 scalar += AnelDano.GetNivel(m_Caster, false) / 100;
 
-                if (elemento == ElementoPvM.Escuridao)
+                if (elementoMagia == ElementoPvM.Escuridao)
                 {
                     scalar += ColarElemental.GetNivel(m_Caster, ElementoPvM.Escuridao) / 15;
                 }
@@ -669,26 +669,37 @@ namespace Server.Spells
 
             if (!target.Player)
             {
-                if (target.Elemento != ElementoPvM.None && elemento.ForteContra(target.Elemento))
+                if (target.Elemento != ElementoPvM.None && elementoMagia.ForteContra(target.Elemento))
                 {
-                    EfeitosElementos.Effect(target, elemento);
+                    EfeitosElementos.Effect(target, elementoMagia);
                     scalar += 0.25;
                     Shard.Debug("Alvo forte contra elemento", m_Caster);
                 }
-                else if (target.Elemento != ElementoPvM.None && target.Elemento.ForteContra(elemento))
+                else if (target.Elemento != ElementoPvM.None && target.Elemento.ForteContra(elementoMagia))
                 {
                     scalar -= 0.25;
                     Shard.Debug("Alvo fraco contra elemento", m_Caster);
                 }
             }
 
-            if (elemento != ElementoPvM.None && !target.Player)
+            if (!target.Player)
             {
-                var bonus = (m_Caster.GetBonusElemento(elemento) * 2);
-                if (bonus > 0)
-                    EfeitosElementos.Effect(target, elemento);
-                Shard.Debug("Bonus elemento PvM: " + bonus, m_Caster);
-                scalar += bonus;
+                var bracer = m_Caster.FindItemOnLayer(Layer.Bracelet) as BraceleteDoPoder;
+                if(bracer != null && bracer.Tipo==TipoJoias.Magia)
+                {
+                    scalar += bracer.Bonus/100;
+                }
+                if(elementoMagia != ElementoPvM.None)
+                {
+                    var bonus = (m_Caster.GetBonusElemento(elementoMagia) * 2);
+                    if (m_Caster.Elemento == ElementoPvM.Agua && elementoMagia == ElementoPvM.Raio)
+                        bonus += m_Caster.GetBonusElemento(ElementoPvM.Agua);
+                    if (bonus > 0)
+                        EfeitosElementos.Effect(target, elementoMagia);
+                    Shard.Debug("Bonus elemento PvM: " + bonus, m_Caster);
+                    scalar += bonus;
+                }
+              
             }
 
             if (!target.Player && m_Caster.Player)

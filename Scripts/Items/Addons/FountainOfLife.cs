@@ -16,6 +16,7 @@ namespace Server.Items
         {
             Name = "Bandagem Medica";
             Hue = 0x8A5;
+            ItemID = 0x0E20;
         }
 
         public EnhancedBandage(Serial serial)
@@ -64,6 +65,7 @@ namespace Server.Items
             base.Deserialize(reader);
 
             int version = reader.ReadEncodedInt();
+            ItemID = 0x0E20;
         }
     }
 

@@ -2241,7 +2241,7 @@ namespace Server.Items
 
         private Item CreatePowerScroll(int type, int level)
         {
-            PowerScroll ps = null;
+            Item ps = null;
             SkillName[] skillNames = new SkillName[]
             { SkillName.Bushido, SkillName.Ninjitsu, SkillName.Necromancy, SkillName.Chivalry, SkillName.Focus,
                 SkillName.Magery, SkillName.Swords, SkillName.Fencing, SkillName.Macing, SkillName.Archery,
@@ -2254,7 +2254,7 @@ namespace Server.Items
                 else
                 {
                     SkillName skillName = skillNames[type - 10923];
-                    ps = new PowerScroll(skillName, 100 + level);
+                    ps = new PowerScrollNovo(skillName, 100 + level);
                 }
             }
             catch { return null; }

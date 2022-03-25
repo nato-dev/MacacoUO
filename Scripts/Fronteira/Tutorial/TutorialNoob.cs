@@ -65,6 +65,9 @@ namespace Server.Ziden.Tutorial
             } else if(player.Young && player.Wisp != null)
             {
                 player.Wisp.MoveToWorld(player.Location, player.Map);
+            } else if(player.Young && player.Wisp == null)
+            {
+                InicializaWisp(player);
             }
         }
         
@@ -98,14 +101,17 @@ namespace Server.Ziden.Tutorial
                 guia.Owners.Add(player);
             }
             guia.MoveToWorld(player.Location, player.Map);
-            guia.Fala("Oi !! Eu sou uma fadinha, e vou te ajudar a iniciar no jogo ! :D");
-            guia.Fala("Tem muuuuita coisa pra te mostrar, mas vamos com calma, ok ? Hi hi");
             guia.SetCooldown("passo", TimeSpan.FromSeconds(10));
 
-            foreach (var pl in NetState.GetOnlinePlayerMobiles())
-                if(pl != player)
-                    pl.SendMessage(78, "[NOVO JOGADOR] " + player.Name+" chegou no shard");
+            if (player.PassoWispGuia == 0)
+            {
+                guia.Fala("Oi !! Eu sou uma fadinha, e vou te ajudar a iniciar no jogo ! :D");
+                guia.Fala("Tem muuuuita coisa pra te mostrar, mas vamos com calma, ok ? Hi hi");
 
+                foreach (var pl in NetState.GetOnlinePlayerMobiles())
+                    if (pl != player)
+                        pl.SendMessage(78, "[NOVO JOGADOR] " + player.Name + " chegou no shard");
+            }
         }
     }
 }

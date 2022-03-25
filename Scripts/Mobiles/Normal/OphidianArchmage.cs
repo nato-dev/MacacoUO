@@ -25,7 +25,7 @@ namespace Server.Mobiles
                     if (skill.Base > 30 && skill.Base < 120)
                         skill.Base = 120;
                 }
-                b.Backpack.DropItem(new Gold(Utility.Random(300, 300)));
+                b.PackItem(new Gold(Utility.Random(300, 300)));
                 b.DamageMin = (int)(b.DamageMin * 1.5);
                 b.DamageMax = (int)(b.DamageMax * 1.5);
                 if (Utility.RandomDouble() < 0.05)

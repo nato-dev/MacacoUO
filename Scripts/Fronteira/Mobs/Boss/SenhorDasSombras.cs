@@ -138,6 +138,11 @@ namespace Server.Mobiles
             base.OnDeath(c);
             c.DropItem(new Gold(2000));
             SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(tinta);
             SorteiaItem(new PergaminhoCarregamento());            

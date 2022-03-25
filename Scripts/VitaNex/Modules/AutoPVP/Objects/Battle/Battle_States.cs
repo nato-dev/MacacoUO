@@ -266,14 +266,22 @@ namespace VitaNex.Modules.AutoPvP
         {
             Hidden = false;
 
+            var timeLeft = GetStateTimeLeft(DateTime.UtcNow).Add(TimeSpan.FromSeconds(1.0));
+            var left = String.Format("{0} {1}", timeLeft.Minutes, timeLeft.Minutes != 1 ? "minutos" : "minuto");
+            if (timeLeft.Hours > 0)
+            {
+                left = timeLeft.Hours + " horas";
+            }
+
             if (Options.Broadcasts.World.OpenNotify)
             {
-                WorldBroadcast("{0} esta aberto para inscricoes ! Use .pvp para se inscrever ! (Com premios e nao parde items !)", Name);
+             
+                WorldBroadcast($"{0} esta aberto para inscricoes ! Use .pvp para se inscrever ! Com premios e nao parde items ! Inicia em {left}", Name);
             }
 
             if (Options.Broadcasts.Local.OpenNotify)
             {
-                LocalBroadcast("{0} esta aberto para inscricoes ! Use .pvp para se inscrever ! (Com premios e nao parde items !)", Name);
+                LocalBroadcast($"{0} esta aberto para inscricoes ! Use .pvp para se inscrever ! (Com premios e nao parde items ! Inicia em {left})", Name);
             }
 
             SendGlobalSound(Options.Sounds.BattleOpened);

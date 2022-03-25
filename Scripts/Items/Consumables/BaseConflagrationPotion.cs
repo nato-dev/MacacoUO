@@ -326,6 +326,8 @@ namespace Server.Items
                     {
                         dmg += (int)(dmg * m_From.GetBonusElemento(ElementoPvM.Agua));
                         var nivelColar = ColarElemental.GetNivel(m_From, ElementoPvM.Agua);
+                        if (nivelColar > 0)
+                            dmg += 5;
                         dmg += nivelColar;
                     }
 

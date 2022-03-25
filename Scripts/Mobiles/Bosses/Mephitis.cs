@@ -118,6 +118,13 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
             SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(new StoneStatueDeed());
             SorteiaItem(new WarriorStatueEastDeed());
             SorteiaItem(new HalloweenSpiderForestAddonDeed());

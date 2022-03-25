@@ -24,7 +24,7 @@ namespace Server.Mobiles
                     b.Name += " albino";
                     b.Hue = 1153;
                     if (b is BaseOrc && Utility.RandomBool())
-                        b.AddItem(new EnhancedBandage());
+                        b.PackItem(new EnhancedBandage());
                 }
                 else if (b is Gazer)
                 {

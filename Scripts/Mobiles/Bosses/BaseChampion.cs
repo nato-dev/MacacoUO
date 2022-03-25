@@ -60,7 +60,7 @@ namespace Server.Mobiles
                     m.AddToBackpack(item);
             }
 
-            if (item is PowerScroll && m is PlayerMobile)
+            if (item is PowerScrollNovo && m is PlayerMobile)
             {
                 PlayerMobile pm = (PlayerMobile)m;
 
@@ -88,7 +88,7 @@ namespace Server.Mobiles
 
                     if (chance > Utility.Random(100))
                     {
-                        PowerScroll powerScroll = CreateRandomPowerScroll();
+                        PowerScrollNovo powerScroll = CreateRandomPowerScroll();
 
                         prot.SendLocalizedMessage(1049368); // You have been rewarded for your dedication to Justice!
 
@@ -215,7 +215,7 @@ namespace Server.Mobiles
             {
                 Mobile m = toGive[i % toGive.Count];
 
-                PowerScroll ps = CreateRandomPowerScroll();
+                PowerScrollNovo ps = CreateRandomPowerScroll();
                 m.SendLocalizedMessage(1049524); // You have received a scroll of power!
 
                 GivePowerScrollTo(m, ps, this);
@@ -299,7 +299,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
         }
 
-        private static PowerScroll CreateRandomPowerScroll()
+        private static PowerScrollNovo CreateRandomPowerScroll()
         {
             int level;
             double random = Utility.RandomDouble();
