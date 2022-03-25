@@ -105,11 +105,11 @@ namespace Server.Ziden.Achievements
                 this.DropItem(new ManaPotion());
                 this.DropItem(new RefreshPotion());
             }
-            this.DropItem(new Gold(3000));
+            this.DropItem(new Gold(1000));
             Name = "Sacola";
         }
 
-        public ParticipacaoPvP(Serial s) : base(s) { }
+        public MiniParticipacaoPvP(Serial s) : base(s) { }
 
         public override void Serialize(GenericWriter writer)
         {

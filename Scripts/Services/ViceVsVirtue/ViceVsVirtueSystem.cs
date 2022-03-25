@@ -686,6 +686,11 @@ namespace Server.Engines.VvV
                 });
         }
 
+        public static TemporaryCombatant GetTemporario(Mobile from)
+        {
+            return TempCombatants.FirstOrDefault(c => c.From == from);
+        }
+
         public static TemporaryCombatant GetTempCombatant(Mobile from, Mobile to)
         {
             foreach (var combatant in TempCombatants.Where(c => c.From == from))

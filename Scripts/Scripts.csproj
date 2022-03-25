@@ -276,9 +276,7 @@
     <Compile Include="Fronteira\Items\PergaminhoSkillcap.cs" />
     <Compile Include="Fronteira\Items\PowerScrollNovo.cs" />
     <Compile Include="Fronteira\Items\SecretChest.cs" />
-    <Compile Include="Fronteira\Mobs\Boss\DemonWeb.cs" />
     <Compile Include="Fronteira\Mobs\Boss\SenhorDasSombras.cs" />
-    <Compile Include="Fronteira\Mobs\Boss\SpecialAbility.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZeFoguinho.cs" />
     <Compile Include="Fronteira\Mobs\Boss\ZumbiPalmares.cs" />
     <Compile Include="Fronteira\Mobs\GoblinDoTesouro.cs" />

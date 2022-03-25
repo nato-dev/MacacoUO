@@ -4787,6 +4787,14 @@ namespace Server.Mobiles
 
         public override DeathMoveResult GetParentMoveResultFor(Item item)
         {
+            if (ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
+            {
+                if (ViceVsVirtueSystem.GetTemporario(this) != null)
+                {
+                    return DeathMoveResult.MoveToBackpack;
+                }
+            }
+
             if (CheckInsuranceOnDeath(item) && !Young)
             {
                 return DeathMoveResult.MoveToBackpack;
@@ -4804,6 +4812,15 @@ namespace Server.Mobiles
 
         public override DeathMoveResult GetInventoryMoveResultFor(Item item)
         {
+
+            if(ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
+            {
+                if(ViceVsVirtueSystem.GetTemporario(this) != null)
+                {
+                    return DeathMoveResult.MoveToBackpack;
+                }
+            }
+
             if (CheckInsuranceOnDeath(item) && !Young)
             {
                 return DeathMoveResult.MoveToBackpack;
