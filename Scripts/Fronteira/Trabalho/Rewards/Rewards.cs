@@ -1543,14 +1543,14 @@ namespace Server.Engines.BulkOrders
             RewardCollection.Add(new BODCollectionItem(0x14F0, "Titulo Escriba", 0, 50, RewardTitle, 14));
             RewardCollection.Add(new BODCollectionItem(0x14F0, "Poeta", 0, 210, RewardTitle, 15));
             RewardCollection.Add(new BODCollectionItem(0x2831, "Receita para Atlas Runico", 0, 210, Recipe, 3));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2741, 250, NaturalDye, 3));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2741, 1250, NaturalDye, 3));
             RewardCollection.Add(new BODCollectionItem(0x9E28, "Talisman +10 Inscription", 0, 275, CraftsmanTalisman, 10));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2740, 310, NaturalDye, 4));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2740, 1310, NaturalDye, 4));
             RewardCollection.Add(new BODCollectionItem(0x9E28, "Talisman +15 Inscription", 0, 350, CraftsmanTalisman, 15));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2732, 375, NaturalDye, 5));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2732, 1375, NaturalDye, 5));
             RewardCollection.Add(new BODCollectionItem(0x9E28, "Talisman +20 Inscription", 0, 410, CraftsmanTalisman, 20));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2731, 450, NaturalDye, 6));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2735, 475, NaturalDye, 7));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2731, 1450, NaturalDye, 6));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta para Livros", 2735, 1475, NaturalDye, 7));
             //RewardCollection.Add(new BODCollectionItem(0x9E28, 1157291, 0, 500, ImprovementTalisman, 10));
         }
 
@@ -1671,8 +1671,8 @@ namespace Server.Engines.BulkOrders
             RewardCollection.Add(new BODCollectionItem(0x9E27, "Talisman +20 Cooking", 0, 350, CraftsmanTalisman, 20));
             RewardCollection.Add(new BODCollectionItem(0x153D, "Avental de Cozinha", 1990, 410, CreateItem, 0));
             RewardCollection.Add(new BODCollectionItem(0x14F0, "Addon de Pessegueira", 0, 475, CreateItem, 1));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta Natural<br>Pinta livros, madeiras, ossos e outras coisas.", 2740, 525, NaturalDye, 8));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta Natural<br>Pinta livros, madeiras, ossos e outras coisas.", 2732, 625, NaturalDye, 9));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta Natural<br>Pinta livros, madeiras, ossos e outras coisas.", 2740, 1525, NaturalDye, 8));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta Natural<br>Pinta livros, madeiras, ossos e outras coisas.", 2732, 1625, NaturalDye, 9));
             RewardCollection.Add(new BODCollectionItem(0x9E36, "Barril de Fermentacao", 0, 625, CreateItem, 2));
         }
 
@@ -1970,7 +1970,7 @@ namespace Server.Engines.BulkOrders
             RewardCollection.Add(new BODCollectionItem(0x14F0, "Titulo Criador de Pocoes", 0, 25, RewardTitle, 20));
             RewardCollection.Add(new BODCollectionItem(0x14F0, "Titulo Alquimista", 0, 50, RewardTitle, 21));
             RewardCollection.Add(new BODCollectionItem(0x14F0, "Titulo Criador de Dorgas", 0, 210, RewardTitle, 22));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta natural<br>Pinta muitas coisas diferentes", 2741, 225, NaturalDye, 0));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta natural<br>Pinta muitas coisas diferentes", 2741, 1225, NaturalDye, 0));
             RewardCollection.Add(new BODCollectionItem(0x975, "Caldeirao de Pinho<br>Dura um tempo", CraftResources.GetHue(CraftResource.Pinho), 250, Cauldron, 0));
             RewardCollection.Add(new BODCollectionItem(0x975, "Caldeirao de Bronze<br>Dura um tempo", CraftResources.GetHue(CraftResource.Bronze), 260, Cauldron, 1));
             RewardCollection.Add(new BODCollectionItem(0x9E26, "Talisman +10 Alchemy<br>Dura um tempo", 0, 275, CraftsmanTalisman, 10)); // todo: Get id
@@ -1980,9 +1980,9 @@ namespace Server.Engines.BulkOrders
             RewardCollection.Add(new BODCollectionItem(0x975, "Caldeirao de Niobio<br>Dura um tempo", CraftResources.GetHue(CraftResource.Niobio), 350, Cauldron, 4));
             RewardCollection.Add(new BODCollectionItem(0x975, "Caldeirao de Eucalipto<br>Dura um tempo", CraftResources.GetHue(CraftResource.Eucalipto), 360, Cauldron, 5));
             RewardCollection.Add(new BODCollectionItem(0x9E26, "Talisman +20 Alchemy<br>Dura um tempo", 0, 375, CraftsmanTalisman, 20)); // todo: Get id
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta natural<br>Pinta muitas coisas diferentes", 2731, 400, NaturalDye, 1));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta natural<br>Pinta muitas coisas diferentes", 2731, 1400, NaturalDye, 1));
             RewardCollection.Add(new BODCollectionItem(0x975, "Caldeirao de Carmesim<br>Dura um tempo", CraftResources.GetHue(CraftResource.Carmesim), 410, Cauldron, 6));
-            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta natural<br>Pinta muitas coisas diferentes", 2735, 425, NaturalDye, 2));
+            RewardCollection.Add(new BODCollectionItem(0x182B, "Tinta natural<br>Pinta muitas coisas diferentes", 2735, 1425, NaturalDye, 2));
             RewardCollection.Add(new BODCollectionItem(0x975, "Caldeirao de Lazurita<br>Dura um tempo", CraftResources.GetHue(CraftResource.Lazurita), 450, Cauldron, 7));
             RewardCollection.Add(new BODCollectionItem(0x14F0, "PowerScroll 105 Alchemy<br>Aumenta seu cap de Alchemy para de 100 para 105.", 0x481, RewardType.PS105, PowerScroll, 5));
             RewardCollection.Add(new BODCollectionItem(0x14F0, "PowerScroll 110 Alchemy<br>Aumenta seu cap de Alchemy para de 105 para 110.", 0x481, RewardType.PS110, PowerScroll, 10));

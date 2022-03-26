@@ -100,11 +100,6 @@ namespace Server.Mobiles
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(110));
-            SorteiaItem(Carnage.GetRandomPS(110));
-            SorteiaItem(Carnage.GetRandomPS(110));
             var arma = Loot.RandomWeapon();
             arma.Resource = CraftResource.Bronze;
             arma.Quality = ItemQuality.Exceptional;

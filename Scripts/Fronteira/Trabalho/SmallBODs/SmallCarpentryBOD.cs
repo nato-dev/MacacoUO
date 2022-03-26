@@ -9,10 +9,10 @@ namespace Server.Engines.BulkOrders
     {
         public static double[] m_CarpentryMaterialChances = new double[]
         {
-            0.513718750, // None
-            0.292968750, // Oak
-            0.117187500, // Ash
-            0.046875000, // Yew
+            0.213718750, // None
+            0.392968750, // Oak
+            0.217187500, // Ash
+            0.146875000, // Yew
             0.018750000, // Heartwood
             0.007500000, // Bloodwood
             0.003000000 // Frostwood

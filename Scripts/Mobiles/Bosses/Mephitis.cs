@@ -119,9 +119,6 @@ namespace Server.Mobiles
             base.OnDeath(c);
             SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(Carnage.GetRandomPS(110));
-            SorteiaItem(Carnage.GetRandomPS(110));
-            SorteiaItem(Carnage.GetRandomPS(110));
-            SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));

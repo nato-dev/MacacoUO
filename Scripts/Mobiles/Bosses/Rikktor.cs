@@ -156,7 +156,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             GolemMecanico.JorraOuro(this.Location, this.Map, 500);
-            for (var i = 0; X < 10; i++)
+            for (var i = 0; X < 2; i++)
             {
 
                 var r = Utility.RandomDouble();

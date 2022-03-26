@@ -69,13 +69,6 @@ namespace Server.Mobiles
             base.OnDeath(c);
             DistribuiItem(GetRandomPS(105));
             DistribuiItem(GetRandomPS(105));
-            DistribuiItem(GetRandomPS(105));
-            SorteiaItem(GetRandomPS(105));
-            SorteiaItem(GetRandomPS(105));
-            SorteiaItem(GetRandomPS(105));
-            SorteiaItem(GetRandomPS(105));
-            SorteiaItem(GetRandomPS(105));
-            SorteiaItem(GetRandomPS(110));
             SorteiaItem(GetRandomPS(110));
             SorteiaItem(new PergaminhoCarregamento());
             SorteiaItem(new SkillBook());

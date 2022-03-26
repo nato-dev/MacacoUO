@@ -111,6 +111,7 @@ namespace Server.Items
                 return _Skills;
             }
         }
+
         public override string MessageStr
         {
             get
@@ -135,8 +136,15 @@ namespace Server.Items
         {
             get
             {
-                return String.Format("<basefont color=#FFFFFF>Pergaminho do Poder ({0} Skill):</basefont>", this.Value);
+                return String.Format("<basefont color=#FFFFFF>Pergaminho do Conhecimento</basefont>");
             }
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            list.Add(DefaultTitle);
+            var grupo = getGrupoMax();
+            list.Add($"+1 Cap {this.Skill.ToString()} - {grupo - 5}-{grupo}");
         }
 
         public int getGrupoMax()
@@ -167,13 +175,14 @@ namespace Server.Items
             if (skill == null)
                 return false;
 
-            if (skill.Value < this.Value - 1)
+            var grupo = getGrupoMax();
+            if (skill.Value < grupo - 5)
             {
-                from.SendLocalizedMessage($"Este pergaminho eh muito poderoso para voce, use antes pergaminhos mais fracos. Voce precisa de pelo menos {this.Value - 1} na skill para usar isto."); // Your ~1_type~ is too high for this power scroll.
+                from.SendLocalizedMessage($"Este pergaminho eh muito poderoso para voce, use antes pergaminhos mais fracos. Voce precisa de pelo menos {grupo - 5} na skill para usar isto."); // Your ~1_type~ is too high for this power scroll.
                 return false;
             }
 
-            if (skill.Cap >= this.Value)
+            if (skill.Cap >= grupo)
             {
                 from.SendLocalizedMessage("Sua habilidade e muito alta para este pergaminho"); // Your ~1_type~ is too high for this power scroll.
                 return false;
@@ -189,8 +198,8 @@ namespace Server.Items
 
             from.SendLocalizedMessage("Voce sente uma energia magica aumentando seu potencial em " + this.GetName()); // You feel a surge of magic as the scroll enhances your ~1_type~!
 
-            from.Skills[this.Skill].Cap = this.Value;
-
+            from.Skills[this.Skill].Cap += 1;
+            from.SendMessage("Cap Atual: " + from.Skills[this.Skill].Cap);
             Effects.SendLocationParticles(EffectItem.Create(from.Location, from.Map, EffectItem.DefaultDuration), 0, 0, 0, 0, 0, 5060, 0);
             Effects.PlaySound(from.Location, from.Map, 0x243);
 

@@ -246,7 +246,6 @@ namespace Server.Mobiles
                 if (e.m_HasRight && e.m_Mobile != null)
                 {
                     e.m_Mobile.AddToBackpack(Carnage.GetRandomPS(105));
-                    e.m_Mobile.AddToBackpack(Carnage.GetRandomPS(105));
 
                     e.m_Mobile.AddToBackpack(new CabecaAnthony());
                     e.m_Mobile.AddToBackpack(new LivroAntigo());

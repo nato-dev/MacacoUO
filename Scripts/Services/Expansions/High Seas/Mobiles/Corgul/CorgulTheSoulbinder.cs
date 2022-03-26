@@ -141,7 +141,7 @@ namespace Server.Mobiles
                 SorteiaItem(new BoatPaint(Utility.RandomBirdHue()));
             }
 
-            for (var i = 0; X < 10; i++)
+            for (var i = 0; X < 3; i++)
             {
                 if (Utility.RandomBool())
                     SorteiaItem(Carnage.GetRandomPS(115));
