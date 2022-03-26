@@ -371,7 +371,7 @@ namespace Server.Engines.Craft
             #endregion
 
             #region Utensils
-            AddCraft(typeof(ButcherKnife), 1044048, 1025110, 25.0, 75.0, typeof(IronIngot), 1044036, 2, 1044037);
+            AddCraft(typeof(ButcherKnife), 1044048, 1025110, 0.0, 50.0, typeof(IronIngot), 1044036, 2, 1044037);
             AddCraft(typeof(Spoon), 1044048, 1044158, 0.0, 50.0, typeof(IronIngot), 1044036, 1, 1044037);
             //AddCraft(typeof(SpoonRight), 1044048, 1044159, 0.0, 50.0, typeof(IronIngot), 1044036, 1, 1044037);
             AddCraft(typeof(Plate), 1044048, 1022519, 0.0, 50.0, typeof(IronIngot), 1044036, 2, 1044037);
