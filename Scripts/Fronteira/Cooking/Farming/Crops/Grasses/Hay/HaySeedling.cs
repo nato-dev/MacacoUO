@@ -30,7 +30,7 @@ namespace Server.Items.Crops
 		}
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from.Mounted && !CropHelper.CanWorkMounted ) { from.SendMessage( "The crop is too small to harvest while mounted." ); return; }
+			if ( from.Mounted && !CropHelper.CanWorkMounted ) { from.SendMessage( "Esta planta eh muito pequena para ser colhida montado." ); return; }
 			else from.SendMessage( "Esta plantacao ainda e muito jovem." );
 		}
 		public HaySeedling( Serial serial ) : base( serial ) { }

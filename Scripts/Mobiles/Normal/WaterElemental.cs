@@ -1,5 +1,7 @@
 using System;
 using Server.Items;
+using Server.Spells;
+using Server.Spells.Fourth;
 
 namespace Server.Mobiles
 {
@@ -10,6 +12,22 @@ namespace Server.Mobiles
 
         [CommandProperty(AccessLevel.GameMaster)]
         public Boolean HasDecanter { get { return m_HasDecanter; } set { m_HasDecanter = value; } }
+
+        public override Spell ChooseSpell()
+        {
+            var l = Utility.Random(0, 20);
+            if (Utility.RandomBool())
+            {
+                if (this.ControlMaster is PlayerMobile && this.ControlMaster.Hits < 90)
+                {
+                    var s = new GreaterHealSpell(this, null);
+                    s.InstantTarget = this.ControlMaster;
+                    return s;
+                }
+                return null;
+            }
+            return null;
+        }
 
         [Constructable]
         public WaterElemental()
@@ -39,6 +57,7 @@ namespace Server.Mobiles
             this.SetSkill(SkillName.Magery, 70, 80);
             this.SetSkill(SkillName.MagicResist, 100.1, 115.0);
             this.SetSkill(SkillName.Tactics, 50.1, 70.0);
+            this.SetSkill(SkillName.Inscribe, 200, 250);
             this.SetSkill(SkillName.Wrestling, 50.1, 70.0);
 
             this.Fame = 4500;

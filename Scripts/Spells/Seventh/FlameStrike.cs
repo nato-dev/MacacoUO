@@ -84,7 +84,7 @@ namespace Server.Spells.Seventh
                 if (m != null)
                 {
                     if(m!=Caster)
-                        Caster.MovingParticles(m, 0x3709, 7, 10, false, true, 3043, 4019, 0x160, EffectLayer.CenterFeet);
+                        Caster.MovingParticles(m, 0x3709, 7, 10, true, true, 3043, 4019, 0x160, EffectLayer.LeftFoot);
                     else
                         m.FixedParticles(0x3709, 10, 30, 5052, EffectLayer.LeftFoot);
                     m.PlaySound(0x208);

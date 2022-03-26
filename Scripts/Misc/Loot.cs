@@ -86,7 +86,7 @@ namespace Server
                 typeof(TanBook), typeof(Key), typeof(Dices), typeof(Necklace), typeof(Beads), typeof(Knife), typeof(Spoon),
                 typeof(Fork), typeof(Hammer), typeof(Nails), typeof(BlankScroll), typeof(Saw), typeof(Shovel), typeof(Shaft),
                 typeof(Scissors), typeof(MortarPestle), typeof(Tongs), typeof(SewingKit), typeof(Sextant), typeof(FishingPole),
-                typeof(Skillet), typeof(ShortPants), typeof(LongPants), typeof(Cloak), typeof(FloppyHat), typeof(WideBrimHat),
+                typeof(SkilletExp), typeof(ShortPants), typeof(LongPants), typeof(Cloak), typeof(FloppyHat), typeof(WideBrimHat),
                 typeof(Cap), typeof(SkullCap), typeof(TallStrawHat), typeof(StrawHat), typeof(WizardsHat), typeof(Bonnet),
                 typeof(FeatheredHat), typeof(TricorneHat), typeof(JesterHat), typeof(BodySash), typeof(FullApron), typeof(Doublet),
                 typeof(Surcoat), typeof(Tunic), typeof(JesterSuit), typeof(Skirt), typeof(Kilt), typeof(FancyDress), typeof(Robe),

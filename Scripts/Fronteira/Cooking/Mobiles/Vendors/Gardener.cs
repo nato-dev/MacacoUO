@@ -10,7 +10,7 @@ namespace Server.Mobiles
         protected override List<SBInfo> SBInfos { get { return m_SBInfos; } }
 
 		[Constructable]
-		public Gardener() : base( "the Gardener" )
+		public Gardener() : base( "o jardineiro" )
 		{
             this.SetSkill(SkillName.Cooking, 100.0, 120.0);
             this.SetSkill(SkillName.TasteID, 80.0, 100.0);

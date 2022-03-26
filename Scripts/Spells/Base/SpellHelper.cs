@@ -128,7 +128,7 @@ namespace Server.Spells
 
             int sdiBonus = AosAttributes.GetValue(caster, AosAttribute.SpellDamage);
 
-            if(!playerVsPlayer && caster.Player && caster.Elemento != ElementoPvM.None)
+            if (!playerVsPlayer && caster.Player && caster.Elemento != ElementoPvM.None)
             {
                 sdiBonus += ((PlayerMobile)caster).Elementos.GetNivel(caster.Elemento) * 2;
             }
@@ -425,7 +425,7 @@ namespace Server.Spells
                 offset = Math.Max(mod.Offset, offset);
 
             if (caster.TemTalento(Talento.Feiticeiro))
-                if(target is BaseCreature)
+                if (target is BaseCreature)
                     offset *= 3;
                 else
                     offset *= 2;
@@ -448,7 +448,7 @@ namespace Server.Spells
                 return TimeSpan.FromSeconds(span);
             }
 
-            var duration = ((caster.Skills[SkillName.Inscribe].Value/2) + caster.Skills[SkillName.Magery].Value) * 1.2;
+            var duration = ((caster.Skills[SkillName.Inscribe].Value / 2) + caster.Skills[SkillName.Magery].Value) * 1.2;
             if (caster.TemTalento(Talento.Feiticeiro))
                 duration *= 2;
             return TimeSpan.FromSeconds(duration);
@@ -485,9 +485,9 @@ namespace Server.Spells
 
         public static int GetOffset(Mobile caster, Mobile target, StatType type, bool curse, bool blockSkill, double scale = 1)
         {
-            if(!Shard.RP)
+            if (!Shard.RP)
                 return 1 + (int)(caster.Skills[SkillName.Magery].Value * 0.1);
-  
+
             var bonus = (int)(caster.Skills[SkillName.Magery].Value * 0.05);
             if (caster.TemTalento(Talento.Feiticeiro))
                 bonus += 6;
@@ -644,12 +644,12 @@ namespace Server.Spells
 
             var noto = Notoriety.Compute(from, to);
             var notoDiff = noto != Notoriety.Innocent;
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
                 Shard.Debug("Can Harm Noto =" + noto, from);
             return (from.IsStaff() || (ignoreNoto || notoDiff) || from.Murderer);
         }
 
-        public static IEnumerable<IDamageable> AcquireIndirectTargets(Mobile caster, IPoint3D p, Map map, int range, bool allies=false, bool self=false)
+        public static IEnumerable<IDamageable> AcquireIndirectTargets(Mobile caster, IPoint3D p, Map map, int range, bool allies = false, bool self = false)
         {
             if (map == null)
             {
@@ -666,7 +666,7 @@ namespace Server.Spells
                     continue;
                 }
 
-                if (!id.Alive || !caster.InLOS(id)|| (!allies && !caster.CanBeHarmful(id, false)))
+                if (!id.Alive || !caster.InLOS(id) || (!allies && !caster.CanBeHarmful(id, false)))
                 {
                     Shard.Debug("Nao pode ser harmful com allies", caster);
                     continue;
@@ -702,14 +702,26 @@ namespace Server.Spells
             if (map == null)
                 return;
 
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
                 Shard.Debug("Duration: " + duration.TotalSeconds, caster);
             if (caster is BaseCreature && (useSkill == SkillName.SpiritSpeak || useSkill == SkillName.Begging))
                 useSkill = SkillName.Magery;
 
-            if(useSkill == SkillName.SpiritSpeak && caster.Skills[useSkill].Value < 20)
+            var pl = caster as PlayerMobile;
+            if (caster.Player)
             {
-                if(!caster.IsCooldown("dicass"))
+                if (caster.Skills.AnimalLore.Value >= 100)
+                {
+                    var novo = (int)Math.Floor(creature.ControlSlots / 2d);
+                    if (novo < 1)
+                        novo = 1;
+                    creature.ControlSlots = novo;
+                }
+            }
+
+            if (useSkill == SkillName.SpiritSpeak && caster.Skills[useSkill].Value < 20)
+            {
+                if (!caster.IsCooldown("dicass"))
                 {
                     caster.SetCooldown("dicass", TimeSpan.FromHours(12));
                     caster.SendMessage(78, "Para criar summons mais fortes o mago precisa da skill Spirit Speak");
@@ -717,7 +729,28 @@ namespace Server.Spells
             }
 
             double scale = 0.3 + (caster.Skills[useSkill].Value * 0.007);
-            double scaleDur = 1 + (caster.Skills[useSkill].Value / 100)/2;
+            double scaleDur = 1 + (caster.Skills[useSkill].Value / 100) / 2;
+
+            int almas = 0;
+            if (pl != null)
+            {
+                if (pl.Almas > 0)
+                {
+                    almas = pl.Almas;
+                    scale += pl.Almas / 100;
+                    pl.Almas = 0;
+                    pl.SendMessage("Almas coletadas: 0/100");
+                    pl.SendMessage("Voce usou todas almas coletadas de monstros para criar uma criatura mais forte");
+                    if (creature.Name != null && almas > 20)
+                    {
+                        creature.Name += " *";
+                    }
+                    if (almas > 80 && creature is EarthElemental)
+                    {
+                        creature.Skills.Parry.Base = 80;
+                    }
+                }
+            }
 
             duration = TimeSpan.FromSeconds(duration.TotalSeconds * scaleDur);
             if (Shard.DebugEnabled)
@@ -725,7 +758,7 @@ namespace Server.Spells
                 Shard.Debug("Duration Scaled: " + duration.TotalSeconds, caster);
                 Shard.Debug("Summon Scale: " + scale, caster);
             }
-          
+
             creature.RawStr = (int)(creature.RawStr * scale);
             creature.Hits = creature.HitsMax;
 
@@ -748,6 +781,13 @@ namespace Server.Spells
             {
                 //caster.CheckSkill(SkillName.SpiritSpeak, 0, 100);
                 BaseCreature.Summon(creature, summoned, caster, p, sound, duration);
+
+                //int itemID, int speed, int duration, int effect, int hue, int renderMode, EffectLayer layer
+                if (almas > 0)
+                {
+                    creature.FixedParticles(0x3709, 10, 30, 5052, TintaPreta.COR, 1, EffectLayer.LeftFoot);
+                    creature.PrivateOverheadMessage(Network.MessageType.Regular, 0, true, $"+{almas}%", caster.NetState);
+                }
                 return;
             }
 
@@ -909,9 +949,9 @@ namespace Server.Spells
 
             if (caster != null && caster.IsPlayer())
             {
-                if(type == TravelCheckType.GateFrom || type == TravelCheckType.GateTo)
+                if (type == TravelCheckType.GateFrom || type == TravelCheckType.GateTo)
                 {
-                    if(StuckMenu.IsInSecondAgeArea(caster))
+                    if (StuckMenu.IsInSecondAgeArea(caster))
                     {
                         return false;
                     }
@@ -1343,18 +1383,19 @@ namespace Server.Spells
 
                 var ini = target.MagicDamageAbsorb;
                 target.MagicDamageAbsorb -= circle;
-              
+
 
                 // This order isn't very intuitive, but you have to nullify reflect before target gets switched
 
                 reflect = (target.MagicDamageAbsorb >= 0);
 
-                if(reflect)
+                if (reflect)
                 {
                     target.SendMessage("Seu Magic Reflection desceu em " + circle + " circulos, agora voce tem " + target.MagicDamageAbsorb + " circulos de protecao");
-                } else
+                }
+                else
                 {
-                    target.SendMessage("Seu Magic Reflection desceu em " + circle + " circulos, como voce tinha apenas "+ini+" circulos de protecao voce nao conseguiu refletir a magia");
+                    target.SendMessage("Seu Magic Reflection desceu em " + circle + " circulos, como voce tinha apenas " + ini + " circulos de protecao voce nao conseguiu refletir a magia");
                 }
 
                 if (target is BaseCreature)
@@ -1474,7 +1515,7 @@ namespace Server.Spells
             Damage(null, delay, damageable, null, damage, phys, fire, cold, pois, nrgy, DFAlgorithm.Standard, chaos, direct, elemento);
         }
 
-        public static void Damage(TimeSpan delay, IDamageable damageable, Mobile from, double damage, int phys, int fire, int cold, int pois, int nrgy,ElementoPvM elemento = ElementoPvM.None)
+        public static void Damage(TimeSpan delay, IDamageable damageable, Mobile from, double damage, int phys, int fire, int cold, int pois, int nrgy, ElementoPvM elemento = ElementoPvM.None)
         {
             Damage(delay, damageable, from, damage, phys, fire, cold, pois, nrgy, DFAlgorithm.Standard, elemento);
         }
@@ -1537,7 +1578,7 @@ namespace Server.Spells
 
         public static int SpellDamage(Mobile from, Mobile target, int damageGiven, ElementoPvM elemento = ElementoPvM.None)
         {
-            
+
             if (from.Player && !target.Player)
             {
 
@@ -1553,20 +1594,20 @@ namespace Server.Spells
 
                 Shard.Debug("Acabou de causar dano magico com elemento " + elemento.ToString(), from);
 
-                if(elemento == ElementoPvM.Fogo)
+                if (elemento == ElementoPvM.Fogo)
                 {
-                    var burnDamage = (int)( (damageGiven/2) * from.GetBonusElemento(ElementoPvM.Fogo));
-                    
-                    if(burnDamage > 0)
+                    var burnDamage = (int)((damageGiven / 2) * from.GetBonusElemento(ElementoPvM.Fogo));
+
+                    if (burnDamage > 0)
                         BurnAttack.BeginBurn(target, from, (int)burnDamage, false);
                 }
-               
-                var spellSteal = (int)((damageGiven/2) * from.GetBonusElemento(ElementoPvM.Escuridao));
+
+                var spellSteal = (int)((damageGiven / 2) * from.GetBonusElemento(ElementoPvM.Escuridao));
                 if (spellSteal > 0)
                     from.Heal(spellSteal);
             }
             return damageGiven;
-            
+
             return 0;
         }
 
@@ -1579,7 +1620,7 @@ namespace Server.Spells
         {
             double cura = amount;
             var pl = from as PlayerMobile;
-            if(pl != null && pl.RP)
+            if (pl != null && pl.RP)
             {
                 if (pl != null && pl.Talentos.Tem(Fronteira.Talentos.Talento.EstudoSagrado))
                     cura *= 1.1;
@@ -1780,7 +1821,7 @@ namespace Server.Spells
                 context.Timer.Stop();
                 context.Spell.RemoveEffect(m);
 
-                if(m is PlayerMobile)
+                if (m is PlayerMobile)
                 {
                     ((PlayerMobile)(m)).UnstoreMount();
                 }

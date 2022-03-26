@@ -7471,10 +7471,7 @@ namespace Server.Mobiles
                     ChaveDg.CriaChave(c);
                 }
                 */
-
                 var t2a = StuckMenu.IsInSecondAgeArea(c);
-
-
                 if (IsBoss && Spawner is XmlSpawner)
                 {
                     Shard.Debug("Botando lapide", this);
@@ -7485,6 +7482,8 @@ namespace Server.Mobiles
                 if (IsBoss || this is BaseChampion || this is BaseRenowned)
                 {
                     SorteiaItem(new PowderOfTranslocation());
+                    SorteiaItem(AnimatedSeed.GetRandomSeed());
+                    SorteiaItem(AnimatedSeed.GetRandomSeed());
                 }
 
                 var dels = new List<Item>();

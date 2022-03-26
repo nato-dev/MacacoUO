@@ -41,6 +41,7 @@ namespace Server.Mobiles
                 }
 
 
+
                 b.HitsMaxSeed += 1000;
                 b.Hits += 1000;
                 b.VirtualArmor += 60;
@@ -53,6 +54,9 @@ namespace Server.Mobiles
 
                 if(Utility.RandomBool())
                     b.AddToBackpack(new CristalDoPoder());
+
+                if (Utility.RandomDouble() < 0.1)
+                    b.AddToBackpack(DefCookingExp.GetReceitaRandom());
 
                 var gold = b.Backpack.FindItemByType(typeof(Gold));
                 if(gold != null)

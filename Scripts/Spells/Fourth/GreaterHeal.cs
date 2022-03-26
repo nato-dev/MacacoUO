@@ -119,7 +119,7 @@ namespace Server.Spells.Fourth
 
                 SpellHelper.Heal(toHeal, m, this.Caster);
 
-                Caster.MovingParticles(m, 0x376A, 7, 0, false, false, 9502, 0x376A, 0x1F2);
+                Caster.MovingParticles(m, 0x376A, 7, 0, true, false, 9502, 0x376A, 0x1F2);
                 m.FixedParticles(0x376A, 9, 32, 5030, EffectLayer.Waist);
                 m.PlaySound(0x202);
             }

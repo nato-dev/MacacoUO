@@ -30,7 +30,11 @@ namespace Server.Spells.Eighth
             if (!base.CheckCast())
                 return false;
 
-            if ((this.Caster.Followers + 3) > this.Caster.FollowersMax)
+            var custoSummon = 3;
+            if (m_Caster.Skills.AnimalLore.Value >= 100)
+                custoSummon = 1;
+
+            if ((this.Caster.Followers + custoSummon) > this.Caster.FollowersMax)
             {
                 this.Caster.SendLocalizedMessage(1049645); // You have too many followers to summon that creature.
                 return false;

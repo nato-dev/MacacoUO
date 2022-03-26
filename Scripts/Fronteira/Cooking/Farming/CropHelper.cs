@@ -15,10 +15,10 @@ namespace Server.Items.Crops
 		public virtual bool CanGrowFarm{ get{ return Config.Get("Farming.CanGrowFarm", true); } }
 		public virtual bool CanGrowHouseTiles{ get{ return Config.Get("Farming.CanGrowHouseTiles", true); } }
 		public virtual bool CanGrowDirt{ get{ return Config.Get("Farming.CanGrowDirt", true); } }
-		public virtual bool CanGrowGround{ get{ return Config.Get("Farming.CanGrowGround", false); } }
+		public virtual bool CanGrowGround{ get{ return false; } }
 		public virtual bool CanGrowSwamp{ get{ return Config.Get("Farming.CanGrowSwamp", false); } }
 		public virtual bool CanGrowSand{ get{ return Config.Get("Farming.CanGrowSand", false); } }
-		public virtual bool CanGrowGarden{ get{ return Config.Get("Farming.CanGrowGarden", true); } }
+		public virtual bool CanGrowGarden{ get{ return true; } }
 
 		public virtual TimeSpan SowerPickTime{ get{ return TimeSpan.FromDays(Config.Get("Farming.SowerPickTime", (1))); } }
 
@@ -31,8 +31,13 @@ namespace Server.Items.Crops
         {
         }
 
-       
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            if(this.GetType().Name.Contains("Crop"))
+                list.Add("Pode cortar com machados ou colher");
+        }
 
         public virtual void OnChop( Mobile from )
         {

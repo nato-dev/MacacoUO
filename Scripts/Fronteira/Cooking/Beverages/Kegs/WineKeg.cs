@@ -211,7 +211,7 @@ namespace Server.Items
 				if ( m_Crafter != null )
 					list.Add( m_Crafter.Name+" Vineyards" );
 				else
-					list.Add( "Cheap Table Wine" );
+					list.Add( "Vinho Barato" );
 			}
 			else
 			{
@@ -282,7 +282,7 @@ namespace Server.Items
 				if ( m_Crafter != null )
 					this.LabelTo( from, "{0} Vinyards", m_Crafter.Name );
 				else
-					this.LabelTo( from, "Cheap Table Wine" );
+					this.LabelTo( from, "Vinho Barato" );
 			}
 			else
 			{
@@ -360,7 +360,7 @@ namespace Server.Items
 
 									if ( GiveKeg( from ) )
 									{
-										from.SendMessage( "The Keg is empty and you clean it for reuse" );
+										from.SendMessage( "A keg esta pronta para uso" );
 									}
 									else
 									{
@@ -387,7 +387,7 @@ namespace Server.Items
 			}
 			else
 			{
-				from.SendMessage( "This keg is not ready to bottle yet, the fermentation process is not yet complete." );
+				from.SendMessage( "O processo de fermentacao nao esta completo." );
 			}
 		}
 

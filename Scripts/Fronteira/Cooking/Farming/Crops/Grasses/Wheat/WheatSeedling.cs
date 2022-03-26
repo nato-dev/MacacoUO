@@ -44,7 +44,7 @@ namespace Server.Items.Crops
 		{
             if (from.Mounted && !CropHelper.CanWorkMounted)
             {
-                from.SendMessage("The crop is too small to harvest while mounted.");
+                from.SendMessage("Esta planta eh muito pequena para ser colhida montado.");
                 return;
             }
             else

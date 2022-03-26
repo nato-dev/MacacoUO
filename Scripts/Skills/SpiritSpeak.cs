@@ -215,6 +215,13 @@ namespace Server.SkillHandlers
                             toChannel.Animated = true;
                             toChannel.Channeled = true;
                             toChannel.Hue = 1109;
+                            var pl = Caster as PlayerMobile;
+                            if (pl != null && pl.Almas < 100)
+                            {
+                                pl.Almas++;
+                                pl.SendMessage($"Almas coletadas: {pl.Almas}/100");
+                                pl.PrivateOverheadMessage($"* {pl.Almas}/100 *");
+                            }
                         }
 
                         Caster.Mana -= mana;

@@ -236,15 +236,6 @@ namespace Server.Items
 
                 damage += alchemyBonus;
 
-                if (!m.Player && from.Player)
-                {
-                    damage += (int)(damage * from.GetBonusElemento(ElementoPvM.Agua));
-                    var nivelColar = ColarElemental.GetNivel(from, ElementoPvM.Agua);
-                    if (nivelColar > 0)
-                        damage += 10;
-                    damage += nivelColar * 5;
-                }
-
                 if (damage > 35)
                 {
                     damage = 35;
@@ -252,6 +243,15 @@ namespace Server.Items
                 else if (list.Count > 2)
                 {
                     damage /= list.Count - 1;
+                }
+
+                if (!m.Player && from.Player)
+                {
+                    damage += (int)(damage * from.GetBonusElemento(ElementoPvM.Agua));
+                    var nivelColar = ColarElemental.GetNivel(from, ElementoPvM.Agua);
+                    if (nivelColar > 0)
+                        damage += 10;
+                    damage += nivelColar * 5;
                 }
 
                 if (m is BaseCreature)

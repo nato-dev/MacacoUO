@@ -36,9 +36,11 @@ namespace Server.Mobiles
             {
                 Add(new GenericBuyInfo(typeof(BreadLoaf), 5, 20, 0x103B, 0, true));
 
+                Add(new GenericBuyInfo(typeof(SkilletExp), 800, 20, 0x97F, 0));
                 Add(new GenericBuyInfo(typeof(EmptyPewterBowlExp), 2, 20, 0x15FD, 0));
                 Add(new GenericBuyInfo(typeof(EmptyWoodenBowlExp), 2, 20, 0x15FD, 0));
 
+                Add(new GenericBuyInfo(typeof(SackFlour), 3, 20, 0x1039, 0, true));
                 Add(new GenericBuyInfo(typeof(SackFlour), 3, 20, 0x1039, 0, true));
                 Add(new GenericBuyInfo(typeof(JarHoney), 3, 20, 0x9EC, 0, true));
                 Add(new GenericBuyInfo(typeof(RollingPinExp), 2, 20, 0x1043, 0));

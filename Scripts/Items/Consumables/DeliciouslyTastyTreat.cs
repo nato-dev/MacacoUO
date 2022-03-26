@@ -18,6 +18,7 @@ namespace Server.Items
         [Constructable]
         public DeliciouslyTastyTreat(int amount)
         {
+            Name = "Biscoito de Pet Delicioso";
             Stackable = true;
             Amount = amount;
         }
@@ -26,8 +27,6 @@ namespace Server.Items
             : base(serial)
         {
         }
-
-        public override int LabelNumber { get { return 1113004; } } //Deliciously Tasty Treat
 
         public override void Serialize(GenericWriter writer)
         {

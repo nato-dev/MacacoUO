@@ -460,7 +460,7 @@ namespace Server.Engines.Craft
             SetNeedHeat(index, true);
 
             index = AddCraft(typeof(HotSauce), "Molhos", "Hot Sauce", 25.0, 100.0, typeof(Tomato), "Tomato", 2, 1044253);
-            AddRes(index, typeof(ChiliPepper), "Chili Pepper", 3, 1044253);
+            AddRes(index, typeof(Lettuce), "Alface", 50, "Voce precisa de Alface para isto");
             AddRes(index, typeof(BasketOfHerbsFarm), "Herbs", 1, 1044253);
             AddRecipe(index, (int)CookRecipesExp.HotSauce);
             SetNeedHeat(index, true);
@@ -499,6 +499,8 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(VenisonRoast), "Carnes Cruas", "Venison Roast", 25.0, 100.0, typeof(RawVenisonRoast), "Raw Venison Roast", 1, "You need more Raw Venison Roast");
             AddRecipe(index, (int)CookRecipesExp.VenisonRoast);
             SetNeedHeat(index, true);
+
+ 
             #endregion
 
             #endregion
@@ -597,7 +599,7 @@ namespace Server.Engines.Craft
             AddRecipe(index, (int)CookRecipesExp.Trotters);
             SetNeedHeat(index, true);
 
-            index = AddCraft(typeof(Sausage), "Carnes Cruas", "Sausage", 40.0, 100.0, typeof(RawPorkSlice), "Raw Pork Slice", 1, "You need more Raw Pork Slice");
+            index = AddCraft(typeof(Sausage), "Carnes Cruas", "Salsicha", 40.0, 100.0, typeof(RawPorkSlice), "Raw Pork Slice", 1, "You need more Raw Pork Slice");
             AddRecipe(index, (int)CookRecipesExp.Sausage);
             SetNeedHeat(index, true);
             #endregion
@@ -705,6 +707,13 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(BaseBeverage), 1046458, 1, 1044253);
             AddRecipe(index, (int)CookRecipesExp.WoodPulp);
 
+            index = AddCraft(typeof(DeliciouslyTastyTreat), 1044496, "Biscoito de Pet", 25.0, 100.0, typeof(TomatoSauce), "Tomate", 5, "Voce precisa de tomates");
+            AddRes(index, typeof(DriedOnions), "Cebolas Secas", 10, "Voce precisa de cebolas secas");
+            AddRes(index, typeof(DriedHerbs), "Ervas Secas", 10, "Voce precisa de ervas secas");
+            AddRes(index, typeof(Sage), "Salvia", 1, "Voce precisa de uma salvia");
+            AddRes(index, typeof(Sausage), "Salsicha", 5, "Voce precisa de salsichas suinas");
+            AddRecipe(index, (int)CookRecipesExp.VenisonRoast);
+            SetNeedHeat(index, true);
 
             index = AddCraft(typeof(GreenTea), 1044496, 1030315, 80.0, 120.0, typeof(GreenTeaBasket), 1030316, 1, 1044253);
             AddRes(index, typeof(BaseBeverage), 1046458, 1, 1044253);
@@ -727,7 +736,6 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(TribalPaint), 1044496, 1040000, 55.0, 105.0, typeof(SackFlour), 1044468, 1, 1044253);
             AddRes(index, typeof(TribalBerry), 1046460, 1, 1044253);
             AddRecipe(index, (int)CookRecipesExp.TribalPaint);
-
 
             index = AddCraft(typeof(EggBomb), 1044496, 1030249, 90.0, 120.0, typeof(Eggs), 1044477, 1, 1044253);
             AddRes(index, typeof(SackFlour), 1044468, 3, 1044253);
@@ -752,12 +760,12 @@ namespace Server.Engines.Craft
             SetNeedHeat(index, true);
 
 
-            index = AddCraft(typeof(DriedOnions), 1044496, "Dried Onions", 60.0, 100.0, typeof(Onion), "Onions", 5, 1044253);
+            index = AddCraft(typeof(DriedOnions), 1044496, "Cebolas Secas", 60.0, 100.0, typeof(Onion), "Cebolas", 10, 1044253);
             AddRecipe(index, (int)CookRecipesExp.DriedOnions);
 
-            index = AddCraft(typeof(DriedHerbs), 1044496, "Dried Herbs", 60.0, 100.0, typeof(Garlic), "Garlic", 2, 1044253);
-            AddRes(index, typeof(Ginseng), "Ginseng", 2, 1044253);
-            AddRes(index, typeof(TanGinger), "Tan Ginger", 2, "You need more tan ginger");
+            index = AddCraft(typeof(DriedHerbs), 1044496, "Ervas Secas", 60.0, 100.0, typeof(Garlic), "Alho", 10, 1044253);
+            AddRes(index, typeof(Lettuce), "Alface", 10, "Voce precisa de alfaces");
+            AddRes(index, typeof(Carrot), "Cenoura", 10, "Voce precisa de cenouras");
             AddRecipe(index, (int)CookRecipesExp.DriedHerbs);
 
             index = AddCraft(typeof(BasketOfHerbsFarm), 1044496, "Basket of Herbs", 60.0, 100.0, typeof(DriedHerbs), "Dried Herbs", 1, 1044253);

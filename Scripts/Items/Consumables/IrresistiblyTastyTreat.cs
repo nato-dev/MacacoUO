@@ -11,7 +11,7 @@ namespace Server.Items
         public override TimeSpan CoolDown { get { return TimeSpan.FromMinutes(120); } }
         public override int DamageBonus { get { return 10; } }
 
-        [Constructable]
+        [Constructable] 
         public IrresistiblyTastyTreat() : this(1)
         {
         }

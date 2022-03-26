@@ -24,7 +24,7 @@ namespace Server.Mobiles
 		{
 			public InternalBuyInfo()
 			{
-                this.Add(new GenericBuyInfo(typeof(Keg), 50, 20, 0xE7F, 0));
+                this.Add(new GenericBuyInfo(typeof(Keg), 2052, 20, 0xE7F, 0));
                 this.Add(new GenericBuyInfo(typeof(BrewersTools), 500, 20, 0x1EBC, 0));
                 this.Add(new GenericBuyInfo(typeof(BreweryLabelMaker), 500, 20, 0xFBF, 0));
                 this.Add(new GenericBuyInfo(typeof(Malt), 10, 20, 0x103D, 0));

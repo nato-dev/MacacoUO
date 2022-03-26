@@ -49,7 +49,7 @@ namespace Server.Mobiles
 
             this.VirtualArmor = 52;
 
-            this.PackItem(DefCookingExp.GetReceitaRandom());
+            // this.PackItem(DefCookingExp.GetReceitaRandom());
 
             this.PackItem(DefCookingExp.GetReceitaIgredienteRandom());
 
@@ -90,13 +90,8 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-
-            c.DropItem(DefCookingExp.GetReceitaRandom());
-            c.DropItem(DefCookingExp.GetReceitaRandom());
-            c.DropItem(DefCookingExp.GetReceitaRandom());
-            c.DropItem(DefCookingExp.GetReceitaRandom());
-            c.DropItem(DefCookingExp.GetReceitaRandom());
-            c.DropItem(DefCookingExp.GetReceitaRandom());
+            DistribuiItem(DefCookingExp.GetReceitaRandom());
+            DistribuiItem(AnimatedSeed.GetRandomSeed());
         }
 
         public override void GenerateLoot()

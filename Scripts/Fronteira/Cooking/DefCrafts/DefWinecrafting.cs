@@ -11,7 +11,7 @@ namespace Server.Engines.Craft
     #endregion
     public class DefWinecrafting : CraftSystem
 	{
-		public override SkillName MainSkill { get { return SkillName.Alchemy; } }
+		public override SkillName MainSkill { get { return SkillName.Cooking; } }
 
 		public override int GumpTitleNumber { get { return 0; } }
 
@@ -70,11 +70,10 @@ namespace Server.Engines.Craft
 
 			index = AddCraft( typeof( WineKeg ), "Wines", "Keg of Wine", 80.0, 105.6, typeof( CabernetSauvignonGrapes ), "Cabernet Sauvignon Grapes", 50 );
 			AddRes( index, typeof( Keg ), "Keg", 1 );
-			AddRes( index, typeof ( WinecrafterSugar ), "Sugar", 1 );
-			AddRes( index, typeof ( WinecrafterYeast ), "Yeast", 1 );
+			AddRes( index, typeof ( WinecrafterSugar ), "Acucar", 1 );
+			AddRes( index, typeof ( WinecrafterYeast ), "Fermento", 1 );
 
 			SetSubRes( typeof( CabernetSauvignonGrapes ), "Cabernet Sauvignon Grapes" );
-
 			AddSubRes(typeof(CabernetSauvignonGrapes), "Cabernet Sauvignon", 80.0, skillNotice);
 			AddSubRes(typeof(ChardonnayGrapes), "Chardonnay", 80.0, skillNotice);
 			AddSubRes(typeof(CheninBlancGrapes), "Chenin Blanc", 85.0, skillNotice);

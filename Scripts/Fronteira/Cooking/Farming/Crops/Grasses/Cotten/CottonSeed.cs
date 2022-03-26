@@ -43,7 +43,7 @@ namespace Server.Items.Crops
             }
             else if (!CropHelper.CheckCanGrow(this, m_map, m_pnt.X, m_pnt.Y))
             {
-                from.SendMessage("Esta semente nao vai crescer aqui.");
+                from.SendMessage("Esta semente nao vai crescer aqui. Talvez esta semente precise ser plantada em um jardim em casa, rancho ou fazenda..");
                 return;
 
             }

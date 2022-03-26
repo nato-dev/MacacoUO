@@ -138,6 +138,27 @@ namespace Server.Items
                 return String.Format("<basefont color=#FFFFFF>Pergaminho do Poder ({0} Skill):</basefont>", this.Value);
             }
         }
+
+        public int getGrupoMax()
+        {
+            if(this.Value >= 100 && this.Value <= 105)
+            {
+                return 105;
+            }
+            else if (this.Value >= 105 && this.Value <= 110)
+            {
+                return 110;
+            }
+            else if (this.Value >= 110 && this.Value <= 115)
+            {
+                return 115;
+            }
+            else if (this.Value >= 115 && this.Value <= 120)
+            {
+                return 120;
+            }
+            return 120;
+        }
    
         public override bool CanUse(Mobile from)
         {

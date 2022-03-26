@@ -134,6 +134,7 @@ namespace Server.Mobiles
 
     public partial class PlayerMobile : Mobile, IHonorTarget
     {
+        public int Almas = 0;
         public object Arrastando;
         public bool Mamonita = false;
         public int NivelBanco = 0;

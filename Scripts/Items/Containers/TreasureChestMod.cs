@@ -328,6 +328,7 @@ namespace Server.Items
             if (Utility.Random(3) == 1)
                 AddLoot(new BagOfNecroReagents());
 
+            
             var t = Utility.Random(100);
             var amt = Utility.Random(200, 100);
             if (t <= 1)

@@ -21,7 +21,7 @@ namespace Server.Items.Crops
 			Hue = 0x5E2;
 			Movable = true;
 			Amount = amount;
-			Name = "Lettuce Seed";
+			Name = "Semente de Alface";
 		}
 
 		public override void OnDoubleClick( Mobile from )
@@ -30,7 +30,7 @@ namespace Server.Items.Crops
 			Point3D m_pnt = from.Location;
 			Map m_map = from.Map;
 			if ( !IsChildOf( from.Backpack ) ) { from.SendLocalizedMessage( 1042010 ); return; }
-			else if ( !CropHelper.CheckCanGrow( this, m_map, m_pnt.X, m_pnt.Y ) ) { from.SendMessage( "Esta semente nao vai crescer aqui." ); return; }
+			else if ( !CropHelper.CheckCanGrow( this, m_map, m_pnt.X, m_pnt.Y ) ) { from.SendMessage( "Esta semente nao vai crescer aqui. Talvez esta semente precise ser plantada em um jardim em casa, rancho ou fazenda.." ); return; }
 			ArrayList cropshere = CropHelper.CheckCrop( m_pnt, m_map, 0 );
 			if ( cropshere.Count > 0 ) { from.SendMessage( "Ja existe uma plantacao aqui." ); return; }
 			ArrayList cropsnear = CropHelper.CheckCrop( m_pnt, m_map, 1 );
@@ -63,7 +63,7 @@ namespace Server.Items.Crops
 		public LettuceSeedling( Mobile sower ) : base( 0xCB5 )
 		{
 			Movable = false;
-			Name = "Lettuce Seedling";
+			Name = "Alfacinha";
 			m_sower = sower;
 			init( this );
 		}
@@ -74,7 +74,7 @@ namespace Server.Items.Crops
 		}
 		public override void OnDoubleClick( Mobile from )
 		{
-			if ( from.Mounted && !CropHelper.CanWorkMounted ) { from.SendMessage( "The crop is too small to harvest while mounted." ); return; }
+			if ( from.Mounted && !CropHelper.CanWorkMounted ) { from.SendMessage( "Esta planta eh muito pequena para ser colhida montado." ); return; }
 			else from.SendMessage( "Esta plantacao ainda e muito jovem." );
 		}
 		public LettuceSeedling( Serial serial ) : base( serial ) { }
@@ -125,7 +125,7 @@ namespace Server.Items.Crops
 		public LettuceCrop( Mobile sower ) : base( 0xC70 )
 		{
 			Movable = false;
-			Name = "Lettuce Plant";
+			Name = "Planta de Alface";
 			Hue = 0x1D3;
 			m_sower = sower;
 			m_lastvisit = DateTime.UtcNow;

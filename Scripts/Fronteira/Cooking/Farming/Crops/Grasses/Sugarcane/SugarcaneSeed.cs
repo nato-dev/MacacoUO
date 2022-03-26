@@ -32,7 +32,7 @@ namespace Server.Items.Crops
             Point3D m_pnt = from.Location;
             Map m_map = from.Map;
             if (!IsChildOf(from.Backpack)) { from.SendLocalizedMessage(1042010); return; }
-            else if (!CropHelper.CheckCanGrow(this, m_map, m_pnt.X, m_pnt.Y)) { from.SendMessage("Esta semente nao vai crescer aqui."); return; }
+            else if (!CropHelper.CheckCanGrow(this, m_map, m_pnt.X, m_pnt.Y)) { from.SendMessage("Esta semente nao vai crescer aqui. Talvez esta semente precise ser plantada em um jardim em casa, rancho ou fazenda.."); return; }
             ArrayList cropshere = CropHelper.CheckCrop(m_pnt, m_map, 0);
             if (cropshere.Count > 0) { from.SendMessage("Ja existe uma plantacao aqui."); return; }
             ArrayList cropsnear = CropHelper.CheckCrop(m_pnt, m_map, 1);

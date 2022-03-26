@@ -1,3 +1,4 @@
+using Server.Items;
 using System;
 
 namespace Server.Mobiles
@@ -56,6 +57,16 @@ namespace Server.Mobiles
                 return 2;
             }
         }
+
+        public override void OnCarve(Mobile from, Corpse corpse, Item with)
+        {
+            from.PrivateOverheadMessage("* coletou *");
+            from.AddToBackpack(new RawPorkChop(1 + Utility.Random(2)));
+            PlaySound(0x57);
+            base.OnCarve(from, corpse, with);
+            corpse.Carved = true;
+        }
+
         public override FoodType FavoriteFood
         {
             get
