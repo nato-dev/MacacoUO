@@ -28,7 +28,7 @@ namespace Server.Items
         {
             get
             {
-                return DefCooking.CraftSystem;
+                return DefCookingExp.CraftSystem;
             }
         }
         public override void Serialize(GenericWriter writer)

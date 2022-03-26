@@ -599,7 +599,7 @@ namespace Server.Engines.Craft
             AddRecipe(index, (int)CookRecipesExp.Trotters);
             SetNeedHeat(index, true);
 
-            index = AddCraft(typeof(Sausage), "Carnes Cruas", "Salsicha", 40.0, 100.0, typeof(RawPorkSlice), "Raw Pork Slice", 1, "You need more Raw Pork Slice");
+            index = AddCraft(typeof(Sausage), "Carnes Cruas", "Salsicha", 40.0, 100.0, typeof(RawRibsExp), "Corte de Costela Crua", 10, "Voce precisa de mais costelas suinas");
             AddRecipe(index, (int)CookRecipesExp.Sausage);
             SetNeedHeat(index, true);
             #endregion

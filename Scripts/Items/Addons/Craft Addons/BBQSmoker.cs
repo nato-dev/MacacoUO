@@ -8,7 +8,7 @@ namespace Server.Items
     public class BBQSmoker : CraftAddon
     {
         public override BaseAddonDeed Deed { get { return new BBQSmokerDeed(Tools.Count > 0 ? Tools[0].UsesRemaining : 0); } }
-        public override CraftSystem CraftSystem { get { return DefCooking.CraftSystem; } }
+        public override CraftSystem CraftSystem { get { return DefCookingExp.CraftSystem; } }
 
         [Constructable]
         public BBQSmoker(bool south, int uses)
