@@ -170,12 +170,11 @@ namespace Server.Mobiles
         {
             IMount mount = Mount;
 
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
+            DistribuiPs(105);
+            SorteiaItem(Carnage.GetRandomPS(110));
+
+            if(Utility.RandomBool())
+                SorteiaItem(Carnage.GetRandomPS(115));
 
             if (mount != null)
                 mount.Rider = null;

@@ -1427,7 +1427,7 @@ namespace Server.Mobiles
 
                             exp *= 6;
 
-                            exp += (ushort)(matBonus * 2000);
+                            exp += (ushort)(matBonus * 2500);
                             if (large.RequireExceptional)
                                 exp += 1000;
 
@@ -1443,11 +1443,10 @@ namespace Server.Mobiles
                             if (small.Material >= BulkMaterialType.Carvalho && small.Material <= BulkMaterialType.Gelo)
                                 matBonus -= 11;
 
-                            exp += (ushort)(matBonus * 2000);
+                            exp += (ushort)(matBonus * 2500);
                             if (small.RequireExceptional)
                                 exp += 1000;
                         }
-
 
                         var ups = (int)Math.Floor(exp / 1000d);
                         ushort resto = (ushort)(exp % 1000);

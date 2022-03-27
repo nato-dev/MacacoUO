@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Server.Engines.Craft
 {
@@ -29,27 +30,41 @@ namespace Server.Engines.Craft
             return (CraftItem)this.List[index];
         }
 
+
+        private Dictionary<Type, CraftItem> _searchCacheSub = new Dictionary<Type, CraftItem>();
+
         public CraftItem SearchForSubclass(Type type)
         {
+            CraftItem item;
+            if (_searchCacheSub.TryGetValue(type, out item))
+                return item;
+
             for (int i = 0; i < this.List.Count; i++)
             {
-                CraftItem craftItem = (CraftItem)this.List[i];
+                item = (CraftItem)this.List[i];
 
-                if (craftItem.ItemType == type || type.IsSubclassOf(craftItem.ItemType))
-                    return craftItem;
+                if (item.ItemType == type || type.IsSubclassOf(item.ItemType))
+                    _searchCacheSub[type] = item;
+                    return item;
             }
-
             return null;
         }
 
+        private Dictionary<Type, CraftItem> _searchCache = new Dictionary<Type, CraftItem>();
+
         public CraftItem SearchFor(Type type)
         {
+            CraftItem item;
+            if (_searchCache.TryGetValue(type, out item))
+                return item;
+
             for (int i = 0; i < this.List.Count; i++)
             {
-                CraftItem craftItem = (CraftItem)this.List[i];
-                if (craftItem.ItemType == type)
+                item = (CraftItem)this.List[i];
+                if (item.ItemType == type)
                 {
-                    return craftItem;
+                    _searchCache[type] = item;
+                    return item;
                 }
             }
             return null;

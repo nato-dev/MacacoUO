@@ -97,9 +97,9 @@ namespace Server.Engines.Harvest
 
             veins = new HarvestVein[]
             {
-                    new HarvestVein(94, 0.0, res[0], null), // Ordinary Logs
+                    new HarvestVein(93, 0.0, res[0], null), // Ordinary Logs
                     new HarvestVein(5, 0.5, res[1], res[0]), // Oak
-                    new HarvestVein(0.5, 0.5, res[2], res[0]), // Ash
+                    new HarvestVein(1.5, 0.5, res[2], res[0]), // Ash
                     new HarvestVein(05.0, 0.5, res[3], res[0]), // Yew              //Padrão
                     new HarvestVein(0, 0.5, res[4], res[0]), // Heartwood
                     new HarvestVein(0, 0.5, res[5], res[0]), // Bloodwood

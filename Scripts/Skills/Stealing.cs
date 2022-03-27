@@ -50,7 +50,6 @@ namespace Server.SkillHandlers
 				: base(1, false, TargetFlags.None)
 			{
 				m_Thief = thief;
-
 				AllowNonlocal = true;
 			}
 

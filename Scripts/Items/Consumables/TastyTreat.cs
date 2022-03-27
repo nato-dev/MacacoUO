@@ -1,4 +1,4 @@
-﻿using Server;
+using Server;
 using System;
 using System.Collections.Generic;
 using Server.Mobiles;
@@ -34,14 +34,10 @@ namespace Server.Items
         {
             base.AddNameProperties(list);
 
-            list.Add(1113213); //* For Pets Only *
+            list.Add("Comida de Pet"); //* For Pets Only *
 
-            if (Bonus == 0.10)
-                list.Add(1113215); //Stats Increased by 10%
-            else if (Bonus == 0.15)
-                list.Add(1113216); //Stats Increased by 15%
-            else
-                list.Add(1113214); //Stats Increased by 5%
+            list.Add((Bonus * 100)+"+% Stats"); //Stats Increased by 10%
+            list.Add("Imune a venenos");
 
             list.Add(1113212, Duration.TotalMinutes.ToString()); //Duration: ~1_val~ minutes
             list.Add(1113218, CoolDown.TotalMinutes.ToString()); //Cooldown: ~1_val~ minutes
@@ -93,26 +89,26 @@ namespace Server.Items
             }
         }
 
-        public bool DoEffects(BaseCreature bc)
-		{
-			string modName = Serial.ToString();
+        public virtual bool DoEffects(BaseCreature bc)
+        {
+            string modName = Serial.ToString();
 
             bc.AddStatMod(new StatMod(StatType.Str, bc.Serial + "Str", (int)(bc.RawStr * Bonus), Duration));
             bc.AddStatMod(new StatMod(StatType.Int, bc.Serial + "Int", (int)(bc.RawInt * Bonus), Duration));
             bc.AddStatMod(new StatMod(StatType.Dex, bc.Serial + "Dex", (int)(bc.RawDex * Bonus), Duration));
 
-			bc.PlaySound( 0x1EA );
-			bc.FixedParticles( 0x373A, 10, 15, 5018, EffectLayer.Waist );
+            bc.PlaySound(0x1EA);
+            bc.FixedParticles(0x373A, 10, 15, 5018, EffectLayer.Waist);
 
             bc.TempDamageBonus = DamageBonus;
             bc.Loyalty = BaseCreature.MaxLoyalty;
 
-			m_Table.Add(bc, DateTime.UtcNow);
+            m_Table.Add(bc, DateTime.UtcNow);
             Timer.DelayCall(Duration + CoolDown, new TimerStateCallback(RemoveInfluence), bc);
 
-			Consume();
+            Consume();
             return true;
-		}
+        }
 
         public static bool UnderInfluence(BaseCreature bc)
         {

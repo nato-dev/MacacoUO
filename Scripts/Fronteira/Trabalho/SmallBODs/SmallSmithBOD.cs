@@ -12,10 +12,10 @@ namespace Server.Engines.BulkOrders
 
         public static double[] m_BlacksmithMaterialChances = new double[]
         {
-            0.201953125, // None
+            0.001953125, // None
             0.200000000, // Dull Copper
-            0.275000000, // Shadow Iron
-            0.262500000, // Copper
+            0.375000000, // Shadow Iron
+            0.362500000, // Copper
             0.031250000, // Bronze
             0.015625000, // Gold
             0.007812500, // Agapite
@@ -92,8 +92,8 @@ namespace Server.Engines.BulkOrders
         {
             SmallBulkEntry[] entries;
             bool useMaterials;
-         
-            useMaterials = Utility.RandomDouble() < 0.1;
+
+            useMaterials = Utility.RandomDouble() < 0.3;
 
             if (Utility.RandomBool())
                 entries = SmallBulkEntry.BlacksmithArmor;
@@ -103,7 +103,7 @@ namespace Server.Engines.BulkOrders
             if (entries.Length > 0)
             {
                 double theirSkill = BulkOrderSystem.GetBODSkill(m, SkillName.Blacksmith);
-         
+
                 BulkMaterialType material = BulkMaterialType.None;
 
                 if (useMaterials && theirSkill >= 70.1)
@@ -112,14 +112,14 @@ namespace Server.Engines.BulkOrders
                     {
                         BulkMaterialType check = GetRandomMaterial(BulkMaterialType.Cobre, m_BlacksmithMaterialChances);
                         double skillReq = GetRequiredSkill(check);
-                        if(Shard.DebugEnabled)
+                        if (Shard.DebugEnabled)
                         {
                             Shard.Debug("Checando material " + check.ToString());
                             Shard.Debug("Skill " + theirSkill + " precisa de " + skillReq);
                         }
                         if (theirSkill >= skillReq)
                         {
-                         
+
                             material = check;
                             break;
                         }
@@ -128,10 +128,14 @@ namespace Server.Engines.BulkOrders
 
                 int amountMax;
 
-                if(material != BulkMaterialType.None)
+                if (material != BulkMaterialType.None)
                 {
-                    amountMax = Utility.RandomList(10, 10, 15, 20);
-                } else
+                    if (theirSkill >= 100)
+                        amountMax = Utility.RandomList(20, 20, 25, 30);
+                    else
+                        amountMax = Utility.RandomList(10, 10, 15, 20);
+                }
+                else
                 {
                     if (theirSkill >= 110)
                         amountMax = Utility.RandomList(75, 70, 85, 85);
@@ -144,6 +148,7 @@ namespace Server.Engines.BulkOrders
                     else
                         amountMax = Utility.RandomList(10, 10, 15, 20);
                 }
+
 
                 double excChance = 0.0;
 
@@ -169,14 +174,12 @@ namespace Server.Engines.BulkOrders
                         bool allRequiredSkills = true;
                         double chance = item.GetSuccessChance(m, res, system, false, ref allRequiredSkills);
 
-                        // Shard.Debug("Chance Pra Bod: " + chance+" Usando res "+(res==null ? "Null": res.Name), m);
-
-                        if (allRequiredSkills && chance > 0)
+                        if (allRequiredSkills && chance > 0.2)
                         {
                             if (reqExceptional)
                                 chance = item.GetExceptionalChance(system, chance, m);
 
-                            if (chance > BulkOrderSystem.MIN_CRAFT_BODS)
+                            if (chance > 0.2)
                                 validEntries.Add(entries[i]);
                         }
                     }
@@ -185,6 +188,11 @@ namespace Server.Engines.BulkOrders
                 if (validEntries.Count > 0)
                 {
                     SmallBulkEntry entry = validEntries[Utility.Random(validEntries.Count)];
+                    CraftItem item = system.CraftItems.SearchFor(entry.Type);
+                    bool b = false;
+                    double chance = item.GetSuccessChance(m, res, system, false, ref b);
+                    if (chance <= 0.5 && material != BulkMaterialType.None)
+                        amountMax /= 2;
                     return new SmallSmithBOD(entry, material, amountMax, reqExceptional);
                 }
             }

@@ -27,8 +27,7 @@ namespace Server.Items
 
             if (newItem != null)
                 base.ScissorHelper(from, newItem, GetCarvedAmount);
-            from.SendMessage("You slice the pork chop into thin strips.");
-
+            from.SendMessage("Voce corta o porco em tiras.");
             return true;
         }
 		
@@ -39,12 +38,12 @@ namespace Server.Items
 
 		[Constructable]
         public RawPorkChop(int amount)
-            : base(amount, 0x9F1)
+            : base(amount, 0x09F1)
 		{
 			Weight = 1.0;
 			Stackable = true;
 			Amount = amount;
-			Name = "raw pork chop";
+			Name = "porco cru";
 		}
 
 		public RawPorkChop( Serial serial ) : base( serial )

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Server.Engines.Harvest;
 using Server.Items;
 using Server.Mobiles;
 using Server.Ziden.Traducao;
@@ -478,10 +479,10 @@ namespace Server.Engines.BulkOrders
                     skillReq = 95;
                     break;
                 case BulkMaterialType.Lazurita:
-                    skillReq = 100;
+                    skillReq = 99;
                     break;
                 case BulkMaterialType.Quartzo:
-                    skillReq = 110;
+                    skillReq = 102;
                     break;
                 case BulkMaterialType.Berilo:
                     skillReq = 110;

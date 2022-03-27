@@ -76,7 +76,7 @@ namespace Server.Mobiles
         {
             get
             {
-                return 117.5;
+                return 167.5;
             }
         }
         public override double DispelFocus

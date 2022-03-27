@@ -4,26 +4,27 @@ using Server.Targeting;
 
 namespace Server.Items
 {
-    public class DeliciouslyTastyTreat : TastyTreat
+    public class AntiPoisonTreat : TastyTreat
     {
-        public override double Bonus { get { return 0.10; } }
-        public override TimeSpan Duration { get { return TimeSpan.FromMinutes(10); } }
-        public override TimeSpan CoolDown { get { return TimeSpan.FromMinutes(60); } }
+        public override double Bonus { get { return 0.05; } }
+        public override TimeSpan Duration { get { return TimeSpan.FromMinutes(30); } }
+        public override TimeSpan CoolDown { get { return TimeSpan.FromMinutes(3); } }
 
         [Constructable]
-        public DeliciouslyTastyTreat() : this(1)
+        public AntiPoisonTreat() : this(1)
         {
         }
 
         [Constructable]
-        public DeliciouslyTastyTreat(int amount)
+        public AntiPoisonTreat(int amount)
         {
             Name = "Biscoito de Pet Delicioso";
             Stackable = true;
             Amount = amount;
         }
 
-        public DeliciouslyTastyTreat(Serial serial)
+
+        public AntiPoisonTreat(Serial serial)
             : base(serial)
         {
         }

@@ -395,8 +395,10 @@ namespace Server.Mobiles
             SorteiaItem(new MechanicalLifeManual());
             this.SorteiaItem(new Item(0xA517));
             SorteiaItem(Carnage.GetRandomPS(105));
-            if (Utility.RandomDouble() < 0.1)
+            if (Utility.RandomBool())
                 SorteiaItem(Carnage.GetRandomPS(110));
+            if (Utility.RandomDouble() < 0.1)
+                SorteiaItem(Carnage.GetRandomPS(115));
             var r = Utility.Random(3);
             switch (r)
             {

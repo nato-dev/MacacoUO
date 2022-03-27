@@ -486,21 +486,51 @@ namespace Server.Mobiles
 
         public List<Item> Sorteado = new List<Item>();
 
+        public HashSet<Mobile> JaGanhou = new HashSet<Mobile>();
+
         public void SorteiaItem(Item i)
         {
             Sorteado.Add(i);
             var disputando = GetLootingRights(); //.Where(l => l.m_Mobile.Alive).ToList();
+
+            var filtrado = disputando.Where(dmgStore => !JaGanhou.Contains(dmgStore.m_Mobile)).ToList();
+
+            if (filtrado.Count == 0 && disputando.Count > 0)
+                JaGanhou.Clear();
+            else
+                disputando = filtrado;
+
             if (disputando.Count > 0)
             {
                 var ganhou = disputando[Utility.Random(disputando.Count)];
                 ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                 ganhou.m_Mobile.PlaceInBackpack(i);
+                JaGanhou.Add(ganhou.m_Mobile);
                 foreach (var p in disputando)
                 {
                     if (p.m_Mobile != ganhou.m_Mobile)
                         p.m_Mobile.SendMessage(ganhou.m_Mobile.Name + " ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                 }
             }
+        }
+
+        public void DistribuiPs(int n)
+        {
+            try
+            {
+                var disputando = GetLootingRights(); //.Where(l => l.m_Mobile.Alive).ToList();
+                if (disputando.Count > 0)
+                {
+                    foreach (var ganhou in disputando)
+                    {
+                        var i = Carnage.GetRandomPS(n);
+                        ganhou.m_Mobile.PlaceInBackpack(i);
+                        ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
+                    }
+
+                }
+            }
+            catch (Exception e) { }
         }
 
         public void DistribuiItem(Item i)
@@ -2299,10 +2329,14 @@ namespace Server.Mobiles
 
         public override ApplyPoisonResult ApplyPoison(Mobile from, Poison poison)
         {
+
             if (!Alive || IsDeadPet)
             {
                 return ApplyPoisonResult.Immune;
             }
+
+            if(TastyTreat.UnderInfluence(this))
+                return ApplyPoisonResult.Immune;
 
             if (EvilOmenSpell.TryEndEffect(this))
             {
@@ -6989,7 +7023,7 @@ namespace Server.Mobiles
             var master = this.GetMaster();
             if (master is PlayerMobile)
             {
-                foreach (var ag in this.Aggressors)
+                foreach (var ag in new List<AggressorInfo>(this.Aggressors))
                 {
                     if (ag.Attacker is BaseCreature)
                     {

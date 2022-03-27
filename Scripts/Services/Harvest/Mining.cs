@@ -117,9 +117,9 @@ namespace Server.Engines.Harvest
 
             veins = new HarvestVein[]
             {
-                new HarvestVein(93.9, 0.0, res[0], null),   // Iron
+                new HarvestVein(92.9, 0.0, res[0], null),   // Iron
                 new HarvestVein(5, 0.5, res[1], res[0]), // cobre
-                new HarvestVein(0.5, 0.5, res[2], res[0]), // bronze
+                new HarvestVein(1.5, 0.5, res[2], res[0]), // bronze
                 new HarvestVein(0.5, 0.5, res[3], res[0]), // prata
                 new HarvestVein(0.1, 0.5, res[4], res[0]), // niobio               // aqui estão os rates que, a princípio, serão mantidos pro beta/realease. Desativados pro alfa.
                 new HarvestVein(0, 0.5, res[5], res[0]), // lazurita

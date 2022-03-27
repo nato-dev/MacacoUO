@@ -1593,18 +1593,22 @@ namespace Server.Items
             if (Shard.DebugEnabled && bonusArmsLore > 0)
                 Shard.Debug("Bonus esquiva armsLore: " + bonusArmsLore);
 
-            if (defender is BaseCreature && attacker is PlayerMobile)
+            if (attacker is PlayerMobile || defender is PlayerMobile)
             {
-                chance += 0.15; // +10% em PvM
+                chance += 0.1; // +10% em players
             }
-            if (attacker is BaseCreature && defender is PlayerMobile)
-            {
-                chance += 0.1; // +10% em PvM
-            }
-
+          
             if (defender.Weapon is BaseRanged)
             {
-                chance += 0.15; // +15% chance hit em ranged
+                chance += 0.1; // +10% chance hit em ranged
+            }
+
+            if (defender.Spell != null && defender.Spell.IsCasting)
+            {
+                if (!(defender.Weapon is Fists || defender.Weapon.AllowEquipedCast(attacker)))
+                {
+                    chance += 0.2;
+                }
             }
 
             if (defender.Weapon is Fists && defender is PlayerMobile)
@@ -1844,7 +1848,7 @@ namespace Server.Items
                     {
                         if (defender.Weapon.MaxRange <= defender.GetDistance(attacker))
                         {
-                            if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 25))
+                            if (defender.Combatant == null || !defender.Combatant.Alive || (defender.Combatant != null && defender.Combatant.GetDistance(defender) > defender.Weapon.MaxRange + 20))
                             {
                                 if (Shard.DebugEnabled)
                                 {
@@ -2096,7 +2100,7 @@ namespace Server.Items
             BaseShield attackerShield = attacker.FindItemOnLayer(Layer.TwoHanded) as BaseShield;
             if (attackerShield != null && defender is BaseCreature)
             {
-                damage = (int)(damage * 0.7);
+                damage = (int)(damage * 0.85);
             }
 
             if (blocked)

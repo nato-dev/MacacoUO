@@ -55,7 +55,7 @@ namespace Server.Mobiles
 
             Body = 0x190;
 
-            SetHits(5000, 5000);
+            SetHits(9000, 9000);
 
             SetStr(90, 120);
             SetDex(81, 95);
@@ -123,6 +123,7 @@ namespace Server.Mobiles
 
             PackItem(Decos.RandomDeco());
             SetWeaponAbility(WeaponAbility.BleedAttack);
+            SetMagicalAbility(MagicalAbility.Piercing);
 
             Fame = 8500;
             Karma = -8500;
@@ -189,7 +190,7 @@ namespace Server.Mobiles
                             DamageNumbers.ShowDamage(dmg, m_Defender, m_Target, 32);
                             Effects.PlaySound(m_Target.Location, m_Target.Map, 0x307);
                             Effects.SendLocationEffect(m_Target.Location, m_Target.Map, 0x36B0, 9, 10, 0, 0);
-
+                            BleedAttack.BeginBleed(m_Target, m_Defender);
                             if (m_Target == null || !m_Target.Alive || m_Target.Map == Map.Internal)
                                 return;
 
@@ -245,7 +246,10 @@ namespace Server.Mobiles
             {
                 if (e.m_HasRight && e.m_Mobile != null)
                 {
-                    e.m_Mobile.AddToBackpack(Carnage.GetRandomPS(105));
+                    if(Utility.RandomDouble() < 0.1)
+                        e.m_Mobile.AddToBackpack(Carnage.GetRandomPS(110));
+                    else
+                        e.m_Mobile.AddToBackpack(Carnage.GetRandomPS(105));
 
                     e.m_Mobile.AddToBackpack(new CabecaAnthony());
                     e.m_Mobile.AddToBackpack(new LivroAntigo());

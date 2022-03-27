@@ -10,63 +10,63 @@ using Server.Fronteira.Elementos;
 namespace Server.Mobiles
 {
     [CorpseName("a dragon turtle corpse")]
-	public class DragonTurtle : BaseChampion
-	{
+    public class DragonTurtle : BaseChampion
+    {
         public override bool IsBoss => true;
         public override bool ReduceSpeedWithDamage => false;
         public override bool IsSmart => true;
         public override bool UseSmartAI => true;
 
-        public override Type[] UniqueList{ get { return new Type[] { }; }}
-		public override Type[] SharedList{ get { return new Type[] { }; }}
-		public override Type[] DecorativeList{ get { return new Type[] { }; }}
-		public override MonsterStatuetteType[] StatueTypes{ get { return new MonsterStatuetteType[] { }; }}
+        public override Type[] UniqueList { get { return new Type[] { }; } }
+        public override Type[] SharedList { get { return new Type[] { }; } }
+        public override Type[] DecorativeList { get { return new Type[] { }; } }
+        public override MonsterStatuetteType[] StatueTypes { get { return new MonsterStatuetteType[] { }; } }
 
         public override ChampionSkullType SkullType { get { return ChampionSkullType.None; } }
 
         [Constructable]
-		public DragonTurtle() : base(AIType.AI_Mage)
-		{
-			Name = "tartaruga dragao";
+        public DragonTurtle() : base(AIType.AI_Mage)
+        {
+            Name = "tartaruga dragao";
             Body = 1288;
             BaseSoundID = 362;
-			
-			SetStr(750, 800);
-			SetDex(185, 240);
-			SetInt(99999);
-			
-			SetDamage( 35, 47 );
-			
-			SetHits(75000);
+
+            SetStr(750, 800);
+            SetDex(185, 240);
+            SetInt(99999);
+
+            SetDamage(35, 47);
+
+            SetHits(75000);
             SetStam(99999);
             SetMana(99999);
 
-            SetResistance( ResistanceType.Physical, 75, 85 );
-			SetResistance( ResistanceType.Fire, 65, 75 );
-			SetResistance( ResistanceType.Cold, 70, 75 );
-			SetResistance( ResistanceType.Poison, 100 );
-			SetResistance( ResistanceType.Energy, 65, 75 );
-			
-			SetDamageType( ResistanceType.Physical, 50 );
-			SetDamageType( ResistanceType.Poison, 50 );
+            SetResistance(ResistanceType.Physical, 75, 85);
+            SetResistance(ResistanceType.Fire, 65, 75);
+            SetResistance(ResistanceType.Cold, 70, 75);
+            SetResistance(ResistanceType.Poison, 100);
+            SetResistance(ResistanceType.Energy, 65, 75);
+
+            SetDamageType(ResistanceType.Physical, 50);
+            SetDamageType(ResistanceType.Poison, 50);
 
             SetSkill(SkillName.EvalInt, 200, 200);
             SetSkill(SkillName.Magery, 200, 200);
-            SetSkill( SkillName.MagicResist, 90, 120 );
-			SetSkill( SkillName.Tactics, 200, 110 );
-			SetSkill( SkillName.Wrestling, 225, 227 );
+            SetSkill(SkillName.MagicResist, 90, 120);
+            SetSkill(SkillName.Tactics, 200, 110);
+            SetSkill(SkillName.Wrestling, 225, 227);
 
             VirtualArmor = 100;
 
-			Fame = 11000;
-			Karma = -11000;
+            Fame = 11000;
+            Karma = -11000;
 
             SetWeaponAbility(WeaponAbility.Dismount);
-		}
+        }
 
-		public override void GenerateLoot()
+        public override void GenerateLoot()
         {
-			AddLoot(LootPack.LV7, 3);
+            AddLoot(LootPack.LV7, 3);
             AddLoot(LootPack.Gems, 50);
         }
 
@@ -78,14 +78,14 @@ namespace Server.Mobiles
             SorteiaItem(new PergaminhoSkillcap());
             SorteiaItem(new DragonTurtleFountainAddonDeed());
             DistribuiItem(Decos.RandomDeco());
-            for (var i = 0; X < 3; i++)
+            for (var i = 0; X < 4; i++)
             {
                 if (Utility.RandomDouble() < 0.2)
-                    SorteiaItem(Carnage.GetRandomPS(115));
-                else if(Utility.RandomDouble() < 0.3)
-                    SorteiaItem(Carnage.GetRandomPS(110));
+                    DistribuiPs(115);
+                else if (Utility.RandomDouble() < 0.5)
+                    DistribuiPs(110);
                 else
-                    SorteiaItem(Carnage.GetRandomPS(110));
+                    DistribuiPs(105);
             }
 
             for (var x = 0; x < 5; x++)
@@ -103,8 +103,8 @@ namespace Server.Mobiles
 
         public virtual int BonusExp => 1900;
 
-        public override int Meat{ get{ return 1; } }
-		public override int Hides{ get{ return 33; } }
+        public override int Meat { get { return 1; } }
+        public override int Hides { get { return 33; } }
         public override FoodType FavoriteFood { get { return FoodType.FruitsAndVegies; } }
         public override bool HasBreath { get { return true; } }
         public override bool TeleportsTo { get { return true; } }
@@ -112,21 +112,21 @@ namespace Server.Mobiles
         public override int TeleportRange { get { return 10; } }
         public override bool ReacquireOnMovement { get { return true; } }
 
-		public override void OnCarve(Mobile from, Corpse corpse, Item with)
+        public override void OnCarve(Mobile from, Corpse corpse, Item with)
         {
             if (corpse != null && !corpse.Carved)
             {
                 from.SendLocalizedMessage(1156198); // You cut away some scoots, but they remain on the corpse.
                 corpse.DropItem(new DragonTurtleScute(18));
             }
- 
+
             base.OnCarve(from, corpse, with);
         }
-		
-		public override Item GetArtifact()
-		{
-			return new DragonTurtleEgg();
-		}
+
+        public override Item GetArtifact()
+        {
+            return new DragonTurtleEgg();
+        }
 
         public override void OnMovement(Mobile m, Point3D oldLocation)
         {
@@ -320,7 +320,7 @@ namespace Server.Mobiles
             m.AddSkillMod(mod);
             BuffInfo.AddBuff(m, new BuffInfo(BuffIcon.DragonTurtleDebuff, 1156192, 1156192));
 
-            Server.Timer.DelayCall(TimeSpan.FromSeconds(30), RemoveMod_Callback, new object[] { m } );
+            Server.Timer.DelayCall(TimeSpan.FromSeconds(30), RemoveMod_Callback, new object[] { m });
         }
 
         private void RemoveMod_Callback(object obj)
@@ -382,20 +382,20 @@ namespace Server.Mobiles
             return ResistanceType.Physical;
         }
 
-		public DragonTurtle(Serial serial) : base(serial)
-		{
-		}
-		
-		public override void Serialize(GenericWriter writer)
-		{
-			base.Serialize(writer);
-			writer.Write(0);
-		}
-		
-		public override void Deserialize(GenericReader reader)
-		{
-			base.Deserialize(reader);
-			int version = reader.ReadInt();
-		}
-	}
+        public DragonTurtle(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(0);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
 }

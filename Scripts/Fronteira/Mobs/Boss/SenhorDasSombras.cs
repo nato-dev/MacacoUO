@@ -137,16 +137,17 @@ namespace Server.Mobiles
 
             base.OnDeath(c);
             c.DropItem(new Gold(2000));
-            SorteiaItem(Carnage.GetRandomPS(105));
-            SorteiaItem(Carnage.GetRandomPS(105));
+            DistribuiPs(105);
+            if(Utility.RandomDouble() < 0.1)
+                SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(tinta);
             SorteiaItem(new PergaminhoCarregamento());            
             SorteiaItem(new SkillBook());
             //SorteiaItem(new TemplateDeed());
             SorteiaItem(new LivroAntigo());
-            SorteiaItem(new TreasureMap(7, Map));
             SorteiaItem(Decos.RandomDeco());
-            SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
+            for(var x = 0; x < 5; x++)
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
             GolemMecanico.JorraOuro(c.Location, c.Map, 550);
         }        
 

@@ -100,10 +100,11 @@ namespace Server.Mobiles
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
+            SorteiaItem(Carnage.GetRandomPS(110));
             var arma = Loot.RandomWeapon();
             arma.Resource = CraftResource.Bronze;
             arma.Quality = ItemQuality.Exceptional;
-            arma.WeaponAttributes.HitColdArea = 15;
+            arma.WeaponAttributes.HitColdArea = 50;
             if (arma.Name != null)
                 arma.Name += " de gelo de dragao";
         }

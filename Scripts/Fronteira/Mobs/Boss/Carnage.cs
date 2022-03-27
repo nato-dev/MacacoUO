@@ -43,7 +43,7 @@ namespace Server.Mobiles
             SetSkill(SkillName.Tactics, 95.0, 110.0);
             SetSkill(SkillName.Wrestling, 90.0, 105.0);
             SetSkill(SkillName.DetectHidden, 60.0);
-            //SetSkill()
+
             SetSkill(SkillName.Magery, 100, 100);
             SetSkill(SkillName.EvalInt, 100, 100);
             SetSkill(SkillName.Meditation, 100, 100);
@@ -69,6 +69,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
             DistribuiItem(GetRandomPS(105));
             DistribuiItem(GetRandomPS(105));
+            DistribuiItem(GetRandomPS(110));
             SorteiaItem(GetRandomPS(110));
             SorteiaItem(new PergaminhoCarregamento());
             SorteiaItem(new SkillBook());

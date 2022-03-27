@@ -115,6 +115,11 @@ namespace Server.Mobiles
             return base.HandlesOnSpeech(from);
         }
 
+        public override void OnDoubleClick(Mobile from)
+        {
+            base.OnDoubleClick(from);
+        }
+
         public override void OnSpeech(SpeechEventArgs e)
         {
             Mobile from = e.Mobile;

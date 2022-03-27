@@ -1820,7 +1820,7 @@ namespace Server.Mobiles
             SetSkill(SkillName.EvalInt, 115, 130);
             SetSkill(SkillName.Meditation, 130, 155);
             SetSkill(SkillName.DetectHidden, 80.0);
-            SetSkill(SkillName.Parry, 90.0, 100.0);
+            //SetSkill(SkillName.Parry, 90.0, 100.0);
 
             PackReg(7, 11);
 

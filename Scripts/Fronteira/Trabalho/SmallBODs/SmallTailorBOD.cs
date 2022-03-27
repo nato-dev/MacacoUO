@@ -11,10 +11,10 @@ namespace Server.Engines.BulkOrders
 
         public static double[] m_TailoringMaterialChances = new double[]
         {
-            0.857421875, // None
-            0.125000000, // Spined
-            0.015625000, // Horned
-            0.001953125  // Barbed
+            0.357421875, // None
+            0.325000000, // Spined
+            0.215625000, // Horned
+            0.101953125  // Barbed
         };
         [Constructable]
         public SmallTailorBOD()
@@ -89,7 +89,7 @@ namespace Server.Engines.BulkOrders
             bool useMaterials = Utility.RandomBool();
 
             double theirSkill = BulkOrderSystem.GetBODSkill(m, SkillName.Tailoring);
-            if (useMaterials && theirSkill >= 6.2) // Ugly, but the easiest leather BOD is Leather Cap which requires at least 6.2 skill.
+            if (useMaterials && theirSkill >= 15) // Ugly, but the easiest leather BOD is Leather Cap which requires at least 6.2 skill.
                 entries = SmallBulkEntry.TailorLeather;
             else
                 entries = SmallBulkEntry.TailorCloth;
@@ -98,12 +98,7 @@ namespace Server.Engines.BulkOrders
             {
                 int amountMax;
 
-                if (theirSkill >= 70.1)
-                    amountMax = Utility.RandomList(10, 15, 20, 20);
-                else if (theirSkill >= 50.1)
-                    amountMax = Utility.RandomList(10, 15, 15, 20);
-                else
-                    amountMax = Utility.RandomList(10, 10, 15, 20);
+            
 
                 BulkMaterialType material = BulkMaterialType.None;
 
@@ -121,6 +116,28 @@ namespace Server.Engines.BulkOrders
                         }
                     }
                 }
+
+                if (material != BulkMaterialType.None)
+                {
+                    if (theirSkill >= 100)
+                        amountMax = Utility.RandomList(20, 20, 30, 25);
+                    else
+                        amountMax = Utility.RandomList(10, 10, 15, 20);
+                }
+                else
+                {
+                    if (theirSkill >= 110)
+                        amountMax = Utility.RandomList(75, 70, 85, 85);
+                    else if (theirSkill >= 100)
+                        amountMax = Utility.RandomList(55, 70, 65, 75);
+                    else if (theirSkill >= 70.1)
+                        amountMax = Utility.RandomList(35, 35, 40, 40);
+                    else if (theirSkill >= 50.1)
+                        amountMax = Utility.RandomList(15, 20, 20, 25);
+                    else
+                        amountMax = Utility.RandomList(10, 10, 15, 20);
+                }
+
 
                 double excChance = 0.0;
 
@@ -146,12 +163,12 @@ namespace Server.Engines.BulkOrders
                         bool allRequiredSkills = true;
                         double chance = item.GetSuccessChance(m, res, system, false, ref allRequiredSkills);
 
-                        if (allRequiredSkills && chance >= BulkOrderSystem.MIN_CRAFT_BODS)
+                        if (allRequiredSkills && chance >= 0.2)
                         {
                             if (reqExceptional)
                                 chance = item.GetExceptionalChance(system, chance, m);
 
-                            if (chance > BulkOrderSystem.MIN_CRAFT_BODS)
+                            if (chance > 0.2)
                                 validEntries.Add(entries[i]);
                         }
                     }
@@ -160,6 +177,11 @@ namespace Server.Engines.BulkOrders
                 if (validEntries.Count > 0)
                 {
                     SmallBulkEntry entry = validEntries[Utility.Random(validEntries.Count)];
+                    CraftItem item = system.CraftItems.SearchFor(entry.Type);
+                    bool b = false;
+                    double chance = item.GetSuccessChance(m, res, system, false, ref b);
+                    if (chance <= 0.5 && material != BulkMaterialType.None)
+                        amountMax /= 2;
                     return new SmallTailorBOD(entry, material, amountMax, reqExceptional);
                 }
             }

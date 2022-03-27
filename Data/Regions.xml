@@ -257,11 +257,10 @@
       <music name="Cove" />
     </region>
     <region type="TownRegion" priority="50" name="Britain">
-      <rect x="1416" y="1498" width="324" height="279" zmin="-10" />
+      <rect x="1386" y="1498" width="324" height="279" zmin="-10" />
       <rect x="1385" y="1538" width="31" height="239" zmin="-10" />
       <rect x="1416" y="1777" width="324" height="60" />
       <rect x="1385" y="1777" width="31" height="130" />
-      <rect x="1093" y="1538" width="292" height="369" />
       <go x="1495" y="1629" z="10" />
       <music name="Britain1" />
       <zrange min="0" />
@@ -762,9 +761,9 @@
       <rect x="2447" y="39" width="42" height="28" />
       <go x="2471" y="64" z="0" />
     </region>
-    <region priority="50" name="Minoc Mine">
+    <region priority="50" type="GuardedRegion" name="Minoc Mine">
       <rect x="2556" y="501" width="6" height="3" />
-      <rect x="2556" y="474" width="26" height="27" />
+      <rect x="2556" y="474" width="36" height="37" />
       <go x="2558" y="499" z="0" />
     </region>
     <region priority="50" name="Avatar Isle Cave">
@@ -1327,12 +1326,12 @@
       <zrange min="0" />
     </region>
     <region type="TownRegion" priority="50" name="Britain">
-      <rect x="1416" y="1498" width="324" height="279" zmin="-10" />
+      <rect x="1386" y="1498" width="324" height="279" zmin="-10" />
       <rect x="1500" y="1408" width="46" height="90" />
       <rect x="1385" y="1538" width="31" height="239" zmin="-10" />
       <rect x="1416" y="1777" width="324" height="60" />
       <rect x="1385" y="1777" width="31" height="130" />
-      <rect x="1093" y="1538" width="292" height="369" />
+    
       <go x="1495" y="1629" z="10" />
       <music name="Britain1" />
       <zrange min="0" />
@@ -1887,9 +1886,9 @@
       <rect x="2447" y="39" width="42" height="28" />
       <go x="2471" y="64" z="0" />
     </region>
-    <region priority="50" name="Minoc Mine">
+    <region priority="50" type="GuardedRegion" name="Minoc Mine">
       <rect x="2556" y="501" width="6" height="3" />
-      <rect x="2556" y="474" width="26" height="27" />
+      <rect x="2556" y="474" width="36" height="37" />
       <go x="2558" y="499" z="0" />
     </region>
     <region priority="50" name="Avatar Isle Cave">

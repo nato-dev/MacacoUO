@@ -707,10 +707,10 @@ namespace Server.Engines.Craft
             AddRes(index, typeof(BaseBeverage), 1046458, 1, 1044253);
             AddRecipe(index, (int)CookRecipesExp.WoodPulp);
 
-            index = AddCraft(typeof(DeliciouslyTastyTreat), 1044496, "Biscoito de Pet", 25.0, 100.0, typeof(TomatoSauce), "Tomate", 5, "Voce precisa de tomates");
+            index = AddCraft(typeof(DeliciouslyTastyTreat), 1044496, "Biscoito de Pet", 0, 100.0, typeof(TomatoSauce), "Tomate", 5, "Voce precisa de tomates");
             AddRes(index, typeof(DriedOnions), "Cebolas Secas", 10, "Voce precisa de cebolas secas");
             AddRes(index, typeof(DriedHerbs), "Ervas Secas", 10, "Voce precisa de ervas secas");
-            AddRes(index, typeof(Sage), "Salvia", 1, "Voce precisa de uma salvia");
+            AddRes(index, typeof(Carrot), "Cenoura", 10, "Voce precisa cenouras");
             AddRes(index, typeof(Sausage), "Salsicha", 5, "Voce precisa de salsichas suinas");
             AddRecipe(index, (int)CookRecipesExp.VenisonRoast);
             SetNeedHeat(index, true);

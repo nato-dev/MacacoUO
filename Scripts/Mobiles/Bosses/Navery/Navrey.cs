@@ -123,8 +123,8 @@ namespace Server.Mobiles
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
-            if(Utility.RandomBool())
-                SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetRandomReceitaNoob());

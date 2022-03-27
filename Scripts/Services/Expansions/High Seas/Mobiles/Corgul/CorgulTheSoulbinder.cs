@@ -147,8 +147,8 @@ namespace Server.Mobiles
                     SorteiaItem(Carnage.GetRandomPS(115));
                 else
                     SorteiaItem(Carnage.GetRandomPS(110));
-                SorteiaItem(Carnage.GetRandomPS(105));
             }
+            SorteiaItem(Carnage.GetRandomPS(110));
             var b = new BraceleteDoPoder();
             b.Tipo = TipoJoias.Escudo;
             b.Bonus = 20 + Utility.Random(81);

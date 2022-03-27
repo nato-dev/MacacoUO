@@ -241,12 +241,15 @@ namespace Server.Mobiles
 
             for(var i =0; X < 3; i++)
             {
-                if (Utility.RandomDouble() < 0.3)
+                if (Utility.RandomDouble() < 0.5)
                     SorteiaItem(Carnage.GetRandomPS(110));
                 else
                     SorteiaItem(Carnage.GetRandomPS(105));
-                SorteiaItem(Carnage.GetRandomPS(105));
+                SorteiaItem(Carnage.GetRandomPS(110));
+                if (Utility.RandomDouble() < 0.1)
+                    SorteiaItem(Carnage.GetRandomPS(115));
             }
+
             for (var x = 0; x < 10; x++)
             {
                 SorteiaItem(BaseEssencia.RandomEssencia(7));
