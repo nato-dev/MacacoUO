@@ -34,7 +34,7 @@ namespace Server.SkillHandlers
 
 		public static bool IsInGuild(Mobile m)
 		{
-			return (m is PlayerMobile && ((PlayerMobile)m).NpcGuild == NpcGuild.ThievesGuild);
+            return true; // (m is PlayerMobile && ((PlayerMobile)m).NpcGuild == NpcGuild.ThievesGuild);
 		}
 
 		public static bool IsInnocentTo(Mobile from, Mobile to)
@@ -530,7 +530,7 @@ namespace Server.SkillHandlers
 					{
 						Mobile mobRoot = (Mobile)root;
 
-						if (!IsInGuild(mobRoot) && IsInnocentTo(m_Thief, mobRoot))
+						if (IsInnocentTo(m_Thief, mobRoot))
 						{
 							m_Thief.CriminalAction(false);
 						}
