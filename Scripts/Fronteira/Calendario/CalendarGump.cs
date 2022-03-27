@@ -186,7 +186,7 @@ namespace Server.Items
 
             #endregion
 
-            AddLabel(327, 9, 2606, "An Corp Event Calendar");
+            AddLabel(327, 9, 2606, "Calendrario de Eventos");
 
             AddImage(29, 104, 3001, 2415);
             AddImage(272, 104, 3001, 2415);
@@ -229,7 +229,7 @@ namespace Server.Items
             AddButton(21, 3, 2095, 2095, 18, GumpButtonType.Reply, 0);
 
             //Filters
-            AddLabel(29, 54, WhiteTextHue, "Filters");
+            AddLabel(29, 54, WhiteTextHue, "Filtros");
 
             if (m_Player.m_EventCalendarAccount.FilterOfficialEvents)
                 AddButton(79, 36, 2154, 2151, 6, GumpButtonType.Reply, 0);
@@ -253,49 +253,49 @@ namespace Server.Items
                 AddButton(367, 36, 2154, 2151, 9, GumpButtonType.Reply, 0);
             else
                 AddButton(367, 36, 2151, 2154, 9, GumpButtonType.Reply, 0);
-            AddLabel(401, 40, 2507, "My Events");
+            AddLabel(401, 40, 2507, "Meus Eventos");
 
             if (m_Player.m_EventCalendarAccount.FilterMajorEvents)
                 AddButton(79, 68, 2154, 2151, 10, GumpButtonType.Reply, 0);
             else
                 AddButton(79, 68, 2151, 2154, 10, GumpButtonType.Reply, 0);
-            AddLabel(112, 72, 2115, "Major");
+            AddLabel(112, 72, 2115, "Principal");
 
             if (m_Player.m_EventCalendarAccount.FilterMinorEvents)
                 AddButton(174, 68, 2154, 2151, 11, GumpButtonType.Reply, 0);
             else
                 AddButton(174, 68, 2151, 2154, 11, GumpButtonType.Reply, 0);
-            AddLabel(207, 72, 2548, "Minor");
+            AddLabel(207, 72, 2548, "Menor");
 
             if (m_Player.m_EventCalendarAccount.FilterRecurringEvents)
                 AddButton(258, 68, 2154, 2151, 12, GumpButtonType.Reply, 0);
             else
                 AddButton(258, 68, 2151, 2154, 12, GumpButtonType.Reply, 0);
-            AddLabel(293, 72, 2562, "Recurring");
+            AddLabel(293, 72, 2562, "Recorrente");
 
             if (m_Player.m_EventCalendarAccount.FilterEventsInProgress)
                 AddButton(367, 68, 2154, 2151, 13, GumpButtonType.Reply, 0);
             else
                 AddButton(367, 68, 2151, 2154, 13, GumpButtonType.Reply, 0);
-            AddLabel(400, 72, 2509, "Events in Progress");
+            AddLabel(400, 72, 2509, "Eventos em andamento");
 
             //Past Event Filter
-            AddLabel(558, 34, 50, "Show Events Starting After");
+            AddLabel(558, 34, 50, "Mostrar eventos");
 
             string pastDateText = m_Player.m_EventCalendarAccount.PastDate.ToShortDateString();
 
             AddLabel(Utility.CenteredTextOffset(645, pastDateText), 56, WhiteTextHue, pastDateText);
             AddButton(575, 81, 2223, 2223, 14, GumpButtonType.Reply, 0);
-            AddLabel(605, 77, 2534, "Starting Date");
+            AddLabel(605, 77, 2534, "Data de início");
             AddButton(697, 81, 2224, 2224, 15, GumpButtonType.Reply, 0);
 
             //Headings
-            AddLabel(28, 110, 149, "Select");
-            AddLabel(197, 110, 149, "Event Name");
-            AddLabel(444, 110, 149, "Event Time");
-            AddLabel(546, 110, 149, "Begins In");
-            AddLabel(628, 110, 149, "Level");
-            AddLabel(699, 110, 149, "Type");
+            AddLabel(28, 110, 149, "Selecionar");
+            AddLabel(197, 110, 149, "Nome do Evento");
+            AddLabel(444, 110, 149, "Hora do Evento");
+            AddLabel(546, 110, 149,"Começa em");
+            AddLabel(628, 110, 149, "Nivel");
+            AddLabel(699, 110, 149, "Tipo");
 
             int startY = 140;
             int rowSpacing = 55;
@@ -351,9 +351,9 @@ namespace Server.Items
                             else
                             {
                                 if (currentEvent.StartTime + currentEvent.Duration > DateTime.UtcNow)
-                                    beginsInText = "In Progress";
+                                    beginsInText = "Em andamento";
                                 else
-                                    beginsInText = "Ended";
+                                    beginsInText = "Finalizado";
                             }
 
                             AddLabel(Utility.CenteredTextOffset(575, beginsInText), startY + 5, textHue, beginsInText);
@@ -377,33 +377,33 @@ namespace Server.Items
             if (CurrentPage > 1)
             {
                 AddButton(117, 393, 4014, 4016, 4, GumpButtonType.Reply, 0);
-                AddLabel(152, 393, WhiteTextHue, "Previous Page");
+                AddLabel(152, 393, WhiteTextHue, "Página anterior");
             }
 
             //Next
             if (CurrentPage < TotalPages)
             {
                 AddButton(557, 393, 4005, 4007, 5, GumpButtonType.Reply, 0);
-                AddLabel(598, 393, WhiteTextHue, "Next Page");
+                AddLabel(598, 393, WhiteTextHue, "Próxima página");
             }
 
             //Selected
             if (selectedEvent != null)
             {
                 AddImage(304, 404, 2440);
-                AddLabel(317, 405, 2525, "Selected Event Details");
+                AddLabel(317, 405, 2525, "Detalhes do Evento");
 
-                AddLabel(30, 425, 149, "Event Name");
+                AddLabel(30, 425, 149, "Nome Evento");
                 AddLabel(116, 425, GreenTextHue, selectedEvent.DisplayName);
 
-                AddLabel(518, 425, 149, "Event Criteria");
+                AddLabel(518, 425, 149, "Critérios");
                 AddLabel(618, 425, EventCalendarPersistance.GetEventLevelHue(selectedEvent.EventLevel), selectedEvent.EventLevel.ToString());
                 AddLabel(679, 425, EventCalendarPersistance.GetEventTypeHue(selectedEvent.EventType), selectedEvent.EventType.ToString());
 
-                AddLabel(30, 447, 149, "Event Start");
+                AddLabel(30, 447, 149, "Irá iniciar");
                 AddLabel(111, 447, WhiteTextHue, EventCalendarPersistance.PlayerFormattedDateTime(m_Player, selectedEvent.StartTime));
 
-                AddLabel(278, 447, 149, "Begins In");
+                AddLabel(278, 447, 149, "Começa em");
 
                 string beginsInText = "";
 
@@ -412,17 +412,17 @@ namespace Server.Items
                 else
                 {
                     if (selectedEvent.StartTime + selectedEvent.Duration > DateTime.UtcNow)
-                        beginsInText = "In Progress";
+                        beginsInText = "Em andamento";
                     else
-                        beginsInText = "Ended";
+                        beginsInText = "Finalizado";
                 }
 
                 AddLabel(339, 447, WhiteTextHue, beginsInText);
 
-                AddLabel(431, 447, 149, "Duration");
+                AddLabel(431, 447, 149, "Druração");
                 AddLabel(493, 447, WhiteTextHue, Utility.CreateTimeRemainingString(DateTime.UtcNow, DateTime.UtcNow + selectedEvent.Duration, true, true, true, true, false));
 
-                AddLabel(558, 447, 149, "Creator");
+                AddLabel(558, 447, 149, "Criador");
 
                 string creator = selectedEvent.CreatorName;
 
@@ -440,14 +440,14 @@ namespace Server.Items
                 else
                     AddLabel(616, 447, WhiteTextHue, creator);
 
-                AddLabel(30, 469, 149, "Location");
+                AddLabel(30, 469, 149, "Localização");
                 AddLabel(93, 469, WhiteTextHue, selectedEvent.LocationText);
 
-                AddLabel(431, 469, 149, "Coordinates");
+                AddLabel(431, 469, 149, "Coordenadas");
                 AddLabel(515, 469, WhiteTextHue, selectedEvent.LocationPoint.X.ToString() + ", " + selectedEvent.LocationPoint.Y.ToString());
 
                 AddButton(597, 472, 2118, 248, 16, GumpButtonType.Reply, 0);
-                AddLabel(615, 469, 2610, "View Map");
+                AddLabel(615, 469, 2610, "Ver Map");
 
                 if (selectedEvent.WebLink != "")
                 {
@@ -457,8 +457,8 @@ namespace Server.Items
 
                 AddTextEntry(25, 500, 620, 60, WhiteTextHue, 1000, selectedEvent.DescriptionText);
 
-                AddLabel(660, 495, 2578, "Ignore Alerts");
-                AddLabel(658, 511, 2578, "For This Event");
+                AddLabel(660, 495, 2578, "Ignorar Alertas");
+                AddLabel(658, 511, 2578, "Para este evento");
 
                 bool eventIgnored = false;
 
@@ -473,18 +473,18 @@ namespace Server.Items
 
             //Controls
             AddButton(29, 570, 4029, 4007, 1, GumpButtonType.Reply, 0);
-            AddLabel(63, 570, 2603, "Create New Event");
+            AddLabel(63, 570, 2603, "Criar Novo Evento");
 
             bool canEditSelectedEvent = false;
 
             if (selectedEvent != null && canEditSelectedEvent)
             {
                 AddButton(299, 570, 4026, 4007, 2, GumpButtonType.Reply, 0);
-                AddLabel(333, 570, 169, "Edit Selected Event");
+                AddLabel(333, 570, 169, "Editar evento selecionado");
             }
 
             AddButton(529, 570, 4002, 4007, 3, GumpButtonType.Reply, 0);
-            AddLabel(563, 570, 2550, "Change Your Calendar Settings");
+            AddLabel(563, 570, 2550, "Alterar suas config. de calendário");
         }
 
         public override void OnResponse(NetState sender, RelayInfo info)
@@ -579,8 +579,7 @@ namespace Server.Items
 
                     else
                     {
-                        player.SendMessage("The selected event is no longer accessible.");
-                        closeGump = false;
+                        player.SendMessage("O evento selecionado não está mais acessível."); closeGump = false;
                     }
                     break;
 
@@ -769,7 +768,7 @@ namespace Server.Items
 
             AddImage(10, 10, 1249);
 
-            AddLabel(171, 48, 2606, "Event Alert");
+            AddLabel(171, 48, 2606, "Alerta de evento");
             AddLabel(Utility.CenteredTextOffset(205, m_Event.DisplayName), 65, 169, m_Event.DisplayName);
 
             string firstLine = "";
@@ -777,7 +776,7 @@ namespace Server.Items
 
             if (m_Event.StartTime > DateTime.UtcNow)
             {
-                firstLine = "Begins In";
+                firstLine = "Começa em";
                 secondLine = Utility.CreateTimeRemainingString(DateTime.UtcNow, m_Event.StartTime, true, true, true, true, false);
             }
 
@@ -785,14 +784,14 @@ namespace Server.Items
             {
                 if (m_Event.StartTime + m_Event.Duration > DateTime.UtcNow)
                 {
-                    firstLine = "Event Is";
-                    secondLine = "In Progress";
+                    firstLine = "Evento é";
+                    secondLine = "Em andamento";
                 }
 
                 else
                 {
-                    firstLine = "Event Has";
-                    secondLine = "Ended";
+                    firstLine = "Evento tem";
+                    secondLine = "Finalizado";
                 }
             }
 
@@ -803,17 +802,17 @@ namespace Server.Items
 
             AddItem(188 + iconDetail.OffsetX, 96 + iconDetail.OffsetY, iconDetail.ItemId, m_Event.EventIconHue);
 
-            AddLabel(275, 97, 149, "Creator");
+            AddLabel(275, 97, 149, "Criador");
             AddLabel(Utility.CenteredTextOffset(300, m_Event.CreatorName), 117, WhiteTextHue, m_Event.CreatorName);
 
-            AddLabel(55, 153, 149, "Location");
+            AddLabel(55, 153, 149, "Localização");
             AddLabel(119, 153, WhiteTextHue, m_Event.LocationText);
 
-            AddLabel(55, 172, 149, "Coordinates");
+            AddLabel(55, 172, 149, "Coordenadas");
             AddLabel(139, 172, WhiteTextHue, m_Event.LocationPoint.X + "," + m_Event.LocationPoint.Y);
 
             AddButton(287, 175, 2118, 248, 1, GumpButtonType.Reply, 0);
-            AddLabel(304, 172, 2610, "View Map");
+            AddLabel(304, 172, 2610, "Ver Map");
 
             AddTextEntry(53, 193, 310, 105, WhiteTextHue, 1000, m_Event.DescriptionText);
         }
@@ -884,7 +883,7 @@ namespace Server.Items
 
             if (!storedValuesValid)
             {
-                player.SendMessage(2115, "That event is no longer accessible.");
+                player.SendMessage(2115, "Esse evento não está mais acessível.");
 
                 player.CloseGump(typeof(EventCalendarGump));
                 player.SendGump(new EventCalendarGump(player));
@@ -952,26 +951,26 @@ namespace Server.Items
             AddButton(49, 8, 2095, 2094, 64, GumpButtonType.Reply, 0);
             AddLabel(75, 6, 149, "Wiki Page");
 
-            AddLabel(331, 4, WhiteTextHue, "Event Editor");
+            AddLabel(331, 4, WhiteTextHue, "Editor de eventos");
 
             //Event Level
-            AddLabel(168, 25, 2606, "Event Level");
+            AddLabel(168, 25, 2606, "Nível do evento");
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.EventLevel == EventCalendarEvent.EventLevelType.Player)
             {
-                AddLabel(78, 45, GreenTextHue, "All Players");
+                AddLabel(78, 45, GreenTextHue, "All player");
                 AddButton(96, 65, 4009, 4008, 3, GumpButtonType.Reply, 0);
             }
 
             else
             {
-                AddLabel(78, 45, WhiteTextHue, "All Players");
+                AddLabel(78, 45, WhiteTextHue, "All player");
                 AddButton(96, 65, 4008, 4009, 3, GumpButtonType.Reply, 0);
             }
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.EventLevel == EventCalendarEvent.EventLevelType.Guild)
             {
-                AddLabel(171, 45, GreenTextHue, "Guild-Only");
+                AddLabel(171, 45, GreenTextHue, "Somente Guilda");
                 AddButton(188, 65, 4009, 4008, 4, GumpButtonType.Reply, 0);
             }
 
@@ -981,12 +980,12 @@ namespace Server.Items
                 {
                     if (player.m_EventCalendarAccount.StoredValuesEvent.Creator.Guild != null)
                     {
-                        AddLabel(171, 45, WhiteTextHue, "Guild-Only");
+                        AddLabel(171, 45, WhiteTextHue, "Somente Guilda");
                         AddButton(188, 65, 4008, 4009, 4, GumpButtonType.Reply, 0);
                     }
 
                     else
-                        AddLabel(160, 45, GreyTextHue, "Not Available");
+                        AddLabel(160, 45, GreyTextHue, "Não disponivel");
                     AddImage(188, 65, 4017);
                 }
             }
@@ -995,41 +994,41 @@ namespace Server.Items
             {
                 if (player.m_EventCalendarAccount.StoredValuesEvent.EventLevel == EventCalendarEvent.EventLevelType.Official)
                 {
-                    AddLabel(256, 45, GreenTextHue, "Staff-Made");
+                    AddLabel(256, 45, GreenTextHue, "Feito pela equipe");
                     AddButton(274, 65, 4009, 4008, 5, GumpButtonType.Reply, 0);
                 }
 
                 else
                 {
-                    AddLabel(256, 45, WhiteTextHue, "Staff-Made");
+                    AddLabel(256, 45, WhiteTextHue, "Feito pela equipe");
                     AddButton(274, 65, 4008, 4009, 5, GumpButtonType.Reply, 0);
                 }
             }
 
             //Event Type
-            AddLabel(169, 93, 2603, "Event Type");
+            AddLabel(169, 93, 2603, "Tipo de evento");
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.EventType == EventCalendarEvent.EventTypeType.Minor)
             {
-                AddLabel(91, 112, GreenTextHue, "Minor");
+                AddLabel(91, 112, GreenTextHue, "Menor");
                 AddButton(93, 132, 4012, 4011, 6, GumpButtonType.Reply, 0);
             }
 
             else
             {
-                AddLabel(91, 112, WhiteTextHue, "Minor");
+                AddLabel(91, 112, WhiteTextHue, "Menor");
                 AddButton(93, 132, 4011, 4012, 6, GumpButtonType.Reply, 0);
             }
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.EventType == EventCalendarEvent.EventTypeType.Major)
             {
-                AddLabel(183, 112, GreenTextHue, "Major");
+                AddLabel(183, 112, GreenTextHue, "Principal");
                 AddButton(186, 132, 4012, 4011, 7, GumpButtonType.Reply, 0);
             }
 
             else
             {
-                AddLabel(183, 112, WhiteTextHue, "Major");
+                AddLabel(183, 112, WhiteTextHue, "Principal");
                 AddButton(186, 132, 4011, 4012, 7, GumpButtonType.Reply, 0);
             }
 
@@ -1037,25 +1036,25 @@ namespace Server.Items
             {
                 if (player.m_EventCalendarAccount.StoredValuesEvent.EventType == EventCalendarEvent.EventTypeType.Recurring)
                 {
-                    AddLabel(259, 112, GreenTextHue, "Recurring");
+                    AddLabel(259, 112, GreenTextHue, "Recorrente");
                     AddButton(272, 132, 4012, 4011, 8, GumpButtonType.Reply, 0);
                 }
 
                 else
                 {
-                    AddLabel(259, 112, WhiteTextHue, "Recurring");
+                    AddLabel(259, 112, WhiteTextHue, "Recorrente");
                     AddButton(272, 132, 4011, 4012, 8, GumpButtonType.Reply, 0);
                 }
             }
 
             else
             {
-                AddLabel(247, 112, GreyTextHue, "Not Available");
+                AddLabel(247, 112, GreyTextHue, "Não disponível");
                 AddImage(272, 132, 4017);
             }
 
             //Event Name
-            AddLabel(164, 160, 2587, "Event Name");
+            AddLabel(164, 160, 2587, "Nome do evento");
             AddBackground(58, 180, 300, 45, 3000);
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.DisplayName.Length <= MaxEventNameLength)
@@ -1064,7 +1063,7 @@ namespace Server.Items
                 AddTextEntry(63, 181, 295, 40, RedTextHue, 9, player.m_EventCalendarAccount.StoredValuesEvent.DisplayName);
 
             //Event Description
-            AddLabel(144, 230, 2596, "Event Description");
+            AddLabel(144, 230, 2596, "Descrição do Evento");
             AddBackground(58, 251, 300, 100, 3000);
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.DescriptionText.Length <= MaxDescriptionLength)
@@ -1073,7 +1072,7 @@ namespace Server.Items
                 AddTextEntry(63, 256, 295, 90, RedTextHue, 10, player.m_EventCalendarAccount.StoredValuesEvent.DescriptionText);
 
             //Event Website
-            AddLabel(138, 357, 2425, "Event Website Link");
+            AddLabel(138, 357, 2425, "Link do site do evento");
             AddBackground(58, 376, 300, 45, 3000);
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.WebLink.Length <= MaxWebLinkLength)
@@ -1084,7 +1083,7 @@ namespace Server.Items
             //Approval
             if (player.m_EventCalendarAccount.StoredValuesEvent.EventLevel != EventCalendarEvent.EventLevelType.Player)
             {
-                AddLabel(94, 431, 149, "Event Published");
+                AddLabel(94, 431, 149, "Evento publicado");
 
                 if (player.m_EventCalendarAccount.StoredValuesEvent.EventSubmitted)
                     AddButton(56, 427, 9724, 9721, 12, GumpButtonType.Reply, 0);
@@ -1094,17 +1093,17 @@ namespace Server.Items
 
             else
             {
-                AddLabel(255, 422, 149, "Event Status");
+                AddLabel(255, 422, 149, "Status do evento");
 
                 switch (player.m_EventCalendarAccount.StoredValuesEvent.ApprovalStatus)
                 {
                     case EventCalendarEvent.ApprovalStatusType.Approved:
-                        AddLabel(Utility.CenteredTextOffset(302, "Approved!"), 440, GreenTextHue, "Approved!");
+                        AddLabel(Utility.CenteredTextOffset(302, "Aprovado!"), 440, GreenTextHue, "Aprovado!");
                         break;
 
                     case EventCalendarEvent.ApprovalStatusType.Pending:
-                        AddLabel(94, 431, 149, "Submit for Approval");
-                        AddLabel(Utility.CenteredTextOffset(302, "Pending Approval"), 440, YellowTextHue, "Pending Approval");
+                        AddLabel(94, 431, 149, "Enviar para aprovação");
+                        AddLabel(Utility.CenteredTextOffset(302, "Aprovação pendente"), 440, YellowTextHue, "Aprovação pendente");
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.EventSubmitted)
                             AddButton(56, 427, 9724, 9721, 12, GumpButtonType.Reply, 0);
@@ -1113,8 +1112,8 @@ namespace Server.Items
                         break;
 
                     case EventCalendarEvent.ApprovalStatusType.Denied:
-                        AddLabel(94, 431, 149, "Submit for Approval");
-                        AddLabel(Utility.CenteredTextOffset(302, "Rejected"), 440, RedTextHue, "Rejected");
+                        AddLabel(94, 431, 149, "Enviar para aprovação");
+                        AddLabel(Utility.CenteredTextOffset(302, "Rejeitado"), 440, RedTextHue, "Rejeitado");
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.EventSubmitted)
                             AddButton(56, 427, 9724, 9721, 12, GumpButtonType.Reply, 0);
@@ -1146,44 +1145,44 @@ namespace Server.Items
                 {
                     if (player.m_EventCalendarAccount.StoredValuesEvent.ApprovalStatus == EventCalendarEvent.ApprovalStatusType.Approved)
                     {
-                        AddLabel(85, 501, GreenTextHue, "Approved");
+                        AddLabel(85, 501, GreenTextHue, "Aprovado");
                         AddButton(97, 521, 4003, 4002, 14, GumpButtonType.Reply, 0);
                     }
 
                     else
                     {
-                        AddLabel(85, 501, WhiteTextHue, "Approved");
+                        AddLabel(85, 501, WhiteTextHue, "Aprovado");
                         AddButton(97, 521, 4002, 4003, 14, GumpButtonType.Reply, 0);
                     }
 
                     if (player.m_EventCalendarAccount.StoredValuesEvent.ApprovalStatus == EventCalendarEvent.ApprovalStatusType.Pending)
                     {
-                        AddLabel(180, 501, GreenTextHue, "Pending");
+                        AddLabel(180, 501, GreenTextHue, "Pendente");
                         AddButton(186, 521, 4003, 4002, 15, GumpButtonType.Reply, 0);
                     }
 
                     else
                     {
-                        AddLabel(180, 501, WhiteTextHue, "Pending");
+                        AddLabel(180, 501, WhiteTextHue, "Pendente");
                         AddButton(186, 521, 4002, 4003, 15, GumpButtonType.Reply, 0);
                     }
 
                     if (player.m_EventCalendarAccount.StoredValuesEvent.ApprovalStatus == EventCalendarEvent.ApprovalStatusType.Denied)
                     {
-                        AddLabel(272, 501, GreenTextHue, "Denied");
+                        AddLabel(272, 501, GreenTextHue, "Negado");
                         AddButton(276, 521, 4003, 4002, 16, GumpButtonType.Reply, 0);
                     }
 
                     else
                     {
-                        AddLabel(272, 501, WhiteTextHue, "Denied");
+                        AddLabel(272, 501, WhiteTextHue, "Negado");
                         AddButton(276, 521, 4002, 4003, 16, GumpButtonType.Reply, 0);
                     }
                 }
             }
 
             //Event Start Time
-            AddLabel(473, 26, 2560, "Event Date and Time");
+            AddLabel(473, 26, 2560, "Data e hora do evento");
 
             string dateTimeText = EventCalendarPersistance.PlayerFormattedDateTime(player, player.m_EventCalendarAccount.StoredValuesEvent.StartTime);
 
@@ -1195,19 +1194,19 @@ namespace Server.Items
             AddBackground(411, 66, 244, 34, 3000);
 
             AddButton(417, 73, 253, 253, 20, GumpButtonType.Reply, 0);
-            AddLabel(436, 73, 2550, "Day");
+            AddLabel(436, 73, 2550, "Dia");
             AddButton(465, 72, 251, 251, 21, GumpButtonType.Reply, 0);
 
             AddButton(490, 72, 253, 253, 22, GumpButtonType.Reply, 0);
-            AddLabel(509, 72, 2550, "Hour");
+            AddLabel(509, 72, 2550, "Hora");
             AddButton(543, 72, 251, 251, 23, GumpButtonType.Reply, 0);
 
             AddButton(567, 72, 253, 253, 24, GumpButtonType.Reply, 0);
-            AddLabel(586, 72, 2550, "Minute");
+            AddLabel(586, 72, 2550, "Minutos");
             AddButton(634, 72, 251, 251, 25, GumpButtonType.Reply, 0);
 
             //Event Duration
-            AddLabel(482, 106, 2573, "Event Duration");
+            AddLabel(482, 106, 2573, "Duração do evento");
 
             string durationText = EventCalendarPersistance.FormattedDuration(player.m_EventCalendarAccount.StoredValuesEvent.Duration);
 
@@ -1219,15 +1218,15 @@ namespace Server.Items
             AddBackground(411, 147, 244, 34, 3000);
 
             AddButton(417, 154, 253, 253, 30, GumpButtonType.Reply, 0);
-            AddLabel(436, 154, 2550, "Day");
+            AddLabel(436, 154, 2550, "~Dia");
             AddButton(465, 153, 251, 251, 31, GumpButtonType.Reply, 0);
 
             AddButton(490, 153, 253, 253, 32, GumpButtonType.Reply, 0);
-            AddLabel(509, 153, 2550, "Hour");
+            AddLabel(509, 153, 2550, "Hora");
             AddButton(543, 153, 251, 251, 33, GumpButtonType.Reply, 0);
 
             AddButton(567, 153, 253, 253, 34, GumpButtonType.Reply, 0);
-            AddLabel(586, 153, 2550, "Minute");
+            AddLabel(586, 153, 2550, "Minutos");
             AddButton(634, 153, 251, 251, 35, GumpButtonType.Reply, 0);
 
             //Recurring Interval
@@ -1235,7 +1234,7 @@ namespace Server.Items
             {
                 string intervalFrequencyText = EventCalendarPersistance.FormattedDuration(player.m_EventCalendarAccount.StoredValuesEvent.FrequencyInterval);
 
-                AddLabel(458, 186, 2577, "Recurring Event Interval");
+                AddLabel(458, 186, 2577, "Intervalo de eventos recorrentes");
 
                 if (player.m_EventCalendarAccount.StoredValuesEvent.FrequencyInterval >= MinimumFrequencyInterval)
                     AddLabel(Utility.CenteredTextOffset(530, intervalFrequencyText), 204, WhiteTextHue, intervalFrequencyText);
@@ -1245,15 +1244,15 @@ namespace Server.Items
                 AddBackground(412, 227, 244, 34, 3000);
 
                 AddButton(418, 234, 253, 253, 40, GumpButtonType.Reply, 0);
-                AddLabel(437, 234, 2550, "Day");
+                AddLabel(437, 234, 2550, "Dia");
                 AddButton(466, 233, 251, 251, 41, GumpButtonType.Reply, 0);
 
                 AddButton(491, 233, 253, 253, 42, GumpButtonType.Reply, 0);
-                AddLabel(510, 233, 2550, "Hour");
+                AddLabel(510, 233, 2550, "Hora");
                 AddButton(544, 233, 251, 251, 43, GumpButtonType.Reply, 0);
 
                 AddButton(568, 233, 253, 253, 44, GumpButtonType.Reply, 0);
-                AddLabel(587, 233, 2550, "Minute");
+                AddLabel(587, 233, 2550, "Minuto");
                 AddButton(635, 233, 251, 251, 45, GumpButtonType.Reply, 0);
             }
 
@@ -1262,16 +1261,16 @@ namespace Server.Items
 
             AddItem(414 + iconDetail.OffsetX, 276 + iconDetail.OffsetY, iconDetail.ItemId, player.m_EventCalendarAccount.StoredValuesEvent.EventIconHue);
 
-            AddLabel(499, 269, 2603, "Event Icon");
+            AddLabel(499, 269, 2603, "Ícone do evento");
             AddButton(464, 273, 2223, 2223, 50, GumpButtonType.Reply, 0);
             AddButton(576, 273, 2224, 2224, 51, GumpButtonType.Reply, 0);
 
-            AddLabel(506, 290, 2630, "Icon Hue");
+            AddLabel(506, 290, 2630, "Tonalidade do ícone");
             AddButton(476, 294, 2223, 2223, 52, GumpButtonType.Reply, 0);
-            AddButton(564, 294, 2224, 2224, 53, GumpButtonType.Reply, 0);
+            AddButton(564, 294, 2224, 2224, 53, GumpButtonType.Reply, 0); 
 
             //Event Location
-            AddLabel(482, 316, 2425, "Event Location");
+            AddLabel(482, 316, 2425, "Local do evento");
             AddLabel(531, 330, 2515, "");
             AddBackground(382, 337, 300, 45, 3000);
 
@@ -1281,17 +1280,17 @@ namespace Server.Items
                 AddTextEntry(386, 339, 295, 40, RedTextHue, 60, player.m_EventCalendarAccount.StoredValuesEvent.LocationText);
 
             //Event Coordinates
-            AddLabel(468, 381, 149, "Event Coordinates");
+            AddLabel(468, 381, 149, "Coordenadas do evento");
             AddLabel(490, 401, WhiteTextHue, player.m_EventCalendarAccount.StoredValuesEvent.LocationPoint.X + ", " + player.m_EventCalendarAccount.StoredValuesEvent.LocationPoint.Y);
 
             AddButton(386, 424, 2118, 2117, 61, GumpButtonType.Reply, 0);
-            AddLabel(405, 421, 2610, "Set Coords to My Location");
+            AddLabel(405, 421, 2610, "Definir Local Atual");
 
             AddButton(586, 423, 2118, 2117, 62, GumpButtonType.Reply, 0);
-            AddLabel(606, 420, 2610, "View Map");
+            AddLabel(606, 420, 2610, "Ver Map");
 
             //Event Creation Details
-            AddLabel(379, 445, 149, "Event Creator");
+            AddLabel(379, 445, 149, "Criador de eventos");
             AddLabel(477, 445, WhiteTextHue, player.m_EventCalendarAccount.StoredValuesEvent.CreatorName);
 
             if (player.m_EventCalendarAccount.StoredValuesEvent.EventLevel == EventCalendarEvent.EventLevelType.Guild)
@@ -1304,17 +1303,17 @@ namespace Server.Items
                     AddLabel(652, 446, WhiteTextHue, "-");
             }
 
-            AddLabel(379, 465, 149, "Creation Date");
+            AddLabel(379, 465, 149, "Data de criação");
             AddLabel(477, 465, WhiteTextHue, EventCalendarPersistance.PlayerFormattedDateTime(player, player.m_EventCalendarAccount.StoredValuesEvent.CreationDate));
 
-            AddLabel(379, 485, 149, "Last Updated");
+            AddLabel(379, 485, 149, "Ultima atualização");
             AddLabel(477, 485, WhiteTextHue, EventCalendarPersistance.PlayerFormattedDateTime(player, player.m_EventCalendarAccount.StoredValuesEvent.LastUpdated));
 
             AddButton(377, 512, 2152, 2151, 1, GumpButtonType.Reply, 0);
-            AddLabel(413, 516, GreenTextHue, "Save Changes and Exit");
+            AddLabel(413, 516, GreenTextHue, "Salvar as mudanças e sair");
 
             AddButton(568, 512, 2473, 2472, 2, GumpButtonType.Reply, 0);
-            AddLabel(600, 516, 2115, "Delete Event");
+            AddLabel(600, 516, 2115, "Excluir evento");
         }
 
         public override void OnResponse(NetState sender, RelayInfo info)
@@ -1341,7 +1340,7 @@ namespace Server.Items
 
             if (!storedValuesValid)
             {
-                player.SendMessage(2115, "That event is no longer accessible.");
+                player.SendMessage(2115, "Esse evento não está mais acessíve.");
 
                 player.CloseGump(typeof(EventCalendarGump));
                 player.SendGump(new EventCalendarGump(player));
@@ -1351,7 +1350,7 @@ namespace Server.Items
 
             if (!HasAccessToEdit(player, player.m_EventCalendarAccount.StoredValuesEvent))
             {
-                player.SendMessage(2115, "You no longer have the access privileges needed to edit this event.");
+                player.SendMessage(2115, "Você não tem mais os privilégios de acesso necessários para editar este evento.");
 
                 player.CloseGump(typeof(EventCalendarGump));
                 player.SendGump(new EventCalendarGump(player));
@@ -1370,7 +1369,7 @@ namespace Server.Items
             string textMessage = textRelayMessage.Text.Trim();
 
             if (textMessage == null)
-                player.m_EventCalendarAccount.StoredValuesEvent.DisplayName = "Enter event name here";
+                player.m_EventCalendarAccount.StoredValuesEvent.DisplayName = "Digite o nome do evento aqui";
 
             else
                 player.m_EventCalendarAccount.StoredValuesEvent.DisplayName = textMessage;
@@ -1380,7 +1379,7 @@ namespace Server.Items
             textMessage = textRelayMessage.Text.Trim();
 
             if (textMessage == null)
-                player.m_EventCalendarAccount.StoredValuesEvent.DescriptionText = "Enter event description here";
+                player.m_EventCalendarAccount.StoredValuesEvent.DescriptionText = "Insira a descrição do evento aqui";
 
             else
                 player.m_EventCalendarAccount.StoredValuesEvent.DescriptionText = textMessage;
@@ -1390,7 +1389,7 @@ namespace Server.Items
             textMessage = textRelayMessage.Text.Trim();
 
             if (textMessage == null)
-                player.m_EventCalendarAccount.StoredValuesEvent.WebLink = "www.ancorp.com";
+                player.m_EventCalendarAccount.StoredValuesEvent.WebLink = "www.dragonicage.com";
 
             else
                 player.m_EventCalendarAccount.StoredValuesEvent.WebLink = textMessage;
@@ -1405,7 +1404,7 @@ namespace Server.Items
                     textMessage = textRelayMessage.Text.Trim();
 
                     if (textMessage == null)
-                        player.m_EventCalendarAccount.StoredValuesEvent.ApprovalText = "Awaiting staff approval";
+                        player.m_EventCalendarAccount.StoredValuesEvent.ApprovalText = "Aguardando aprovação da Staff";
 
                     else
                         player.m_EventCalendarAccount.StoredValuesEvent.ApprovalText = textMessage;
@@ -1417,7 +1416,7 @@ namespace Server.Items
             textMessage = textRelayMessage.Text.Trim();
 
             if (textMessage == null)
-                player.m_EventCalendarAccount.StoredValuesEvent.LocationText = "Enter event location here";
+                player.m_EventCalendarAccount.StoredValuesEvent.LocationText = "Insira o local do evento aqui";
 
             else
                 player.m_EventCalendarAccount.StoredValuesEvent.LocationText = textMessage;
@@ -1434,62 +1433,62 @@ namespace Server.Items
                         //Text Field Validation
                         if (player.m_EventCalendarAccount.StoredValuesEvent.DisplayName.Length < MinEventNameLength)
                         {
-                            player.SendMessage(2115, "Event Name must be more than " + MinEventNameLength.ToString() + " characters.");
+                            player.SendMessage(2115, "O nome do evento deve ser maior que " + MinEventNameLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.DisplayName.Length > MaxEventNameLength)
                         {
-                            player.SendMessage(2115, "Event Name must be less than " + MaxEventNameLength.ToString() + " characters.");
+                            player.SendMessage(2115, "O nome do evento deve ser menor que " + MaxEventNameLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.DescriptionText.Length < MinDescriptionLength)
                         {
-                            player.SendMessage(2115, "Event Description must be more than " + MinDescriptionLength.ToString() + " characters.");
+                            player.SendMessage(2115, "A descrição do evento deve ter mais de " + MinDescriptionLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.DescriptionText.Length > MaxDescriptionLength)
                         {
-                            player.SendMessage(2115, "Event Description must be less than " + MaxDescriptionLength.ToString() + " characters.");
+                            player.SendMessage(2115, "A descrição do evento deve ser menor que " + MaxDescriptionLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.WebLink.Length > MaxWebLinkLength)
                         {
-                            player.SendMessage(2115, "Event Weblink must be less than " + MaxWebLinkLength.ToString() + " characters.");
+                            player.SendMessage(2115, "O Weblink do evento deve ser menor que " + MaxWebLinkLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.ApprovalText.Length > MaxApprovalMessageLength)
                         {
-                            player.SendMessage(2115, "Event Approval Message must be less than " + MaxApprovalMessageLength.ToString() + " characters.");
+                            player.SendMessage(2115, "A mensagem de aprovação do evento deve ser menor que " + MaxApprovalMessageLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.LocationText.Length < MinLocationTextLength)
                         {
-                            player.SendMessage(2115, "Event Location must be more than " + MinLocationTextLength.ToString() + " characters.");
+                            player.SendMessage(2115, "O local do evento deve ter mais de " + MinLocationTextLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.LocationText.Length > MaxLocationTextLength)
                         {
-                            player.SendMessage(2115, "Event Location must be less than " + MaxLocationTextLength.ToString() + " characters.");
+                            player.SendMessage(2115, "O local do evento deve ser menor que " + MaxLocationTextLength.ToString() + " characters.");
                             allFieldsValid = false;
                         }
 
                         //Property Validation
                         if (player.m_EventCalendarAccount.StoredValuesEvent.StartTime < DateTime.UtcNow)
                         {
-                            player.SendMessage(2115, "Event Start must be in the future.");
+                            player.SendMessage(2115, "O início do evento deve ser no futuro.");
                             allFieldsValid = false;
                         }
 
                         if (player.m_EventCalendarAccount.StoredValuesEvent.Duration < MinimumDuration)
                         {
-                            player.SendMessage(2115, "Event Duration must be at least 15 minutes.");
+                            player.SendMessage(2115, "A duração do evento deve ser de pelo menos 15 minutos.");
                             allFieldsValid = false;
                         }
 
@@ -1497,7 +1496,7 @@ namespace Server.Items
                         {
                             if (player.m_EventCalendarAccount.StoredValuesEvent.FrequencyInterval < MinimumFrequencyInterval)
                             {
-                                player.SendMessage(2115, "Recurring events may occur at most once every 4 hours.");
+                                player.SendMessage(2115, "Eventos recorrentes podem ocorrer no máximo uma vez a cada 4 horas.");
                                 allFieldsValid = false;
                             }
                         }
@@ -1525,14 +1524,14 @@ namespace Server.Items
                             if (player.m_EventCalendarAccount.StoredValuesEvent.EventLevel == EventCalendarEvent.EventLevelType.Player)
                             {
                                 if (player.m_EventCalendarAccount.StoredValuesEvent.EventSubmitted)
-                                    player.SendMessage(0x3F, "You create a new Player event. Staff will now determine approval for this event.");
+                                    player.SendMessage(0x3F, "Você cria um novo evento de Jogador. A Staff agora determinará a aprovação para este evento.");
 
                                 else
-                                    player.SendMessage(149, "You create a new Player event, however the 'Submit for Approval' button must be checked on this event for staff to review and approve it.");
+                                    player.SendMessage(149, "Você cria um novo evento de Jogador, no entanto, o botão 'Enviar para aprovação' deve ser verificado neste evento para que a equipe o analise e aprove.");
                             }
 
                             else
-                                player.SendMessage(0x3F, "You create a new event.");
+                                player.SendMessage(0x3F, "Você cria um novo evento.");
 
                             player.m_EventCalendarAccount.StoredValuesEvent.Delete();
                         }
@@ -1548,23 +1547,23 @@ namespace Server.Items
                                 if (player.m_EventCalendarAccount.EditingEvent.ApprovalStatus == EventCalendarEvent.ApprovalStatusType.Approved)
                                 {
                                     player.m_EventCalendarAccount.StoredValuesEvent.ApprovalStatus = EventCalendarEvent.ApprovalStatusType.Pending;
-                                    player.m_EventCalendarAccount.StoredValuesEvent.ApprovalText = "Pending Approval";
+                                    player.m_EventCalendarAccount.StoredValuesEvent.ApprovalText = "Aprovação pendente";
 
-                                    player.SendMessage(149, "Changes have been made to this event since it was last approved by staff, and it must now await reapproval.");
+                                    player.SendMessage(149, "As alterações foram feitas neste evento desde a última aprovação pela equipe, e agora deve aguardar a reaprovação.");
                                 }
 
                                 else
                                 {
                                     if (player.m_EventCalendarAccount.StoredValuesEvent.EventSubmitted)
-                                        player.SendMessage(0x3F, "You update the details of the event. Staff will now determine approval for this event.");
+                                        player.SendMessage(0x3F, "Você atualiza os detalhes do evento. A equipe agora determinará a aprovação para este evento.");
 
                                     else
-                                        player.SendMessage(149, "You update the details of the event, however the 'Submit for Approval' button must be checked on this event for staff to review and approve it.");
+                                        player.SendMessage(149, "Você atualiza os detalhes do evento, no entanto, o botão 'Enviar para aprovação' deve ser verificado neste evento para que a equipe o revise e aprove.");
                                 }
                             }
 
                             else
-                                player.SendMessage(0x3F, "You update the details of the event.");
+                                player.SendMessage(0x3F, "Você atualiza os detalhes do evento.");
 
                             player.m_EventCalendarAccount.StoredValuesEvent.LastUpdated = DateTime.UtcNow;
 
@@ -1606,7 +1605,7 @@ namespace Server.Items
                         player.m_EventCalendarAccount.StoredValuesEvent = null;
                         player.m_EventCalendarAccount.EditingEvent = null;
 
-                        player.SendMessage(0x3F, "You delete the event.");
+                        player.SendMessage(0x3F, "Você exclui o evento.");
 
                         player.CloseGump(typeof(EventCalendarGump));
                         player.SendGump(new EventCalendarGump(player));
@@ -1618,7 +1617,7 @@ namespace Server.Items
 
                     else
                     {
-                        player.SendMessage(0x3F, "The event you were editing is no longer accessible.");
+                        player.SendMessage(0x3F, "O evento que você estava editando não está mais acessível.");
 
                         player.CloseGump(typeof(EventCalendarGump));
                         player.SendGump(new EventCalendarGump(player));
@@ -2348,11 +2347,11 @@ namespace Server.Items
             AddImage(521, 268, 2524);
             AddImage(289, 4, 2440, 2425);
 
-            AddLabel(319, 4, WhiteTextHue, "Account Settings");
-            AddLabel(65, 55, 149, "Event Level + Type");
-            AddLabel(199, 55, 149, "Show Pop-Up");
-            AddLabel(294, 55, 149, "Play Sound");
-            AddLabel(410, 55, 149, "Create Event Alert At Time Before Event");
+            AddLabel(319, 4, WhiteTextHue,"Configurações de Conta");
+            AddLabel(65, 55, 149, "Nível, + tipo");
+            AddLabel(199, 55, 149, "Mostrar pop/up");
+            AddLabel(294, 55, 149, "Tocar música");
+            AddLabel(410, 55, 149, "Criar momentos antes do evento");
             AddImage(51, 190, 3001, 2415);
             AddImage(294, 190, 3001, 2415);
             AddImage(446, 190, 3001, 2415);
@@ -2369,13 +2368,13 @@ namespace Server.Items
             AddLabel(75, 6, 149, "Wiki Page");
             AddButton(49, 8, 2095, 248, 1, GumpButtonType.Reply, 0);
 
-            AddLabel(121, 31, 2599, "Your Local Time");
+            AddLabel(121, 31, 2599, "Seu horário local");
 
             string timeText = EventCalendarPersistance.PlayerFormattedDateTime(m_Player, DateTime.UtcNow);
 
             AddLabel(232, 31, WhiteTextHue, timeText);
 
-            AddLabel(400, 31, 2603, "Time Zone Offset");
+            AddLabel(400, 31, 2603, "Fuso horário");
             AddButton(524, 29, 4014, 4016, 2, GumpButtonType.Reply, 0);
 
             string timeZoneOffset = m_Player.m_EventCalendarAccount.TimeZoneOffset.ToString();
