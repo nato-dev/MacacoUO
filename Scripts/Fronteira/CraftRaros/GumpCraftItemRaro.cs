@@ -36,7 +36,7 @@ namespace Server.Custom.RaresCrafting
             this.AddBackground(13, 41, 139, 314, 9200);
 
             // result
-            this.AddLabel(14, 16, 53, "Cratavel: ");
+            this.AddLabel(14, 16, 53, "Craftavel: ");
             this.AddItem(66 + the_rare.DispOffsetX, 135 + the_rare.DispOffsetY, the_rare.GetResult().m_ItemId);
 
             // ingredients
