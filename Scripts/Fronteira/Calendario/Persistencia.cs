@@ -267,7 +267,7 @@ namespace Server
         }
 
         [Usage("EventCalendar")]
-        [Description("Opens the Event Calendar")]
+        [Description("Abrir Calendario de Eventos")]
         public static void EventCalendar(CommandEventArgs arg)
         {
             PlayerMobile player = arg.Mobile as PlayerMobile;
@@ -706,7 +706,7 @@ namespace Server
                     player.CloseGump(typeof(EventCalendarGump));
                     player.SendGump(new EventCalendarGump(player));
 
-                    player.SendMessage(149, "Details of the event you were viewing have changed.");
+                    player.SendMessage(149, "Os detalhes do evento que você estava visualizando foram alterados.");
                 }
 
                 if (player.m_EventCalendarAccount.EditingEvent == eventChanged)
@@ -717,7 +717,7 @@ namespace Server
                     if (player.HasGump(typeof(EventCalendarEditorGump)))
                         player.CloseGump(typeof(EventCalendarEditorGump));
 
-                    player.SendMessage(149, "Details of the event you were editing have been changed by another player.");
+                    player.SendMessage(149, "Os detalhes do evento que você estava editando foram alterados por outro jogador.");
                 }
             }
         }
@@ -746,7 +746,7 @@ namespace Server
                     player.CloseGump(typeof(EventCalendarGump));
                     player.SendGump(new EventCalendarGump(player));
 
-                    player.SendMessage(149, "The event you were viewing has been deleted.");
+                    player.SendMessage(149, "O evento que você estava visualizando foi excluído.");
                 }
 
                 if (player.m_EventCalendarAccount.EditingEvent == eventChanged)
@@ -759,7 +759,7 @@ namespace Server
                     if (player.HasGump(typeof(EventCalendarEditorGump)))
                         player.CloseGump(typeof(EventCalendarEditorGump));
 
-                    player.SendMessage(149, "The event you were editing has been deleted by another player.");
+                    player.SendMessage(149, "O evento que você estava editando foi excluído por outro jogador.");
                 }
             }
         }
@@ -783,7 +783,7 @@ namespace Server
 
             eventChanged.EventSubmitted = false;
             eventChanged.ApprovalStatus = EventCalendarEvent.ApprovalStatusType.Pending;
-            eventChanged.ApprovalText = "Awaiting staff approval";
+            eventChanged.ApprovalText = "Aguardando aprovação da Staff";
         }
 
         public static void Serialize(GenericWriter writer)
@@ -1038,20 +1038,20 @@ namespace Server
 
         public bool EventSubmitted = false;
         public ApprovalStatusType ApprovalStatus = ApprovalStatusType.Pending;
-        public string ApprovalText = "Awaiting staff approval";
+        public string ApprovalText = "Aguardando aprovação da Staff";
 
         public DateTime StartTime = DateTime.UtcNow + TimeSpan.FromHours(24);
         public TimeSpan Duration = TimeSpan.FromMinutes(60);
         public TimeSpan FrequencyInterval = TimeSpan.FromDays(7);
 
-        public string DisplayName = "Enter event name here";
-        public string DescriptionText = "Enter event description here";
+        public string DisplayName = "Digite o nome do evento aqui";
+        public string DescriptionText = "Insira a descrição do evento aqui";
         public string WebLink = "";
 
         public int EventIcon = 99;
         public int EventIconHue = 0;
 
-        public string LocationText = "Enter event location here";
+        public string LocationText = "Insira o local do evento aqui";
         public Point3D LocationPoint = new Point3D(1496, 1630, 10);
         public Map LocationMap = Map.Felucca;
 
