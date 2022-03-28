@@ -256,7 +256,7 @@ namespace Server.Engines.VeteranRewards
     public class DaviesLockerAddonDeed : BaseAddonDeed, IRewardOption
     {
         public override BaseAddon Addon { get { return new DaviesLockerAddon(m_South, m_Entries); } }
-        public override int LabelNumber { get { return 1153535; } } // deed to davies' locker
+        public override string DefaultName { get { return "Guarda-Mapas"; } } // deed to davies' locker
 
         private List<DaviesLockerEntry> m_Entries;
         public List<DaviesLockerEntry> Entries { get { return m_Entries; } }
@@ -272,6 +272,7 @@ namespace Server.Engines.VeteranRewards
         [Constructable]
         public DaviesLockerAddonDeed() : this(null)
         {
+            Name = "Guarda-Mapas";
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -536,7 +537,7 @@ namespace Server.Engines.VeteranRewards
             m_List = addon.Entries;
             m_Addon = addon;
 
-            AddHtmlLocalized(0, 10, 600, 20, 1153552, AquaGreen, false, false); // <DIV ALIGN="CENTER">Davies' Locker</DIV>
+            AddHtml(0, 10, 600, 20, "<DIV ALIGN='CENTER'>Guarda Mapas</ DIV >", AquaGreen, false, false); // <DIV ALIGN="CENTER">Davies' Locker</DIV>
 
             AddHtmlLocalized(30, 35, 40, 20, 1153554, Blue, false, false); // <DIV ALIGN="CENTER">Get</DIV>
             AddHtmlLocalized(75, 35, 120, 20, 1153555, Blue, false, false); // <DIV ALIGN="CENTER">Facet</DIV>
@@ -558,7 +559,7 @@ namespace Server.Engines.VeteranRewards
             AddHtmlLocalized(40, 428, 200, 20, 1153560, String.Format("{0}\t{1}", m_List.Count, "500"), Blue, false, false); // Maps: ~1_NUM~ of ~2_MAX~
             AddHtmlLocalized(40, 450, 200, 20, 1153561, String.Format("{0}\t{1}", (page + 1).ToString(), (totalPages).ToString()), Blue, false, false); // Page ~1_CUR~ of ~2_MAX~
 
-            AddHtmlLocalized(380, 427, 72, 20, 1153553, Yellow, false, false); // <DIV ALIGN="CENTER">ADD MAPS</DIV>
+            AddHtml(380, 427, 72, 20, "<DIV ALIGN='CENTER'>ADICIONAR</DIV>", Yellow, false, false); // <DIV ALIGN="CENTER">ADD MAPS</DIV>
             AddButton(340, 428, 4011, 4013, 1, GumpButtonType.Reply, 0); 
 
             AddHtmlLocalized(377, 450, 40, 20, 1153562, Yellow, false, false); // <DIV ALIGN="CENTER">PAGE</DIV>
@@ -608,7 +609,7 @@ namespace Server.Engines.VeteranRewards
                 case 1: // ADD MAPS
                     {
                         from.Target = new InternalTarget(from, m_Addon, m_Page);
-                        from.SendLocalizedMessage(1153563); // Target maps in your backpack or a sub-container to add them to the Locker. When done, press ESC.
+                        from.SendLocalizedMessage("Escolhe mapas em sua mochila ou containers que tenham mapas"); // Target maps in your backpack or a sub-container to add them to the Locker. When done, press ESC.
                         return;
                     }
                 case 2: // PAGE BACK

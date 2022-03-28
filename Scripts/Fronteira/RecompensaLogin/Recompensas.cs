@@ -73,6 +73,17 @@ namespace Server.Ziden.RecompensaLogin
             Rewards.Add(new CollectionItem(typeof(PergaminhoRunebook), 0x1F35, "Pergaminho de Runebook<br>Recarrega um runebook", 0, 10));
             Rewards.Add(new CollectionItem(typeof(HoodedShroudOfShadowsNoob), 0x2684, "Tunica dos Mortos Pessoal", 0, 24 * 30)); // Yew
             Rewards.Add(new CollectionItem(typeof(EtherealHorse), 0x20DD, "Cavalo Magico", 0, 24 * 30)); // Yew
+
+            Rewards.Add(new CollectionItem(typeof(SewingMachineDeed), 0x1F35, "Maquina de Tecer", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(SmithingPressDeed), 0x1F35, "Maquina de Fundicao", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(SpinningLatheDeed), 0x1F35, "Maquina de Couros", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(FletchingStationDeed), 0x1F35, "Mesa do arqueiro", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(BBQSmokerDeed), 0x1F35, "Churrasqueira", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(AlchemyStationDeed), 0x1F35, "Estacao do Alquimista", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(WritingDeskDeed), 0x1F35, "Mesa do Escriba", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(AlchemyStationDeed), 0x1F35, "Estacao do Alquimista", 0, 24 * 10));
+            Rewards.Add(new CollectionItem(typeof(TinkerBenchDeed), 0x1F35, "Mesa de Funilaria", 0, 24 * 10));
+
         }
     }
 }

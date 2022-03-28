@@ -686,8 +686,8 @@ namespace Server.Items
         private static readonly CraftResourceInfo[] m_MetalInfo = new CraftResourceInfo[]
         {
             new CraftResourceInfo(0x000, 1053109, "Ferro", CraftAttributeInfo.Blank, CraftResource.Ferro, typeof(IronIngot), typeof(IronOre), typeof(Granite)),
-            new CraftResourceInfo(1357, 1053108,  "Cobre", CraftAttributeInfo.Copper, CraftResource.Cobre, typeof(CopperIngot), typeof(CopperOre), typeof(CopperGranite)),
-            new CraftResourceInfo(2415, 1053107,  "Bronze", CraftAttributeInfo.Bronze, CraftResource.Bronze, typeof(BronzeIngot), typeof(BronzeOre), typeof(BronzeGranite)),
+            new CraftResourceInfo(2415, 1053108,  "Cobre", CraftAttributeInfo.Copper, CraftResource.Cobre, typeof(CopperIngot), typeof(CopperOre), typeof(CopperGranite)),
+            new CraftResourceInfo(1357, 1053107,  "Bronze", CraftAttributeInfo.Bronze, CraftResource.Bronze, typeof(BronzeIngot), typeof(BronzeOre), typeof(BronzeGranite)),
             new CraftResourceInfo(0x8A5, 1053106,  "Dourado", CraftAttributeInfo.Golden, CraftResource.Dourado, typeof(SilverIngot), typeof(SilverOre), typeof(GoldGranite)),
             new CraftResourceInfo(1899, 1053105,  "Niobio", CraftAttributeInfo.Agapite, CraftResource.Niobio, typeof(NiobioIngot), typeof(NiobioOre), typeof(AgapiteGranite)),
             new CraftResourceInfo(95, 1053104,    "Lazurita", CraftAttributeInfo.Verite, CraftResource.Lazurita, typeof(LazuritaIngot), typeof(LazuritaOre), typeof(VeriteGranite)),

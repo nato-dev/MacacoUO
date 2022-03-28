@@ -1,4 +1,5 @@
 using Server.Engines.Craft;
+using Server.Engines.VeteranRewards;
 using Server.Scripts.Custom.Items;
 using System;
 using System.Collections.Generic;
@@ -56,14 +57,21 @@ namespace Server.Items
             typeof(DecorativeShieldSword1North), typeof(DecorativeShieldSword1West), typeof(DecorativeShieldSword2North), typeof(DecorativeShieldSword2West),
             typeof(DecorativeSwordNorth), typeof(DecorativeTopiary), typeof(DecorativeVines), typeof(DecoRock), typeof(DecoRock2), typeof(DecoRocks), typeof(DecoRocks2),
             typeof(DecoRoseOfTrinsic), typeof(DecoRoseOfTrinsic2), typeof(DecoRoseOfTrinsic3), typeof(DecoSilverIngot), typeof(DecoSilverIngots), typeof(DecoTarot6),
-            typeof(DecoTarot5), typeof(DecoTarot3), typeof(DecoTray), typeof(DecoTray2), typeof(SnowPileDeco), typeof(CrystalSkull), typeof(CupidStatue), typeof(EnchantedWheelbarrow) ,typeof(DecorativeShardShield),
+            typeof(DecoTarot5), typeof(DecoTarot3), typeof(DecoTray), typeof(DecoTray2), typeof(SnowPileDeco), typeof(CrystalSkull),typeof(DecorativeShardShield),
             typeof(HearthOfHomeFire), typeof(DecorativeDAxeNorth), typeof(DecorativeDAxeWest), typeof(ElvenAlchemyTable), typeof(EmptyJars), typeof(LargeEmptyPot),  typeof(SmallEmptyFlask),
-            typeof(SkullsOnPike), typeof(Snowman), typeof(UltimaBanner), typeof(WallSconce), typeof(HitchingPost), typeof(ElvenPodium), 
+             typeof(Snowman), typeof(UltimaBanner), typeof(WallSconce), typeof(HitchingPost), typeof(ElvenPodium), 
             typeof(WallTorch), typeof(WritingDesk), typeof(WritingTable), typeof(BrazierTall), typeof(Tapestry1N), typeof(Tapestry2N),
             typeof(Tapestry2W), typeof(Tapestry3W),  typeof(Tapestry4W), typeof(Tapestry4N),  typeof(Tapestry5N), typeof(StackofIngots), typeof(StackofLogs), typeof(AncientArmor),
             typeof(CannonBall2), typeof(Gunpowder2), typeof(CannonFuse), typeof(CrackedCrystalBall), typeof(SeersPowder), typeof(EnchantedMarble),typeof(minostatueAddonDeed),
             typeof(SmallEmptyPot), typeof(EmptyToolKit), typeof(EmptyToolKit2), typeof(SmallFish), typeof(SnowGlobe), typeof(PottedPlant), typeof(PottedTree), typeof(PottedTree1),
-            typeof(OrigamiPaper), typeof(LampPost1), typeof(LampPost2), typeof(LampPost3), typeof(LampPost3),
+            typeof(OrigamiPaper), typeof(LampPost1), typeof(LampPost2), typeof(LampPost3), typeof(LampPost3), typeof(DecoSpittoon),
+
+            typeof(CupidStatue), typeof(EnchantedWheelbarrow),
+            typeof(SkullsOnPike),
+            typeof(MiningCartDeed), typeof(AnkhOfSacrificeDeed), typeof(SkullRugAddonDeed), typeof(RoseRugAddonDeed), typeof(DolphinRugAddonDeed), typeof(KoiPondDeed),
+            typeof(WaterWheelDeed), typeof(AllegiancePouch),
+            typeof(StoneAnkhDeed), typeof(BloodyPentagramDeed), typeof(LighthouseAddonDeed), typeof(RewardBrazierDeed), typeof(GadgetryTableAddonDeed), 
+            typeof(GadgetryTableAddonDeed), typeof(TreeStumpDeed), typeof(SheepStatueDeed), typeof(CoralTheOwl), typeof(FlamingHeadDeed), typeof(PottedCactusDeed), 
         };
 
         public static Item SuperRandomDeco()

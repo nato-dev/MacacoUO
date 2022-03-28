@@ -7025,7 +7025,7 @@ namespace Server.Mobiles
             }
 
             string prefix = "";
-            bool lord = Fame >= 25000;
+            bool lord = Fame >= 35000;
             if (RP)
             {
                 prefix = FichaRP.Patente.ToString() + " ";

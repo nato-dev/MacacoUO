@@ -168,7 +168,7 @@ namespace Server.Engines.Craft
             // Resmelt option
             if (m_CraftSystem.Resmelt)
             {
-                if (m_CraftSystem.MainSkill == SkillName.Carpentry || m_CraftSystem.MainSkill == SkillName.Fletching)
+                if (m_CraftSystem.MainSkill == SkillName.Carpentry || m_CraftSystem.MainSkill == SkillName.Bowcraft)
                 {
                     AddButton(15, 342, 4005, 4007, GetButtonID(6, 1), GumpButtonType.Reply, 0);
                     AddHtml(50, 345, 150, 18, "Desmontar", false, false); // SMELT ITEM

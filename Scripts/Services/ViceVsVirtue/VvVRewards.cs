@@ -10,6 +10,8 @@ using System.Linq;
 using Server.Engines.Points;
 using Server.Items.Functional.Pergaminhos;
 using Server.Misc.Custom;
+using Server.Engines.VeteranRewards;
+using Server.Engines.Auction;
 
 namespace Server.Engines.VvV
 {
@@ -32,7 +34,20 @@ namespace Server.Engines.VvV
             //Rewards.Add(new CollectionItem(typeof(GreaterExplosionPotion), 6870, 1094764, 437, 500));  // Greater Stam
             Rewards.Add(new CollectionItem(typeof(ValeDecoracaoRara), 0x9F64, "Caixa Misteriosa", 0, 500));  // Greater Stam
             Rewards.Add(new CollectionItem(typeof(ElementalBall), 3630, "Bola de Cristal Elemental", 0, 2000));  // Greater Stam
+            Rewards.Add(new CollectionItem(typeof(DaviesLockerAddonDeed), 0x14F0, "Guarda Mapas", 0, 1000));
+            Rewards.Add(new CollectionItem(typeof(CannonDeed), 0x14F0, "Escritura de Canhao", 0, 5000));
+            Rewards.Add(new CollectionItem(typeof(RedSoulstone), 0x32F3, "Pedra das Almas</br>Guarda 1 Skill", 0, 2000));
+            Rewards.Add(new CollectionItem(typeof(CommodityDeedBox), 0x9AA, "Caixa de Commidities</br>Guarda recursos e comodities", 0, 2000));
+            Rewards.Add(new CollectionItem(typeof(CommodityDeedBox), 0x9AA, "Caixa de Commidities</br>Guarda recursos e comodities", 0, 2000));
+            Rewards.Add(new CollectionItem(typeof(AuctionSafeDeed), 0x9C18, "Cofre de Leilao</br>Permite leiloar items", 0, 5000));
+            Rewards.Add(new CollectionItem(typeof(BannerDeed), 0x14F0, "Banner</br>Escolha e bote um banner medieval", 0, 500));
+            Rewards.Add(new CollectionItem(typeof(SpellbookDyeTub), 0xFAB, "Tinta de Livro de Magia</br>Permite pintar livros de magia", 0, 8000));
+            Rewards.Add(new CollectionItem(typeof(RunebookDyeTub), 0xFAB, "Tinta de Runebook</br>Permite pintar runebooks", 0, 8000));
+            Rewards.Add(new CollectionItem(typeof(MetallicDyeTub), 0xFAB, "Tinta de Armaduras</br>Permite pintar armaduras de ferro", 0, 2000));
+            Rewards.Add(new CollectionItem(typeof(RepairBenchDeed), 0x14F0, "Mesa de Reparos</br>Permite Reparar Items", 0, 10000));
 
+            Rewards.Add(new CollectionItem(typeof(KegH), 6870, "Keg de Vida", 0, 1000));  // Greater Stam
+            Rewards.Add(new CollectionItem(typeof(KegMana), 6870, "Keg de Mana", 0, 1000));  // Greater Stam
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094764, 437, 500));  // Greater Stam
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094718, 13, 500));   // Supernova
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1155541, 2500, 500)); // Stat Loss Removal
@@ -49,12 +64,12 @@ namespace Server.Engines.VvV
             Rewards.Add(new CollectionItem(typeof(VvVHairDye), 3838, "Tinta do Caos", ViceVsVirtueSystem.ViceHue, 2500));   // Vice Hair DYe
 
             Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, "Armadilha de Veneno", 0, 250));    // Poison Trap Kit
-            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155528, 0, 250));    // Freezing Trap Kit
-            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155529, 0, 250));    // Shocking Trap Kit
-            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155530, 0, 250));    // Blades Trap Kit
-            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, 1155531, 0, 250));    // Explosion Trap Kit
+            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, "Armadilha de Gelo", 0, 250));    // Freezing Trap Kit
+            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, "Armadilha de Shoque", 0, 250));    // Shocking Trap Kit
+            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, "Armadilha de Laminas", 0, 250));    // Blades Trap Kit
+            Rewards.Add(new CollectionItem(typeof(VvVTrapKit), 7866, "Armadilha de Explosao", 0, 250));    // Explosion Trap Kit
 
-            Rewards.Add(new CollectionItem(typeof(CannonTurretPlans), 5360, "Canhao", 0, 3000));    // Cannon Turret
+            Rewards.Add(new CollectionItem(typeof(CannonTurretPlans), 5360, "Canhao de Guerra Infinita", 0, 3000));    // Cannon Turret
             Rewards.Add(new CollectionItem(typeof(ManaSpike), 2308, "Espinho de Mana", 0, 1000));            // Mana Spike
             Rewards.Add(new CollectionItem(typeof(SkillBook), 0xEFA, "Livro Cientifico", 0, 3000));   // Scroll of Transcendence
             Rewards.Add(new CollectionItem(typeof(PergaminhoSagrado), 0x14F0, "Pergaminho Sagrado 30 Dias Pertence Pessoal", 0, 10000));

@@ -74,7 +74,7 @@ namespace Server.Fronteira.Classes
                     new SkillClasse(SkillName.Healing, 70), new SkillClasse(SkillName.Fencing, 70), new SkillClasse(SkillName.MagicResist, 60),
                     new SkillClasse(SkillName.Poisoning, 50),  new SkillClasse(SkillName.Begging, 60), new SkillClasse(SkillName.Focus, 60),
 
-                    new SkillClasse(SkillName.Camping, 60), new SkillClasse(SkillName.Fletching, 40), new SkillClasse(SkillName.RemoveTrap, 60),
+                    new SkillClasse(SkillName.Camping, 60), new SkillClasse(SkillName.Bowcraft, 40), new SkillClasse(SkillName.RemoveTrap, 60),
                     new SkillClasse(SkillName.DetectHidden, 60), new SkillClasse(SkillName.Tracking, 40)
              }),
                  new OpcaoTalentos(Talento.Ladrao, Talento.Esquiva, Talento.Precisao),

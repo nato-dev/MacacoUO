@@ -10,7 +10,8 @@ namespace Server.Gumps
 
     public enum Faces
     {
-        GM_PRETO = 2741
+        GM_PRETO = 2741,
+        PUNK_BARBUDO = 2734
     }
 
     public class GumpFala : Gump

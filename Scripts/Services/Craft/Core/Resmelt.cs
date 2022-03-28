@@ -29,7 +29,7 @@ namespace Server.Engines.Craft
             else
             {
                 from.Target = new InternalTarget(craftSystem, tool);
-                if (craftSystem.MainSkill == SkillName.Carpentry || craftSystem.MainSkill == SkillName.Fletching)
+                if (craftSystem.MainSkill == SkillName.Carpentry || craftSystem.MainSkill == SkillName.Bowcraft)
                     from.SendMessage("Selecione um item para desmontar"); // Target an item to recycle.
                 else
                     from.SendMessage("Selecione um item para derreter"); // Target an item to recycle.

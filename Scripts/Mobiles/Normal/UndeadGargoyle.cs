@@ -9,9 +9,9 @@ namespace Server.Mobiles
     {
         [Constructable]
         public UndeadGargoyle()
-            : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
+            : base(AIType.AI_NecroMage, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "an Undead Gargoyle";
+            Name = "gargula morto-vivo";
             Body = 722;
             BaseSoundID = 372;
 
@@ -19,7 +19,7 @@ namespace Server.Mobiles
             SetDex(120, 140);
             SetInt(250, 350);
 
-            SetHits(200, 300);
+            SetHits(500, 600);
 
             SetDamage(15, 27);
 

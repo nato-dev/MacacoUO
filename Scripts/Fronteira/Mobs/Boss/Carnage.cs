@@ -166,7 +166,7 @@ namespace Server.Mobiles
                 case 2: return new PowerScrollNovo(SkillName.Tinkering, skill);
                 case 3: return new PowerScrollNovo(SkillName.Cooking, skill);
                 case 4: return new PowerScrollNovo(SkillName.Carpentry, skill);
-                case 5: return new PowerScrollNovo(SkillName.Fletching, skill);
+                case 5: return new PowerScrollNovo(SkillName.Bowcraft, skill);
                 case 6: return new PowerScrollNovo(SkillName.Tailoring, skill);
                 case 7: return new PowerScrollNovo(SkillName.Fishing, skill);
                 case 8: return new PowerScrollNovo(SkillName.Peacemaking, skill);

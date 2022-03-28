@@ -9,7 +9,6 @@ namespace Server.Engines.BulkOrders
 {
     public class BodTamer : BaseDecayingItem
     {
-
         public static Dictionary<Type, List<int>> Bodies = null;
 
         [CommandProperty(AccessLevel.GameMaster)]

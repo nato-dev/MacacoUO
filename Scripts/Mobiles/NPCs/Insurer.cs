@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Server.Engines.BulkOrders;
+using Server.Gumps;
 
 namespace Server.Mobiles
 {
@@ -48,13 +49,11 @@ namespace Server.Mobiles
             var pl = from as PlayerMobile;
             if (pl != null)
             {
-                pl.OpenItemInsuranceMenu();
-                if (!pl.IsCooldown("dicaseguro"))
-                {
-                    pl.SetCooldown("dicaseguro", TimeSpan.FromSeconds(60));
-                    pl.SendMessage(78, "Voce pode dar insure em roupas, joias e talismans. Voce paga um preco para nao perder estes items quando morrer.");
-                    pl.SendMessage(78, "Voce pode usar o comando .insure");
-                }
+                pl.SendGump(new GumpFala((int n) => {
+                    pl.OpenItemInsuranceMenu();
+                }, Faces.PUNK_BARBUDO, "Ola ! Eu vendo seguros de roupas e joias !", "Voce paga o valor do seguro para deixar items newbies.", "Sempre que voce morrer, o seguro eh renovado !", "Se alguem te matar, essa pessoa ganha uma quantia!"));
+
+                pl.SendMessage(78, "Voce tambem pode usar o comando .insure");
             }
         }
 

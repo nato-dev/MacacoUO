@@ -36,7 +36,7 @@ namespace Server.Items
                 case SkillName.Carpentry: return RecipeSkillName.Carpentry;
                 case SkillName.Cartography: return RecipeSkillName.Cartography;
                 case SkillName.Cooking: return RecipeSkillName.Cooking;
-                case SkillName.Fletching: return RecipeSkillName.Fletching;
+                case SkillName.Bowcraft: return RecipeSkillName.Fletching;
                 case SkillName.Inscribe: return RecipeSkillName.Inscription;
                 case SkillName.Tailoring: return RecipeSkillName.Tailoring;
                 case SkillName.Tinkering: return RecipeSkillName.Tinkering;

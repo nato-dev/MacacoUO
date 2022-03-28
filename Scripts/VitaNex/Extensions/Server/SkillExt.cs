@@ -80,7 +80,7 @@ namespace Server
 
 		public static readonly SkillName[] CraftSkills =
 		{
-			SkillName.Alchemy, SkillName.Blacksmith, SkillName.Fletching, SkillName.Carpentry, SkillName.Cooking,
+			SkillName.Alchemy, SkillName.Blacksmith, SkillName.Bowcraft, SkillName.Carpentry, SkillName.Cooking,
 			SkillName.Cartography, SkillName.Tailoring, SkillName.Tinkering, SkillName.Imbuing
 		};
 

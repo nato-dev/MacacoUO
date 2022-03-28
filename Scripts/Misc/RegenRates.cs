@@ -322,9 +322,9 @@ namespace Server.Misc
             {
                 default:
                 case ArmorMeditationAllowance.None:
-                    return ar.BaseArmorRatingScaled;
+                    return ar.BaseArmorRatingScaled / 1.8;
                 case ArmorMeditationAllowance.Half:
-                    return ar.BaseArmorRatingScaled / 2.2;
+                    return ar.BaseArmorRatingScaled / 2.5;
                 case ArmorMeditationAllowance.All:
                     return 0.0;
             }

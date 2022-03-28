@@ -429,7 +429,7 @@ namespace Server.Gumps
                 SkillName.Cartography,
                 SkillName.Carpentry,
                 SkillName.Cooking,
-                SkillName.Fletching,
+                SkillName.Bowcraft,
                 SkillName.Inscribe,
                 SkillName.Tailoring,
                 SkillName.Tinkering,

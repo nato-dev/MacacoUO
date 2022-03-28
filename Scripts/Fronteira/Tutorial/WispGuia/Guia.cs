@@ -218,7 +218,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             {
                 PrecisaEvento = true,
                 FraseIniciar = "Que curiosidade... Deve ter alguma alavanca nessa sala !",
-                FraseProgresso = "Vamos vamos, dentro da dungeon deve ter algum monstro poderoso...",
+                FraseProgresso = "Vamos vamos, dentro da dungeon de haven deve ter algum monstro poderoso...",
                 FraseCompletar = "Eca que nojo !",
                 Proximo = PassoTutorial.JILL
             });

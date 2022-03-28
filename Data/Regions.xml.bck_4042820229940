@@ -1,16 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <ServerRegions>
   <Facet name="Felucca">
     <region type="GuardedRegion" priority="50" name="Moongates">
+      <!-- britain -->
       <rect x="1330" y="1991" width="13" height="13" />
+      <!-- jhelom -->
       <rect x="1494" y="3767" width="12" height="11" />
+      <!-- minoc -->
       <rect x="2694" y="685" width="15" height="16" />
+      <!-- trinsic -->
       <rect x="1823" y="2943" width="11" height="11" />
+      <!-- yew -->
       <rect x="761" y="741" width="19" height="21" />
+      <!-- skara brae -->
       <rect x="638" y="2062" width="12" height="11" />
+      <!-- moonglow -->
       <rect x="4459" y="1276" width="16" height="16" />
+      <!-- magincia -->
       <rect x="3554" y="2132" width="18" height="18" />
     </region>
+    <!--Mondain's Legacy-->
     <region type="TownRegion" priority="50" name="Heartwood">
       <rect x="6911" y="255" width="257" height="257" />
       <go x="6984" y="337" z="0" />
@@ -230,16 +239,17 @@
         <zrange min="-50" />
       </region>
       <region type="TheLostCityEntry">
-        <rect x="6316" y="472" width="8" height="8" />
+		    <rect x="6316" y="472" width="8" height="8" />
         <rect x="6303" y="509" width="11" height="7" />
-      </region>
+	    </region>
       <region type="ParoxysmusBossEntry">
-        <rect x="6516" y="493" width="5" height="7" />
-      </region>
+				<rect x="6516" y="493" width="5" height="7" />
+			</region>
     </region>
     <region priority="50" name="Huntsman's Forest">
       <rect x="1595" y="550" width="120" height="120" />
     </region>
+    <!--End-->
     <region type="TownRegion" priority="50" name="Cove">
       <rect x="2200" y="1110" width="50" height="50" />
       <rect x="2200" y="1160" width="86" height="86" />
@@ -250,7 +260,6 @@
       <rect x="1386" y="1498" width="324" height="279" zmin="-10" />
       <rect x="1385" y="1538" width="31" height="239" zmin="-10" />
       <rect x="1416" y="1777" width="324" height="60" />
-      <rect x="1385" y="1777" width="31" height="130" />
       <go x="1495" y="1629" z="10" />
       <music name="Britain1" />
       <zrange min="0" />
@@ -404,7 +413,7 @@
       <rect x="3590" y="2628" width="103" height="58" />
       <rect x="3693" y="2555" width="61" height="144" />
       <rect x="3754" y="2558" width="7" height="141" />
-      <rect x="3761" y="2555" width="7" height="144" />
+      <rect x="3761" y="2555" width="7" height="144" zmax="50" />
       <rect x="3695" y="2699" width="66" height="13" />
       <go x="3650" y="2519" z="0" />
       <music name="Ocllo" />
@@ -460,10 +469,10 @@
       <rect x="718" y="874" width="38" height="22" />
       <go x="546" y="992" z="0" />
       <music name="Yew" />
-      <zrange min="0" />
+      <zrange min="0" max="39" />
       <region>
         <rect x="600" y="808" width="24" height="24" />
-        <zrange min="0" />
+        <zrange min="0" max="39" />
         <logoutDelay active="false" />
       </region>
       <region name="A Field of Sheep in Yew 1">
@@ -621,19 +630,19 @@
       </region>
     </region>
     <region type="NewMaginciaRegion" priority="50" name="Magincia">
-      <rect x="3632" y="2032" width="50" height="70" />
-      <rect x="3624" y="2162" width="95" height="70" />
-      <rect x="3752" y="2046" width="52" height="48" />
-      <rect x="3680" y="2045" width="72" height="49" />
-      <rect x="3652" y="2094" width="160" height="180" />
-      <rect x="3649" y="2256" width="54" height="47" />
-      <go x="3714" y="2220" z="20" />
-      <music name="Magincia" />
-      <region>
-        <rect x="3687" y="2246" width="12" height="16" />
-        <logoutDelay active="false" />
-      </region>
-    </region>
+		<rect x="3632" y="2032" width="50" height="70" />
+		<rect x="3624" y="2162" width="95" height="70" />
+		<rect x="3752" y="2046" width="52" height="48" />
+		<rect x="3680" y="2045" width="72" height="49" />
+		<rect x="3652" y="2094" width="160" height="180" />
+		<rect x="3649" y="2256" width="54" height="47" />
+		<go x="3714" y="2220" z="20" />
+		<music name="Magincia" />
+		<region>
+			<rect x="3687" y="2246" width="12" height="16" />
+			<logoutDelay active="false" />
+		</region>
+	</region>
     <region type="NoHousingRegion" priority="50" name="Buccaneer's Den">
       <rect x="2612" y="2057" width="164" height="210" />
       <rect x="2604" y="2065" width="8" height="189" zmin="0" />
@@ -652,38 +661,38 @@
       <rect x="5376" y="1793" width="201" height="255" />
       <rect x="5576" y="1791" width="57" height="257" />
       <go x="5456" y="1862" z="0" />
-      <entrance x="2499" y="916" />
       <music name="Dungeon9" />
+      <entrance x="2499" y="916" />
     </region>
     <region type="DungeonRegion" priority="50" name="Deceit">
       <rect x="5122" y="518" width="248" height="252" />
       <go x="5187" y="635" z="0" />
-      <entrance x="4111" y="429" />
       <music name="Dungeon9" />
+      <entrance x="4111" y="429" />
     </region>
     <region type="DungeonRegion" priority="50" name="Despise">
       <rect x="5377" y="516" width="254" height="506" />
       <go x="5501" y="570" z="59" />
-      <entrance x="1296" y="1082" />
       <music name="Dungeon9" />
+      <entrance x="1296" y="1082" />
     </region>
     <region type="DungeonRegion" priority="50" name="Destard">
       <rect x="5120" y="770" width="251" height="258" />
       <go x="5243" y="1004" z="0" />
-      <entrance x="1176" y="2635" />
       <music name="Dungeon9" />
+      <entrance x="1176" y="2635" />
     </region>
     <region type="DungeonRegion" priority="50" name="Hythloth">
       <rect x="5898" y="2" width="238" height="244" />
       <go x="5905" y="22" z="44" />
-      <entrance x="4722" y="3814" />
       <music name="Dungeon9" />
+      <entrance x="4722" y="3814" />
     </region>
     <region type="DungeonRegion" priority="50" name="Khaldun">
       <rect x="5381" y="1284" width="247" height="225" />
       <go x="5571" y="1302" z="0" />
-      <entrance x="5882" y="3819" />
       <music name="Dungeon9" />
+      <entrance x="5882" y="3819" />
     </region>
     <region type="Jail" priority="50" name="Jail">
       <rect x="5271" y="1159" width="41" height="33" />
@@ -697,14 +706,14 @@
       <rect x="5377" y="2" width="257" height="260" />
       <rect x="5635" y="2" width="260" height="124" />
       <go x="5395" y="126" z="0" />
-      <entrance x="512" y="1559" />
       <music name="Dungeon9" />
+      <entrance x="512" y="1559" />
     </region>
     <region type="DungeonRegion" priority="50" name="Wrong">
       <rect x="5633" y="511" width="253" height="510" />
       <go x="5825" y="599" z="0" />
-      <entrance x="2042" y="226" />
       <music name="Dungeon9" />
+      <entrance x="2042" y="226" />
       <region type="WrongLevel3">
         <rect x="5687" y="623" width="33" height="44" />
         <region type="WrongJail">
@@ -751,7 +760,7 @@
       <rect x="2447" y="39" width="42" height="28" />
       <go x="2471" y="64" z="0" />
     </region>
-    <region type="GuardedRegion" priority="50" name="Minoc Mine">
+    <region priority="50" type="GuardedRegion" name="Minoc Mine">
       <rect x="2556" y="501" width="6" height="3" />
       <rect x="2556" y="474" width="36" height="37" />
       <go x="2558" y="499" z="0" />
@@ -801,22 +810,22 @@
       <rect x="5404" y="3099" width="77" height="68" />
       <rect x="5120" y="1530" width="254" height="258" />
       <go x="5451" y="3143" z="-60" />
-      <entrance x="5426" y="3120" />
       <music name="Dungeon9" />
+      <entrance x="5426" y="3120" />
     </region>
     <region type="DungeonRegion" priority="50" name="Fire">
       <rect x="5635" y="1285" width="245" height="235" />
       <go x="5760" y="2908" z="15" />
-      <entrance x="2922" y="3402" />
       <music name="Dungeon9" />
+      <entrance x="2922" y="3402" />
     </region>
     <region type="DungeonRegion" priority="50" name="Ice">
       <rect x="5668" y="130" width="220" height="138" />
       <rect x="5800" y="319" width="63" height="65" />
       <rect x="5654" y="300" width="54" height="40" />
       <go x="5210" y="2322" z="30" />
-      <entrance x="1996" y="80" />
       <music name="Dungeon9" />
+      <entrance x="1996" y="80" />
     </region>
     <region type="BlackthornDungeon" priority="50" name="BlackthornDungeon">
       <rect x="6151" y="2301" width="413" height="539" />
@@ -866,14 +875,18 @@
     <region type="DungeonRegion" priority="50" name="Misc Dungeons">
       <rect x="5886" y="1281" width="257" height="254" />
       <go x="6032" y="1499" z="0" />
-      <entrance x="1492" y="1641" />
       <music name="Dungeon9" />
+      <entrance x="1492" y="1641" />
     </region>
     <region type="DungeonRegion" priority="50" name="Orc Cave">
+      <rect x1="5281" y1="1283" x2="5373" y2="1386" />
+      <rect x1="5267" y1="1955" x2="5364" y2="2046" />
+      <rect x1="5127" y1="1941" x2="5164" y2="2024" />
       <go x="5137" y="2015" z="0" />
-      <entrance x="1014" y="1434" />
       <music name="Dungeon9" />
+      <entrance x="1014" y="1434" />
     </region>
+    <!-- Farm fields outside towns -->
     <region priority="50" name="A Cotton Field in Moonglow">
       <rune name="A Cotton Field in Moonglow" />
       <rect x="4557" y="1471" width="20" height="10" />
@@ -980,23 +993,60 @@
       <rect x="759" y="1635" width="12" height="12" />
       <go x="762" y="1645" z="0" />
     </region>
-    <region type="DungeonRegion" priority="50" name="Solen Hives">
+	<region type="DungeonRegion" priority="50" name="Solen Hives">
       <rect x="5640" y="1776" width="295" height="263" />
       <go x="5774" y="1896" z="20" />
     </region>
-    <region type="SeaMarketRegion" priority="50" name="Sea Market">
+	<region type="SeaMarketRegion" priority="50" name="Sea Market">
       <rect x="4529" y="2296" width="45" height="112" />
       <go x="4550" y="2317" z="-2" />
     </region>
   </Facet>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   <Facet name="Trammel">
-    <region type="DungeonRegion" priority="50" name="Despise">
+      <region type="DungeonRegion" priority="50" name="Despise">
       <rect x="5377" y="516" width="254" height="506" />
       <go x="5501" y="570" z="59" />
-      <entrance x="1296" y="1082" />
       <music name="Victory" />
+      <entrance x="1296" y="1082" />
     </region>
-    <region type="NoHousingRegion" priority="50" name="Despise Entrance">
+     <region type="NoHousingRegion" priority="50" name="Despise Entrance">
       <rect x="1289" y="1064" width="32" height="37" />
       <go x="1298" y="1081" z="0" />
     </region>
@@ -1009,22 +1059,31 @@
     <region type="DungeonRegion" priority="50" name="Khaldun">
       <rect x="5381" y="1284" width="247" height="225" />
       <go x="5571" y="1302" z="0" />
-      <entrance x="5882" y="3819" />
       <music name="Dungeon9" />
+      <entrance x="5882" y="3819" />
     </region>
     <region type="NoTravelSpellsAllowed" priority="50" name="Underwater World">
       <rect x="6251" y="1613" width="222" height="200" />
     </region>
     <region type="NoHousingRegion" priority="50" name="Moongates">
+      <!-- britain -->
       <rect x="1330" y="1991" width="13" height="13" />
+      <!-- jhelom -->
       <rect x="1494" y="3767" width="12" height="11" />
+      <!-- minoc -->
       <rect x="2694" y="685" width="15" height="16" />
+      <!-- trinsic -->
       <rect x="1823" y="2943" width="11" height="11" />
+      <!-- yew -->
       <rect x="761" y="741" width="19" height="21" />
+      <!-- skara brae -->
       <rect x="638" y="2062" width="12" height="11" />
+      <!-- moonglow -->
       <rect x="4459" y="1276" width="16" height="16" />
+      <!-- magincia -->
       <rect x="3554" y="2132" width="18" height="18" />
     </region>
+    <!--Mondain's Legacy-->
     <region type="TownRegion" priority="50" name="Heartwood">
       <rect x="6911" y="255" width="257" height="257" />
       <go x="6984" y="337" z="0" />
@@ -1244,12 +1303,12 @@
         <zrange min="-50" />
       </region>
       <region type="TheLostCityEntry">
-        <rect x="6316" y="472" width="8" height="8" />
+		    <rect x="6316" y="472" width="8" height="8" />
         <rect x="6303" y="509" width="11" height="7" />
-      </region>
+	    </region>
       <region type="ParoxysmusBossEntry">
-        <rect x="6516" y="493" width="5" height="7" />
-      </region>
+				<rect x="6516" y="493" width="5" height="7" />
+			</region>
     </region>
     <region priority="50" name="Bravehorn's drinking pool">
       <rect x="1302" y="2331" width="38" height="22" />
@@ -1257,6 +1316,7 @@
     <region priority="50" name="Huntsman's Forest">
       <rect x="1595" y="550" width="120" height="120" />
     </region>
+    <!--End-->
     <region type="TownRegion" priority="50" name="Cove">
       <rect x="2200" y="1110" width="50" height="50" />
       <rect x="2200" y="1160" width="86" height="86" />
@@ -1269,7 +1329,7 @@
       <rect x="1500" y="1408" width="46" height="90" />
       <rect x="1385" y="1538" width="31" height="239" zmin="-10" />
       <rect x="1416" y="1777" width="324" height="60" />
-      <rect x="1385" y="1777" width="31" height="130" />
+    
       <go x="1495" y="1629" z="10" />
       <music name="Britain1" />
       <zrange min="0" />
@@ -1439,11 +1499,11 @@
           <rect x="3755" y="2763" width="17" height="13" />
         </region>
         <region type="TownRegion" name="New Haven">
+          <logoutDelay active="false" />
           <rune name="New Haven City" />
           <rect x="3423" y="2480" width="111" height="143" />
           <go x="3503" y="2574" z="14" />
           <music name="Honor" />
-          <logoutDelay active="false" />
           <region name="the New Haven Alchemist">
             <rect x="3457" y="2564" width="9" height="9" />
           </region>
@@ -1697,19 +1757,19 @@
       </region>
     </region>
     <region type="NewMaginciaRegion" priority="50" name="Magincia">
-      <rect x="3632" y="2032" width="50" height="70" />
-      <rect x="3624" y="2162" width="95" height="70" />
-      <rect x="3752" y="2046" width="52" height="48" />
-      <rect x="3680" y="2045" width="72" height="49" />
-      <rect x="3652" y="2094" width="160" height="180" />
-      <rect x="3649" y="2256" width="54" height="47" />
-      <go x="3714" y="2220" z="20" />
-      <music name="Magincia" />
-      <region>
-        <rect x="3687" y="2246" width="12" height="16" />
-        <logoutDelay active="false" />
-      </region>
-    </region>
+		<rect x="3632" y="2032" width="50" height="70" />
+		<rect x="3624" y="2162" width="95" height="70" />
+		<rect x="3752" y="2046" width="52" height="48" />
+		<rect x="3680" y="2045" width="72" height="49" />
+		<rect x="3652" y="2094" width="160" height="180" />
+		<rect x="3649" y="2256" width="54" height="47" />
+		<go x="3714" y="2220" z="20" />
+		<music name="Magincia" />
+		<region>
+			<rect x="3687" y="2246" width="12" height="16" />
+			<logoutDelay active="false" />
+		</region>
+	</region>
     <region type="NoHousingRegion" priority="50" name="Buccaneer's Den">
       <rect x="2612" y="2057" width="164" height="210" />
       <rect x="2604" y="2065" width="8" height="189" zmin="0" />
@@ -1824,7 +1884,7 @@
       <rect x="2447" y="39" width="42" height="28" />
       <go x="2471" y="64" z="0" />
     </region>
-    <region type="GuardedRegion" priority="50" name="Minoc Mine">
+    <region priority="50" type="GuardedRegion" name="Minoc Mine">
       <rect x="2556" y="501" width="6" height="3" />
       <rect x="2556" y="474" width="36" height="37" />
       <go x="2558" y="499" z="0" />
@@ -1957,9 +2017,12 @@
       <music name="Dungeon9" />
     </region>
     <region type="DungeonRegion" priority="50" name="Orc Cave">
+      <rect x1="5281" y1="1283" x2="5373" y2="1386" />
+      <rect x1="5267" y1="1955" x2="5364" y2="2046" />
+      <rect x1="5127" y1="1941" x2="5164" y2="2024" />
       <go x="5137" y="2015" z="0" />
-      <entrance x="1014" y="1434" />
       <music name="Dungeon9" />
+      <entrance x="1014" y="1434" />
       <region type="ExploringDeepCreaturesRegion" name="Orc Engineer">
         <rect x="5308" y="1964" width="11" height="11" />
       </region>
@@ -2074,11 +2137,11 @@
       <rect x="759" y="1635" width="12" height="12" />
       <go x="762" y="1645" z="0" />
     </region>
-    <region type="DungeonRegion" priority="50" name="Solen Hives">
+	<region type="DungeonRegion" priority="50" name="Solen Hives">
       <rect x="5640" y="1776" width="295" height="263" />
       <go x="5774" y="1896" z="20" />
     </region>
-    <region type="SeaMarketRegion" priority="50" name="Sea Market">
+	<region type="SeaMarketRegion" priority="50" name="Sea Market">
       <rect x="4529" y="2296" width="45" height="112" />
       <go x="4550" y="2317" z="-2" />
     </region>
@@ -2303,11 +2366,11 @@
       <go x="533" y="1526" z="-25" />
     </region>
     <region type="DungeonGuardedRegion" priority="2" name="Ankh Dungeon">
+      <music name="BTCastle"/>
       <rect x="0" y="1248" width="176" height="344" />
       <rect x="568" y="1152" width="16" height="8" />
       <go x="156" y="1484" z="-28" />
       <entrance x="668" y="928" />
-      <music name="BTCastle" />
     </region>
     <region priority="11" name="Kirin passage">
       <rect x="0" y="800" width="192" height="400" />
@@ -2463,8 +2526,8 @@
     <region type="TownRegion" priority="50" name="Luna">
       <rect x="945" y="490" width="91" height="61" />
       <go x="989" y="520" z="-50" />
-      <music name="tavern04" />
       <logoutDelay active="false" />
+      <music name="tavern04" />
     </region>
     <region type="TownRegion" priority="50" name="Umbra">
       <rect x="2042" y="1265" width="48" height="13" />
@@ -2603,7 +2666,7 @@
     <region priority="50" name="Ninja cave">
       <rect x="360" y="960" width="100" height="215" />
     </region>
-    <region type="NoHousingRegion" priority="50" name="Isle of the Divide">
+	<region type="NoHousingRegion" priority="50" name="Isle of the Divide">
       <rect x="1533" y="849" width="295" height="195" />
       <go x="1731" y="982" z="-80" />
       <smartNoHousing active="true" />
@@ -2634,7 +2697,7 @@
       <go x="320" y="408" z="32" />
       <smartNoHousing active="true" />
     </region>
-    <region type="TokunoDocksRegion" priority="50" name="Tokuno Docks">
+	<region type="TokunoDocksRegion" priority="50" name="Tokuno Docks">
       <rect x="650" y="1350" width="100" height="50" />
       <go x="713" y="1360" z="26" />
     </region>
@@ -2642,17 +2705,17 @@
   <Facet name="TerMur">
     <region type="DungeonRegion" priority="50" name="Abyss">
       <rect x="301" y="328" width="775" height="474" />
-      <rect x="780" y="32" width="296" height="296" />
-      <rect x="436" y="802" width="304" height="178" />
-      <rect x="754" y="881" width="108" height="93" />
-      <rect x="756" y="1049" width="104" height="93" />
-      <rect x="756" y="1214" width="105" height="99" />
-      <rect x="0" y="684" width="134" height="176" />
-      <rect x="0" y="485" width="134" height="162" />
-      <rect x="0" y="286" width="137" height="159" />
-      <rect x="254" y="70" width="246" height="183" />
-      <go x="946" y="72" z="72" />
-      <music name="StygianAbyss" />
+			<rect x="780" y="32" width="296" height="296" />
+			<rect x="436" y="802" width="304" height="178" />
+			<rect x="754" y="881" width="108" height="93" />
+			<rect x="756" y="1049" width="104" height="93" />
+			<rect x="756" y="1214" width="105" height="99" />
+			<rect x="0" y="684" width="134" height="176" />
+			<rect x="0" y="485" width="134" height="162" />
+			<rect x="0" y="286" width="137" height="159" />
+			<rect x="254" y="70" width="246" height="183" />
+			<go x="946" y="72" z="72" />
+			<music name="StygianAbyss" />
       <region priority="50" name="Abyssal Lair">
         <rect x="931" y="314" width="100" height="140" />
         <go x="985" y="366" z="-11" />
@@ -2672,9 +2735,9 @@
         <smartNoHousing active="true" />
       </region>
       <region priority="50" name="Cavern of the Discarded">
-        <rect x="887" y="475" width="113" height="100" />
+        <rect x="887" y="475" width="113" height="100"/>
         <rect x="926" y="533" width="45" height="20" />
-        <rect x="928" y="543" width="42" height="30" />
+        <rect x="928" y="543" width="42" height="30"/>
         <rect x="929" y="536" width="41" height="28" />
         <rect x="936" y="559" width="36" height="14" />
         <rect x="938" y="541" width="20" height="31" />
@@ -2757,8 +2820,8 @@
     </region>
     <region type="DungeonRegion" priority="50" name="Underworld">
       <rect x="898" y="808" width="382" height="423" />
-      <go x="1128" y="1207" z="-2" />
-      <music name="HumanLevel" />
+			<go x="1128" y="1207" z="-2" />
+			<music name="HumanLevel" />
     </region>
     <region type="DungeonRegion" priority="50" name="Atoll Bend">
       <rect x="1027" y="3311" width="197" height="203" />
@@ -2793,7 +2856,7 @@
     <region type="DungeonRegion" priority="50" name="Lost Settlement">
       <rect x="454" y="3708" width="194" height="249" />
       <go x="526" y="3822" z="-44" />
-    </region>
+    </region>    
     <region type="GuardedRegion" priority="50" name="Moongates">
       <rect x="852" y="3525" width="15" height="15" />
       <rect x="925" y="3988" width="15" height="15" />
@@ -2801,7 +2864,7 @@
     <region type="DungeonRegion" priority="50" name="Northern Steppes">
       <rect x="694" y="3020" width="260" height="128" />
       <go x="822" y="3063" z="61" />
-    </region>
+    </region>    
     <region type="DungeonRegion" priority="50" name="Raptor Island">
       <rect x="712" y="3765" width="167" height="64" />
       <rect x="728" y="3809" width="111" height="114" />
@@ -2813,16 +2876,16 @@
       <rect x="624" y="3296" width="303" height="287" />
       <go x="750" y="3440" z="-20" />
       <music name="RoyalCity" />
-      <region name="Queen's Palace">
-        <rect x="717" y="3339" width="68" height="73" />
-        <go x="748" y="3357" z="55" />
-        <music name="QueenPalace" />
-      </region>
-      <region name="Royal City Inn">
-        <rect x="724" y="3463" width="37" height="20" />
-        <rect x="747" y="3480" width="13" height="13" />
-        <logoutDelay active="false" />
-      </region>
+		<region name="Queen's Palace">
+		  <rect x="717" y="3339" width="68" height="73" />
+		  <go x="748" y="3357" z="55" />
+		  <music name="QueenPalace" />
+		</region>
+		<region name="Royal City Inn">
+            <rect x="724" y="3463" width="37" height="20" />
+            <rect x="747" y="3480" width="13" height="13" />
+            <logoutDelay active="false" />
+        </region>
     </region>
     <region type="DungeonRegion" priority="50" name="Royal Park">
       <rect x="632" y="3233" width="176" height="35" />
@@ -2871,17 +2934,17 @@
       <rect x="635" y="2862" width="96" height="64" />
       <go x="661" y="2894" z="39" />
     </region>
-    <region priority="50" name="Shrine of Singularity">
+    <region name="Shrine of Singularity" priority="50">
       <rect x="978" y="3786" width="40" height="52" />
       <go x="995" y="3806" z="0" />
       <music name="CodexShrine" />
     </region>
     <region type="TombOfKingsRegion" priority="50" name="Tomb of Kings">
       <rect x="0" y="14" width="182" height="246" />
-      <go x="35" y="236" z="-5" />
-      <region type="ToKBridgeRegion" priority="150" name="ToK Bridge">
-        <rect x="32" y="29" width="11" height="9" />
-      </region>
+			<go x="35" y="236" z="-5" />
+		  <region type="ToKBridgeRegion" name="ToK Bridge" priority="150">
+			  <rect x="32" y="29" width="11" height="9" />
+		  </region>
     </region>
     <region type="DungeonRegion" priority="100" name="GreatApeLair">
       <rect x="832" y="1363" width="106" height="111" zmin="-25" />

@@ -14,12 +14,12 @@ namespace Server.Items
         public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
         {
 
-            if (from.Skills[SkillName.Fletching].Value >= 100)
+            if (from.Skills[SkillName.Bowcraft].Value >= 100)
             {
                 this.Amount += 1;
             }
 
-            if (from.Skills[SkillName.Fletching].Value >= 120)
+            if (from.Skills[SkillName.Bowcraft].Value >= 120)
             {
                 this.Amount += 1;
             }

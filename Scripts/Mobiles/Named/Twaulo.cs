@@ -170,7 +170,7 @@ namespace Server.Mobiles
             var a = new CarpenterApron();
             a.Bonus = Utility.Random(1, 1);
             a.Name = "Avental de Twaulo";
-            a.Skill = SkillName.Fletching;
+            a.Skill = SkillName.Bowcraft;
             SorteiaItem(a);
             DistribuiItem(new Gold(1000));
             SorteiaItem(new FragmentosAntigos());

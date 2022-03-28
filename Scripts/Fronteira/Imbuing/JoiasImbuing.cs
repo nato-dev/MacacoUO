@@ -199,11 +199,13 @@ namespace Server.Items
 
         public override void AddNameProperties(ObjectPropertyList list)
         {
+            base.AddNameProperties(list);
             list.Add("Nivel: " + Nivel + "/20");
             if (Tipo == TipoJoias.Escudo)
                 list.Add($"+{Nivel}% Parry PvM");
             else
                 list.Add($"+{Nivel}% Dano PvM");
+            
         }
 
         [Constructable]

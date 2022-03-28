@@ -890,6 +890,7 @@
     <Compile Include="Items\Addons\Randoms\NewEAAddons\wallmountbellAddon.cs" />
     <Compile Include="Items\Addons\Randoms\NewEAAddons\waterpaintingAddon.cs" />
     <Compile Include="Items\Addons\Randoms\WhiteFalcon\WhiteFalcon.cs" />
+    <Compile Include="Items\Consumables\AntiPoisonTreat.cs" />
     <Compile Include="Items\Consumables\SpecialLockPick.cs" />
     <Compile Include="Items\Containers\BagOfBlackPearl.cs" />
     <Compile Include="Items\Equipment\Weapons\PraticeBow.cs" />

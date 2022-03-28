@@ -1,5 +1,6 @@
 using Server.Gumps;
 using Server.Items;
+using Server.Mobiles;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,41 @@ namespace Server.Ziden.Fama
         public override void OnDoubleClick(Mobile from)
         {
             from.SendGump(new Rankings(from, null));
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+
+            writer.Write((int)0); // version
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+
+            int version = reader.ReadInt();
+        }
+    }
+
+    public class QuadroEventos : Item
+    {
+        [Constructable]
+        public QuadroEventos()
+            : base(0x1E5E)
+        {
+            Name = "Quadro de Eventos";
+        }
+
+        public QuadroEventos(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            if(from.Player)
+                EventCalendarPersistance.OpenEventCalender(from as PlayerMobile);
         }
 
         public override void Serialize(GenericWriter writer)

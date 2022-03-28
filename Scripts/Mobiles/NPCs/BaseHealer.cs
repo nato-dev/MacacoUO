@@ -135,7 +135,10 @@ namespace Server.Mobiles
             m.FixedEffect(0x376A, 10, 16);
 
             m.CloseGump(typeof(ResurrectGump));
-            m.SendGump(new ResurrectGump(m, ResurrectMessage.Healer));
+            if (m.Murderer)
+                m.SendGump(new ResurrectGump(m, this, 1000));
+            else
+                m.SendGump(new ResurrectGump(m, ResurrectMessage.Healer));
         }
 
         public virtual void OfferHeal(PlayerMobile m)

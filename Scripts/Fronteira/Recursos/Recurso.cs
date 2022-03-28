@@ -129,21 +129,22 @@ namespace Server.Fronteira.Recursos
 
         public static CraftResource MinerioRandom()
         {
-            var rnd = Utility.Random(100);
-            if (rnd < 1)
+            var rnd = Utility.Random(1000);
+            if (rnd < 10)
                 return CraftResource.Adamantium;
-            else if (rnd < 3)
-                return CraftResource.Vibranium;
-            else if (rnd < 8)
-                return CraftResource.Quartzo;
             else if (rnd < 20)
+                return CraftResource.Vibranium;
+            else if (rnd < 80)
+                return CraftResource.Quartzo;
+            else if (rnd < 140)
                 return CraftResource.Berilo;
-            else if (rnd < 30)
+            else if (rnd < 400)
                 return CraftResource.Lazurita;
-            else if (rnd < 70)
+            else if (rnd < 600)
                 return CraftResource.Dourado;
-            else
-                return CraftResource.Niobio;
+            else if (rnd < 800)
+                return CraftResource.Bronze;
+            return CraftResource.Cobre;
         }
 
         public void StartHarvest(Mobile from, Item tool)

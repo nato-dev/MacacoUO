@@ -61,7 +61,7 @@ namespace Server.Items
 
         public int OnCraft(int quality, bool makersMark, Mobile from, CraftSystem craftSystem, Type typeRes, ITool tool, CraftItem craftItem, int resHue)
         {
-            this.Amount += (int)(from.Skills[SkillName.Fletching].Value / 3);
+            this.Amount += (int)(from.Skills[SkillName.Bowcraft].Value / 3);
             return quality;
         }
     }

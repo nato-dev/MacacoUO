@@ -425,7 +425,7 @@ namespace Server.Scripts
 
                 SkillIntervals.Add(SkillName.Alchemy, 1.25);
                 SkillIntervals.Add(SkillName.Blacksmith, 1.25);
-                SkillIntervals.Add(SkillName.Fletching, 1.25);
+                SkillIntervals.Add(SkillName.Bowcraft, 1.25);
                 SkillIntervals.Add(SkillName.Carpentry, 1.25);
                 SkillIntervals.Add(SkillName.Cartography, 1.25);
                 SkillIntervals.Add(SkillName.Cooking, 1.25);
@@ -482,7 +482,7 @@ namespace Server.Scripts
                 SkillConstantMod.Add(SkillName.Veterinary, 6.0);
                 SkillConstantMod.Add(SkillName.Alchemy, 9.0);
                 SkillConstantMod.Add(SkillName.Blacksmith, 5.0);
-                SkillConstantMod.Add(SkillName.Fletching, 6.0);
+                SkillConstantMod.Add(SkillName.Bowcraft, 6.0);
                 SkillConstantMod.Add(SkillName.Carpentry, 6.0);
                 SkillConstantMod.Add(SkillName.Cartography, 15.0);
                 SkillConstantMod.Add(SkillName.Cooking, 20.0);

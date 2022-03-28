@@ -5,6 +5,7 @@ using Server.Mobiles;
 using Server.Gumps;
 using Server.Guilds;
 using System.Collections.Generic;
+using Server.Engines.Points;
 
 namespace Server.Engines.VvV
 {
@@ -58,14 +59,11 @@ namespace Server.Engines.VvV
         {
             if (ViceVsVirtueSystem.Enabled && m is PlayerMobile && InRange(m.Location, 3))
             {
-                if (ViceVsVirtueSystem.IsVvV(m))
-                {
-                    m.SendGump(new VvVRewardGump(this, (PlayerMobile)m));
-                }
-                else
-                {
-                    SayTo(m, "Voce nao tem pratinhas. Participe da guerra infinita para conseguir !"); // You have no silver to trade with. Join Vice vs Virtue and return to me.
-                }
+                m.SendMessage(78, "Para conseguir pratinhas participe da Guerra Infinita, um sistema de guerra de guildas para o dominio de cidades. Para ver mais veja nossa Wiki.");
+
+                m.SendGump(new VvVRewardGump(this, (PlayerMobile)m));
+                //SayTo(m, "Voce nao tem pratinhas. Participe da guerra infinita para conseguir !"); // You have no silver to trade with. Join Vice vs Virtue and return to me.
+
             }
         }
 
@@ -76,7 +74,7 @@ namespace Server.Engines.VvV
 
             foreach (CollectionItem item in VvVRewards.Rewards)
             {
-                if (item.Tooltip == 0 && item.TooltipStr==null)
+                if (item.Tooltip == 0 && item.TooltipStr == null)
                 {
                     if (Backpack.GetAmount(item.Type) > 0)
                     {
@@ -166,10 +164,10 @@ namespace Server.Engines.VvV
 
                                         if (item is GargishWizardsCrystalGlasses)
                                         {
-                                            ((GargishWizardsCrystalGlasses)item).PhysicalBonus = 5;                                            
-                                            ((GargishWizardsCrystalGlasses)item).FireBonus = 5;                                            
-                                            ((GargishWizardsCrystalGlasses)item).ColdBonus = 5;                                            
-                                            ((GargishWizardsCrystalGlasses)item).PoisonBonus = 5;                                            
+                                            ((GargishWizardsCrystalGlasses)item).PhysicalBonus = 5;
+                                            ((GargishWizardsCrystalGlasses)item).FireBonus = 5;
+                                            ((GargishWizardsCrystalGlasses)item).ColdBonus = 5;
+                                            ((GargishWizardsCrystalGlasses)item).PoisonBonus = 5;
                                             ((GargishWizardsCrystalGlasses)item).EnergyBonus = 5;
                                         }
 

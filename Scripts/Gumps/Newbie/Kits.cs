@@ -187,7 +187,7 @@ namespace Server.Gumps.Newbie
                 };
                 merchant.Skills.Add(SkillName.Carpentry, 50);
                 merchant.Skills.Add(SkillName.Lumberjacking, 35);
-                merchant.Skills.Add(SkillName.Fletching, 50);
+                merchant.Skills.Add(SkillName.Bowcraft, 50);
                 merchant.Skills.Add(SkillName.Tailoring, 50);
                 merchant.Skills.Add(SkillName.Herding, 50);
                 merchant.Skills.Add(SkillName.Tinkering, 35);

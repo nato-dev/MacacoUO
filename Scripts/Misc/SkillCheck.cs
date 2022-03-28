@@ -186,14 +186,14 @@ namespace Server.Misc
         public static double GC_INICIAL = 0.78;
 
         public static SkillName[] Work = new SkillName[] {
-            SkillName.Alchemy, SkillName.Blacksmith, SkillName.Fletching,
+            SkillName.Alchemy, SkillName.Blacksmith, SkillName.Bowcraft,
             SkillName.Mining, SkillName.Tinkering, SkillName.Carpentry,
             SkillName.TasteID, SkillName.Cooking, SkillName.Tailoring,
             SkillName.AnimalTaming, SkillName.Fishing, SkillName.Lumberjacking
         };
 
         public static SkillName[] Craft = new SkillName[] {
-            SkillName.Alchemy, SkillName.Blacksmith, SkillName.Fletching,
+            SkillName.Alchemy, SkillName.Blacksmith, SkillName.Bowcraft,
             SkillName.Tinkering, SkillName.Carpentry,
             SkillName.Cooking, SkillName.Tailoring,
         };

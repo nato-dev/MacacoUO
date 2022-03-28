@@ -21,7 +21,7 @@ namespace Server.Items
         {
             DateTime duration = DateTime.UtcNow + TimeSpan.FromSeconds(60.0);
 
-            skillMod = new TimedSkillMod(SkillName.Fletching, true, 10.0, duration);
+            skillMod = new TimedSkillMod(SkillName.Bowcraft, true, 10.0, duration);
 
             skillMod.ObeyCap = false;
         }

@@ -431,7 +431,7 @@ namespace Server.Items
                     SlayerName.Aracnideos,
 
                     typeof(DreadSpider), typeof(FrostSpider),
-                    typeof(GiantBlackWidow), typeof(GiantSpider),
+                    typeof(GiantBlackWidow), typeof(GiantSpider), typeof(GreaterGiantSpider),
                     typeof(Mephitis), typeof(Scorpion),
                     typeof(TerathanAvenger), typeof(TerathanDrone),
                     typeof(TerathanMatriarch), typeof(TerathanWarrior),

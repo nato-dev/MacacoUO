@@ -804,7 +804,7 @@ namespace Server.Mobiles
                 new TrainingDefinition(typeof(WildBlackTiger), Class.ClawedAndTailed, MagicalAbility.Poisoning, SpecialAbilityNone, WepAbility3, AreaEffectNone, 2, 5),
                 new TrainingDefinition(typeof(Windrunner), Class.TailedAndNecromantic, MagicalAbility.None, SpecialAbilityNone, WepAbilityNone, AreaEffectNone, 2, 4),
                 new TrainingDefinition(typeof(WolfSpider), Class.None, MagicalAbility.Vartiety, SpecialAbilityBitingAnimal, WepAbility1, AreaEffectDisease, 1, 3),
-                new TrainingDefinition(typeof(Triton), Class.None, MagicalAbility.Triton, SpecialAbilityTriton, WepAbility11, AreaEffectArea1, 2, 5),
+                new TrainingDefinition(typeof(Triton), Class.None, MagicalAbility.Triton, SpecialAbilityTriton, WepAbility11, AreaEffectArea1, 2, 5), 
             };
             #endregion
         }

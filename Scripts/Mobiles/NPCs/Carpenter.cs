@@ -11,6 +11,7 @@ namespace Server.Mobiles
         public Carpenter()
             : base("o carpinteiro")
         {
+            this.SetSkill(SkillName.Bowcraft, 85.0, 100.0);
             this.SetSkill(SkillName.Carpentry, 85.0, 100.0);
             this.SetSkill(SkillName.Lumberjacking, 60.0, 83.0);
         }

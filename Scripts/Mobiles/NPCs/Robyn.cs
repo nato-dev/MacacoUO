@@ -140,7 +140,7 @@ namespace Server.Engines.Quests
         { 
             this.SetSkill(SkillName.Anatomy, 120.0, 120.0);
             this.SetSkill(SkillName.Parry, 120.0, 120.0);
-            this.SetSkill(SkillName.Fletching, 120.0, 120.0);
+            this.SetSkill(SkillName.Bowcraft, 120.0, 120.0);
             this.SetSkill(SkillName.Healing, 120.0, 120.0);
             this.SetSkill(SkillName.Tactics, 120.0, 120.0);
             this.SetSkill(SkillName.Archery, 120.0, 120.0);

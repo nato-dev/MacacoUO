@@ -35,7 +35,7 @@ namespace Server
         Parry = 5,
         Begging = 6,
         Blacksmith = 7,
-        Fletching = 8,
+        Bowcraft = 8,
         Peacemaking = 9,
         Camping = 10,
         Carpentry = 11,
@@ -727,7 +727,7 @@ namespace Server
         public Skill Blacksmith { get { return this[SkillName.Blacksmith]; } set { } }
 
         [CommandProperty(AccessLevel.Counselor)]
-        public Skill Fletching { get { return this[SkillName.Fletching]; } set { } }
+        public Skill Fletching { get { return this[SkillName.Bowcraft]; } set { } }
 
         [CommandProperty(AccessLevel.Counselor)]
         public Skill Peacemaking { get { return this[SkillName.Peacemaking]; } set { } }

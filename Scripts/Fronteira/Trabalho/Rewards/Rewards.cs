@@ -1816,7 +1816,7 @@ namespace Server.Engines.BulkOrders
         private static Item CreatePowerScroll(int type)
         {
             if (type == 5 || type == 10 || type == 15 || type == 20)
-                return new PowerScroll(SkillName.Fletching, 100 + type);
+                return new PowerScroll(SkillName.Bowcraft, 100 + type);
 
             throw new InvalidOperationException();
         }

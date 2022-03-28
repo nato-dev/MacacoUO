@@ -599,7 +599,7 @@ namespace Server.Engines.VvV
 
             Timer.DelayCall(TimeSpan.FromMinutes(cooldown), () =>
             {
-                System.CheckBattleStatus();
+                System.CheckBattleStatus(true);
             });
 
             var msg1 = cooldown - 60;

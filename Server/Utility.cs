@@ -1305,7 +1305,7 @@ namespace Server
 		private static readonly SkillName[] m_AllSkills = new[]
 		{
 			SkillName.Alchemy, SkillName.Anatomy, SkillName.AnimalLore, SkillName.ItemID, SkillName.ArmsLore, SkillName.Parry,
-			SkillName.Begging, SkillName.Blacksmith, SkillName.Fletching, SkillName.Peacemaking, SkillName.Camping,
+			SkillName.Begging, SkillName.Blacksmith, SkillName.Bowcraft, SkillName.Peacemaking, SkillName.Camping,
 			SkillName.Carpentry, SkillName.Cartography, SkillName.Cooking, SkillName.DetectHidden, SkillName.Discordance,
 			SkillName.EvalInt, SkillName.Healing, SkillName.Fishing, SkillName.Forensics, SkillName.Herding, SkillName.Hiding,
 			SkillName.Provocation, SkillName.Inscribe, SkillName.Lockpicking, SkillName.Magery, SkillName.MagicResist,
@@ -1322,7 +1322,7 @@ namespace Server
 
 		private static readonly SkillName[] m_CraftSkills = new[]
 		{
-			SkillName.Alchemy, SkillName.Blacksmith, SkillName.Fletching, SkillName.Carpentry, SkillName.Cartography,
+			SkillName.Alchemy, SkillName.Blacksmith, SkillName.Bowcraft, SkillName.Carpentry, SkillName.Cartography,
 			SkillName.Cooking, SkillName.Inscribe, SkillName.Tailoring, SkillName.Tinkering
 		};
 

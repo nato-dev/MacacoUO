@@ -273,7 +273,7 @@ namespace Scripts.Mythik.Systems.Achievements
             // BOW
             var nome = "Bowcrafter";
             var skill = "Bowcraft";
-            var skillName = SkillName.Fletching;
+            var skillName = SkillName.Bowcraft;
             Type recompensa = typeof(SacolaMadeiras);
             var icone = 0x13B2;
             var id = 2011;

@@ -51,8 +51,8 @@ namespace Server.Misc.Custom
             _Nivels.Add(new BankLevel(25000, 250, 20000));
             _Nivels.Add(new BankLevel(45000, 350, 50000));
             _Nivels.Add(new BankLevel(80000, 500, 100000));
-            _Nivels.Add(new BankLevel(550000, 5000, 300000));
-            _Nivels.Add(new BankLevel(1550000, 15000, 500000));
+            _Nivels.Add(new BankLevel(550000, 5000, 100000));
+            _Nivels.Add(new BankLevel(1550000, 15000, 100000));
         }
 
         public static void OpenBank(Mobile m)

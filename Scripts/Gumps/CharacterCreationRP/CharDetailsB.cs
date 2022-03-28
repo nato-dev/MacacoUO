@@ -273,7 +273,7 @@ namespace Server.Gumps.CharacterCreationRP
                     listaSkillsComplementares = new List<SkillName>() { SkillName.AnimalLore, SkillName.Begging, SkillName.Camping, SkillName.Healing, SkillName.Forensics, SkillName.MagicResist, SkillName.Snooping, SkillName.Stealing, SkillName.Lockpicking, SkillName.Wrestling, SkillName.Tracking, SkillName.Swords, SkillName.Macing, SkillName.Fencing, SkillName.Tactics, SkillName.Parry, SkillName.Magery, SkillName.EvalInt};
                     break;
                 default: //demais classes
-                    listaSkillsComplementares = new List<SkillName>() { SkillName.Cooking, SkillName.Fishing, SkillName.Herding, SkillName.Inscribe, SkillName.Cartography, SkillName.Tailoring, SkillName.Fletching, SkillName.Carpentry, SkillName.Lumberjacking, SkillName.ArmsLore, SkillName.Alchemy, SkillName.Mining};
+                    listaSkillsComplementares = new List<SkillName>() { SkillName.Cooking, SkillName.Fishing, SkillName.Herding, SkillName.Inscribe, SkillName.Cartography, SkillName.Tailoring, SkillName.Bowcraft, SkillName.Carpentry, SkillName.Lumberjacking, SkillName.ArmsLore, SkillName.Alchemy, SkillName.Mining};
                     break;
             }
 

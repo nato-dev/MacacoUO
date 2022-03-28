@@ -12,7 +12,7 @@ namespace Server.Mobiles
         public Bowyer()
             : base("o arqueiro")
         {
-            this.SetSkill(SkillName.Fletching, 80.0, 100.0);
+            this.SetSkill(SkillName.Bowcraft, 80.0, 100.0);
             this.SetSkill(SkillName.Archery, 80.0, 100.0);
         }
 
@@ -67,7 +67,7 @@ namespace Server.Mobiles
 
         public override bool SupportsBulkOrders(Mobile from)
         {
-            return BulkOrderSystem.NewSystemEnabled && from is PlayerMobile && from.Skills[SkillName.Fletching].Base > 0;
+            return BulkOrderSystem.NewSystemEnabled && from is PlayerMobile && from.Skills[SkillName.Bowcraft].Base > 0;
         }
 
         public override void OnSuccessfulBulkOrderReceive(Mobile from)

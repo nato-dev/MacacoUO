@@ -9,11 +9,11 @@ namespace Server.Engines.BulkOrders
     {
         public static double[] m_FletchingMaterialChances = new double[]
         {
-            0.513718750, // None
-            0.292968750, // Oak
-            0.117187500, // Ash
-            0.046875000, // Yew
-            0.018750000, // Heartwood
+            0.113718750, // None
+            0.592968750, // Oak
+            0.417187500, // Ash
+            0.346875000, // Yew
+            0.218750000, // Heartwood
             0.007500000, // Bloodwood
             0.003000000 // Frostwood
         };
@@ -98,7 +98,7 @@ namespace Server.Engines.BulkOrders
         {
             SmallBulkEntry[] entries;
 
-            double theirSkill = BulkOrderSystem.GetBODSkill(m, SkillName.Fletching);
+            double theirSkill = BulkOrderSystem.GetBODSkill(m, SkillName.Bowcraft);
             bool useMaterials = false;
 
             if (theirSkill < 30.0 || .20 > Utility.RandomDouble())
@@ -115,14 +115,29 @@ namespace Server.Engines.BulkOrders
             {
                 int amountMax;
 
-                if (theirSkill >= 70.1)
-                    amountMax = Utility.RandomList(10, 15, 20, 20);
-                else if (theirSkill >= 50.1)
-                    amountMax = Utility.RandomList(10, 15, 15, 20);
-                else
-                    amountMax = Utility.RandomList(10, 10, 15, 20);
-
                 BulkMaterialType material = BulkMaterialType.None;
+
+                if (material != BulkMaterialType.None)
+                {
+                    if (theirSkill >= 100)
+                        amountMax = Utility.RandomList(20, 20, 25, 30);
+                    else
+                        amountMax = Utility.RandomList(10, 10, 15, 20);
+                }
+                else
+                {
+                    if (theirSkill >= 110)
+                        amountMax = Utility.RandomList(75, 70, 85, 85);
+                    else if (theirSkill >= 100)
+                        amountMax = Utility.RandomList(55, 70, 65, 75);
+                    else if (theirSkill >= 70.1)
+                        amountMax = Utility.RandomList(35, 35, 40, 40);
+                    else if (theirSkill >= 50.1)
+                        amountMax = Utility.RandomList(15, 20, 20, 25);
+                    else
+                        amountMax = Utility.RandomList(10, 10, 15, 20);
+                }
+
 
                 if (useMaterials && theirSkill >= 70.1)
                 {
@@ -159,12 +174,12 @@ namespace Server.Engines.BulkOrders
                         bool allRequiredSkills = true;
                         double chance = item.GetSuccessChance(m, null, system, false, ref allRequiredSkills);
 
-                        if (allRequiredSkills && chance >= BulkOrderSystem.MIN_CRAFT_BODS)
+                        if (allRequiredSkills && chance >= 0.2)
                         {
                             if (reqExceptional)
                                 chance = item.GetExceptionalChance(system, chance, m);
 
-                            if (chance > BulkOrderSystem.MIN_CRAFT_BODS)
+                            if (chance > 0.2)
                                 validEntries.Add(entries[i]);
                         }
                     }
@@ -173,6 +188,11 @@ namespace Server.Engines.BulkOrders
                 if (validEntries.Count > 0)
                 {
                     SmallBulkEntry entry = validEntries[Utility.Random(validEntries.Count)];
+                    CraftItem item = system.CraftItems.SearchFor(entry.Type);
+                    bool b = false;
+                    double chance = item.GetSuccessChance(m, null, system, false, ref b);
+                    if (chance <= 0.5 && material != BulkMaterialType.None)
+                        amountMax /= 2;
                     return new SmallFletchingBOD(entry, material, amountMax, reqExceptional);
                 }
             }
