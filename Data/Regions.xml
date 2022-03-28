@@ -250,7 +250,6 @@
       <rect x="1386" y="1498" width="324" height="279" zmin="-10" />
       <rect x="1385" y="1538" width="31" height="239" zmin="-10" />
       <rect x="1416" y="1777" width="324" height="60" />
-      <rect x="1385" y="1777" width="31" height="130" />
       <go x="1495" y="1629" z="10" />
       <music name="Britain1" />
       <zrange min="0" />
@@ -1269,7 +1268,6 @@
       <rect x="1500" y="1408" width="46" height="90" />
       <rect x="1385" y="1538" width="31" height="239" zmin="-10" />
       <rect x="1416" y="1777" width="324" height="60" />
-      <rect x="1385" y="1777" width="31" height="130" />
       <go x="1495" y="1629" z="10" />
       <music name="Britain1" />
       <zrange min="0" />
