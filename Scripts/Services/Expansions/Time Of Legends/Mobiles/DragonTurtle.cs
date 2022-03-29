@@ -76,6 +76,8 @@ namespace Server.Mobiles
             SorteiaItem(new PersonalTelescope());
             SorteiaItem(new LegacyGuildstone());
             SorteiaItem(new PergaminhoSkillcap());
+            DistribuiItem(new PergaminhoPeso());
+            DistribuiItem(new PergaminhoCarregamento());
             SorteiaItem(new DragonTurtleFountainAddonDeed());
             DistribuiItem(Decos.RandomDeco());
             for (var i = 0; X < 4; i++)
