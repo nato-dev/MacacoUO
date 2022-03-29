@@ -453,13 +453,13 @@ namespace Server.Engines.Craft
             if (craftGroup == null)
                 return;
 
-            CraftItemCol craftItemCol = craftGroup.CraftItems;
+            var craftItemCol = craftGroup.GetSorted();
 
             for (int i = 0; i < craftItemCol.Count; ++i)
             {
                 int index = i % 10;
 
-                CraftItem craftItem = craftItemCol.GetAt(i);
+                CraftItem craftItem = craftItemCol[i];
 
                 if (index == 0)
                 {

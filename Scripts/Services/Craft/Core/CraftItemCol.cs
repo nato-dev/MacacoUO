@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using VitaNex;
 
 namespace Server.Engines.Craft
 {
@@ -7,6 +9,13 @@ namespace Server.Engines.Craft
     {
         public CraftItemCol()
         {
+        }
+
+        public List<CraftItem> GetSorted()
+        {
+            if (Shard.DebugEnabled)
+                Shard.Debug("Ordenando lista de craft");
+            return this.List.CastToList<CraftItem>().OrderBy(e => { return e.NameString ?? Clilocs.GetString(ClilocLNG.ENU, e.NameNumber); }).ToList();
         }
 
         public int Add(CraftItem craftItem)

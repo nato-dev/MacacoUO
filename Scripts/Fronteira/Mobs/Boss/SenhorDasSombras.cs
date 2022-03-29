@@ -130,7 +130,6 @@ namespace Server.Mobiles
 
         public override void OnDeath(Container c)
         {
-
             var tinta = new DyeTub();
             tinta.DyedHue = 1910;
             tinta.Name = "Tinta do Senhor das Sombras";

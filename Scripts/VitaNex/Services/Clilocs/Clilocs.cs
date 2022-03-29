@@ -1,4 +1,4 @@
-﻿#region Header
+#region Header
 //   Vorspire    _,-'/-'/  Clilocs.cs
 //   .      __,-; ,'( '/
 //    \.    `-.__`-._`:_,-._       _ , . ``
@@ -304,6 +304,10 @@ namespace VitaNex
 
 		public static string GetString(this ClilocLNG lng, int index, params object[] args)
 		{
+            if(Shard.DebugEnabled)
+            {
+                Shard.Debug("Fetch cliloc " + index);
+            }
 			if (lng == ClilocLNG.NULL)
 			{
 				lng = DefaultLanguage;

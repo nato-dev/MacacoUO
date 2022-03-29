@@ -1956,6 +1956,9 @@
     </region>
     <region type="DungeonRegion" priority="50" name="Orc Cave">
       <go x="5137" y="2015" z="0" />
+      <rect x1="5281" y1="1283" x2="5373" y2="1386" />
+      <rect x1="5267" y1="1955" x2="5364" y2="2046" />
+      <rect x1="5127" y1="1941" x2="5164" y2="2024" />
       <entrance x="1014" y="1434" />
       <music name="Dungeon9" />
       <region type="ExploringDeepCreaturesRegion" name="Orc Engineer">

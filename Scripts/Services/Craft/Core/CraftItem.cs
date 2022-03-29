@@ -298,7 +298,7 @@ namespace Server.Engines.Craft
         {
             if (!CraftResources.IsTierZero(type))
             {
-                if(message == null || message.m_String==null)
+                if (message == null || message.m_String == null)
                 {
                     var trad = Trads.GetNome(type);
                     if (trad != null)
@@ -440,7 +440,7 @@ namespace Server.Engines.Craft
 			0x92B, 0x93F, // Stone oven
 			0x2DDB, 0x2DDC, //Elven stove
 		};
-         
+
         private static readonly int[] m_Makers = new[]
         {
             0x9A96, 0x9A96 // steam powered beverage maker
@@ -609,8 +609,6 @@ namespace Server.Engines.Craft
                     Shard.Debug("Craft system colorindo");
                 return true;
             }
-
-
 
             // se usar algum recurso color nao pega a cor color
             foreach (CraftRes craft in this.m_arCraftRes)
@@ -1529,7 +1527,11 @@ namespace Server.Engines.Craft
                 {
                     CraftResource res = CraftResource.None;
                     if (typeRes != null)
-                        res = CraftResources.GetFromType(typeRes);
+                    {
+                        var resAtual = Resources.GetAt(0).ItemType;
+                        if (typeof(Leather).IsAssignableFrom(resAtual) || typeof(Board).IsAssignableFrom(resAtual) || typeof(IronIngot).IsAssignableFrom(resAtual))
+                            res = CraftResources.GetFromType(resAtual);
+                    }
 
                     bool lowGain = false;
                     var skillNovosResuorces = 90;
@@ -1632,7 +1634,8 @@ namespace Server.Engines.Craft
                             n += 1;
                         }
 
-                        if (typeof(BaseWeapon).IsAssignableFrom(ItemType) || typeof(BaseArmor).IsAssignableFrom(ItemType))
+                        var resAtual = Resources.GetAt(0).ItemType;
+                        if (typeof(BaseWeapon).IsAssignableFrom(resAtual) || typeof(BaseArmor).IsAssignableFrom(resAtual))
                             from.CheckSkillMult(SkillName.ArmsLore, minSkill, maxSkill, 4);
 
                         if (!from.IsCooldown("dicacraft"))
@@ -1678,7 +1681,20 @@ namespace Server.Engines.Craft
 
             if (typeRes != null)
             {
-                CraftResource res = CraftResources.GetFromType(typeRes);
+
+                var resAtual = Resources.GetAt(0).ItemType;
+                if (Shard.DebugEnabled)
+                {
+                    Shard.Debug("RES ATUAL CRAFT CHANCE: " + resAtual.Name);
+                    Shard.Debug("TypeRes CRAFT CHANCE: " + typeRes);
+
+                }
+
+                CraftResource res = CraftResource.None;
+
+                if (typeof(Leather).IsAssignableFrom(ItemType) || typeof(Board).IsAssignableFrom(ItemType) || typeof(IronIngot).IsAssignableFrom(ItemType))
+                    res = CraftResources.GetFromType(resAtual);
+
                 if (res >= CraftResource.Cobre && res <= CraftResource.Dourado)
                 {
                     chance -= 0.1;

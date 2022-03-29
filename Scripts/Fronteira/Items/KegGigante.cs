@@ -14,6 +14,11 @@ namespace Server.Items
             Name = "Barril de Pocoes Gigante";
         }
 
+        public override int LabelNumber
+        {
+            get => 0;
+        }
+
         public KegGigante(Serial serial)
             : base(serial)
         {

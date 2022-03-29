@@ -38,6 +38,7 @@ namespace Server.Items
 
             list.Add((Bonus * 100)+"+% Stats"); //Stats Increased by 10%
             list.Add("Imune a venenos");
+            list.Add("Possibilita Masteries");
 
             list.Add(1113212, Duration.TotalMinutes.ToString()); //Duration: ~1_val~ minutes
             list.Add(1113218, CoolDown.TotalMinutes.ToString()); //Cooldown: ~1_val~ minutes

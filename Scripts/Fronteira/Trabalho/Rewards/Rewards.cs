@@ -929,9 +929,9 @@ namespace Server.Engines.BulkOrders
 
             if (quantity <= 10)
                 points += 10;
-            else if (quantity <= 15)
+            else if (quantity <= 30)
                 points += 25;
-            else if (quantity >= 20)
+            else if (quantity > 30)
                 points += 50;
 
             if (exceptional)
@@ -1193,9 +1193,9 @@ namespace Server.Engines.BulkOrders
 
             if (quantity <= 10)
                 points += 10;
-            else if (quantity <= 15)
+            else if (quantity <= 30)
                 points += 25;
-            else if (quantity >= 20)
+            else if (quantity > 30)
                 points += 50;
 
             switch (itemCount)
@@ -1419,7 +1419,7 @@ namespace Server.Engines.BulkOrders
                 points += 10;
             else if (quantity <= 30)
                 points += 25;
-            else if (quantity >= 50)
+            else if (quantity > 30)
                 points += 50;
 
             if (exceptional)
@@ -1585,7 +1585,7 @@ namespace Server.Engines.BulkOrders
                 points += 10;
             else if (quantity <= 30)
                 points += 25;
-            else if (quantity >= 50)
+            else if (quantity > 30)
                 points += 50;
 
             if (itemCount > 1)
@@ -1714,7 +1714,7 @@ namespace Server.Engines.BulkOrders
                 points += 10;
             else if (quantity <= 30)
                 points += 25;
-            else if (quantity >= 50)
+            else if (quantity > 30)
                 points += 50;
 
             if (exceptional)
@@ -1862,7 +1862,7 @@ namespace Server.Engines.BulkOrders
                 points += 10;
             else if (quantity <= 30)
                 points += 25;
-            else if (quantity >= 50)
+            else if (quantity > 30)
                 points += 50;
 
             if (exceptional)
@@ -2045,7 +2045,7 @@ namespace Server.Engines.BulkOrders
                 points += 10;
             else if (quantity <= 30)
                 points += 25;
-            else if (quantity >= 55)
+            else if (quantity > 30)
                 points += 50;
 
             if (itemCount == 3)

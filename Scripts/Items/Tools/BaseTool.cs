@@ -125,15 +125,15 @@ namespace Server.Items
         {
             var scalar = 100;
             if (m_Quality == ItemQuality.Low)
-                scalar -= 70;
+                scalar -= 30;
             if (m_Quality == ItemQuality.Exceptional)
                 scalar += 50;
             if (Resource == CraftResource.Cobre)
-                scalar += 50;
+                scalar += 100;
             else if (Resource == CraftResource.Bronze)
-                scalar += 80;
+                scalar += 100;
             else if (Resource == CraftResource.Dourado)
-                scalar += 90;
+                scalar += 250;
             else if (Resource == CraftResource.Niobio)
                 scalar += 100;
             else if (Resource == CraftResource.Lazurita)

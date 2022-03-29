@@ -6,7 +6,7 @@ namespace Server.Items
 {
     public class AntiPoisonTreat : TastyTreat
     {
-        public override double Bonus { get { return 0.05; } }
+        public override double Bonus { get { return 0.15; } }
         public override TimeSpan Duration { get { return TimeSpan.FromMinutes(30); } }
         public override TimeSpan CoolDown { get { return TimeSpan.FromMinutes(3); } }
 

@@ -737,11 +737,11 @@ namespace Server.Spells
                 if (pl.Almas > 0)
                 {
                     almas = pl.Almas;
-                    scale += pl.Almas / 100;
+                    scale += pl.Almas / 50;
                     pl.Almas = 0;
                     pl.SendMessage("Almas coletadas: 0/100");
                     pl.SendMessage("Voce usou todas almas coletadas de monstros para criar uma criatura mais forte");
-                    if (creature.Name != null && almas > 20)
+                    if (creature.Name != null && almas >= 100)
                     {
                         creature.Name += " *";
                     }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Server.Engines.Craft
 {
@@ -15,10 +16,20 @@ namespace Server.Engines.Craft
             this.m_arCraftItem = new CraftItemCol();
         }
 
+        public List<CraftItem> Sorted = null;
+
+        public List<CraftItem> GetSorted()
+        {
+            if (Sorted == null)
+                Sorted = this.m_arCraftItem.GetSorted();
+            return Sorted;
+        }
+
         public CraftItemCol CraftItems
         {
             get
             {
+             
                 return this.m_arCraftItem;
             }
         }

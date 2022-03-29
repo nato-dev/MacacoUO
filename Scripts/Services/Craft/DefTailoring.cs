@@ -146,6 +146,7 @@ namespace Server.Engines.Craft
         public override void PlayCraftEffect(Mobile from)
         {
             from.PlaySound(0x248);
+            from.Animate(AnimationType.Block, 0);
         }
 
         public override int PlayEndingEffect(Mobile from, bool failed, bool lostMaterial, bool toolBroken, int quality, bool makersMark, CraftItem item)

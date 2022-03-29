@@ -129,11 +129,12 @@ namespace Server.Items
 
         public static int GetDelay(Mobile m)
         {
+            /*
             Timer timer = m_Delay[m] as Timer;
 
             if (timer != null && timer.Next > DateTime.UtcNow)
                 return (int)(timer.Next - DateTime.UtcNow).TotalSeconds;
-
+                */
             return 0;
         }
 
@@ -261,9 +262,6 @@ namespace Server.Items
 
             public int GetDamage()
             {
-
-
-
                 return Utility.RandomMinMax(m_MinDamage, m_MaxDamage);
             }
 
@@ -324,7 +322,7 @@ namespace Server.Items
 
                     if(!m.Player && m_From.Player)
                     {
-                        dmg += (int)(dmg * m_From.GetBonusElemento(ElementoPvM.Agua));
+                        dmg += (int)((dmg+2) * m_From.GetBonusElemento(ElementoPvM.Agua));
                         var nivelColar = ColarElemental.GetNivel(m_From, ElementoPvM.Agua);
                         if (nivelColar > 0)
                             dmg += 5;

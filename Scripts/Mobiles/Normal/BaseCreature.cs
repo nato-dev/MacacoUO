@@ -8034,6 +8034,8 @@ namespace Server.Mobiles
         public virtual double GetDispelDifficulty()
         {
             double dif = DispelDifficulty;
+            if (this.Name != null && this.Name.Contains("*"))
+                dif += 50;
             if (SummonMaster != null)
                 dif += ArcaneEmpowermentSpell.GetDispellBonus(SummonMaster);
             return dif;
@@ -8884,7 +8886,7 @@ namespace Server.Mobiles
                 AreaEffect.CheckThinkTrigger(this);
             }
 
-            if (Combatant != null && Core.ML) // MASTERY
+            if (Combatant != null && TastyTreat.UnderInfluence(this)) // MASTERY
             {
                 CheckCastMastery();
             }

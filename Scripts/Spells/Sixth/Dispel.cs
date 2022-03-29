@@ -8,6 +8,7 @@ using Server.Spells.Fourth;
 using Server.Spells.Mysticism;
 using Server.Spells.Necromancy;
 using Server.Spells.Second;
+using Server.Spells.Third;
 using Server.Targeting;
 
 namespace Server.Spells.Sixth
@@ -73,6 +74,8 @@ namespace Server.Spells.Sixth
                     m.SendMessage("Voce Removeu Mente Podre");
                 else if (SpellPlagueSpell.RemoveFromList(m))
                     m.SendMessage("Voce Removeu Praga Mistica");
+                else if (BlessSpell.RemoveBless(m))
+                    m.SendMessage("Voce Removeu Bencao");
                 else
                     m.SendMessage("Nao havia nenhuma magia negativa para dissipar");
             }

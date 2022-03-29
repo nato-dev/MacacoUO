@@ -73,13 +73,13 @@ namespace Server.Items
 
         public static bool Throwing(Mobile from)
         {
-            if (from.Region.IsPartOf("New Haven") && !DuelController.IsInDuel(from))
+            if (from.Region.IsPartOf("New Haven"))
             {
                 from.SendMessage("Voce nao pode fazer isto aqui");
                 return false;
             }
 
-            return Using.ContainsKey(from); ;
+            return Using.ContainsKey(from);
         }
 
         public override void Drink(Mobile from)
@@ -223,7 +223,7 @@ namespace Server.Items
             {
                 Shard.Debug("Alvos da pot de explo: " + string.Join(",", list.Select(m => m.Name).ToList()));
             }
-               
+
 
             foreach (var m in list)
             {
@@ -240,17 +240,18 @@ namespace Server.Items
                 {
                     damage = 35;
                 }
-                else if (list.Count > 2)
-                {
-                    damage /= list.Count - 1;
-                }
+
+                //else if (list.Count > 2)
+                // {
+                //    damage /= list.Count - 1;
+                // }
 
                 if (!m.Player && from.Player)
                 {
                     damage += (int)(damage * from.GetBonusElemento(ElementoPvM.Agua));
                     var nivelColar = ColarElemental.GetNivel(from, ElementoPvM.Agua);
                     if (nivelColar > 0)
-                        damage += 10;
+                        damage += 5;
                     damage += nivelColar * 5;
                 }
 
@@ -258,7 +259,7 @@ namespace Server.Items
                 {
                     damage *= (int)(2 + from.Skills[SkillName.Alchemy].Value / 33);
                 }
-                   
+
                 AOS.Damage(m, from, damage, 0, 100, 0, 0, 0, Server.DamageType.SpellAOE);
             }
 
@@ -354,6 +355,12 @@ namespace Server.Items
 
             protected override void OnTarget(Mobile from, object targeted)
             {
+                if (from.Region.IsPartOf("New Haven"))
+                {
+                    from.SendMessage("Voce nao pode fazer isto aqui");
+                    return;
+                }
+
                 if (m_Potion.Deleted || m_Potion.Map == Map.Internal)
                 {
                     return;

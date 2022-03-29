@@ -80,12 +80,10 @@ namespace Server.Mobiles
             DistribuiItem(Decos.RandomDeco());
             for (var i = 0; X < 4; i++)
             {
-                if (Utility.RandomDouble() < 0.2)
+                if (Utility.RandomDouble() < 0.3)
                     DistribuiPs(115);
-                else if (Utility.RandomDouble() < 0.5)
-                    DistribuiPs(110);
                 else
-                    DistribuiPs(105);
+                    DistribuiPs(110);
             }
 
             for (var x = 0; x < 5; x++)

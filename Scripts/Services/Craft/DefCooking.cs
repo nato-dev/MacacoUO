@@ -199,10 +199,9 @@ namespace Server.Engines.Craft
             index = AddCraft(typeof(WoodPulp), 1044496, 1113136, 60.0, 100.0, typeof(BarkFragment), 1032687, 1, 1044253);
             AddRes(index, typeof(BaseBeverage), 1046458, 1, 1044253);
 
-            index = AddCraft(typeof(Charcoal), 1044496, 1116303, 0.0, 50.0, typeof(Board), 1044041, 1, 1044351);
-            SetUseAllRes(index, true);
-            SetNeedHeat(index, true);
-
+            //index = AddCraft(typeof(Charcoal), 1044496, 1116303, 0.0, 50.0, typeof(Board), 1044041, 1, 1044351);
+            //SetUseAllRes(index, true);
+            //SetNeedHeat(index, true);
 
             index = AddCraft(typeof(BreadLoaf), 1044497, 1024156, 0.0, 100.0, typeof(Dough), 1044469, 1, 1044253);
             SetNeedOven(index, true);

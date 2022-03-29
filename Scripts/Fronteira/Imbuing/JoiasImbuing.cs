@@ -320,16 +320,16 @@ namespace Server.Items
         public override void OnDoubleClick(Mobile from)
         {
             base.OnDoubleClick(from);
-            if (this.Amount < 10)
+            if (this.Amount < 20)
             {
-                from.SendMessage("Junte 10 fragmentos antigos para criar um anel de dano PvM");
+                from.SendMessage("Junte 20 fragmentos antigos para criar um colar de maestria taming");
                 return;
             }
             this.Consume(10);
             var colar = new AnelDano();
             colar.Crafter = from;
             from.PlaceInBackpack(colar);
-            from.SendMessage("Voce criou um anel de dano !");
+            from.SendMessage("Voce criou um anel  !");
         }
 
         public FragmentoTamer(Serial s) : base(s) { }

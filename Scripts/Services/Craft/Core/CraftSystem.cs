@@ -328,7 +328,8 @@ namespace Server.Engines.Craft
 
             if (index == -1)
             {
-                //Shard.Debug("Criando craft group " + groupName.String+" - "+groupName.Number);
+                if(Shard.DebugEnabled)
+                    Shard.Debug("Criando craft group " + groupName.String+" - "+groupName.Number);
                 CraftGroup craftGroup = new CraftGroup(groupName);
                 craftGroup.AddCraftItem(craftItem);
                 m_CraftGroups.Add(craftGroup);

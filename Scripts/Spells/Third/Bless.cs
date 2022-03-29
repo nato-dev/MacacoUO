@@ -33,7 +33,7 @@ namespace Server.Spells.Third
             _Table[m] = new InternalTimer(m, duration);
         }
 
-        public static void RemoveBless(Mobile m, bool early = false)
+        public static bool RemoveBless(Mobile m, bool early = false)
         {
             if (_Table != null && _Table.ContainsKey(m))
             {
@@ -41,7 +41,9 @@ namespace Server.Spells.Third
                 m.Delta(MobileDelta.Stat);
 
                 _Table.Remove(m);
+                return true;
             }
+            return false;
         }
 
         public BlessSpell(Mobile caster, Item scroll)
