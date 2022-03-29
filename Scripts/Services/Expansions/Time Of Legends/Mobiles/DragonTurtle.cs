@@ -73,12 +73,14 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            SorteiaItem(new PersonalTelescope());
+            DistribuiItem(new PersonalTelescope());
             SorteiaItem(new LegacyGuildstone());
             SorteiaItem(new PergaminhoSkillcap());
             DistribuiItem(new PergaminhoPeso());
             DistribuiItem(new PergaminhoCarregamento());
             SorteiaItem(new DragonTurtleFountainAddonDeed());
+            DistribuiItem(Decos.RandomDeco());
+            DistribuiItem(Decos.RandomDeco());
             DistribuiItem(Decos.RandomDeco());
             for (var i = 0; X < 4; i++)
             {
@@ -94,11 +96,21 @@ namespace Server.Mobiles
                 SorteiaItem(ElementoUtils.GetRandomPedraSuperior(10));
             }
 
-            var a = new CarpenterApron();
-            a.Bonus = Utility.Random(5, 25);
-            a.Skill = SkillName.Tailoring;
-            a.Name = "Avental do Artesao da Tartaruga Dragao";
-            SorteiaItem(a);
+            if(Utility.RandomBool())
+            {
+                var a = new CarpenterApron();
+                a.Bonus = Utility.Random(5, 25);
+                a.Skill = SkillName.Tailoring;
+                a.Name = "Avental do Artesao da Tartaruga Dragao";
+                SorteiaItem(a);
+            } else
+            {
+                var a = new CarpenterApron();
+                a.Bonus = Utility.Random(5, 25);
+                a.Skill = SkillName.Blacksmith;
+                a.Name = "Avental do Ferreiro da Tartaruga Dragao";
+                SorteiaItem(a);
+            }
         }
 
         public virtual int BonusExp => 1900;

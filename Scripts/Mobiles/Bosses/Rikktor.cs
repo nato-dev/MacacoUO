@@ -161,11 +161,11 @@ namespace Server.Mobiles
 
                 var r = Utility.RandomDouble();
                 if (r < 0.1)
-                    SorteiaItem(Carnage.GetRandomPS(120));
+                    DistribuiPs(120);
                 else if (r < 0.4)
-                    SorteiaItem(Carnage.GetRandomPS(115));
+                    DistribuiPs(115);
                 else
-                    SorteiaItem(Carnage.GetRandomPS(110));
+                    DistribuiPs(110);
                 SorteiaItem(Carnage.GetRandomPS(115));
                 SorteiaItem(Carnage.GetRandomPS(110));
                 SorteiaItem(Carnage.GetRandomPS(105));

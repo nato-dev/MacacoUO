@@ -604,7 +604,7 @@ namespace Server.Engines.Craft
                             CraftGroup group = groups.GetAt(groupIndex);
 
                             if (index >= 0 && index < group.CraftItems.Count)
-                                CraftItem(group.CraftItems.GetAt(index));
+                                CraftItem(group.GetSorted()[index]);
                         }
 
                         break;
