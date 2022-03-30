@@ -14,6 +14,79 @@ namespace Server.Mobiles
 
         public virtual int BonusExp => 2900;
 
+        public void Terremoto(Mobile alvo)
+        {
+            Effects.SendMovingParticles(this, new Entity(Serial.Zero, new Point3D(this.X, this.Y, this.Z + 20), this.Map), 0x11B6, 5, 20, true, true, 0, 0, 9502, 1, 0, (EffectLayer)255, 0x100);
+            var pentagrama = new BloodyPentagramAddon();
+            var loc = new Point3D(alvo.Location.X - 2, alvo.Location.Y - 2, alvo.Location.Z);
+            pentagrama.MoveToWorld(loc, alvo.Map);
+
+            //pentagrama.PublicOverheadMessage(Network.MessageType.Regular, 0, true, "* Tremidao *");
+            new TerremotoTimer(this, alvo.Location, alvo.Map, pentagrama).Start();
+        }
+
+        public class TerremotoTimer : Timer
+        {
+            private BaseCreature bixo;
+            private Point3D local;
+            private Map map;
+            private Item i;
+
+            public TerremotoTimer(BaseCreature bixo, Point3D local, Map map, Item item) : base(TimeSpan.FromSeconds(2))
+            {
+                this.map = map;
+                this.local = local;
+                this.bixo = bixo;
+                i = item;
+            }
+
+            protected override void OnTick()
+            {
+                var glr = map.GetClientsInRange(local, 3);
+                foreach (var netstate in glr)
+                {
+                    var m = netstate.Mobile;
+                    m.SendMessage("Voce sente o chao tremer...");
+                    bixo.DoHarmful(m);
+                    m.PlaySound(0x20D);
+                    Effects.SendMovingParticles(new Entity(Serial.Zero, new Point3D(m.X, m.Y, m.Z + 20), m.Map), m, 0x11B6, 5, 20, true, true, 0, 0, 9502, 1, 0, (EffectLayer)255, 0x100);
+                    Timer.DelayCall(TimeSpan.FromSeconds(0.6), () =>
+                    {
+                        AOS.Damage(m, 10 + Utility.Random(20), DamageType.SpellAOE);
+                        m.Freeze(TimeSpan.FromSeconds(3));
+                        m.OverheadMessage("* atordoado *");
+                    });
+                }
+                glr.Free();
+                i.Delete();
+            }
+        }
+
+
+        public override void OnThink()
+        {
+            base.OnThink();
+            var pl = Combatant as PlayerMobile;
+            if (pl != null)
+            {
+                if (!IsCooldown("skill"))
+                {
+                    SetCooldown("skill", TimeSpan.FromSeconds(5));
+                    Terremoto(pl);
+                }
+
+                if (Hue == 38 && !IsCooldown("nervoso") && pl.GetDistanceToSqrt(this) <= 10)
+                {
+                    SetCooldown("nervoso", TimeSpan.FromSeconds(10));
+                    this.MovingParticles(pl, 6008, 5, 0, false, false, 9502, 4019, 0x160);
+                    var dmg = 25 + Utility.Random(25);
+                    AOS.Damage(pl, dmg, DamageType.Ranged);
+                    this.PublicOverheadMessage(Network.MessageType.Emote, 0, false, "* joga uma pedra *");
+                    BaseWeapon.AddBlood(pl, dmg);
+                }
+            }
+        }
+
         [Constructable]
         public Rikktor()
             : base(AIType.AI_Melee)
