@@ -52,7 +52,7 @@ namespace Server.Mobiles
 
             Tamable = true;
             ControlSlots = 3;
-            MinTameSkill = 105;
+            MinTameSkill = 100;
 
             SetSpecialAbility(SpecialAbility.Webbing);
         }

@@ -693,13 +693,12 @@ namespace Server.Spells
                 {
                     var bonus = (m_Caster.GetBonusElemento(elementoMagia) * 2);
                     if (m_Caster.Elemento == ElementoPvM.Agua && elementoMagia == ElementoPvM.Raio)
-                        bonus += m_Caster.GetBonusElemento(ElementoPvM.Agua);
+                        bonus += m_Caster.GetBonusElemento(ElementoPvM.Agua) * 2;
                     if (bonus > 0)
                         EfeitosElementos.Effect(target, elementoMagia);
                     Shard.Debug("Bonus elemento PvM: " + bonus, m_Caster);
                     scalar += bonus;
                 }
-              
             }
 
             if (!target.Player && m_Caster.Player)

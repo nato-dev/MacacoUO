@@ -44,7 +44,7 @@ namespace Server.Mobiles
 
             Tamable = true;
             ControlSlots = 3;
-            MinTameSkill = 112.0;
+            MinTameSkill = 106.0;
 
             SetWeaponAbility(WeaponAbility.ConcussionBlow);
             SetSpecialAbility(SpecialAbility.TailSwipe);

@@ -46,6 +46,7 @@ namespace Server.Ziden
             from.SendMessage("Voce sente que pode aprender mais coisas agora !");
             from.SkillsCap += 10;
             from.SendMessage("Voce agora tem " + from.SkillsCap / 10 + "/770 skillcap !");
+            this.Consume();
         }
 
         public override void Serialize(GenericWriter writer)

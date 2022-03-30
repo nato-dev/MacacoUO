@@ -106,10 +106,15 @@ namespace Server.Spells.Seventh
                     else
                         damage = Utility.Random(27, 22);
 
+                    /*
                     if (Core.AOS && count > 2)
                         damage = (damage * 2) / count;
                     else if (!Core.AOS)
                         damage /= count;
+                    */
+
+                    if (damage > m.Hits * 0.8)
+                        damage = m.Hits * 0.8;
 
                     if (!Core.AOS && m != null && CheckResisted(m))
                     {

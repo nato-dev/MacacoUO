@@ -22,7 +22,7 @@ namespace Server.Mobiles
             this.SetDex(86, 105);
             this.SetInt(86, 125);
 
-            this.SetHits(80, 100);
+            SetHits(298, 315);
 
             this.SetDamage(1, 3);
 
@@ -48,8 +48,8 @@ namespace Server.Mobiles
             this.VirtualArmor = 60;
 
             this.Tamable = true;
-            this.ControlSlots = 4;
-            this.MinTameSkill = 95.1;
+            this.ControlSlots = 2;
+            this.MinTameSkill = 101;
 
 			switch (Utility.Random(12))
             {

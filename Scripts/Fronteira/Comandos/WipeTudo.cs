@@ -14,6 +14,18 @@ namespace Server.Commands
         public static void Initialize()
         {
             CommandSystem.Register("wipegeral", AccessLevel.Owner, new CommandEventHandler(CMD));
+            CommandSystem.Register("wipeskillcap", AccessLevel.Owner, new CommandEventHandler(CMD2));
+        }
+
+        public static void CMD2(CommandEventArgs arg)
+        {
+            arg.Mobile.SendMessage("Wipando");
+            foreach(var player in PlayerMobile.Instances)
+            {
+                if (player.SkillsCap > 7500)
+                    player.SkillsCap = 7500;
+            }
+            arg.Mobile.SendMessage("Wipado");
         }
 
         [Usage("receitas")]

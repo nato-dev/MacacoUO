@@ -243,6 +243,19 @@ namespace Server.Mobiles
                 SorteiaItem(Carnage.GetRandomPS(105));
             }
 
+            var wind = new CuSidhe();
+            wind.MoveToWorld(c.Location, c.Map);
+            wind.OverheadMessage("* se transformou *");
+            wind.OverheadMessage("[2H Para Domar]");
+            Timer.DelayCall(TimeSpan.FromHours(2), () =>
+            {
+                if (this.Deleted || !this.Alive || this.ControlMaster != null || this.Map == Map.Internal)
+                {
+                    return;
+                }
+                this.Delete();
+            });
+
             DistribuiItem(new CristalTherathan(10));
             SorteiaItem(Decos.RandomDecoRara(this));
             SorteiaItem(Decos.RandomDeco(this));

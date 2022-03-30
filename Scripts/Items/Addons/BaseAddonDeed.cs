@@ -23,6 +23,12 @@ namespace Server.Items
         {
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Addon para Casas");
+        }
+
         public abstract BaseAddon Addon { get; }
 
         public virtual bool UseCraftResource { get { return true; } }

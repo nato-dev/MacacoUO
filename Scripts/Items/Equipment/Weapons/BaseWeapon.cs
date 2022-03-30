@@ -2520,12 +2520,7 @@ namespace Server.Items
                 damage -= redux;
                 if (damage < 1)
                     damage = 1;
-                if (attacker.Player && !defender.Player)
-                {
-                    var bonus = attacker.GetBonusElemento(ElementoPvM.Terra) + attacker.GetBonusElemento(ElementoPvM.Raio);
-                    damage += damage * bonus;
-                }
-
+              
                 if (Shard.DebugEnabled)
                 {
                     Shard.Debug("Virtual Armor: " + virtualArmor + " Scalar: " + scalar + " REDUX " + redux);
@@ -2536,6 +2531,15 @@ namespace Server.Items
                     }
                 }
             }
+
+            if (attacker.Player && !defender.Player)
+            {
+                var bonus = attacker.GetBonusElemento(ElementoPvM.Terra) + attacker.GetBonusElemento(ElementoPvM.Raio);
+                damage += damage * bonus;
+                if (Shard.DebugEnabled)
+                    Shard.Debug("Bonus elemento PvM: " + bonus);
+            }
+
 
             if (Shard.DebugEnabled)
                 Shard.Debug("Dano depois da reducao de armor " + damage);

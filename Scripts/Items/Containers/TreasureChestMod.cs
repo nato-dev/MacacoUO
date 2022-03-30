@@ -466,10 +466,10 @@ namespace Server.Items
             DropItem(DefCookingExp.GetReceitaRandom());
 
             RequiredSkill = 72;
-            LockLevel = this.RequiredSkill - Utility.Random(1, 10);
+            LockLevel = this.RequiredSkill - Utility.Random(1, 20);
             MaxLockLevel = this.RequiredSkill + 25;
             TrapType = TrapType.MagicTrap;
-            TrapPower = 2 * Utility.Random(1, 25);
+            TrapPower = 2 * Utility.Random(1, 35);
 
             DropItem(new Gold(700, 900));
             DropItem(new Arrow(10));
@@ -582,18 +582,17 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel4() : base(Utility.RandomList(0xe40, 0xe42, 0x9ab))
         {
-            RequiredSkill = 92;
+            RequiredSkill = 100;
             LockLevel = this.RequiredSkill - Utility.Random(1, 10);
             MaxLockLevel = this.RequiredSkill + 25;
             TrapType = TrapType.MagicTrap;
-            TrapPower = 4 * Utility.Random(1, 27);
+            TrapPower = 4 * Utility.Random(10, 17);
             AddLoot(new Charcoal(25));
             var t = Utility.Random(100);
             var amt = Utility.Random(25, 25);
             if (t <= 1)
             {
                 DropItem(new LazuritaIngot(amt));
-          
             }
             else if (t == 3)
             {
