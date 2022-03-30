@@ -32,33 +32,18 @@ namespace Server.Engines.VvV
             //Rewards.Add(new CollectionItem(typeof(GreaterManaPotion), 6870, 1094764, 437, 500));  // Greater Stam
             //Rewards.Add(new CollectionItem(typeof(GreaterCurePotion), 6870, 1094764, 437, 500));  // Greater Stam
             //Rewards.Add(new CollectionItem(typeof(GreaterExplosionPotion), 6870, 1094764, 437, 500));  // Greater Stam
-            Rewards.Add(new CollectionItem(typeof(ValeDecoracaoRara), 0x9F64, "Caixa Misteriosa", 0, 500));  // Greater Stam
-            Rewards.Add(new CollectionItem(typeof(ElementalBall), 3630, "Bola de Cristal Elemental", 0, 2000));  // Greater Stam
-            Rewards.Add(new CollectionItem(typeof(DaviesLockerAddonDeed), 0x14F0, "Guarda Mapas", 0, 1000));
-            Rewards.Add(new CollectionItem(typeof(CannonDeed), 0x14F0, "Escritura de Canhao", 0, 5000));
-            Rewards.Add(new CollectionItem(typeof(RedSoulstone), 0x32F3, "Pedra das Almas</br>Guarda 1 Skill", 0, 2000));
-            Rewards.Add(new CollectionItem(typeof(CommodityDeedBox), 0x9AA, "Caixa de Commidities</br>Guarda recursos e comodities", 0, 2000));
-            Rewards.Add(new CollectionItem(typeof(CommodityDeedBox), 0x9AA, "Caixa de Commidities</br>Guarda recursos e comodities", 0, 2000));
-            Rewards.Add(new CollectionItem(typeof(AuctionSafeDeed), 0x9C18, "Cofre de Leilao</br>Permite leiloar items", 0, 5000));
-            Rewards.Add(new CollectionItem(typeof(BannerDeed), 0x14F0, "Banner</br>Escolha e bote um banner medieval", 0, 500));
-            Rewards.Add(new CollectionItem(typeof(SpellbookDyeTub), 0xFAB, "Tinta de Livro de Magia</br>Permite pintar livros de magia", 0, 8000));
-            Rewards.Add(new CollectionItem(typeof(RunebookDyeTub), 0xFAB, "Tinta de Runebook</br>Permite pintar runebooks", 0, 8000));
-            Rewards.Add(new CollectionItem(typeof(MetallicDyeTub), 0xFAB, "Tinta de Armaduras</br>Permite pintar armaduras de ferro", 0, 2000));
-            Rewards.Add(new CollectionItem(typeof(RepairBenchDeed), 0x14F0, "Mesa de Reparos</br>Permite Reparar Items", 0, 10000));
-
-            Rewards.Add(new CollectionItem(typeof(KegH), 6870, "Keg de Vida", 0, 1000));  // Greater Stam
-            Rewards.Add(new CollectionItem(typeof(KegMana), 6870, "Keg de Mana", 0, 1000));  // Greater Stam
+          
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094764, 437, 500));  // Greater Stam
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1094718, 13, 500));   // Supernova
             Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1155541, 2500, 500)); // Stat Loss Removal
-            //Rewards.Add(new CollectionItem(typeof(VvVPotionKeg), 6870, 1155543, 2543, 500)); // ANti Paralysis
+            Rewards.Add(new CollectionItem(typeof(KegH), 6870, "Keg de Vida", 0, 1000));  // Greater Stam
 
             Rewards.Add(new CollectionItem(typeof(EssenceOfCourage), 3838, 1155554, 2718, 250)); // Essence of Courage
 
-            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8484, "Cavalo de Guerra Do Caos", ViceVsVirtueSystem.VirtueHue, 1000)); // Virtue War Horse
-            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8484, "Cavalo de Guerra Da Ordem", ViceVsVirtueSystem.ViceHue, 1000));   // Vice War Horse
-            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8501, "Ostard de Guerra do Caos", ViceVsVirtueSystem.VirtueHue, 1000)); // Virtue War Ostard
-            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8501, "Ostard de Guerra da Ordem", ViceVsVirtueSystem.ViceHue, 1000));   // Vice War Ostard
+            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8484, "Cavalo de Guerra Do Caos", ViceVsVirtueSystem.VirtueHue, 100)); // Virtue War Horse
+            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8484, "Cavalo de Guerra Da Ordem", ViceVsVirtueSystem.ViceHue, 100));   // Vice War Horse
+            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8501, "Ostard de Guerra do Caos", ViceVsVirtueSystem.VirtueHue, 100)); // Virtue War Ostard
+            Rewards.Add(new CollectionItem(typeof(VvVSteedStatuette), 8501, "Ostard de Guerra da Ordem", ViceVsVirtueSystem.ViceHue, 100));   // Vice War Ostard
 
             Rewards.Add(new CollectionItem(typeof(VvVHairDye), 3838, "Tinta da Virtude", ViceVsVirtueSystem.VirtueHue, 2500)); // Virtue Hair Dye
             Rewards.Add(new CollectionItem(typeof(VvVHairDye), 3838, "Tinta do Caos", ViceVsVirtueSystem.ViceHue, 2500));   // Vice Hair DYe
@@ -98,6 +83,21 @@ namespace Server.Engines.VvV
             Rewards.Add(new CollectionItem(typeof(VvVWand2), 3571, 0, 0, 500));
             Rewards.Add(new CollectionItem(typeof(VvVWizardsHat), 5912, 0, 0, 500));
             Rewards.Add(new CollectionItem(typeof(VvVWand1), 3571, 0, 0, 500));
+
+            Rewards.Add(new CollectionItem(typeof(ValeDecoracaoRara), 0x9F64, "Caixa Misteriosa", 0, 500));  // Greater Stam
+            Rewards.Add(new CollectionItem(typeof(ElementalBall), 3630, "Bola de Cristal Elemental", 0, 2000));  // Greater Stam
+            Rewards.Add(new CollectionItem(typeof(DaviesLockerAddonDeed), 0x14F0, "Guarda Mapas", 0, 1000));
+            Rewards.Add(new CollectionItem(typeof(CannonDeed), 0x14F0, "Escritura de Canhao", 0, 5000));
+            Rewards.Add(new CollectionItem(typeof(RedSoulstone), 0x32F3, "Pedra das Almas</br>Guarda 1 Skill", 0, 2000));
+            Rewards.Add(new CollectionItem(typeof(CommodityDeedBox), 0x9AA, "Caixa de Commidities</br>Guarda recursos e comodities", 0, 2000));
+            Rewards.Add(new CollectionItem(typeof(AuctionSafeDeed), 0x9C18, "Cofre de Leilao</br>Permite leiloar items", 0, 5000));
+            Rewards.Add(new CollectionItem(typeof(BannerDeed), 0x14F0, "Banner</br>Escolha e bote um banner medieval", 0, 500));
+            Rewards.Add(new CollectionItem(typeof(SpellbookDyeTub), 0xFAB, "Tinta de Livro de Magia</br>Permite pintar livros de magia", 0, 8000));
+            Rewards.Add(new CollectionItem(typeof(RunebookDyeTub), 0xFAB, "Tinta de Runebook</br>Permite pintar runebooks", 0, 8000));
+            Rewards.Add(new CollectionItem(typeof(MetallicDyeTub), 0xFAB, "Tinta de Armaduras</br>Permite pintar armaduras de ferro", 0, 2000));
+            Rewards.Add(new CollectionItem(typeof(RepairBenchDeed), 0x14F0, "Mesa de Reparos</br>Permite Reparar Items", 0, 10000));
+
+            Rewards.Add(new CollectionItem(typeof(KegMana), 6870, "Keg de Mana", 0, 1000));  // Greater Stam
 
             /*
             Rewards.Add(new CollectionItem(typeof(MorphEarrings), 4231, 0, 0, 500));
@@ -173,7 +173,6 @@ namespace Server.Engines.VvV
                     ((IDurability)item).HitPoints = 255;
                 }
             }
-
             ViceVsVirtueSystem.Instance.AddVvVItem(item, true);
         }
     }

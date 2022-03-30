@@ -14,7 +14,7 @@ namespace Server.Engines.VvV
     {
         public VvVRewardGump(Mobile owner, PlayerMobile user)
             : base(owner, user, VvVRewards.Rewards, "Guerra Infinita")
-        {
+        { 
         }
 
         public override double GetPoints(Mobile m)
