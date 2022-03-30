@@ -40,7 +40,7 @@ namespace Server.Mobiles
 
             if (Utility.Random(100) == 1)
             {
-                PackItem(Decos.RandomDeco());
+                PackItem(Decos.RandomDeco(this));
             }
 
             Imp.Converte(this);

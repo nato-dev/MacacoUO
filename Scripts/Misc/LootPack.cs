@@ -883,6 +883,7 @@ namespace Server
                         if (item is Spellbook)
                         {
                             ((Spellbook)item).Slayer = SlayerGroup.GetLootSlayerType(from.GetType());
+                            item.HueRaridade = 10;
                         }
                         if (item is TintaMagica)
                         {
@@ -893,6 +894,7 @@ namespace Server
                             }
                             ((TintaMagica)item).Slayer = SlayerGroup.GetLootSlayerType(from.GetType());
                             item.InvalidateProperties();
+                            item.HueRaridade = 10;
                         }
                         else if (item is BaseWeapon)
                         {
@@ -924,6 +926,16 @@ namespace Server
                             {
                                 weapon.Slayer = SlayerGroup.GetLootSlayerType(from.GetType());
                             }
+
+                            item.HueRaridade = 70;
+                            var soma = (int)weapon.AccuracyLevel + (int)weapon.DamageLevel + (int)weapon.DurabilityLevel;
+                            if (soma >= 10)
+                                item.HueRaridade = 10;
+                            else if (soma >= 5)
+                                item.HueRaridade = 100;
+                            item.ReleaseWorldPackets();
+                            item.Delta(ItemDelta.Update);
+
                         }
                         else if (item is BaseArmor)
                         {
@@ -938,6 +950,14 @@ namespace Server
                             {
                                 armor.Durability = (ArmorDurabilityLevel)GetRandomOldBonus();
                             }
+
+                            var soma = (int)armor.Durability + (int)armor.ProtectionLevel;
+                            if (soma >= 7)
+                                item.HueRaridade = 10;
+                            else if (soma >= 3)
+                                item.HueRaridade = 100;
+                            item.ReleaseWorldPackets();
+                            item.Delta(ItemDelta.Update);
                         }
                     }
                 }
@@ -964,6 +984,7 @@ namespace Server
 
                     instr.Quality = ItemQuality.Normal;
                     instr.Slayer = slayer;
+                    instr.HueRaridade = 100;
                 }
 
                 if (item.Stackable)

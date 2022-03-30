@@ -83,9 +83,9 @@ namespace Server.Gumps
             int[,] c_data = getCharacterData(c);
             c_data = rotateVector(c_data, Utility.RandomMinMax(-30, 30));
 
-            printCharacter(a_data, 38, 11, Utility.Random(1500));
-            printCharacter(b_data, 92, 11, Utility.Random(1500));
-            printCharacter(c_data, 146, 11, Utility.Random(1500));
+            printCharacter(a_data, 38, 11, 0);
+            printCharacter(b_data, 92, 11, 0);
+            printCharacter(c_data, 146, 11, 0);
         }
 
         public int[,] rotateVector(int[,] letter, int deg)

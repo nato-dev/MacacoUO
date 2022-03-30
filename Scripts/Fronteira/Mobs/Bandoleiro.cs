@@ -22,7 +22,7 @@ namespace Server.Mobiles
             this.PackItem(Loot.RandomFood());
             if(Utility.Random(150)==1)
             {
-                PackItem(Decos.RandomDeco());
+                PackItem(Decos.RandomDeco(this));
             }
             if (Utility.Random(10) == 1)
             {

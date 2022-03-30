@@ -69,4 +69,57 @@ namespace Server.Gumps
             }
         }
     }
+
+    public class CaixaGumpComum : Gump
+    {
+        public CaixaGumpComum() : base(0, 0)
+        {
+            this.Closable = true;
+            this.Disposable = true;
+            this.Dragable = true;
+            this.Resizable = false;
+
+            AddPage(0);
+            AddBackground(213, 143, 233, 242, 9200);
+            AddButton(305, 357, 4005, 248, 1, GumpButtonType.Reply, 0);
+            AddBackground(276, 217, 100, 100, 3500);
+            AddBackground(250, 189, 150, 23, 3000);
+            AddHtml(271, 191, 133, 24, @"Custo para Abrir", (bool)false, (bool)false);
+            AddItem(304, 247, 3823);
+            AddHtml(317, 283, 44, 24, @"1K", (bool)false, (bool)false);
+            AddItem(214, 160, 0x9F64);
+            AddHtml(305, 335, 63, 19, @"Abrir", (bool)false, (bool)false);
+            AddHtml(278, 159, 133, 24, @"Caixa Misteriosa", (bool)false, (bool)false);
+            AddItem(390, 158, 0x9F64);
+        }
+
+        public override void OnResponse(NetState sender, RelayInfo info)
+        {
+            Mobile from = sender.Mobile;
+
+            if (info.ButtonID == 1)
+            {
+                var caixa = from.Backpack.FindItemByType<ValeDecoracaoComum>();
+                if (caixa == null)
+                {
+                    from.SendMessage("Voce preisa de uma caixa misteriosa");
+                    return;
+                }
+                if (!Banker.Withdraw(from, 1000))
+                {
+                    from.SendMessage("Voce precisa ter 1k no banco para isto");
+                    return;
+                }
+                var local = caixa.Location;
+                caixa.Consume();
+                var item = Decos._RandomDecoComum();
+                from.PlaceInBackpack(item);
+                item.Location = local;
+                from.SendMessage("Voce abriu a caixa misteriosa");
+                item.PrivateOverheadMessage(MessageType.Regular, 0, true, "* abriu *", from.NetState);
+                from.PlaySound(0x4A);
+                from.OverheadMessage("* abriu uma caixa misteriosa *");
+            }
+        }
+    }
 }

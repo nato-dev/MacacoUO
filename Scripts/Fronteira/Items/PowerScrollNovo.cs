@@ -69,7 +69,8 @@ namespace Server.Items
         {
             this.ItemID = 0x46AE;
             //this.Hue = 0x481;
-
+            var grupo = getGrupoMax();
+            Name = $"Pergaminho de +{this.Skill.ToString()} - {grupo - 5}-{grupo}";
             if (this.Value == 105.0 || skill == Server.SkillName.Blacksmith || skill == Server.SkillName.Tailoring)
                 this.LootType = LootType.Regular;
         }
@@ -78,40 +79,7 @@ namespace Server.Items
             : base(serial)
         {
         }
-
-        public static List<SkillName> Skills
-        {
-            get
-            {
-                if (_Skills.Count == 0)
-                {
-                    _Skills.AddRange(m_Skills);
-                    if (Core.AOS)
-                    {
-                        _Skills.AddRange(m_AOSSkills);
-                        if (Core.SE)
-                        {
-                            _Skills.AddRange(m_SESkills);
-                            if (Core.ML)
-                            {
-                                _Skills.AddRange(m_MLSkills);
-                                if (Core.SA)
-                                {
-                                    _Skills.AddRange(m_SASkills);
-                                }
-                                /*
-                                if (Core.HS)
-                                _Skills.AddRange( m_HSSkills );
-                                }
-                                */
-                            }
-                        }
-                    }
-                }
-                return _Skills;
-            }
-        }
-
+    
         public override string MessageStr
         {
             get
@@ -136,7 +104,7 @@ namespace Server.Items
         {
             get
             {
-                return String.Format("<basefont color=#FFFFFF>Pergaminho do Conhecimento</basefont>");
+                return String.Format("<basefont color=#77EE44>Pergaminho do Conhecimento</basefont>");
             }
         }
 

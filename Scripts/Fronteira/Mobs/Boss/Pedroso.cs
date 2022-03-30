@@ -84,7 +84,7 @@ namespace Server.Mobiles
                 {
                     
                    
-                    e.m_Mobile.AddToBackpack(Decos.RandomDeco());
+                    e.m_Mobile.AddToBackpack(Decos.RandomDeco(this));
 
                     e.m_Mobile.AddToBackpack(Loot.JoiaRaraRandom(this.Map));
 
@@ -125,7 +125,6 @@ namespace Server.Mobiles
             SorteiaItem(new Granite());
             SorteiaItem(new Rock1Rand());
             SorteiaItem(new Rock2Rand());
-            SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());

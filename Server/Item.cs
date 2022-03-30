@@ -681,6 +681,8 @@ namespace Server
 
         public virtual bool NaoPodeBancoRP { get { return true; } }
 
+        public int HueRaridade { get; set; }
+
         [CommandProperty(AccessLevel.GameMaster)]
         public bool RP { get; set; }
 
@@ -1463,6 +1465,24 @@ namespace Server
         /// </summary>
         public virtual void AddNameProperties(ObjectPropertyList list)
         {
+
+            if(HueRaridade != 0)
+            {
+                if(HueRaridade == 70)
+                {
+                    list.Add("[INCOMUM]");
+                    return;
+                } else if (HueRaridade == 100)
+                {
+                    list.Add("[RARO]");
+                    return;
+                } else if (HueRaridade == 10)
+                {
+                    list.Add("[EPICO]");
+                    return;
+                }
+            }
+
             AddNameProperty(list);
 
             if (IsSecure)
@@ -4064,7 +4084,7 @@ namespace Server
         [Hue, CommandProperty(AccessLevel.GameMaster)]
         public virtual int Hue
         {
-            get { return m_Hue; }
+            get { return HueRaridade != 0 ? HueRaridade : m_Hue; }
             set
             {
                 if (m_Hue != value)

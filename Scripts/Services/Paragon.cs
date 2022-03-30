@@ -188,7 +188,7 @@ namespace Server.Mobiles
             Item i = null;
             if (Utility.RandomDouble() < 0.2)
             {
-                i = Decos.RandomDeco();
+                i = Decos._RandomDecoComum();
                 i.Hue = Paragon.Hue;
                 i.Name = "Artefato banhado a ouro";
             } 

@@ -77,11 +77,9 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            SorteiaItem(Decos.RandomDeco());
+            SorteiaItem(Decos.RandomDeco(this));
             SorteiaItem(new LivroAntigo());
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
             SorteiaItem(new PergaminhoSagradoDeRunebook());
             var book = new Spellbook();
             book.Hue = TintaPreta.COR;

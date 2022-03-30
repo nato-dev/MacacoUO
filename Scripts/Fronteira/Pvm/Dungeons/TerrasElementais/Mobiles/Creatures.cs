@@ -1160,7 +1160,7 @@ namespace Server.Mobiles
             Fame = 15000;
             Karma = -15000;
             //AddItem(new Gold(1000));
-            AddItem(Decos.RandomDeco());
+            AddItem(Decos.RandomDeco(this));
 
             switch (Utility.Random(6))
             {

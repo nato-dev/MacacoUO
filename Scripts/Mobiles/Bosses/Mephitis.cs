@@ -120,6 +120,8 @@ namespace Server.Mobiles
             SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(Carnage.GetRandomPS(110));
+            SorteiaItem(Decos.RandomDecoRara(this));
+            SorteiaItem(Decos.RandomDecoRara(this));
             DistribuiPs(105);
             if(Utility.RandomDouble() < 0.1)
                 SorteiaItem(Carnage.GetRandomPS(115));

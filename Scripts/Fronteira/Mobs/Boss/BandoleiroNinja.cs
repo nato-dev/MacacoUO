@@ -121,7 +121,7 @@ namespace Server.Mobiles
             arma.PoisonCharges = 9999;
             AddItem(arma);
 
-            PackItem(Decos.RandomDeco());
+            PackItem(Decos.RandomDeco(this));
             SetWeaponAbility(WeaponAbility.BleedAttack);
             SetMagicalAbility(MagicalAbility.Piercing);
 
@@ -259,9 +259,8 @@ namespace Server.Mobiles
 
                 }
             }
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
             GolemMecanico.JorraOuro(this.Location, this.Map, 150);
             return base.OnBeforeDeath();
         }

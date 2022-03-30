@@ -226,9 +226,10 @@ namespace Server.Items
             foreach (NetState state in eable)
             {
                 PlayerMobile pm = state.Mobile as PlayerMobile;
-
                 if (this.nomeDeQUemAscendeu == pm.Name)
                 {
+                    pm.CheckSkill(SkillName.Camping, 120);
+
                     if (pm.Location.X == Location.X && pm.Location.Y == Location.Y)
                     {
                         var distZ = Math.Abs(pm.Location.Z - Location.Z);

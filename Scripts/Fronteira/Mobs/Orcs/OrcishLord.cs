@@ -70,7 +70,7 @@ namespace Server.Mobiles
                 PackItem(new Yeast());
 
             if (0.05 > Utility.RandomDouble())
-                PackItem(Decos.RandomDeco());
+                PackItem(Decos.RandomDeco(this));
         }
 
         public OrcishLord(Serial serial)

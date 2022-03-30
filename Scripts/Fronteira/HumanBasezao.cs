@@ -48,7 +48,7 @@ namespace Server.Mobiles
             Utility.AssignRandomHair(this);
 
             if (Utility.RandomDouble() < 0.05)
-                this.AddItem(Decos.RandomDeco());
+                this.AddItem(Decos.RandomDeco(this));
 
             this.SetWeaponAbility(WeaponAbility.BleedAttack);
             this.SetWeaponAbility(WeaponAbility.ParalyzingBlow);

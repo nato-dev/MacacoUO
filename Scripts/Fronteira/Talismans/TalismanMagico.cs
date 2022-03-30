@@ -7,7 +7,7 @@ namespace Server.Items
     {
         public int ExpPrecisa()
         {
-            return (2 * this.Killer.Amount);
+            return this.Killer.Amount;
         }
 
         public int Exp { get; set; }
@@ -83,7 +83,6 @@ namespace Server.Items
 
             foreach (var m in bixo.GetLootingRights())
             {
-
                 var pl = m.m_Mobile as PlayerMobile;
                 if (pl == null)
                     continue;
@@ -169,7 +168,7 @@ namespace Server.Items
 
         public int ExpPrecisa()
         {
-            return (2 * this.Protection.Amount);
+            return this.Protection.Amount;
         }
 
         private int Exp { get; set; }

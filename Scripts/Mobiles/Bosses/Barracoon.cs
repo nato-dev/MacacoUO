@@ -229,6 +229,12 @@ namespace Server.Mobiles
             DistribuiItem(new DirtPatch());
             SorteiaItem(new GrapeVine());
             SorteiaItem(new WhiteHangingLantern());
+            DistribuiItem(Decos.RandomDecoRara(this));
+            SorteiaItem(Decos.RandomDecoRara(this));
+
+            DistribuiItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
+            DistribuiItem(new CristalTherathan(10));
 
             switch (Utility.Random(5))
             {
@@ -239,7 +245,7 @@ namespace Server.Mobiles
                 case 4: SorteiaItem(new SmallPersonalGardenFieldAddonDeed()); break;
             }
 
-            for(var i =0; X < 3; i++)
+            for(var i =0; i < 3; i++)
             {
                 if (Utility.RandomDouble() < 0.5)
                     SorteiaItem(Carnage.GetRandomPS(110));

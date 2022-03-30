@@ -74,7 +74,7 @@ namespace Server.Mobiles
             SorteiaItem(new PergaminhoCarregamento());
             SorteiaItem(new SkillBook());
             SorteiaItem(new LivroAntigo());
-            SorteiaItem(Decos.RandomDeco());
+            SorteiaItem(Decos.RandomDeco(this));
         }
 
         public virtual int BonusExp => 300;

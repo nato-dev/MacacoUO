@@ -486,6 +486,8 @@ namespace Server.Mobiles
 
         public List<Item> Sorteado = new List<Item>();
 
+        public Dictionary<Item, Mobile> Ganhadores = new Dictionary<Item, Mobile>();
+
         public HashSet<Mobile> JaGanhou = new HashSet<Mobile>();
 
         public void SorteiaItem(Item i)
@@ -506,6 +508,7 @@ namespace Server.Mobiles
                 ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                 ganhou.m_Mobile.PlaceInBackpack(i);
                 JaGanhou.Add(ganhou.m_Mobile);
+                Ganhadores[i] = ganhou.m_Mobile;
                 foreach (var p in disputando)
                 {
                     if (p.m_Mobile != ganhou.m_Mobile)
@@ -525,6 +528,7 @@ namespace Server.Mobiles
                     {
                         var i = Carnage.GetRandomPS(n);
                         ganhou.m_Mobile.PlaceInBackpack(i);
+                        Ganhadores[i] = ganhou.m_Mobile;
                         ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                     }
 
@@ -540,9 +544,11 @@ namespace Server.Mobiles
                 var disputando = GetLootingRights(); //.Where(l => l.m_Mobile.Alive).ToList();
                 if (disputando.Count > 0)
                 {
+                    Ganhadores[i] = null;
                     foreach (var ganhou in disputando)
                     {
-                        ganhou.m_Mobile.PlaceInBackpack(Dupe.DupeItem(i));
+                        var dup = Dupe.DupeItem(i);
+                        ganhou.m_Mobile.PlaceInBackpack(dup);
                         ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                     }
 
@@ -7498,6 +7504,8 @@ namespace Server.Mobiles
             }
             else
             {
+
+
                 Shard.Debug("Bixo Death sem bond", this);
                 /*
                 if (Utility.RandomDouble() <= 0.02)
@@ -7517,8 +7525,19 @@ namespace Server.Mobiles
                 {
                     SorteiaItem(new PowderOfTranslocation());
                     SorteiaItem(AnimatedSeed.GetRandomSeed());
-                    SorteiaItem(AnimatedSeed.GetRandomSeed());
+                    
                 }
+
+                Timer.DelayCall(TimeSpan.FromSeconds(0.2), () => {
+                    if(Ganhadores.Count > 0)
+                    {
+                        var loots = Ganhadores.ToList();
+                        foreach(var m in GetLootingRights())
+                        {
+                            m.m_Mobile.SendGump(new LootsGump(loots));
+                        }
+                    }
+                });
 
                 var dels = new List<Item>();
                 foreach (var i in new List<Item>(c.Items))

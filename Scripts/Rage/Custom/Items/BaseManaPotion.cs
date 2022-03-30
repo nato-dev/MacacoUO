@@ -8,7 +8,7 @@ namespace Server.Items
     public abstract class BaseManaPotion : BasePotion
     {
         public BaseManaPotion(PotionEffect effect)
-            : base(3848, effect) // 0x0F01
+            : base(0x5748, effect) // 0x0F01
         {
             Stackable = true;
             Hue = 1926;
@@ -17,7 +17,7 @@ namespace Server.Items
         public BaseManaPotion(Serial serial)
             : base(serial)
         {
-            ItemID = 3848;
+            ItemID = 0x5748;
             Stackable = true;
             Hue = 1926;
         }

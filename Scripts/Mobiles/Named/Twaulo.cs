@@ -161,7 +161,7 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            SorteiaItem(Decos.RandomDeco());
+            SorteiaItem(Decos.RandomDeco(this));
             SorteiaItem(new EnhancedBandage(10));
 
             var b = new BraceleteDoPoder();
@@ -173,9 +173,8 @@ namespace Server.Mobiles
             a.Skill = SkillName.Bowcraft;
             SorteiaItem(a);
             DistribuiItem(new Gold(1000));
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
+
             DistribuiPs(105);
             SorteiaItem(new CombatSkillBook());
             SorteiaItem(new LivroAntigo());

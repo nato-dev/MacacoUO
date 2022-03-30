@@ -115,7 +115,7 @@ namespace Server.Items
                         }
                     case TrapType.MagicTrap:
                         {
-                            if (from.InRange(loc, 1))
+                            if (from.InRange(loc, 3))
                                 from.Damage(this.m_TrapPower);
                             //AOS.Damage( from, m_TrapPower, 0, 100, 0, 0, 0 );
 

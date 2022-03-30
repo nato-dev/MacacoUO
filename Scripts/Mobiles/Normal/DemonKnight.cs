@@ -274,8 +274,7 @@ namespace Server.Mobiles
             int top = 0;
             Item blood = null;
 
-            c.DropItem(new ValeDecoracaoRara());
-            c.DropItem(Decos.RandomDeco());
+            c.DropItem(Decos.RandomDeco(this));
             c.DropItem(new SoulForgeDeed());
 
             foreach (Mobile m in rights.Select(x => x.m_Mobile).Distinct().Take(3))

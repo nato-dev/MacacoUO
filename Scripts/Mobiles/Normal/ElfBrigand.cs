@@ -99,7 +99,7 @@ namespace Server.Mobiles
 
             if(Utility.Random(20)==1)
             {
-                PackItem(Decos.RandomDeco());
+                PackItem(Decos.RandomDeco(this));
             }
             if (Utility.Random(3) == 1)
             {

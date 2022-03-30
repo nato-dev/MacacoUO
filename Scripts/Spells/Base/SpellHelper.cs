@@ -737,15 +737,15 @@ namespace Server.Spells
                 if (pl.Almas > 0)
                 {
                     almas = pl.Almas;
-                    scale += pl.Almas / 50;
+                    scale += pl.Almas / 15;
                     pl.Almas = 0;
-                    pl.SendMessage("Almas coletadas: 0/100");
+                    pl.SendMessage("Almas coletadas: 0/30");
                     pl.SendMessage("Voce usou todas almas coletadas de monstros para criar uma criatura mais forte");
-                    if (creature.Name != null && almas >= 100)
+                    if (creature.Name != null && almas >= 30)
                     {
                         creature.Name += " *";
                     }
-                    if (almas > 80 && creature is EarthElemental)
+                    if (almas >= 30 && creature is EarthElemental)
                     {
                         creature.Skills.Parry.Base = 80;
                     }

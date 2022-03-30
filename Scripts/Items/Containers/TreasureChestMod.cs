@@ -74,7 +74,7 @@ namespace Server.Items
             AddLoot(Loot.RandomJewelry());
             AddLoot(Loot.RandomSeed());
 
-            for (int i = Utility.Random(3) + 1; i > 0; i--) // random 1 to 3
+            for (int i = Utility.Random(2) + 1; i > 0; i--) // random 1 to 3
                 DropItem(Loot.RandomGem());
         }
 
@@ -376,9 +376,7 @@ namespace Server.Items
                 for (int i = Utility.Random(8) + 1; i > 0; i--)
                     DropItem(Loot.RandomScroll(0, 39, SpellbookType.Regular));
 
-            if (Utility.RandomBool()) //50% chance
-                for (int i = Utility.Random(3) + 1; i > 0; i--)
-                    DropItem(Loot.RandomGem());
+        
         }
 
         public TreasureLevel2(Serial serial) : base(serial)
@@ -489,10 +487,7 @@ namespace Server.Items
             if (0.67 > Utility.RandomDouble()) //67% chance = 2/3
                 for (int i = Utility.Random(12) + 1; i > 0; i--)
                     DropItem(Loot.RandomScroll(0, 47, SpellbookType.Regular));
-
-            if (0.67 > Utility.RandomDouble()) //67% chance = 2/3
-                for (int i = Utility.Random(4) + 1; i > 0; i--)
-                    DropItem(Loot.RandomGem());
+            
 
             for (int i = Utility.Random(1, 3); i > 1; i--)
                 DropItem(Loot.RandomWand());
@@ -657,7 +652,7 @@ namespace Server.Items
                     DropItem(Loot.RandomScroll(0, 47, SpellbookType.Regular));
 
             if (0.75 > Utility.RandomDouble()) //75% chance = 3/4
-                for (int i = Utility.RandomMinMax(2, 6) + 1; i > 0; i--)
+                for (int i = Utility.RandomMinMax(1, 3) + 1; i > 0; i--)
                     DropItem(Loot.RandomGem());
 
             for (int i = Utility.Random(1, 4); i > 1; i--)

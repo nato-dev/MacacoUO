@@ -128,9 +128,8 @@ namespace Server.Mobiles
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetRandomReceitaNoob());
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
             SorteiaItem(new PergaminhoPeso());
 
             GolemMecanico.JorraOuro(this.Location, this.Map, 1000);
@@ -139,7 +138,7 @@ namespace Server.Mobiles
             {
                 SorteiaItem(ElementoUtils.GetRandomPedraSuperior(10));
             }
-            DistribuiItem(Decos.RandomDeco());
+            DistribuiItem(Decos.RandomDeco(this));
 
             if (m_Spawner != null)
                 m_Spawner.OnNavreyKilled();

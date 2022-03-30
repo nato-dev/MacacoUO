@@ -38,7 +38,7 @@ namespace Server.SkillHandlers
         private class InternalTarget : Target
         {
             public InternalTarget()
-                : base(2, false, TargetFlags.None)
+                : base(1, false, TargetFlags.None)
             {
             }
 

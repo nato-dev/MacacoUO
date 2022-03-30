@@ -3941,6 +3941,13 @@ namespace Server.Mobiles
                 return false;
             }
 
+            if(item.HueRaridade != 0)
+            {
+                item.HueRaridade = 0;
+                item.ReleaseWorldPackets();
+                item.Delta(ItemDelta.Update);
+            }
+
             Shard.Debug("Drag Lift");
             if (item is IPromotionalToken && ((IPromotionalToken)item).GumpType != null)
             {
@@ -4790,6 +4797,9 @@ namespace Server.Mobiles
         {
             if (ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
             {
+                if(ViceVsVirtueSystem.IsVvV(this))
+                    return DeathMoveResult.MoveToBackpack;
+
                 if (ViceVsVirtueSystem.GetTemporario(this) != null)
                 {
                     return DeathMoveResult.MoveToBackpack;

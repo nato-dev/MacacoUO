@@ -526,6 +526,7 @@
     <Compile Include="Gumps\CharacterCreationRP\CharDetailsA.cs" />
     <Compile Include="Gumps\CharacterCreationRP\RaceSelection.cs" />
     <Compile Include="Gumps\InsuranceGump.cs" />
+    <Compile Include="Gumps\LootsGump.cs" />
     <Compile Include="Gumps\Newbie\FreeTemplateGump.cs" />
     <Compile Include="Gumps\Newbie\NonRPClassGump.cs" />
     <Compile Include="Items\Addons\Randoms\abby addons\AbbygifttobaleAddon.cs" />

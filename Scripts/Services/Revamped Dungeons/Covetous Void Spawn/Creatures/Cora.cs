@@ -295,9 +295,7 @@ namespace Server.Mobiles
             {
                 SorteiaItem(ElementoUtils.GetRandomPedraSuperior(3));
             }
-            SorteiaItem(Decos.RandomDeco());
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
+            SorteiaItem(Decos.RandomDecoRara(this));
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());

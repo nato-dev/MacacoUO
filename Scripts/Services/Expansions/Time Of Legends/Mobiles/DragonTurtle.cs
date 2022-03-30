@@ -79,9 +79,12 @@ namespace Server.Mobiles
             DistribuiItem(new PergaminhoPeso());
             DistribuiItem(new PergaminhoCarregamento());
             SorteiaItem(new DragonTurtleFountainAddonDeed());
-            DistribuiItem(Decos.RandomDeco());
-            DistribuiItem(Decos.RandomDeco());
-            DistribuiItem(Decos.RandomDeco());
+            DistribuiItem(Decos.RandomDecoRara(this));
+            DistribuiItem(Decos.RandomDecoRara(this));
+            DistribuiItem(Decos.RandomDeco(this));
+            DistribuiItem(new Gold(20000));
+            DistribuiItem(new CristalTherathan(10));
+            DistribuiItem(new FragmentosAntigos());
             for (var i = 0; X < 4; i++)
             {
                 if (Utility.RandomDouble() < 0.3)
@@ -96,7 +99,7 @@ namespace Server.Mobiles
                 SorteiaItem(ElementoUtils.GetRandomPedraSuperior(10));
             }
 
-            if(Utility.RandomBool())
+            if(Utility.RandomDouble () > 0.2)
             {
                 var a = new CarpenterApron();
                 a.Bonus = Utility.Random(5, 25);

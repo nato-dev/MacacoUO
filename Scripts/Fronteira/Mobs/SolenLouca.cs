@@ -80,7 +80,7 @@ namespace Server.Mobiles
             bola.LootType = LootType.Regular;
             bola.Cargas = 100;
             SorteiaItem(bola);
-            DistribuiItem(Decos.RandomDeco());
+            DistribuiItem(Decos.RandomDeco(this));
             var b = new BraceleteDoPoder();
             b.Bonus = 10;
             SorteiaItem(b);
@@ -90,8 +90,7 @@ namespace Server.Mobiles
             SorteiaItem(arco);
             //SorteiaItem(new TemplateDeed());
             DistribuiItem(new Gold(1000));
-            SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new FragmentosAntigos());
+            DistribuiItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
 
             var r = Utility.Random(5);

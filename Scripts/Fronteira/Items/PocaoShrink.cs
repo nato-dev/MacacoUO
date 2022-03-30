@@ -9,13 +9,17 @@ namespace Server.Ziden
     public class PocaoShrink : Item, IShrinkTool
     {
         [Constructable]
-        public PocaoShrink() : base(0x0EFC)
+        public PocaoShrink() : base(0x5722)
         {
             this.Name = "Pocao do Encolhimento";
             ShrinkCharges = -1;
+            Stackable = true;
         }
 
-        public PocaoShrink(Serial s) : base(s) { }
+        public PocaoShrink(Serial s) : base(s) {
+            Stackable = true;
+            ItemID = 0x5722;
+        }
 
         public int ShrinkCharges { get; set; }
 

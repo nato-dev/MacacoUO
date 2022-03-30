@@ -97,8 +97,7 @@ namespace Server.Engines.CleanUpBritannia
             Rewards.Add(new CollectionItem(typeof(DragonHeadAddonDeed), 0x2234, 1028756, 0, 50000));
             Rewards.Add(new CollectionItem(typeof(NestWithEggs), 0x1AD4, 1026868, 2415, 50000));
 
-            if (Core.HS)
-            {
+       
                 Rewards.Add(new CollectionItem(typeof(FishermansHat), 0x1716, 1151238, 2578, 50000));
                 Rewards.Add(new CollectionItem(typeof(FishermansTrousers), 0x13DA, 1151239, 2578, 50000));
                 Rewards.Add(new CollectionItem(typeof(FishermansVest), 0x13CC, 1151240, 2578, 50000));
@@ -107,7 +106,7 @@ namespace Server.Engines.CleanUpBritannia
                 Rewards.Add(new CollectionItem(typeof(FishermansKilt), 0x0408, 1151579, 2578, 50000));
                 Rewards.Add(new CollectionItem(typeof(FishermansArms), 0x0302, 1151580, 2578, 50000));
                 Rewards.Add(new CollectionItem(typeof(FishermansEarrings), 0x4213, 1151581, 2578, 50000));
-            }
+            
 
             Rewards.Add(new CollectionItem(typeof(BestialArms), 0x0302, 1151549, 2010, 50000));
             Rewards.Add(new CollectionItem(typeof(BestialEarrings), 0x4213, 1151547, 2010, 50000));
@@ -137,8 +136,7 @@ namespace Server.Engines.CleanUpBritannia
             Rewards.Add(new CollectionItem(typeof(SoleilRouge), 0x1086, 1154382, 1166, 150000));
             Rewards.Add(new CollectionItem(typeof(LuneRouge), 0x108A, 1154380, 1166, 150000));
 
-            if (Core.SA)
-            {
+        
                 Rewards.Add(new CollectionItem(typeof(IntenseTealPigment), 0xEFF, 1154732, 2691, 250000));
                 Rewards.Add(new CollectionItem(typeof(TyrianPurplePigment), 0xEFF, 1154735, 2716, 250000));
                 Rewards.Add(new CollectionItem(typeof(MottledSunsetBluePigment), 0xEFF, 1154734, 2714, 250000));
@@ -172,7 +170,7 @@ namespace Server.Engines.CleanUpBritannia
                 Rewards.Add(new CollectionItem(typeof(MysticsMemento), 0x2F5B, 1154744, 1912, 300000));
 
                 Rewards.Add(new CollectionItem(typeof(VollemHeldInCrystal), 0x1f19, 1113629, 1154, 500000));
-            }
+            
         }
     }
 }

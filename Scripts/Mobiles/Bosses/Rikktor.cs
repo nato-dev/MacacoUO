@@ -156,9 +156,8 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             GolemMecanico.JorraOuro(this.Location, this.Map, 500);
-            for (var i = 0; X < 2; i++)
+            for (var i = 0; i < 2; i++)
             {
-
                 var r = Utility.RandomDouble();
                 if (r < 0.1)
                     DistribuiPs(120);
@@ -171,6 +170,10 @@ namespace Server.Mobiles
                 SorteiaItem(Carnage.GetRandomPS(105));
             }
 
+            DistribuiItem(new CristalTherathan(10));
+            SorteiaItem(Decos.RandomDecoRara(this));
+            SorteiaItem(Decos.RandomDeco(this));
+            DistribuiItem(new FragmentosAntigos());
             for (var x = 0; x < 10; x++)
             {
                 SorteiaItem(BaseEssencia.RandomEssencia(10));

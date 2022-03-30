@@ -60,19 +60,19 @@ namespace Server.Mobiles
                 c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* se meche *");
             });
 
-            Timer.DelayCall(TimeSpan.FromSeconds(3), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(2), () => {
                 if (c == null)
                     return;
                 c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* se meche mais *");
             });
 
-            Timer.DelayCall(TimeSpan.FromSeconds(5), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(3), () => {
                 if (c == null)
                     return;
                 c.PublicOverheadMessage(Network.MessageType.Regular, 32, true, "* sinistro *");
             });
 
-            Timer.DelayCall(TimeSpan.FromSeconds(10), () => {
+            Timer.DelayCall(TimeSpan.FromSeconds(5), () => {
                 if (c == null)
                     return;
 

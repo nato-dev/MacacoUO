@@ -144,7 +144,7 @@ namespace Server.Mobiles
             SorteiaItem(new SkillBook());
             //SorteiaItem(new TemplateDeed());
             SorteiaItem(new LivroAntigo());
-            SorteiaItem(Decos.RandomDeco());
+            SorteiaItem(Decos.RandomDeco(this));
             for(var x = 0; x < 5; x++)
                 SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
             GolemMecanico.JorraOuro(c.Location, c.Map, 550);

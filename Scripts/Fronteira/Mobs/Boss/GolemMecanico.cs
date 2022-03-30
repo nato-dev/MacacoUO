@@ -289,7 +289,7 @@ namespace Server.Mobiles
                     var ps = Carnage.GetRandomPS(105);
                     if (ps != null)
                     {
-                        e.m_Mobile.AddToBackpack(Decos.RandomDeco());
+                        e.m_Mobile.AddToBackpack(Decos.RandomDeco(this));
                         e.m_Mobile.AddToBackpack(ps);
                         e.m_Mobile.SendMessage(78, "Voce ganhou recompensas por ajudar a matar o Boss");
                         e.m_Mobile.SendMessage(78, "As recompensas foram colocadas em sua mochila");
@@ -368,8 +368,8 @@ namespace Server.Mobiles
 
             Item pot = null;
             this.SorteiaItem(new AutomatonActuator());
-            this.SorteiaItem(Decos.RandomDeco());
-            this.SorteiaItem(Decos.RandomDeco());
+            this.SorteiaItem(Decos.RandomDeco(this));
+            this.SorteiaItem(Decos.RandomDeco(this));
             for (var x = 0; x < 10; x++)
             {
                 SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));

@@ -516,14 +516,16 @@ namespace Server.Items
     public class ValeDecoracaoRara : RareCraftableItem
     {
         [Constructable]
-        public ValeDecoracaoRara() : base(0x9F64) { Weight = 0.1; Stackable = false; }
+        public ValeDecoracaoRara() : base(0x9F64) { Hue = 200; Weight = 0.1; Stackable = false; }
         public ValeDecoracaoRara(Serial serial) : base(serial) { }
-        public override string DefaultName { get { return "caixa misteriosa"; } }
+        public string QuemDropou { get; set; }
+        public override string DefaultName { get { return "caixa misteriosa rara"; } }
 
         public override void Serialize(GenericWriter writer)
         {
             base.Serialize(writer);
-            writer.WriteEncodedInt(0); // version
+            writer.WriteEncodedInt(1); // version
+            writer.Write(QuemDropou);
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -535,7 +537,39 @@ namespace Server.Items
         {
             base.Deserialize(reader);
             int version = reader.ReadEncodedInt();
+            if (version >= 1)
+                QuemDropou = reader.ReadString();
             Stackable = false;
+            Hue = 200;
+        }
+    }
+
+    public class ValeDecoracaoComum : RareCraftableItem
+    {
+        [Constructable]
+        public ValeDecoracaoComum() : base(0x9F64) { Weight = 0.1; Stackable = false; }
+        public ValeDecoracaoComum(Serial serial) : base(serial) { }
+        public override string DefaultName { get { return "caixa misteriosa"; } }
+        public string QuemDropou { get; set; }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.WriteEncodedInt(0); // version
+            writer.Write(QuemDropou);
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            from.SendGump(new CaixaGumpComum());
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadEncodedInt();
+            Stackable = false;
+            QuemDropou = reader.ReadString();
         }
     }
 
