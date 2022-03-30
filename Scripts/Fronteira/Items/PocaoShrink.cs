@@ -16,9 +16,15 @@ namespace Server.Ziden
             Stackable = true;
         }
 
-        public PocaoShrink(Serial s) : base(s) {
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
             Stackable = true;
             ItemID = 0x5722;
+        }
+
+        public PocaoShrink(Serial s) : base(s) {
+
         }
 
         public int ShrinkCharges { get; set; }

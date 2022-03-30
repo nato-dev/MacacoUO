@@ -34,6 +34,9 @@ namespace Server.Items
         {
             base.Deserialize(reader);
             int version = reader.ReadInt();
+            ItemID = 0x5748;
+            Stackable = true;
+            Hue = 1926;
         }
 
         public void DoMana(Mobile from)

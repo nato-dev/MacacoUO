@@ -433,7 +433,7 @@ namespace Server.Items
             if (level == 0)
                 count = 2;
             else
-                count = (level * 10) + level;
+                count = (level * 2) + level;
 
             for (int i = 0; i < count; i++)
             {
