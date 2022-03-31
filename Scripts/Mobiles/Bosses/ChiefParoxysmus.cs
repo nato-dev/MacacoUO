@@ -10,7 +10,7 @@ namespace Server.Mobiles
         public ChiefParoxysmus()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)
         {
-            Name = "a chief paroxysmus";
+            Name = "chefe paroxysmus";
             Body = 0x100;
 
             SetStr(1232, 1400);
@@ -88,36 +88,50 @@ namespace Server.Mobiles
             AddLoot(LootPack.AosSuperBoss, 8);
         }
 
+        public override bool ReduceSpeedWithDamage => false;
+        public override bool IsSmart => true;
+        public override bool UseSmartAI => true;
+
+        public virtual int BonusExp => 2900;
+
         public override void OnDeath(Container c)
         {
-            base.OnDeath(c);		
-			
-            c.DropItem(new LardOfParoxysmus());
+            base.OnDeath(c);
+
+            DistribuiPs(110);
+            DistribuiPs(115);
+            DistribuiPs(120);
+            DistribuiItem(new Gold(20000));
+            var talisman = new RandomTalisman();
+            talisman.ItemID = 0x9E28;
+            talisman.Slayer = (TalismanSlayerName)Utility.Random(18);
+            SorteiaItem(talisman);
+            SorteiaItem(new LardOfParoxysmus());
 			
             switch ( Utility.Random(3) )
             {
                 case 0:
-                    c.DropItem(new ParoxysmusDinner());
+                    SorteiaItem(new ParoxysmusDinner());
                     break;
                 case 1:
-                    c.DropItem(new ParoxysmusCorrodedStein());
+                    SorteiaItem(new ParoxysmusCorrodedStein());
                     break;
                 case 2:
-                    c.DropItem(new StringOfPartsOfParoxysmusVictims());
+                    SorteiaItem(new StringOfPartsOfParoxysmusVictims());
                     break;
             }
 
-            if (Utility.RandomDouble() < 0.6)				
-                c.DropItem(new ParrotItem());
+            if (Utility.RandomDouble() < 0.6)
+                SorteiaItem(new ParrotItem());
 			
             if (Utility.RandomBool())
-                c.DropItem(new SweatOfParoxysmus());
+                SorteiaItem(new SweatOfParoxysmus());
 				
-            if (Utility.RandomDouble() < 0.05)
-                c.DropItem(new ParoxysmusSwampDragonStatuette());
+            if (Utility.RandomDouble() < 0.15)
+                SorteiaItem(new ParoxysmusSwampDragonStatuette());
 				
-            if (Utility.RandomDouble() < 0.05)
-                c.DropItem(new ScepterOfTheChief());
+            if (Utility.RandomDouble() < 0.15)
+                SorteiaItem(new ScepterOfTheChief());
         }
 
         public override int GetDeathSound()

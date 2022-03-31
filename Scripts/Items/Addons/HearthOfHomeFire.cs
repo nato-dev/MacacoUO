@@ -7,6 +7,13 @@ namespace Server.Items
     public class HearthOfHomeFire : BaseAddon
     {
         [Constructable]
+        public HearthOfHomeFire()
+        {
+            this.AddLightComponent(new AddonComponent(0x2352), 0, 0, 0);
+            this.AddLightComponent(new AddonComponent(0x2358), 0, -1, 0);
+        }
+
+        [Constructable]
         public HearthOfHomeFire(bool east)
         {
             if (east)

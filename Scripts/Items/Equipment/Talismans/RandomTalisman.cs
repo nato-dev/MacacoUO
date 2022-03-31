@@ -40,6 +40,13 @@ namespace Server.Items
             Charges = MaxCharges;
         }
 
+        [Constructable]
+        public RandomTalisman(bool raw)
+          : base(GetRandomItemID())
+        {
+            
+        }
+
         public RandomTalisman(Serial serial)
             : base(serial)
         {

@@ -1219,10 +1219,7 @@ namespace Server.Mobiles
             {
                 Timer.DelayCall(TimeSpan.FromMilliseconds(5), () =>
                 {
-                    if (item is Container)
-                    {
-                        item.LastMoved = DateTime.UtcNow + TimeSpan.FromMinutes(int.MaxValue);
-                    }
+                    item.LastMoved = DateTime.UtcNow + TimeSpan.FromMinutes(int.MaxValue);
                 });
 
                 if (!this.IsCooldown("msgcasa"))
@@ -3941,7 +3938,7 @@ namespace Server.Mobiles
                 return false;
             }
 
-            if(item.HueRaridade != 0)
+            if (item.HueRaridade != 0)
             {
                 item.HueRaridade = 0;
                 item.ReleaseWorldPackets();
@@ -4795,16 +4792,7 @@ namespace Server.Mobiles
 
         public override DeathMoveResult GetParentMoveResultFor(Item item)
         {
-            if (ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
-            {
-                if(ViceVsVirtueSystem.IsVvV(this))
-                    return DeathMoveResult.MoveToBackpack;
-
-                if (ViceVsVirtueSystem.GetTemporario(this) != null)
-                {
-                    return DeathMoveResult.MoveToBackpack;
-                }
-            }
+           
 
             if (CheckInsuranceOnDeath(item) && !Young)
             {
@@ -4823,10 +4811,12 @@ namespace Server.Mobiles
 
         public override DeathMoveResult GetInventoryMoveResultFor(Item item)
         {
-
-            if(ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
+            if (ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
             {
-                if(ViceVsVirtueSystem.GetTemporario(this) != null)
+                if (ViceVsVirtueSystem.IsVvV(this))
+                    return DeathMoveResult.MoveToBackpack;
+
+                if (ViceVsVirtueSystem.GetTemporario(this) != null)
                 {
                     return DeathMoveResult.MoveToBackpack;
                 }

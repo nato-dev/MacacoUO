@@ -19,9 +19,6 @@ namespace Server.Items
         {
             Hue = 0x481;			
             Slayer = SlayerName.Exorcismo;		
-            Attributes.RegenHits = 2;
-            Attributes.ReflectPhysical = 15;
-            Attributes.WeaponDamage = 45;		
             WeaponAttributes.HitDispel = 100;
             WeaponAttributes.HitLeechMana = 100;
         }

@@ -23,6 +23,8 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel1() : base(Utility.RandomList(0xE3C, 0xE3E, 0x9a9))
         {
+            if (Utility.RandomDouble() < 0.1)
+                this.Visible = false;
             RequiredSkill = 52;
             LockLevel = this.RequiredSkill - Utility.Random(1, 10);
             MaxLockLevel = this.RequiredSkill + 25;
@@ -111,6 +113,8 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel0() : base(Utility.RandomList(0xE3C, 0xE3E, 0x9a9))
         {
+            if (Utility.RandomDouble() < 0.1)
+                this.Visible = false;
             RequiredSkill = 0;
             LockLevel = 40 - Utility.Random(1, 10);
             MaxLockLevel = 40 + 25;
@@ -204,6 +208,8 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel1h() : base(Utility.RandomList(0xE3C, 0xE3E, 0x9a9))
         {
+            if (Utility.RandomDouble() < 0.1)
+                this.Visible = false;
             RequiredSkill = 56;
             LockLevel = this.RequiredSkill - Utility.Random(1, 10);
             MaxLockLevel = this.RequiredSkill + 25;
@@ -308,6 +314,8 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel2() : base(Utility.RandomList(0xe3c, 0xE3E, 0x9a9, 0xe42, 0x9ab, 0xe40, 0xe7f, 0xe77))
         {
+            if (Utility.RandomDouble() < 0.1)
+                this.Visible = false;
             RequiredSkill = 72;
             LockLevel = this.RequiredSkill - Utility.Random(1, 10);
             MaxLockLevel = this.RequiredSkill + 25;
@@ -423,6 +431,8 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel3() : base(Utility.RandomList(0x9ab, 0xe40, 0xe42))
         {
+            if (Utility.RandomDouble() < 0.1)
+                this.Visible = false;
             AddLoot(new BagOfReagents());
             AddLoot(new BagOfNecroReagents());
             AddLoot(new Charcoal(10));
@@ -582,6 +592,8 @@ namespace Server.Items
         [Constructable]
         public TreasureLevel4() : base(Utility.RandomList(0xe40, 0xe42, 0x9ab))
         {
+            if(Utility.RandomDouble() < 0.1)
+                this.Visible = false;
             RequiredSkill = 100;
             LockLevel = this.RequiredSkill - Utility.Random(1, 10);
             MaxLockLevel = this.RequiredSkill + 25;

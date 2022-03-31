@@ -173,8 +173,8 @@ namespace Server.Mobiles
             DistribuiPs(105);
             SorteiaItem(Carnage.GetRandomPS(110));
 
-            if(Utility.RandomBool())
-                SorteiaItem(Carnage.GetRandomPS(115));
+            //if(Utility.RandomBool())
+            //    SorteiaItem(Carnage.GetRandomPS(115));
 
             if (mount != null)
                 mount.Rider = null;

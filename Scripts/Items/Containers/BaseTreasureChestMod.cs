@@ -3,13 +3,14 @@
 
 using Server;
 using Server.Items;
+using Server.Mobiles;
 using Server.Network;
 using System;
 using System.Collections.Generic;
 
 namespace Server.Items
 {
-	public abstract class BaseTreasureChestMod : LockableContainer
+	public abstract class BaseTreasureChestMod : LockableContainer, IRevealableItem
 	{
         public static List<BaseTreasureChestMod> Tesouros = new List<BaseTreasureChestMod>();
 
@@ -22,6 +23,9 @@ namespace Server.Items
 		public override int DefaultDropSound{ get{ return 0x42; } }
 		public override Rectangle2D Bounds{ get{ return new Rectangle2D( 20, 105, 150, 180 ); } }
 		public override bool IsDecoContainer{get{ return false; }}
+
+        public bool CheckWhenHidden => true;
+
         public abstract int GetLevel();
 
         public override void LockPick(Mobile from)
@@ -146,7 +150,62 @@ namespace Server.Items
 			m_DeleteTimer.Start();
 		}
 
-		private class ChestTimer : Timer
+        public bool CheckReveal(Mobile m)
+        {
+            if (this.GetLevel() < 3)
+                return true;
+            return m.Skills.DetectHidden.Value >= this.GetLevel() * 20;
+        }
+
+        public bool CheckPassiveDetect(Mobile m)
+        {
+            if (m.Skills.DetectHidden.Value < this.GetLevel() * 20)
+                return false;
+
+            if (m.IsCooldown("dicadetect"))
+                return false;
+
+            if (this.GetLevel() < 3)
+            {
+                m.SetCooldown("dicadetect", TimeSpan.FromSeconds(10));
+                if(GetLevel()==0)
+                {
+                    this.Visible = true;
+                    this.PublicOverheadMessage("* revelado *");
+                    if(!m.IsCooldown("dicabauzito"))
+                    {
+                        m.SetCooldown("dicabauzito");
+                        m.SendMessage(78, "Voce encontrou um bau escondido. Talvez possa encontrar mais coisas escondidas com a skill detect hidden.");
+                    }
+                }
+                return true;
+            }
+            return false;
+        }
+
+        public void OnRevealed(Mobile m)
+        {
+            this.Visible = true;
+            PublicOverheadMessage("* revelado *");
+            if(this.GetLevel() >= 2)
+            {
+                if(Utility.RandomDouble() < 0.7)
+                {
+                    var mob = new GiantRat();
+                    mob.MoveToWorld(this.Location, this.Map);
+                    mob.Combatant = m;
+                }
+
+                if (Utility.RandomBool())
+                {
+                    var mob2 = new GiantSpider();
+                    mob2.MoveToWorld(this.Location, this.Map);
+                    mob2.Combatant = m;
+                }
+            }
+        }
+
+        private class ChestTimer : Timer
 		{
 			private BaseTreasureChestMod m_Chest;
 			
