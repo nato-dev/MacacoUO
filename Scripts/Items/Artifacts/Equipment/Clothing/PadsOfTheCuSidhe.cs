@@ -9,6 +9,7 @@ namespace Server.Items
         public PadsOfTheCuSidhe()
             : base(0x47E)
         {
+            Name = "Botas do Cu Sidhe";
         }
 
         public PadsOfTheCuSidhe(Serial serial)

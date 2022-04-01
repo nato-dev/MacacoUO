@@ -1,4 +1,5 @@
 using Server.Engines.Craft;
+using Server.Engines.Points;
 using Server.Items;
 using System;
 using System.Collections.Generic;
@@ -44,6 +45,48 @@ namespace Server.Ziden.Achievements
         }
 
         public VitoriaFFA(Serial s) : base(s) { }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+        }
+    }
+
+    public class PontoArena : Item
+    {
+        [Constructable]
+        public PontoArena(): base(0x9EC0)
+        {
+            Name = "Morango da Coragem";
+            this.Stackable = true;
+        }
+
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Coma para ganhar +1 ponto de Arena PvP");
+        }
+
+        public override void OnDoubleClick(Mobile from)
+        {
+            base.OnDoubleClick(from);
+            var amt = this.Amount;
+            var pontos = PointsSystem.PontosArena.GetPoints(from);
+            pontos += amt;
+            PointsSystem.PontosArena.AwardPoints(from, amt);
+            from.SendMessage($"Voce ganhou {amt} pontos de arena. Use .pontos para ver todos seus pontos");
+            from.OverheadMessage("* morangou *");
+            from.Animate(AnimationType.Eat, 0);
+            from.PlaySound(Utility.Random(0x3A, 3));
+            Consume(amt);
+        }
+
+        public PontoArena(Serial s) : base(s) { }
 
         public override void Serialize(GenericWriter writer)
         {

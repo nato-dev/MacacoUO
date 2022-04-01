@@ -7,6 +7,7 @@ using Server.Guilds;
 using Server.Network;
 using Server.Engines.Points;
 using System.Collections.Generic;
+using Server.Ziden.RecompensaLogin;
 
 namespace Server.Engines.VvV
 {
@@ -14,7 +15,7 @@ namespace Server.Engines.VvV
     {
         public VvVRewardGump(Mobile owner, PlayerMobile user)
             : base(owner, user, VvVRewards.Rewards, "Guerra Infinita")
-        { 
+        {
         }
 
         public override double GetPoints(Mobile m)
@@ -91,6 +92,26 @@ namespace Server.Engines.VvV
                     User.PlaySound(0x5A7);
                 }
             }
+        }
+    }
+
+    public class ArenaRewardsGump : BaseRewardGump
+    {
+        public ArenaRewardsGump(Mobile owner, PlayerMobile user)
+            : base(owner, user, RecompensasArena.Rewards, "Arena PvP")
+        {
+        }
+
+        public override double GetPoints(Mobile m)
+        {
+            return PointsSystem.PontosArena.GetPoints(m);
+        }
+
+        public override void OnConfirmed(CollectionItem citem, int index)
+        {
+            PointsSystem.PontosArena.DeductPoints(User, citem.Points);
+            User.SendLocalizedMessage(1073621); // Your reward has been placed in your backpack.
+            User.PlaySound(0x5A7);
         }
     }
 }

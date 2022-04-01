@@ -141,6 +141,7 @@ namespace Server.Mobiles
             }
         }
 
+        /*
         public override void OnDoubleClick(Mobile from)
         {
             if (from.Race != Race.Elf && from == ControlMaster && from.IsPlayer())
@@ -153,6 +154,7 @@ namespace Server.Mobiles
 
             base.OnDoubleClick(from);
         }
+        */
 
         public override int GetIdleSound()
         {

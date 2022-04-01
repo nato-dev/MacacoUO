@@ -277,6 +277,9 @@ namespace Server.Mobiles
 
         public virtual void BeginPickTarget(Mobile from, OrderType order)
         {
+            if (order == OrderType.Attack && this is BaseMount && from.Skills.AnimalTaming.Value < 80)
+                return;
+
             if (m_Mobile.Deleted || !m_Mobile.Controlled || !from.InRange(m_Mobile, 14) || from.Map != m_Mobile.Map)
             {
                 return;

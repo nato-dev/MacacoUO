@@ -85,7 +85,7 @@ namespace Server.Mobiles
             DistribuiItem(new Gold(20000));
             DistribuiItem(new CristalTherathan(10));
             DistribuiItem(new FragmentosAntigos());
-            for (var i = 0; X < 4; i++)
+            for (var i = 0; i < 2; i++)
             {
                 if (Utility.RandomDouble() < 0.3)
                     DistribuiPs(115);

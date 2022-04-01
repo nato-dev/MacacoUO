@@ -14,7 +14,7 @@ namespace Server.Ziden.Kills
 
     public class PontosLoginGuilda : PointsSystem
     {
-        public override TextDefinition Name { get { return "Guild Points"; } }
+        public override TextDefinition Name { get { return "Pontos de Guilda"; } }
         public override PointsType Loyalty { get { return PointsType.PontosGuilda; } }
         public override bool AutoAdd { get { return true; } }
         public override double MaxPoints { get { return double.MaxValue; } }
@@ -24,7 +24,7 @@ namespace Server.Ziden.Kills
 
     public class PontosLogin : PointsSystem
     {
-        public override TextDefinition Name { get { return "Login Points"; } }
+        public override TextDefinition Name { get { return "Pontos de Login"; } }
         public override PointsType Loyalty { get { return PointsType.Login; } }
         public override bool AutoAdd { get { return true; } }
         public override double MaxPoints { get { return double.MaxValue; } }

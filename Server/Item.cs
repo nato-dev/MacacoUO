@@ -6199,6 +6199,8 @@ namespace Server
 
         public virtual void OnSingleClick(Mobile from)
         {
+            return; //
+
             if (Deleted || !from.CanSee(this))
             {
                 return;

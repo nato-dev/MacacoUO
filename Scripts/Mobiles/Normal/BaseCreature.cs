@@ -3278,10 +3278,10 @@ namespace Server.Mobiles
                         //SetDamage(m_DamageMin + 4, m_DamageMax + 4);
                         if (this.Tamable)
                         {
-                            if (this.MinTameSkill < 80)
-                                this.MinTameSkill = 105;
+                            if (this.MinTameSkill < 101)
+                                this.MinTameSkill = 101;
                             else
-                                this.MinTameSkill = 110;
+                                this.MinTameSkill = 106;
                         }
 
                     }
@@ -4658,6 +4658,12 @@ namespace Server.Mobiles
             get { return m_ControlOrder; }
             set
             {
+                if(value == OrderType.Attack || value == OrderType.Guard || value == OrderType.Patrol)
+                {
+                    if (this is IMount && ControlMaster != null && ControlMaster.Skills.AnimalTaming.Value < 80)
+                        return;
+                }
+
                 m_ControlOrder = value;
 
                 if (m_Allured)

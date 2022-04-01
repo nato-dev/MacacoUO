@@ -90,7 +90,9 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
-            DistribuiItem(DefCookingExp.GetReceitaRandom());
+            SorteiaItem(DefCookingExp.GetReceitaRandom());
+            SorteiaItem(DefCookingExp.GetReceitaRandom());
+            SorteiaItem(DefCookingExp.GetReceitaRandom());
             DistribuiItem(AnimatedSeed.GetRandomSeed());
         }
 

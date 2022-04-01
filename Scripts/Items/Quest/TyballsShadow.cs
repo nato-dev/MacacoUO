@@ -40,7 +40,7 @@ namespace Server.Mobiles
             SetSkill(SkillName.Tactics, 100.0);
             SetSkill(SkillName.Wrestling, 100.0);
 
-            SetWearable(new ShroudOfTheCondemned(), -1, 0.1);
+            SetWearable(new ShroudOfTheCondemned(), -1, 0.02);
 
             Fame = 20000; 
             Karma = -20000;

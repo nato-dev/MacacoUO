@@ -44,7 +44,7 @@ namespace Shrink.ShrinkSystem
                 }
                 from.OverheadMessage("* Olhando um mapa *");
                 from.SendMessage("Voce esta seguindo o mapa");
-                from.QuestArrow = new QuestArrow(from, new Point3D(3663, 2594, 0));
+                from.QuestArrow = new QuestArrow(from, new Point3D(3661, 2594, 0));
                 from.QuestArrow.Name = "mapa";
                 from.QuestArrow.Update();
             }

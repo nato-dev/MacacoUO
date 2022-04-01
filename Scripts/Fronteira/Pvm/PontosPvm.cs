@@ -22,7 +22,17 @@ namespace Server.Ziden.Kills
         public override PointsType Loyalty { get { return PointsType.Taming; } }
         public override bool AutoAdd { get { return true; } }
         public override double MaxPoints { get { return double.MaxValue; } }
-        public override bool ShowOnLoyaltyGump { get { return false; } }
+        public override bool ShowOnLoyaltyGump { get { return true; } }
+        public static bool Enabled = true;
+    }
+
+    public class PontosArena : PointsSystem
+    {
+        public override TextDefinition Name { get { return "Pontos Arena"; } }
+        public override PointsType Loyalty { get { return PointsType.Arena; } }
+        public override bool AutoAdd { get { return true; } }
+        public override double MaxPoints { get { return double.MaxValue; } }
+        public override bool ShowOnLoyaltyGump { get { return true; } }
         public static bool Enabled = true;
     }
 

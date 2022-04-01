@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Server.Commands;
 using Server.Mobiles;
 using Server.Network;
@@ -129,7 +129,7 @@ namespace Server.Items
         {
             SetAllPillars(NavreysPillarState.Off);
 
-            Timer.DelayCall(TimeSpan.FromMinutes(10.0), new TimerCallback(Respawn));
+            Timer.DelayCall(TimeSpan.FromMinutes(60.0), new TimerCallback(Respawn));
         }
 
         public void Respawn()

@@ -217,4 +217,73 @@ namespace Server.Engines.VvV
             Timer.DelayCall(TimeSpan.FromSeconds(5), StockInventory);
         }
     }
+
+    public class ArenaTrader : BaseVendor
+    {
+        public override bool IsActiveVendor { get { return false; } }
+        public override bool DisallowAllMoves { get { return true; } }
+        public override bool ClickTitle { get { return true; } }
+        public override bool CanTeach { get { return false; } }
+
+        protected List<SBInfo> m_SBInfos = new List<SBInfo>();
+        protected override List<SBInfo> SBInfos { get { return this.m_SBInfos; } }
+        public override void InitSBInfo() { }
+
+        [Constructable]
+        public ArenaTrader() : base("o comerciante da Arena PvP")
+        {
+        }
+
+        public override void InitBody()
+        {
+            base.InitBody();
+
+            Name = NameList.RandomName("male");
+
+            SpeechHue = 0x3B2;
+            Hue = Utility.RandomSkinHue();
+            Body = 0x190;
+        }
+
+        public override void InitOutfit()
+        {
+            SetWearable(new DoubleAxe() { Resource = CraftResource.Adamantium });
+            SetWearable(new ChainChest() { Resource = CraftResource.Vibranium });
+            SetWearable(new ChainLegs() { Resource = CraftResource.Vibranium });
+            SetWearable(new ChainCoif() { Resource = CraftResource.Vibranium });
+            SetWearable(new ChainGloves() { Resource = CraftResource.Vibranium });
+        }
+
+        public override void GetProperties(ObjectPropertyList list)
+        {
+            base.GetProperties(list);
+            list.Add("Comerciante da Arena"); // Vice vs Virtue Reward Vendor
+        }
+
+        public override void OnDoubleClick(Mobile m)
+        {
+            if (ViceVsVirtueSystem.Enabled && m is PlayerMobile && InRange(m.Location, 3))
+            {
+                m.SendMessage(78, "Para conseguir pontos de PvP, jogue PvP na arena pvp usando o comando .pvp ! Nao perde items !");
+
+                m.SendGump(new ArenaRewardsGump(this, (PlayerMobile)m));
+            }
+        }
+
+        public ArenaTrader(Serial serial) : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(1);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            int version = reader.ReadInt();
+        }
+    }
 }

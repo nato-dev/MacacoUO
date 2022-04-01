@@ -1753,7 +1753,8 @@ namespace Server.Network
             {
                 var o = (Mobile)target;
 
-                Shard.Debug("Obtaining Mobile Data: Mobile:" + o.Name, m);
+                if(Shard.DebugEnabled)
+                    Shard.Debug("Obtaining Mobile Data: Mobile:" + o.Name, m);
 
                 if (Utility.InUpdateRange(m, o))
                 {

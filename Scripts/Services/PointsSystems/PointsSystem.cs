@@ -80,6 +80,8 @@ namespace Server.Engines.Points
         GuildKills,
         PontosGuilda,
 
+        Arena,
+
     }
 
     public abstract class PointsSystem
@@ -450,6 +452,7 @@ namespace Server.Engines.Points
         public static PontosLenhador PontosLenhador { get; set; }
         public static PontosOuro PontosOuro { get; set; }
         public static PontosLoginGuilda LoginGuilda { get; set; }
+        public static PontosArena PontosArena { get; set; }
 
         public static void Configure()
         {
@@ -493,6 +496,7 @@ namespace Server.Engines.Points
             PontosOuro = new PontosOuro();
             PontosPescador = new PontosPescador();
             LoginGuilda = new PontosLoginGuilda();
+            PontosArena = new PontosArena();
         }
 
         public static void HandleKill(BaseCreature victim, Mobile damager, int index)
