@@ -12,7 +12,7 @@ namespace Server.Mobiles
     public class GalleonPilot : BaseCreature
     {
         private BaseGalleon m_Galleon;
-        private List<Item> m_OriginalItems;
+        private List<Item> m_OriginalItems;        
 
         [CommandProperty(AccessLevel.GameMaster)]
         public BaseGalleon Galleon { get { return m_Galleon; } }
@@ -209,6 +209,25 @@ namespace Server.Mobiles
                 m_Galleon.BeginRename(from);
             else if (m_Galleon != null)
                 m_Galleon.BeginDryDock(from);
+        }
+
+        public override void OnDoubleClickDead(Mobile m)
+        {
+            Resurrect(m);
+        }
+
+        public static void Resurrect(Mobile m)
+        {            
+            if (m.Alive)
+                return;
+            
+            else if (m.Map != null && m.Map.CanFit(m.Location, 16, false, false))
+            {
+                m.CloseGump(typeof(ResurrectGump));
+                m.SendGump(new ResurrectGump(m, m, 10000));
+            }
+            else
+                m.SendLocalizedMessage(502391); // Thou can not be resurrected there!
         }
 
         public override bool OnDragDrop(Mobile from, Item dropped)
