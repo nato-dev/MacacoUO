@@ -2894,6 +2894,13 @@ namespace Server.Mobiles
 
             if (to.Player && to.Elemento != ElementoPvM.None)
             {
+
+                if(to.Weapon is Fists)
+                {
+                    var red = to.Skills.Parry.Value * 0.2 * damage;
+                    damage -= (int)red;
+                }
+
                 var colarGelo = ColarElemental.GetNivel(to, ElementoPvM.Gelo);
                 if (colarGelo > 0 && Utility.RandomDouble() < 0.1 + colarGelo / 100)
                 {
