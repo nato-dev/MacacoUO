@@ -681,7 +681,8 @@ namespace Server
 
         public virtual bool NaoPodeBancoRP { get { return true; } }
 
-        public int HueRaridade { get; set; }
+        private int _hueRaridade;
+        public int HueRaridade { get => _hueRaridade; set => _hueRaridade = value; }
 
         [CommandProperty(AccessLevel.GameMaster)]
         public bool RP { get; set; }

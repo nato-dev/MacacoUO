@@ -76,7 +76,11 @@ namespace Server.Gumps
                 var item = this.loots[i].Key;
                 var player = this.loots[i].Value;
                 this.AddBackground(51, 66 + (n * 70), 50, 50, 3000);
-                NewAuctionGump.AddItemCentered(51, 66 + (n * 70), 50, 50, item.ItemID, item.Hue, this);
+                var hue = item.Hue;
+                if (item.HueRaridade != 0)
+                    hue = item.HueRaridade;
+                NewAuctionGump.AddItemCentered(51, 66 + (n * 70), 50, 50, item.ItemID, hue, this);
+                AddItemProperty(item.Serial);
                 this.AddHtml(103, 67 + (n * 70), 190, 20, item.Amount + " " + item.Name ?? Clilocs.GetString(ClilocLNG.ENU, item.GetType()), 78, (bool)false, (bool)false);
                 this.AddHtml(104, 95 + (n * 70), 182, 20, player == null ? viewer.Name : player.Name , 200, (bool)false, (bool)false);
                 n++;
