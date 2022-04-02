@@ -65,11 +65,14 @@ namespace Server.Gumps
             var from = page * 8;
             var to = page * 8 + 7;
 
-            if (to > loots.Count)
+            if (to >= loots.Count)
                 to = loots.Count - 1;
 
             for(var i = from; i <= to; i++)
-            { 
+            {
+                if (i < 0 || i > this.loots.Count)
+                    continue;
+
                 var item = this.loots[i].Key;
                 var player = this.loots[i].Value;
                 this.AddBackground(51, 66 + (n * 70), 50, 50, 3000);
