@@ -118,14 +118,14 @@ namespace Server.Gumps
             AddImageTiled(15, 15, 365, 190, 2624);
 
             AddRadio(30, 140, 9727, 9730, true, 1);
-            AddHtmlLocalized(65, 145, 300, 25, 1060015, 0x7FFF, false, false); // Grudgingly pay the money
+            AddHtml(65, 145, 300, 25, "Pagar o dinheiro", 0x7FFF, false, false); // Grudgingly pay the money
 
             AddRadio(30, 175, 9727, 9730, false, 0);
-            AddHtmlLocalized(65, 178, 300, 25, 1060016, 0x7FFF, false, false); // I'd rather stay dead, you scoundrel!!!
+            AddHtml(65, 178, 300, 25, "Prefiro ficar morto", 0x7FFF, false, false); // I'd rather stay dead, you scoundrel!!!
 
-            AddHtmlLocalized(30, 20, 360, 35, 1060017, 0x7FFF, false, false); // Wishing to rejoin the living, are you?  I can restore your body... for a price of course...
+            AddHtml(30, 20, 360, 35, "Deseja se juntar aos vivos, não é? Eu posso restaurar <br> seu corpo... por um preço, claro...", 0x7FFF, false, false); // Wishing to rejoin the living, are you?  I can restore your body... for a price of course...
 
-            AddHtmlLocalized(30, 105, 345, 40, 1060018, 0x5B2D, false, false); // Do you accept the fee, which will be withdrawn from your bank?
+            AddHtml(30, 105, 345, 40, "Você aceita a taxa, que será retirada do seu banco?", 0x5B2D, false, false); // Do you accept the fee, which will be withdrawn from your bank?
 
             AddImage(65, 72, 5605);
 
@@ -133,7 +133,7 @@ namespace Server.Gumps
             AddImageTiled(95, 92, 200, 1, 9157);
 
             AddLabel(90, 70, 1645, price.ToString());
-            AddHtmlLocalized(140, 70, 100, 25, 1023823, 0x7FFF, false, false); // gold coins
+            AddHtml(140, 70, 100, 25, "moedas de ouro", 0x7FFF, false, false); // gold coins
 
             AddButton(290, 175, 247, 248, 2, GumpButtonType.Reply, 0);
 
@@ -184,18 +184,19 @@ namespace Server.Gumps
                     {
                         if (Banker.Withdraw(from, m_Price))
                         {
-                            from.SendLocalizedMessage(1060398, m_Price.ToString()); // ~1_AMOUNT~ gold has been withdrawn from your bank box.
-                            from.SendLocalizedMessage(1060022, Banker.GetBalance(from).ToString()); // You have ~1_AMOUNT~ gold in cash remaining in your bank box.
+                            from.SendLocalizedMessage("Bem vindo de volta ao mundo dos vivos");                     
+                            //from.SendLocalizedMessage(1060398, m_Price.ToString()); // ~1_AMOUNT~ gold has been withdrawn from your bank box.
+                            //from.SendLocalizedMessage(1060022, Banker.GetBalance(from).ToString()); // You have ~1_AMOUNT~ gold in cash remaining in your bank box.
                         }
                         else
                         {
-                            from.SendLocalizedMessage(1060020); // Unfortunately, you do not have enough cash in your bank to cover the cost of the healing.
+                            from.SendLocalizedMessage("Infelizmente, você não tem dinheiro suficiente em seu banco para cobrir o custo da cura. "); // Unfortunately, you do not have enough cash in your bank to cover the cost of the healing.
                             return;
                         }
                     }
                     else
                     {
-                        from.SendLocalizedMessage(1060019); // You decide against paying the healer, and thus remain dead.
+                        from.SendLocalizedMessage("Você decide não pagar o curandeiro e, assim, permanece morto. "); // You decide against paying the healer, and thus remain dead.
                         return;
                     }
                 }
