@@ -205,7 +205,6 @@ namespace Server.Items
                 list.Add($"+{Nivel}% Parry PvM");
             else
                 list.Add($"+{Nivel}% Dano PvM");
-            
         }
 
         [Constructable]

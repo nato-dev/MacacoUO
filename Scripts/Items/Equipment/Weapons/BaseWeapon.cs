@@ -1978,7 +1978,12 @@ namespace Server.Items
                 {
                     chance += AnelDano.GetNivel(defender, true) / 100;
 
-                    chance += parry / 200; // +50%
+                    if(defender.Weapon is Fists)
+                    {
+                        chance += defender.Skills.Wrestling.Value / 100 * 0.40; // 40%
+                    }
+
+                    chance += parry * 0.25; // +25%
                     var brace = defender.FindItemOnLayer(Layer.Bracelet) as BraceleteDoPoder;
                     if (brace != null && brace.Tipo == TipoJoias.Escudo)
                         chance += brace.Bonus / 400;
@@ -2114,7 +2119,9 @@ namespace Server.Items
                 var ratioBloqueio = (attacker is BaseCreature ? 2 : attackerWeapon is BaseRanged ? 1.5 : 1.2);
                 var bloqueado = 0;
                 if (shield != null)
+                {
                     bloqueado = (int)(shield.ArmorRating * (attacker is BaseCreature ? 2 : attackerWeapon is BaseRanged ? 1.5 : 1.2));
+                }
                 else
                 {
                     if (!defender.Player)

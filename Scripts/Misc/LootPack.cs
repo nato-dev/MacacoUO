@@ -92,13 +92,27 @@ namespace Server
                 return;
             }
 
+            if(Shard.DebugEnabled)
+            {
+                Shard.Debug($"Dropando loot de {m.Name} no container {c.GetType().Name}");
+            }
+
             foreach (Item i in
                 m_Entries.Where(e => e.Chance > Utility.Random(10000))
                          .Select(entry => entry.Construct(m, spawning))
                          .Where(i => i != null)
-                         .Where(i => !i.Stackable || (m == null || !c.TryDropItem(m, i, false))))
+                         .Where(i => !i.Stackable || m == null))
             {
-                c.DropItem(i);
+                if (Shard.DebugEnabled) Shard.Debug($"Verificando loot de item {i.GetType().Name}");
+               
+                if (m is BaseCreature && (i is BasePedraPreciosa || i.HueRaridade != 0))
+                    ((BaseCreature)m).SorteiaItem(i);
+                else
+                {
+                    if (!c.TryDropItem(m, i, false))
+                        c.DropItem(i);
+                }
+     
             }
         }
 
@@ -135,10 +149,24 @@ namespace Server
                 Item item = entry.Construct(from, luckChance, spawning);
                 if (item != null)
                 {
-                    if (!item.Stackable || !cont.TryDropItem(from, item, false))
+
+                    if(Shard.DebugEnabled)
                     {
-                        cont.DropItem(item);
+                        Shard.Debug($"Gerando item {item.GetType()} em {from.Name}");
                     }
+                  
+                    if (from is BaseCreature && (item is BasePedraPreciosa || item.HueRaridade != 0))
+                        ((BaseCreature)from).SorteiaItem(item);
+                    else
+                    {
+                        if (!item.Stackable || !cont.TryDropItem(from, item, false))
+                        {
+                            cont.DropItem(item);
+                        }
+
+                    }
+
+                  
                 }
             }
         }

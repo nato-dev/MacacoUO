@@ -13,7 +13,7 @@ namespace Server.Items
     /// </summary>
     public class Disarm : WeaponAbility
     {
-        public static readonly TimeSpan BlockEquipDuration = TimeSpan.FromSeconds(5.0);
+        public static readonly TimeSpan BlockEquipDuration = TimeSpan.FromSeconds(4.0);
         public Disarm()
         {
         }
@@ -90,8 +90,7 @@ namespace Server.Items
                     });
                 }
 
-                if(Core.SA)
-                    AddImmunity(defender, Core.TOL && attacker.Weapon is Fists ? TimeSpan.FromSeconds(10) : TimeSpan.FromSeconds(15));
+                AddImmunity(defender, Core.TOL && attacker.Weapon is Fists ? TimeSpan.FromSeconds(10) : TimeSpan.FromSeconds(15));
             }
         }
 

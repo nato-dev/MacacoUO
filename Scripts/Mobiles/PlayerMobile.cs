@@ -2757,6 +2757,13 @@ namespace Server.Mobiles
 
         public bool SmoothForceEquip(Item item)
         {
+            if(item.HueRaridade != 0)
+            {
+                item.HueRaridade = 0;
+                item.ReleaseWorldPackets();
+                item.Delta(ItemDelta.Update);
+            }
+
             if (item is BaseWeapon)
             {
                 if (item.Layer == Layer.TwoHanded)
@@ -3219,7 +3226,7 @@ namespace Server.Mobiles
             if (item.LootType == LootType.Blessed)
                 return false;
 
-            if (item is BaseJewel || item is BaseClothing || item is BaseTalisman)
+            if (item is BaseJewel || item is BaseClothing || item is BaseTalisman || item is BaseGlovesOfMining)
                 return true;
 
             return false;
@@ -3937,6 +3944,8 @@ namespace Server.Mobiles
             {
                 return false;
             }
+
+            RevealingAction();
 
             if (item.HueRaridade != 0)
             {

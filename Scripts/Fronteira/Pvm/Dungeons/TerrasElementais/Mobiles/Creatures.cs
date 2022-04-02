@@ -82,7 +82,7 @@ namespace Server.Mobiles
             }
 
             if (0.2 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -205,7 +205,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -316,7 +316,7 @@ namespace Server.Mobiles
                 Wall.OnTrollKilled();
 
             if (0.60 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -396,7 +396,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.4 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -457,7 +457,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.4 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -525,7 +525,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.4 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -595,7 +595,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.40 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -668,7 +668,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.70 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -767,7 +767,7 @@ namespace Server.Mobiles
                 c.DropItem(new FireHorn());
 
             if (0.10 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -848,7 +848,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.10 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -932,7 +932,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 			
             if(0.15 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()
@@ -1022,7 +1022,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.33 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(4));
+                SorteiaItem(new CristalElemental(4));
         }
 
         public override void OnDamagedBySpell(Mobile from)
@@ -1245,7 +1245,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.33 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(5));
+                SorteiaItem(new CristalElemental(5));
         }
 
         public override void GenerateLoot()
@@ -1390,7 +1390,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.33 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(3));
+                SorteiaItem(new CristalElemental(3));
         }
 
         public override void GenerateLoot()
@@ -1461,7 +1461,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.33 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(3));
+                SorteiaItem(new CristalElemental(3));
         }
 
         public override void GenerateLoot()
@@ -1615,7 +1615,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.33 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(5));
+                SorteiaItem(new CristalElemental(5));
         }
 
         public override void GenerateLoot()
@@ -1755,10 +1755,10 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.33 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(5));
+                SorteiaItem(new CristalElemental(5));
 
             if (0.2 > Utility.RandomDouble())
-                c.DropItem(new VoidCore());
+                SorteiaItem(new VoidCore());
         }
 
         public override void GenerateLoot()
@@ -1845,7 +1845,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.33 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(5));
+                SorteiaItem(new CristalElemental(5));
         }
 
         public override void GenerateLoot()
@@ -1916,7 +1916,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.10 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public GreaterWaterElemental(Serial serial)
@@ -1981,7 +1981,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.10 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(5));
+                SorteiaItem(new CristalElemental(5));
         }
 
         public ShameGreaterPoisonElemental(Serial serial)
@@ -2043,7 +2043,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.10 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental(5));
+                SorteiaItem(new CristalElemental(5));
         }
 
         public GreaterBloodElemental(Serial serial)
@@ -2093,7 +2093,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
 
             if (0.08 > Utility.RandomDouble() && Region.Find(c.Location, c.Map).IsPartOf("Shame"))
-                c.DropItem(new CristalElemental());
+                SorteiaItem(new CristalElemental());
         }
 
         public override void GenerateLoot()

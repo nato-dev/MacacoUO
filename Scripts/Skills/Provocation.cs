@@ -36,7 +36,7 @@ namespace Server.SkillHandlers
 
         public static void OnPickedInstrument(Mobile from, BaseInstrument instrument)
         {
-            from.RevealingAction();
+            from.RevealingAction(); 
             from.SendLocalizedMessage(501587); // Whom do you wish to incite?
             from.Target = new InternalFirstTarget(from, instrument);
         }
@@ -185,7 +185,6 @@ namespace Server.SkillHandlers
 
                 if (targeted is PlayerMobile)
                 {
-                  
                     if (!from.CanBeHarmful(m_Creature, true))
                     {
                         from.SendMessage("Voce nao pode fazer mau a esta criatura");

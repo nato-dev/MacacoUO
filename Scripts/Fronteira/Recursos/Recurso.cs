@@ -41,7 +41,7 @@ namespace Server.Fronteira.Recursos
             var s = r.Map.GetSector(r);
             RecursosNoSector(r.Map, s).Add(r);
             if (Shard.DebugEnabled)
-                Shard.Debug("Recurso registrado no setor " + s.X + " " + s.Y+" "+r.Map.Name);
+                Shard.Debug("Recurso registrado no setor " + s.X + " " + s.Y + " " + r.Map.Name);
         }
 
         [Constructable]
@@ -182,13 +182,13 @@ namespace Server.Fronteira.Recursos
 
                 if (from.Skills[skill].Value < diff.Required)
                 {
-                    from.SendMessage("Voce precisaria de "+ diff.Required+" "+skill.GetName()+ " para coletar isto");
+                    from.SendMessage("Voce precisaria de " + diff.Required + " " + skill.GetName() + " para coletar isto");
                     return false;
                 }
-                if (!from.CheckSkillMult(skill, diff.Min, diff.Min+10, 0))
+                if (!from.CheckSkillMult(skill, diff.Min, diff.Min + 10, 0))
                 {
                     from.SendMessage("Voce nao conseguiu extrair o recurso");
-                    if(Utility.RandomDouble() < 0.25)
+                    if (Utility.RandomDouble() < 0.25)
                     {
                         this.Consume();
                     }
@@ -251,6 +251,9 @@ namespace Server.Fronteira.Recursos
 
             if (from.Player)
             {
+                if (i is CopperOre || i is BronzeOre)
+                    i.Amount *= 2;
+
                 var bonus = (int)Math.Round(i.Amount * from.GetBonusElemento(ElementoPvM.Gelo));
                 if (bonus > 0)
                     i.Amount += bonus;
@@ -277,7 +280,7 @@ namespace Server.Fronteira.Recursos
 
                 if (toolWithUses.UsesRemaining < 1)
                 {
-                
+
                     tool.Delete();
                     from.SendMessage("Sua ferramenta quebrou");
                 }

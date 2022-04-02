@@ -1564,9 +1564,9 @@ namespace Server.Mobiles
                 damage = (int)(damage / Paragon.HitsBuff);
             }
 
-            if (damage > 90)
+            if (damage > 80)
             {
-                damage = 90;
+                damage = 80;
             }
 
             return damage;
@@ -7045,6 +7045,17 @@ namespace Server.Mobiles
                 }
             }
 
+            if(this.Backpack != null)
+            {
+                foreach (var i in new List<Item>(this.Backpack.Items)) {
+                    if (i.HueRaridade == 10 || i.HueRaridade == 100 || i is BasePedraPreciosa || i is BaseEssencia)
+                        SorteiaItem(i);
+                }
+            }
+            
+
+
+
             int treasureLevel = TreasureMapLevel;
             List<DamageStore> rights = GetLootingRights();
             DropScrollsGarantidos();
@@ -7531,7 +7542,6 @@ namespace Server.Mobiles
                 {
                     SorteiaItem(new PowderOfTranslocation());
                     SorteiaItem(AnimatedSeed.GetRandomSeed());
-                    
                 }
 
                 Timer.DelayCall(TimeSpan.FromSeconds(0.2), () => {

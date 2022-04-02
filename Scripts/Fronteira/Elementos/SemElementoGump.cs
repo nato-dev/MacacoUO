@@ -27,9 +27,9 @@ namespace Server.Gumps
             AddButton(750, 592, 247, 248, (int)Buttons.Button4, GumpButtonType.Reply, 0);
             AddImage(238, 118, 10440);
             AddImage(897, 117, 10441);
-            AddHtml(340, 168, 562, 18, @"Seu corpo ainda nao esta conectado com a energia deste mundo. ", (bool)false, (bool)false);
-            AddHtml(340, 190, 562, 18, @"Voce eh apenas um fraco, ainda nao descobriu seu poder.", (bool)false, (bool)false);
-            AddHtml(340, 213, 562, 24, @"Va a caverna de Shame e descubra...Mas esteja muito bem preparado.", (bool)false, (bool)false);
+            AddHtml(340, 168, 562, 18, @"Voce ainda nao possui energia elemental PvM. ", (bool)false, (bool)false);
+            AddHtml(340, 190, 562, 18, @"Elementos PvM te tornam muito mais forte no PvM.", (bool)false, (bool)false);
+            AddHtml(340, 213, 562, 24, @"Va a Shame e colete cristais para liberar seus elementos PvM.", (bool)false, (bool)false);
             AddItem(756, 494, 16395, 2611);
             AddHtml(772, 357, 50, 22, @"20K", (bool)false, (bool)false);
             AddHtml(761, 468, 47, 22, @"100", (bool)false, (bool)false);

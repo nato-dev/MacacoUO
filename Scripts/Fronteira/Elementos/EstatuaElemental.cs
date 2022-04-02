@@ -22,6 +22,12 @@ namespace Server.Fronteira.Elementos
         {
         }
 
+        public override void AddNameProperties(ObjectPropertyList list)
+        {
+            base.AddNameProperties(list);
+            list.Add("Clique 2x para ver");
+        }
+
         public static void Envia(Mobile from)
         {
             var pl = from as PlayerMobile;
