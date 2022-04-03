@@ -2971,6 +2971,7 @@ namespace Server.Items
             if (tal != CheckSlayerResult.None)
             {
                 percentageBonus += 75;
+                
             }
 
             if (CheckSlayerOpposition(attacker, defender) != CheckSlayerResult.None)
@@ -3068,6 +3069,11 @@ namespace Server.Items
             if (talisman != null && talisman.Killer != null)
             {
                 percentageBonus += talisman.Killer.DamageBonus(defender);
+            }
+
+            if(talisman != null && talisman.Charges > 0 && tal != CheckSlayerResult.None)
+            {
+                talisman.Charges -= 1;
             }
 
             if (this is ButchersWarCleaver)
@@ -3888,6 +3894,9 @@ namespace Server.Items
         public CheckSlayerResult CheckTalismanSlayer(Mobile attacker, Mobile defender)
         {
             BaseTalisman talisman = attacker.Talisman as BaseTalisman;
+
+            if (talisman != null && talisman.MaxCharges > 0 && talisman.Charges <= 0)
+                return CheckSlayerResult.None;
 
             if (talisman != null && TalismanSlayer.Slays(talisman.Slayer, defender))
             {

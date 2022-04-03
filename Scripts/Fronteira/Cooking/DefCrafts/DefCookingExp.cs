@@ -375,6 +375,12 @@ namespace Server.Engines.Craft
         }
         #endregion
 
+        public static CookRecipesExp[] Basicas = new CookRecipesExp[]
+        {
+            CookRecipesExp.SackFlour, CookRecipesExp.BagOfSugar, CookRecipesExp.Dough,CookRecipesExp.Batter, CookRecipesExp.Butter,
+            CookRecipesExp.Vinegar, CookRecipesExp.SweetDough, CookRecipesExp.CocoaButter, CookRecipesExp.CocoaLiquor
+        };
+
         public override void InitCraftList()
         {
             int index = -1;

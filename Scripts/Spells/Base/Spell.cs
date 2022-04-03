@@ -458,14 +458,14 @@ namespace Server.Spells
 
 
 
-                if(Shard.POL_STYLE)
+                if (Shard.POL_STYLE)
                 {
                     var tempoPassou = Core.TickCount - this.m_StartCastTime;
-                    if(Shard.DebugEnabled)
+                    if (Shard.DebugEnabled)
                     {
                         Shard.Debug("Tempo passou: " + tempoPassou);
                     }
-                    if(tempoPassou < 500)
+                    if (tempoPassou < 500)
                     {
                         if (Caster.Skills.Focus.Value < 80)
                         {
@@ -477,9 +477,9 @@ namespace Server.Spells
                             }
                         }
                     }
-                   
+
                 }
-             
+
 
             }
 
@@ -685,11 +685,11 @@ namespace Server.Spells
             if (!target.Player)
             {
                 var bracer = m_Caster.FindItemOnLayer(Layer.Bracelet) as BraceleteDoPoder;
-                if(bracer != null && bracer.Tipo==TipoJoias.Magia)
+                if (bracer != null && bracer.Tipo == TipoJoias.Magia)
                 {
-                    scalar += bracer.Bonus/100;
+                    scalar += bracer.Bonus / 100;
                 }
-                if(elementoMagia != ElementoPvM.None)
+                if (elementoMagia != ElementoPvM.None)
                 {
                     var bonus = (m_Caster.GetBonusElemento(elementoMagia) * 2);
                     if (m_Caster.Elemento == ElementoPvM.Agua && elementoMagia == ElementoPvM.Raio)
@@ -1055,7 +1055,7 @@ namespace Server.Spells
             {
 
 
-
+                Shard.Debug("Castando", m_Caster);
 
                 m_State = SpellState.Casting;
                 m_Caster.Spell = this;
@@ -1197,20 +1197,21 @@ namespace Server.Spells
                 }
             }
 
-            var item2 = m_Caster.FindItemOnLayer(Layer.TwoHanded);
-            if (item2 != null && !item2.AllowEquipedCast(this.Caster))
+            if(Shard.SPHERE_STYLE)
             {
-                if (this is MagerySpell || this is NecromancerSpell)
+                var item2 = m_Caster.FindItemOnLayer(Layer.TwoHanded);
+                if (item2 != null && !item2.AllowEquipedCast(this.Caster))
                 {
-                    if (this.Caster.Paralyzed)
+                    if (this is MagerySpell || this is NecromancerSpell)
                     {
-                        this.Caster.SendMessage("Você não pode conjurar magias com arma nas mãos");
-                        return false;
+                        if (this.Caster.Paralyzed)
+                        {
+                            this.Caster.SendMessage("Você não pode conjurar magias com arma nas mãos");
+                            return false;
+                        }
+                        //Caster.SendMessage("Você não pode conjurar magias com arma nas mãos");
+                        //return false;
                     }
-                    if (!Shard.SPHERE_STYLE)
-                        m_Caster.ClearHand(item2);
-                    //Caster.SendMessage("Você não pode conjurar magias com arma nas mãos");
-                    //return false;
                 }
             }
 
@@ -1276,7 +1277,6 @@ namespace Server.Spells
                     m_Caster.SendMessage(0x22, "Faltam reagentes para a magia. Voce pode comprar reagentes no npc Mago ou planta-los."); // More reagents are needed for this spell.
                     return false;
                 }
-
                 if (Shard.SPHERE_STYLE && this.Caster is PlayerMobile)
                     return CastaMagiaSphere();
                 return CastMagiaPadrao();

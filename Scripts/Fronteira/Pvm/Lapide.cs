@@ -73,7 +73,10 @@ namespace Server.Ziden.Items
             {
                 if (spawnObject.TypeName.ToLower() == Nome.ToLower())
                 {
+
                     var t = (spawnObject.NextSpawn - DateTime.UtcNow + spawner.NextSpawn);
+                    if (t.TotalMinutes <= 0)
+                        t = spawner.NextSpawn;
                     from.SendMessage($"Respawn do boss - {t.TotalMinutes} minutos");
                     return;
                 }

@@ -53,6 +53,8 @@ namespace Server.Mobiles
 
             this.PackItem(DefCookingExp.GetReceitaIgredienteRandom());
 
+          
+
             this.PackItem(new Club());
         }
 
@@ -92,7 +94,8 @@ namespace Server.Mobiles
             base.OnDeath(c);
             SorteiaItem(DefCookingExp.GetReceitaRandom());
             SorteiaItem(DefCookingExp.GetReceitaRandom());
-            SorteiaItem(DefCookingExp.GetReceitaRandom());
+            var receita = DefCookingExp.Basicas[Utility.Random(DefCookingExp.Basicas.Length)];
+            SorteiaItem(new RecipeScroll((int)receita));
             DistribuiItem(AnimatedSeed.GetRandomSeed());
         }
 

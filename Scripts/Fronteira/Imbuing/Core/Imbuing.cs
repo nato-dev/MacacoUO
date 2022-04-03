@@ -25,6 +25,7 @@ namespace Server.SkillHandlers
 
             CommandSystem.Register("GetTotalWeight", AccessLevel.GameMaster, new CommandEventHandler(GetTotalWeight_OnCommand));
             CommandSystem.Register("GetTotalMods", AccessLevel.GameMaster, new CommandEventHandler(GetTotalMods_OnCommand));
+            CommandSystem.Register("imbue", AccessLevel.Player, new CommandEventHandler(Imbue));
         }
 
         private static void OnLogin(LoginEventArgs e)
@@ -998,6 +999,13 @@ namespace Server.SkillHandlers
 
             return 0;
         }
+
+        [Description("Usa a skill imbuing.")]
+        public static void Imbue(CommandEventArgs e)
+        {
+            Imbuing.OnUse(e.Mobile);
+        }
+
 
         [Usage("GetTotalMods")]
         [Description("Displays the total mods, ie AOS attributes for the targeted item.")]

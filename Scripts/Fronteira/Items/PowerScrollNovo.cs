@@ -69,12 +69,14 @@ namespace Server.Items
         {
             this.ItemID = 0x46AE;
             //this.Hue = 0x481;
+            this.Stackable = true;
             var grupo = getGrupoMax();
             Name = $"Pergaminho de +{this.Skill.ToString()} - {grupo - 5}-{grupo}";
             if (this.Value == 105.0 || skill == Server.SkillName.Blacksmith || skill == Server.SkillName.Tailoring)
                 this.LootType = LootType.Regular;
+            this.Value = getGrupoMax();
         }
-
+ 
         public PowerScrollNovo(Serial serial)
             : base(serial)
         {
@@ -191,6 +193,8 @@ namespace Server.Items
         {
             base.Deserialize(reader);
 
+           
+
             int version = (this.InheritsItem ? 0 : reader.ReadInt()); // Required for SpecialScroll insertion
 
             if (this.Value == 105.0 || this.Skill == SkillName.Blacksmith || this.Skill == SkillName.Tailoring)
@@ -202,6 +206,8 @@ namespace Server.Items
                 this.LootType = LootType.Cursed;
                 this.Insured = false;
             }
+
+            this.Value = getGrupoMax();
         }
     }
 }

@@ -6329,10 +6329,15 @@ namespace Server.Mobiles
                 if (Utility.Random(5) == 1)
                 {
                     var talisman = new BaseTalisman(BaseTalisman.GetRandomItemID());
-                    talisman.SetProtection(this.GetType(), this.Name, 1 + Utility.Random(19));
+                    var min = 1;
+                    if (this.HitsMax > 1000)
+                        min = 5;
+                    if (this.HitsMax > 3000)
+                        min = 15;
+                    talisman.SetProtection(this.GetType(), this.Name, min + Utility.Random(19));
                     if (Utility.RandomBool())
                     {
-                        talisman.SetKiller(this.GetType(), this.Name, 1 + Utility.Random(34));
+                        talisman.SetKiller(this.GetType(), this.Name, min + Utility.Random(34));
                     }
                     talisman.Name = "Talisman Paragon de " + (this.Name == null ? this.GetType().Name : this.Name);
                     talisman.Hue = Paragon.Hue;
@@ -7543,6 +7548,27 @@ namespace Server.Mobiles
                     Shard.Debug("Botando lapide", this);
                     var lapide = new LapideBoss(this);
                     lapide.MoveToWorld(c.Location, c.Map);
+                }
+
+                if(this.IsParagon)
+                {
+                    Shard.Debug("Bixo paragon morrendo");
+                    if(this.HitsMax >= 3000)
+                    {
+                        Shard.Debug("Bixo paragon tem mais de 3k de vida");
+                        var nivel = (int)Math.Floor(this.HitsMax / 3000d);
+                        DistribuiItem(new Gold(this.HitsMax/2));
+                        var talisman = new BaseTalisman(0x9E28);
+                        talisman.Hue = Paragon.Hue;
+                        talisman.Name = "Talisman Paragon Especial";
+                        talisman.Slayer = (TalismanSlayerName)Utility.Random(18) + 1;
+                        talisman.MaxCharges = nivel * 100;
+                        talisman.Charges = nivel * 100;
+                        if (GetLootingRights().Count > 1)
+                            SorteiaItem(talisman);
+                        else
+                            c.DropItem(talisman);
+                    }
                 }
 
                 if (IsBoss || this is BaseChampion || this is BaseRenowned)

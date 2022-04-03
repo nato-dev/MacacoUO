@@ -264,7 +264,7 @@ namespace Server.Spells
 
                 if (Shard.SPHERE_STYLE)
                     chance *= 0.35; // sem pre cast mais dificil de resistir
-                else 
+                else if(Circle >= SpellCircle.Sixth)
                     chance *= 0.90;
 
                 if (Caster is BaseCreature && target is PlayerMobile)

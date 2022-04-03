@@ -181,14 +181,11 @@ namespace Server.Misc
                 if (targPlayer != null && ProtecaoRP(targPlayer) && bc != null && bc.GetMaster() != null && !bc.GetMaster().RP)
                     return false;
 
-
                 if (!CheckAggressor(attacker.Aggressors, defender) && !CheckAggressed(attacker.Aggressed, defender) && defender is PlayerMobile &&
                     ((PlayerMobile)defender).IsResProtected())
                 {
                     return false;
                 }
-
-
             }
 
             // PVPs
@@ -222,6 +219,9 @@ namespace Server.Misc
             {
                 var master = ((BaseCreature)defender).ControlMaster;
                 if (!attacker.RP && master != null && master.RP && ProtecaoRP(master as PlayerMobile))
+                    return false;
+
+                if (attacker.IsYoung() && master is PlayerMobile)
                     return false;
             }
 

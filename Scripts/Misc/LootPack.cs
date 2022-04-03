@@ -104,9 +104,10 @@ namespace Server
                          .Where(i => !i.Stackable || m == null))
             {
                 if (Shard.DebugEnabled) Shard.Debug($"Verificando loot de item {i.GetType().Name}");
-               
-                if (m is BaseCreature && (i is BasePedraPreciosa || i.HueRaridade != 0))
-                    ((BaseCreature)m).SorteiaItem(i);
+
+                var bc = m as BaseCreature;
+                if (bc != null && bc.GetLootingRights().Count > 1 && (i is BasePedraPreciosa || i.HueRaridade != 0))
+                    bc.SorteiaItem(i);
                 else
                 {
                     if (!c.TryDropItem(m, i, false))
@@ -154,9 +155,10 @@ namespace Server
                     {
                         Shard.Debug($"Gerando item {item.GetType()} em {from.Name}");
                     }
-                  
-                    if (from is BaseCreature && (item is BasePedraPreciosa || item.HueRaridade != 0))
-                        ((BaseCreature)from).SorteiaItem(item);
+
+                    var bc = from as BaseCreature;
+                    if (bc != null && bc.GetLootingRights().Count > 1 && (item is BasePedraPreciosa || item.HueRaridade != 0))
+                        bc.SorteiaItem(item);
                     else
                     {
                         if (!item.Stackable || !cont.TryDropItem(from, item, false))
