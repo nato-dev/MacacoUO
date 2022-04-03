@@ -67,7 +67,7 @@ namespace Server.Items
         public PowerScrollNovo(SkillName skill, double value)
             : base(skill, value)
         {
-            this.ItemID = 0x46AE;
+            this.ItemID = 3827;
             //this.Hue = 0x481;
             this.Stackable = true;
             var grupo = getGrupoMax();
@@ -106,7 +106,7 @@ namespace Server.Items
         {
             get
             {
-                return String.Format("<basefont color=#77EE44>Pergaminho do Conhecimento</basefont>");
+                return String.Format($"<basefont color=#77EE44>{Amount} Pergaminho do Conhecimento</basefont>");
             }
         }
 
@@ -208,6 +208,7 @@ namespace Server.Items
             }
 
             this.Value = getGrupoMax();
+            this.ItemID = 3827;
         }
     }
 }
