@@ -55,6 +55,13 @@ namespace Server.SkillHandlers
 
 			private Item TryStealItem(Item toSteal, ref bool caught)
 			{
+
+                if(m_Thief.Region.IsPartOf("New Haven"))
+                {
+                    m_Thief.SendMessage("Voce nao pode roubar em Haven");
+                    return null;
+                }
+
 				Item stolen = null;
 
 				object root = toSteal.RootParent;
@@ -443,9 +450,15 @@ namespace Server.SkillHandlers
 			{
 				from.RevealingAction();
 
-                
+                if (m_Thief.Region.IsPartOf("New Haven"))
+                {
+                    m_Thief.SendMessage("Voce nao pode roubar em Haven");
+                    return;
+                }
 
-				Item stolen = null;
+
+
+                Item stolen = null;
 				object root = null;
 				bool caught = false;
 
@@ -580,7 +593,13 @@ namespace Server.SkillHandlers
 
 		public static TimeSpan OnUse(Mobile m)
 		{
-			if (!IsEmptyHanded(m))
+            if (m.Region.IsPartOf("New Haven"))
+            {
+                m.SendMessage("Voce nao pode roubar em Haven");
+                return TimeSpan.FromSeconds(1);
+            }
+
+            if (!IsEmptyHanded(m))
 			{
 				m.SendLocalizedMessage("Suas maos precisam estar livres"); // Both hands must be free to steal.
 			}

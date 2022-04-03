@@ -202,7 +202,7 @@ namespace Server.Items
             base.AddNameProperties(list);
             list.Add("Nivel: " + Nivel + "/20");
             if (Tipo == TipoJoias.Escudo)
-                list.Add($"+{Nivel}% Parry PvM");
+                list.Add($"+{Nivel}% Resistencia & Parry PvM");
             else
                 list.Add($"+{Nivel}% Dano PvM");
         }

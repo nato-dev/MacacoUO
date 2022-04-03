@@ -24,7 +24,7 @@ namespace Server.Mobiles
 
             SetHits(298, 315);
 
-            this.SetDamage(1, 3);
+            this.SetDamage(7, 15);
 
             this.SetDamageType(ResistanceType.Physical, 40);
             this.SetDamageType(ResistanceType.Fire, 40);
@@ -36,7 +36,7 @@ namespace Server.Mobiles
             this.SetResistance(ResistanceType.Poison, 30, 40);
             this.SetResistance(ResistanceType.Energy, 20, 30);
 
-            this.SetSkill(SkillName.EvalInt, 10.4, 100.4);
+            this.SetSkill(SkillName.EvalInt, 100.4, 100.4);
             this.SetSkill(SkillName.Magery, 100.4, 100.4);
             this.SetSkill(SkillName.MagicResist, 85.3, 100.0);
             this.SetSkill(SkillName.Tactics, 97.6, 100.0);

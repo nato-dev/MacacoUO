@@ -786,7 +786,7 @@ namespace Server.Spells
                 if (almas > 0)
                 {
                     creature.FixedParticles(0x3709, 10, 30, 5052, TintaPreta.COR, 1, EffectLayer.LeftFoot);
-                    creature.PrivateOverheadMessage(Network.MessageType.Regular, 0, true, $"+{almas}%", caster.NetState);
+                    creature.PrivateOverheadMessage(Network.MessageType.Regular, 0, true, $"+{almas}", caster.NetState);
                 }
                 return;
             }

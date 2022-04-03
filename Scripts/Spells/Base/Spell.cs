@@ -721,6 +721,13 @@ namespace Server.Spells
             double scalar = 1.0;
             if (atkBook != null)
             {
+                /*
+                if (atkBook.SpellbookType == SpellbookType.Regular && atkBook.SpellCount < 60)
+                {
+
+                }
+                */
+                
                 SlayerEntry atkSlayer = SlayerGroup.GetEntryByName(atkBook.Slayer);
                 SlayerEntry atkSlayer2 = SlayerGroup.GetEntryByName(atkBook.Slayer2);
 
@@ -1197,7 +1204,7 @@ namespace Server.Spells
                 }
             }
 
-            if(Shard.SPHERE_STYLE)
+            if (Shard.SPHERE_STYLE)
             {
                 var item2 = m_Caster.FindItemOnLayer(Layer.TwoHanded);
                 if (item2 != null && !item2.AllowEquipedCast(this.Caster))

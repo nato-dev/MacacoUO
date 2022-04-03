@@ -5,6 +5,7 @@ using System.Text;
 
 using Server.Mobiles;
 using Server.Network;
+using Server.Regions;
 using Server.Spells;
 #endregion
 
@@ -384,6 +385,15 @@ namespace Server.Items
                 }
                
             }
+
+            var beforeDungeon = m.Region as DungeonRegion;
+            var afterDungeon = Region.Find(this.m_PointDest, this.m_MapDest);
+
+            if(beforeDungeon == null && afterDungeon != null)
+            {
+
+            }
+
             StartTeleport(m);
             
             return true;

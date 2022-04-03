@@ -11,14 +11,14 @@ namespace Server.Items
         public virtual int Type { get { return _Type; } }
 
         [Constructable]
-        public MasterCraftsmanTalisman(int charges, int itemID, TalismanSkill skill)
+        public MasterCraftsmanTalisman(int charges, int itemID, TalismanSkill skill, int successBonus=0, int expBonus=0)
             : base(itemID)
         {
             Skill = skill;
 
-            SuccessBonus = GetRandomSuccessful();
-            ExceptionalBonus = BaseTalisman.GetRandomExceptional();
-            Blessed = GetRandomBlessed();
+
+            SuccessBonus = successBonus == 0 ? GetRandomSuccessful() : successBonus;
+            ExceptionalBonus = expBonus == 0 ? BaseTalisman.GetRandomExceptional() : expBonus;
 
             _Type = charges;
 			Charges = charges;

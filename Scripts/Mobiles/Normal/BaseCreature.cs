@@ -2835,7 +2835,7 @@ namespace Server.Mobiles
                     from.SendMessage("Voce acertou um golpe ventania que atordoou o inimigo");
                     this.OverheadMessage(" * stun *");
                     from.SetCooldown("hitstun", TimeSpan.FromSeconds(4));
-                    this.Paralyze(TimeSpan.FromSeconds(1));
+                    this.Freeze(TimeSpan.FromSeconds(1));
                 }
             }
 

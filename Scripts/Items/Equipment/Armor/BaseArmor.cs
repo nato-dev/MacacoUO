@@ -443,17 +443,17 @@ namespace Server.Items
                         break;
 
                     case CraftResource.Cobre:
-                        ar += 3;
+                        ar += 8;
                         break;
                     case CraftResource.Bronze:
-                        ar += 4;
+                        ar += 9;
                         break;
                     case CraftResource.Dourado:
-                        ar += 11;
+                        ar += 14;
                         break;
                     case CraftResource.Adamantium:
                     case CraftResource.Niobio:
-                        ar += 10;
+                        ar += 12;
                         break;
                     case CraftResource.Lazurita:
                         ar += 12;
@@ -465,7 +465,7 @@ namespace Server.Items
                         ar += 10;
                         break;
                     case CraftResource.Vibranium:
-                        ar += 20;
+                        ar += 18;
                         break;
 
                     case CraftResource.EscamasNegras:
@@ -497,7 +497,7 @@ namespace Server.Items
                         ar += 18;
                         break;
                 }
-                ar += -8 + (8 * (int)m_Quality);
+                ar += -4 + (4 * (int)m_Quality);
                 return ScaleArmorByDurability(ar);
             }
         }

@@ -1717,11 +1717,11 @@ namespace Server.Engines.Craft
                 }
                 else if (res == CraftResource.Vibranium)
                 {
-                    chance -= 0.6;
+                    chance -= 0.7;
                 }
                 else if (res == CraftResource.Adamantium)
                 {
-                    chance -= 0.7;
+                    chance -= 0.8;
                 }
 
                 else if (res == CraftResource.Pinho)

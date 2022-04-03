@@ -4172,17 +4172,21 @@ namespace Server.Items
             var bonusOre = 0;
             switch (Resource)
             {
+                case CraftResource.Ferro:
+                case CraftResource.Cedro:
+                    bonusOre += 3;
+                    break;
                 case CraftResource.Carvalho:
                 case CraftResource.Cobre:
-                    bonusOre += 1;
+                    bonusOre += 4;
                     break;
                 case CraftResource.Pinho:
                 case CraftResource.Bronze:
-                    bonusOre += 2;
+                    bonusOre += 4;
                     break;
                 case CraftResource.Mogno:
                 case CraftResource.Dourado:
-                    bonusOre += 3;
+                    bonusOre += 4;
                     break;
                 case CraftResource.Niobio:
                 case CraftResource.Quartzo:
@@ -4293,6 +4297,10 @@ namespace Server.Items
 
                 switch (Resource)
                 {
+                    case CraftResource.Ferro:
+                    case CraftResource.Cedro:
+                        bonus += 3;
+                        break;
                     case CraftResource.Carvalho:
                     case CraftResource.Cobre:
                         bonus += 5;
@@ -4499,10 +4507,8 @@ namespace Server.Items
 
             if (m_Quality == ItemQuality.Low)
             {
-                damage *= 0.9;
+                damage *= 0.98;
             }
-
-
 
             return ScaleDamageByDurability((int)damage);
         }

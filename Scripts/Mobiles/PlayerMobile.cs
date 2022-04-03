@@ -3983,9 +3983,10 @@ namespace Server.Mobiles
                 {
                     PartyLoots.Add(item.GetType());
                     var copia = Dupe.DupeItem(item);
-                    copia.PartyLoot = false;
-                    if (copia.LootType == LootType.Blessed)
-                        copia.BoundTo = this.RawName;
+                    copia.PartyLoot = true;
+                    item.PartyLoot = false;
+                    if (item.LootType == LootType.Blessed)
+                        item.BoundTo = this.RawName;
 
                     if (item.Parent is Mobile)
                     {

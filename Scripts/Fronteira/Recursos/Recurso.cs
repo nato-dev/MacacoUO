@@ -138,10 +138,12 @@ namespace Server.Fronteira.Recursos
                 return CraftResource.Quartzo;
             else if (rnd < 140)
                 return CraftResource.Berilo;
-            else if (rnd < 400)
+            else if (rnd < 300)
                 return CraftResource.Lazurita;
-            else if (rnd < 600)
+            else if (rnd < 400)
                 return CraftResource.Dourado;
+            else if (rnd < 600)
+                return CraftResource.Niobio;
             else if (rnd < 800)
                 return CraftResource.Bronze;
             return CraftResource.Cobre;
@@ -202,39 +204,39 @@ namespace Server.Fronteira.Recursos
             {
                 exp += 99;
                 var dif = Math.Abs(from.Skills[skill].Value - diff.Required);
-                if (dif < 30)
+                if (dif <= 25)
                 {
                     if (from.Skills[skill].Value < 65)
-                        exp += 10000;
+                        exp += 6000;
                     else if (from.Skills[skill].Value < 75)
-                        exp += 5000;
-                    else if (from.Skills[skill].Value < 85)
-                        exp += 2000;
-                    else if (from.Skills[skill].Value < 95)
                         exp += 1000;
-                    else if (from.Skills[skill].Value < 110)
+                    else if (from.Skills[skill].Value < 85)
+                        exp += 1000;
+                    else if (from.Skills[skill].Value < 95)
                         exp += 500;
+                    else if (from.Skills[skill].Value < 110)
+                        exp += 200;
                     else
                         exp += 100;
+                } 
+            }
+
+            var ups = (int)Math.Floor(exp / 1000d);
+            ushort resto = (ushort)(exp % 1000);
+
+            if (ups > 0)
+            {
+                SkillCheck.Gain(from, from.Skills[skill], ups);
+            }
+
+            if (resto > 0)
+            {
+                if (from.Skills[skill].IncreaseExp(resto))
+                {
+                    SkillCheck.Gain(from, from.Skills[skill]);
                 }
             }
 
-            while (exp > 0)
-            {
-                if (exp >= 1000)
-                {
-                    exp -= 1000;
-                    SkillCheck.Gain(from, from.Skills[skill]);
-                }
-                else
-                {
-                    if (from.Skills[skill].IncreaseExp(exp))
-                    {
-                        SkillCheck.Gain(from, from.Skills[skill]);
-                    }
-                    exp = 0;
-                }
-            }
             Item i = GetItem();
             if (i == null)
             {

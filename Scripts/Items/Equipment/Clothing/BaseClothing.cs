@@ -883,8 +883,7 @@ namespace Server.Items
 
             if (mob != null)
             {
-                if (Core.AOS)
-                    m_AosSkillBonuses.AddTo(mob);
+                m_AosSkillBonuses.AddTo(mob);
 
                 #region Mondain's Legacy Sets
                 if (IsSetItem)
@@ -912,8 +911,7 @@ namespace Server.Items
 
             if (mob != null)
             {
-                if (Core.AOS)
-                    m_AosSkillBonuses.Remove();
+                m_AosSkillBonuses.Remove();
 
                 #region Mondain's Legacy Sets
                 if (IsSetItem && m_SetEquipped)
@@ -1940,8 +1938,7 @@ namespace Server.Items
 
             if (parent != null)
             {
-                if (Core.AOS)
-                    m_AosSkillBonuses.AddTo(parent);
+                m_AosSkillBonuses.AddTo(parent);
 
                 AddStatBonuses(parent);
                 parent.CheckStatTimers();

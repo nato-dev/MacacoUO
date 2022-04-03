@@ -90,8 +90,8 @@ namespace Server.Items
                     (
                         SlayerName.Ogros,
 
-                        typeof(Ogre),               typeof(OgreLord),
-                        typeof(ArcticOgreLord)  
+                        typeof(Ogre), typeof(OgreLord), typeof(Fezzik),
+                        typeof(ArcticOgreLord), typeof(Fezzik), typeof(HungryOgre)
                     ),
 
                 new SlayerEntry
@@ -117,7 +117,8 @@ namespace Server.Items
                         typeof(OrcBrute),       typeof(OrcCaptain),
                         typeof(OrcChopper),     typeof(OrcScout),
                         typeof(OrcishLord),     typeof(OrcishMage),
-                        typeof(OrcFootSoldier)
+                        typeof(OrcFootSoldier),  typeof(OrcEstilista),
+                        typeof(Twaulo)
                     ),
 
                 new SlayerEntry
