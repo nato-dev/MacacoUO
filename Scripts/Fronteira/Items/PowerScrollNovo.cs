@@ -193,8 +193,6 @@ namespace Server.Items
         {
             base.Deserialize(reader);
 
-           
-
             int version = (this.InheritsItem ? 0 : reader.ReadInt()); // Required for SpecialScroll insertion
 
             if (this.Value == 105.0 || this.Skill == SkillName.Blacksmith || this.Skill == SkillName.Tailoring)

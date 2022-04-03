@@ -92,10 +92,13 @@ namespace Server.Mobiles
         public override void OnDeath(Container c)
         {
             base.OnDeath(c);
+
             SorteiaItem(DefCookingExp.GetReceitaRandom());
             SorteiaItem(DefCookingExp.GetReceitaRandom());
             var receita = DefCookingExp.Basicas[Utility.Random(DefCookingExp.Basicas.Length)];
             SorteiaItem(new RecipeScroll((int)receita));
+            var receita2 = DefCookingExp.Basicas[Utility.Random(DefCookingExp.Basicas.Length)];
+            SorteiaItem(new RecipeScroll((int)receita2));
             DistribuiItem(AnimatedSeed.GetRandomSeed());
         }
 
