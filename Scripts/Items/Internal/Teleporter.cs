@@ -386,6 +386,7 @@ namespace Server.Items
                
             }
 
+            /*
             var beforeDungeon = m.Region as DungeonRegion;
             var afterDungeon = Region.Find(this.m_PointDest, this.m_MapDest);
 
@@ -393,6 +394,7 @@ namespace Server.Items
             {
 
             }
+            */
 
             StartTeleport(m);
             

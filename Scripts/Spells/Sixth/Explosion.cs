@@ -51,7 +51,7 @@ namespace Server.Spells.Sixth
                 return;
             }
 
-            if (!Caster.CanSee(m))
+            if (!Caster.CanSee(m, true))
             {
                 Caster.SendLocalizedMessage(500237); // Target can not be seen.
             }

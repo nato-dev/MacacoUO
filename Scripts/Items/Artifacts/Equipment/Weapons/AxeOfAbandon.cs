@@ -16,7 +16,7 @@ namespace Server.Items
             WeaponAttributes.BattleLust = 1;		
             Attributes.AttackChance = 15;
             Attributes.DefendChance = 10;	
-            Attributes.CastSpeed = 1;	
+            Attributes.Resistence = 1;	
             Attributes.WeaponSpeed = 30;
             Attributes.WeaponDamage = 50;		
         }

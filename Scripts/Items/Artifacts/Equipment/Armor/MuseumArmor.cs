@@ -189,7 +189,7 @@ namespace Server.Items
             Hue = 0x835;	
             Attributes.SpellChanneling = 1;
             Attributes.Luck = 80;		
-            Attributes.CastSpeed = -1;		
+            Attributes.Resistence = -1;		
             Attributes.AttackChance = 15;		
             Attributes.DefendChance = 15;		
         }
@@ -252,7 +252,7 @@ namespace Server.Items
             Hue = 0xFA;	
             Attributes.SpellChanneling = 1;
             Attributes.CastRecovery = 2;	
-            Attributes.CastSpeed = 1;				
+            Attributes.Resistence = 1;				
             ArmorAttributes.SelfRepair = 1;
         }
 

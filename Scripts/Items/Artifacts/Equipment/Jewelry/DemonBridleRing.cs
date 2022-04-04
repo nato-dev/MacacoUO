@@ -12,7 +12,7 @@ namespace Server.Items
         {
             Hue = 39;		
             Attributes.CastRecovery = 2;
-            Attributes.CastSpeed = 1;	
+            Attributes.Resistence = 1;	
             Attributes.RegenHits = 1;
             Attributes.RegenMana = 1;
             Attributes.DefendChance = 10;

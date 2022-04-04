@@ -13,7 +13,7 @@ namespace Server.Items
             LootType = LootType.Blessed;
             SkillBonuses.SetValues(0, SkillName.Necromancy, 10.0);
             Attributes.RegenMana = 1;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.IncreasedKarmaLoss = 5;
         }
 

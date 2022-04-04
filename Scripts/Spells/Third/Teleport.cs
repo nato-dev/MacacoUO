@@ -141,6 +141,10 @@ namespace Server.Spells.Third
 
         public void Target(IPoint3D p)
         {
+
+
+
+
             IPoint3D orig = p;
             Map map = this.Caster.Map;
 
@@ -148,6 +152,13 @@ namespace Server.Spells.Third
 
             Point3D from = this.Caster.Location;
             Point3D to = new Point3D(p);
+
+            if(!Caster.InLOS(to))
+            {
+                Caster.SendMessage("Voce nao pode ver isto");
+                this.FinishSequence();
+                return;
+            }
 
             var st = this.Caster.Map.GetStaticTiles(to);
             bool staticInvalido = false;

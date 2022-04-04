@@ -10,7 +10,7 @@ namespace Server.Items
         {
             Hue = 0x554;
             Attributes.CastRecovery = 3;
-            Attributes.CastSpeed = 2;
+            Attributes.Resistence = 2;
             Attributes.LowerManaCost = 10;
             Attributes.LowerRegCost = 20;
             Resistances.Energy = 15;

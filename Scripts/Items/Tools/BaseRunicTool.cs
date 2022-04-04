@@ -227,7 +227,7 @@ namespace Server.Items
                 switch (random)
                 {
                     case 0: ApplyAttribute(primary, min, max, AosAttribute.DefendChance, 1, 15); break;
-                    case 1: ApplyAttribute(primary, min, max, AosAttribute.CastSpeed, 1, 1); break;
+                    case 1: ApplyAttribute(primary, min, max, AosAttribute.Resistence, 1, 1); break;
                     case 2: ApplyAttribute(primary, min, max, AosAttribute.CastRecovery, 1, 1); break;
                     case 3: ApplyAttribute(primary, min, max, AosAttribute.AttackChance, 1, 15); break;
                     case 4: ApplyAttribute(primary, min, max, AosAttribute.Luck, 1, 100); break;
@@ -368,7 +368,7 @@ namespace Server.Items
                         ApplyAttribute(primary, min, max, AosAttribute.DefendChance, 1, 15);
                         break;
                     case 5:
-                        ApplyAttribute(primary, min, max, AosAttribute.CastSpeed, 1, 1);
+                        ApplyAttribute(primary, min, max, AosAttribute.Resistence, 1, 1);
                         break;
                     case 6:
                         ApplyAttribute(primary, min, max, AosAttribute.AttackChance, 1, 15);
@@ -534,7 +534,7 @@ namespace Server.Items
                         }
                         break;
                     case 3:
-                        ApplyAttribute(primary, min, max, AosAttribute.CastSpeed, 1, 1);
+                        ApplyAttribute(primary, min, max, AosAttribute.Resistence, 1, 1);
                         break;
                         /* Begin Armor */
                     case 4:
@@ -781,7 +781,7 @@ namespace Server.Items
                         ApplyAttribute(primary, min, max, AosAttribute.EnhancePotions, 5, 25, 5);
                         break;
                     case 12:
-                        ApplyAttribute(primary, min, max, AosAttribute.CastSpeed, 1, 1);
+                        ApplyAttribute(primary, min, max, AosAttribute.Resistence, 1, 1);
                         break;
                     case 13:
                         ApplyAttribute(primary, min, max, AosAttribute.CastRecovery, 1, 3);
@@ -869,7 +869,7 @@ namespace Server.Items
                         ApplyAttribute(primary, min, max, AosAttribute.BonusMana, 1, 8);
                         break;
                     case 5:
-                        ApplyAttribute(primary, min, max, AosAttribute.CastSpeed, 1, 1);
+                        ApplyAttribute(primary, min, max, AosAttribute.Resistence, 1, 1);
                         break;
                     case 6:
                         ApplyAttribute(primary, min, max, AosAttribute.CastRecovery, 1, 3);
@@ -1005,13 +1005,13 @@ namespace Server.Items
 
         private static void ApplyAttribute(AosAttributes attrs, int min, int max, AosAttribute attr, int low, int high, int scale)
         {
-            if (attr == AosAttribute.CastSpeed)
+            if (attr == AosAttribute.Resistence)
                 attrs[attr] += Scale(min, max, low / scale, high / scale) * scale;
             else
                 attrs[attr] = Scale(min, max, low / scale, high / scale) * scale;
 
             if (attr == AosAttribute.SpellChanneling)
-                attrs[AosAttribute.CastSpeed] -= 1;
+                attrs[AosAttribute.Resistence] -= 1;
         }
 
         private static void ApplyAttribute(AosArmorAttributes attrs, int min, int max, AosArmorAttribute attr, int low, int high)

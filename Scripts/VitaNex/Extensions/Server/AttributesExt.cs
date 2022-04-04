@@ -125,7 +125,7 @@ namespace Server
 				{AosAttribute.BonusStam, new AttributeDefinition("Bonus Stamina", 1.1, 0, 8)},
 				{AosAttribute.BonusStr, new AttributeDefinition("Bonus Strength", 1.1, 0, 8)},
 				{AosAttribute.CastRecovery, new AttributeDefinition("Faster Cast Recovery", 1.2, 0, 3)},
-				{AosAttribute.CastSpeed, new AttributeDefinition("Faster Casting", 1.4)},
+				{AosAttribute.Resistence, new AttributeDefinition("Faster Casting", 1.4)},
 				{AosAttribute.DefendChance, new AttributeDefinition("Defend Chance Increase", 1.1, 0, 15, 3, true)},
 				{AosAttribute.EnhancePotions, new AttributeDefinition("Enhance Potions", 1.0, 0, 25, 5, true)},
 				{AosAttribute.IncreasedKarmaLoss, new AttributeDefinition("Increased Karma Loss", 1.0, 0, 1, 1, true)},

@@ -18,7 +18,7 @@ namespace Server.Items
                     this.Attributes.LowerRegCost += 10;
                     break;
                 case 1:
-                    this.Attributes.CastSpeed += 1;
+                    this.Attributes.Resistence += 1;
                     break;
                 case 2:
                     this.Attributes.CastRecovery += 2;

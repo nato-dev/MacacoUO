@@ -367,6 +367,7 @@ namespace Server.Mobiles
                 c.DropItem(DawnsMusicGear.RandomUncommon);
 
             Item pot = null;
+            DistribuiItem(new CristalDoPoder() { Amount = 15 });
             this.SorteiaItem(new AutomatonActuator());
             this.SorteiaItem(Decos.RandomDeco(this));
             this.SorteiaItem(Decos.RandomDeco(this));

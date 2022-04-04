@@ -594,7 +594,7 @@ namespace Server.Spells
                 if (bonus > targetRS) bonus = targetRS;
                 targetRS -= bonus;
 
-                scalar += AnelDano.GetNivel(m_Caster, false) / 100;
+                scalar += AosAttributes.GetValue(Caster, AosAttribute.SpellDamage) / 100;
 
                 if (elementoMagia == ElementoPvM.Escuridao)
                 {
@@ -1529,7 +1529,7 @@ namespace Server.Spells
                 fcMax = 2;
             }
 
-            int fc = AosAttributes.GetValue(m_Caster, AosAttribute.CastSpeed);
+            int fc = AosAttributes.GetValue(m_Caster, AosAttribute.Resistence);
 
             if (fc > fcMax)
             {

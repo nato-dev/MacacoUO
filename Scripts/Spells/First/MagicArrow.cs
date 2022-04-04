@@ -47,7 +47,7 @@ namespace Server.Spells.First
 
         public void Target(IDamageable d)
         {
-            if (!Caster.CanSee(d))
+            if (!Caster.CanSee(d, true))
             {
                 Caster.SendLocalizedMessage(500237); // Target can not be seen.
             }

@@ -16,14 +16,14 @@ namespace Server.Items
             this.Hue = 1165;
 
             this.Attributes.Luck = 150;
-            this.Attributes.CastSpeed = 1;
+            this.Attributes.Resistence = 1;
             this.Attributes.CastRecovery = 1;
 
             this.SetHue = 1165;
             this.SetAttributes.Luck = 100;
             this.SetAttributes.RegenHits = 2;
             this.SetAttributes.RegenMana = 2;
-            this.SetAttributes.CastSpeed = 1;
+            this.SetAttributes.Resistence = 1;
             this.SetAttributes.CastRecovery = 4;
 		}
 

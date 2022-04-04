@@ -558,6 +558,7 @@ namespace Server.Mobiles
             var b = new BraceleteDoPoder();
             b.Bonus = 5;
             SorteiaItem(b);
+            DistribuiItem(new CristalDoPoder() { Amount = 5 });
             DistribuiItem(new FragmentosAntigos());
             SorteiaItem(Decos.RandomDeco(this));
             GolemMecanico.JorraOuro(c.Location, c.Map, 350);

@@ -5078,11 +5078,11 @@ namespace Server.Mobiles
             return iCount;
         }
 
-        public override bool CanSee(Mobile m)
+        public override bool CanSee(Mobile m, bool los = false)
         {
             if (this.ControlMaster == m)
                 return true;
-            return base.CanSee(m);
+            return base.CanSee(m, los);
         }
 
         private class TameEntry : ContextMenuEntry
@@ -7550,13 +7550,22 @@ namespace Server.Mobiles
                     lapide.MoveToWorld(c.Location, c.Map);
                 }
 
-                if(this.IsParagon)
+                if (this.IsParagon)
                 {
+                    var nivel = (int)Math.Floor(this.HitsMax / 3000d);
+                    if (nivel < 1)
+                        nivel = 1;
+
+                    if (GetLootingRights().Count > 1)
+                        SorteiaItem(new FragmentosAntigos() { Amount = nivel });
+                    else
+                        c.DropItem(new FragmentosAntigos() { Amount = nivel });
+
                     Shard.Debug("Bixo paragon morrendo");
                     if(this.HitsMax >= 3000)
                     {
                         Shard.Debug("Bixo paragon tem mais de 3k de vida");
-                        var nivel = (int)Math.Floor(this.HitsMax / 3000d);
+                       
                         DistribuiItem(new Gold(this.HitsMax/2));
                         var talisman = new BaseTalisman(0x9E28);
                         talisman.Hue = Paragon.Hue;

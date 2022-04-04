@@ -17,7 +17,7 @@ namespace Server.Items
             Hue = 2006; //TODO: get proper hue, this is a guess
             Attributes.RegenMana = 2;
             Attributes.AttackChance = 10;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.CastRecovery = 2;
             Attributes.LowerManaCost = 4;
             Resistances.Poison = 5;

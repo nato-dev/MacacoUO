@@ -18,7 +18,7 @@ namespace Server.Items
                     this.Attributes.LowerManaCost += 10;
                     break;
                 case 1:
-                    this.Attributes.CastSpeed += 1;
+                    this.Attributes.Resistence += 1;
                     break;
                 case 2:
                     this.Attributes.CastRecovery += 2;

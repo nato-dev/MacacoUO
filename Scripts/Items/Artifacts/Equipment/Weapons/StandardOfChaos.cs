@@ -17,7 +17,7 @@ namespace Server.Items
             WeaponAttributes.HitLowerDefend = 40;
             Attributes.WeaponSpeed = 30;
             Attributes.WeaponDamage = -40;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             AosElementDamages.Chaos = 100;		
         }
 

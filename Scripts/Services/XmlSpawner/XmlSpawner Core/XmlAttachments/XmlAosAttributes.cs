@@ -214,11 +214,11 @@ namespace Server.Engines.XmlSpawner2
         {
             get
             {
-                return this[AosAttribute.CastSpeed];
+                return this[AosAttribute.Resistence];
             }
             set
             {
-                this[AosAttribute.CastSpeed] = value;
+                this[AosAttribute.Resistence] = value;
             }
         }
         [CommandProperty(AccessLevel.GameMaster)]

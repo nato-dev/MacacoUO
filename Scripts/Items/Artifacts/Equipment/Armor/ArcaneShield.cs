@@ -12,7 +12,7 @@ namespace Server.Items
             Attributes.NightSight = 1;
             Attributes.SpellChanneling = 1;
             Attributes.DefendChance = 15;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
         }
 
         public ArcaneShield(Serial serial)

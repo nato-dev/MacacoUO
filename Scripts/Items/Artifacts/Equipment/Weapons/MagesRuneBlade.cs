@@ -8,7 +8,7 @@ namespace Server.Items
         [Constructable]
         public MagesRuneBlade()
         {
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
         }
 
         public MagesRuneBlade(Serial serial)

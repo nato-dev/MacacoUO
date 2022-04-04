@@ -22,7 +22,7 @@ namespace Server.Items
             _ElfOnly = true;
 
             Attributes.BonusInt = 5;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.CastRecovery = 2;
             ArmorAttributes.MageArmor = 1;
         }

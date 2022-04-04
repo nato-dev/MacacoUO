@@ -73,7 +73,7 @@ namespace Server.Items
 			if(Utility.RandomBool())
 				Attributes.SpellChanneling = 1;			
 			else
-				Attributes.CastSpeed = 1;
+				Attributes.Resistence = 1;
 		}
 
         public static Dictionary<Mobile, SurgeType> Table { get { return m_Table; } }

@@ -10,6 +10,7 @@ namespace Server.Mobiles
     public class Twaulo : BaseChampion
     {
         public override int BonusExp => 500;
+        public override bool IsBoss => true;
 
         [Constructable]
         public Twaulo()
@@ -163,7 +164,7 @@ namespace Server.Mobiles
             base.OnDeath(c);
             SorteiaItem(Decos.RandomDeco(this));
             SorteiaItem(new EnhancedBandage(10));
-
+            DistribuiItem(new CristalDoPoder() { Amount = 1 });
             var b = new BraceleteDoPoder();
             b.Bonus = 10;
             SorteiaItem(b);

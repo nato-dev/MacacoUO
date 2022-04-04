@@ -13,7 +13,7 @@ namespace Server.Items
             this.Name = ("Venom");	
             Hue = 1371;
             Attributes.CastRecovery = 1;
-            Attributes.CastSpeed = 2;
+            Attributes.Resistence = 2;
             Attributes.SpellDamage = 10;
             Resistances.Poison = 20;
         }

@@ -129,9 +129,9 @@ namespace Server.Factions
                 ((MaceAndShieldGlasses)item).Attributes.WeaponDamage = 10;
             }
 
-            if (item is VesperOrderShield && ((VesperOrderShield)item).Attributes.CastSpeed != 0)
+            if (item is VesperOrderShield && ((VesperOrderShield)item).Attributes.Resistence != 0)
             {
-                ((VesperOrderShield)item).Attributes.CastSpeed = 0;
+                ((VesperOrderShield)item).Attributes.Resistence = 0;
 
                 if (item.Name != "Order Shield")
                     item.Name = "Order Shield";

@@ -69,7 +69,7 @@ namespace Server.Items
             LootType = LootType.Blessed;
 
             Attributes.SpellChanneling = 1;
-            Attributes.CastSpeed = -1;
+            Attributes.Resistence = -1;
         }
 
         public XenrrFishingPole(Serial serial) : base(serial)

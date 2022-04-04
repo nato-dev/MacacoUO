@@ -125,6 +125,7 @@ namespace Server.Mobiles
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(110));
             SorteiaItem(Carnage.GetRandomPS(110));
+            DistribuiItem(new CristalDoPoder() { Amount = 10 });
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetReceitaPower());
             SorteiaItem(DefJewelcrafting.GetRandomReceitaNoob());

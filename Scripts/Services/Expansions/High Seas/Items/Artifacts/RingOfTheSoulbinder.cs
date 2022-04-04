@@ -13,7 +13,7 @@ namespace Server.Items
             Hue = 288;
             Attributes.RegenMana = 2;
             Attributes.DefendChance = 15;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.CastRecovery = 3;
             Attributes.SpellDamage = 10;
             Attributes.LowerRegCost = 10;

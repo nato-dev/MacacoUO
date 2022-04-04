@@ -143,7 +143,7 @@ namespace Server.Spells.Mysticism
                 if (prim >= 80 && sec >= 80 && Weapon.Attributes.SpellChanneling == 0)
                 {
                     Enhancement.SetValue(Caster, AosAttribute.SpellChanneling, 1, ModName);
-                    Enhancement.SetValue(Caster, AosAttribute.CastSpeed, -1, ModName);
+                    Enhancement.SetValue(Caster, AosAttribute.Resistence, -1, ModName);
                     malus = 1;
                 }
 

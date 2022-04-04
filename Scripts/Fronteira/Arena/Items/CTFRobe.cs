@@ -43,7 +43,7 @@ namespace Server.Items
             Movable = false;
             Attributes.LowerRegCost = 100;
             Attributes.CastRecovery = 6;
-            Attributes.CastSpeed = 2;
+            Attributes.Resistence = 2;
             Attributes.LowerManaCost = 30;
             Attributes.RegenMana = 5;
             Resistances.Physical = 60;

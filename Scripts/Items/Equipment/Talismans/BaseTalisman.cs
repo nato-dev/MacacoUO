@@ -836,7 +836,7 @@ namespace Server.Items
             if ((prop = m_AosAttributes.CastRecovery) != 0)
                 list.Add(1060412, prop.ToString()); // faster cast recovery ~1_val~
 
-            if ((prop = m_AosAttributes.CastSpeed) != 0)
+            if ((prop = m_AosAttributes.Resistence) != 0)
                 list.Add(1060413, prop.ToString()); // faster casting ~1_val~
 
             if ((prop = m_AosAttributes.AttackChance) != 0)

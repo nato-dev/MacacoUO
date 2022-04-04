@@ -640,7 +640,7 @@ namespace Server
                 case 10: return Math.Min(100, AosAttributes.GetValue(from, AosAttribute.LowerRegCost));
                 case 11: return AosAttributes.GetValue(from, AosAttribute.SpellDamage);
                 case 12: return Math.Min(6, AosAttributes.GetValue(from, AosAttribute.CastRecovery));
-                case 13: return Math.Min(4, AosAttributes.GetValue(from, AosAttribute.CastSpeed));
+                case 13: return Math.Min(4, AosAttributes.GetValue(from, AosAttribute.Resistence));
                 case 14: return Math.Min(40, AosAttributes.GetValue(from, AosAttribute.LowerManaCost)) + BaseArmor.GetInherentLowerManaCost(from);
 
                 case 15: return RegenRates.HitPointRegen(from); // HP   REGEN
@@ -684,7 +684,7 @@ namespace Server
         WeaponSpeed = 0x00001000,
         SpellDamage = 0x00002000,
         CastRecovery = 0x00004000,
-        CastSpeed = 0x00008000,
+        Resistence = 0x00008000,
         LowerManaCost = 0x00010000,
         LowerRegCost = 0x00020000,
         ReflectPhysical = 0x00040000,
@@ -854,7 +854,7 @@ namespace Server
                     value += 5;
                 #endregion
             }
-            else if (attribute == AosAttribute.CastSpeed)
+            else if (attribute == AosAttribute.Resistence)
             {
                 if (HowlOfCacophony.IsUnderEffects(m) || AuraOfNausea.UnderNausea(m))
                     value -= 5;
@@ -1354,15 +1354,15 @@ namespace Server
         }
 
         [CommandProperty(AccessLevel.GameMaster)]
-        public int CastSpeed
+        public int Resistence
         {
             get
             {
-                return this[AosAttribute.CastSpeed];
+                return this[AosAttribute.Resistence];
             }
             set
             {
-                this[AosAttribute.CastSpeed] = value;
+                this[AosAttribute.Resistence] = value;
             }
         }
 

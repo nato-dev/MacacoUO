@@ -13,7 +13,7 @@ namespace Server.Items
         public SlimsShadowVeil()
         {
             Hue = 1932;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
         }
 
         public SlimsShadowVeil(Serial serial)

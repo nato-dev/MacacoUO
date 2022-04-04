@@ -512,12 +512,12 @@ namespace Server.SkillHandlers
                     {
                         wep.Attributes.SpellChanneling = value;
 
-                        if (wep.Attributes.CastSpeed >= 0)
-                            wep.Attributes.CastSpeed -= 1;
+                        if (wep.Attributes.Resistence >= 0)
+                            wep.Attributes.Resistence -= 1;
                     }
-                    else if (attr == AosAttribute.CastSpeed)
+                    else if (attr == AosAttribute.Resistence)
                     {
-                        wep.Attributes.CastSpeed += value;
+                        wep.Attributes.Resistence += value;
                     }
                     else if (attr == AosAttribute.WeaponDamage)
                     {
@@ -596,12 +596,12 @@ namespace Server.SkillHandlers
                     {
                         shield.Attributes.SpellChanneling = value;
 
-                        if (shield.Attributes.CastSpeed >= 0)
-                            shield.Attributes.CastSpeed -= 1;
+                        if (shield.Attributes.Resistence >= 0)
+                            shield.Attributes.Resistence -= 1;
                     }
-                    else if (attr == AosAttribute.CastSpeed)
+                    else if (attr == AosAttribute.Resistence)
                     {
-                        shield.Attributes.CastSpeed += value;
+                        shield.Attributes.Resistence += value;
                     }
                     else
                         shield.Attributes[attr] = value;
@@ -628,7 +628,7 @@ namespace Server.SkillHandlers
                     if (attr == AosAttribute.SpellChanneling)
                     {
                         arm.Attributes.SpellChanneling = value;
-                        arm.Attributes.CastSpeed -= 1;
+                        arm.Attributes.Resistence -= 1;
                     }
                     else if (attr == AosAttribute.WeaponDamage)
                         arm.Attributes.WeaponDamage = value;
@@ -1048,7 +1048,7 @@ namespace Server.SkillHandlers
                         if (!(prop is AosAttribute) || ((AosAttribute)prop) != attr)
                             total++;
                     }
-                    else if (wep.Attributes[attr] == 0 && attr == AosAttribute.CastSpeed && wep.Attributes[AosAttribute.SpellChanneling] > 0)
+                    else if (wep.Attributes[attr] == 0 && attr == AosAttribute.Resistence && wep.Attributes[AosAttribute.SpellChanneling] > 0)
                     {
                         if (!(prop is AosAttribute) || (AosAttribute)prop != attr)
                             total++;
@@ -1138,7 +1138,7 @@ namespace Server.SkillHandlers
                         if (!(prop is AosAttribute) || ((AosAttribute)prop) != attr)
                             total++;
                     }
-                    else if (armor.Attributes[attr] == 0 && attr == AosAttribute.CastSpeed && armor.Attributes[AosAttribute.SpellChanneling] > 0)
+                    else if (armor.Attributes[attr] == 0 && attr == AosAttribute.Resistence && armor.Attributes[AosAttribute.SpellChanneling] > 0)
                     {
                         if (!(prop is AosAttribute) || (AosAttribute)prop == attr)
                             total++;
@@ -1764,7 +1764,7 @@ namespace Server.SkillHandlers
             m_Table[13] = new ImbuingDefinition(AosAttribute.WeaponSpeed, 1075629, 110, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenciaAgua), 30, 5, 1112045, true, true, false, false, false);
             m_Table[14] = new ImbuingDefinition(AosAttribute.SpellDamage, 1075628, 100, typeof(EnchantedEssence), typeof(Emerald), typeof(CrystalShards), 12, 1, 1112041, false, false, false, false, true);
             m_Table[15] = new ImbuingDefinition(AosAttribute.CastRecovery, 1075618, 120, typeof(RelicFragment), typeof(Amethyst), typeof(EssenciaGelo), 3, 1, 1111952, false, false, false, false, true);
-            m_Table[16] = new ImbuingDefinition(AosAttribute.CastSpeed, 1075617, 140, typeof(RelicFragment), typeof(Ruby), typeof(EssenciaTerra), 1, 1, 1111951, false, false, false, true, true);
+            m_Table[16] = new ImbuingDefinition(AosAttribute.Resistence, 1075617, 140, typeof(RelicFragment), typeof(Ruby), typeof(EssenciaTerra), 1, 1, 1111951, false, false, false, true, true);
             m_Table[17] = new ImbuingDefinition(AosAttribute.LowerManaCost, 1075621, 110, typeof(RelicFragment), typeof(Tourmaline), typeof(EssenciaVento), 8, 1, 1111996, false, false, true, false, true);
             m_Table[18] = new ImbuingDefinition(AosAttribute.LowerRegCost, 1075625, 100, typeof(MagicalResidue), typeof(Amber), typeof(FaeryDust), 20, 1, 1111997, false, false, true, false, true);
             m_Table[19] = new ImbuingDefinition(AosAttribute.ReflectPhysical, 1075626, 100, typeof(MagicalResidue), typeof(Citrine), typeof(ReflectiveWolfEye), 15, 1, 1112006, false, false, true, true, false);
@@ -2019,7 +2019,7 @@ namespace Server.SkillHandlers
                 BaseWeapon w = (BaseWeapon)item;
 
                 if (mod == 16 && w.Attributes.SpellChanneling > 0)
-                    return w.Attributes[AosAttribute.CastSpeed] + 1;
+                    return w.Attributes[AosAttribute.Resistence] + 1;
 
                 if (attr is AosAttribute)
                     return w.Attributes[(AosAttribute)attr];
@@ -2055,7 +2055,7 @@ namespace Server.SkillHandlers
                 BaseArmor a = (BaseArmor)item;
 
                 if (a is BaseShield && mod == 16 && a.Attributes.SpellChanneling > 0)
-                    return a.Attributes[AosAttribute.CastSpeed] + 1;
+                    return a.Attributes[AosAttribute.Resistence] + 1;
 
                 if (attr is AosAttribute)
                     return a.Attributes[(AosAttribute)attr];
@@ -2189,7 +2189,7 @@ namespace Server.SkillHandlers
         public static int GetIntensityForAttribute(Item item, object attr, int checkMod, int value)
         {
             // This is terribly clunky, however we're accomidating 1 out of 50+ attributes that acts differently
-            if (value <= 0 && (!(attr is AosAttribute) || (AosAttribute)attr != AosAttribute.CastSpeed))
+            if (value <= 0 && (!(attr is AosAttribute) || (AosAttribute)attr != AosAttribute.Resistence))
                 return 0;
 
             int mod = GetMod(attr);
@@ -2523,7 +2523,7 @@ namespace Server.SkillHandlers
                 case AosAttribute.RegenMana: return new int[] { 1, 2 };
                 default:
                 case AosAttribute.SpellChanneling:
-                case AosAttribute.CastSpeed:
+                case AosAttribute.Resistence:
                 case AosAttribute.Brittle:
                 case AosAttribute.NightSight: return new int[] { 1, 1 };
             }

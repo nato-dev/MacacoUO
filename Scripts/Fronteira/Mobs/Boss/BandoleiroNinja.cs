@@ -133,6 +133,7 @@ namespace Server.Mobiles
 
         public override void OnDeath(Container c)
         {
+            DistribuiItem(new CristalDoPoder() { Amount = 5 });
             base.OnDeath(c);
         }
 

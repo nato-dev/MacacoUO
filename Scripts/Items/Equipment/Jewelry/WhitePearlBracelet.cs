@@ -19,7 +19,7 @@ namespace Server.Items
                 switch ( Utility.Random(3) )
                 {
                     case 0:
-                        this.Attributes.CastSpeed += 1;
+                        this.Attributes.Resistence += 1;
                         break;
                     case 1:
                         this.Attributes.CastRecovery += 2;

@@ -1059,19 +1059,19 @@ namespace Server.Items
                 list.Add(1060486, prop.ToString()); // swing speed increase ~1_val~%
 
             if ((prop = m_AosAttributes.WeaponDamage) != 0)
-                list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
+                list.Add($"Dano Fisico PvM: {prop}%");
 
             if ((prop = m_AosAttributes.DefendChance) != 0)
-                list.Add(1060408, prop.ToString()); // defense chance increase ~1_val~%
+                list.Add($"Parry & Armor PvM: {prop}%"); // defense chance increase ~1_val~%
 
             if ((prop = m_AosAttributes.CastRecovery) != 0)
                 list.Add(1060412, prop.ToString()); // faster cast recovery ~1_val~
 
-            if ((prop = m_AosAttributes.CastSpeed) != 0)
+            if ((prop = m_AosAttributes.Resistence) != 0)
                 list.Add(1060413, prop.ToString()); // faster casting ~1_val~
 
             if ((prop = m_AosAttributes.SpellDamage) != 0)
-                list.Add(1060483, prop.ToString()); // spell damage increase ~1_val~%
+                list.Add($"Bonus Dano Magico PvM: {prop}%"); // spell damage increase ~1_val~%
 
             if ((prop = m_AosAttributes.LowerManaCost) != 0)
                 list.Add(1060433, prop.ToString()); // lower mana cost ~1_val~%

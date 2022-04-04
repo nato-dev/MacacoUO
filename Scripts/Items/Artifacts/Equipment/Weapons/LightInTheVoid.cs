@@ -15,7 +15,7 @@ namespace Server.Items
 			WeaponAttributes.HitLowerDefend = 30;
 			Attributes.BonusStr = 8;
 			Attributes.AttackChance = 10;
-			Attributes.CastSpeed = 1;
+			Attributes.Resistence = 1;
 			Attributes.WeaponSpeed = 20;
 			Attributes.WeaponDamage = 35;
 			Hue = 1072; //Hue not exact

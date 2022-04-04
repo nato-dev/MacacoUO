@@ -10,7 +10,7 @@ namespace Server.Items
         {
             Attributes.BonusInt = 5;
             Attributes.SpellDamage = 10;
-            Attributes.CastSpeed = 2;
+            Attributes.Resistence = 2;
         }
 
         public DjinnisRing(Serial serial)

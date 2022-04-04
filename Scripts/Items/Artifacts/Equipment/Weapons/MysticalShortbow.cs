@@ -9,7 +9,7 @@ namespace Server.Items
         public MysticalShortbow()
         {
             Attributes.SpellChanneling = 1;
-            Attributes.CastSpeed = -1;
+            Attributes.Resistence = -1;
         }
 
         public MysticalShortbow(Serial serial)

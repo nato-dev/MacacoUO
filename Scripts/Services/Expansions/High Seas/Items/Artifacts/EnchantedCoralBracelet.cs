@@ -15,7 +15,7 @@ namespace Server.Items
             Attributes.RegenMana = 1;
             Attributes.AttackChance = 5;
             Attributes.DefendChance = 15;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.CastRecovery = 3;
             Attributes.SpellDamage = 10;
         }

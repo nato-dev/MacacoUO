@@ -1976,9 +1976,10 @@ namespace Server.Items
 
                 if (defender.Player && parry > 70 && attacker is BaseCreature)
                 {
-                    chance += AnelDano.GetNivel(defender, true) / 100;
+                    var p = ((PlayerMobile)defender);
+                    chance += AosAttributes.GetValue(defender, AosAttribute.DefendChance) / 100d;
 
-                    if(defender.Weapon is Fists)
+                    if (defender.Weapon is Fists)
                     {
                         chance += defender.Skills.Wrestling.Value / 100 * 0.40; // 40%
                     }
@@ -2403,6 +2404,7 @@ namespace Server.Items
             if (defender.Player && !attacker.Player)
             {
                 virtualArmor += (virtualArmor / 2) * ((defender.GetBonusElemento(ElementoPvM.Terra) + defender.GetBonusElemento(ElementoPvM.Luz)));
+                damage -= (int)Math.Ceiling(damage * (AosAttributes.GetValue(defender, AosAttribute.DefendChance) / 100));
             }
             if (!defender.Player && attacker.Player)
             {
@@ -2411,8 +2413,9 @@ namespace Server.Items
                     bonus = virtualArmor;
                 virtualArmor -= bonus;
 
-                var nivel = AnelDano.GetNivel(attacker, false);
-                damage += (int)Math.Ceiling(damage * (nivel/100));
+                damage += (int)Math.Ceiling(damage * (AosAttributes.GetValue(attacker, AosAttribute.WeaponDamage)/100));
+
+               
             }
 
             WeaponAbility a = WeaponAbility.GetCurrentAbility(attacker);
@@ -6636,7 +6639,7 @@ namespace Server.Items
                 list.Add(1060412, prop.ToString()); // faster cast recovery ~1_val~
             }
 
-            if ((prop = fcMalus ? m_AosAttributes.CastSpeed - 1 : m_AosAttributes.CastSpeed) != 0)
+            if ((prop = fcMalus ? m_AosAttributes.Resistence - 1 : m_AosAttributes.Resistence) != 0)
             {
                 list.Add(1060413, prop.ToString()); // faster casting ~1_val~
             }

@@ -178,75 +178,7 @@ namespace Server.Items
         }
     }
 
-    public class AnelDano : BaseRing
-    {
-        private int _nivel;
-
-        public TipoJoias Tipo;
-
-        public static int GetNivel(Mobile from, bool parry)
-        {
-            var colar = from.Ring as AnelDano;
-            if (colar != null && (parry && colar.Tipo==TipoJoias.Escudo || !parry && colar.Tipo != TipoJoias.Escudo))
-            {
-                return colar.Nivel;
-            }
-            return 0;
-        }
-
-        [CommandProperty(AccessLevel.GameMaster)]
-        public int Nivel { get { return _nivel; } set { _nivel = value; InvalidateProperties(); } }
-
-        public override void AddNameProperties(ObjectPropertyList list)
-        {
-            base.AddNameProperties(list);
-            list.Add("Nivel: " + Nivel + "/20");
-            if (Tipo == TipoJoias.Escudo)
-                list.Add($"+{Nivel}% Resistencia & Parry PvM");
-            else
-                list.Add($"+{Nivel}% Dano PvM");
-        }
-
-        [Constructable]
-        public AnelDano()
-            : base(0x108a)
-        {
-            Name = "Anel De Dano PvM";
-            Hue = 1152;
-            Nivel = 1;
-        }
-
-        public override void OnDoubleClick(Mobile from)
-        {
-            if (Nivel >= 20 || !from.Player)
-                return;
-
-            from.SendGump(new ColarDanoGump(from as PlayerMobile, this));
-
-        }
-
-        public AnelDano(Serial serial)
-            : base(serial)
-        {
-        }
-
-        public override void Serialize(GenericWriter writer)
-        {
-            base.Serialize(writer);
-            writer.Write((int)0); // version
-            writer.Write(Nivel);
-            writer.Write((int)Tipo);
-        }
-
-        public override void Deserialize(GenericReader reader)
-        {
-            base.Deserialize(reader);
-            int version = reader.ReadInt();
-            Nivel = reader.ReadInt();
-            Tipo = (TipoJoias)reader.ReadInt();
-        }
-    }
-
+ 
     public class FragmentosAntigos : Item
     {
         [Constructable]
@@ -262,10 +194,9 @@ namespace Server.Items
             base.OnDoubleClick(from);
             if (this.Amount < 10)
             {
-                from.SendMessage("Junte 10 fragmentos antigos para criar um anel de dano PvM");
+                from.SendMessage("Junte 10 fragmentos antigos para criar um anel PvM");
                 return;
             }
-
 
             from.SendGump(new GumpOpcoes("Craftar Joia", (int n) => {
 
@@ -273,6 +204,7 @@ namespace Server.Items
                 {
                     this.Consume(10);
                     var colar = new AnelDano();
+                    colar.Attributes.WeaponDamage = 1;
                     colar.Crafter = from;
                     from.PlaceInBackpack(colar);
                     from.SendMessage("Voce criou um anel de dano !");
@@ -281,14 +213,23 @@ namespace Server.Items
                 {
                     this.Consume(10);
                     var colar = new AnelDano();
-                    colar.Tipo = TipoJoias.Escudo;
+                    colar.Attributes.DefendChance = 1;
                     colar.Crafter = from;
                     from.PlaceInBackpack(colar);
                     from.SendMessage("Voce criou um anel de parry !");
                 }
-              
+                else if (n == 2)
+                {
+                    this.Consume(10);
+                    var colar = new AnelDano();
+                    colar.Attributes.SpellDamage = 1;
+                    colar.Crafter = from;
+                    from.PlaceInBackpack(colar);
+                    from.SendMessage("Voce o anel !");
+                }
 
-            }, 0x1053, 1152, "Anel Dano", "Anel Parry"));
+
+            }, 0x1053, 1152, "Dano Fisico", "Parry & Armor", "Dano Magico"));
 
            
         }

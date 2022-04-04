@@ -13,7 +13,7 @@ namespace Server.Items
             ArmorAttributes.SoulCharge = 20;
             Attributes.AttackChance = 5;
             Attributes.DefendChance = 10;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
         }
 
         public GargishSignOfChaos(Serial serial)

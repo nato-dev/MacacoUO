@@ -15,7 +15,7 @@ namespace Server.Items
             WeaponAttributes.HitLightning = 45;	
             WeaponAttributes.HitLowerDefend = 50;
             WeaponAttributes.BattleLust = 1;
-            Attributes.CastSpeed = 1;	
+            Attributes.Resistence = 1;	
             Attributes.WeaponSpeed = 25;
             Attributes.WeaponDamage = 60;
         }

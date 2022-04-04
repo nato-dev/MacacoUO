@@ -2912,7 +2912,6 @@ namespace Server
         private static int m_MaxLOSDistance = Core.GlobalMaxUpdateRange + 1;
 
         public static int MaxLOSDistance { get => m_MaxLOSDistance; set => m_MaxLOSDistance = value; }
-
         public bool LineOfSight(Point3D org, Point3D dest)
         {
             if (this == Internal)
@@ -2925,11 +2924,11 @@ namespace Server
                 return false;
             }
 
-            Point3D end = dest;
+            var end = dest;
 
             if (org.X > dest.X || (org.X == dest.X && org.Y > dest.Y) || (org.X == dest.X && org.Y == dest.Y && org.Z > dest.Z))
             {
-                Point3D swap = org;
+                var swap = org;
 
                 org = dest;
                 dest = swap;
@@ -2940,11 +2939,11 @@ namespace Server
                 return true;
             }
 
-            int xd = dest.m_X - org.m_X;
-            int yd = dest.m_Y - org.m_Y;
-            int zd = dest.m_Z - org.m_Z;
+            var xd = dest.m_X - org.m_X;
+            var yd = dest.m_Y - org.m_Y;
+            var zd = dest.m_Z - org.m_Z;
 
-            double zslp = Math.Sqrt(xd * xd + yd * yd);
+            var zslp = Math.Sqrt(xd * xd + yd * yd);
 
             double sq3d;
 
@@ -2957,8 +2956,8 @@ namespace Server
                 sq3d = zslp;
             }
 
-            double rise = yd / sq3d;
-            double run = xd / sq3d;
+            var rise = yd / sq3d;
+            var run = xd / sq3d;
 
             zslp = zd / sq3d;
 
@@ -2966,7 +2965,7 @@ namespace Server
             double y = org.m_Y;
             double z = org.m_Z;
 
-            Point3DList path = new Point3DList();
+            var path = new Point3DList();
 
             int ix, iy, iz;
             Point3D p;
@@ -3013,8 +3012,8 @@ namespace Server
 
             Utility.FixPoints(ref pTop, ref pBottom);
 
-            int pathCount = path.Count;
-            int endTop = end.m_Z + 1;
+            var pathCount = path.Count;
+            var endTop = end.m_Z + 1;
 
             int height, landZ, landAvg, landTop, pointTop, ltID;
             bool contains;
@@ -3025,7 +3024,7 @@ namespace Server
             StaticTile[] statics;
             IPooledEnumerable<Item> eable;
 
-            for (int i = 0; i < pathCount; ++i)
+            for (var i = 0; i < pathCount; ++i)
             {
                 point = path[i];
                 pointTop = point.m_Z;
@@ -3047,7 +3046,7 @@ namespace Server
                 contains = false;
                 ltID = landTile.ID;
 
-                for (int j = 0; !contains && j < m_InvalidLandTiles.Length; ++j)
+                for (var j = 0; !contains && j < m_InvalidLandTiles.Length; ++j)
                 {
                     contains = ltID == m_InvalidLandTiles[j];
                 }
@@ -3056,7 +3055,7 @@ namespace Server
                 {
                     eable = GetItemsInRange(point, 0);
 
-                    foreach (Item item in eable)
+                    foreach (var item in eable)
                     {
                         if (item.Visible)
                         {
@@ -3077,14 +3076,19 @@ namespace Server
                     }
                 }
 
-                foreach (StaticTile t in statics)
+                foreach (var t in statics)
                 {
                     id = TileData.ItemTable[t.ID & TileData.MaxItemValue];
 
                     flags = id.Flags;
                     height = id.CalcHeight;
 
-                    if (t.Z <= pointTop && t.Z + height >= point.Z && (flags & (TileFlag.Window | TileFlag.NoShoot)) != 0)
+                    if(Shard.DebugEnabled)
+                    {
+                        Shard.Debug($"Passa por static: {t.ID} - Flags: {(flags & TileFlag.Window) != 0}");
+                    }
+
+                    if (t.Z <= pointTop && t.Z + height >= point.Z)
                     {
                         if (point.m_X != end.m_X || point.m_Y != end.m_Y || t.Z > endTop || t.Z + height < end.m_Z)
                         {
@@ -3094,9 +3098,9 @@ namespace Server
                 }
             }
 
-            Rectangle2D rect = new Rectangle2D(pTop.m_X, pTop.m_Y, pBottom.m_X - pTop.m_X + 1, pBottom.m_Y - pTop.m_Y + 1);
+            var rect = new Rectangle2D(pTop.m_X, pTop.m_Y, pBottom.m_X - pTop.m_X + 1, pBottom.m_Y - pTop.m_Y + 1);
 
-            IPooledEnumerable<Item> area = GetItemsInBounds(rect);
+            var area = GetItemsInBounds(rect);
 
             try
             {
@@ -3104,7 +3108,7 @@ namespace Server
                 bool found;
                 Point3D loc;
 
-                foreach (Item i in area)
+                foreach (var i in area)
                 {
                     if (!i.Visible)
                     {
@@ -3131,7 +3135,7 @@ namespace Server
 
                     count = path.Count;
 
-                    for (int j = 0; j < count; ++j)
+                    for (var j = 0; j < count; ++j)
                     {
                         point = path[j];
                         pointTop = point.m_Z + 1;
@@ -3185,7 +3189,7 @@ namespace Server
                 return true;
             }
 
-            Point3D eye = from.Location;
+            var eye = from.Location;
 
             eye.Z += 14;
 
@@ -3199,8 +3203,8 @@ namespace Server
                 return true;
             }
 
-            Point3D eye = from.Location;
-            Point3D target = to.Location;
+            var eye = from.Location;
+            var target = to.Location;
 
             eye.Z += 14;
             target.Z += 14;

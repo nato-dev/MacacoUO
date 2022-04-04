@@ -13,7 +13,7 @@ namespace Server.Items
             Attributes.BonusMana = 15;
             Attributes.RegenMana = 2;
             Attributes.SpellDamage = 15;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.LowerManaCost = 10;
         }
 

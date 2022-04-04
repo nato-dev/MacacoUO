@@ -81,6 +81,7 @@ namespace Server.Mobiles
             SorteiaItem(new LivroAntigo());
             DistribuiItem(new FragmentosAntigos());
             SorteiaItem(new PergaminhoSagradoDeRunebook());
+            DistribuiItem(new CristalDoPoder() { Amount = 5 });
             var book = new Spellbook();
             book.Hue = TintaPreta.COR;
             book.Name = "Livro do Lich Rei";

@@ -942,7 +942,7 @@ namespace Server.Items
 
             Attributes.BonusInt = 5;
             Attributes.SpellDamage = 10;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
         }
 
         public TomeOfEnlightenment(Serial serial)

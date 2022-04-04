@@ -24,8 +24,8 @@ namespace Server.Items
         public override void AddNameProperties(ObjectPropertyList list)
         {
             base.AddNameProperties(list);
-            list.Add("Tinkering: 100");
-            list.Add("Imbuing: 100");
+            list.Add("Tinkering: 70");
+            list.Add("Imbuing: 70");
         }
 
         public override void OnDoubleClick(Mobile from)
@@ -36,9 +36,9 @@ namespace Server.Items
                 from.SendMessage("Junte 100 cristais do poder para criar braceletes do poder");
                 return;
             }
-            if (from.Skills.Tinkering.Value < 100 || from.Skills.Imbuing.Value < 100)
+            if (from.Skills.Tinkering.Value < 70 || from.Skills.Imbuing.Value < 70)
             {
-                from.SendMessage("Voce precisa de 100 tinkering e 100 imbuing para isto");
+                from.SendMessage("Voce precisa de 70 tinkering e 70 imbuing para isto");
                 return;
             }
             var ferramentas = from.FindItemsByType(typeof(TinkerTools));

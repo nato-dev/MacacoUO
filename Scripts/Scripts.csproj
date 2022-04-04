@@ -269,6 +269,7 @@
     <Compile Include="Fronteira\Guia\DungeonsGump.cs" />
     <Compile Include="Fronteira\Guildas\PedraGuilda.cs" />
     <Compile Include="Fronteira\Guildas\Ranking.cs" />
+    <Compile Include="Fronteira\Imbuing\AnelDano.cs" />
     <Compile Include="Fronteira\Imbuing\Essencias\EssLuz.cs" />
     <Compile Include="Fronteira\Imbuing\GumpUpColarDano.cs" />
     <Compile Include="Fronteira\Items\EstatuaDecoGuilda.cs" />

@@ -21,7 +21,7 @@ namespace Server.Items
             this.Attributes.RegenMana = 18;
             this.Attributes.SpellDamage = 30;
             this.Attributes.CastRecovery = 6;
-            this.Attributes.CastSpeed = 4;
+            this.Attributes.Resistence = 4;
             this.LootType = LootType.Blessed;
         }
 

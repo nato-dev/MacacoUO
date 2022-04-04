@@ -13,7 +13,7 @@ namespace Server.Items
             Hue = 96;
             Attributes.BonusHits = 5;
             Attributes.CastRecovery = 2;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.DefendChance = 10;
             Attributes.AttackChance = 10;
             Attributes.SpellDamage = 4;

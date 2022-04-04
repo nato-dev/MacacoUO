@@ -12,7 +12,6 @@ namespace Server.Mobiles
     {
         public override bool IsBoss => true;
 
-
         public override Spell ChooseSpell()
         {
             var alvo = Combatant as Mobile;
@@ -97,6 +96,8 @@ namespace Server.Mobiles
             a.Skill = SkillName.Carpentry;
             SorteiaItem(a);
             SorteiaItem(new BagOfSending());
+            SorteiaItem(new CristalDoPoder() { Amount = 5 });
+            SorteiaItem(new CristalDoPoder() { Amount = 5 });
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));
             SorteiaItem(Carnage.GetRandomPS(105));

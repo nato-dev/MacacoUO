@@ -155,7 +155,7 @@ namespace Server.Items
                         semente.Amount = 1;
                         semente.colhidas = toPlant.colhidas;
                         var loc = target.ToPoint3D();
-                        loc.Y = from.Map.GetAverageZ(loc.X, loc.Y) + 1;
+                        loc.Z = from.Map.GetAverageZ(loc.X, loc.Y) + 1;
                         semente.DropToWorld(from, loc);
                         semente.NomePlantador = from.Name;
                         semente.Planta(from, from.Name);

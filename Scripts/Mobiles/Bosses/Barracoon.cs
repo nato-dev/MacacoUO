@@ -231,7 +231,7 @@ namespace Server.Mobiles
             SorteiaItem(new WhiteHangingLantern());
             DistribuiItem(Decos.RandomDecoRara(this));
             SorteiaItem(Decos.RandomDecoRara(this));
-
+        
             DistribuiItem(new FragmentosAntigos());
             DistribuiItem(new FragmentosAntigos());
             DistribuiItem(new CristalTherathan(10));
@@ -247,6 +247,9 @@ namespace Server.Mobiles
 
             for(var i =0; i < 3; i++)
             {
+
+                SorteiaItem(new CristalDoPoder() { Amount = 5 });
+
                 if (Utility.RandomDouble() < 0.5)
                     SorteiaItem(Carnage.GetRandomPS(110));
                 else

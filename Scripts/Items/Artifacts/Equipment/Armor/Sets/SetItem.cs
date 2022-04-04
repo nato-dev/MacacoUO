@@ -141,8 +141,8 @@ namespace Server
             if ((prop = setItem.SetAttributes.CastRecovery) != 0)
                 list.Add(full ? 1080242 : 1080248, (full ? prop + (attrs.CastRecovery * pieces) : prop).ToString()); // faster cast recovery ~1_val~ (total)
 
-            if ((prop = setItem.SetAttributes.CastSpeed) != 0)
-                list.Add(full ? 1080243 : 1080247, (full ? prop + (attrs.CastSpeed * pieces) : prop).ToString()); // faster casting ~1_val~ (total)
+            if ((prop = setItem.SetAttributes.Resistence) != 0)
+                list.Add(full ? 1080243 : 1080247, (full ? prop + (attrs.Resistence * pieces) : prop).ToString()); // faster casting ~1_val~ (total)
 
             if ((prop = setItem.SetAttributes.LowerManaCost) != 0)
                 list.Add(full ? 1073488 : 1060433, (full ? prop + (attrs.LowerManaCost * pieces) : prop).ToString());// lower mana cost ~1_val~% (total)

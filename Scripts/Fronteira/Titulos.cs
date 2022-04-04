@@ -77,5 +77,35 @@ namespace Server.Ziden
         }
     }
 
+    public class DeedDeTitulo : BaseRewardTitleDeed
+    {
+        public override TextDefinition Title { get { return new TextDefinition(Titulo); } } // Naughty
 
+        [CommandProperty(AccessLevel.GameMaster)]
+        public string Titulo { get; set; }
+
+        [Constructable]
+        public DeedDeTitulo()
+        {
+        }
+
+        public DeedDeTitulo(Serial serial)
+            : base(serial)
+        {
+        }
+
+        public override void Serialize(GenericWriter writer)
+        {
+            base.Serialize(writer);
+            writer.Write(0);
+            writer.Write(Titulo);
+        }
+
+        public override void Deserialize(GenericReader reader)
+        {
+            base.Deserialize(reader);
+            var v = reader.ReadInt();
+            Titulo = reader.ReadString();
+        }
+    }
 }

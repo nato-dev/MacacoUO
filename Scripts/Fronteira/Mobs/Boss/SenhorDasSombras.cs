@@ -124,8 +124,8 @@ namespace Server.Mobiles
 
         public override void GenerateLoot()
         {
-            AddLoot(LootPack.LV6, 3);          
-
+            AddLoot(LootPack.LV6, 3);
+            AddLoot(LootPack.Gems, 30);
         }
 
         public override void OnDeath(Container c)
@@ -142,11 +142,12 @@ namespace Server.Mobiles
             SorteiaItem(tinta);
             SorteiaItem(new PergaminhoCarregamento());            
             SorteiaItem(new SkillBook());
+            SorteiaItem(new CristalDoPoder() { Amount = 20 });
             //SorteiaItem(new TemplateDeed());
             SorteiaItem(new LivroAntigo());
             SorteiaItem(Decos.RandomDeco(this));
-            for(var x = 0; x < 5; x++)
-                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(5));
+            for(var x = 0; x < 3; x++)
+                SorteiaItem(ElementoUtils.GetRandomPedraSuperior(3));
             GolemMecanico.JorraOuro(c.Location, c.Map, 550);
         }        
 

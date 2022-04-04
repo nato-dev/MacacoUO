@@ -581,7 +581,7 @@ namespace Server.Engines.VendorSearching
                                                        SAAbsorptionAttribute.EaterPoison, SAAbsorptionAttribute.EaterEnergy, SAAbsorptionAttribute.EaterDamage });
 
                     casting.Register(new object[] { SAAbsorptionAttribute.ResonanceFire, SAAbsorptionAttribute.ResonanceCold, SAAbsorptionAttribute.ResonancePoison, SAAbsorptionAttribute.ResonanceEnergy,
-                                                        SAAbsorptionAttribute.ResonanceKinetic, AosAttribute.SpellDamage, SAAbsorptionAttribute.CastingFocus, AosAttribute.CastRecovery, AosAttribute.CastSpeed,
+                                                        SAAbsorptionAttribute.ResonanceKinetic, AosAttribute.SpellDamage, SAAbsorptionAttribute.CastingFocus, AosAttribute.CastRecovery, AosAttribute.Resistence,
                                                         AosAttribute.LowerManaCost, AosAttribute.LowerRegCost, AosWeaponAttribute.MageWeapon, AosArmorAttribute.MageArmor, AosAttribute.SpellChanneling });
 
                     damagetype.Register(new object[] { AosElementAttribute.Physical, AosElementAttribute.Fire, AosElementAttribute.Cold, AosElementAttribute.Poison, AosElementAttribute.Energy },
@@ -785,7 +785,7 @@ namespace Server.Engines.VendorSearching
 
         public static bool HasValue(object o, SearchCategory category)
         {
-            if (o is AosAttribute && (AosAttribute)o == AosAttribute.CastSpeed)
+            if (o is AosAttribute && (AosAttribute)o == AosAttribute.Resistence)
                 return true;
 
             if (category.Category == Category.RequiredSkill)

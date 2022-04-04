@@ -343,6 +343,7 @@ namespace Server.Items
                 new PMEntry(new Point3D(1462, 989, 0), "3. Formigueiro Preto"),
                 new PMEntry(new Point3D(1021, 1431, 0), "4. Caverna Orc"),
                 new PMEntry(new Point3D(514, 1561, 5), "5. Shame"),
+                new PMEntry(new Point3D(1999, 81, 4), "6. Caverna de Gelo"),
                 //new PMEntry(new Point3D(5237, 3866, 45), "4. Delucia"),
           }, cost: 100);
 
@@ -354,14 +355,13 @@ namespace Server.Items
           {
               new PMEntry(new Point3D(4721, 3817, 5), "1. Hyloth"),
               new PMEntry(new Point3D(1298, 1081, 5), "2. Despise"),
-              new PMEntry(new Point3D(1999, 81, 4), "3. Caverna de Gelo"),
-              new PMEntry(new Point3D(2043, 227, 14), "4. Wrong"),
-              new PMEntry(new Point3D(2768, 3517, 0), "5. Caverna de Fogo"),
-              new PMEntry(new Point3D(3785,1109, 21), "6. Caverna de Cristal"),
-              new PMEntry(new Point3D(1482, 1474, 0), "7. Castelo Blackthorn"),
-              new PMEntry(new Point3D(1176, 2637, 5), "8. Destard"),
-              new PMEntry(new Point3D(4191, 3269, 0), "9. Submundo"),
-              
+              new PMEntry(new Point3D(2043, 227, 14), "3. Wrong"),
+              new PMEntry(new Point3D(2768, 3517, 0), "4. Caverna de Fogo"),
+              new PMEntry(new Point3D(3785,1109, 21), "5. Caverna de Cristal"),
+              new PMEntry(new Point3D(1482, 1474, 0), "6. Castelo Blackthorn"),
+              new PMEntry(new Point3D(1176, 2637, 5), "7. Destard"),
+              new PMEntry(new Point3D(4191, 3269, 0), "8. Submundo"),
+              new PMEntry(new Point3D(5237, 3866, 45), "9. Terras Perdidas"),
              //    new PMEntry(new Point3D(2494, 927, 0), "1. Covetous"),
           }, cost: 500);
 
@@ -372,7 +372,8 @@ namespace Server.Items
           new[]
           {
               new PMEntry(new Point3D(747, 2162, 0), "Guilda Ranger"),
-              new PMEntry(new Point3D(2711, 2234, 0), "Bucaneer's Den") // Buccaneer's Den
+              new PMEntry(new Point3D(2711, 2234, 0), "Bucaneer's Den"), // Buccaneer's Den
+              new PMEntry(new Point3D(5264, 3991, 37), "Delucia"),
           }, cost: 500);
 
         public static readonly PMList Ilshenar = new PMList(

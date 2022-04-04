@@ -11,7 +11,7 @@ namespace Server.Items
         public DemonHuntersStandard()
         {
             Hue = 1377;				
-            Attributes.CastSpeed = 1;			
+            Attributes.Resistence = 1;			
             Attributes.WeaponSpeed = 25;
             Attributes.WeaponDamage = 50;
             WeaponAttributes.HitLeechStam = 50;

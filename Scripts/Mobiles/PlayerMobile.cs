@@ -3945,7 +3945,10 @@ namespace Server.Mobiles
                 return false;
             }
 
-            RevealingAction();
+            if(item.RootParent != this)
+            {
+                RevealingAction();
+            }
 
             if (item.HueRaridade != 0)
             {
@@ -6393,7 +6396,7 @@ namespace Server.Mobiles
             }
         }
 
-        public override bool CanSee(Mobile m)
+        public override bool CanSee(Mobile m, bool los = false)
         {
             if (m is IConditionalVisibility && !((IConditionalVisibility)m).CanBeSeenBy(this))
                 return false;
@@ -6430,7 +6433,7 @@ namespace Server.Mobiles
                 return true;
             }
 
-            return base.CanSee(m);
+            return base.CanSee(m, los);
         }
 
         public override bool CanSee(Item item)

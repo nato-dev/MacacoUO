@@ -15,7 +15,7 @@ namespace Server.Items
             Attributes.BonusStr = 10;
             WeaponAttributes.MageWeapon = 30;
             Attributes.SpellChanneling = 1;
-            Attributes.CastSpeed = 2;
+            Attributes.Resistence = 2;
             Attributes.LowerManaCost = 5;
             Attributes.LowerRegCost = 10;
         }
@@ -53,7 +53,7 @@ namespace Server.Items
 
             WeaponAttributes.MageWeapon = 30;
             Attributes.SpellChanneling = 1;
-            Attributes.CastSpeed = 2;
+            Attributes.Resistence = 2;
             Attributes.LowerManaCost = 5;
             Attributes.LowerRegCost = 10;
         }

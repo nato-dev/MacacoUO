@@ -120,7 +120,7 @@ namespace Server.Mobiles
         {
             base.OnDeath(c);
 
-            SorteiaItem(new DecoRelPor());
+            DistribuiItem(new CristalDoPoder() { Amount = 10 });
             SorteiaItem(new DecoRelPor());
             SorteiaItem(new Granite());
             SorteiaItem(new Rock1Rand());
@@ -128,7 +128,11 @@ namespace Server.Mobiles
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
             SorteiaItem(new FragmentosAntigos());
-            SorteiaItem(new BronzeIngot(300));
+            if(Utility.RandomBool())
+                SorteiaItem(new BronzeIngot(300));
+            else
+                SorteiaItem(new BronzeIngot(300));
+
             if (Utility.RandomBool())
             {
                 var bola = new ElementalBall(500);

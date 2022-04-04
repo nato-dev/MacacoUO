@@ -46,7 +46,7 @@ namespace Server.Spells.Seventh
 
         public void Target(IDamageable m)
         {
-            if (!this.Caster.CanSee(m))
+            if (!this.Caster.CanSee(m, true))
             {
                 this.Caster.SendLocalizedMessage(500237); // Target can not be seen.
             }

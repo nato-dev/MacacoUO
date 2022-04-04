@@ -23,7 +23,7 @@ namespace Server.Items
             Attributes.RegenMana = 1;
             Attributes.LowerRegCost = 10;
             Attributes.CastRecovery = 1;
-            Attributes.CastSpeed = 1;		
+            Attributes.Resistence = 1;		
             Attributes.SpellDamage = 10;
             Slayer = SlayerName.Fadas;
         }

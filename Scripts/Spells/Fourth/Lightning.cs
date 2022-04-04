@@ -41,7 +41,7 @@ namespace Server.Spells.Fourth
         {
             Mobile mob = m as Mobile;
 
-            if (!Caster.CanSee(m))
+            if (!Caster.CanSee(m, true))
             {
                 Caster.SendLocalizedMessage(500237); // Target can not be seen.
             }

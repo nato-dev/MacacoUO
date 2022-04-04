@@ -22,7 +22,7 @@ namespace Server.Items
             Attributes.SpellChanneling = 1;
             Attributes.ReflectPhysical = 15;
             Attributes.DefendChance = 15;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.LowerManaCost = 8;
 
             PhysicalBonus = 15;
@@ -76,7 +76,7 @@ namespace Server.Items
             Attributes.SpellChanneling = 1;
             Attributes.ReflectPhysical = 15;
             Attributes.DefendChance = 15;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.LowerManaCost = 8;
 
             PhysicalBonus = 15;

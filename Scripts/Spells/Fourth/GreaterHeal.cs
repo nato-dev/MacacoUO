@@ -63,7 +63,7 @@ namespace Server.Spells.Fourth
 
         public void Target(Mobile m)
         {
-            if (!this.Caster.CanSee(m))
+            if (!this.Caster.CanSee(m, true))
             {
                 this.Caster.SendLocalizedMessage(500237); // Target can not be seen.
             }

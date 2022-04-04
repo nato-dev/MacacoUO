@@ -9895,7 +9895,7 @@ namespace Server
             }
         }
 
-        public virtual bool CanSee(object o)
+        public virtual bool CanSee(object o, bool los=false)
         {
             if (o is Item)
             {
@@ -9903,7 +9903,7 @@ namespace Server
             }
             else if (o is Mobile)
             {
-                return CanSee((Mobile)o);
+                return CanSee((Mobile)o, los);
             }
             else
             {
@@ -9964,16 +9964,16 @@ namespace Server
             return !item.Deleted && item.Map == m_Map && (item.Visible || IsStaff());
         }
 
-        public virtual bool CanSee(Mobile m)
+        public virtual bool CanSee(Mobile m, bool los = false)
         {
             if (m_Deleted || m.m_Deleted || m_Map == Map.Internal || m.m_Map == Map.Internal)
             {
                 return false;
             }
 
-            return this == m ||
+            return (this == m || 
                   (m.m_Map == m_Map && (!m.Hidden || IsStaff()) &&
-                  ((m.Alive || (Skills.SpiritSpeak.Value >= 100.0)) || !Alive || IsStaff() || m.Warmode));
+                  ((m.Alive || (Skills.SpiritSpeak.Value >= 100.0)) || !Alive || IsStaff() || m.Warmode))) && (!los || this.InLOS(m));
         }
 
         public virtual bool CanBeRenamedBy(Mobile from)

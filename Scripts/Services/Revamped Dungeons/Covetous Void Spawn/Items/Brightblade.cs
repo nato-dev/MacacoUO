@@ -17,7 +17,7 @@ namespace Server.Items
             WeaponAttributes.SplinteringWeapon = 20;
             Attributes.RegenStam = 3;
             Attributes.AttackChance = 10;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.WeaponSpeed = 40;
             Attributes.WeaponDamage = 50;
             AosElementDamages.Fire = 100;
@@ -57,7 +57,7 @@ namespace Server.Items
             WeaponAttributes.SplinteringWeapon = 20;
             Attributes.RegenStam = 3;
             Attributes.AttackChance = 10;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.WeaponSpeed = 40;
             Attributes.WeaponDamage = 50;
             AosElementDamages.Fire = 100;

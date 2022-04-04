@@ -12,7 +12,7 @@ namespace Server.Items
             SkillBonuses.SetValues(0, SkillName.Chivalry, 10.0);
             Attributes.AttackChance = 5;
             Attributes.DefendChance = 10;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
 			Attributes.CastRecovery = 1;
         }
 

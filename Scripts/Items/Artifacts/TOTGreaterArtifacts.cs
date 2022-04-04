@@ -391,7 +391,7 @@ namespace Server.Items
         {
             WeaponAttributes.MageWeapon = 30;
             Attributes.SpellChanneling = 1;
-            Attributes.CastSpeed = 1;
+            Attributes.Resistence = 1;
             Attributes.Luck = 200;
         }
 

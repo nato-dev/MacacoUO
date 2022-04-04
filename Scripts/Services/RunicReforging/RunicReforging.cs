@@ -577,8 +577,8 @@ namespace Server.Items
 
                 bool hasValue;
 
-                if ((AosAttribute)attribute == AosAttribute.CastSpeed && attrs.SpellChanneling > 0)
-                    hasValue = attrs.CastSpeed > -1;
+                if ((AosAttribute)attribute == AosAttribute.Resistence && attrs.SpellChanneling > 0)
+                    hasValue = attrs.Resistence > -1;
                 else
                     hasValue = attrs[(AosAttribute)attribute] > 0;
 
@@ -587,8 +587,8 @@ namespace Server.Items
                     attrs[(AosAttribute)attribute] += value;
                     budget -= Imbuing.GetIntensityForAttribute(item, (AosAttribute)attribute, -1, value);
 
-                    if ((AosAttribute)attribute == AosAttribute.SpellChanneling && attrs[AosAttribute.CastSpeed] > -1)
-                        attrs[AosAttribute.CastSpeed]--;
+                    if ((AosAttribute)attribute == AosAttribute.SpellChanneling && attrs[AosAttribute.Resistence] > -1)
+                        attrs[AosAttribute.Resistence]--;
                 }
             }
             else if (attribute is AosWeaponAttribute)
@@ -1133,7 +1133,7 @@ namespace Server.Items
                         new NamedInfoCol(AosAttribute.BonusMana, WeaponStamManaLMCTable),
                         new NamedInfoCol(AosAttribute.BonusInt, DexIntTable),
                         new NamedInfoCol(AosAttribute.LowerManaCost, WeaponStamManaLMCTable),
-                        new NamedInfoCol(AosAttribute.CastSpeed, 1),
+                        new NamedInfoCol(AosAttribute.Resistence, 1),
                         new NamedInfoCol(AosAttribute.SpellChanneling, 1),
                         new NamedInfoCol(AosWeaponAttribute.MageWeapon, MageWeaponTable),
                         new NamedInfoCol(AosAttribute.RegenMana, WeaponRegenTable),
@@ -1160,7 +1160,7 @@ namespace Server.Items
                         new NamedInfoCol(AosAttribute.LowerManaCost, ArmorStamManaLMCTable),
                         new NamedInfoCol(AosAttribute.RegenMana, ArmorRegenTable),
                         new NamedInfoCol(AosAttribute.LowerRegCost, LowerRegTable),
-                        new NamedInfoCol(AosAttribute.CastSpeed, 1),
+                        new NamedInfoCol(AosAttribute.Resistence, 1),
                         new NamedInfoCol(AosAttribute.CastRecovery, 4),
                         new NamedInfoCol(AosAttribute.SpellDamage, 18),
                     },
@@ -2548,8 +2548,8 @@ namespace Server.Items
 
                     bool hasValue;
 
-                    if ((AosAttribute)attr == AosAttribute.CastSpeed && aosattrs.SpellChanneling > 0)
-                        hasValue = aosattrs.CastSpeed > -1;
+                    if ((AosAttribute)attr == AosAttribute.Resistence && aosattrs.SpellChanneling > 0)
+                        hasValue = aosattrs.Resistence > -1;
                     else
                         hasValue = aosattrs[(AosAttribute)attr] > 0;
 
@@ -2558,8 +2558,8 @@ namespace Server.Items
                         aosattrs[(AosAttribute)attr] += value;
                         budget -= Imbuing.GetIntensityForAttribute(item, (AosAttribute)attr, -1, value);
 
-                        if ((AosAttribute)attr == AosAttribute.SpellChanneling && aosattrs[AosAttribute.CastSpeed] > -1)
-                            aosattrs[AosAttribute.CastSpeed]--;
+                        if ((AosAttribute)attr == AosAttribute.SpellChanneling && aosattrs[AosAttribute.Resistence] > -1)
+                            aosattrs[AosAttribute.Resistence]--;
                     }
                 }
                 else if (wepattrs != null && attr is AosWeaponAttribute)
@@ -2666,9 +2666,9 @@ namespace Server.Items
 
         public static bool HasAosAttributesValue(AosAttributes attrs, AosAttribute attr)
         {
-            if (attr == AosAttribute.CastSpeed && attrs.SpellChanneling > 0)
+            if (attr == AosAttribute.Resistence && attrs.SpellChanneling > 0)
             {
-                return attrs.CastSpeed >= 0;
+                return attrs.Resistence >= 0;
             }
 
             return attrs[attr] > 0;
@@ -2937,7 +2937,7 @@ namespace Server.Items
             "ElementalDamage",
             AosAttribute.WeaponDamage,
             AosAttribute.DefendChance,
-            AosAttribute.CastSpeed,
+            AosAttribute.Resistence,
             AosAttribute.AttackChance,
             AosAttribute.Luck,
             AosAttribute.WeaponSpeed,
@@ -3015,7 +3015,7 @@ namespace Server.Items
             AosAttribute.SpellChanneling,
             AosAttribute.DefendChance,
 			//AosAttribute.AttackChance,
-			AosAttribute.CastSpeed,
+			AosAttribute.Resistence,
             AosAttribute.ReflectPhysical,
             AosArmorAttribute.LowerStatReq,
         };
@@ -3034,7 +3034,7 @@ namespace Server.Items
             AosAttribute.BonusDex,
             AosAttribute.BonusInt,
             AosAttribute.EnhancePotions,
-            AosAttribute.CastSpeed,
+            AosAttribute.Resistence,
             AosAttribute.CastRecovery,
             AosAttribute.LowerManaCost,
             AosAttribute.LowerRegCost,
@@ -3432,9 +3432,9 @@ namespace Server.Items
 
             foreach (var jewel in World.Items.Values.OfType<BaseJewel>().Where(j => j.Elemento > ElementoPvM.None))
             {
-                if (jewel.Attributes.CastSpeed > 1)
+                if (jewel.Attributes.Resistence > 1)
                 {
-                    jewel.Attributes.CastSpeed = 1;
+                    jewel.Attributes.Resistence = 1;
                     fc2++;
                 }
 

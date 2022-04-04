@@ -283,7 +283,7 @@ namespace Server.Engines.VendorSearching
                         TextRelay valuetext = info.GetTextEntry(index + 400);
 
                         if (valuetext != null)
-                            value = Math.Max(o is AosAttribute && (AosAttribute)o == AosAttribute.CastSpeed ? -1 : 0, Utility.ToInt32(valuetext.Text));
+                            value = Math.Max(o is AosAttribute && (AosAttribute)o == AosAttribute.Resistence ? -1 : 0, Utility.ToInt32(valuetext.Text));
 
                         Criteria.TryAddDetails(o, data.Item2, value, category.Category);
                         Refresh();
