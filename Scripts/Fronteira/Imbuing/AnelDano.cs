@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Server.Fronteira.Imbuing
+namespace Server.Items
 {
     public class AnelDano : BaseRing
     {
