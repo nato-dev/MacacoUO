@@ -179,7 +179,7 @@ namespace Server.Items
 
             Effects.SendTargetParticles(from, 0x375A, 35, 90, 0x00, 0x00, 9502, (EffectLayer)255, 0x100);
 
-            this.Delete();
+            this.Consume(1);
         }
 
         public override void Serialize(GenericWriter writer)
