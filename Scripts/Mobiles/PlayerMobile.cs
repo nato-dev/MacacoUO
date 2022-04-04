@@ -6736,8 +6736,8 @@ namespace Server.Mobiles
                         {
                             RevealingAction(false);
                         }
-                    }
-                    else if (Mounted && AllowedStealthSteps > 0)
+                    }                 
+                    else if (Shard.RP && Mounted && AllowedStealthSteps > 0)
                     {
                         var mount = this.Mount;
                         this.Mount.Rider = null;
@@ -6749,6 +6749,7 @@ namespace Server.Mobiles
                             bc.OverheadMessage("* deixou a montaria escondida *");
                         }
                     }
+                  
                     else if (AllowedStealthSteps-- < 0)
                     {
                         Stealth.OnUse(this);
