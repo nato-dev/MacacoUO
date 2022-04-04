@@ -3945,7 +3945,7 @@ namespace Server.Mobiles
                 return false;
             }
 
-            if(item.RootParent != this)
+            if(item.RootParent != this && item.RootParent != this.Backpack)
             {
                 RevealingAction();
             }
