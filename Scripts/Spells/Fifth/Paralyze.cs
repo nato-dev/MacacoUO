@@ -75,8 +75,9 @@ namespace Server.Spells.Fifth
                 {
                     // Algorithm: ((20% of magery) + 7) seconds [- 50% if resisted]
                     duration = Utility.Random(6, 4);
-   
-                    if (duration <= 0 || this.CheckResisted(m))
+
+                    var limiteParalize = DateTime.UtcNow - TimeSpan.FromSeconds(5);
+                    if (duration <= 0 || this.CheckResisted(m) || (m.Skills.MagicResist.Value > 60 && m.LastParalized > limiteParalize))
                     {
                         duration = 0;
                         m.SendMessage("Voce sente seu corpo resistindo a magia");
@@ -91,13 +92,6 @@ namespace Server.Spells.Fifth
 
                 if (duration == 0)
                     return;
-
-                var limiteParalize = DateTime.UtcNow - TimeSpan.FromSeconds(6);
-                if(m.LastParalized > limiteParalize)
-                {
-                    duration /= 2;
-                    this.Caster.SendMessage("O alvo foi paralizado demais e esta mais resistente a magia");
-                }
 
                 m.PrivateOverheadMessage("* Paralizado *");
 
