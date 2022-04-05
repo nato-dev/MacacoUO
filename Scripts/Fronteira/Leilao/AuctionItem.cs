@@ -15,6 +15,7 @@ using Server.Items;
 using Server.Mobiles;
 using Leilaum.Interfaces;
 using Server.Network;
+using Fronteira.Discord;
 
 namespace Server.Leilaum
 {
@@ -1220,8 +1221,11 @@ namespace Server.Leilaum
 
             AuctionLog.WriteNewAuction(this);
 
+            var msg = this.Owner.Name + " esta vendendo " + this.Item.Name + " por " + this.BuyNow;
+            DiscordBot.SendMessage(":coin: " + msg);
+
             foreach (var pl in NetState.GetOnlinePlayerMobiles())
-                pl.SendMessage(1161, "[Leilao] " + this.Owner.Name + " esta leiloando " + this.Item.Name + " por " + this.m_MinBid);
+                pl.SendMessage(1161, "[Mercado] " +msg);
         }
 
         /// <summary>
@@ -1933,6 +1937,8 @@ namespace Server.Leilaum
 
             GiveItemTo(m, item);
             GiveItemTo(m_Owner, gold);
+
+            DiscordBot.SendMessage($":coin: {m.Name} comprou {this.Item.Name ?? this.ItemName} de {this.Owner.Name} por {this.BuyNow}");
 
             // Over.
             AuctionLog.WriteEnd(this, AuctionResult.BuyNow, m, null);
