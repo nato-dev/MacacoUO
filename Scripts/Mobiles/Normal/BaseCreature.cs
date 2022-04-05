@@ -506,7 +506,7 @@ namespace Server.Mobiles
             {
                 var ganhou = disputando[Utility.Random(disputando.Count)];
                 ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
-                ganhou.m_Mobile.PlaceInBackpack(i);
+                ganhou.m_Mobile.AddToBackpack(i);
                 JaGanhou.Add(ganhou.m_Mobile);
                 Ganhadores[i] = ganhou.m_Mobile;
                 foreach (var p in disputando)
@@ -527,7 +527,7 @@ namespace Server.Mobiles
                     foreach (var ganhou in disputando)
                     {
                         var i = Carnage.GetRandomPS(n);
-                        ganhou.m_Mobile.PlaceInBackpack(i);
+                        ganhou.m_Mobile.AddToBackpack(i);
                         Ganhadores[i] = ganhou.m_Mobile;
                         ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                     }
@@ -548,7 +548,7 @@ namespace Server.Mobiles
                     foreach (var ganhou in disputando)
                     {
                         var dup = Dupe.DupeItem(i);
-                        ganhou.m_Mobile.PlaceInBackpack(dup);
+                        ganhou.m_Mobile.AddToBackpack(dup);
                         ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
                     }
 
@@ -2653,11 +2653,21 @@ namespace Server.Mobiles
             }
         }
 
+        private int tomouEmPeace = 0;
+
         public override void OnDamage(int amount, Mobile from, bool willKill)
         {
-            if (BardPacified && (HitsMax - Hits) * 0.001 > Utility.RandomDouble())
+            if (BardPacified)
             {
-                Unpacify();
+                if(tomouEmPeace > this.HitsMax / 2)
+                {
+                    Unpacify();
+                    tomouEmPeace = 0;
+                } else
+                {
+                    tomouEmPeace += amount;
+                }
+                
             }
 
             int disruptThreshold;
@@ -7699,7 +7709,7 @@ namespace Server.Mobiles
                                 {
                                     var iti = Dupe.DupeItem(item);
                                     iti.PartyLoot = false;
-                                    ds.m_Mobile.PlaceInBackpack(iti);
+                                    ds.m_Mobile.AddToBackpack(iti);
                                     ds.m_Mobile.SendMessage("Voce ganhou " + item.Amount + " " + (item.Name == null ? item.GetType().Name : item.Name));
                                 }
                             }
@@ -7821,7 +7831,7 @@ namespace Server.Mobiles
                                     continue;
                                 var ganhou = disputando[Utility.Random(disputando.Count)];
                                 ganhou.m_Mobile.SendMessage("Voce ganhou " + i.Amount + " " + (i.Name == null ? i.GetType().Name : i.Name));
-                                ganhou.m_Mobile.PlaceInBackpack(i);
+                                ganhou.m_Mobile.AddToBackpack(i);
                             }
                         }
 

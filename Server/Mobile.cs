@@ -602,10 +602,10 @@ namespace Server
 
 
 
-        /// <summary>
-        ///     Base class representing players, npcs, and creatures.
-        /// </summary>
-        [System.Runtime.InteropServices.ComVisible(true)]
+    /// <summary>
+    ///     Base class representing players, npcs, and creatures.
+    /// </summary>
+    [System.Runtime.InteropServices.ComVisible(true)]
     public class Mobile : IEntity, IHued, IComparable<Mobile>, ISerializable, ISpawnable, IDamageable
     {
 
@@ -2568,15 +2568,15 @@ namespace Server
                         foreach (var ag in m_Mobile.Aggressors)
                         {
                             var c = ag.Attacker;
-                            if(c.Combatant == m_Mobile)
+                            if (c.Combatant == m_Mobile)
                             {
-                                if(Shard.DebugEnabled)
+                                if (Shard.DebugEnabled)
                                     Shard.Debug("Revidando em " + c.Name, m_Mobile);
 
                                 if (Bate(c))
                                     return;
                             }
-                          
+
                         }
                     }
                 }
@@ -2705,9 +2705,9 @@ namespace Server
                     return;
                 }
 
-                if(Shard.DebugEnabled)
+                if (Shard.DebugEnabled)
                 {
-                    Shard.Debug("Tentando setar combatant " + (value == null? "null" : value.Name), this);
+                    Shard.Debug("Tentando setar combatant " + (value == null ? "null" : value.Name), this);
                 }
 
                 if (m_Combatant != value && value != this)
@@ -2721,7 +2721,7 @@ namespace Server
                     {
                         m_Combatant = old;
                         --m_ChangingCombatant;
-                        if(Shard.DebugEnabled)
+                        if (Shard.DebugEnabled)
                         {
                             Shard.Debug("Mantendo combatant antigo: Posso ser harmful no combatant novo ?", this);
                         }
@@ -2759,9 +2759,9 @@ namespace Server
                             m_ExpireCombatant = new ExpireCombatantTimer(this);
                         }
 
-                        if(Shard.DebugEnabled)
+                        if (Shard.DebugEnabled)
                         {
-                            Shard.Debug($"Ja tinha combatant {m_Combatant.Name}, atualizando para " + (value==null? "null" :value.Name), this);
+                            Shard.Debug($"Ja tinha combatant {m_Combatant.Name}, atualizando para " + (value == null ? "null" : value.Name), this);
                         }
 
                         m_ExpireCombatant.Start();
@@ -2981,7 +2981,7 @@ namespace Server
                 return;
             }
 
-            if(Shard.DebugEnabled)
+            if (Shard.DebugEnabled)
             {
                 Shard.Debug("Removendo agressed " + aggressed.Name, this);
             }
@@ -5085,10 +5085,10 @@ namespace Server
             }
         }
 
-        private static int m_ActionDelay = 200;
+        private static int m_ActionDelay = 300;
 
         public static int EquipItemDelay { get { return m_ActionDelay; } set { m_ActionDelay = value; } }
-        public static int MoveItemDelay = -1;
+        public static int MoveItemDelay = 300;
 
         public virtual void Lift(Item item, int amount, out bool rejected, out LRReason reject)
         {
@@ -5173,6 +5173,7 @@ namespace Server
                         else
                         {
                             item.SetLastMoved();
+                            var parentContainer = item.Parent is Container;
 
                             var itemGrid = item.GridLocation;
 
@@ -5260,7 +5261,10 @@ namespace Server
                                 from.Send(new PlaySound(liftSound, from));
                             }
 
+
                             from.NextActionTime = Core.TickCount + MoveItemDelay;
+
+
 
                             if (fixMap != null && shouldFix)
                             {
@@ -9677,11 +9681,6 @@ namespace Server
                         }
                     }
 
-                    if (Core.SA)
-                    {
-                        NextActionTime = Core.TickCount + Mobile.EquipItemDelay;
-                    }
-
                     OnWarmodeChanged();
                 }
             }
@@ -9895,7 +9894,7 @@ namespace Server
             }
         }
 
-        public virtual bool CanSee(object o, bool los=false)
+        public virtual bool CanSee(object o, bool los = false)
         {
             if (o is Item)
             {
@@ -9971,7 +9970,7 @@ namespace Server
                 return false;
             }
 
-            return (this == m || 
+            return (this == m ||
                   (m.m_Map == m_Map && (!m.Hidden || IsStaff()) &&
                   ((m.Alive || (Skills.SpiritSpeak.Value >= 100.0)) || !Alive || IsStaff() || m.Warmode))) && (!los || this.InLOS(m));
         }

@@ -19,7 +19,7 @@ namespace Server.Leilaum
 	/// </summary>
 	public class AuctionGump : Gump
 	{
-		public AuctionGump( Mobile user ) : base( 50, 50 )
+		public AuctionGump( Mobile user ) : base( 250, 450 )
 		{
 			user.CloseGump( typeof( AuctionGump ) );
 			MakeGump();
@@ -32,11 +32,39 @@ namespace Server.Leilaum
 			Dragable = true;
 			Resizable = false;
 
-			AddPage(0);
-			AddImageTiled(49, 39, 402, 197, 3004);
-			AddImageTiled(50, 40, 400, 195, 2624);
-			AddAlphaRegion(50, 40, 400, 195);
-			AddImage(165, 65, 10452);
+
+            AddPage(0);
+            this.AddBackground(63, -310, 358, 353, 3500);
+            this.AddImage(73, -300, 1557);
+
+			//AddImageTiled(49, 39, 402, 197, 3004);
+			//AddImageTiled(50, 40, 400, 195, 2624);
+			AddBackground(50, 40, 402, 195, 9200);
+
+            //
+            var b = 50;
+            this.AddBackground(442+b, 44, 128, 191, 3500);
+            this.AddItem(496 + b, 76, 3644);
+            this.AddItem(497 + b, 57, 3644);
+            this.AddItem(518 + b, 97, 3644);
+            this.AddItem(519 + b, 78, 3644);
+            this.AddItem(504 + b, 104, 2879);
+            this.AddItem(483 + b, 125, 2879);
+            this.AddItem(460 + b, 147, 2879);
+            this.AddItem(462 + b, 156, 5049);
+            this.AddItem(470 + b, 127, 5042);
+            this.AddItem(497 + b, 123, 5115);
+            this.AddItem(534 + b, 125, 5096);
+            this.AddItem(522 + b, 139, 5088);
+            this.AddItem(481 + b, 174, 5098);
+            this.AddItem(452 + b, 156, 3643);
+            this.AddItem(496 + b, 111, 3639);
+            this.AddItem(506 + b, 106, 3639);
+            this.AddItem(497 + b, 104, 3639);
+
+            //
+
+            AddImage(165, 65, 10452);
 			AddImage(-1, 20, 10400);
 			AddImage(-1, 185, 10402);
 			AddImage(35, 20, 10420);
@@ -45,7 +73,7 @@ namespace Server.Leilaum
 			AddImageTiled(90, 32, 323, 16, 10254);
 			AddImage(420, 185, 10412);
 
-			AddLabel(160, 45, 151, AuctionSystem.ST[ 8 ] );
+			AddLabel(230, 45, 151, AuctionSystem.ST[ 8 ] );
 
 			// Create new auction: B1
 			AddLabel(100, 130, LUtils.kLabelHue, AuctionSystem.ST[ 9 ] );
@@ -60,7 +88,7 @@ namespace Server.Leilaum
 			AddButton(60, 165, 4005, 4006, 3, GumpButtonType.Reply, 0);
 
 			// View your bids: B4
-			AddLabel(285, 165, LUtils.kLabelHue, AuctionSystem.ST[ 12 ] );
+			AddLabel(285, 165, LUtils.kLabelHue, "Ver seus Lances" );
 			AddButton(245, 165, 4005, 4006, 4, GumpButtonType.Reply, 0);
 
 			// View pendencies: B5

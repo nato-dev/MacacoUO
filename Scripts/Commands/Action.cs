@@ -20,6 +20,7 @@ namespace Server.Commands
         public static void Initialize()
         {
             CommandSystem.Register("Action", AccessLevel.Administrator, OnAction);
+            CommandSystem.Register("staticaqui", AccessLevel.Administrator, OnStatics);
         }
 
         [Usage("Action")]
@@ -27,6 +28,21 @@ namespace Server.Commands
         {
             var action = e.GetInt32(0);
             e.Mobile.Animate(AnimationType.Attack, action);
+        }
+
+        [Usage("Staticsaqui")]
+        private static void OnStatics(CommandEventArgs e)
+        {
+            var m = e.Mobile;
+            var statics = m.Map.Tiles.GetStaticTiles(m.X, m.Y, true);
+            foreach(var t in statics)
+            {
+                var id = TileData.ItemTable[t.ID & TileData.MaxItemValue];
+                var flags = id.Flags;
+                var height = id.CalcHeight;
+
+                m.SendMessage($"ID:{id} | Flags: {flags} | Altura:{height}");
+            }
         }
     }
 }

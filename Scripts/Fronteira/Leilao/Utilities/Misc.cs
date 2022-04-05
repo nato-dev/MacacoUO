@@ -20,8 +20,8 @@ namespace Leilaum.Utilities
 		/// <summary>
 		/// The hues used for gumps in the systems
 		/// </summary>
-		public static int kLabelHue = 0x480;
-		public static int kGreenHue = 0x40;
+		public static int kLabelHue = 0;
+		public static int kGreenHue = 0;
 		public static int kRedHue = 0x20;
 
 		public static bool IsArtifact( Item item )

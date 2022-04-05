@@ -147,7 +147,7 @@ namespace Server.Mobiles
                 Add(typeof(BlueBook), 7);
                 Add(typeof(TanBook), 7);
                 Add(typeof(WoodenBox), 7);
-                Add(typeof(Kindling), 1);
+           
                 Add(typeof(HairDye), 30);
                 Add(typeof(Chessboard), 1);
                 Add(typeof(CheckerBoard), 1);

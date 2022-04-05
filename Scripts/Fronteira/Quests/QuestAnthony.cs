@@ -54,7 +54,7 @@ namespace Server.Engines.Quests
         {
             //this.AddObjective(new ObtainObjective(typeof(LuckyDagger), "lucky dagger", 1));
             this.AddObjective(new ObtainObjective(typeof(CabecaAnthony), "Pertences de Anthony", 1));
-            this.AddReward(new BaseReward(typeof(CombatSkillBook), 3, "3 Livros Estranhos"));
+            this.AddReward(new BaseReward("3 Livros Estranhos"));
             //this.AddReward(new BaseReward(typeof(SkillBook), 1, "1 Livro Tambem Estranho"));
         }
 
@@ -62,6 +62,9 @@ namespace Server.Engines.Quests
         {
             PointsSystem.Exp.AwardPoints(this.Owner, 500);
             this.Owner.PlaySound(this.CompleteSound);
+            this.Owner.PlaceInBackpack(new CombatSkillBook());
+            this.Owner.PlaceInBackpack(new CombatSkillBook());
+            this.Owner.PlaceInBackpack(new CombatSkillBook());
         }
 
         public override void OnAccept()

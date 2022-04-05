@@ -33,19 +33,6 @@ namespace Server.Leilaum
             m_List = new ArrayList(items);
             var l = new ArrayList(items);
 
-            // Removendo items q nao tem buynow
-            if(playerShop)
-            {
-                foreach(var i in l)
-                {
-                    var item = i as AuctionItem;
-                    if(!item.AllowBuyNow || item.BuyNow==0)
-                    {
-                        m_List.Remove(i);
-                    }
-                }
-            }
-
             this.playerShop = playerShop;
             m_ReturnToAuction = returnToAuction;
             MakeGump();
@@ -65,6 +52,92 @@ namespace Server.Leilaum
 
             AddPage(0);
 
+            this.Closable = true;
+            this.Disposable = true;
+            this.Dragable = true;
+            this.Resizable = false;
+            this.AddPage(0);
+            this.AddBackground(29, 68, 735, 362, 9200);
+
+            if (m_List.Count > 0)
+            {
+                for (int i = 0; i < 10 && (m_Page * 10 + i) < m_List.Count; i++)
+                {
+                    AuctionItem item = m_List[m_Page * 10 + i] as AuctionItem;
+
+                    var coluna = i % 2; // 0 ou 1
+                    var linha = Math.Ceiling((i + 1) / 2d) - 1;
+
+                    var modX = (int)(coluna * 350);
+                    var modY = (int)(linha * 50);
+
+                    this.AddBackground(49+ modX, 99+modY, 50, 50, 3000);
+                    this.AddLabel(104 + modX, 102 + modY, 0, $"{item.ItemName} - {item.Owner.Name}");
+
+                    Rectangle2D r = ItemBounds.Table[item.Item.ItemID];
+                    if(r.Width < 100 && r.Height < 100)
+                    {
+                        NewAuctionGump.AddItemCentered(49 + modX, 99 + modY, 50, 50, item.Item.ItemID, item.Item.Hue, this);
+                        AddItemProperty(item.Item);
+                    }
+                
+                    this.AddLabel(105 + modX, 122 + modY, 0, $"{item.BuyNow} moedas");
+                    this.AddButton(36 + modX, 117 + modY, 2224, 2224, 10 + i, GumpButtonType.Reply, 0);
+                }
+            }
+
+            /*
+            this.AddBackground(49, 99, 50, 50, 3000);
+            this.AddLabel(104, 102, 0, @"2x Katana - Kataninha - Ziden");
+            this.AddLabel(105, 122, 0, @"2000");
+            this.AddButton(36, 117, 2224, 2224, (int)Buttons.Button1, GumpButtonType.Reply, 0);
+
+            this.AddBackground(49, 151, 50, 50, 3000);
+            this.AddLabel(104, 154, 0, @"2x Katana - Kataninha - Ziden");
+            this.AddLabel(105, 174, 0, @"2000");
+            this.AddButton(36, 169, 2224, 2224, (int)Buttons.CopyofButton1, GumpButtonType.Reply, 0);
+
+
+            this.AddBackground(417, 97, 50, 50, 3000);
+            this.AddLabel(472, 100, 0, @"2x Katana - Kataninha - Ziden");
+            this.AddLabel(473, 120, 0, @"2000");
+            this.AddButton(404, 115, 2224, 2224, (int)Buttons.CopyofButton1, GumpButtonType.Reply, 0);
+
+
+            this.AddBackground(417, 149, 50, 50, 3000);
+            this.AddLabel(472, 152, 0, @"2x Katana - Kataninha - Ziden");
+            this.AddLabel(473, 172, 0, @"2000");
+            this.AddButton(404, 167, 2224, 2224, (int)Buttons.CopyofCopyofButton1, GumpButtonType.Reply, 0);
+            */
+
+            this.AddLabel(661, 76, 0, @"Procurar");
+            this.AddButton(630, 75, 4014, 248, 1, GumpButtonType.Reply, 0);
+
+            this.AddButton(487, 74, 4014, 248, 2, GumpButtonType.Reply, 0);
+            this.AddLabel(519, 75, 0, @"Ordenar");
+
+            if ((m_Page + 1) * 10 < m_List.Count)
+            {
+                this.AddLabel(641, 406, 4, @"Proximo");
+                this.AddButton(703, 405, 4007, 248, 2, GumpButtonType.Reply, 0);
+            }
+
+            if (m_Page > 0)
+            {
+                this.AddButton(62, 406, 4014, 248,3, GumpButtonType.Reply, 0);
+                this.AddLabel(102, 407, 0, @"Anterior");
+            }
+
+
+            this.AddImage(26, 67, 10460);
+            this.AddImage(734, 67, 10460);
+            this.AddImage(28, 401, 10460);
+            this.AddImage(736, 401, 10460);
+            this.AddImage(309, 20, 10452);
+            this.AddImage(377, 16, 3823);
+
+
+            /*
             AddImageTiled(49, 39, 402, 352, 3004);
             AddImageTiled(50, 40, 400, 350, 2624);
             AddAlphaRegion(50, 40, 400, 350);
@@ -137,6 +210,7 @@ namespace Server.Leilaum
             // Close: BUTTON 0
             AddLabel(115, 360, LUtils.kLabelHue, AuctionSystem.ST[7]);
             AddButton(75, 360, 4017, 4018, 0, GumpButtonType.Reply, 0);
+            */
         }
 
         public override void OnResponse(Server.Network.NetState sender, RelayInfo info)

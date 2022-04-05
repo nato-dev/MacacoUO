@@ -24,7 +24,7 @@ namespace Server.Leilaum
             m_Table.Add(5, "Ouro");
             m_Table.Add(6, "Visualizar janela de leiloes");
             m_Table.Add(7, "Fechar");
-            m_Table.Add(8, "Bem vindo a casa de leiloes");
+            m_Table.Add(8, "Mercado");
             m_Table.Add(9, "Vender Item");
             m_Table.Add(10, "Ver Items");
             m_Table.Add(11, "Ver seus Items");
@@ -48,7 +48,7 @@ namespace Server.Leilaum
             m_Table.Add(29, "Detalhes:");
             m_Table.Add(30, "Tempo restante para decisoes: {0} dias e {1} horas.");
             m_Table.Add(31, "Este leilao nao existe mais.");
-            m_Table.Add(32, "Busca da casa de Leiloes");
+            m_Table.Add(32, "Busca do Mercado");
             m_Table.Add(33, "Digite o que deseja buscar (em branco para tudo)");
             m_Table.Add(34, "Limite por tipo:");
             m_Table.Add(35, "Mapas");
@@ -154,9 +154,9 @@ namespace Server.Leilaum
             m_Table.Add(136, "O leilao foi cancelado porque o item leiloado foi removido do mundo.");
             m_Table.Add(137, "Voce comprou {0} atraves do sistema de leiloes. Seu lance foi de {1}.");
             m_Table.Add(138, "{0} is not a valid reason for an auction item check");
-            m_Table.Add(139, "Voce nao pode leiloar criaturas que nao sao suas.");
-            m_Table.Add(140, "YVoce nao pode leiloar criaturas mortas");
-            m_Table.Add(141, "Voce nao pode leiloar criaturas sumonadas");
+            m_Table.Add(139, "Voce nao pode vender criaturas que nao sao suas.");
+            m_Table.Add(140, "YVoce nao pode vender criaturas mortas");
+            m_Table.Add(141, "Voce nao pode vender criaturas sumonadas");
             m_Table.Add(142, "You can't auction familiars");
             m_Table.Add(143, "Por favor retire a mochila de seu animal primeiro");
             m_Table.Add(144, "O animal representado por este cheque nao existe mais");
@@ -206,21 +206,21 @@ namespace Server.Leilaum
             m_Table.Add(188, "Sim, eu gostaria de comprar mesmo assim");
             m_Table.Add(189, "Nao, eu nao quero comprar e gostaria do meu dinheiro de volta");
             m_Table.Add(190, "Alguns dos items leiloados nao existem mais devido a fatores externos. O comprador ira decidir se ira comprar ou nao.");
-            m_Table.Add(191, "Por favor selecione o item que voce gostaria de leiloar...");
+            m_Table.Add(191, "Por favor selecione o item que voce gostaria de vender...");
             m_Table.Add(192, "Voce nao pode ter mais de {0} leiloes ativos em sua conta");
-            m_Table.Add(193, "Voce somente pode leiloar items");
-            m_Table.Add(194, "Voce nao pode leiloar isto");
+            m_Table.Add(193, "Voce somente pode vender items");
+            m_Table.Add(194, "Voce nao pode vender isto");
             m_Table.Add(195, "Um dos items leiloados nao e identificado");
-            m_Table.Add(196, "Um dos items dentro do recipiente nao e autorizado na casa de leiloes");
+            m_Table.Add(196, "Um dos items dentro do recipiente nao e autorizado no mercado");
             m_Table.Add(197, "Voce nao pode vender recipientes com items dentro de outros recipientes");
-            m_Table.Add(198, "Voce somente pode leiloar items que estao em sua mochila ou banco");
+            m_Table.Add(198, "Voce somente pode vender items que estao em sua mochila ou banco");
             m_Table.Add(199, "Voce nao possui dinheiro suficiente em seu banco para dar este lance");
             m_Table.Add(200, "O sistema de leiloes esta parado no momento");
             m_Table.Add(201, "Remover");
             m_Table.Add(202, "Voce deu lance em um leilao que foi removido pela administracao. Seu lance esta sendo devolvido a voce.");
             m_Table.Add(203, "Seu leilao foi fechado pela administracao e seu item foi devolvido a voce.");
             m_Table.Add(204, "Seu lance precisa ser pelo menos {0} maior que o lance atual");
-            m_Table.Add(205, "Voce nao pode leiloar items que nao se movem");
+            m_Table.Add(205, "Voce nao pode vender items que nao se movem");
             m_Table.Add(206, "Props");
             m_Table.Add(207, "O leilao selecionado nao esta mais ativo. Por favor atualize a lista de leiloes.");
 
@@ -230,8 +230,9 @@ namespace Server.Leilaum
             m_Table.Add(209, "Se voce escolher usar a opcao Permitir comprar agora, informe um valor maior que o valor de reserva");
             m_Table.Add(210, "Compre este item agora por {0} gp");
 
-            m_Table.Add(105, @"<basefont color=#FF0000>Acordo do leilao<br>
-<basefont color=#FFFFFF>Por finalizando e enviando este formulario voce concordo em fazer parte do sistema de leiloes. O item leiloado sera removido de seu inventario e ira ser devolvido para voce somente se voce cancelar este leilao, for infrutifero e o item nao for vendido ou se a administracao forcar uma parada do sistema de leilao.
+            m_Table.Add(105, @"<basefont color=#FF0000>Mercado Publico<br>
+<basefont color=#FFFFFF>Jogadores podem vender/comprar items neste mercado publico. Uma simbolica taxa de manuseio eh cobrada caso o item seja vendido. <br>Caso o item nao seja vendido, uma taxa insignificante sera cobrada.
+");/*
 <basefont color=#FF0000>Lance inicial:<basefont color=#FFFFFF> Este e o lance minimo aceito por este item. Informe um valor razoavel e possivelmente menor do que esperaria pelo item no final do leilao.
 <basefont color=#FF0000>Reserva:<basefont color=#FFFFFF> Este valor nao sera conhecido por outros e voce deve considerar como um preco razoavel pelo item. Se o lance final atingir este valor a venda sera automaticamente finalizada pelo sistema. Se por outro lado o lance vencedor esta entre o lance inicial e o valor de reserva, sera dada a opcao a voce para escolher se aceita o valor ou nao. Voce tera 7 dias depois do fim do leilao para tomar um decisao. Se nao o fizer, o sistema de leiloes ira assumir que voce decidiu nao vender e ira devolver o item a voce e o dinheiro do lance vencedor. Compradores nao irao ver o valor de reserva mas somente uma mensagem dizendo se foi atingido ou nao.
 <basefont color=#FF0000>Duracao:<basefont color=#FFFFFF> Este valor especifica quantos dias o leilao ira durar desde sua data de criacao. No fim deste periodo, o sistema ira finalizar a venda, devolver o item e o valor do lance vencedor ou aguardar por uma decisao caso o valor de reserva nao tenha sido atingido.
@@ -241,7 +242,7 @@ namespace Server.Leilaum
 <basefont color=#FF0000>Web Link:<basefont color=#FFFFFF> Voce pode adicionar um link para este leilao, no caso de haver uma pagina com mais detalhes ou discussao sobre o item.
 <br>
 Uma vez que voce salve este leilao, voce nao conseguira seu item de volta ate o fim do leilao. Tenha certeza que voce entenda o que isto significa antes de salvar.");
-
+*/
             m_Table.Add(211, "Voce nao tem dinheiro suficiente em seu banco para comprar este item");
             m_Table.Add(212, "Voce nao tem espaco suficiente em seu manco para fazer este deposito. Por favor libere algum espaco e tente novamente.");
             m_Table.Add(213, "Controle de leilao");

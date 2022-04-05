@@ -42,9 +42,7 @@ namespace Server.Leilaum
 
 			AddPage(0);
 
-			AddImageTiled(49, 34, 402, 347, 3004);
-			AddImageTiled(50, 35, 400, 345, 2624);
-			AddAlphaRegion(50, 35, 400, 345);
+			AddBackground(50, 35, 400, 345, 9200);
 
 			AddImage(165, 65, 10452);
 			AddImage(0, 20, 10400);
@@ -60,52 +58,51 @@ namespace Server.Leilaum
 
 			// TEXT 0 : Search text
 			AddLabel(70, 115, LUtils.kLabelHue, AuctionSystem.ST[ 33 ] );
-			AddImageTiled(145, 135, 200, 20, 3004);
-			AddImageTiled(146, 136, 198, 18, 2624);
-			AddAlphaRegion(146, 136, 198, 18);
+
+			AddBackground(146, 136, 198, 18, 3000);
 			AddTextEntry(146, 135, 198, 20, LUtils.kRedHue, 0, @"");
 
 			AddLabel(70, 160, LUtils.kLabelHue, AuctionSystem.ST[ 34 ] );
 
-			AddCheck(260, 221, 2510, 2511, false, 1);
+			AddCheck(260, 221, 210, 211, false, 1);
 			AddLabel(280, 220, LUtils.kLabelHue, AuctionSystem.ST[ 35 ] );
 
 			if ( Core.AOS )
 			{
-				AddCheck(260, 261, 2510, 2511, false, 9);
+				AddCheck(260, 261, 210, 211, false, 9);
 				AddLabel(280, 260, LUtils.kLabelHue, AuctionSystem.ST[ 36 ] );
 
-				AddCheck(260, 241, 2510, 2511, false, 4);
+				AddCheck(260, 241, 210, 211, false, 4);
 				AddLabel(280, 240, LUtils.kLabelHue, AuctionSystem.ST[ 37 ] );
 			}
 
-			AddCheck(260, 201, 2510, 2511, false, 3);
+			AddCheck(260, 201, 210, 211, false, 3);
 			AddLabel(280, 200, LUtils.kLabelHue, AuctionSystem.ST[ 38 ] );
 
-			AddCheck(260, 181, 2510, 2511, false, 5);
+			AddCheck(260, 181, 210, 211, false, 5);
 			AddLabel(280, 180, LUtils.kLabelHue, AuctionSystem.ST[ 39 ] );
 
-			AddCheck(90, 181, 2510, 2511, false, 6);
+			AddCheck(90, 181, 210, 211, false, 6);
 			AddLabel(110, 180, LUtils.kLabelHue, AuctionSystem.ST[ 40 ] );
 
-			AddCheck(90, 201, 2510, 2511, false, 7);
+			AddCheck(90, 201, 210, 211, false, 7);
 			AddLabel(110, 200, LUtils.kLabelHue, AuctionSystem.ST[ 41 ] );
 
-			AddCheck(90, 221, 2510, 2511, false, 8);
+			AddCheck(90, 221, 210, 211, false, 8);
 			AddLabel(110, 220, LUtils.kLabelHue, AuctionSystem.ST[ 42 ] );
 
-			AddCheck(90, 241, 2510, 2511, false, 2);
+			AddCheck(90, 241, 210, 211, false, 2);
 			AddLabel(110, 240, LUtils.kLabelHue, AuctionSystem.ST[ 43 ] );
 
-			AddCheck(90, 261, 2510, 2511, false, 12);
+			AddCheck(90, 261, 210, 211, false, 12);
 			AddLabel(110, 260, LUtils.kLabelHue, AuctionSystem.ST[ 44 ] );
 
 			if ( Core.AOS )
 			{
-				AddCheck(90, 280, 2510, 2511, false, 11);
+				AddCheck(90, 280, 210, 211, false, 11);
 				AddLabel(110, 279, LUtils.kLabelHue, AuctionSystem.ST[ 45 ] );
 
-				AddCheck(260, 280, 2510, 2511, false, 10);
+				AddCheck(260, 280, 210, 211, false, 10);
 				AddLabel(280, 279, LUtils.kLabelHue, AuctionSystem.ST[ 46 ] );
 			}
 

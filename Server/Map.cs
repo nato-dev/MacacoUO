@@ -2912,6 +2912,7 @@ namespace Server
         private static int m_MaxLOSDistance = Core.GlobalMaxUpdateRange + 1;
 
         public static int MaxLOSDistance { get => m_MaxLOSDistance; set => m_MaxLOSDistance = value; }
+
         public bool LineOfSight(Point3D org, Point3D dest)
         {
             if (this == Internal)
@@ -3085,10 +3086,10 @@ namespace Server
 
                     if(Shard.DebugEnabled)
                     {
-                        Shard.Debug($"Passa por static: {t.ID} - Flags: {(flags & TileFlag.Window) != 0}");
+                        Shard.Debug($"Passa por static: {t.ID} - Ambas Flags: {(flags & (TileFlag.Window | TileFlag.NoShoot)) != 0} Window {(flags & TileFlag.Window) != 0}  NoShoot {(flags & TileFlag.NoShoot) != 0}");
                     }
 
-                    if (t.Z <= pointTop && t.Z + height >= point.Z)
+                    if (t.Z <= pointTop && t.Z + height >= point.Z && (id.Impassable || (flags & (TileFlag.Window | TileFlag.NoShoot)) != 0))
                     {
                         if (point.m_X != end.m_X || point.m_Y != end.m_Y || t.Z > endTop || t.Z + height < end.m_Z)
                         {

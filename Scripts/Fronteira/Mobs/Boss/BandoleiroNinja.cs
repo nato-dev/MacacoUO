@@ -16,6 +16,16 @@ namespace Server.Mobiles
             Hue = 38;
         }
 
+        public override bool OnDragDrop(Mobile from, Item dropped)
+        {
+            return false;
+        }
+
+        public override bool OnDragDropInto(Mobile from, Item item, Point3D p)
+        {
+            return false;
+        }
+
         public CabecaAnthony(Serial s) : base(s) { }
 
         public override void OnDoubleClick(Mobile from)

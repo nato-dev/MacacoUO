@@ -11,6 +11,7 @@ using System.Globalization;
 using Server;
 using Server.Gumps;
 using Leilaum.Utilities;
+using Server.Items;
 
 namespace Server.Leilaum
 {
@@ -39,7 +40,7 @@ namespace Server.Leilaum
 
 		public AuctionViewGump( Mobile user, AuctionItem auction, AuctionGumpCallback callback, int page , bool playerShop = false) : base( 50, 50 )
 		{
-            this.playerShop = playerShop;
+            this.playerShop = false;
 			m_Page = page;
 			m_User = user;
 			m_Auction = auction;
@@ -84,42 +85,44 @@ namespace Server.Leilaum
 			AddPage( 0 );
 
 			// The page and background
-			AddBackground( 0, 0, 502, 370, 9270 );
-			AddImageTiled( 4, 4, 492, 362, kBeigeBorderOuter );
-			AddImageTiled( 5, 5, 490, 360, kBeigeBorderInner );
-			AddAlphaRegion( 5, 5, 490, 360);
+			AddBackground( 0, -2, 502, 370, 9200 );
+			//AddImageTiled( 4, 4, 492, 362, kBeigeBorderOuter );
+			//AddImageTiled( 5, 5, 490, 360, kBeigeBorderInner );
+			//AddAlphaRegion( 5, 5, 490, 360);
 
 			//
 			// The item display area
 			//
-			AddImageTiled( 4, 4, 156, 170, kBeigeBorderOuter );
-			AddImageTiled( 5, 5, 154, 168, kBeigeBorderInner );
-			AddAlphaRegion( 5, 5, 154, 168);
+			//AddImageTiled( 4, 4, 156, 170, kBeigeBorderOuter );
+			//AddImageTiled( 5, 5, 154, 168, kBeigeBorderInner );
+			//AddAlphaRegion( 5, 5, 154, 168);
+            AddBackground(5, 5, 155, 140, 3500);
 
-			// Item image goes here
-			if ( item.Item != null )
+            // Item image goes here
+            if ( item.Item != null )
 			{
                 NewAuctionGump.AddItemCentered(5, 5, 155, 140, item.Item.ItemID, item.Item.Hue, this);
-				AddItemProperty( item.Item.Serial);
+				AddItemProperty(item.Item);
 			}
 			// Hue preview image goes here if the item has a hue
 			if ( item.Item != null && 0 != itemHue )
 			{
-				AddImageTiled( 30, 140, 107, 24, 3004 );
-				AddImageTiled( 31, 141, 105, 22, kBeigeBorderInner );
-				AddAlphaRegion( 31, 141, 105, 22 );
+                //AddImageTiled( 30, 140, 107, 24, 3004 );
+                //AddImageTiled( 31, 141, 105, 22, kBeigeBorderInner );
+                AddBackground( 31, 141, 105, 22, 3000);
 				AddLabel( 37, 142, LUtils.kLabelHue, AuctionSystem.ST[ 82 ]  );
 				AddItem( 90, 141, kHueExampleID, itemHue );
 			}
 
-			//
-			// The Auction info area
-			//
-			AddImageTiled( 4, 169, 156, 196, kBeigeBorderOuter );
-			AddImageTiled( 5, 170, 154, 195, kBeigeBorderInner );
-			AddAlphaRegion( 5, 170, 154, 195);
+            //
+            // The Auction info area
+            //
+            //AddImageTiled( 4, 169, 156, 196, kBeigeBorderOuter );
+            //AddImageTiled( 5, 170, 154, 195, kBeigeBorderInner );
+            AddBackground( 5, 170, 154, 195, 3000);
 
 			// Reserve and bids
+            /*
             if(!this.playerShop)
             {
                 AddLabel(10, 175, LUtils.kLabelHue, AuctionSystem.ST[68]);
@@ -135,6 +138,7 @@ namespace Server.Leilaum
                 else
                     AddLabel(45, 225, LUtils.kRedHue, AuctionSystem.ST[71]);
             }
+            */
 
 			// Time remaining
 			string timeleft = null;
@@ -162,6 +166,7 @@ namespace Server.Leilaum
 			}
 			AddLabel( 45, 260, LUtils.kGreenHue, timeleft );
 
+            /*
             if(!this.playerShop)
             {
                 // Bidding
@@ -185,22 +190,23 @@ namespace Server.Leilaum
                     AddButton(125, 338, 4011, 4012, 5, GumpButtonType.Reply, 0);
                 }
             }
+            */
 			
 			//
 			// Item properties area
 			//
-			AddImageTiled( 169, 29, 317, 142, kBeigeBorderOuter );
-			AddImageTiled( 170, 30, 315, 140, kBeigeBorderInner );
-			AddAlphaRegion( 170, 30, 315, 140 );
+			//AddImageTiled( 169, 29, 317, 142, kBeigeBorderOuter );
+			//( 170, 30, 315, 140, kBeigeBorderInner );
+			AddBackground( 170, 30, 315, 140, 3000 );
 
 			// If it is a container make room for the arrows to navigate to each of the items
 			if ( m_Auction.ItemCount > 1 )
 			{
 				AddLabel( 170, 10, LUtils.kGreenHue, string.Format( AuctionSystem.ST[ 231 ] , m_Auction.ItemName ));
 
-				AddImageTiled( 169, 29, 317, 27, kBeigeBorderOuter );
-				AddImageTiled( 170, 30, 315, 25, kBeigeBorderInner );
-				AddAlphaRegion( 170, 30, 315, 25 );
+                //AddImageTiled( 169, 29, 317, 27, kBeigeBorderOuter );
+                //AddImageTiled( 170, 30, 315, 25, kBeigeBorderInner );
+                AddBackground( 170, 30, 315, 25, 3000 );
 				AddLabel( 185, 35, LUtils.kGreenHue, string.Format( AuctionSystem.ST[ 67 ] , m_Page + 1, m_Auction.ItemCount ) );
 
 				// Prev Item button: 1
@@ -216,7 +222,7 @@ namespace Server.Leilaum
 				}
 
 				//AddHtml( 173, 56, 312, 114, m_Auction[ m_Page ].Properties, (bool)false, (bool)true );
-				AddHtml( 173, 56, 312, 114, "Deixe o mouse em cima do item para ver suas propriedades.", (bool)false, (bool)true );
+				AddHtml( 173, 56, 312, 114, Gump.Cor("Deixe o mouse em cima do item para ver suas propriedades.", "black"), (bool)false, (bool)true );
 			}
 			else
 			{
@@ -236,11 +242,11 @@ namespace Server.Leilaum
 			//
 			// Owner description area
 			//
-			AddImageTiled( 169, 194, 317, 112, kBeigeBorderOuter );
+			//AddImageTiled( 169, 194, 317, 112, kBeigeBorderOuter );
 			AddLabel( 170, 175, LUtils.kLabelHue, AuctionSystem.ST[ 81 ] );
-			AddImageTiled( 170, 195, 315, 110, kBeigeBorderInner );
-			AddAlphaRegion( 170, 195, 315, 110 );
-			AddHtml( 173, 195, 312, 110, string.Format( "<basefont color=#FFFFFF>{0}", m_Auction.Description ), (bool)false, (bool)true);
+            //AddImageTiled( 170, 195, 315, 110, kBeigeBorderInner );
+            AddBackground( 170, 195, 315, 110, 3000);
+			AddHtml( 173, 195, 312, 110, string.Format( "<basefont>{0}", m_Auction.Description ), (bool)false, (bool)true);
 			
 			// Web link button: 3
 			if ( m_Auction.WebLink != null && m_Auction.WebLink.Length > 0 )
@@ -260,17 +266,21 @@ namespace Server.Leilaum
                 var buyOut = (double)m_Auction.BuyNow;
                 if(playerShop)
                 {
-                    buyOut = buyOut * 0.9; // 10% desconto comprar em loja
+                   // buyOut = buyOut * 0.9; // 10% desconto comprar em loja
                 }
                 AddLabel( 205, 312, LUtils.kGreenHue, string.Format( AuctionSystem.ST[ 210 ], ((int)buyOut).ToString( "#,0" )));
 			}
 
-			// Button 6 : Admin Auction Panel
-			if ( m_User.AccessLevel >= AuctionConfig.AuctionAdminAcessLevel )
-			{
-				AddButton( 170, 338, 4011, 4012, 6, GumpButtonType.Reply, 0 );
-				AddLabel( 205, 340, LUtils.kLabelHue, AuctionSystem.ST[ 227 ] );
-			}
+            // Button 6 : Admin Auction Panel
+            if (m_User.AccessLevel >= AuctionConfig.AuctionAdminAcessLevel)
+            {
+                AddButton(170, 338, 4011, 4012, 6, GumpButtonType.Reply, 0);
+                AddLabel(205, 340, LUtils.kLabelHue, AuctionSystem.ST[227]);
+            } else if (m_Auction.IsOwner(m_User))
+            {
+                AddButton(170, 338, 4011, 4012, 666, GumpButtonType.Reply, 0);
+                AddLabel(205, 340, LUtils.kLabelHue, "Pegar Item");
+            }
 
 			// Close button: 0
 			AddButton( 455, 338, 4017, 4018, 0, GumpButtonType.Reply, 0 );
@@ -380,7 +390,10 @@ namespace Server.Leilaum
 						sender.Mobile.SendGump( new AuctionViewGump( sender.Mobile, m_Auction, m_Callback, m_Page, this.playerShop) );
 					}
 					break;
-			}
+                case 666: // Pegar Item
+                    m_Auction.ForceEnd();
+                    break;
+            }
 		}
 
 		private void BidViewCallback( Mobile m )

@@ -337,9 +337,9 @@ namespace Server
                 case "CocoaLiquo": return "Licor de Chocolate";
                 case "GreatBarracudaPie": return "Torta de Grande Barracuda";
                 case "MentoSeasoning": return "Temperto de Menta";
-                case "ZoogiFungus": return "Fungo Zoogi";
                 case "GiantKoiPie": return "Torta de Carpa Gigante";
                 case "GiantKoiSteak": return "Filé de Carpa Gigante";
+                case "RecallScroll": return "Pergaminho de Recall";
                 case "FireFishPie": return "Torta de Peixe Fogo";
                 case "FireFishSteak": return "Filé de Peixe Fogo";
                 case "Carrot": return "Cenoura";

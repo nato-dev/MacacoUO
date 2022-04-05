@@ -124,8 +124,15 @@ namespace Server.Ziden.Traducao
                 return null;
 
             string nome = null;
+            if (Items.TryGetValue(type.Name, out nome))
+            {
+                if (Shard.DebugEnabled) Shard.Debug("Traduzi pelo sistema novo " + nome);
+                return nome;
+            }
+            
             if (ItemTrans.TryGetValue(type, out nome))
             {
+                if (Shard.DebugEnabled) Shard.Debug("Traduzi pelo sistema antigo " + nome);
                 return nome;
             }
 

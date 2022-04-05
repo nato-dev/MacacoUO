@@ -1435,15 +1435,15 @@ namespace Server.Leilaum
         {
             AuctionSystem.Auctions.Remove(this);
 
-            var custoPago = (int)(Math.Max(this.MinBid, this.Reserve) * AuctionConfig.CostOfAuction);
+            /*
+            var custoPago = (int)(this.BuyNow * AuctionConfig.CostOfAuction);
             if (custoPago > 0)
             {
                 AuctionCheck gold = new AuctionGoldCheck(this, AuctionResult.RefundCost);
                 GiveItemTo(m_Owner, gold);
                 this.Owner.SendMessage("Voce recebeu o dinheiro gasto com o leilao pois o item nao foi vendido");
-
-
             }
+            */
 
             if (HighestBid == null)
             {
@@ -1905,11 +1905,10 @@ namespace Server.Leilaum
         /// <returns>True if the item has been sold</returns>
         public bool DoBuyNow(Mobile m, bool playerShop = false)
         {
-
             var value = m_BuyNow;
             if (playerShop)
             {
-                value = (int)((double)value * 0.9);
+                //value = (int)((double)value * 0.9);
             }
 
             if (!Banker.Withdraw(m, value))
@@ -1929,7 +1928,7 @@ namespace Server.Leilaum
             Bid bid = new Bid(m, BuyNow);
             m_Bids.Insert(0, bid);
 
-            AuctionGoldCheck gold = new AuctionGoldCheck(this, AuctionResult.BuyNow, playerShop);
+            AuctionGoldCheck gold = new AuctionGoldCheck(this, AuctionResult.BuyNow, false);
             AuctionItemCheck item = new AuctionItemCheck(this, AuctionResult.BuyNow);
 
             GiveItemTo(m, item);

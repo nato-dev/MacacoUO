@@ -41,6 +41,12 @@ namespace Server.SkillHandlers
                 return TimeSpan.FromSeconds(5.0);
             }
 
+            if(m.Paralyzed || m.Frozen)
+            {
+                m.SendMessage("Voce esta ocupado fazendo outra coisa"); // You are busy doing something else and cannot hide.
+                return TimeSpan.FromSeconds(1.0);
+            }
+
             if(BandageContext.GetContext(m) != null)
             {
                 m.SendMessage("Você não consegue se concentrar enquanto aplica bandagens");

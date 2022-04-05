@@ -40,9 +40,9 @@ namespace Server.Leilaum
 
 			AddPage(0);
 
-			AddImageTiled(49, 34, 402, 312, 3004);
-			AddImageTiled(50, 35, 400, 310, 2624);
-			AddAlphaRegion(50, 35, 400, 310);
+			//AddImageTiled(49, 34, 402, 312, 3004);
+			//AddImageTiled(50, 35, 400, 310, 2624);
+			AddBackground(50, 35, 400, 310, 9200);
 
 			AddImage(165, 65, 10452);
 			AddImage(0, 20, 10400);

@@ -204,8 +204,14 @@ namespace Server.Items
                         {
                             if(opt==1 && from.Alive)
                             {
-                                from.Backpack.DropItem(addon.GetDeed());
-                                addon.Delete();
+                                if (!addon.Deleted)
+                                {
+                                    from.Backpack.DropItem(addon.GetDeed());
+                                    addon.Delete();
+                                } else
+                                {
+                                    from.SendMessage("A sagacidade humana nao tem limites");
+                                }
                             }
 
                         }, 0x14F0, 0, "Manter", "Remover"));

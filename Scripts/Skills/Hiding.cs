@@ -31,6 +31,12 @@ namespace Server.SkillHandlers
                 return TimeSpan.FromSeconds(1.0);
             }
 
+            if(m.Paralyzed || m.Frozen)
+            {
+                m.SendMessage("Voce esta ocupado fazendo outra coisa"); // You are busy doing something else and cannot hide.
+                return TimeSpan.FromSeconds(1.0);
+            }
+
             if (Server.Engines.VvV.ManaSpike.UnderEffects(m))
             {
                 return TimeSpan.FromSeconds(1.0);

@@ -42,6 +42,47 @@ namespace Server.Leilaum
 			Dragable = true;
 			Resizable = false;
 
+            this.Closable = true;
+            this.Disposable = true;
+            this.Dragable = true;
+            this.Resizable = false;
+            this.AddPage(0);
+
+            this.Closable = true;
+            this.Disposable = true;
+            this.Dragable = true;
+            this.Resizable = false;
+            this.AddPage(0);
+          
+            this.AddBackground(29, 59, 522, 314, 9200);
+            this.AddBackground(40, 68, 150, 150, 3000);
+            AddItemCentered(40, 68, 150, 150, m_Auction.Item.ItemID, m_Auction.Item.Hue, this);
+            AddItemProperty(m_Auction.Item);
+
+            this.AddHtml(200, 72, 335, 20, @"Vender Item", (bool)false, (bool)false);
+            this.AddBackground(200, 99, 335, 26, 3000);
+            this.AddHtml(204, 104, 323, 19, @"", (bool)false, (bool)false);
+            this.AddTextEntry(204+6, 104+3, 323, 19, 0, 3, this.m_Auction.Item.Name ?? this.m_Auction.Item.GetType().Name);
+
+            this.AddHtml(200, 163, 200, 20, @"Preco", (bool)false, (bool)false);
+            this.AddBackground(201, 189, 200, 26, 3000);
+            this.AddTextEntry(208, 193, 192, 20, 0, 6, @"1000");
+            this.AddImage(244, 159, 3823);
+            this.AddHtml(42, 233, 200, 20, @"Descricao", (bool)false, (bool)false);
+            this.AddBackground(44, 260, 494, 71, 3000);
+            this.AddTextEntry(52, 267, 481, 60, 0, 4, @"Desc");
+
+
+            this.AddButton(469, 340, 247, 248, 1, GumpButtonType.Reply, 0);
+
+
+            this.AddHtml(500, 164, 42, 20, @"Dias", (bool)false, (bool)false);
+            this.AddBackground(493, 190, 55, 23, 3000);
+            this.AddTextEntry(500, 192, 42, 18, 0, 2, @"7"); // dias
+            this.AddImage(418, 153, 109);
+
+
+            /*
 			AddPage(0);
 			AddBackground( 0, 0, 502, 370, 9270 );
 			AddImageTiled(4, 4, 492, 362, 2524);
@@ -60,6 +101,7 @@ namespace Server.Leilaum
 
 			AddLabel(250, 10, LUtils.kRedHue, AuctionSystem.ST[ 100 ] );
 
+            
 			// Starting bid: text 0
 			AddLabel(170, 35, LUtils.kLabelHue, AuctionSystem.ST[ 68 ] );
 			AddImageTiled(254, 34, 72, 22, 2524);
@@ -73,6 +115,7 @@ namespace Server.Leilaum
 			AddImageTiled(415, 35, 70, 20, 2624);
 			AddAlphaRegion(415, 35, 70, 20);
 			AddTextEntry(415, 35, 70, 20, LUtils.kGreenHue, 1, m_Auction.Reserve.ToString( "#,0" ) );
+            
 
 			// Days duration: text 2
 			AddLabel(170, 60, LUtils.kLabelHue, AuctionSystem.ST[ 101 ] );
@@ -90,8 +133,8 @@ namespace Server.Leilaum
 			AddTextEntry(255, 85, 230, 20, LUtils.kGreenHue, 3, m_Auction.ItemName );
 
 			// Buy now: Check 0, Text 6
-			AddCheck( 165, 110, 2152, 2153, false, 0 );
-			AddLabel( 200, 115, LUtils.kLabelHue, AuctionSystem.ST[ 208 ] );
+			//AddCheck( 165, 110, 2152, 2153, false, 0 );
+			AddLabel( 200, 115, LUtils.kLabelHue, "Preco" );
 			AddImageTiled( 329, 114, 157, 22, 2524 );
 			AddImageTiled( 330, 115, 155, 20, 2624 );
 			AddAlphaRegion( 330, 115, 155, 20 );
@@ -105,6 +148,7 @@ namespace Server.Leilaum
 			AddTextEntry(170, 160, 315, 90, LUtils.kGreenHue, 4, m_Auction.Description);
 
 			// Web link: text 5
+            /*
 			AddLabel(170, 255, LUtils.kLabelHue, AuctionSystem.ST[ 104 ] );
 			AddImageTiled(224, 274, 262, 22, 2524);
 			AddLabel(170, 275, LUtils.kLabelHue, @"http://");
@@ -112,11 +156,14 @@ namespace Server.Leilaum
 			AddAlphaRegion(225, 275, 260, 20);
 			AddTextEntry(225, 275, 260, 20, LUtils.kGreenHue, 5, m_Auction.WebLink );
 			
+
 			// Help area
+            
 			AddImageTiled(9, 174, 152, 187, 2524);
 			AddImageTiled(10, 175, 150, 185, 2624);
 			AddAlphaRegion(10, 175, 150, 185);
 			AddHtml( 10, 175, 150, 185, AuctionSystem.ST[ 105 ] , (bool)false, (bool)true);
+            
 
 			// OK Button: button 1
 			AddButton(170, 305, 4023, 4024, 1, GumpButtonType.Reply, 0);
@@ -126,9 +173,12 @@ namespace Server.Leilaum
 			// Cancel button: button 0
 			AddButton(170, 335, 4020, 4020, 0, GumpButtonType.Reply, 0);
 			AddLabel(210, 335, LUtils.kLabelHue, AuctionSystem.ST[ 108 ] );
-		}
+            */
 
-		public override void OnResponse(Server.Network.NetState sender, RelayInfo info)
+
+        }
+
+        public override void OnResponse(Server.Network.NetState sender, RelayInfo info)
 		{
 			if ( ! AuctionSystem.Running )
 			{
@@ -139,7 +189,7 @@ namespace Server.Leilaum
 				return;
 			}
 
-			bool allowBuyNow = info.Switches.Length > 0; // Just one switch
+            bool allowBuyNow = true; // info.Switches.Length > 0; // Just one switch
 
 			switch ( info.ButtonID )
 			{
@@ -198,6 +248,7 @@ namespace Server.Leilaum
 
 					bool ok = true;
 
+                    /*
 					if ( minbid < 1 )
 					{
 						m_User.SendMessage( AuctionConfig.MessageHue, AuctionSystem.ST[ 109 ] );
@@ -209,6 +260,7 @@ namespace Server.Leilaum
 						m_User.SendMessage( AuctionConfig.MessageHue, AuctionSystem.ST[ 110 ] );
 						ok = false;
 					}
+                    */
 
 					if ( days < AuctionSystem.MinAuctionDays && m_User.AccessLevel < AccessLevel.GameMaster || days < 1 )
 					{
@@ -228,6 +280,19 @@ namespace Server.Leilaum
 						ok = false;
 					}
 
+                    if (name.Length > 30)
+                    {
+                        m_User.SendMessage("Nome muito grande");
+                        ok = false;
+                    }
+
+                    if (buynow < 500)
+                    {
+                        m_User.SendMessage("Preco minimo: 500 moedas de ouro");
+                        ok = false;
+                    }
+
+                    /*
 					if ( minbid * AuctionConfig.MaxReserveMultiplier < reserve && m_User.AccessLevel < AccessLevel.GameMaster )
 					{
 						m_User.SendMessage( AuctionConfig.MessageHue, AuctionSystem.ST[ 114 ] );
@@ -239,15 +304,19 @@ namespace Server.Leilaum
 						m_User.SendMessage( AuctionConfig.MessageHue, AuctionSystem.ST[ 209 ] );
 						ok = false;
 					}
+                    */
 
 					if ( ok && AuctionConfig.CostOfAuction > 0.0 )
 					{
 						int toPay = 0;
 
 						if ( AuctionConfig.CostOfAuction <= 1.0 )
-							toPay = (int) ( Math.Max( minbid, reserve ) * AuctionConfig.CostOfAuction );
+							toPay = (int) (buynow * AuctionConfig.CostOfAuction );
 						else
 							toPay = (int) AuctionConfig.CostOfAuction;
+
+                        if (toPay < 100)
+                            toPay = 100;
 
 						if ( toPay > 0 )
 						{
