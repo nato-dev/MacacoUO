@@ -5,6 +5,8 @@ namespace Server.Mobiles
     [CorpseName("a ghostly corpse")]
     public class Ghoul : BaseCreature
     {
+        public override int BonusExp => 10;
+
         [Constructable]
         public Ghoul()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)

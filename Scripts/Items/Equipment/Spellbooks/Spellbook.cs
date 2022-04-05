@@ -576,7 +576,6 @@ namespace Server.Items
 					list.Add((Spellbook)item);
 				}
 			}
-
 			return list;
 		}
 

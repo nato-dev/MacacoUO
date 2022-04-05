@@ -118,13 +118,13 @@ namespace Server.Leilaum
 
             if ((m_Page + 1) * 10 < m_List.Count)
             {
-                this.AddLabel(641, 406, 4, @"Proximo");
-                this.AddButton(703, 405, 4007, 248, 2, GumpButtonType.Reply, 0);
+                this.AddLabel(641, 406, 0, @"Proximo");
+                this.AddButton(703, 405, 4007, 4007, 3, GumpButtonType.Reply, 0);
             }
 
             if (m_Page > 0)
             {
-                this.AddButton(62, 406, 4014, 248,3, GumpButtonType.Reply, 0);
+                this.AddButton(62, 406, 4014, 4014, 4, GumpButtonType.Reply, 0);
                 this.AddLabel(102, 407, 0, @"Anterior");
             }
 

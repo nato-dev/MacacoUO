@@ -1979,9 +1979,9 @@ namespace Server.Items
                     var p = ((PlayerMobile)defender);
                     chance += AosAttributes.GetValue(defender, AosAttribute.DefendChance) / 100d;
 
-                    if (defender.Weapon is Fists)
+                    if (!Shard.SPHERE_STYLE && defender.Skills.Wrestling.Value >= 60)
                     {
-                        chance += defender.Skills.Wrestling.Value / 100 * 0.40; // 40%
+                        chance += defender.Skills.Wrestling.Value / 100 * 0.30; // 30%
                     }
 
                     chance += parry * 0.25; // +25%
@@ -2119,9 +2119,12 @@ namespace Server.Items
 
                 var ratioBloqueio = (attacker is BaseCreature ? 2 : attackerWeapon is BaseRanged ? 1.5 : 1.2);
                 var bloqueado = 0;
+                var armor = shield.ArmorRating;
+                if (armor < 15)
+                    armor = 15;
                 if (shield != null)
                 {
-                    bloqueado = (int)(shield.ArmorRating * (attacker is BaseCreature ? 2 : attackerWeapon is BaseRanged ? 1.5 : 1.2));
+                    bloqueado = (int)(armor * (attacker is BaseCreature ? 1.7 : attackerWeapon is BaseRanged ? 1.5 : 1.2));
                 }
                 else
                 {

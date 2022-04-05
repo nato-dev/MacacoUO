@@ -421,6 +421,7 @@ namespace Server.Mobiles
 
         public override bool Warmode { get { return base.Warmode; } set { base.Warmode = value; if (value) DicaCombate = false; } }
 
+
         public override void OnRegionChange(Region Old, Region New)
         {
             base.OnRegionChange(Old, New);
@@ -1127,6 +1128,16 @@ namespace Server.Mobiles
             }
 
             return ret;
+        }
+
+        public override void Lift(Item item, int amount, out bool rejected, out LRReason reject)
+        {
+            var delay = item.Parent is Corpse;
+            base.Lift(item, amount, out rejected, out reject);
+            if (delay)
+            {
+                NextActionTime = Core.TickCount + 200 + Utility.Random(100); // nao ta funfando
+            }
         }
 
         public override bool OnDroppedItemToWorld(Item item, Point3D location)
@@ -5407,14 +5418,31 @@ namespace Server.Mobiles
         public override ApplyPoisonResult ApplyPoison(Mobile from, Poison poison)
         {
 
-
-
             if (poison == null)
                 return ApplyPoisonResult.Immune;
 
             if (!Alive)
             {
                 return ApplyPoisonResult.Immune;
+            }
+
+            if(!from.Player && Skills.TasteID.Value >= 50)
+            {
+                if(Utility.RandomDouble() < Skills.TasteID.Value/120)
+                {
+                    if(poison.Level > 0)
+                        poison = PoisonImpl.DecreaseLevel(poison);
+                    else
+                        return ApplyPoisonResult.Immune;
+                }
+
+                if (Utility.RandomDouble() < Skills.TasteID.Value / 200)
+                {
+                    if (poison.Level > 0)
+                        poison = PoisonImpl.DecreaseLevel(poison);
+                    else
+                        return ApplyPoisonResult.Immune;
+                }
             }
 
             //Skill Masteries

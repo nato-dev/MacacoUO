@@ -1221,7 +1221,7 @@ namespace Server.Leilaum
 
             AuctionLog.WriteNewAuction(this);
 
-            var msg = this.Owner.Name + " esta vendendo " + this.Item.Name + " por " + this.BuyNow;
+            var msg = this.Owner.Name + " esta vendendo " + this.Item.Amount +" "+ this.ItemName +" " + this.Item.Name != null && this.Item.Name.Length > 0 ? ($"({this.Item.Name})") : "" + " por " + this.BuyNow+" moedas de ouro";
             DiscordBot.SendMessage(":coin: " + msg);
 
             foreach (var pl in NetState.GetOnlinePlayerMobiles())

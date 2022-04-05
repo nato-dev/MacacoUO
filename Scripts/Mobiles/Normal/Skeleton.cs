@@ -6,6 +6,8 @@ namespace Server.Mobiles
     [CorpseName("a skeletal corpse")]
     public class Skeleton : BaseCreature
     {
+        public override int BonusExp => 5;
+
         [Constructable]
         public Skeleton()
             : base(AIType.AI_Melee, FightMode.Closest, 10, 1, 0.2, 0.4)

@@ -33,17 +33,12 @@ namespace Server.Leilaum
 			m_Auction = auction.ID;
 			m_ItemName = auction.ItemName;
 
-            Shard.Debug("Result: " + result.ToString());
-
-            /*
             if (result == AuctionResult.RefundCost)
             {
-                m_GoldAmount = (int)(Math.Max(auction.MinBid, auction.Reserve) * AuctionConfig.CostOfAuction);
-                Shard.Debug("Min-Reserve: " + auction.MinBid + " - " + auction.Reserve);
-                Shard.Debug("Gold " + m_GoldAmount);
+                var custo = auction.BuyNow * AuctionConfig.CostOfAuction;
+                m_GoldAmount = (int)(custo * 0.8);
             }
 			else
-            */
             if ( result != AuctionResult.BuyNow && auction.HighestBid != null)
 				m_GoldAmount = auction.HighestBid.Amount;
 			else

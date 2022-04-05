@@ -5088,7 +5088,7 @@ namespace Server
         private static int m_ActionDelay = 300;
 
         public static int EquipItemDelay { get { return m_ActionDelay; } set { m_ActionDelay = value; } }
-        public static int MoveItemDelay = 300;
+        public static int MoveItemDelay = -1;
 
         public virtual void Lift(Item item, int amount, out bool rejected, out LRReason reject)
         {
