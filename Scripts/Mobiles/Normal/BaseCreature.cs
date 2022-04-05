@@ -2659,7 +2659,7 @@ namespace Server.Mobiles
         {
             if (BardPacified)
             {
-                if(tomouEmPeace > this.HitsMax / 2)
+                if(tomouEmPeace > this.HitsMax / 2 || tomouEmPeace > 700)
                 {
                     Unpacify();
                     tomouEmPeace = 0;
