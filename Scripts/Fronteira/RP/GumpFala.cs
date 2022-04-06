@@ -11,11 +11,13 @@ namespace Server.Gumps
     public enum Faces
     {
         GM_PRETO = 2741,
-        PUNK_BARBUDO = 2734
+        PUNK_BARBUDO = 2734,
+        FADA = 1641,
     }
 
     public class GumpFala : Gump
     {
+
         private Action<int> Callback;
 
 
@@ -27,13 +29,21 @@ namespace Server.Gumps
             this.Dragable = true;
             this.Resizable = false;
 
+            var oX = 0;
+            var oY = 0;
+            if(face == Faces.FADA)
+            {
+                oX = 20;
+                oY = 20;
+            }
+
             AddPage(0);
             AddBackground(81, 29, 627, 256, 3000);
             //AddHtml(248, 269, 411, 21, titulo, (bool)false, (bool)false);
             AddBackground(86, 33, 154, 148, 3500);
             AddBackground(238, 35, 457, 146, 3500);
             AddHtml(259, 51, 416, 110, string.Join("</br>", lines), (bool)false, (bool)false);
-            AddImage(108, 52, (int)face);
+            AddImage(108+oX, 52+oY, (int)face);
             AddImage(187, 172, 1520);
         }
 

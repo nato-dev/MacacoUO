@@ -72,20 +72,27 @@ namespace Server.Spells.Fifth
                 duration = TimeSpan.FromSeconds(Utility.Random(80, count));
 
                 var creature = new BladeSpirits(true);
+
+                var pl = Caster as PlayerMobile;
+                if(pl != null && pl.Almas > 0)
+                {
+                    creature.SetDamage(creature.DamageMin + (pl.Almas/2), creature.DamageMax + pl.Almas);
+                }
+
                 if (Caster.Skills[SkillName.SpiritSpeak].Value < 60)
                 {
-                    SpellHelper.Summon(creature, Caster, 0x212, duration, true, false, false, SkillName.SpiritSpeak);
+                    SpellHelper.Summon(creature, Caster, 0x212, duration, true, true, false, SkillName.SpiritSpeak);
                     //BaseCreature.Summon(creature, false, this.Caster, new Point3D(p), 0x212, duration);
                     creature.SummonMaster = null;
                 }
                 else if (Caster.Skills[SkillName.SpiritSpeak].Value < 80)
                 {
                     //BaseCreature.Summon(creature, false, this.Caster, new Point3D(p), 0x212, duration);
-                    SpellHelper.Summon(creature, Caster, 0x212, duration, true, false, false, SkillName.SpiritSpeak);
+                    SpellHelper.Summon(creature, Caster, 0x212, duration, true, true, false, SkillName.SpiritSpeak);
                 }
                 else
                 {
-                    SpellHelper.Summon(creature, Caster, 0x212, duration, true, false, true, SkillName.SpiritSpeak);
+                    SpellHelper.Summon(creature, Caster, 0x212, duration, true, true, true, SkillName.SpiritSpeak);
                     creature.Manda = true;
                     //BaseCreature.Summon(creature, true, this.Caster, new Point3D(p), 0x212, duration);
                 }

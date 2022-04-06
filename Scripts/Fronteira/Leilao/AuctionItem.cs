@@ -1439,15 +1439,14 @@ namespace Server.Leilaum
         {
             AuctionSystem.Auctions.Remove(this);
 
-            /*
             var custoPago = (int)(this.BuyNow * AuctionConfig.CostOfAuction);
             if (custoPago > 0)
             {
+                var retorno = custoPago * 0.8;
                 AuctionCheck gold = new AuctionGoldCheck(this, AuctionResult.RefundCost);
                 GiveItemTo(m_Owner, gold);
                 this.Owner.SendMessage("Voce recebeu o dinheiro gasto com o leilao pois o item nao foi vendido");
             }
-            */
 
             if (HighestBid == null)
             {

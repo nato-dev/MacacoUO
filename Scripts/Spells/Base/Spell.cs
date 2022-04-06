@@ -251,8 +251,10 @@ namespace Server.Spells
 
         public virtual bool IsCasting { get { return m_State == SpellState.Casting; } }
 
-        public virtual void OnCasterHurt()
+        public virtual void OnCasterHurt(Mobile from = null)
         {
+            if (from is BaseCreature && Utility.RandomBool())
+                return;
             CheckCasterDisruption(false, 0, 0, 0, 0, 0);
         }
 
@@ -585,8 +587,8 @@ namespace Server.Spells
             double casterEI = m_Caster.Skills[DamageSkill].Value;
             double targetRS = target.Skills[SkillName.MagicResist].Value;
 
-            if (!target.Player && casterEI < 75)
-                casterEI = 80;
+            if (!target.Player && casterEI < 100)
+                casterEI = 100;
 
             if (!target.Player && m_Caster.Player)
             {
@@ -721,13 +723,6 @@ namespace Server.Spells
             double scalar = 1.0;
             if (atkBook != null)
             {
-                /*
-                if (atkBook.SpellbookType == SpellbookType.Regular && atkBook.SpellCount < 60)
-                {
-
-                }
-                */
-                
                 SlayerEntry atkSlayer = SlayerGroup.GetEntryByName(atkBook.Slayer);
                 SlayerEntry atkSlayer2 = SlayerGroup.GetEntryByName(atkBook.Slayer2);
 
@@ -757,7 +752,11 @@ namespace Server.Spells
                     scalar += .5; // Every necromancer transformation other than horrific beast take an additional 25% damage
 
                 if (scalar != 1.0)
+                {
+                    if (Shard.DebugEnabled)
+                        Shard.Debug("Scalar de livro slayer: " + scalar);
                     return scalar;
+                }
             }
 
             ISlayer defISlayer = Spellbook.FindEquippedSpellbook(defender);

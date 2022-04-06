@@ -62,9 +62,9 @@ namespace Server.Fronteira
                                 pm.SendGump(new GumpFala((n3) =>
                                 {
                                     TutorialNoob.InicializaWisp(pm);
-                                }, Faces.GM_PRETO, "Voce agora recebera uma fada guia dos newbies.", "Caso nao queira fazer o tutorial, clique 2x nela e mande ela embora!", "Se completar tudo ira ganhar items e uma casa !"));
+                                }, Faces.GM_PRETO, "Voce agora recebera uma fada guia dos newbies.", "Caso nao queira fazer o tutorial, clique 2x nela e mande ela embora!", "<center>Porem se completar tudo ira ganhar items e uma casa</center>", "Isso mesmo, uma CASA !!!"));
                             }, Faces.GM_PRETO, "Rates de upar skills sao faceis no shard !", "", "UP de skills em Macro: Hard.", "Up de skills matando Monstro: EASY !!!"));
-                        }, Faces.GM_PRETO, "Bem vindo ao Dragonic Age !", "", "Quests sao opcionais, porem recomendamos o tutorial !", "Fique sempre atento a mensagens !"));
+                        }, Faces.GM_PRETO, "Bem vindo ao Dragonic Age !", "", "Quests sao opcionais, porem recomendamos o tutorial !", "No tutorial vc ganhara equipamentos e uma casa !", "Fique sempre atento a mensagens !"));
                     }
                     else
                     {

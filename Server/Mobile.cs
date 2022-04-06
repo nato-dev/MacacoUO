@@ -6197,7 +6197,7 @@ namespace Server
 
                 if (checkDisrupt && m_Spell != null)
                 {
-                    m_Spell.OnCasterHurt();
+                    m_Spell.OnCasterHurt(from);
                 }
 
                 if (from != null)

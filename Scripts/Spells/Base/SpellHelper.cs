@@ -741,6 +741,10 @@ namespace Server.Spells
                     pl.Almas = 0;
                     pl.SendMessage("Almas coletadas: 0/30");
                     pl.SendMessage("Voce usou todas almas coletadas de monstros para criar uma criatura mais forte");
+
+                    creature.HitsMaxSeed += almas * 2;
+                    creature.Hits = creature.HitsMax;
+
                     if (creature.Name != null && almas >= 30)
                     {
                         creature.Name += " *";

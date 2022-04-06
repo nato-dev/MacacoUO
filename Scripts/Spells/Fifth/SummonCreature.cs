@@ -32,6 +32,16 @@ namespace Server.Spells.Fifth
             typeof(SnowLeopard),
             typeof(Hind),
         };
+
+        private static readonly Type[] topTypes = new Type[]
+       {
+            typeof(BlackBear),
+            typeof(Gorilla),
+            typeof(SnowLeopard),
+            typeof(GreatHart),
+            typeof(Boar)
+       };
+
         public SummonCreatureSpell(Mobile caster, Item scroll)
             : base(caster, scroll, m_Info)
         {
@@ -79,6 +89,13 @@ namespace Server.Spells.Fifth
                     else
                         duration = TimeSpan.FromSeconds(15 + this.Caster.Skills[SkillName.SpiritSpeak].Value * 2);
 
+                    var pl = this.Caster as PlayerMobile;
+                    if(pl != null && pl.Almas > 0)
+                    {
+                        creature.HitsMaxSeed = creature.HitsMaxSeed + (pl.Almas * 10);
+                        creature.Hits = creature.HitsMax;
+                    }
+                   
                     SpellHelper.Summon(creature, this.Caster, 0x215, duration, true, true, true, SkillName.SpiritSpeak);
                 }
                 catch

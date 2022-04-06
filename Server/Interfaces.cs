@@ -67,7 +67,7 @@ namespace Server
 	{
 		int ID { get; }
 		bool IsCasting { get; }
-		void OnCasterHurt();
+		void OnCasterHurt(Mobile from = null);
 		void OnCasterKilled();
 		void OnConnectionChanged();
         bool DoStep(Mobile caster);

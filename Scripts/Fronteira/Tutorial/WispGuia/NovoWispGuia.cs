@@ -1,5 +1,6 @@
 using System;
 using Server.Fronteira.Tutorial.WispGuia;
+using Server.Gumps;
 using Server.Regions;
 using Server.Spells.First;
 
@@ -102,7 +103,25 @@ namespace Server.Mobiles
                     var objProximo = Guia.Objetivos[proximo];
                     if (objProximo.FraseIniciar != null)
                     {
-                        Fala(objProximo.FraseIniciar);
+                        if(!Jogador.InCombat(TimeSpan.FromSeconds(2)))
+                        {
+                            Jogador.SendMessage(objProximo.FraseIniciar);
+
+                            var splitado = objProximo.FraseIniciar.Split('.');
+                            if(splitado.Length <= 1 || splitado[splitado.Length-1].Length <= 2)
+                            {
+                                splitado = objProximo.FraseIniciar.Split(',');
+                            }
+                            if (splitado.Length <= 1 || splitado[splitado.Length - 1].Length <= 2)
+                            {
+                                splitado = objProximo.FraseIniciar.Split('!');
+                            }
+                            Jogador.SendGump(new GumpFala((int i) => { }, Faces.FADA, splitado));
+                        } else
+                        {
+                            Fala(objProximo.FraseIniciar);
+                        }
+                       
                         SetCooldown("fala", TimeSpan.FromSeconds(20));
                     }
                 });

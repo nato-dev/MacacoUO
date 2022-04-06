@@ -70,7 +70,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.PEGAR_CAVALO, new ObjetivoGuia()
             {
                 Local = new Point3D(3526, 2577, 7),
-                FraseIniciar = "Ei, o que acha de conseguir um cavalo ? Siga a seta no canto do mapa, eu arrumo um pra voce !",
+                FraseIniciar = "Ei o que acha de conseguir um cavalo ?! Siga a seta no canto do mapa que eu arrumo um pra voce !",
                 FraseProgresso = "Siga a setinha no canto da sua tela para chegar no Coxeiro.",
                 FraseCompletar = "Tome aqui, um cavalo. Clique duas vezes para montar.",
                 Completar = (pl) =>
@@ -179,7 +179,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             {
                 Local = new Point3D(3503, 2483, 26),
                 PrecisaEvento = true,
-                FraseIniciar = "Chega de papo, vamos agora para uma aventura !!",
+                FraseIniciar = "Vamos agora a norte de haven. Encontre o Ze e de 2 cliques nele para pegar iniciar a aventura.",
                 FraseProgresso = "Va a norte de Haven e encontre o Zeh Roela e de dois cliques nele !",
                 FraseCompletar = "Otimo, agora vamos a dungeon",
                 Proximo = PassoTutorial.MATAR_MAGO
@@ -189,7 +189,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             {
                 LocalDungeon = new Point3D(59, 1480, -28),
                 PrecisaEvento = true,
-                FraseIniciar = "Vamos la explorar ! Entre na dungeon !",
+                FraseIniciar = "Siga o caminho a norte para encontrar a dungeon",
                 FraseProgresso = "Encontre o mago putrido na dungeon norte do Zeh",
                 FraseCompletar = "Voce e muito bom ! Pegue a lanterna e entregue agora",
                 Proximo = PassoTutorial.VOLTAR_QUEST
@@ -199,8 +199,8 @@ namespace Server.Fronteira.Tutorial.WispGuia
             {
                 Local = new Point3D(3503, 2483, 26),
                 PrecisaEvento = true,
-                FraseIniciar = "Vamos sair desse buraco...",
-                FraseProgresso = "Arraste a lanterna para o Zeh para entrega-la",
+                FraseIniciar = "Vamos sair desse buraco. Saia da dungeon e arraste a lanterna para o Ze.",
+                FraseProgresso = "Saia da dungeon e arraste a lanterna para o Zeh para entrega-la",
                 FraseCompletar = "Excelente ! Voce eh demais !",
                 Proximo = PassoTutorial.ALAVANCA
             });
@@ -217,7 +217,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.BIXO_ESGOTO, new ObjetivoGuia()
             {
                 PrecisaEvento = true,
-                FraseIniciar = "Que curiosidade... Deve ter alguma alavanca nessa sala !",
+                FraseIniciar = "Que curiosidade. Deve ter alguma alavanca nessa sala",
                 FraseProgresso = "Vamos vamos, dentro da dungeon de haven deve ter algum monstro poderoso...",
                 FraseCompletar = "Eca que nojo !",
                 Proximo = PassoTutorial.JILL
@@ -226,7 +226,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.JILL, new ObjetivoGuia()
             {
                 PrecisaEvento = true,
-                FraseIniciar = "Hmm voce viu o livro que tinha dentro do monstro ? Vamos procurar essa Jill perto do Banco...",
+                FraseIniciar = "Hmm voce viu o livro que tinha dentro do monstro ?! Vamos procurar essa Jill perto do Banco",
                 FraseProgresso = "Vamos procurar a tal Jill perto do banco...",
                 FraseCompletar = "Que diferente esse mapa que te deram ! Que tal tentar usar ele ?",
                 Proximo = PassoTutorial.COMPLETA_JILL
@@ -236,7 +236,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.COMPLETA_JILL, new ObjetivoGuia()
             {
                 PrecisaEvento = true,
-                FraseIniciar = "Uma fada Ma ? Vamos acha-la !",
+                FraseIniciar = "Uma fada Ma ?! Vamos acha-la. Veja o mapa que a Jill lhe deu",
                 FraseProgresso = "Encontre essa fada ma, o mapa que a Jill te deu parece que indica para o local",
                 FraseCompletar = "Muito bom ! O que acha agora de ir para uma dungeon ?",
                 Proximo = PassoTutorial.MOONGATE
@@ -246,7 +246,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             {
                 Local = new Point3D(3471, 2599, 10),
                 PrecisaEvento = true,
-                FraseIniciar = "Vamos agora usar o Portal Publico para Deceit !!",
+                FraseIniciar = "Vamos agora usar o Portal Publico para Deceit",
                 FraseProgresso = "Va ate o portal publico e vamos para Deceit !",
                 FraseCompletar = "Otimo, agora fale com Silvio para pegar a missao !",
                 Proximo = PassoTutorial.QUEST_CASA
@@ -255,7 +255,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.QUEST_CASA, new ObjetivoGuia()
             {
                 PrecisaEvento = true,
-                FraseIniciar = "Fale com o Silvio para fazer a missao !",
+                FraseIniciar = "Fale com o Silvio para fazer a missao. Voce ira ganhar uma casa !",
                 FraseProgresso = "Vamos, Silvio esta te esperando ! Fale com ele para pegar a missao !",
                 FraseCompletar = "Muito bom, agora voce sabe o que fazer !!",
                 Proximo = PassoTutorial.FIM
