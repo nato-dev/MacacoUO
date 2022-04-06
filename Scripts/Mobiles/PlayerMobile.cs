@@ -1132,7 +1132,11 @@ namespace Server.Mobiles
 
         public override void Lift(Item item, int amount, out bool rejected, out LRReason reject)
         {
-            var delay = item.Parent is Corpse;
+            var delay = false;
+            if(item != null && item.Parent != null)
+            {
+                delay = item.Parent is Corpse;
+            }
             base.Lift(item, amount, out rejected, out reject);
             if (delay)
             {

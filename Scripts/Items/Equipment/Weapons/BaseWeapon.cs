@@ -2137,6 +2137,9 @@ namespace Server.Items
                     }
                 }
 
+
+              
+
                 if (Shard.DebugEnabled)
                     Shard.Debug("Bloqueado dano: " + bloqueado, defender);
                 damage -= bloqueado;
