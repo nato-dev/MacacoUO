@@ -69,6 +69,7 @@ namespace Server.Spells.Fifth
 
                 var count = 40 + (int)Caster.Skills[SkillName.SpiritSpeak].Value / 2;
 
+
                 duration = TimeSpan.FromSeconds(Utility.Random(80, count));
 
                 var creature = new BladeSpirits(true);
