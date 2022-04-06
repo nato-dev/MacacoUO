@@ -14,9 +14,7 @@ namespace Server.Items
             : base()
         {
             Hue = 506;		
-            Attributes.BonusInt = 10;
-            Attributes.DefendChance = 5;
-            Attributes.RegenMana = 2;
+            Attributes.BonusInt = 1;
         }
 
         public Tangle1(Serial serial)
@@ -36,6 +34,7 @@ namespace Server.Items
             base.Deserialize(reader);
 			
             int version = reader.ReadInt();
+            Attributes.BonusInt = 1;
         }
     }
 
