@@ -116,6 +116,10 @@ namespace Server.Mobiles
                             {
                                 splitado = objProximo.FraseIniciar.Split('!');
                             }
+                           for(var i = 0; i < splitado.Length; i++)
+                            {
+                                splitado[i] = splitado[i].Trim();
+                            }
                             Jogador.SendGump(new GumpFala((int i) => { }, Faces.FADA, splitado));
                         } else
                         {

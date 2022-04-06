@@ -86,7 +86,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.IR_FERREIRO, new ObjetivoGuia()
             {
                 Local = new Point3D(3469, 2540, 10),
-                FraseIniciar = "Vamos agora ao ferreiro ! Fale 'Comprar' a ele para se equipar.",
+                FraseIniciar = "Vamos agora ao ferreiro ! Fale 'Comprar' a ele para se equipar. Items de npc tem qualidade baixa e ferreiros podem criar algo melhor",
                 FraseProgresso = "Encontre o ferreiro e diga Comprar a ele para comprar items.",
                 FraseCompletar = "Se voce tiver skills de trabalho, pode falar 'trabalho' para trabalhar pro NPC ou 'recompensas'. ",
                 Completar = (pl) =>
@@ -100,7 +100,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.IR_BANCO, new ObjetivoGuia()
             {
                 Local = new Point3D(3487, 2573, 21),
-                FraseIniciar = "Quel tal ir ao banco guardar seu dinheiro ? Va ao banco e fale 'Banco' !.",
+                FraseIniciar = "Quel tal ir ao banco guardar seu dinheiro ? Va ao banco e fale 'Banco' !",
                 FraseProgresso = "Va ao banco e fale 'Banco' para abrir seu banco.",
                 PrecisaEvento = true,
                 FraseCompletar = "Voce tambem pode fazer cheques falando 'cheque'. Coloquei um cheque em seu banco.",
@@ -117,7 +117,7 @@ namespace Server.Fronteira.Tutorial.WispGuia
             Objetivos.Add(PassoTutorial.PEGAR_KIT, new ObjetivoGuia()
             {
                 Local = new Point3D(3420, 2520, 21),
-                FraseIniciar = "Vamos agora ao salao do conhecimento. La voce podera escolher seus conhecimentos iniciais.",
+                FraseIniciar = "Vamos agora ao salao do conhecimento. La voce podera escolher seus conhecimentos iniciais.Voce pode ter qualquer skill que quiser isto e apenas um inicio",
                 FraseProgresso = "Va ao salao do conhecimento obter seus conhecimentos iniciais.",
                 FraseCompletar = "Perfeito. Agora escolha bem seus conhecimentos iniciais.",
                 Completar = (pl) =>
