@@ -15,8 +15,8 @@ namespace Server.Items
             : base(0x1F04, 0xD6)
         {
             Hue = 2075;
-            Attributes.BonusHits = 3;
-            Attributes.BonusInt = 5;
+            //Attributes.BonusHits = 3;
+            Attributes.BonusInt = 1;
         }
 
         public ShroudOfTheCondemned(Serial serial)
@@ -36,6 +36,7 @@ namespace Server.Items
             base.Deserialize(reader);
 
             int version = reader.ReadEncodedInt();
+            Attributes.BonusInt = 1;
         }
     }
 }

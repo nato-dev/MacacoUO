@@ -4816,7 +4816,16 @@ namespace Server.Mobiles
 
         public override DeathMoveResult GetParentMoveResultFor(Item item)
         {
-            if (!(item is BankBox || item.RootParent is BankBox) && ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
+           
+
+            if (CheckInsuranceOnDeath(item) && !Young)
+            {
+                return DeathMoveResult.MoveToBackpack;
+            }
+
+            DeathMoveResult res = base.GetParentMoveResultFor(item);
+
+            if (res == DeathMoveResult.MoveToCorpse && !(item is BankBox || item.RootParent is BankBox) && ViceVsVirtueSystem.Enabled && ViceVsVirtueSystem.Instance.Battle.OnGoing)
             {
                 if (ViceVsVirtueSystem.IsVvV(this))
                     return DeathMoveResult.MoveToBackpack;
@@ -4826,13 +4835,6 @@ namespace Server.Mobiles
                     return DeathMoveResult.MoveToBackpack;
                 }
             }
-
-            if (CheckInsuranceOnDeath(item) && !Young)
-            {
-                return DeathMoveResult.MoveToBackpack;
-            }
-
-            DeathMoveResult res = base.GetParentMoveResultFor(item);
 
             if (res == DeathMoveResult.MoveToCorpse && item.Movable && Young)
             {

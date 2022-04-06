@@ -519,7 +519,9 @@ namespace Server.Engines.VvV
                 foreach (PlayerMobile pm in Region.GetEnumeratedMobiles().OfType<PlayerMobile>())
                 {
                     pm.RecheckTownProtection();
+                    pm.Delta(MobileDelta.Noto);
                 }
+
             }
 
             foreach (VvVAltar altar in Altars)
