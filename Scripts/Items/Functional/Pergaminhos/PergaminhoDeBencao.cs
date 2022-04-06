@@ -51,6 +51,9 @@ namespace Server.Items.Functional.Pergaminhos
 
             protected override void OnTarget(Mobile from, object targeted)
             {
+                if (scroll.Deleted)
+                    return;
+
                 if(targeted is BaseClothing || targeted is Runebook)
                 {
                     var item = (Item)targeted;
@@ -143,6 +146,9 @@ namespace Server.Items.Functional.Pergaminhos
 
             protected override void OnTarget(Mobile from, object targeted)
             {
+                if (scroll.Deleted)
+                    return;
+
                 if (targeted is BaseClothing || targeted is Runebook)
                 {
                     var item = (Item)targeted;
@@ -232,6 +238,9 @@ namespace Server.Items.Functional.Pergaminhos
 
             protected override void OnTarget(Mobile from, object targeted)
             {
+                if (scroll.Deleted)
+                    return;
+
                 if (targeted is Runebook)
                 {
                     var item = (Item)targeted;
