@@ -1208,18 +1208,23 @@ namespace Server.Items
                 list.Add(1153213, OwnerName);
             }
 
-
-            if(m_AosResistances.Cold > 0)
-            {
-                list.Add("DEBUG: RESIST FRIO: " + m_AosResistances.Cold);
-            }
-
             if (m_AosSkillBonuses != null)
                 m_AosSkillBonuses.GetProperties(list);
-
             int prop = 0;
             if ((prop = m_AosAttributes.BonusStam) != 0)
                 list.Add(1060484, prop.ToString()); // stamina increase ~1_val~
+
+            if ((prop = m_AosAttributes.WeaponDamage) != 0)
+                list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
+
+            if ((prop = m_AosAttributes.DefendChance) != 0)
+                list.Add(1060408, prop.ToString()); // defense chance increase ~1_val~%
+
+            if ((prop = m_AosAttributes.SpellDamage) != 0)
+                list.Add(1060483, prop.ToString()); // spell damage increase ~1_val~%
+
+            if ((prop = m_AosAttributes.LowerManaCost) != 0)
+                list.Add(1060433, prop.ToString()); // lower mana cost ~1_val~%
 
             return;
 
@@ -1277,9 +1282,6 @@ namespace Server.Items
 
             if (m_NegativeAttributes != null)
                 m_NegativeAttributes.GetProperties(list, this);
-
-       
-
 
             if ((prop = ArtifactRarity) > 0)
                 list.Add(1061078, prop.ToString()); // artifact rarity ~1_val~
@@ -1370,23 +1372,11 @@ namespace Server.Items
             if ((prop = m_AosAttributes.WeaponSpeed) != 0)
                 list.Add(1060486, prop.ToString()); // swing speed increase ~1_val~%
 			
-			if ((prop = m_AosAttributes.WeaponDamage) != 0)
-                list.Add(1060401, prop.ToString()); // damage increase ~1_val~%
-			
-			if ((prop = m_AosAttributes.DefendChance) != 0)
-                list.Add(1060408, prop.ToString()); // defense chance increase ~1_val~%
-			
 			if ((prop = m_AosAttributes.CastRecovery) != 0)
                 list.Add(1060412, prop.ToString()); // faster cast recovery ~1_val~		
 			
 			if ((prop = m_AosAttributes.Resistence) != 0)
                 list.Add(1060413, prop.ToString()); // faster casting ~1_val~
-			
-			if ((prop = m_AosAttributes.SpellDamage) != 0)
-                list.Add(1060483, prop.ToString()); // spell damage increase ~1_val~%
-			
-			if ((prop = m_AosAttributes.LowerManaCost) != 0)
-                list.Add(1060433, prop.ToString()); // lower mana cost ~1_val~%
 
             if ((prop = m_AosAttributes.LowerRegCost) != 0)
                 list.Add(1060434, prop.ToString()); // lower reagent cost ~1_val~%

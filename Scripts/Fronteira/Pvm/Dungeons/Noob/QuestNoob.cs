@@ -8,7 +8,7 @@ namespace Server.Engines.Quests
 {
     public class QuestNoob : BaseQuest
     {
-        public override bool DoneOnce { get { return true; } }
+        public override bool DoneOnce { get { return false; } }
 
         //public override QuestChain ChainID => QuestChain.Tutorial;
 
@@ -77,7 +77,7 @@ namespace Server.Engines.Quests
             this.Owner.PlaySound(this.CompleteSound);
             if (this.Owner.Wisp != null)
             {
-                this.Owner.Wisp.Fala("Que tal ir explorar o portal azul perto do centro da cidade agora ?");
+                this.Owner.Wisp.CompletaJill();
             }
         }
 

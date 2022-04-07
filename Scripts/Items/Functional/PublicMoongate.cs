@@ -182,12 +182,14 @@ namespace Server.Items
                 return true;
             }
 
+            /*
             if (m.Criminal)
             {
                 // Thou'rt a criminal and cannot escape so easily.
                 m.SendLocalizedMessage(1005561, "", 0x22);
                 return false;
             }
+            */
 
             if (SpellHelper.CheckCombat(m))
             {
@@ -584,10 +586,12 @@ namespace Server.Items
                 {
                     checkLists = PMList.SigilLists;
                 }
+                /*
                 else if (SpellHelper.RestrictRedTravel && mobile.Murderer && !Siege.SiegeShard)
                 {
                     checkLists = PMList.RedLists;
                 }
+                */
                 else
                 {
                     var flags = mobile.NetState == null ? ClientFlags.None : mobile.NetState.Flags;
@@ -728,21 +732,25 @@ namespace Server.Items
                 m_Mobile.SendLocalizedMessage(1019002); // You are too far away to use the gate.
                 return;
             }
+            /*
             else if (m_Mobile.Player && SpellHelper.RestrictRedTravel && m_Mobile.Murderer && list.Map != Map.Felucca && !Siege.SiegeShard)
             {
                 m_Mobile.SendLocalizedMessage(1019004); // You are not allowed to travel there.
                 return;
             }
+            */
             else if (Sigil.ExistsOn(m_Mobile) && list.Map != Faction.Facet)
             {
                 m_Mobile.SendLocalizedMessage(1019004); // You are not allowed to travel there.
                 return;
             }
+            /*
             else if (m_Mobile.Criminal)
             {
                 m_Mobile.SendLocalizedMessage(1005561, "", 0x22); // Thou'rt a criminal and cannot escape so easily.
                 return;
             }
+            */
             else if (SpellHelper.CheckCombat(m_Mobile))
             {
                 m_Mobile.SendLocalizedMessage(1005564, "", 0x22); // Wouldst thou flee during the heat of battle??

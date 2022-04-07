@@ -7675,9 +7675,11 @@ namespace Server.Mobiles
                     var fame = new List<int>();
                     var karma = new List<int>();
 
+                    /*
                     foreach (var i in this.Corpse.Items)
                         if (i.PartyLoot)
                             partyItems.Add(i);
+                    */
 
                     bool givenFactionKill = false;
                     bool givenToTKill = false;

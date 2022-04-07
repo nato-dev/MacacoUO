@@ -51,6 +51,7 @@ namespace Server.Gumps
             Combate.Add(SkillName.DetectHidden);
             Combate.Add(SkillName.Poisoning);
             Combate.Add(SkillName.Chivalry);
+            Combate.Add(SkillName.TasteID);
             Combate.Add(SkillName.Musicianship);
             Combate.Add(SkillName.Provocation);
             Combate.Add(SkillName.Discordance);
@@ -147,6 +148,7 @@ namespace Server.Gumps
             AddHtml(345, 269, 158, 21, string.Format(@"{0} Magery", caller.Skills.Magery.Value), (bool)false, (bool)false);
             AddHtml(345, 312, 158, 21, string.Format(@"{0} Evaluating Int.", caller.Skills.EvalInt.Value), (bool)false, (bool)false);
             AddHtml(345, 334, 158, 21, string.Format(@"{0} Meditation", caller.Skills.Meditation.Value), (bool)false, (bool)false);
+            AddHtml(573, 439, 158, 21, string.Format("{0} TasteID", caller.Skills.TasteID.Value), (bool)false, (bool)false);
 
             AddHtml(573, 266, 158, 21, string.Format(@"{0} Swordsmanship", caller.Skills.Swords.Value), (bool)false, (bool)false);
             AddHtml(573, 288, 158, 21, string.Format(@"{0} Fencing", caller.Skills.Fencing.Value), (bool)false, (bool)false);
@@ -204,7 +206,7 @@ namespace Server.Gumps
             // AddHtml(794 + 158, 417+21 , 158, 21, GetCustoUp(caller, SkillName.Ninjitsu), (bool)false, (bool)false);
             AddHtml(794 + 158, 374, 158, 21, GetCustoUp(caller, SkillName.Focus), (bool)false, (bool)false);
             AddHtml(573 + 158, 419, 158, 21, GetCustoUp(caller, SkillName.Parry), (bool)false, (bool)false);
-           // AddHtml(573 + 158, 430, 158, 21, GetCustoUp(caller, SkillName.Chivalry), (bool)false, (bool)false);
+            AddHtml(573 + 158, 444, 158, 21, GetCustoUp(caller, SkillName.TasteID), (bool)false, (bool)false);
             //AddHtml(794 + 158, 396, 158, 21, GetCustoUp(caller, SkillName.DetectHidden), (bool)false, (bool)false);
             AddHtml(794 + 158, 352 , 158, 21, GetCustoUp(caller, SkillName.Poisoning), (bool)false, (bool)false);
             AddHtml(794 + 158, 417, 158, 21, GetCustoUp(caller, SkillName.Lockpicking), (bool)false, (bool)false);
@@ -218,7 +220,7 @@ namespace Server.Gumps
             AddHtml(1025 + 158, 351+21, 158, 21, GetCustoUp(caller, SkillName.Begging), (bool)false, (bool)false);
             AddHtml(1025 + 158, 351+42, 158, 21, GetCustoUp(caller, SkillName.Forensics), (bool)false, (bool)false);
 
-            AddButton(486, 271, 55, 248, (int)Buttons.Magery, GumpButtonType.Reply, 0);
+            AddButton(486, 271, 55, 55, (int)Buttons.Magery, GumpButtonType.Reply, 0);
             AddImage(351, 252, 50);
             AddImage(578, 250, 50);
             AddImage(800, 250, 50);
@@ -226,31 +228,31 @@ namespace Server.Gumps
             AddImage(731, 169, 93);
             AddImage(843, 169, 94);
             AddHtml(731, 176, 101, 26, string.Format("{0} EXP", PointsSystem.Exp.GetPoints(caller)), (bool)false, (bool)false);
-            AddButton(486, 292, 55, 248, (int)Buttons.MagicResist, GumpButtonType.Reply, 0);
-            AddButton(486, 314, 55, 248, (int)Buttons.EvalInt, GumpButtonType.Reply, 0);
-            AddButton(486, 336, 55, 248, (int)Buttons.Meditation, GumpButtonType.Reply, 0);
-            AddButton(485, 358, 55, 248, (int)Buttons.SpiritSpeak, GumpButtonType.Reply, 0);
-            //AddButton(485, 420 , 55, 248, (int)Buttons.Necromancy, GumpButtonType.Reply, 0);
-            AddButton(485, 400, 55, 248, (int)Buttons.Inscribe, GumpButtonType.Reply, 0);
-            AddButton(485, 380, 55, 248, (int)Buttons.Wrestling, GumpButtonType.Reply, 0);
-            AddButton(714, 268, 55, 248, (int)Buttons.Swords, GumpButtonType.Reply, 0);
-            AddButton(714, 290, 55, 248, (int)Buttons.Fencing, GumpButtonType.Reply, 0);
-            AddButton(714, 312, 55, 248, (int)Buttons.Macing, GumpButtonType.Reply, 0);
-            AddButton(714, 333, 55, 248, (int)Buttons.Tactics, GumpButtonType.Reply, 0);
-            AddButton(714, 357, 55, 248, (int)Buttons.Anatomy, GumpButtonType.Reply, 0);
-            AddButton(714, 377, 55, 248, (int)Buttons.Healing, GumpButtonType.Reply, 0);
-            AddButton(714, 399, 55, 248, (int)Buttons.ArmsLore, GumpButtonType.Reply, 0);
-            AddButton(714, 420, 55, 248, (int)Buttons.Parry, GumpButtonType.Reply, 0);
-            AddButton(935, 269, 55, 248, (int)Buttons.Archery, GumpButtonType.Reply, 0);
-            AddButton(935, 289, 55, 248, (int)Buttons.Tracking, GumpButtonType.Reply, 0);
-            AddButton(935, 312, 55, 248, (int)Buttons.Hiding, GumpButtonType.Reply, 0);
-            AddButton(935, 333, 55, 248, (int)Buttons.Stealth, GumpButtonType.Reply, 0);
-            //AddButton(935,375 + 63 , 55, 248, (int)Buttons.Ninjitsu, GumpButtonType.Reply, 0);
-            AddButton(935, 375, 55, 248, (int)Buttons.Focus, GumpButtonType.Reply, 0);
+            AddButton(486, 292, 55, 55, (int)Buttons.MagicResist, GumpButtonType.Reply, 0);
+            AddButton(486, 314, 55, 55, (int)Buttons.EvalInt, GumpButtonType.Reply, 0);
+            AddButton(486, 336, 55, 55, (int)Buttons.Meditation, GumpButtonType.Reply, 0);
+            AddButton(485, 358, 55, 55, (int)Buttons.SpiritSpeak, GumpButtonType.Reply, 0);
+            //AddButton(485, 420 , 55, 55, (int)Buttons.Necromancy, GumpButtonType.Reply, 0);
+            AddButton(485, 400, 55, 55, (int)Buttons.Inscribe, GumpButtonType.Reply, 0);
+            AddButton(485, 380, 55, 55, (int)Buttons.Wrestling, GumpButtonType.Reply, 0);
+            AddButton(714, 268, 55, 55, (int)Buttons.Swords, GumpButtonType.Reply, 0);
+            AddButton(714, 290, 55, 55, (int)Buttons.Fencing, GumpButtonType.Reply, 0);
+            AddButton(714, 312, 55, 55, (int)Buttons.Macing, GumpButtonType.Reply, 0);
+            AddButton(714, 333, 55, 55, (int)Buttons.Tactics, GumpButtonType.Reply, 0);
+            AddButton(714, 357, 55, 55, (int)Buttons.Anatomy, GumpButtonType.Reply, 0);
+            AddButton(714, 377, 55, 55, (int)Buttons.Healing, GumpButtonType.Reply, 0);
+            AddButton(714, 399, 55, 55, (int)Buttons.ArmsLore, GumpButtonType.Reply, 0);
+            AddButton(714, 420, 55, 55, (int)Buttons.Parry, GumpButtonType.Reply, 0);
+            AddButton(935, 269, 55, 55, (int)Buttons.Archery, GumpButtonType.Reply, 0);
+            AddButton(935, 289, 55, 55, (int)Buttons.Tracking, GumpButtonType.Reply, 0);
+            AddButton(935, 312, 55, 55, (int)Buttons.Hiding, GumpButtonType.Reply, 0);
+            AddButton(935, 333, 55, 55, (int)Buttons.Stealth, GumpButtonType.Reply, 0);
+            //AddButton(935,375 + 63 , 55, 55, (int)Buttons.Ninjitsu, GumpButtonType.Reply, 0);
+            AddButton(935, 375, 55, 55, (int)Buttons.Focus, GumpButtonType.Reply, 0);
         
-            AddButton(935, 354, 55, 248, (int)Buttons.Poisoning, GumpButtonType.Reply, 0);
-            AddButton(935, 375 + 42, 55, 248, (int)Buttons.Lockpicking, GumpButtonType.Reply, 0);
-            AddButton(935, 375 + 21 , 55, 248, (int)Buttons.RemoveTrap, GumpButtonType.Reply, 0);
+            AddButton(935, 354, 55, 55, (int)Buttons.Poisoning, GumpButtonType.Reply, 0);
+            AddButton(935, 375 + 42, 55, 55, (int)Buttons.Lockpicking, GumpButtonType.Reply, 0);
+            AddButton(935, 375 + 21 , 55, 55, (int)Buttons.RemoveTrap, GumpButtonType.Reply, 0);
             //AddButton(1119, 166, 1491, 1491, (int)Buttons.Help, GumpButtonType.Reply, 0);
             AddImage(1026, 251, 50);
 
@@ -260,18 +262,18 @@ namespace Server.Gumps
             AddImage(1229, 460, 10460);
 
 
-            AddHtml(573, 439, 158, 21, string.Format("{0} Chivalry", caller.Skills.Chivalry.Value), 3333, (bool)false, (bool)false);
-            AddButton(1168, 268, 55, 248, (int)Buttons.Musicianship, GumpButtonType.Reply, 0);
-            AddButton(1168, 288, 55, 248, (int)Buttons.Peacemaking, GumpButtonType.Reply, 0);
-            AddButton(1168, 309, 55, 248, (int)Buttons.Provocation, GumpButtonType.Reply, 0);
-            AddButton(1168, 332, 55, 248, (int)Buttons.Discordance, GumpButtonType.Reply, 0);
-            AddButton(1168, 332+21, 55, 248, (int)Buttons.DetectHidden, GumpButtonType.Reply, 0);
-            AddButton(1168, 353 + 21, 55, 248, (int)Buttons.Begging, GumpButtonType.Reply, 0);
-            AddButton(1168, 353 + 42, 55, 248, (int)Buttons.Forensics, GumpButtonType.Reply, 0);
+           
+            AddButton(1168, 268, 55, 55, (int)Buttons.Musicianship, GumpButtonType.Reply, 0);
+            AddButton(1168, 288, 55, 55, (int)Buttons.Peacemaking, GumpButtonType.Reply, 0);
+            AddButton(1168, 309, 55, 55, (int)Buttons.Provocation, GumpButtonType.Reply, 0);
+            AddButton(1168, 332, 55, 55, (int)Buttons.Discordance, GumpButtonType.Reply, 0);
+            AddButton(1168, 332+21, 55, 55, (int)Buttons.DetectHidden, GumpButtonType.Reply, 0);
+            AddButton(1168, 353 + 21, 55, 55, (int)Buttons.Begging, GumpButtonType.Reply, 0);
+            AddButton(1168, 353 + 42, 55, 55, (int)Buttons.Forensics, GumpButtonType.Reply, 0);
 
             AddItem(1081, 226, 3763);
 
-            //AddButton(714, 441, 55, 248, (int)Buttons.Chivalry, GumpButtonType.Reply, 0);
+            AddButton(714, 441, 55, 55, (int)Buttons.TasteID, GumpButtonType.Reply, 0);
 
             // Stats
             var modX = 250;
@@ -332,6 +334,7 @@ namespace Server.Gumps
             RemoveTrap,
             Begging,
             Forensics,
+            TasteID,
             Str, Dex, Int
         }
 

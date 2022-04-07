@@ -37,6 +37,7 @@ namespace Server.Items
 
             int version = reader.ReadEncodedInt();
             Attributes.BonusInt = 1;
+
         }
     }
 }
