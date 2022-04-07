@@ -15,6 +15,7 @@ namespace Server.Items
         {
             Hue = 506;		
             Attributes.BonusInt = 1;
+            Attributes.WeaponDamage = 10;
         }
 
         public Tangle1(Serial serial)
@@ -35,6 +36,7 @@ namespace Server.Items
 			
             int version = reader.ReadInt();
             Attributes.BonusInt = 1;
+            Attributes.WeaponDamage = 10;
         }
     }
 
